@@ -1,0 +1,3 @@
+TODO: combining the parsed data into the merged form
+Will need to transform parsed data (a file for each source)
+Then will need to have a file to just take all of these in and merge them into one structure

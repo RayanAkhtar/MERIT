@@ -42,3 +42,10 @@ build/
 # MyPy / type checking
 .mypy_cache/
 .dmypy.json
+
+
+
+# Other files and directories
+test_files
+uploads/
+

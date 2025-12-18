@@ -1,0 +1,1 @@
+TODO: implement parser for cv, github, linkedin into a format that can be used by all (to allow merging later)
