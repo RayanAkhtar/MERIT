@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
+import LinkSelection from './LinkSelection';
 
 interface FileWithPreview extends File {
   preview?: string;
@@ -13,6 +14,8 @@ export default function FileUpload() {
   const [isDragging, setIsDragging] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadStatus, setUploadStatus] = useState<string>('');
+  const [metrics, setMetrics] = useState<{ uploaded_files: number; link_counts: Record<string, number> } | null>(null);
+  const [selectedLinks, setSelectedLinks] = useState<Record<string, boolean>>({});
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const allowedTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
@@ -71,6 +74,25 @@ export default function FileUpload() {
     setFiles(prev => prev.filter((_, i) => i !== index));
   };
 
+  const fetchMetrics = async () => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/supporting-links-metrics`);
+      if (response.ok) {
+        const data = await response.json();
+        setMetrics(data);
+        const initialSelections = Object.keys(data.link_counts).reduce((acc, link) => {
+          acc[link] = false;
+          return acc;
+        }, {} as Record<string, boolean>);
+        setSelectedLinks(initialSelections);
+      } else {
+        console.error("Failed to fetch metrics");
+      }
+    } catch (error) {
+      console.error("Error fetching metrics:", error);
+    }
+  };
+
   const handleUpload = async () => {
     if (files.length === 0) {
       setUploadStatus('Please select at least one file to upload.');
@@ -95,6 +117,7 @@ export default function FileUpload() {
         const result = await response.json();
         setUploadStatus(`Successfully uploaded ${result.uploaded} file(s)!`);
         setFiles([]);
+        await fetchMetrics();
       } else {
         const error = await response.json();
         setUploadStatus(`Upload failed: ${error.error || 'Unknown error'}`);
@@ -285,6 +308,23 @@ export default function FileUpload() {
             )}
             <span>{uploadStatus}</span>
           </div>
+        </div>
+      )}
+
+      {/* Metrics Section */}
+      {metrics && (
+        <div className="space-y-6">
+          <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+            Metrics
+          </h3>
+          <p className="text-sm text-zinc-600 dark:text-zinc-400">
+            Uploaded Files: {metrics.uploaded_files}
+          </p>
+          <LinkSelection
+            metrics={metrics}
+            selectedLinks={selectedLinks}
+            setSelectedLinks={setSelectedLinks}
+          />
         </div>
       )}
     </div>

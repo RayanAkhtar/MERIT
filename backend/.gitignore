@@ -47,5 +47,5 @@ build/
 
 # Other files and directories
 test_files
-uploads/
-
+uploads
+datasets

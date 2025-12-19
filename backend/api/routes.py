@@ -1,6 +1,10 @@
 from flask import Blueprint, jsonify, request
 from werkzeug.utils import secure_filename
 import os
+from core.service.upload_service import handle_file_upload, get_file_link_counts
+
+# TODO
+#    1. Structure this better since there will be more endpoints as it grows
 
 api_bp = Blueprint("api", __name__)
 
@@ -24,47 +28,12 @@ def upload_files():
     """Handle multiple file uploads"""
     if 'files' not in request.files:
         return jsonify({"error": "No files provided"}), 400
-    
+
     files = request.files.getlist('files')
-    
-    if not files or files[0].filename == '':
-        return jsonify({"error": "No files selected"}), 400
-    
-    uploaded_files = []
-    errors = []
-    
-    for file in files:
-        if file and allowed_file(file.filename):
-            
-            filename = secure_filename(file.filename)
-            filepath = os.path.join(UPLOAD_FOLDER, filename)
-            
-            # prevent duplicates
-            counter = 1
-            base_name, ext = os.path.splitext(filename)
-            while os.path.exists(filepath):
-                filename = f"{base_name}_{counter}{ext}"
-                filepath = os.path.join(UPLOAD_FOLDER, filename)
-                counter += 1
-            
-            try:
-                file.save(filepath)
-                uploaded_files.append(filename)
-            except Exception as e:
-                errors.append(f"Failed to save {file.filename}: {str(e)}")
-        else:
-            errors.append(f"{file.filename} is not a valid PDF or DOCX file")
-    
-    if uploaded_files:
-        response = {
-            "uploaded": len(uploaded_files),
-            "files": uploaded_files
-        }
-        if errors:
-            response["errors"] = errors
-        return jsonify(response), 200
-    else:
-        return jsonify({
-            "error": "No files were uploaded",
-            "errors": errors
-        }), 400
+    return jsonify(*handle_file_upload(files))
+
+@api_bp.route("/supporting-links-metrics", methods=["GET"])
+def file_link_counts():
+    """API endpoint to get file link counts"""
+    link_summary = get_file_link_counts()
+    return jsonify(link_summary), 200

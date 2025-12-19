@@ -204,6 +204,13 @@ def parse_cv(path: str):
         "education": sections.get("education"),
     }
 
+def get_available_links(path: str):
+    raw_text, embedded_links = extract_text_and_links(path)
+    cleaned_text = clean_text(raw_text)
+
+    # Extract links and return True/False for each occurrence
+    links = extract_links(cleaned_text, embedded_links)
+    return {key: bool(value) for key, value in links.items()}
 
 # ----------------------------
 # Entry Point
