@@ -6,6 +6,7 @@ from typing import Dict, Optional
 # TODO:
 #   1. See if scrapingdog can be done cheaper, scraping less details if possible
 #   2. Consider whether pictures should be kept in this scraper?
+#   3. Also consider removing unneeded stuff so we can save space
 #
 
 

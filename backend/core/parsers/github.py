@@ -4,7 +4,7 @@ import requests
 from collections import Counter
 from pprint import pprint
 
-# Todo later:
+# TODO later:
 #   1. Update skills to be taken from the job description itself
 #   2. Update experience parsing to parse as a list of structured experience
 #   3. Update education parsing to parse as list of structured education

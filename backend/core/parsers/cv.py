@@ -8,8 +8,8 @@ from collections import defaultdict
 from docx import Document
 from docx.opc.constants import RELATIONSHIP_TYPE as RT
 
-# Todo later:
-#   1. Update skills to be taken from the job description itself
+# TODO later:
+#   1. Update skills to be taken from the job description itself, rather than hardcoded
 #   2. Update experience parsing to parse as a list of structured experience
 #   3. Update education parsing to parse as list of structured education
 #   4. Check robustness of link extraction, embedded links, non embedded links, usernames, etc
