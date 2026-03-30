@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { FaSearch, FaRegQuestionCircle, FaCogs } from 'react-icons/fa';
+import { FaSearch, FaCogs, FaChartBar, FaNetworkWired, FaSlidersH, FaLightbulb, FaBrain, FaCode, FaShieldAlt, FaFlag } from 'react-icons/fa';
 
 export default function Home() {
   return (
@@ -36,7 +36,7 @@ export default function Home() {
             A screening tool that supports more than just CVs, scan GitHub, LinkedIn, and more.
           </p>
           <Link
-            href="/config"
+            href="/extract"
             className="inline-flex items-center px-6 py-3 rounded-md bg-zinc-900 dark:bg-zinc-50 text-white dark:text-zinc-900 font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors"
           >
             Get Started
@@ -56,43 +56,165 @@ export default function Home() {
           </Link>
         </div>
       </section>
+      {/* Core Innovations Section */}
+      <section className="bg-zinc-50 dark:bg-zinc-900/30 border-y border-zinc-200 dark:border-zinc-800">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-semibold text-zinc-900 dark:text-zinc-50 mb-4">
+              Core Innovations
+            </h2>
+            <p className="text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
+              MERIT goes beyond standard CV screening, fundamentally changing how applicant tracking works.
+            </p>
+          </div>
+          
+          <div className="space-y-8">
+            {/* Row 1: 2 items */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              {/* 1. Multiple Data Sources */}
+              <div className="p-8 border border-zinc-200/60 dark:border-zinc-800/60 rounded-3xl bg-white dark:bg-zinc-950/50 hover:shadow-xl hover:shadow-indigo-500/5 dark:hover:shadow-indigo-500/10 hover:border-indigo-500/30 transition-all duration-300 group">
+                <div className="w-14 h-14 bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-3 transition-transform">
+                  <FaNetworkWired className="w-7 h-7 text-indigo-600 dark:text-indigo-400" />
+                </div>
+                <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 mb-3">
+                  Multi-Source Intelligence
+                </h3>
+                <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg">
+                  Support for more than just CVs. MERIT seamlessly integrates candidate data across GitHub repositories, LinkedIn profiles, and personal portfolios.
+                </p>
+              </div>
 
-      {/* Features Section */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="p-6 border border-zinc-200 dark:border-zinc-800 rounded-lg">
-            <div className="w-10 h-10 bg-zinc-100 dark:bg-zinc-800 rounded-md flex items-center justify-center mb-4">
-              <FaSearch className="w-5 h-5 text-zinc-700 dark:text-zinc-300" />
+              {/* 2. Customizability */}
+              <div className="p-8 border border-zinc-200/60 dark:border-zinc-800/60 rounded-3xl bg-white dark:bg-zinc-950/50 hover:shadow-xl hover:shadow-emerald-500/5 dark:hover:shadow-emerald-500/10 hover:border-emerald-500/30 transition-all duration-300 group">
+                <div className="w-14 h-14 bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl flex items-center justify-center mb-6 group-hover:-rotate-3 transition-transform">
+                  <FaSlidersH className="w-7 h-7 text-emerald-600 dark:text-emerald-400" />
+                </div>
+                <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 mb-3">
+                  Highly Customizable
+                </h3>
+                <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg">
+                  Don't rely on rigid algorithms. Build and reuse dynamic evaluation templates, tweaking specific metrics and weightings tailored precisely to the role.
+                </p>
+              </div>
             </div>
-            <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-2">
-              Multiple sources
+
+            {/* Row 2: 3 items */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* 3. Detailed Insights */}
+              <div className="p-8 border border-zinc-200/60 dark:border-zinc-800/60 rounded-3xl bg-white dark:bg-zinc-950/50 hover:shadow-xl hover:shadow-amber-500/5 dark:hover:shadow-amber-500/10 hover:border-amber-500/30 transition-all duration-300 group">
+                <div className="w-12 h-12 bg-amber-50 dark:bg-amber-900/20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <FaLightbulb className="w-6 h-6 text-amber-500 dark:text-amber-400" />
+                </div>
+                <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-50 mb-2">
+                  Explainable Insights
+                </h3>
+                <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                  Every candidate score comes with transparent attribution. Uncover detailed insights showing exactly which data points contributed to their overall ranking.
+                </p>
+              </div>
+
+              {/* 4. Derived Metrics */}
+              <div className="p-8 border border-zinc-200/60 dark:border-zinc-800/60 rounded-3xl bg-white dark:bg-zinc-950/50 hover:shadow-xl hover:shadow-rose-500/5 dark:hover:shadow-rose-500/10 hover:border-rose-500/30 transition-all duration-300 group">
+                <div className="w-12 h-12 bg-rose-50 dark:bg-rose-900/20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <FaBrain className="w-6 h-6 text-rose-500 dark:text-rose-400" />
+                </div>
+                <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-50 mb-2">
+                  Derived Metrics
+                </h3>
+                <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                  MERIT intelligently infers matching criteria by analyzing the Job Requirements against the candidate batch in real-time.
+                </p>
+              </div>
+
+              {/* 5. Extensibility */}
+              <div className="p-8 border border-zinc-200/60 dark:border-zinc-800/60 rounded-3xl bg-white dark:bg-zinc-950/50 hover:shadow-xl hover:shadow-sky-500/5 dark:hover:shadow-sky-500/10 hover:border-sky-500/30 transition-all duration-300 group">
+                <div className="w-12 h-12 bg-sky-50 dark:bg-sky-900/20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <FaCode className="w-6 h-6 text-sky-500 dark:text-sky-400" />
+                </div>
+                <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-50 mb-2">
+                  Open Extensibility
+                </h3>
+                <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                  Designed with a flexible architecture. Developers can easily extend the source code to add support for any new custom data sources.
+                </p>
+              </div>
+            </div>
+
+            {/* Row 3: 2 items */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              {/* 6. Anti-Embellishment */}
+              <div className="p-8 border border-zinc-200/60 dark:border-zinc-800/60 rounded-3xl bg-white dark:bg-zinc-950/50 hover:shadow-xl hover:shadow-violet-500/5 dark:hover:shadow-violet-500/10 hover:border-violet-500/30 transition-all duration-300 group">
+                <div className="w-14 h-14 bg-violet-50 dark:bg-violet-900/20 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-2 transition-transform">
+                  <FaShieldAlt className="w-7 h-7 text-violet-600 dark:text-violet-400" />
+                </div>
+                <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 mb-3">
+                  Anti-Embellishment
+                </h3>
+                <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg">
+                  Prevents resume padding. MERIT actively cross-checks claims against live platforms like GitHub to gauge actual candidate contributions.
+                </p>
+              </div>
+
+              {/* 7. Readiness Flagging */}
+              <div className="p-8 border border-zinc-200/60 dark:border-zinc-800/60 rounded-3xl bg-white dark:bg-zinc-950/50 hover:shadow-xl hover:shadow-red-500/5 dark:hover:shadow-red-500/10 hover:border-red-500/30 transition-all duration-300 group">
+                <div className="w-14 h-14 bg-red-50 dark:bg-red-900/20 rounded-2xl flex items-center justify-center mb-6 group-hover:-rotate-2 transition-transform">
+                  <FaFlag className="w-7 h-7 text-red-600 dark:text-red-400" />
+                </div>
+                <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 mb-3">
+                  Readiness & Flagging
+                </h3>
+                <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg">
+                  Flags poor practices or skill decay, ensuring you hire candidates who are ready from day one with verifiable expertise.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Workflow Steps Section */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <h2 className="text-2xl md:text-3xl font-semibold text-center text-zinc-900 dark:text-zinc-50 mb-12">
+          How MERIT Works
+        </h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          
+          {/* Step 1: Extract */}
+          <div className="p-8 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-950 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors">
+            <div className="w-12 h-12 bg-blue-50 dark:bg-blue-900/20 rounded-lg flex items-center justify-center mb-6">
+              <FaSearch className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+            </div>
+            <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50 mb-3">
+              1. Extract
             </h3>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400">
-              Why base screenings around only CVs when there is so much more to consider?
+            <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              Upload CVs and Job Requirements. MERIT securely extracts and structures complex data from multiple sources like GitHub, LinkedIn, and PDF documents. 
             </p>
           </div>
 
-          <div className="p-6 border border-zinc-200 dark:border-zinc-800 rounded-lg">
-            <div className="w-10 h-10 bg-zinc-100 dark:bg-zinc-800 rounded-md flex items-center justify-center mb-4">
-              <FaRegQuestionCircle className="w-5 h-5 text-zinc-700 dark:text-zinc-300" />
+          {/* Step 2: Config */}
+          <div className="p-8 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-950 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors">
+            <div className="w-12 h-12 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg flex items-center justify-center mb-6">
+              <FaCogs className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
             </div>
-            <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-2">
-              Explainable systems
+            <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50 mb-3">
+              2. Config
             </h3>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400">
-              Don't blindly trust the results, understand how they were generated.
+            <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              Create dynamic evaluation criteria and assign specific weightings. Execute these tailored configurations against candidate batches to generate precise rankings.
             </p>
           </div>
   
-          <div className="p-6 border border-zinc-200 dark:border-zinc-800 rounded-lg">
-            <div className="w-10 h-10 bg-zinc-100 dark:bg-zinc-800 rounded-md flex items-center justify-center mb-4">
-              <FaCogs className="w-5 h-5 text-zinc-700 dark:text-zinc-300" />
+          {/* Step 3: Past Results */}
+          <div className="p-8 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-950 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors">
+            <div className="w-12 h-12 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg flex items-center justify-center mb-6">
+              <FaChartBar className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
             </div>
-            <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-2">
-              Flexibility
+            <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50 mb-3">
+              3. Past Results
             </h3>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400">
-              Don't like the algorithm, tweak both the metrics to consider as well as the weightings.
+            <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              Access explainable matching insights. Understand exactly how and why candidates were ranked based on your historical execution data.
             </p>
           </div>
 
@@ -109,10 +231,10 @@ export default function Home() {
             Upload your documents and start processing them right away.
           </p>
           <Link
-            href="/config"
+            href="/extract"
             className="inline-flex items-center px-6 py-3 rounded-md bg-zinc-900 dark:bg-zinc-50 text-white dark:text-zinc-900 font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors"
           >
-            Upload Documents
+            Start Extracting
           </Link>
         </div>
       </section>

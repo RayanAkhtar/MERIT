@@ -39,7 +39,8 @@ export default function Navbar() {
             
             {/* Extract Dropdown */}
             <div className="relative group">
-              <button
+              <Link
+                href="/extract"
                 className={`
                   flex items-center px-4 py-2 rounded-md text-sm font-medium transition-colors
                   ${
@@ -53,7 +54,7 @@ export default function Navbar() {
                 <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
-              </button>
+              </Link>
               
               <div className="absolute left-0 pt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                 <div className="rounded-md shadow-lg bg-white dark:bg-zinc-900 ring-1 ring-black ring-opacity-5 border border-zinc-200 dark:border-zinc-700 py-1">
@@ -73,9 +74,47 @@ export default function Navbar() {
               </div>
             </div>
 
+            {/* Update Dropdown */}
+            <div className="relative group">
+              <Link
+                href="/update"
+                className={`
+                  flex items-center px-4 py-2 rounded-md text-sm font-medium transition-colors
+                  ${
+                    isActive('/update')
+                      ? 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50'
+                      : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 hover:bg-zinc-50 dark:hover:bg-zinc-900'
+                  }
+                `}
+              >
+                Update
+                <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </Link>
+              
+              <div className="absolute left-0 pt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <div className="rounded-md shadow-lg bg-white dark:bg-zinc-900 ring-1 ring-black ring-opacity-5 border border-zinc-200 dark:border-zinc-700 py-1">
+                  <Link
+                    href="/update/cvs"
+                    className="block px-4 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                  >
+                    CVs
+                  </Link>
+                  <Link
+                    href="/update/job-description"
+                    className="block px-4 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                  >
+                    Job Description
+                  </Link>
+                </div>
+              </div>
+            </div>
+
             {/* Config Dropdown */}
             <div className="relative group">
-              <button
+              <Link
+                href="/config"
                 className={`
                   flex items-center px-4 py-2 rounded-md text-sm font-medium transition-colors
                   ${
@@ -89,7 +128,7 @@ export default function Navbar() {
                 <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
-              </button>
+              </Link>
               
               <div className="absolute left-0 pt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                 <div className="rounded-md shadow-lg bg-white dark:bg-zinc-900 ring-1 ring-black ring-opacity-5 border border-zinc-200 dark:border-zinc-700 py-1">
