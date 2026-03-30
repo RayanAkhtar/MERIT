@@ -7,12 +7,7 @@ import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
   const pathname = usePathname();
-
-  const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/config', label: 'Config' },
-    { href: '/output', label: 'Output' },
-  ];
+  const isActive = (path: string) => pathname === path || pathname?.startsWith(`${path}/`);
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950">
@@ -40,26 +35,95 @@ export default function Navbar() {
           </Link>
 
           {/* Navigation Links */}
-          <div className="flex items-center space-x-1">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`
-                    px-4 py-2 rounded-md text-sm font-medium transition-colors
-                    ${
-                      isActive
-                        ? 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50'
-                        : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 hover:bg-zinc-50 dark:hover:bg-zinc-900'
-                    }
-                  `}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
+          <div className="flex items-center space-x-2">
+            
+            {/* Extract Dropdown */}
+            <div className="relative group">
+              <button
+                className={`
+                  flex items-center px-4 py-2 rounded-md text-sm font-medium transition-colors
+                  ${
+                    isActive('/extract')
+                      ? 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50'
+                      : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 hover:bg-zinc-50 dark:hover:bg-zinc-900'
+                  }
+                `}
+              >
+                Extract
+                <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              
+              <div className="absolute left-0 pt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <div className="rounded-md shadow-lg bg-white dark:bg-zinc-900 ring-1 ring-black ring-opacity-5 border border-zinc-200 dark:border-zinc-700 py-1">
+                  <Link
+                    href="/extract/cvs"
+                    className="block px-4 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                  >
+                    CVs
+                  </Link>
+                  <Link
+                    href="/extract/job-requirements"
+                    className="block px-4 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                  >
+                    Job Requirements
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Config Dropdown */}
+            <div className="relative group">
+              <button
+                className={`
+                  flex items-center px-4 py-2 rounded-md text-sm font-medium transition-colors
+                  ${
+                    isActive('/config')
+                      ? 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50'
+                      : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 hover:bg-zinc-50 dark:hover:bg-zinc-900'
+                  }
+                `}
+              >
+                Config
+                <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              
+              <div className="absolute left-0 pt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <div className="rounded-md shadow-lg bg-white dark:bg-zinc-900 ring-1 ring-black ring-opacity-5 border border-zinc-200 dark:border-zinc-700 py-1">
+                  <Link
+                    href="/config/create"
+                    className="block px-4 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                  >
+                    Create Config
+                  </Link>
+                  <Link
+                    href="/config/execute"
+                    className="block px-4 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                  >
+                    Execute Config
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Past Results */}
+            <Link
+              href="/past-results"
+              className={`
+                px-4 py-2 rounded-md text-sm font-medium transition-colors
+                ${
+                  pathname === '/past-results'
+                    ? 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50'
+                    : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 hover:bg-zinc-50 dark:hover:bg-zinc-900'
+                }
+              `}
+            >
+              Past Results
+            </Link>
+
             <ThemeToggle />
           </div>
         </div>
@@ -67,4 +131,3 @@ export default function Navbar() {
     </nav>
   );
 }
-

@@ -37,3 +37,22 @@ def file_link_counts():
     """API endpoint to get file link counts"""
     link_summary = get_file_link_counts()
     return jsonify(link_summary), 200
+
+@api_bp.route("/save-cvs", methods=["POST"])
+def save_cvs():
+    """Attempt to save multiple CVs. Returns error as it's not implemented yet."""
+    if 'files' not in request.files or not request.files.getlist('files'):
+        return jsonify({"error": "No files provided"}), 400
+    return jsonify({"error": "Saving CVs is not implemented yet."}), 501
+
+@api_bp.route("/save-job-requirements", methods=["POST"])
+def save_job_requirements():
+    """Attempt to save Job Requirements. Returns error as it's not implemented yet."""
+    has_files = 'files' in request.files and request.files.getlist('files')
+    has_text = 'text' in request.form and request.form.get('text', '').strip()
+    
+    if not has_files and not has_text:
+        return jsonify({"error": "No files or text provided for Job Requirements"}), 400
+        
+    return jsonify({"error": "Saving Job Requirements is not implemented yet."}), 501
+

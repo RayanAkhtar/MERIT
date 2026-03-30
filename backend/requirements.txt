@@ -2,3 +2,8 @@ flask
 flask-cors
 python-dotenv
 werkzeug
+pdfplumber
+phonenumbers
+spacy
+python-docx
+supabase
