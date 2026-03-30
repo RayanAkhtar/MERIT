@@ -2,6 +2,8 @@ from flask import Blueprint, jsonify, request
 from werkzeug.utils import secure_filename
 import os
 from core.service.upload_service import handle_file_upload, get_file_link_counts
+from core.parsers.job_description import parse_job_description, parse_job_text
+from core.supabase import supabase
 
 # TODO
 #    1. Structure this better since there will be more endpoints as it grows
@@ -45,14 +47,113 @@ def save_cvs():
         return jsonify({"error": "No files provided"}), 400
     return jsonify({"error": "Saving CVs is not implemented yet."}), 501
 
+@api_bp.route("/extract-job-requirements", methods=["POST"])
+def extract_job_requirements():
+    """Handle extraction and structuring of Job Requirements"""
+    files = request.files.getlist('files') if 'files' in request.files else []
+    text = request.form.get('text', '').strip()
+    
+    if not files and not text:
+        return jsonify({"error": "No files or text provided"}), 400
+
+    results = []
+
+    # Process text input
+    if text:
+        parsed_text = parse_job_text(text, source_file="manual_input")
+        results.append(parsed_text)
+
+    # Process file inputs
+    for file in files:
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            filepath = os.path.join(UPLOAD_FOLDER, filename)
+            file.save(filepath)
+            
+            try:
+                parsed_file = parse_job_description(filepath)
+                if isinstance(parsed_file, list):
+                    results.extend(parsed_file)
+                else:
+                    results.append(parsed_file)
+            finally:
+                # Cleanup if needed or keep for reference
+                pass
+
+    if not results:
+        return jsonify({"error": "No data could be extracted"}), 422
+
+    # For now, if multiple sources are provided, we merge them or return the first
+    # The frontend expects a single structured job object
+    combined = results[0] # Simplistic merge for now
+    
+    # Map backend fields to frontend expected format following user request
+    formatted_metrics = []
+    
+    # 1. Location
+    if combined.get("location"):
+        formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Location", "value": combined["location"], "category": "General"})
+    
+    # 2. Job Type
+    if combined.get("employment_type"):
+        formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Job Type", "value": combined["employment_type"], "category": "General"})
+
+    # 3. Languages
+    for s in combined.get("languages", []):
+        formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Language", "value": s, "subValue": "3+ years", "category": "Languages"})
+    
+    # 4. Technologies
+    for s in combined.get("technical_skills", []):
+        formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Technology", "value": s, "category": "Technologies"})
+        
+    # 5. Experience
+    for s in combined.get("experience_required", []):
+        formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Required Experience", "value": s, "category": "Experience"})
+        
+    # 6. Education
+    for s in combined.get("education_required", []):
+        formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Degree", "value": s, "category": "Education"})
+        
+    # 7. Soft Skills
+    for s in combined.get("soft_skills", []):
+        formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Soft Skill", "value": s, "category": "Soft Skills"})
+
+    response_data = {
+        "title": combined.get("job_title") or "Extracted Role",
+        "description": combined.get("raw_text")[:500] + "..." if len(combined.get("raw_text", "")) > 500 else combined.get("raw_text", ""),
+        "metrics": formatted_metrics
+    }
+
+    return jsonify(response_data), 200
+
 @api_bp.route("/save-job-requirements", methods=["POST"])
 def save_job_requirements():
-    """Attempt to save Job Requirements. Returns error as it's not implemented yet."""
-    has_files = 'files' in request.files and request.files.getlist('files')
-    has_text = 'text' in request.form and request.form.get('text', '').strip()
-    
-    if not has_files and not has_text:
-        return jsonify({"error": "No files or text provided for Job Requirements"}), 400
-        
-    return jsonify({"error": "Saving Job Requirements is not implemented yet."}), 501
+    """Save finalized Job Requirements to Supabase"""
+    try:
+        data = request.json
+        if not data:
+            return jsonify({"error": "No data provided"}), 400
+
+        title = data.get("title")
+        description = data.get("description")
+        metrics = data.get("metrics")
+
+        if not title or not metrics:
+            return jsonify({"error": "Title and Metrics are required fields"}), 400
+
+        # Insert into Supabase
+        if not supabase:
+             return jsonify({"error": "Database connection not established"}), 500
+
+        response = supabase.table("job_requirements").insert({
+            "title": title,
+            "description": description,
+            "metrics": metrics
+        }).execute()
+
+        return jsonify({"success": True, "data": response.data}), 201
+
+    except Exception as e:
+        print(f"ERROR saving job requirements: {str(e)}")
+        return jsonify({"error": f"Failed to save to database: {str(e)}"}), 500
 

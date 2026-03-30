@@ -30,38 +30,16 @@ from pdfminer.high_level import extract_text
 
 
 # ----------------------------
-# Skill Dictionaries
+# Section Headers
 # ----------------------------
 
-# TODO START: update this to be dynamic instead
-
-TECHNICAL_SKILLS = {
-    "python", "java", "javascript", "typescript", "c++", "c",
-    "sql", "nosql", "mongodb", "postgresql",
-    "react", "node", "express", "django", "flask",
-    "aws", "gcp", "azure", "docker", "kubernetes",
-    "linux", "git", "github",
-    "machine learning", "deep learning", "nlp",
-    "pandas", "numpy", "scikit-learn", "tensorflow", "pytorch",
-    "rest", "graphql"
-}
-
-SOFT_SKILLS = {
-    "communication", "teamwork", "collaboration",
-    "problem solving", "problem-solving",
-    "leadership", "initiative",
-    "time management", "adaptability",
-    "critical thinking", "organisation", "organization",
-    "attention to detail", "work ethic"
-}
-
 SECTION_HEADERS = {
-    "responsibilities": ["responsibilities", "role", "what you will do"],
-    "requirements": ["requirements", "qualifications", "what we are looking for"],
-    "education": ["education", "degree", "academic"],
-    "nice_to_have": ["nice to have", "preferred", "bonus"]
+    "responsibilities": ["responsibilities", "role", "what you will do", "duties", "role overview"],
+    "requirements": ["requirements", "qualifications", "what we are looking for", "skills", "competencies", "what you will have"],
+    "technical_skills": ["technical skills", "stack", "tech stack", "technologies"],
+    "education": ["education", "degree", "academic", "university"],
+    "nice_to_have": ["nice to have", "preferred", "bonus", "desirable"]
 }
-# TODO END: up till here
 
 # ----------------------------
 # File Text Extraction
@@ -105,13 +83,69 @@ def extract_section(text: str, keywords: List[str]) -> List[str]:
     return [l for l in collected if l]
 
 
-def extract_skills(text: str) -> tuple[List[str], List[str]]:
+def derive_skills_from_text(raw_text: str, requirements: List[str], tech_section: List[str]) -> Dict[str, List[str]]:
+    """
+    Dynamically derive skills by analyzing requirement sections and looking for common patterns
+    instead of hardcoded sets.
+    Categorizes results into 'Languages', 'Technology', 'Experience', and 'Education'.
+    """
+    languages_list = ["python", "java", "javascript", "typescript", "c++", "c#", "ruby", "go", "rust", "php", "sql", "swift", "kotlin", "scala"]
+    
+    technical = []
+    found_languages = []
+    found_tech = []
+    experience = []
+    education = []
+    
+    candidate_lines = requirements + tech_section
+    
+    # Common tech patterns: C++, .NET, React.js, AWS, etc.
+    tech_pattern = re.compile(r'\b(?:[A-Z][a-zA-Z0-9\+\#\./-]+(?:\s[A-Z][a-zA-Z0-9\+\#\./-]*)*)\b')
+    
+    # Experience pattern: 3+ years, 5 years, etc.
+    exp_pattern = re.compile(r'(\d+[\+]?\s?year[s]?)', re.IGNORECASE)
+    
+    for line in candidate_lines:
+        line_lower = line.lower()
+        
+        # 1. Tech and Languages
+        tech_matches = tech_pattern.findall(line)
+        for match in tech_matches:
+            if len(match) > 1:
+                if match.lower() in languages_list:
+                    found_languages.append(match)
+                else:
+                    found_tech.append(match)
+        
+        # 2. Experience
+        exp_matches = exp_pattern.findall(line)
+        for match in exp_matches:
+            experience.append(match)
+            
+        # 3. Education
+        if any(keyword in line_lower for keyword in ["degree", "bachelor", "master", "phd", "stem", "university"]):
+            education.append(line.strip())
+
+    return {
+        "languages": list(dict.fromkeys(found_languages)),
+        "technology": list(dict.fromkeys(found_tech)),
+        "experience": list(dict.fromkeys(experience)),
+        "education": list(dict.fromkeys(education)),
+        "soft_skills": ["Teamwork", "Communication", "Problem Solving"] # Simplistic extraction for now or use patterns
+    }
+
+def extract_job_type(text: str) -> str:
     text_lower = text.lower()
+    if "remote" in text_lower:
+        return "Remote"
+    elif "hybrid" in text_lower or "days in the office" in text_lower or "days from home" in text_lower:
+        return "Hybrid"
+    elif "onsite" in text_lower or "on-site" in text_lower or "office" in text_lower:
+        return "Onsite"
+    return "Onsite" # Default
 
-    technical = {s for s in TECHNICAL_SKILLS if s in text_lower}
-    soft = {s for s in SOFT_SKILLS if s in text_lower}
-
-    return sorted(technical), sorted(soft)
+def extract_skills(text: str) -> tuple[List[str], List[str]]:
+    return [], [] # Deprecated
 
 
 def extract_salary(text: str) -> Optional[str]:
@@ -147,7 +181,7 @@ def parse_job_text(raw_text: str, source_file: str, metadata: Dict = None) -> Di
     # Employment type
     if "intern" in text_lower:
         job["employment_type"] = "Internship"
-    elif "contract" in text_lower:
+    elif "contract" in text_lower or re.search(r"\d+\s?months", text_lower):
         job["employment_type"] = "Contract"
     elif "full-time" in text_lower or "full time" in text_lower:
         job["employment_type"] = "Full-time"
@@ -168,11 +202,23 @@ def parse_job_text(raw_text: str, source_file: str, metadata: Dict = None) -> Di
     job["requirements"] = extract_section(raw_text, SECTION_HEADERS["requirements"])
     job["education"] = extract_section(raw_text, SECTION_HEADERS["education"])
     job["nice_to_have"] = extract_section(raw_text, SECTION_HEADERS["nice_to_have"])
+    tech_sec = extract_section(raw_text, SECTION_HEADERS["technical_skills"])
 
-    # Skills
-    tech, soft = extract_skills(raw_text)
-    job["technical_skills"] = tech
-    job["soft_skills"] = soft
+    # Job Type and Location
+    job["employment_type"] = extract_job_type(raw_text)
+    if not job["location"]:
+        # Simple extraction for location: Canary Wharf, London, etc. often after 'Location:'
+        loc_match = re.search(r"Location:\s?([A-Za-z\s]+)", raw_text, re.IGNORECASE)
+        if loc_match:
+            job["location"] = loc_match.group(1).split('\n')[0].strip()
+
+    # Derived Data
+    derived = derive_skills_from_text(raw_text, job["requirements"], tech_sec)
+    job["technical_skills"] = derived["technology"]
+    job["languages"] = derived["languages"]
+    job["experience_required"] = derived["experience"]
+    job["education_required"] = derived["education"]
+    job["soft_skills"] = [] # Clear old soft skills or move them to nice_to_have
 
     # Salary
     job["salary"] = extract_salary(raw_text)
