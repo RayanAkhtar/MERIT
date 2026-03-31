@@ -1,0 +1,32 @@
+{
+  "job_title": "Mid-level Frontend Engineer",
+  "company": "Creative Frontends",
+  "location": "London",
+  "employment_type": "Remote",
+  "experience_level": "Mid",
+  "technical_skills": [
+    "Contentful",
+    "Figma",
+    "Next.js",
+    "React",
+    "Sanity",
+    "Tailwind CSS"
+  ],
+  "soft_skills": [
+    "Design sense",
+    "Collaboration"
+  ],
+  "responsibilities": [],
+  "requirements": [],
+  "education": [],
+  "nice_to_have": [],
+  "salary": "$80,000 - $110,000 yearly",
+  "source_file": "frontend\\Mid_A.txt",
+  "languages": [
+    "CSS",
+    "JavaScript",
+    "TypeScript"
+  ],
+  "experience_required": [],
+  "education_required": []
+}

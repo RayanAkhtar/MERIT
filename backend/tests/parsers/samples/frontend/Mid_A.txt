@@ -1,0 +1,35 @@
+Creative Frontends: Mid-level Frontend Engineer
+Location: London (Hybrid / Remote)
+
+Our Story:
+We are a design-led agency building beautiful, interactive web experiences for luxury brands. We believe that the frontend is more than just code; it's an art form.
+
+The Opportunity:
+We are looking for a Mid-level Frontend Engineer who loves React and high-fidelity UI. You will work closely with our designers to bring pixel-perfect mockups to life. 
+
+Role Highlights:
+* Develop responsive and interactive user interfaces using React
+* Build scaleable web applications with Next.js (App Router)
+* Implement high-fidelity designs with Tailwind CSS
+* Create smooth animations and transitions
+* Ensure cross-browser compatibility and accessibility
+* Optimize web performance and Core Web Vitals
+
+What you'll bring:
+- Strong proficiency in JavaScript and TypeScript
+- Deep experience with React and state management
+- Expertise in Tailwind CSS and modern CSS techniques
+- Experience with headless CMS (Sanity, Contentful)
+- Familiarity with Figma and design tokens
+- Understanding of web performance optimization
+
+Who you are:
+- Strong eye for design and attention to detail
+- Passionate about createing great user experiences
+- Collaborative team member with a positive attitude
+
+Salary & Benefits:
+Range: $80,000 - $110,000 yearly
+- MacBook Pro and high-end peripherals
+- Flexible working hours and remote options
+- Creative environment with exciting projects

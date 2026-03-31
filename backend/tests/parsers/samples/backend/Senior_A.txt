@@ -1,0 +1,35 @@
+Senior Backend Engineer
+Backend Solutions - London, UK
+
+Who we are:
+We provide scaleable backend infrastructure for some of the world's largest e-commerce platforms. Our focus is on high availability, consistency, and performance at scale.
+
+Role Summary:
+We are looking for a Senior Backend Engineer to join our core services team. You will be responsible for designing and implementing robust, scaleable REST and GraphQL APIs. You will work with a modern tech stack centered around Node.js and Python, utilizing Postgres for relational data and Redis for caching. You will also play a key role in our migration to a service-oriented architecture on AWS.
+
+What you will do:
+- Design and implement high-performance backend services
+- Optimize database queries and schema design in Postgres
+- Implement caching strategies using Redis
+- Build and maintain GraphQL and RESTful APIs
+- Lead architectural discussions and system design
+- Collaborate with the frontend team to define API contracts
+
+Your Qualifications:
+- Significant experience in Node.js or Python (Django/FastAPI)
+- Deep understanding of relational databases and SQL
+- Experience with NoSQL databases and in-memory caches (Redis)
+- Strong proficiency with AWS (Lambda, RDS, ElastiCache, SQS)
+- Understanding of microservices and event-driven architecture
+- Strong experience with unit testing and TDD
+
+The ideal candidate:
+- Strong advocate for clean code and best practices
+- Enjoys solving complex architectural challenges
+- Excellent communication and collaboration skills
+
+Benefits & Salary:
+The salary for this role is £90,000 - £120,000 per annum.
+- Performance-based bonuses
+- Private healthcare and pension scheme
+- Learning and development budget

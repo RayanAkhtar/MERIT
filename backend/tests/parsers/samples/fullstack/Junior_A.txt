@@ -1,0 +1,41 @@
+Company A: Junior Fullstack Engineer
+Job Type: Full-time
+
+About Us:
+We're a fast-growing technology startup on a mission to change the industry forever. We're building a generational company for education. In 4 months, we've hit 100,000 users and we're just getting started.
+
+The Role:
+We are looking for a passionate Junior Fullstack Engineer to join our growing team. You will work closely with our Technical CEO and other Seniors to build our web (Next.js) and mobile (React Native) products.
+
+Key Tech Stack:
+- Next.js (Web)
+- React Native (Mobile)
+- Python (Backend)
+- Postgres (Database)
+- AWS (Cloud)
+
+What you will do:
+- Build features across our Next.js and React Native apps
+- Contribute to our Python backend and API performance
+- Write efficient SQL queries in Postgres
+- Work with cloud services for infrastructure
+- Ship polished, user-facing features daily
+
+What you have:
+- Recent graduate or <1 year of experience
+- Strong JS skills (Next.js / React)
+- Basic Python knowledge
+- Understanding of SQL and relational databases
+- Eagerness to learn AWS
+
+Candidate Attributes:
+* Quality Focus: 100% polished, bug-free code
+* Collaborative Spirit: Work with designers and PMs
+* Startup Mindset: Move fast, break things, iterate
+* Innovation: Build cutting-edge tech
+
+We Offer:
+- Competitive Salary
+- High-impact work for global users
+- Diverse, mission-driven team
+- Career growth in a fast-paced environment

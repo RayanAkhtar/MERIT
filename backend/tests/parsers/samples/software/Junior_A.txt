@@ -1,0 +1,32 @@
+Role: Junior Developer / Software Engineer
+Company: Enterprise Software Solutions
+
+About Us:
+We build robust, mission-critical software for large financial institutions. Our solutions manage billions in daily transactions, and reliability is our top priority.
+
+Core Duties:
+- Develop and maintain enterprise-grade software applications
+- Write clean, maintainable code in Java or C#
+- Participate in all phases of the software development lifecycle
+- Collaborate on system design and database architecture
+- Participate in code reviews and Agile ceremonies
+- Debug and resolve complex production issues
+
+Must-Haves:
+- Bachelors degree in Computer Science or related field
+- Proficiency in Java or C# and object-oriented design
+- Understanding of relational databases and SQL
+- Knowledge of design patterns and SOLID principles
+- Experience with Agile methodologies (Scrum/Kanban)
+- Familiarity with CI/CD pipelines and version control
+
+About you:
+- Strong logical thinking and problem-solving skills
+- Continuous learner who enjoys mastering new technologies
+- Reliable team player with strong accountability
+
+Perks & Benefits:
+- Competitive salary and comprehensive benefits package
+- Regular training and professional development opportunities
+- Stable, long-term career growth in an established company
+- Employee wellness programs and social events

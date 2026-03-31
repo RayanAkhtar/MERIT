@@ -1,0 +1,41 @@
+Systems Architect / Senior OS Engineer
+Lead Systems Engineer Specialist
+
+THE MISSION:
+We are a specialized engineering firm focused on high-performance infrastructure and operating systems. We contribute heavily to open-source projects and build core libraries used by millions of developers.
+
+THE STACK:
+- C, C++, Rust
+- Kernel modules, file systems
+- x86_64, ARM assembly
+- GDB, Valgrind, perf
+
+THE ROLE:
+This role involves developing and maintaining core system components, including kernel modules, file systems, and hardware drivers. You will work primarily in C and Rust to build high-performance, memory-safe systems. 
+
+THE RESPONSIBILITIES:
+* Develop and maintain low-level system libraries and drivers
+* Architect memory-safe system components in Rust
+* Optimize performance and resource utilization of core services
+* Conduct deep-dive debugging and performance analysis
+* Participate in upstream open-source communities
+* Collaborate on the design of new hardware-software interfaces
+
+THE REQUIREMENTS:
+* Extensive experience in C and C++ development
+* Strong proficiency in Rust and memory-safe programming
+* Deep understanding of Linux kernel internals and OS architecture
+* Experience with assembly language (x86_64 or ARM)
+* Proficiency with debugging tools (GDB, Valgrind, perf)
+* Strong understanding of concurrency and parallel programming
+
+THE IDEAL CANDIDATE:
+- Active contributor to major open-source systems projects
+- Deep curiosity about how things work "under the hood"
+- Strong analytical and problem-solving skills
+
+THE COMPENSATION:
+Salary range of $180,000 - $230,000 yearly
+- Home office stipend for the best setup
+- Annual conference budget for FOSDEM, LPC, etc.
+- Opportunity to work on foundational technology

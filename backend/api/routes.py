@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from werkzeug.utils import secure_filename
 import os
 from core.service.upload_service import handle_file_upload, get_file_link_counts
-from core.parsers.job_description import parse_job_description, parse_job_text
+from core.parsers.job_description import parse_jd, parse_job
 from core.supabase import supabase
 
 # TODO
@@ -60,7 +60,7 @@ def extract_job_requirements():
 
     # Process text input
     if text:
-        parsed_text = parse_job_text(text, source_file="manual_input")
+        parsed_text = parse_job(text, source_file="manual_input")
         results.append(parsed_text)
 
     # Process file inputs
@@ -71,7 +71,7 @@ def extract_job_requirements():
             file.save(filepath)
             
             try:
-                parsed_file = parse_job_description(filepath)
+                parsed_file = parse_jd(filepath)
                 if isinstance(parsed_file, list):
                     results.extend(parsed_file)
                 else:

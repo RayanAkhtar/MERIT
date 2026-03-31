@@ -1,0 +1,41 @@
+{
+  "job_title": "DevOps Intern",
+  "company": "Company B",
+  "location": "Remote / Hybrid",
+  "employment_type": "Remote",
+  "experience_level": "Internship",
+  "technical_skills": [
+    "AWS",
+    "Azure",
+    "Docker",
+    "GCP",
+    "Git",
+    "GitHub Actions",
+    "Grafana",
+    "Jenkins",
+    "Kubernetes",
+    "Linux",
+    "Prometheus",
+    "Terraform",
+    "Unix"
+  ],
+  "soft_skills": [
+    "Problem-solving",
+    "Communication",
+    "Team Spirit"
+  ],
+  "responsibilities": [],
+  "requirements": [],
+  "education": [],
+  "nice_to_have": [],
+  "salary": null,
+  "source_file": "devops\\Junior_A.txt",
+  "languages": [
+    "Bash",
+    "Python"
+  ],
+  "experience_required": [],
+  "education_required": [
+    "Currently pursuing a degree in Computer Science, Engineering, or a related field"
+  ]
+}

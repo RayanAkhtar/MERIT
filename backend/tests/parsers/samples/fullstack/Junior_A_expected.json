@@ -1,0 +1,36 @@
+{
+  "job_title": "Junior Fullstack Engineer",
+  "company": "Company A",
+  "location": null,
+  "employment_type": "Full-time",
+  "experience_level": "Junior",
+  "technical_skills": [
+    "AWS",
+    "Next.js",
+    "Postgres",
+    "React",
+    "React Native"
+  ],
+  "soft_skills": [
+    "Quality Focus",
+    "Collaboration",
+    "Startup Mindset"
+  ],
+  "responsibilities": [],
+  "requirements": [],
+  "education": [],
+  "nice_to_have": [],
+  "salary": "Competitive Salary",
+  "source_file": "fullstack\\Junior_A.txt",
+  "languages": [
+    "JavaScript",
+    "Python",
+    "SQL"
+  ],
+  "experience_required": [
+    "<1 year of experience"
+  ],
+  "education_required": [
+    "Recent graduate"
+  ]
+}

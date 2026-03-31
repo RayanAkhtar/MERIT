@@ -1,0 +1,36 @@
+=== ABOUT TECH CORP ===
+
+We are building the infrastructure for the next generation of artificial intelligence. Our team is focused on deploying high-performance LLMs at scale to solve complex enterprise challenges.
+
+Role: Mid-level AI Engineer
+Type: Contract
+
+### The Role
+This is a high-impact role for an experienced AI Engineer to lead the development of our retrieval-augmented generation (RAG) systems. You will work closely with our data engineering and product teams to integrate state-of-the-art models into our production environment. We need someone who can go beyond just training models and focus on performance, reliability, and deployment.
+
+### Responsibilities:
+- Develop and optimize RAG pipelines for large-scale data processing
+- Fine-tune LLMs (Llama, Mistral) for specific domain tasks
+- Implement vector database solutions using Pinecone or Milvus
+- Scale AI services on Kubernetes and AWS infrastructure
+- Improve model latency and throughput for real-time applications
+- Collaborate on the design of our AI-as-a-Service API
+
+### Technical Requirements:
+* Solid experience as a Software Engineer or AL/ML Engineer
+* Proficiency in Python and deep learning frameworks like PyTorch or JAX
+* Hands-on experience with LLM orchestration tools (LangChain, LlamaIndex)
+* Excellent understanding of NLP, transformers, and embedding techniques
+* Experience with NoSQL databases like MongoDB or Cassandra
+* Knowledge of CI/CD for ML (MLOps) is a plus
+
+### Ideal Candidate
+1. Strong background in software engineering principles (clean code, testing)
+2. Thrives in a fast-paced, research-to-production environment
+3. Excellent communication skills for cross-functional collaboration
+
+### Perks & Benefits
+- Competitive contract rate of £900 per day
+- Work with cutting-edge GPUs and massive datasets
+- Remote-first culture with occasional team meetups in London
+- Opportunity to shape the future of enterprise AI

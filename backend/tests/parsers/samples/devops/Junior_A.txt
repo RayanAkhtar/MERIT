@@ -1,0 +1,39 @@
+Company B - DevOps Intern
+Location: remote / hybrid
+
+About Company B:
+We're a leading infrastructure and cloud services provider dedicated to helping companies scale efficiently. We're looking for a DevOps Intern to join our Platform Engineering team. This is a high-growth role where you'll work with cutting-edge cloud technologies and automate complex workflows.
+
+Our Tech Stack:
+- AWS, Azure, GCP
+- Terraform, Kubernetes
+- GitHub Actions, Jenkins
+- Docker, Prometheus, Grafana
+
+What your role involves:
+1. Assist in managing AWS infrastructure and cloud resources
+2. Contribute to CI/CD pipelines using GitHub Actions and Jenkins
+3. Help maintain Docker images and Kubernetes clusters
+4. Write automation scripts in Bash and Python
+5. Monitor system health and performance using Prometheus and Grafana
+6. Collaborate with developers to improve deployment processes
+
+What we're looking for:
+* Currently pursuing a degree in Computer Science, Engineering, or a related field
+* Basic knowledge of Linux/Unix systems and command line
+* Familiarity with at least one cloud provider (AWS, Azure, or GCP)
+* Experience with version control (Git)
+* Understanding of containerization (Docker)
+* Passion for automation and cloud infrastructure
+
+Candidate Profile:
+- Strong problem-solving skills and analytical thinking
+- Eager to learn new technologies and best practices
+- Good communication skills and team spirit
+- Detail-oriented with a focus on reliability and security
+
+Perks:
+- Mentorship from senior DevOps and SRE engineers
+- Hands-on experience with production-scale cloud infrastructure
+- Flexible working hours (Remote or Hybrid)
+- Opportunity for full-time conversion after graduation

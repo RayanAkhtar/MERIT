@@ -1,0 +1,35 @@
+ML Insights: Senior Machine Learning Engineer
+
+About ML Insights:
+We are a data-driven startup focusing on predictive analytics for retail. Our mission is to provide businesses with real-time insights into consumer behavior using advanced machine learning models.
+
+The Role:
+As a Senior ML Engineer, you will be responsible for the end-to-end lifecycle of our machine learning models, from exploratory data analysis to production deployment. You will design and implement scaleable training pipelines and ensure the reliability of our inference services. 
+
+What you'll do:
+- Lead the development and deployment of predictive models
+- Architect and maintain MLOps pipelines (Kubeflow, MLflow)
+- Optimize model performance and inference latency
+- Collaborate with data engineers to build robust data pipelines
+- Conduct research on new algorithms and techniques
+- Ensure data quality and model fairness
+
+Requirements:
+- Masters or PhD in Computer Science, Mathematics, or a related field
+- Deep expertise in Python and ML libraries (Scikit-learn, PyTorch, TensorFlow)
+- Strong understanding of statistics and probability
+- Experience with SQL and massive datasets (BigQuery, Redshift)
+- Hands-on experience with cloud platforms (GCP or AWS)
+- Proficiency with Docker and Kubernetes for model serving
+
+About you:
+* Strong leadership skills and experience mentoring others
+* Passion for staying up-to-date with the latest ML research
+* Excellent problem-solving skills and attention to detail
+
+Perks:
+Salary: £100,000 - £140,000 per year
+- Generous equity package
+- Health insurance and annual bonus
+- Flexible remote work environment
+- Latest hardware and software tools
