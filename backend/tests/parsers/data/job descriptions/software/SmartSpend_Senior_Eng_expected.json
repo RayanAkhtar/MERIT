@@ -1,0 +1,37 @@
+{
+  "job_title": "Are you a Software Engineer who thrives on real ownership?",
+  "company": null,
+  "location": "London, UK",
+  "employment_type": null,
+  "experience_level": "Senior",
+  "technical_skills": [
+    "CI/CD",
+    "Cypress",
+    "foundation",
+    "processing"
+  ],
+  "soft_skills": [],
+  "responsibilities": [],
+  "requirements": [
+    "Product Leadership: Translates complex business goals into technical roadmaps; de-risks ambiguous projects through spikes and prototyping.",
+    "System Architecture: Architects scalable, evolvable systems and data models that account for performance, failure isolation, and long-term maintenance.",
+    "Technical Standards: Defines and upholds engineering excellence, including CI/CD optimizations, testing strategies, and coding standards across the stack.",
+    "Frontend Strategy: Establishes frontend architecture patterns, including state management, performance budgets, and comprehensive testing (e.g., E2E/Cypress).",
+    "Backend Excellence: Engineers sophisticated backend solutions involving API versioning, caching strategies, and complex data migration plans.",
+    "Operational Maturity: Leads observability and SRE practices; defines SLOs, manages incident responses, and conducts blameless post-mortems.",
+    "Security & Risk: Oversees operational security, including secrets hygiene and dependency risk management, to ensure a hardened production environment.",
+    "Mentorship & Influence: Levels up the engineering organization through active mentorship, leading design reviews, and influencing the product roadmap with technical data.",
+    "Cross-Functional Impact: Coordinates multi-team deliverables and aligns stakeholders to resolve technical blockers across the organization."
+  ],
+  "education": [],
+  "nice_to_have": [],
+  "salary": null,
+  "source_file": "software\\SmartSpend_Senior_Eng.txt",
+  "languages": [
+    "go"
+  ],
+  "experience_required": [],
+  "education_required": [
+    "System Architecture: Architects scalable, evolvable systems and data models that account for performance, failure isolation, and long-term maintenance."
+  ]
+}

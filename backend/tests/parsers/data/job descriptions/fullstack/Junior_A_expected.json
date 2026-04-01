@@ -1,8 +1,8 @@
 {
   "job_title": "Junior Fullstack Engineer",
-  "company": "Company A",
+  "company": "We",
   "location": null,
-  "employment_type": "Full-time",
+  "employment_type": "Contract",
   "experience_level": "Junior",
   "technical_skills": [
     "AWS",
@@ -16,21 +16,21 @@
     "Collaboration",
     "Startup Mindset"
   ],
-  "responsibilities": [],
-  "requirements": [],
+  "requirements": [
+    "Basic Python knowledge",
+    "Understanding of SQL and relational databases",
+    "Eagerness to learn AWS"
+  ],
   "education": [],
   "nice_to_have": [],
-  "salary": "Competitive Salary",
+  "salary": null,
   "source_file": "fullstack\\Junior_A.txt",
   "languages": [
-    "JavaScript",
-    "Python",
-    "SQL"
+    "JS",
+    "python"
   ],
   "experience_required": [
     "<1 year of experience"
   ],
-  "education_required": [
-    "Recent graduate"
-  ]
+  "education_required": []
 }

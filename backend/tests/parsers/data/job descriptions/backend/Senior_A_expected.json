@@ -1,0 +1,59 @@
+{
+  "job_title": "Senior Backend Engineer",
+  "company": null,
+  "location": "London, UK",
+  "employment_type": "Contract",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "AWS",
+    "Django",
+    "ElastiCache",
+    "FastAPI",
+    "Lambda",
+    "Postgres",
+    "RDS",
+    "Redis",
+    "REST",
+    "SQS"
+  ],
+  "soft_skills": [],
+  "responsibilities": [
+    "Design and implement high-performance backend services",
+    "Optimize database queries and schema design in Postgres",
+    "Implement caching strategies using Redis",
+    "Build and maintain GraphQL and RESTful APIs",
+    "Lead architectural discussions and system design",
+    "Collaborate with the frontend team to define API contracts"
+  ],
+  "requirements": [
+    "Significant experience in Node.js or Python (Django/FastAPI)",
+    "Deep understanding of relational databases and SQL",
+    "Experience with NoSQL databases and in-memory caches (Redis)",
+    "Strong proficiency with AWS (Lambda, RDS, ElastiCache, SQS)",
+    "Understanding of microservices and event-driven architecture",
+    "Strong experience with unit testing and TDD",
+    "Strong advocate for clean code and best practices",
+    "Enjoys solving complex architectural challenges",
+    "Excellent communication and collaboration skills",
+    "Benefits & Salary",
+    "The salary for this role is £90,000 - £120,000 per annum.",
+    "Performance-based bonuses",
+    "Private healthcare and pension scheme",
+    "Learning and development budget"
+  ],
+  "education": [],
+  "nice_to_have": [],
+  "salary": "£90,000 - £120,000 per annum",
+  "source_file": "backend\\Senior_A.txt",
+  "languages": [
+    "GraphQL",
+    "JavaScript",
+    "Node.js",
+    "Python",
+    "SQL"
+  ],
+  "experience_required": [],
+  "education_required": [
+    "Lead architectural discussions and system design"
+  ]
+}

@@ -29,7 +29,7 @@ def clean_json(obj):
         return obj
 
 def run():
-    samples = os.path.join(os.path.dirname(__file__), "samples")
+    samples = os.path.join(os.path.dirname(__file__), "data/job descriptions")
     
     if not os.path.exists(samples):
         print("no samples folder!")

@@ -1,0 +1,43 @@
+{
+  "job_title": "Systems Architect / Senior OS Engineer",
+  "company": "how things work",
+  "location": null,
+  "employment_type": "Internship",
+  "experience_level": "Senior",
+  "technical_skills": [],
+  "soft_skills": [],
+  "responsibilities": [
+    "Develop and maintain low-level system libraries and drivers",
+    "Architect memory-safe system components in Rust",
+    "Optimize performance and resource utilization of core services",
+    "Conduct deep-dive debugging and performance analysis",
+    "Participate in upstream open-source communities",
+    "Collaborate on the design of new hardware-software interfaces"
+  ],
+  "requirements": [
+    "Extensive experience in C and C++ development",
+    "Strong proficiency in Rust and memory-safe programming",
+    "Deep understanding of Linux kernel internals and OS architecture",
+    "Experience with assembly language (x86_64 or ARM)",
+    "Proficiency with debugging tools (GDB, Valgrind, perf)",
+    "Strong understanding of concurrency and parallel programming",
+    "Active contributor to major open-source systems projects",
+    "Deep curiosity about how things work \"under the hood\"",
+    "Strong analytical and problem-solving skills"
+  ],
+  "education": [],
+  "nice_to_have": [],
+  "salary": "$180,000 - $230,000 yearly",
+  "source_file": "OS\\Senior_A.txt",
+  "languages": [
+    "C",
+    "C++",
+    "Rust"
+  ],
+  "experience_required": [],
+  "education_required": [
+    "Active contributor to major open-source systems projects",
+    "Architect memory-safe system components in Rust",
+    "Develop and maintain low-level system libraries and drivers"
+  ]
+}

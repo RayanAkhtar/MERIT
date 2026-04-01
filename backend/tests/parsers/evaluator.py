@@ -57,17 +57,17 @@ def get_score(output_1, output_2):
     return scores
 
 def run():
-    samples = os.path.join(os.path.dirname(__file__), "samples")
+    samples_dir = os.path.join(os.path.dirname(__file__), "data", "job descriptions")
     
-    if not os.path.exists(samples):
+    if not os.path.exists(samples_dir):
         print("no samples found!")
         return
 
     jd_files = []
-    for root, _, files in os.walk(samples):
+    for root, _, files in os.walk(samples_dir):
         for f in files:
             if f.endswith(".txt"):
-                jd_files.append(os.path.relpath(os.path.join(root, f), samples))
+                jd_files.append(os.path.relpath(os.path.join(root, f), samples_dir))
     
     if not jd_files:
         print("nothing to test.")
@@ -78,7 +78,7 @@ def run():
     results = []
     
     for f_name in jd_files:
-        f_path = os.path.join(samples, f_name)
+        f_path = os.path.join(samples_dir, f_name)
         expect_path = os.path.splitext(f_path)[0] + "_expected.json"
         
         if not os.path.exists(expect_path):

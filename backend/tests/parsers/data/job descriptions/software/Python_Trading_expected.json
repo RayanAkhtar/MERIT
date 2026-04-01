@@ -1,0 +1,62 @@
+{
+  "job_title": "skilled Python Developer",
+  "company": "Global Technology Services",
+  "location": null,
+  "employment_type": "Hybrid",
+  "experience_level": null,
+  "technical_skills": [
+    "AWS",
+    "Docker",
+    "FIX",
+    "FIX Protocol",
+    "Trading",
+    "oracle"
+  ],
+  "soft_skills": [],
+  "responsibilities": [
+    "Develop, maintain, and enhance trading applications using Python.",
+    "Implement and support FIX protocol-based solutions for trading systems.",
+    "Collaborate with traders, quants, and other stakeholders to gather requirements and deliver high-quality software solutions.",
+    "Optimize and troubleshoot trading algorithms and systems to ensure high performance and reliability.",
+    "Participate in code reviews, testing, and deployment processes to ensure code quality and stability.",
+    "Stay updated with the latest industry trends and technologies in the trading domain."
+  ],
+  "requirements": [
+    "Bachelor’s degree in computer science, Engineering, or a related field.",
+    "Proven experience for more than 6+ years as a Python Developer in the trading domain.",
+    "Experience with trading systems, market data, and order management systems.",
+    "Proficiency in Python programming and related frameworks/libraries.",
+    "Familiarity with databases (SQL and NoSQL) and data structures.",
+    "Excellent problem-solving skills and attention to detail.",
+    "Strong communication and teamwork abilities.",
+    "Experience with other programming languages such as Java.",
+    "Knowledge of the FIX protocol and its implementation.",
+    "Knowledge of financial markets and trading strategies.",
+    "Familiarity with cloud platforms and containerization technologies (e.g., AWS, Docker).",
+    "Understanding of DevOps practices and tools."
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Experience with other programming languages such as Java.",
+    "Knowledge of the FIX protocol and its implementation.",
+    "Knowledge of financial markets and trading strategies.",
+    "Familiarity with cloud platforms and containerization technologies (e.g., AWS, Docker).",
+    "Understanding of DevOps practices and tools."
+  ],
+  "salary": null,
+  "source_file": "software\\Python_Trading.txt",
+  "languages": [
+    "java",
+    "python"
+  ],
+  "experience_required": [
+    "29 years",
+    "6+ years"
+  ],
+  "education_required": [
+    "Bachelor’s degree in computer science, Engineering, or a related field.",
+    "Experience with trading systems, market data, and order management systems.",
+    "Implement and support FIX protocol-based solutions for trading systems.",
+    "Optimize and troubleshoot trading algorithms and systems to ensure high performance and reliability."
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "job_title": null,
+  "company": "Company B",
+  "location": "remote",
+  "employment_type": "Internship",
+  "experience_level": "Internship",
+  "technical_skills": [
+    "AWS",
+    "Azure",
+    "Docker",
+    "GCP",
+    "Git",
+    "GitHub Actions",
+    "Grafana",
+    "Jenkins",
+    "Kubernetes",
+    "azure"
+  ],
+  "soft_skills": [],
+  "responsibilities": [],
+  "requirements": [
+    "Eager to learn new technologies and best practices",
+    "Good communication skills and team spirit",
+    "Detail-oriented with a focus on reliability and security"
+  ],
+  "education": [],
+  "nice_to_have": [],
+  "salary": null,
+  "source_file": "devops\\Junior_A.txt",
+  "languages": [
+    "python"
+  ],
+  "experience_required": [],
+  "education_required": []
+}

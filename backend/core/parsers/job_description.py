@@ -38,17 +38,17 @@ def get_section(text, keywords):
     i = 0
     while i < len(lines):
         line = lines[i]
-        clean_line = line.strip()
+        clean_line = line.strip().lstrip("#").strip() 
+        # removing markdown header symbols
         lower_line = clean_line.lower()
         
         # look for a header
         if any(re.search(r'\b' + re.escape(k) + r'\b', lower_line) for k in keywords):
 
-            # consider if the header isnt too long and doesnt seem like a sentance
+            # consider if the header isnt too long and doesnt seem like a sentence
             if len(clean_line) < 70 and not (clean_line.endswith('.') and len(clean_line) > 40):
                 i += 1
-                section_lines = []
-
+                
                 while i < len(lines):
                     curr = lines[i]
                     curr_clean = curr.strip()
@@ -56,8 +56,8 @@ def get_section(text, keywords):
                     if curr_clean == "":
                         # skip empty lines but check if something big follows
                         if i + 1 < len(lines):
-                            nxt = lines[i+1].strip()
-                            if nxt != "" and not lines[i+1].startswith((" ", "\t")):
+                            nxt = lines[i+1].strip().lstrip("#").strip()
+                            if nxt != "" and not lines[i+1].lstrip().startswith(("#", " ", "\t")):
                                 # next line looks like a different header
                                 if re.match(r"^[A-Z][a-zA-Z\s\-]{2,50}:?$", nxt):
                                      break
@@ -65,23 +65,24 @@ def get_section(text, keywords):
                         continue
                     
                     # stop if we hit another header
-                    if re.match(r"^[A-Z][a-zA-Z\s\-]{2,50}:?$", curr_clean) and not (curr.startswith((" ", "\t")) or curr_clean.startswith(("•", "-", "*"))):
-                        if not any(re.search(r'\b' + re.escape(k) + r'\b', curr_clean.lower()) for k in keywords):
+                    header_check = curr_clean.lstrip("#").strip()
+                    if re.match(r"^[A-Z][a-zA-Z\s\-]{2,50}:?$", header_check) and not (curr.startswith((" ", "\t")) or curr_clean.startswith(("•", "-", "*", "#"))):
+                        # if it's not a keyword for THIS section, it's likely a new section
+                        if not any(re.search(r'\b' + re.escape(k) + r'\b', header_check.lower()) for k in keywords):
                             break
                     
                     # ignore long sentences that are not bullet pts
                     bullet = curr_clean.startswith(("•", "-", "*", "•", "–")) or curr.startswith(("  ", "\t"))
-                    if len(curr_clean) > 200 and not bullet:
+                    if len(curr_clean) > 300 and not bullet:
                         i += 1
                         continue
 
                     # clean it up and add it
-                    text_line = curr_clean.lstrip("•- *–").strip()
+                    text_line = curr_clean.lstrip("•- *–#").rstrip(":").strip()
+                    text_line = text_line.strip("*").strip()
                     if text_line:
-                        section_lines.append(text_line)
+                        found.append(text_line)
                     i += 1
-                
-                found.extend(section_lines)
                 continue
         i += 1
     
@@ -166,6 +167,46 @@ def get_salary(text):
 
 # --- main parsing logic ---
 
+def get_approx_title(text):
+    # Try common patterns first
+    patterns = [
+        r"(?:Role|Job|Position|Title):\s*([^\n]+)",
+        r"(?:seeking|looking for)\s+a?\s+([A-Z][a-zA-Z\s]*\b(?:Developer|Engineer|Analyst|Scientist|Architect|Lead|Senior|Principal|Manager|Role))\b",
+        r"([A-Z][a-zA-Z\s]*\b(?:Developer|Engineer|Analyst|Scientist|Architect)\b)"
+    ]
+    
+    first_lines = text.splitlines()[:15]
+    for line in first_lines:
+        # Strip common title decorations and markdown
+        clean = line.strip().lstrip("#").strip().strip("= -*").rstrip(":").strip()
+        if not clean: continue
+        # If the first non-empty line looks like a title, take it
+        if len(clean) < 70 and any(kw in clean.lower() for kw in ["developer", "engineer", "analyst", "scientist", "architect", "lead", "senior", "role"]):
+            return clean
+
+    for p in patterns:
+        m = re.search(p, text, re.IGNORECASE)
+        if m:
+            return m.group(1).strip()
+    return None
+
+def get_approx_company(text):
+    # check for "About [Company]" headers or similar, allowing for optional separators
+    m = re.search(r"(?:About Us|About|Company Description|The Company|ABOUT)\s*(?:[-=:\s]|\n)+\s*([A-Z][a-zA-Z0-9]*(?:[ \t]+[A-Z][a-zA-Z0-9]*)*)", text, re.IGNORECASE)
+    if m:
+        name = m.group(1).strip().strip('= -').strip()
+        if name.lower() not in ["the job", "this role", "us", "the company", "tech corp", "this"]:
+             return name
+             
+    first_500 = text[:1000]
+    # Look for name at the start of sentences with key indicators
+    m = re.search(r"([A-Z][a-zA-Z0-9]+(?:[ \t]+[A-Z][a-zA-Z0-9]+)*)\s+(?:has|is|was)\s+(?:celebrated|a|seeking|founded)", first_500)
+    if m:
+        name = m.group(1).strip()
+        if name.lower() not in ["this"]:
+            return name
+    return None
+
 def parse_job(text, source, meta=None):
     low_text = text.lower()
     meta = meta or {}
@@ -173,8 +214,8 @@ def parse_job(text, source, meta=None):
     # the final result object
     res = {
         "raw_text": text,
-        "job_title": meta.get("job_title"),
-        "company": meta.get("company"),
+        "job_title": meta.get("job_title") or get_approx_title(text),
+        "company": meta.get("company") or get_approx_company(text),
         "location": meta.get("job_location"),
         "employment_type": None,
         "experience_level": meta.get("job_level"),
@@ -195,6 +236,10 @@ def parse_job(text, source, meta=None):
         res["employment_type"] = "Contract"
     elif "full-time" in low_text or "full time" in low_text:
         res["employment_type"] = "Full-time"
+    elif "hybrid" in low_text:
+        res["employment_type"] = "Hybrid"
+    elif "remote" in low_text:
+        res["employment_type"] = "Remote"
     elif meta.get("job_type"):
         res["employment_type"] = meta["job_type"]
 
@@ -211,54 +256,32 @@ def parse_job(text, source, meta=None):
         elif re.search(r"\bgraduate\b|\bentry\b", low_text):
             res["experience_level"] = "Entry"
 
+    # location estimation
+    if not res["location"]:
+        m = re.search(r"Location:\s?([A-Za-z\s]+)", text, re.IGNORECASE)
+        if m:
+            res["location"] = m.group(1).split('\n')[0].strip()
+        elif "London" in text:
+            res["location"] = "London, UK"
 
-    res["responsibilities"] = []
-    res["requirements"] = []
-    res["education"] = []
-    res["nice_to_have"] = []
-    
-    # pull sections to help find more info
+    # pull sections
     res_sec = get_section(text, HEADERS["responsibilities"])
     req_sec = get_section(text, HEADERS["requirements"])
     edu_sec = get_section(text, HEADERS["education"])
     nic_sec = get_section(text, HEADERS["nice_to_have"])
     tec_sec = get_section(text, HEADERS["technical_skills"])
 
-    # extract title if it's missing
-    if not res["job_title"]:
-        patterns = [
-            r"(Junior|Senior|Mid|Lead|Principal|Staff|Fullstack|Full Stack|Frontend|Backend|Software|Data|DevOps|Systems|Infrastructure|Embedded|AI|ML|Machine Learning)\s+(?:[A-Za-z]+\s+)?(Engineer|Developer|Analyst|Scientist|Architect|Role|Internship|Intern|Consultant|Practitioner)",
-            r"Role:\s*([^\n]+)"
-        ]
-        for p in patterns:
-            m = re.search(p, text, re.IGNORECASE)
-            if m:
-                res["job_title"] = m.group(0 if " " in p else 1).strip()
-                break
+    res["responsibilities"] = res_sec
+    res["requirements"] = req_sec
+    res["education"] = edu_sec
+    res["nice_to_have"] = nic_sec
     
-    # extract company if it's missing
-    if not res["company"]:
-        # check for "About [Company Name]"
-        m = re.search(r"About\s+([A-Z][a-zA-Z0-9]*(?:[ \t]+[A-Z][a-zA-Z0-9]*)*)", text)
-        if m:
-            name = m.group(1).strip()
-            if name.lower() not in ["the job", "this role", "us", "the company"]:
-                 res["company"] = name
-
-    # location and type
-    res["employment_type"] = get_job_type(text)
-    if not res["location"]:
-        m = re.search(r"Location:\s?([A-Za-z\s]+)", text, re.IGNORECASE)
-        if m:
-            res["location"] = m.group(1).split('\n')[0].strip()
-
-    # compute the skills and requirements
-    skills = find_skills(text, req_sec, tec_sec, res_sec)
-    res["technical_skills"] = skills["technology"]
-    res["languages"] = skills["languages"]
-    res["experience_required"] = skills["experience"]
-    res["education_required"] = skills["education"]
-    res["soft_skills"] = []
+    # compute skills
+    skills = find_skills(text, req_sec + res_sec + nic_sec, tec_sec)
+    res["technical_skills"] = sorted(list(set(skills["technology"])))
+    res["languages"] = sorted(list(set(skills["languages"])))
+    res["experience_required"] = sorted(list(set(skills["experience"])))
+    res["education_required"] = sorted(list(set(skills["education"])))
     res["salary"] = get_salary(text)
 
     return res
@@ -269,14 +292,13 @@ def parse_jd(path):
 
     ext = os.path.splitext(path)[1].lower()
 
-    if ext == ".txt":
+    if ext in [".txt", ".md"]:
         raw = read_txt(path)
     elif ext == ".docx":
         raw = read_docx(path)
     elif ext == ".pdf":
         raw = read_pdf(path)
     else:
-        raise ValueError("unsupported file extension!")
+        raise ValueError(f"unsupported file extension: {ext}")
 
     return parse_job(raw, path)
-

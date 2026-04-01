@@ -1,8 +1,8 @@
 {
   "job_title": "Mid-level Frontend Engineer",
-  "company": "Creative Frontends",
+  "company": "createing great user experiences",
   "location": "London",
-  "employment_type": "Remote",
+  "employment_type": "Hybrid",
   "experience_level": "Mid",
   "technical_skills": [
     "Contentful",
@@ -12,10 +12,7 @@
     "Sanity",
     "Tailwind CSS"
   ],
-  "soft_skills": [
-    "Design sense",
-    "Collaboration"
-  ],
+  "soft_skills": [],
   "responsibilities": [],
   "requirements": [],
   "education": [],

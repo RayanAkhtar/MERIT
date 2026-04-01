@@ -1,0 +1,58 @@
+About the job
+
+Introduction
+
+At Cloud & AI Solutions Hub, we provide technical and industry expertise to a wide range of public and private sector clients in the UK.
+
+A career in Cloud & AI Solutions Hub means you’ll have the opportunity to work with leading professionals across multiple industries to improve the hybrid cloud and AI journey for the most innovative and valuable companies in the world. You will get the chance to deliver effective solutions, driving meaningful business change for our clients, using some of the latest technology platforms.
+
+Curiosity and a constant quest for knowledge serve as the foundation to success here. You’ll be encouraged and supported to constantly reinvent yourself, focusing on skills in demand in an ever changing market. You’ll be working with diverse teams, coming up with creative solutions which impact a wide network of clients, who may be at their site or one of our CIC or Company locations. Our culture of evolution centres on long-term career growth and development opportunities in an environment that embraces your unique skills and experience.
+
+We Offer
+
+    Many training opportunities from classroom to e-learning, mentoring and coaching programs and the chance to gain industry recognized certifications
+    Regular and frequent promotion opportunities to ensure you can drive and develop your career with us
+    Feedback and checkpoints throughout the year
+    Diversity & Inclusion as an essential and authentic component of our culture through our policies and process as well as our Employee Champion teams and support networks
+    A culture where your ideas for growth and innovation are always welcome
+    Internal recognition programs for peer-to-peer appreciation as well as from manager to employees
+    Tools and policies to support your work-life balance from flexible working approaches, sabbatical programs, paid paternity leave, maternity leave and an innovative maternity returners scheme
+    More traditional benefits, such as 25 days holiday (in addition to public holidays), private medical, dental & optical cover, online shopping discounts, an Employee Assistance Program, life assurance and a group personal pension plan of an additional 5% of your base salary paid by us monthly to save for your future
+
+Your Role And Responsibilities
+
+We are looking for a Senior AWS Cloud Full Stack Application Developer to contribute to the design, development, and maintenance of cloud-based applications. This role requires a solid foundation in both frontend and backend development, with hands-on experience using AWS services. The ideal candidate will have a passion for building scalable, efficient, and secure applications while working in a collaborative Agile environment.
+
+Responsibilities
+
+    Build and maintain full-stack applications deployed on AWS, ensuring high performance and reliability.
+    Design and implement APIs and microservices using Node.js, Python, or Java.
+    Develop responsive user interfaces with React.js, Angular, or Vue.js, following best practices for performance and accessibility.
+    Utilise AWS services such as Lambda, API Gateway, S3, DynamoDB, and RDS to enhance application functionality.
+    Implement security best practices, optimise application performance, and ensure scalability.
+    Support the development of CI/CD pipelines and automate deployments using AWS CodePipeline or similar tools.
+    Work closely with product managers, designers, and other developers in an Agile development environment.
+    Write clean, maintainable code and contribute to peer code reviews and technical documentation.
+
+Preferred Education
+
+Bachelor's Degree
+
+Required Technical And Professional Expertise
+
+    3+ years of experience in full-stack development, including cloud-based applications.
+    Proficiency in JavaScript/TypeScript and modern frontend frameworks such as React.js, Angular, or Vue.js.
+    Hands-on experience with backend development using Node.js, Python, or Java.
+    Familiarity with AWS services such as Lambda, API Gateway, DynamoDB, RDS, and IAM.
+    Experience working with relational (PostgreSQL, MySQL) and NoSQL (DynamoDB, MongoDB) databases.
+    Understanding of unit testing, integration testing, and debugging techniques.
+    Knowledge of Git, version control, and deployment automation practices.
+
+As an equal opportunities’ employer, we welcome applications from individuals of all backgrounds. However, for you to be eligible for this role, you must have the valid right to work in the UK. Unfortunately, we do not offer visa sponsorship and have no future plans to do so. You must be a resident in the UK and have been living continuously in the UK for the last 10 years. You must be able to hold or gain a UK government security clearance.
+
+Preferred Technical And Professional Experience
+
+    AWS certification (e.g., AWS Certified Developer – Associate).
+    Experience with Infrastructure as Code (Terraform, CloudFormation, or AWS CDK).
+    Knowledge of authentication methods such as OAuth, JWT, or AWS Cognito.
+    Exposure to containerised applications using Docker, ECS, or Kubernetes.

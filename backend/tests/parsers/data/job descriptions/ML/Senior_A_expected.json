@@ -1,0 +1,47 @@
+{
+  "job_title": "Senior Machine Learning Engineer",
+  "company": "ML Insights",
+  "location": null,
+  "employment_type": "Remote",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "AWS",
+    "BigQuery",
+    "Docker",
+    "GCP",
+    "Kubeflow",
+    "Kubernetes",
+    "MLflow",
+    "PyTorch",
+    "Redshift",
+    "Scikit-learn",
+    "TensorFlow"
+  ],
+  "soft_skills": [],
+  "responsibilities": [],
+  "requirements": [
+    "Masters or PhD in Computer Science, Mathematics, or a related field",
+    "Deep expertise in Python and ML libraries (Scikit-learn, PyTorch, TensorFlow)",
+    "Strong understanding of statistics and probability",
+    "Experience with SQL and massive datasets (BigQuery, Redshift)",
+    "Hands-on experience with cloud platforms (GCP or AWS)",
+    "Proficiency with Docker and Kubernetes for model serving",
+    "Passion for staying up-to-date with the latest ML research",
+    "Excellent problem-solving skills and attention to detail"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Flexible remote work environment",
+    "Latest hardware and software tools"
+  ],
+  "salary": "£100,000 - £140,000 per year",
+  "source_file": "ML\\Senior_A.txt",
+  "languages": [
+    "python",
+    "pytorch"
+  ],
+  "experience_required": [],
+  "education_required": [
+    "Masters or PhD in Computer Science, Mathematics, or a related field"
+  ]
+}

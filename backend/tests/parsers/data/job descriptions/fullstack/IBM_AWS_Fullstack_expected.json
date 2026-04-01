@@ -1,0 +1,60 @@
+{
+  "job_title": "Senior AWS Cloud Full Stack Application Developer",
+  "company": null,
+  "location": null,
+  "employment_type": "Internship",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "AWS",
+    "Agile",
+    "CI/CD",
+    "Docker",
+    "Kubernetes",
+    "angular",
+    "dynamodb",
+    "foundation",
+    "mongodb",
+    "mysql",
+    "postgresql",
+    "react"
+  ],
+  "soft_skills": [],
+  "responsibilities": [
+    "Build and maintain full-stack applications deployed on AWS, ensuring high performance and reliability.",
+    "Design and implement APIs and microservices using Node.js, Python, or Java.",
+    "Develop responsive user interfaces with React.js, Angular, or Vue.js, following best practices for performance and accessibility.",
+    "Utilise AWS services such as Lambda, API Gateway, S3, DynamoDB, and RDS to enhance application functionality.",
+    "Implement security best practices, optimise application performance, and ensure scalability.",
+    "Support the development of CI/CD pipelines and automate deployments using AWS CodePipeline or similar tools.",
+    "Work closely with product managers, designers, and other developers in an Agile development environment.",
+    "Write clean, maintainable code and contribute to peer code reviews and technical documentation."
+  ],
+  "requirements": [],
+  "education": [
+    "Bachelor's Degree"
+  ],
+  "nice_to_have": [
+    "Bachelor's Degree",
+    "AWS certification (e.g., AWS Certified Developer – Associate).",
+    "Experience with Infrastructure as Code (Terraform, CloudFormation, or AWS CDK).",
+    "Knowledge of authentication methods such as OAuth, JWT, or AWS Cognito.",
+    "Exposure to containerised applications using Docker, ECS, or Kubernetes."
+  ],
+  "salary": null,
+  "source_file": "fullstack\\IBM_AWS_Fullstack.txt",
+  "languages": [
+    "JS",
+    "java",
+    "javascript",
+    "mysql",
+    "python",
+    "typescript"
+  ],
+  "experience_required": [
+    "10 years",
+    "3+ years of experience"
+  ],
+  "education_required": [
+    "Bachelor's Degree"
+  ]
+}
