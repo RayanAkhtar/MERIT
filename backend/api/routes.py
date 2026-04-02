@@ -5,14 +5,11 @@ from core.service.upload_service import handle_file_upload, get_file_link_counts
 from core.parsers.job_description import parse_jd, parse_job
 from core.supabase import supabase
 
-# TODO
-#    1. Structure this better since there will be more endpoints as it grows
 
 api_bp = Blueprint("api", __name__)
 
-# Configure upload settings
 UPLOAD_FOLDER = 'uploads'
-ALLOWED_EXTENSIONS = {'pdf', 'docx'} # Just cv files
+ALLOWED_EXTENSIONS = {'pdf', 'docx', 'txt', 'md'}
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
@@ -52,6 +49,7 @@ def extract_job_requirements():
     """Handle extraction and structuring of Job Requirements"""
     files = request.files.getlist('files') if 'files' in request.files else []
     text = request.form.get('text', '').strip()
+    custom_title = request.form.get('title', '').strip()
     
     if not files and not text:
         return jsonify({"error": "No files or text provided"}), 400
@@ -60,7 +58,8 @@ def extract_job_requirements():
 
     # Process text input
     if text:
-        parsed_text = parse_job(text, source_file="manual_input")
+        meta = {"job_title": custom_title} if custom_title else None
+        parsed_text = parse_job(text, source_file="manual_input", meta=meta)
         results.append(parsed_text)
 
     # Process file inputs
@@ -71,7 +70,8 @@ def extract_job_requirements():
             file.save(filepath)
             
             try:
-                parsed_file = parse_jd(filepath)
+                meta = {"job_title": custom_title} if custom_title else None
+                parsed_file = parse_jd(filepath, meta=meta)
                 if isinstance(parsed_file, list):
                     results.extend(parsed_file)
                 else:
@@ -90,13 +90,21 @@ def extract_job_requirements():
     # Map backend fields to frontend expected format following user request
     formatted_metrics = []
     
-    # 1. Location
+    # 1. Basic Info
+    if combined.get("company"):
+        formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Company", "value": combined["company"], "category": "General"})
+    if combined.get("job_title"):
+        formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Job Role", "value": combined["job_title"], "category": "General"})
+
+    # 2. Location
     if combined.get("location"):
         formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Location", "value": combined["location"], "category": "General"})
     
-    # 2. Job Type
+    # 3. Job Type & Level
     if combined.get("employment_type"):
         formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Job Type", "value": combined["employment_type"], "category": "General"})
+    if combined.get("experience_level"):
+        formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Experience Level", "value": combined["experience_level"], "category": "General"})
 
     # 3. Languages
     for s in combined.get("languages", []):
@@ -118,9 +126,21 @@ def extract_job_requirements():
     for s in combined.get("soft_skills", []):
         formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Soft Skill", "value": s, "category": "Soft Skills"})
 
+    # 8. Responsibilities
+    for s in combined.get("responsibilities", []):
+        formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Duty", "value": s, "category": "Responsibilities"})
+
+    # 9. Requirements (Generic)
+    for s in combined.get("requirements", []):
+        formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Requirement", "value": s, "category": "Requirements"})
+
+    company = combined.get("company")
+    job_title = combined.get("job_title")
+    display_title = f"{company} - {job_title}" if company and job_title else (job_title or company or "Extracted Role")
+
     response_data = {
-        "title": combined.get("job_title") or "Extracted Role",
-        "description": combined.get("raw_text")[:500] + "..." if len(combined.get("raw_text", "")) > 500 else combined.get("raw_text", ""),
+        "title": display_title,
+        "description": combined.get("raw_text", ""),
         "metrics": formatted_metrics
     }
 
@@ -141,14 +161,36 @@ def save_job_requirements():
         if not title or not metrics:
             return jsonify({"error": "Title and Metrics are required fields"}), 400
 
-        # Insert into Supabase
-        if not supabase:
-             return jsonify({"error": "Database connection not established"}), 500
+        # Define category structures: 'list' (flat string array) vs 'key-value' (label-value objects)
+        list_type_cats = ["Languages", "Technologies", "Soft Skills", "Responsibilities", "Requirements", "Education"]
+        
+        # Group and structure metrics by category
+        grouped_metrics = {}
+        for m in metrics:
+            cat = m.get("category", "General")
+            val = m.get("value", "")
+            lbl = m.get("label", "")
+            
+            if cat not in grouped_metrics:
+                # Initialize category structure
+                cat_type = "list" if cat in list_type_cats else "key-value"
+                grouped_metrics[cat] = {
+                    "type": cat_type,
+                    "value": []
+                }
+            
+            if grouped_metrics[cat]["type"] == "list":
+                # For list sections, extract plain string
+                if val: grouped_metrics[cat]["value"].append(val)
+            else:
+                # For key-value sections, preserve label-value pair (cleaned)
+                item = {k: v for k, v in m.items() if k != 'category'}
+                grouped_metrics[cat]["value"].append(item)
 
         response = supabase.table("job_requirements").insert({
             "title": title,
             "description": description,
-            "metrics": metrics
+            "metrics": grouped_metrics
         }).execute()
 
         return jsonify({"success": True, "data": response.data}), 201

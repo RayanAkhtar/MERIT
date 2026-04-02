@@ -13,7 +13,7 @@ interface ExtractedMetric {
   label: string;
   value: string;
   subValue?: string; // Specifically for years of exp in Languages
-  category: 'General' | 'Education' | 'Languages' | 'Technologies' | 'Experience' | 'Soft Skills';
+  category: string;
 }
 
 interface ExtractedData {
@@ -38,9 +38,19 @@ export default function JobReqUpload() {
     category: 'Technologies' 
   });
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const categoryTypes: Record<string, 'row' | 'tag'> = {
+    'General': 'row',
+    'Education': 'row',
+    'Languages': 'tag',
+    'Technologies': 'tag',
+    'Experience': 'row',
+    'Soft Skills': 'tag',
+    'Responsibilities': 'row',
+    'Requirements': 'row'
+  };
 
-  const allowedTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-  const allowedExtensions = ['.pdf', '.docx'];
+  const allowedTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain', 'text/markdown'];
+  const allowedExtensions = ['.pdf', '.docx', '.txt', '.md'];
 
   const validateFile = (file: File): boolean => {
     const isValidType = allowedTypes.includes(file.type);
@@ -61,11 +71,22 @@ export default function JobReqUpload() {
         }
     }
 
-    if (newFiles.length !== fileList.length) {
-        setUploadStatus('Some files were rejected. Only PDF and DOCX files are allowed.');
+    const rejectedFiles = fileList.length !== newFiles.length;
+    
+    if (newFiles.length > 0) {
+        // Always take the latest valid file to overwrite
+        setFiles([newFiles[newFiles.length - 1]]);
+        
+        if (newFiles.length > 1) {
+            setUploadStatus('Only one file can be uploaded at a time. Overwriting with the latest valid file.');
+        } else if (rejectedFiles) {
+            setUploadStatus('Some files were rejected. Only PDF, DOCX, TXT and MD files are allowed.');
+        } else {
+            setUploadStatus('');
+        }
+    } else if (rejectedFiles) {
+        setUploadStatus('Invalid file type. Only PDF, DOCX, TXT and MD files are allowed.');
     }
-
-    setFiles(prev => [...prev, ...newFiles]);
   };
 
   const handleDragOver = (e: React.DragEvent) => {
@@ -151,7 +172,7 @@ export default function JobReqUpload() {
     
     const metric: ExtractedMetric = {
         id: Math.random().toString(36).substr(2, 9),
-        label: newMetric.label,
+        label: (categoryTypes[newMetric.category] === 'tag') ? newMetric.category.slice(0, -1) : newMetric.label,
         value: newMetric.value,
         subValue: newMetric.subValue,
         category: newMetric.category
@@ -221,7 +242,7 @@ export default function JobReqUpload() {
 
             {/* Header Data */}
             <div className="p-6 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-950 space-y-4">
-                <div>
+                <div className="hidden">
                    <label className="text-xs font-bold uppercase text-zinc-400">Projected Job Title</label>
                    <input 
                     type="text" 
@@ -236,22 +257,24 @@ export default function JobReqUpload() {
                     <textarea 
                         value={extractedData.description}
                         onChange={(e) => setExtractedData({...extractedData, description: e.target.value})}
-                        className="w-full h-32 bg-transparent border-none focus:ring-0 resize-none text-zinc-600 dark:text-zinc-400"
+                        className="w-full h-64 bg-zinc-50/30 dark:bg-zinc-950/30 border border-zinc-100 dark:border-zinc-900 rounded-xl px-4 py-3 focus:ring-0 resize-none text-xs text-zinc-600 dark:text-zinc-500 overflow-y-auto leading-relaxed"
                     />
                 </div>
             </div>
 
             {/* Metrics List - Grouped by Category */}
             <div className="space-y-10">
-                {(['General', 'Education', 'Languages', 'Technologies', 'Experience', 'Soft Skills'] as const).map((cat) => {
+                {(['General', 'Education', 'Languages', 'Technologies', 'Experience', 'Soft Skills', 'Responsibilities', 'Requirements'] as const).map((cat) => {
                     const catMetrics = extractedData.metrics.filter(m => m.category === cat);
-                    if (catMetrics.length === 0 && !['Languages', 'Technologies', 'Soft Skills'].includes(cat)) return null;
+                    const isTagType = categoryTypes[cat] === 'tag';
+                    
+                    if (catMetrics.length === 0 && !['Languages', 'Technologies', 'Soft Skills', 'Responsibilities', 'Requirements'].includes(cat)) return null;
 
                     return (
                         <div key={cat} className="space-y-4">
                             <div className="flex items-center justify-between border-b border-zinc-100 dark:border-zinc-800 pb-2">
                                 <h3 className="text-sm font-black uppercase tracking-wider text-zinc-400">{cat}</h3>
-                                {(['Languages', 'Technologies', 'Soft Skills'].includes(cat)) && (
+                                {(['General', 'Education', 'Languages', 'Technologies', 'Experience', 'Soft Skills', 'Responsibilities', 'Requirements'].includes(cat)) && (
                                     <button 
                                         onClick={() => {
                                             setNewMetric({ label: cat === 'Languages' ? 'Language' : cat === 'Technologies' ? 'Technology' : 'Soft Skill', value: '', subValue: '', category: cat });
@@ -262,32 +285,49 @@ export default function JobReqUpload() {
                                         <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 4v16m8-8H4" />
                                         </svg>
-                                        Add {cat.slice(0, -1)}
+                                        Add {['Responsibilities', 'Requirements'].includes(cat) ? cat.slice(0, -1) : cat.endsWith('ies') ? cat.slice(0, -3) + 'y' : cat.endsWith('s') ? cat.slice(0, -1) : cat}
                                     </button>
                                 )}
                             </div>
                             
-                            <div className="grid gap-3">
+                            <div className={isTagType ? "flex flex-wrap gap-2 px-1" : "grid gap-3"}>
                                 {catMetrics.length === 0 ? (
                                     <p className="text-xs italic text-zinc-500 px-2">No {cat.toLowerCase()} extracted.</p>
                                 ) : (
                                     catMetrics.map((metric) => (
-                                        <div key={metric.id} className="flex items-center gap-4 p-3 pr-4 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-950 group hover:border-indigo-500/30 transition-all">
+                                        isTagType ? (
+                                            <div key={metric.id} className="flex items-center gap-2 px-3 py-1.5 bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20 rounded-full group hover:border-indigo-500 transition-all">
+                                                <input 
+                                                    type="text" 
+                                                    value={metric.value} 
+                                                    onChange={(e) => updateMetric(metric.id, 'value', e.target.value)}
+                                                    className="bg-transparent border-none p-0 text-sm font-bold text-indigo-700 dark:text-indigo-300 focus:ring-0 min-w-[30px] w-auto"
+                                                    style={{ width: `${Math.max(metric.value.length * 8, 30)}px` }}
+                                                />
+                                                <button 
+                                                    onClick={() => deleteMetric(metric.id)}
+                                                    className="p-0.5 text-indigo-300 hover:text-red-500 transition-colors"
+                                                >
+                                                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        ) : (
+                                            <div key={metric.id} className="flex items-center gap-4 p-3 pr-4 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-950 group hover:border-indigo-500/30 transition-all">
                                             <div className="flex-1 flex flex-col sm:flex-row sm:items-center gap-3">
-                                                {/* Label Part */}
-                                                <div className="w-full sm:w-1/3">
-                                                    <input 
-                                                        type="text" 
-                                                        value={metric.label} 
-                                                        placeholder="Label"
-                                                        onChange={(e) => updateMetric(metric.id, 'label', e.target.value)}
-                                                        className="w-full bg-transparent border-none rounded px-0 py-0 text-zinc-900 dark:text-zinc-50 font-bold focus:ring-0 text-sm"
-                                                    />
-                                                </div>
+                                                {/* Label Part (Only for General) */}
+                                                {cat === 'General' && (
+                                                    <div className="w-full sm:w-1/3">
+                                                        <span className="text-zinc-600 dark:text-zinc-400 font-bold text-sm select-none pointer-events-none">{metric.label}</span>
+                                                    </div>
+                                                )}
                                                 
                                                 {/* Value Part */}
                                                 <div className="flex-1 flex items-center gap-2">
-                                                    <span className="text-zinc-300 dark:text-zinc-700 font-light hidden sm:inline">:</span>
+                                                    {cat === 'General' && (
+                                                        <span className="text-zinc-300 dark:text-zinc-700 font-light hidden sm:inline">:</span>
+                                                    )}
                                                     <input 
                                                         type="text" 
                                                         value={metric.value} 
@@ -297,19 +337,7 @@ export default function JobReqUpload() {
                                                     />
                                                 </div>
 
-                                                {/* SubValue (Years) for Languages */}
-                                                {cat === 'Languages' && (
-                                                    <div className="w-full sm:w-32 flex items-center gap-2">
-                                                        <span className="text-zinc-400 text-xs">Exp:</span>
-                                                        <input 
-                                                            type="text" 
-                                                            placeholder="e.g. 3+ yrs"
-                                                            value={metric.subValue || ''} 
-                                                            onChange={(e) => updateMetric(metric.id, 'subValue', e.target.value)}
-                                                            className="flex-1 bg-zinc-50/50 dark:bg-zinc-900/50 border-none rounded px-2 py-1 text-zinc-700 dark:text-zinc-300 focus:ring-1 focus:ring-indigo-500 text-sm"
-                                                        />
-                                                    </div>
-                                                )}
+                                                {/* SubValue (Years) for Languages - REMOVED */}
                                             </div>
                                             
                                             <button 
@@ -321,25 +349,13 @@ export default function JobReqUpload() {
                                                 </svg>
                                             </button>
                                         </div>
-                                    ))
-                                )}
+                                    )
+                                ))
+                            )}
                             </div>
                         </div>
                     );
                 })}
-
-                {/* Legacy "Add Custom Metric" button for unusual cases */}
-                {!isAddingMetric && (
-                    <button 
-                        onClick={() => setIsAddingMetric(true)}
-                        className="flex items-center justify-center gap-2 w-full p-4 border-2 border-dashed border-zinc-200 dark:border-zinc-800 rounded-xl text-zinc-500 hover:text-indigo-600 hover:border-indigo-600 transition-all group opacity-50 hover:opacity-100"
-                    >
-                        <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                        </svg>
-                        Add Global Metric
-                    </button>
-                )}
 
                 {/* Inline Form Add Modal-style (Used for all Add operations) */}
                 {isAddingMetric && (
@@ -361,47 +377,58 @@ export default function JobReqUpload() {
                                         <option>Technologies</option>
                                         <option>Experience</option>
                                         <option>Soft Skills</option>
+                                        <option>Responsibilities</option>
+                                        <option>Requirements</option>
+                                        {Object.keys(categoryTypes).filter(c => !['General', 'Education', 'Languages', 'Technologies', 'Experience', 'Soft Skills', 'Responsibilities', 'Requirements'].includes(c)).map(custom => (
+                                            <option key={custom}>{custom}</option>
+                                        ))}
                                     </select>
                                 </div>
-                                <div className="grid grid-cols-2 gap-4">
+                                {(categoryTypes[newMetric.category] === 'tag' || newMetric.category !== 'General') ? (
                                     <div>
-                                        <label className="text-[10px] font-black uppercase text-indigo-500">Label</label>
+                                        <label className="text-[10px] font-black uppercase text-indigo-500">Requirement Value</label>
                                         <input 
                                             type="text"
-                                            placeholder="e.g. Python"
-                                            value={newMetric.label}
-                                            onChange={(e) => setNewMetric({...newMetric, label: e.target.value})}
-                                            className="w-full bg-zinc-50 dark:bg-zinc-900 border-none rounded-xl px-4 py-3 mt-1 dark:text-zinc-300 focus:ring-1 focus:ring-indigo-500"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="text-[10px] font-black uppercase text-indigo-500">Value</label>
-                                        <input 
-                                            type="text"
-                                            placeholder="Requirement..."
+                                            placeholder={newMetric.category === 'Languages' ? 'e.g. Python' : 
+                                                         newMetric.category === 'Technologies' ? 'e.g. Docker' : 
+                                                         'e.g. 3 years experience with Python'}
                                             value={newMetric.value}
                                             onChange={(e) => setNewMetric({...newMetric, value: e.target.value})}
                                             className="w-full bg-zinc-50 dark:bg-zinc-900 border-none rounded-xl px-4 py-3 mt-1 dark:text-zinc-300 focus:ring-1 focus:ring-indigo-500"
                                         />
                                     </div>
-                                </div>
-                                {newMetric.category === 'Languages' && (
-                                    <div>
-                                        <label className="text-[10px] font-black uppercase text-indigo-500">Years of Experience</label>
-                                        <input 
-                                            type="text"
-                                            placeholder="e.g. 5+ yrs"
-                                            value={newMetric.subValue}
-                                            onChange={(e) => setNewMetric({...newMetric, subValue: e.target.value})}
-                                            className="w-full bg-zinc-50 dark:bg-zinc-900 border-none rounded-xl px-4 py-3 mt-1 dark:text-zinc-300 focus:ring-1 focus:ring-indigo-500"
-                                        />
+                                ) : (
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label className="text-[10px] font-black uppercase text-indigo-500">Label (Fixed)</label>
+                                            <input 
+                                                type="text"
+                                                value={newMetric.label}
+                                                readOnly
+                                                className="w-full bg-zinc-50 dark:bg-zinc-900 border-none rounded-xl px-4 py-3 mt-1 text-zinc-400 cursor-default"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="text-[10px] font-black uppercase text-indigo-500">Value</label>
+                                            <input 
+                                                type="text"
+                                                placeholder="Requirement..."
+                                                value={newMetric.value}
+                                                onChange={(e) => setNewMetric({...newMetric, value: e.target.value})}
+                                                className="w-full bg-zinc-50 dark:bg-zinc-900 border-none rounded-xl px-4 py-3 mt-1 dark:text-zinc-300 focus:ring-1 focus:ring-indigo-500"
+                                            />
+                                        </div>
                                     </div>
                                 )}
+                                {/* Years of Experience for Languages - REMOVED */}
                            </div>
                            <div className="flex gap-3">
                              <button 
-                                onClick={addMetric}
-                                disabled={!newMetric.label}
+                                onClick={() => {
+                                    addMetric();
+                                    setIsAddingMetric(false);
+                                }}
+                                disabled={!newMetric.value && !newMetric.label}
                                 className="flex-1 bg-indigo-600 text-white rounded-xl py-3 font-bold disabled:opacity-50 transition-colors shadow-lg shadow-indigo-500/20"
                              >
                                  Confirm Add
@@ -418,21 +445,57 @@ export default function JobReqUpload() {
                 )}
             </div>
 
-            {/* Actions */}
-            <div className="flex gap-4">
-                <button
-                    onClick={() => setStep('upload')}
-                    className="px-6 py-3 rounded-md font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
-                >
-                    Back to Upload
-                </button>
-                <button
-                    onClick={handleFinalSave}
-                    disabled={isUploading}
-                    className="flex-1 px-6 py-3 rounded-md font-medium text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 transition-colors"
-                >
-                    {isUploading ? 'Finalizing...' : 'Save & Close Requirements'}
-                </button>
+            {/* Final Title Selection & Save Step */}
+            <div className="relative mt-12 mb-6">
+                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/5 to-purple-500/5 dark:from-indigo-500/10 dark:to-purple-500/10 rounded-[2.5rem] blur-xl" />
+                <div className="relative p-6 border border-zinc-200 dark:border-zinc-800/50 rounded-[1.5rem] bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md shadow-xl shadow-zinc-200/20 dark:shadow-none">
+                    <div className="space-y-6">
+                        <div className="flex items-center gap-4 p-4 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white/50 dark:bg-zinc-950/50">
+                            <div className="w-1/3">
+                                <span className="text-sm font-black uppercase tracking-wider text-indigo-500">Configuration Name</span>
+                            </div>
+                            <div className="flex-1 flex items-center gap-2">
+                                <span className="text-zinc-300 dark:text-zinc-700 font-light">:</span>
+                                <input 
+                                    type="text" 
+                                    value={extractedData.title}
+                                    onChange={(e) => setExtractedData({...extractedData, title: e.target.value})}
+                                    placeholder="e.g. Senior Software Engineer Role"
+                                    className="flex-1 bg-zinc-50/50 dark:bg-zinc-900/50 border-none rounded-lg px-3 py-2 text-zinc-900 dark:text-zinc-50 font-bold focus:ring-1 focus:ring-indigo-500 text-sm"
+                                />
+                            </div>
+                        </div>
+                        
+                        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-2">
+                            <p className="text-[10px] text-zinc-400 font-medium pl-2">
+                                This name will be the primary identifier in your dashboard.
+                            </p>
+                            
+                            <div className="flex items-center gap-3 w-full sm:w-auto">
+                                <button
+                                    onClick={() => setStep('upload')}
+                                    className="px-5 py-2.5 rounded-xl font-bold text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-all text-xs"
+                                >
+                                    Back
+                                </button>
+                                <button
+                                    onClick={handleFinalSave}
+                                    disabled={isUploading || !extractedData.title}
+                                    className="flex-1 sm:flex-none px-8 py-3 rounded-xl font-bold text-white bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 transition-all shadow-lg shadow-indigo-600/25 active:scale-[0.97] text-xs flex items-center justify-center gap-2"
+                                >
+                                    {isUploading ? (
+                                        <>
+                                            <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                            Saving...
+                                        </>
+                                    ) : (
+                                        'Commit Requirements'
+                                    )}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             {/* Status Message */}
@@ -464,8 +527,7 @@ export default function JobReqUpload() {
             <input
               ref={fileInputRef}
               type="file"
-              multiple
-              accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+              accept=".pdf,.docx,.txt,.md,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain,text/markdown"
               onChange={handleFileInput}
               className="hidden"
               id="job-req-upload"
@@ -486,9 +548,9 @@ export default function JobReqUpload() {
               </div>
               <div className="space-y-1">
                 <p className="text-sm font-medium text-zinc-900 dark:text-zinc-50">
-                  <span className="text-indigo-600 dark:text-indigo-400">Upload descriptions</span> or drag & drop
+                  <span className="text-indigo-600 dark:text-indigo-400">Upload a description</span> or drag & drop
                 </p>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400">PDF, DOCX files only</p>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">PDF, DOCX, TXT, MD files only</p>
               </div>
             </label>
           </div>
@@ -512,7 +574,7 @@ export default function JobReqUpload() {
               Selected Files
             </h3>
             <span className="px-2 py-1 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">
-              {files.length} {files.length === 1 ? 'file' : 'files'}
+              1 file max
             </span>
           </div>
           <div className="space-y-2">

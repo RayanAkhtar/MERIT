@@ -136,9 +136,9 @@ def find_skills(text, reqs, tech, resps=None):
         exp.append(y)
         
     # pull out education lines
-    edu_keys = ["degree", "bachelor", "master", "phd", "stem", "university", "graduate"]
-    for line in (reqs or [] + (resps or [])):
-        if any(k in line.lower() for k in edu_keys):
+    edu_keys = ["degree", "bachelor", "master", "phd", "bsc", "msc", "ba", "ma", "diploma", "doctorate"]
+    for line in (reqs + (resps or [])):
+        if any(re.search(r'\b' + re.escape(k) + r'\b', line.lower()) for k in edu_keys):
             edu.append(line.strip())
 
     return {
@@ -207,7 +207,7 @@ def get_approx_company(text):
             return name
     return None
 
-def parse_job(text, source, meta=None):
+def parse_job(text, source_file, meta=None):
     low_text = text.lower()
     meta = meta or {}
 
@@ -226,7 +226,7 @@ def parse_job(text, source, meta=None):
         "education": [],
         "nice_to_have": [],
         "salary": None,
-        "source_file": source
+        "source_file": source_file
     }
 
     # guess employment type
@@ -288,7 +288,7 @@ def parse_job(text, source, meta=None):
 
 
 
-def parse_jd(path):
+def parse_jd(path, meta=None):
 
     ext = os.path.splitext(path)[1].lower()
 
@@ -301,4 +301,4 @@ def parse_jd(path):
     else:
         raise ValueError(f"unsupported file extension: {ext}")
 
-    return parse_job(raw, path)
+    return parse_job(raw, path, meta=meta)

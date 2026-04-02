@@ -18,8 +18,8 @@ export default function FileUpload() {
   const [selectedLinks, setSelectedLinks] = useState<Record<string, boolean>>({});
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const allowedTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-  const allowedExtensions = ['.pdf', '.docx'];
+  const allowedTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain', 'text/markdown'];
+  const allowedExtensions = ['.pdf', '.docx', '.txt', '.md'];
 
   const validateFile = (file: File): boolean => {
     const isValidType = allowedTypes.includes(file.type);
@@ -41,7 +41,7 @@ export default function FileUpload() {
     }
 
     if (newFiles.length !== fileList.length) {
-      setUploadStatus('Some files were rejected. Only PDF and DOCX files are allowed.');
+      setUploadStatus('Some files were rejected. Only PDF, DOCX, TXT and MD files are allowed.');
     }
 
     setFiles(prev => [...prev, ...newFiles]);
@@ -148,7 +148,7 @@ export default function FileUpload() {
           ref={fileInputRef}
           type="file"
           multiple
-          accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+          accept=".pdf,.docx,.txt,.md,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain,text/markdown"
           onChange={handleFileInput}
           className="hidden"
           id="file-upload"
@@ -177,7 +177,7 @@ export default function FileUpload() {
               <span className="text-zinc-600 dark:text-zinc-400">Click to upload</span> or drag and drop
             </p>
             <p className="text-xs text-zinc-500 dark:text-zinc-500">
-              PDF, DOCX files only
+              PDF, DOCX, TXT, MD files only
             </p>
           </div>
         </label>
