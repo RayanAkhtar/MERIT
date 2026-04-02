@@ -1,12 +1,9 @@
 from flask import Blueprint, jsonify, request
 from werkzeug.utils import secure_filename
 import os
-from core.service.upload_service import handle_file_upload, get_file_link_counts
 from core.parsers.job_description import parse_jd, parse_job
-from core.supabase import supabase
 
-
-api_bp = Blueprint("api", __name__)
+extraction_bp = Blueprint("extraction", __name__)
 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'pdf', 'docx', 'txt', 'md'}
@@ -18,33 +15,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@api_bp.route("/health", methods=["GET"])
-def health():
-    return jsonify({"status": "ok"})
-
-@api_bp.route("/upload", methods=["POST"])
-def upload_files():
-    """Handle multiple file uploads"""
-    if 'files' not in request.files:
-        return jsonify({"error": "No files provided"}), 400
-
-    files = request.files.getlist('files')
-    return jsonify(*handle_file_upload(files))
-
-@api_bp.route("/supporting-links-metrics", methods=["GET"])
-def file_link_counts():
-    """API endpoint to get file link counts"""
-    link_summary = get_file_link_counts()
-    return jsonify(link_summary), 200
-
-@api_bp.route("/save-cvs", methods=["POST"])
-def save_cvs():
-    """Attempt to save multiple CVs. Returns error as it's not implemented yet."""
-    if 'files' not in request.files or not request.files.getlist('files'):
-        return jsonify({"error": "No files provided"}), 400
-    return jsonify({"error": "Saving CVs is not implemented yet."}), 501
-
-@api_bp.route("/extract-job-requirements", methods=["POST"])
+@extraction_bp.route("/extract-job-requirements", methods=["POST"])
 def extract_job_requirements():
     """Handle extraction and structuring of Job Requirements"""
     files = request.files.getlist('files') if 'files' in request.files else []
@@ -77,60 +48,38 @@ def extract_job_requirements():
                 else:
                     results.append(parsed_file)
             finally:
-                # Cleanup if needed or keep for reference
                 pass
 
     if not results:
         return jsonify({"error": "No data could be extracted"}), 422
 
-    # For now, if multiple sources are provided, we merge them or return the first
-    # The frontend expects a single structured job object
-    combined = results[0] # Simplistic merge for now
-    
-    # Map backend fields to frontend expected format following user request
+    combined = results[0]
     formatted_metrics = []
     
-    # 1. Basic Info
+    # Mapping logic
     if combined.get("company"):
         formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Company", "value": combined["company"], "category": "General"})
     if combined.get("job_title"):
         formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Job Role", "value": combined["job_title"], "category": "General"})
-
-    # 2. Location
     if combined.get("location"):
         formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Location", "value": combined["location"], "category": "General"})
-    
-    # 3. Job Type & Level
     if combined.get("employment_type"):
         formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Job Type", "value": combined["employment_type"], "category": "General"})
     if combined.get("experience_level"):
         formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Experience Level", "value": combined["experience_level"], "category": "General"})
 
-    # 3. Languages
     for s in combined.get("languages", []):
-        formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Language", "value": s, "subValue": "3+ years", "category": "Languages"})
-    
-    # 4. Technologies
+        formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Language", "value": s, "category": "Languages"})
     for s in combined.get("technical_skills", []):
         formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Technology", "value": s, "category": "Technologies"})
-        
-    # 5. Experience
     for s in combined.get("experience_required", []):
         formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Required Experience", "value": s, "category": "Experience"})
-        
-    # 6. Education
     for s in combined.get("education_required", []):
         formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Degree", "value": s, "category": "Education"})
-        
-    # 7. Soft Skills
     for s in combined.get("soft_skills", []):
         formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Soft Skill", "value": s, "category": "Soft Skills"})
-
-    # 8. Responsibilities
     for s in combined.get("responsibilities", []):
         formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Duty", "value": s, "category": "Responsibilities"})
-
-    # 9. Requirements (Generic)
     for s in combined.get("requirements", []):
         formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Requirement", "value": s, "category": "Requirements"})
 
@@ -145,57 +94,3 @@ def extract_job_requirements():
     }
 
     return jsonify(response_data), 200
-
-@api_bp.route("/save-job-requirements", methods=["POST"])
-def save_job_requirements():
-    """Save finalized Job Requirements to Supabase"""
-    try:
-        data = request.json
-        if not data:
-            return jsonify({"error": "No data provided"}), 400
-
-        title = data.get("title")
-        description = data.get("description")
-        metrics = data.get("metrics")
-
-        if not title or not metrics:
-            return jsonify({"error": "Title and Metrics are required fields"}), 400
-
-        # Define category structures: 'list' (flat string array) vs 'key-value' (label-value objects)
-        list_type_cats = ["Languages", "Technologies", "Soft Skills", "Responsibilities", "Requirements", "Education"]
-        
-        # Group and structure metrics by category
-        grouped_metrics = {}
-        for m in metrics:
-            cat = m.get("category", "General")
-            val = m.get("value", "")
-            lbl = m.get("label", "")
-            
-            if cat not in grouped_metrics:
-                # Initialize category structure
-                cat_type = "list" if cat in list_type_cats else "key-value"
-                grouped_metrics[cat] = {
-                    "type": cat_type,
-                    "value": []
-                }
-            
-            if grouped_metrics[cat]["type"] == "list":
-                # For list sections, extract plain string
-                if val: grouped_metrics[cat]["value"].append(val)
-            else:
-                # For key-value sections, preserve label-value pair (cleaned)
-                item = {k: v for k, v in m.items() if k != 'category'}
-                grouped_metrics[cat]["value"].append(item)
-
-        response = supabase.table("job_requirements").insert({
-            "title": title,
-            "description": description,
-            "metrics": grouped_metrics
-        }).execute()
-
-        return jsonify({"success": True, "data": response.data}), 201
-
-    except Exception as e:
-        print(f"ERROR saving job requirements: {str(e)}")
-        return jsonify({"error": f"Failed to save to database: {str(e)}"}), 500
-
