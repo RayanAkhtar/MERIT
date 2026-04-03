@@ -2,6 +2,8 @@ from flask import Blueprint, jsonify, request
 from werkzeug.utils import secure_filename
 import os
 from core.parsers.job_description import parse_jd, parse_job
+from core.parsers.cv import parse_cv
+from core.parsers.github import parse_github_user
 
 extraction_bp = Blueprint("extraction", __name__)
 
@@ -94,3 +96,37 @@ def extract_job_requirements():
     }
 
     return jsonify(response_data), 200
+
+@extraction_bp.route("/extract-cv", methods=["POST"])
+def extract_cv():
+    """Handle extraction and structuring of a single CV"""
+    if 'file' not in request.files:
+        return jsonify({"error": "No file provided"}), 400
+    
+    file = request.files['file']
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(UPLOAD_FOLDER, filename)
+        file.save(filepath)
+        
+        try:
+            parsed_data = parse_cv(filepath)
+            return jsonify(parsed_data), 200
+        except Exception as e:
+            return jsonify({"error": f"CV extraction failed: {str(e)}"}), 500
+    
+    return jsonify({"error": "Invalid file type"}), 400
+
+@extraction_bp.route("/github-deep-scan", methods=["POST"])
+def github_deep_scan():
+    """Perform a deep analysis of a candidate's GitHub profile"""
+    url = request.json.get('url')
+    if not url:
+        return jsonify({"error": "No GitHub URL provided"}), 400
+    
+    try:
+        data = parse_github_user(url)
+        # Return only the summary data needed for the dashboard to keep it lean
+        return jsonify(data), 200
+    except Exception as e:
+        return jsonify({"error": f"GitHub deep scan failed: {str(e)}"}), 500
