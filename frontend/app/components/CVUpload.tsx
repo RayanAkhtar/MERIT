@@ -23,6 +23,7 @@ interface ExtractedCV {
   extracurricular: StructuredItem[];
   experience: string | null;
   education: StructuredItem[];
+  cached?: boolean;
 }
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
@@ -30,6 +31,7 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5
 export default function CVUpload() {
   const [step, setStep] = useState<'upload' | 'processing' | 'result'>('upload');
   const [files, setFiles] = useState<FileWithPreview[]>([]);
+  const [cacheData, setCacheData] = useState(true);
   const [isDragging, setIsDragging] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadStatus, setUploadStatus] = useState<string>('');
@@ -46,6 +48,7 @@ export default function CVUpload() {
   });
   const [selectedLinks, setSelectedLinks] = useState<Record<string, boolean>>({});
   const [githubData, setGithubData] = useState<any>(null);
+  const [linkedinData, setLinkedinData] = useState<any>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const allowedTypes = [
@@ -129,6 +132,7 @@ export default function CVUpload() {
       
       const formData = new FormData();
       formData.append('file', file);
+      formData.append('cache_data', cacheData.toString());
 
       try {
         const response = await fetch(`${API_BASE_URL}/api/extract-cv`, {
@@ -170,7 +174,7 @@ export default function CVUpload() {
             const ghResponse = await fetch(`${API_BASE_URL}/api/github-deep-scan`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ url: firstGithubLink })
+                body: JSON.stringify({ url: firstGithubLink, cache_data: cacheData })
             });
             if (ghResponse.ok) {
                 const ghData = await ghResponse.json();
@@ -178,6 +182,24 @@ export default function CVUpload() {
             }
         } catch (err) {
             console.error('GitHub Deep-Scan failed:', err);
+        }
+    }
+
+    const firstLinkedinLink = results.find(r => r.links.linkedin && r.links.linkedin.length > 0)?.links.linkedin[0];
+    if (firstLinkedinLink) {
+        setUploadStatus('Performing LinkedIn Strategic Scan...');
+        try {
+            const liResponse = await fetch(`${API_BASE_URL}/api/linkedin-scan`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ url: firstLinkedinLink, cache_data: cacheData })
+            });
+            if (liResponse.ok) {
+                const liData = await liResponse.json();
+                setLinkedinData(liData);
+            }
+        } catch (err) {
+            console.error('LinkedIn Strategic Scan failed:', err);
         }
     }
     
@@ -198,10 +220,10 @@ export default function CVUpload() {
     const template = extractedCVs[0];
     
     return (
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
         {/* Left Column: Personal Info & Expertise */}
         <div className="lg:col-span-1 space-y-6">
-            <div className="p-8 rounded-[2rem] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 shadow-xl shadow-zinc-200/40 dark:shadow-none relative overflow-hidden group min-h-[160px]">
+            <div className="p-8 rounded-[2rem] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 shadow-xl shadow-zinc-200/40 dark:shadow-none relative overflow-hidden group min-h-[200px] flex flex-col justify-center">
                 {/* Decorative background icon to avoid text overlap */}
                 <div className="absolute -right-2 -top-2 p-6 opacity-[0.03] dark:opacity-[0.08] transition-transform duration-700 pointer-events-none">
                     <svg className="w-24 h-24 text-indigo-600 dark:text-indigo-400" fill="currentColor" viewBox="0 0 24 24">
@@ -210,11 +232,21 @@ export default function CVUpload() {
                 </div>
                 
                 <div className="relative space-y-4">
-                    <div>
-                        <p className="text-[10px] font-black text-indigo-500 uppercase tracking-widest mb-1">Full Name</p>
-                        <h3 className="text-xl font-black dark:text-white leading-none pr-8 truncate">
-                            {template.name || 'Not Detected'}
-                        </h3>
+                    <div className="flex items-start justify-between gap-4">
+                        <div className="min-w-0">
+                            <p className="text-[10px] font-black text-indigo-500 uppercase tracking-widest mb-1">Full Name</p>
+                            <h3 className="text-xl font-black dark:text-white leading-none truncate">
+                                {template.name || 'Not Detected'}
+                            </h3>
+                        </div>
+                        {template.cached !== undefined && (
+                            <div className={`shrink-0 flex items-center gap-1.5 px-2 py-0.5 rounded border text-[8px] font-bold uppercase tracking-tighter ${
+                                template.cached ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20' : 'bg-amber-500/10 text-amber-500 border-amber-500/20'
+                            }`}>
+                                <div className={`w-1 h-1 rounded-full ${template.cached ? 'bg-emerald-500' : 'bg-amber-500'}`} />
+                                {template.cached ? 'CACHED' : 'SAVED'}
+                            </div>
+                        )}
                     </div>
                     
                     <div className="pt-4 space-y-3">
@@ -233,7 +265,7 @@ export default function CVUpload() {
             <div className="p-8 rounded-[2rem] bg-indigo-600 text-white shadow-xl shadow-indigo-600/20 relative overflow-hidden group">
                 <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-white/10 rounded-full blur-2xl group-hover:scale-125 transition-transform" />
                 <p className="text-[10px] font-black uppercase tracking-widest mb-4 opacity-70">Detected Expertise</p>
-                <div className="max-h-[120px] overflow-y-auto pr-2 custom-scrollbar relative z-10">
+                <div className="max-h-[160px] overflow-y-auto pr-2 custom-scrollbar relative z-10">
                     <div className="flex flex-wrap gap-2">
                         {template.skills.slice(0, 20).map((skill, i) => (
                             <span key={i} className="px-3 py-1 bg-white/20 rounded-full text-[10px] font-black uppercase tracking-tight backdrop-blur-md border border-white/10">
@@ -250,7 +282,7 @@ export default function CVUpload() {
                 <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 mb-6">
                     Academic Credentials
                 </h4>
-                <div className="overflow-y-auto max-h-[180px] pr-4 custom-scrollbar space-y-6">
+                <div className="overflow-y-auto max-h-[220px] pr-4 custom-scrollbar space-y-6">
                     {template.education.map((edu, i) => (
                         <div key={i} className="space-y-1.5 border-l-2 border-emerald-500/30 pl-4 py-1.5 transition-colors">
                             <h5 className="text-[11px] font-black text-zinc-800 dark:text-zinc-200 leading-tight uppercase tracking-tight">{edu.name}</h5>
@@ -275,7 +307,7 @@ export default function CVUpload() {
                         {template.extracurricular.length}
                     </span>
                 </div>
-                <div className="overflow-y-auto max-h-[200px] pr-4 custom-scrollbar space-y-4">
+                <div className="overflow-y-auto max-h-[260px] pr-4 custom-scrollbar space-y-4">
                     {template.extracurricular.map((act, i) => (
                         <div key={i} className="space-y-1 border-l-2 border-indigo-500/30 pl-4 py-1">
                             <h5 className="text-[11px] font-black text-zinc-800 dark:text-zinc-200 leading-none transition-colors">{act.name}</h5>
@@ -392,7 +424,12 @@ export default function CVUpload() {
                 <div className="space-y-1">
                     <h2 className="text-2xl font-black dark:text-white uppercase tracking-tighter flex items-center gap-3">
                         Batch Summary
-                        <span className="px-2 py-0.5 bg-indigo-600 text-[10px] text-white rounded font-mono">COMPLETED</span>
+                        {extractedCVs.some(cv => cv.cached) && (
+                            <span className="flex items-center gap-1.5 px-2 py-0.5 rounded border border-emerald-500/20 bg-emerald-500/10 text-emerald-500 text-[9px] font-bold uppercase tracking-tight">
+                                <span className="w-1 h-1 rounded-full bg-emerald-500" />
+                                Cache Utilized
+                            </span>
+                        )}
                     </h2>
                     <p className="text-zinc-500 font-medium">{extractedCVs.length} successfuly extracted from {files.length} files.</p>
                 </div>
@@ -403,27 +440,27 @@ export default function CVUpload() {
                   Restart Batch
                 </button>
             </div>
-
             <div className="grid gap-10">
-                {/* 1. DataSource Metrics */}
+                {/* 1. Candidate Snapshot Preview (CV Data) */}
                 <div className="space-y-6">
                     <div className="flex items-center gap-4">
-                        <span className="text-[10px] font-black text-indigo-500 uppercase tracking-[0.2em] px-3 py-1 border border-indigo-500/30 rounded-full bg-indigo-500/5">Datasource Distribution</span>
+                        <span className="text-[10px] font-black text-indigo-500 uppercase tracking-[0.2em] px-3 py-1 border border-indigo-500/30 rounded-full bg-indigo-500/5">Candidate Snapshot Preview</span>
+                    </div>
+                    {renderTemplatePreview()}
+                </div>
+
+                {/* 2. External Validation Streams (GitHub & LinkedIn) */}
+                <div className="space-y-6">
+                    <div className="flex items-center gap-4">
+                        <span className="text-[10px] font-black text-indigo-500 uppercase tracking-[0.2em] px-3 py-1 border border-indigo-500/30 rounded-full bg-indigo-500/5">Datasource Validation Streams</span>
                     </div>
                     <LinkSelection 
                         metrics={linkMetrics}
                         selectedLinks={selectedLinks}
                         setSelectedLinks={setSelectedLinks}
                         githubData={githubData}
+                        linkedinData={linkedinData}
                     />
-                </div>
-
-                {/* 2. Template Preview */}
-                <div className="space-y-6">
-                    <div className="flex items-center gap-4">
-                        <span className="text-[10px] font-black text-indigo-500 uppercase tracking-[0.2em] px-3 py-1 border border-indigo-500/30 rounded-full bg-indigo-500/5">Candidate Snapshot Preview</span>
-                    </div>
-                    {renderTemplatePreview()}
                 </div>
 
                 {/* 3. Commit Button */}
@@ -545,6 +582,28 @@ export default function CVUpload() {
               </div>
             ))}
           </div>
+        </div>
+      )}
+
+      {/* Cache Data Option */}
+      {files.length > 0 && (
+        <div className="flex flex-col gap-2 p-5 border border-zinc-200 dark:border-zinc-800 rounded-2xl bg-zinc-50/50 dark:bg-zinc-900/50 mt-4">
+            <div className="flex items-center gap-3">
+              <input 
+                type="checkbox" 
+                id="cache-data-cv" 
+                checked={cacheData}
+                onChange={(e) => setCacheData(e.target.checked)}
+                className="w-4 h-4 rounded border-zinc-300 text-indigo-600 focus:ring-indigo-500"
+              />
+              <label htmlFor="cache-data-cv" className="text-sm font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer">
+                Cache Extraction Data
+              </label>
+            </div>
+            <p className="text-[10px] text-zinc-500 dark:text-zinc-400 leading-relaxed pl-7 text-left">
+              <span className="font-bold text-amber-500 uppercase tracking-tighter mr-1">Note:</span> 
+              Mainly for testing and debugging. Caches both CV parsing and external scans (GitHub/LinkedIn) to save API credits.
+            </p>
         </div>
       )}
 

@@ -4,6 +4,9 @@ import os
 from core.parsers.job_description import parse_jd, parse_job
 from core.parsers.cv import parse_cv
 from core.parsers.github import parse_github_user
+from core.parsers.linkedin import linkedin_person_scrape, parse_linkedin_profile
+from core.utils.cache import get_cached_data, save_to_cache
+import hashlib
 
 extraction_bp = Blueprint("extraction", __name__)
 
@@ -20,37 +23,32 @@ def allowed_file(filename):
 @extraction_bp.route("/extract-job-requirements", methods=["POST"])
 def extract_job_requirements():
     """Handle extraction and structuring of Job Requirements"""
-    files = request.files.getlist('files') if 'files' in request.files else []
     text = request.form.get('text', '').strip()
     custom_title = request.form.get('title', '').strip()
+    file = request.files.get('file')
     
-    if not files and not text:
+    if not file and not text:
         return jsonify({"error": "No files or text provided"}), 400
 
     results = []
 
-    # Process text input
-    if text:
+    # preference for file JD over text JD
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(UPLOAD_FOLDER, filename)
+        file.save(filepath)
+        
+        meta = {"job_title": custom_title} if custom_title else None
+        parsed_file = parse_jd(filepath, meta=meta)
+
+        if isinstance(parsed_file, list):
+            results = parsed_file
+        else:
+            results = [parsed_file]
+    elif text:
         meta = {"job_title": custom_title} if custom_title else None
         parsed_text = parse_job(text, source_file="manual_input", meta=meta)
-        results.append(parsed_text)
-
-    # Process file inputs
-    for file in files:
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            filepath = os.path.join(UPLOAD_FOLDER, filename)
-            file.save(filepath)
-            
-            try:
-                meta = {"job_title": custom_title} if custom_title else None
-                parsed_file = parse_jd(filepath, meta=meta)
-                if isinstance(parsed_file, list):
-                    results.extend(parsed_file)
-                else:
-                    results.append(parsed_file)
-            finally:
-                pass
+        results = [parsed_text]
 
     if not results:
         return jsonify({"error": "No data could be extracted"}), 422
@@ -58,7 +56,7 @@ def extract_job_requirements():
     combined = results[0]
     formatted_metrics = []
     
-    # Mapping logic
+    # should probably change the way this is done later, but not too big an issue for now
     if combined.get("company"):
         formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Company", "value": combined["company"], "category": "General"})
     if combined.get("job_title"):
@@ -103,6 +101,8 @@ def extract_cv():
     if 'file' not in request.files:
         return jsonify({"error": "No file provided"}), 400
     
+    cache_enabled = request.form.get('cache_data', 'false').lower() == 'true'
+    
     file = request.files['file']
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
@@ -110,7 +110,22 @@ def extract_cv():
         file.save(filepath)
         
         try:
+            with open(filepath, 'rb') as f:
+                file_content = f.read()
+                cache_id = hashlib.md5(file_content).hexdigest()
+
+            if cache_enabled:
+                cached_res = get_cached_data("cv", cache_id)
+                if cached_res:
+                    cached_res["cached"] = True
+                    return jsonify(cached_res), 200
+
             parsed_data = parse_cv(filepath)
+            parsed_data["cached"] = False
+            
+            if cache_enabled:
+                save_to_cache("cv", cache_id, parsed_data)
+
             return jsonify(parsed_data), 200
         except Exception as e:
             return jsonify({"error": f"CV extraction failed: {str(e)}"}), 500
@@ -121,12 +136,52 @@ def extract_cv():
 def github_deep_scan():
     """Perform a deep analysis of a candidate's GitHub profile"""
     url = request.json.get('url')
+    cache_enabled = request.json.get('cache_data', False)
     if not url:
         return jsonify({"error": "No GitHub URL provided"}), 400
     
     try:
+        if cache_enabled:
+            cached_res = get_cached_data("github", url)
+            if cached_res:
+                cached_res["cached"] = True
+                return jsonify(cached_res), 200
+        
         data = parse_github_user(url)
-        # Return only the summary data needed for the dashboard to keep it lean
+        data["cached"] = False
+        
+        if cache_enabled:
+            save_to_cache("github", url, data)
+            
         return jsonify(data), 200
     except Exception as e:
         return jsonify({"error": f"GitHub deep scan failed: {str(e)}"}), 500
+
+@extraction_bp.route("/linkedin-scan", methods=["POST"])
+def linkedin_scan():
+    """Perform a scan of a candidate's LinkedIn profile"""
+    url = request.json.get('url')
+    cache_enabled = request.json.get('cache_data', False)
+    if not url:
+        return jsonify({"error": "No LinkedIn URL provided"}), 400
+    
+    try:
+        if cache_enabled:
+            cached_res = get_cached_data("linkedin", url)
+            if cached_res:
+                cached_res["cached"] = True
+                return jsonify(cached_res), 200
+        
+        raw_data = linkedin_person_scrape(url)
+        if not raw_data:
+             return jsonify({"error": "Failed to scrape LinkedIn profile"}), 500
+             
+        data = parse_linkedin_profile(raw_data)
+        data["cached"] = False
+        
+        if cache_enabled:
+            save_to_cache("linkedin", url, data)
+            
+        return jsonify(data), 200
+    except Exception as e:
+        return jsonify({"error": f"LinkedIn scan failed: {str(e)}"}), 500

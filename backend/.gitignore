@@ -50,3 +50,4 @@ test_files
 uploads
 datasets
 unused_datasets
+cached/

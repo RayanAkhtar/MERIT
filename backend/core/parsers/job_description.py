@@ -15,8 +15,6 @@ HEADERS = {
     "nice_to_have": ["nice to have", "preferred", "bonus", "desirable"]
 }
 
-# --- reading different file types ---
-
 def read_txt(path):
     with open(path, "r", encoding="utf-8", errors="ignore") as f:
         return f.read()
@@ -29,7 +27,7 @@ def read_pdf(path):
     return extract_text(path)
 
 
-# --- parsing helpers ---
+# ----------------------------- parsing helpers -------------------------------------
 
 def get_section(text, keywords):
     lines = text.splitlines()
@@ -165,7 +163,7 @@ def get_salary(text):
     return m.group(0).strip() if m else None
 
 
-# --- main parsing logic ---
+# ------------------------------- main parsing logic -----------------------------------------
 
 def get_approx_title(text):
     # Try common patterns first
