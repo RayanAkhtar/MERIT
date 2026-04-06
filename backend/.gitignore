@@ -51,3 +51,4 @@ uploads
 datasets
 unused_datasets
 cached/
+supabase_schema.sql

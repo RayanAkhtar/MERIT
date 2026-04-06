@@ -3,8 +3,7 @@ from werkzeug.utils import secure_filename
 import os
 from core.parsers.job_description import parse_jd, parse_job
 from core.parsers.cv import parse_cv
-from core.parsers.github import parse_github_user
-from core.parsers.linkedin import linkedin_person_scrape, parse_linkedin_profile
+from core.parsers.registry import datasource_registry
 from core.utils.cache import get_cached_data, save_to_cache
 import hashlib
 
@@ -26,9 +25,25 @@ def extract_job_requirements():
     text = request.form.get('text', '').strip()
     custom_title = request.form.get('title', '').strip()
     file = request.files.get('file')
+    cache_enabled = request.form.get('cache_data', 'false').lower() == 'true'
     
     if not file and not text:
         return jsonify({"error": "No files or text provided"}), 400
+
+    # caching check for job requirements
+    content_hash = ""
+    if file:
+        file.seek(0)
+        content_hash = hashlib.md5(file.read()).hexdigest()
+        file.seek(0)
+    else:
+        content_hash = hashlib.md5(text.encode()).hexdigest()
+
+    if cache_enabled:
+        cached = get_cached_data("job_req", content_hash)
+        if cached:
+            cached["cached"] = True
+            return jsonify(cached), 200
 
     results = []
 
@@ -90,8 +105,12 @@ def extract_job_requirements():
     response_data = {
         "title": display_title,
         "description": combined.get("raw_text", ""),
-        "metrics": formatted_metrics
+        "metrics": formatted_metrics,
+        "cached": False
     }
+
+    if cache_enabled:
+        save_to_cache("job_req", content_hash, response_data)
 
     return jsonify(response_data), 200
 
@@ -109,79 +128,49 @@ def extract_cv():
         filepath = os.path.join(UPLOAD_FOLDER, filename)
         file.save(filepath)
         
-        try:
-            with open(filepath, 'rb') as f:
-                file_content = f.read()
-                cache_id = hashlib.md5(file_content).hexdigest()
+        with open(filepath, 'rb') as f:
+            file_content = f.read()
+            cache_id = hashlib.md5(file_content).hexdigest()
 
-            if cache_enabled:
-                cached_res = get_cached_data("cv", cache_id)
-                if cached_res:
-                    cached_res["cached"] = True
-                    return jsonify(cached_res), 200
+        if cache_enabled:
+            cached_res = get_cached_data("cv", cache_id)
+            if cached_res:
+                cached_res["cached"] = True
+                cached_res["file_id"] = cache_id
+                return jsonify(cached_res), 200
 
-            parsed_data = parse_cv(filepath)
-            parsed_data["cached"] = False
-            
-            if cache_enabled:
-                save_to_cache("cv", cache_id, parsed_data)
+        parsed_data = parse_cv(filepath)
+        parsed_data["cached"] = False
+        parsed_data["file_id"] = cache_id
+        
+        if cache_enabled:
+            save_to_cache("cv", cache_id, parsed_data)
 
-            return jsonify(parsed_data), 200
-        except Exception as e:
-            return jsonify({"error": f"CV extraction failed: {str(e)}"}), 500
+        return jsonify(parsed_data), 200
     
     return jsonify({"error": "Invalid file type"}), 400
 
-@extraction_bp.route("/github-deep-scan", methods=["POST"])
-def github_deep_scan():
-    """Perform a deep analysis of a candidate's GitHub profile"""
+@extraction_bp.route("/scan-datasource", methods=["POST"])
+def scan_datasource():
+    """Generic endpoint to scan any supported data source"""
+    source_type = request.json.get('source_type')
     url = request.json.get('url')
     cache_enabled = request.json.get('cache_data', False)
-    if not url:
-        return jsonify({"error": "No GitHub URL provided"}), 400
     
-    try:
-        if cache_enabled:
-            cached_res = get_cached_data("github", url)
-            if cached_res:
-                cached_res["cached"] = True
-                return jsonify(cached_res), 200
+    if not source_type or not url:
+        return jsonify({"error": "Missing source_type or url"}), 400
         
-        data = parse_github_user(url)
-        data["cached"] = False
-        
-        if cache_enabled:
-            save_to_cache("github", url, data)
-            
-        return jsonify(data), 200
-    except Exception as e:
-        return jsonify({"error": f"GitHub deep scan failed: {str(e)}"}), 500
-
-@extraction_bp.route("/linkedin-scan", methods=["POST"])
-def linkedin_scan():
-    """Perform a scan of a candidate's LinkedIn profile"""
-    url = request.json.get('url')
-    cache_enabled = request.json.get('cache_data', False)
-    if not url:
-        return jsonify({"error": "No LinkedIn URL provided"}), 400
+    if cache_enabled:
+        cached = get_cached_data(source_type, url)
+        if cached:
+            cached["cached"] = True
+            return jsonify(cached), 200
     
-    try:
-        if cache_enabled:
-            cached_res = get_cached_data("linkedin", url)
-            if cached_res:
-                cached_res["cached"] = True
-                return jsonify(cached_res), 200
+    source = datasource_registry.get_source(source_type)
+    data = source.process(url)
+    data["cached"] = False
+    
+    if cache_enabled:
+        save_to_cache(source_type, url, data)
         
-        raw_data = linkedin_person_scrape(url)
-        if not raw_data:
-             return jsonify({"error": "Failed to scrape LinkedIn profile"}), 500
-             
-        data = parse_linkedin_profile(raw_data)
-        data["cached"] = False
-        
-        if cache_enabled:
-            save_to_cache("linkedin", url, data)
-            
-        return jsonify(data), 200
-    except Exception as e:
-        return jsonify({"error": f"LinkedIn scan failed: {str(e)}"}), 500
+    return jsonify(data), 200

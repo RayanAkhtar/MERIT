@@ -12,7 +12,7 @@ interface ExtractedMetric {
   id: string;
   label: string;
   value: string;
-  subValue?: string; // Specifically for years of exp in Languages
+  subValue?: string; // years of exp for a language
   category: string;
 }
 
@@ -126,7 +126,7 @@ export default function JobReqUpload() {
     setUploadStatus('Extracting key requirements...');
 
     const formData = new FormData();
-    files.forEach((file) => formData.append('files', file));
+    files.forEach((file) => formData.append('file', file));
     formData.append('text', text);
 
     try {

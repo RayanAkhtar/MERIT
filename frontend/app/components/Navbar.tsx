@@ -62,7 +62,7 @@ export default function Navbar() {
                     href="/extract/cvs"
                     className="block px-4 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
                   >
-                    CVs
+                    Candidate Info
                   </Link>
                   <Link
                     href="/extract/job-requirements"
@@ -99,7 +99,7 @@ export default function Navbar() {
                     href="/update/cvs"
                     className="block px-4 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
                   >
-                    CVs
+                    Candidate Info
                   </Link>
                   <Link
                     href="/update/job-description"

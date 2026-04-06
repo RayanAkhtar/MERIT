@@ -37,7 +37,6 @@ def get_section(text, keywords):
     while i < len(lines):
         line = lines[i]
         clean_line = line.strip().lstrip("#").strip() 
-        # removing markdown header symbols
         lower_line = clean_line.lower()
         
         # look for a header
@@ -90,12 +89,12 @@ def get_section(text, keywords):
 def find_skills(text, reqs, tech, resps=None):
     # figure out what tech they want based on our data file
     data_path = os.path.join(os.path.dirname(__file__), "skills_data.json")
-    try:
-        with open(data_path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-    except:
-        print("oops, couldn't find skills_data.json")
-        data = {"languages": {}, "frameworks": {}}
+    
+    if not os.path.exists(data_path):
+        return {"languages": [], "technology": [], "experience": [], "education": []}
+
+    with open(data_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
 
     langs = set()
     tools = set()
@@ -154,10 +153,6 @@ def get_job_type(text):
     return "Onsite"
 
 def get_salary(text):
-    # matching formats: 
-    #   £50,000
-    #   £50,000 per year
-    #   £50,000 - £60,000 per year
     p = r"(?:(?:£|\$|€)\s?\d{2,3}(?:,\d{3})?[kK]?\s?(?:[-–]\s?(?:£|\$|€)\s?\d{1,3}(?:,\d{3})?[kK]?)?\s?(?:/day|per day|/yr|per year|/month|per month|annually|per annum|yearly)?)"
     m = re.search(p, text, re.IGNORECASE)
     return m.group(0).strip() if m else None
@@ -166,19 +161,22 @@ def get_salary(text):
 # ------------------------------- main parsing logic -----------------------------------------
 
 def get_approx_title(text):
-    # Try common patterns first
     patterns = [
         r"(?:Role|Job|Position|Title):\s*([^\n]+)",
         r"(?:seeking|looking for)\s+a?\s+([A-Z][a-zA-Z\s]*\b(?:Developer|Engineer|Analyst|Scientist|Architect|Lead|Senior|Principal|Manager|Role))\b",
         r"([A-Z][a-zA-Z\s]*\b(?:Developer|Engineer|Analyst|Scientist|Architect)\b)"
     ]
     
+    # first few lines usually have the role
     first_lines = text.splitlines()[:15]
     for line in first_lines:
-        # Strip common title decorations and markdown
         clean = line.strip().lstrip("#").strip().strip("= -*").rstrip(":").strip()
-        if not clean: continue
-        # If the first non-empty line looks like a title, take it
+        
+        # empty line
+        if not clean: 
+            continue
+
+        # likely a title if short and has keywords
         if len(clean) < 70 and any(kw in clean.lower() for kw in ["developer", "engineer", "analyst", "scientist", "architect", "lead", "senior", "role"]):
             return clean
 
@@ -189,7 +187,6 @@ def get_approx_title(text):
     return None
 
 def get_approx_company(text):
-    # check for "About [Company]" headers or similar, allowing for optional separators
     m = re.search(r"(?:About Us|About|Company Description|The Company|ABOUT)\s*(?:[-=:\s]|\n)+\s*([A-Z][a-zA-Z0-9]*(?:[ \t]+[A-Z][a-zA-Z0-9]*)*)", text, re.IGNORECASE)
     if m:
         name = m.group(1).strip().strip('= -').strip()
@@ -197,7 +194,6 @@ def get_approx_company(text):
              return name
              
     first_500 = text[:1000]
-    # Look for name at the start of sentences with key indicators
     m = re.search(r"([A-Z][a-zA-Z0-9]+(?:[ \t]+[A-Z][a-zA-Z0-9]+)*)\s+(?:has|is|was)\s+(?:celebrated|a|seeking|founded)", first_500)
     if m:
         name = m.group(1).strip()
@@ -209,7 +205,6 @@ def parse_job(text, source_file, meta=None):
     low_text = text.lower()
     meta = meta or {}
 
-    # the final result object
     res = {
         "raw_text": text,
         "job_title": meta.get("job_title") or get_approx_title(text),
@@ -285,9 +280,7 @@ def parse_job(text, source_file, meta=None):
     return res
 
 
-
 def parse_jd(path, meta=None):
-
     ext = os.path.splitext(path)[1].lower()
 
     if ext in [".txt", ".md"]:

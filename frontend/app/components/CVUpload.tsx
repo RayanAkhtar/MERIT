@@ -24,6 +24,7 @@ interface ExtractedCV {
   experience: string | null;
   education: StructuredItem[];
   cached?: boolean;
+  file_id?: string;
 }
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
@@ -34,6 +35,8 @@ export default function CVUpload() {
   const [cacheData, setCacheData] = useState(true);
   const [isDragging, setIsDragging] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [batchName, setBatchName] = useState('');
   const [uploadStatus, setUploadStatus] = useState<string>('');
   const [processedCount, setProcessedCount] = useState(0);
   const [extractedCVs, setExtractedCVs] = useState<ExtractedCV[]>([]);
@@ -47,8 +50,7 @@ export default function CVUpload() {
     example_links: {}
   });
   const [selectedLinks, setSelectedLinks] = useState<Record<string, boolean>>({});
-  const [githubData, setGithubData] = useState<any>(null);
-  const [linkedinData, setLinkedinData] = useState<any>(null);
+  const [sourceData, setSourceData] = useState<Record<string, any>>({});
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const allowedTypes = [
@@ -114,16 +116,12 @@ export default function CVUpload() {
 
   const handleExtractBatch = async () => {
     if (files.length === 0) {
-      setUploadStatus('Please select at least one CV file.');
+      setUploadStatus('Please select at least one candidate file.');
       return;
     }
 
-    setStep('processing');
-    setIsUploading(true);
-    setProcessedCount(0);
     const results: ExtractedCV[] = [];
     const counts: Record<string, number> = {};
-
     const exampleLinks: Record<string, string> = {};
 
     for (let i = 0; i < files.length; i++) {
@@ -144,12 +142,11 @@ export default function CVUpload() {
           const data: ExtractedCV = await response.json();
           results.push(data);
           
-          // Update link counts and collect examples
-          Object.keys(data.links).forEach(source => {
-            if (data.links[source].length > 0) {
-              counts[source] = (counts[source] || 0) + 1;
-              if (!exampleLinks[source]) {
-                exampleLinks[source] = data.links[source][0];
+          Object.keys(data.links).forEach(sourceIdx => {
+            if (data.links[sourceIdx] && data.links[sourceIdx].length > 0) {
+              counts[sourceIdx] = (counts[sourceIdx] || 0) + 1;
+              if (!exampleLinks[sourceIdx]) {
+                exampleLinks[sourceIdx] = data.links[sourceIdx][0];
               }
             }
           });
@@ -167,39 +164,36 @@ export default function CVUpload() {
       example_links: exampleLinks
     });
 
-    const firstGithubLink = results.find(r => r.links.github && r.links.github.length > 0)?.links.github[0];
-    if (firstGithubLink) {
-        setUploadStatus('Performing GitHub Deep-Scan Analysis...');
-        try {
-            const ghResponse = await fetch(`${API_BASE_URL}/api/github-deep-scan`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ url: firstGithubLink, cache_data: cacheData })
-            });
-            if (ghResponse.ok) {
-                const ghData = await ghResponse.json();
-                setGithubData(ghData);
-            }
-        } catch (err) {
-            console.error('GitHub Deep-Scan failed:', err);
-        }
-    }
+    // Search the entire batch for at least one candidate for each source preview
+    setExtractedCVs(results);
+    const sourcesToScan = ['github', 'linkedin'];
+    const scannedSources = new Set<string>();
 
-    const firstLinkedinLink = results.find(r => r.links.linkedin && r.links.linkedin.length > 0)?.links.linkedin[0];
-    if (firstLinkedinLink) {
-        setUploadStatus('Performing LinkedIn Strategic Scan...');
-        try {
-            const liResponse = await fetch(`${API_BASE_URL}/api/linkedin-scan`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ url: firstLinkedinLink, cache_data: cacheData })
-            });
-            if (liResponse.ok) {
-                const liData = await liResponse.json();
-                setLinkedinData(liData);
+    for (const src of sourcesToScan) {
+        // Find the first candidate in the batch that has a link for this source
+        const candidateWithLink = results.find(c => c.links[src]?.[0]);
+        const link = candidateWithLink?.links[src]?.[0];
+
+        if (link && !scannedSources.has(src)) {
+            setUploadStatus(`Performing ${src} intelligence scan for ${candidateWithLink.name || 'candidate'}...`);
+            try {
+                const res = await fetch(`${API_BASE_URL}/api/scan-datasource`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        source_type: src, 
+                        url: link, 
+                        cache_data: cacheData 
+                    })
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    setSourceData(prev => ({ ...prev, [src]: data }));
+                    scannedSources.add(src);
+                }
+            } catch (err) {
+                console.error(`${src} scan failed:`, err);
             }
-        } catch (err) {
-            console.error('LinkedIn Strategic Scan failed:', err);
         }
     }
     
@@ -213,6 +207,85 @@ export default function CVUpload() {
     setStep('result');
     setIsUploading(false);
     setUploadStatus(`Batch processing complete.`);
+  };
+
+  const handleCommitBatch = async () => {
+    setIsSaving(true);
+    setUploadStatus('Committing batch results...');
+    
+    const enrichedCandidates = [];
+    
+    for (let i = 0; i < extractedCVs.length; i++) {
+        const candidate = extractedCVs[i];
+        setUploadStatus(`Enriching ${candidate.name || `Candidate ${i+1}`}...`);
+        
+        const scanResults: Record<string, any> = {};
+        const sourcesToEnrich = Object.keys(selectedLinks).filter(s => selectedLinks[s]);
+
+        for (const src of sourcesToEnrich) {
+            const link = candidate.links[src]?.[0];
+            if (!link) continue;
+
+            // Use first candidate's data if already scanned
+            if (i === 0 && sourceData[src]) {
+                scanResults[`${src}_enriched`] = sourceData[src];
+                continue;
+            }
+
+            try {
+                const res = await fetch(`${API_BASE_URL}/api/scan-datasource`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        source_type: src, 
+                        url: link, 
+                        cache_data: cacheData 
+                    })
+                });
+                if (res.ok) {
+                    scanResults[`${src}_enriched`] = await res.json();
+                }
+            } catch (e) {
+                console.error(`Enrichment failed for ${src}:`, e);
+            }
+        }
+        
+        enrichedCandidates.push({
+            ...candidate,
+            ...scanResults
+        });
+    }
+    
+    setUploadStatus('Pushing records and creating batch...');
+    try {
+        const response = await fetch(`${API_BASE_URL}/api/save-candidates`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                candidates: enrichedCandidates,
+                batch_name: batchName || `Batch ${new Date().toLocaleDateString()}` 
+            })
+        });
+        
+        if (response.ok) {
+            setUploadStatus(`Successfully committed ${enrichedCandidates.length} candidate profiles to batch "${batchName || 'Default'}"!`);
+            setTimeout(() => {
+                setStep('upload');
+                setFiles([]);
+                setExtractedCVs([]);
+                setUploadStatus('');
+                setBatchName('');
+                setSourceData({});
+            }, 2500);
+        } else {
+            const err = await response.json();
+            setUploadStatus(`Failed to save: ${err.error || 'Server error'}`);
+        }
+    } catch (e) {
+        setUploadStatus('Database synchronization failed. Please check network.');
+    } finally {
+        setIsSaving(false);
+    }
   };
 
   const renderTemplatePreview = () => {
@@ -458,24 +531,53 @@ export default function CVUpload() {
                         metrics={linkMetrics}
                         selectedLinks={selectedLinks}
                         setSelectedLinks={setSelectedLinks}
-                        githubData={githubData}
-                        linkedinData={linkedinData}
+                        githubData={sourceData['github']}
+                        linkedinData={sourceData['linkedin']}
                     />
                 </div>
 
-                {/* 3. Commit Button */}
-                <div className="pt-6 relative">
-                    <div className="absolute inset-0 bg-blue-600/10 blur-3xl -z-10 rounded-full transform scale-50 translate-y-10" />
-                    <button
-                        className="w-full py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-black uppercase tracking-[0.1em] text-sm shadow-xl shadow-indigo-600/20 transition-all hover:scale-[1.01] active:scale-[0.98] flex items-center justify-center gap-3 group"
-                    >
-                        Commit Extracted Batch
-                        <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
-                    </button>
+                {/* 3. Batch Configuration & Commit */}
+                <div className="pt-6 relative space-y-6">
+                    <div className="flex items-center gap-4 p-4 border border-zinc-200 dark:border-zinc-800 rounded-2xl bg-white/50 dark:bg-zinc-950/50 backdrop-blur-sm">
+                        <div className="w-1/3">
+                            <span className="text-[10px] font-black uppercase tracking-wider text-indigo-500">Assign Batch Name</span>
+                        </div>
+                        <div className="flex-1 flex items-center gap-2">
+                            <span className="text-zinc-300 dark:text-zinc-700 font-light">:</span>
+                            <input 
+                                type="text" 
+                                value={batchName}
+                                onChange={(e) => setBatchName(e.target.value)}
+                                placeholder="e.g. Summer 2024 Engineering Interns"
+                                className="flex-1 bg-transparent border-none p-0 text-zinc-900 dark:text-zinc-50 font-bold focus:ring-0 text-xs"
+                            />
+                        </div>
+                    </div>
+                    
+                    <div className="relative">
+                        <div className="absolute inset-0 bg-blue-600/10 blur-3xl -z-10 rounded-full transform scale-50 translate-y-10" />
+                        <button
+                            onClick={handleCommitBatch}
+                            disabled={isSaving || !batchName.trim()}
+                            className="w-full py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-black uppercase tracking-[0.1em] text-sm shadow-xl shadow-indigo-600/20 transition-all hover:scale-[1.01] active:scale-[0.98] flex items-center justify-center gap-3 group disabled:opacity-40"
+                        >
+                            {isSaving ? (
+                                <>
+                                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                    Synchronising...
+                                </>
+                            ) : (
+                                <>
+                                    Commit Extracted Batch
+                                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                    </svg>
+                                </>
+                            )}
+                        </button>
+                    </div>
                     <p className="text-center text-[10px] text-zinc-500 font-bold uppercase mt-4 tracking-widest opacity-50 italic">
-                        Proceeding will finalize the extraction for {extractedCVs.length} candidates
+                        Proceeding will finalise the extraction for {extractedCVs.length} candidates
                     </p>
                 </div>
             </div>
