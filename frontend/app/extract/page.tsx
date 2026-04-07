@@ -17,7 +17,7 @@ export default function ExtractOverviewPage() {
         <div className="grid md:grid-cols-2 gap-10">
           {/* Option 1: Job Description */}
           <Link 
-            href="/extract/job-requirements"
+            href="/extract/job-description"
             className="group relative p-10 border border-zinc-200 dark:border-zinc-800 rounded-3xl bg-zinc-50/50 dark:bg-zinc-900/30 hover:border-indigo-500/50 hover:bg-white dark:hover:bg-zinc-900 transition-all duration-300 overflow-hidden"
           >
             <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
@@ -30,7 +30,7 @@ export default function ExtractOverviewPage() {
               </div>
               
               <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50 mb-4">
-                Job Requirements
+                Job Description
               </h2>
               
               <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8 leading-relaxed">

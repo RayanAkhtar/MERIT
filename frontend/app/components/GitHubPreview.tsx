@@ -179,7 +179,7 @@ const GitHubPreview: React.FC<GitHubPreviewProps> = ({ githubData }) => {
                     </svg>
                 </div>
                 <div className="space-y-1">
-                    <h5 className="font-black text-2xl tracking-tighter text-zinc-900 dark:text-white font-sans italic">GitHub Example Data</h5>
+                    <h5 className="font-black text-2xl tracking-tighter text-zinc-900 dark:text-white font-sans italic uppercase">Technical Intelligence</h5>
                     <p className="text-[10px] font-black text-zinc-400 dark:text-zinc-500 uppercase tracking-[0.4em]">Language History and Contribution Statistics</p>
                 </div>
             </div>

@@ -65,10 +65,10 @@ export default function Navbar() {
                     Candidate Info
                   </Link>
                   <Link
-                    href="/extract/job-requirements"
+                    href="/extract/job-description"
                     className="block px-4 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
                   >
-                    Job Requirements
+                    Job Description
                   </Link>
                 </div>
               </div>
@@ -110,6 +110,21 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
+
+            {/* View Candidates */}
+            <Link
+              href="/view/candidates"
+              className={`
+                px-4 py-2 rounded-md text-sm font-medium transition-colors
+                ${
+                  isActive('/view/candidates')
+                    ? 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50'
+                    : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 hover:bg-zinc-50 dark:hover:bg-zinc-900'
+                }
+              `}
+            >
+              View Candidates
+            </Link>
 
             {/* Config Dropdown */}
             <div className="relative group">

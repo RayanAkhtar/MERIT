@@ -25,6 +25,7 @@ interface ExtractedCV {
   education: StructuredItem[];
   cached?: boolean;
   file_id?: string;
+  cv_url?: string;
 }
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
@@ -220,7 +221,9 @@ export default function CVUpload() {
         setUploadStatus(`Enriching ${candidate.name || `Candidate ${i+1}`}...`);
         
         const scanResults: Record<string, any> = {};
-        const sourcesToEnrich = Object.keys(selectedLinks).filter(s => selectedLinks[s]);
+        const sourcesToEnrich = Object.keys(selectedLinks).filter(s => 
+          selectedLinks[s] && ['github', 'linkedin'].includes(s)
+        );
 
         for (const src of sourcesToEnrich) {
             const link = candidate.links[src]?.[0];
@@ -252,7 +255,8 @@ export default function CVUpload() {
         
         enrichedCandidates.push({
             ...candidate,
-            ...scanResults
+            ...scanResults,
+            cv_url: candidate.cv_url // Explicitly preserve cv_url
         });
     }
     

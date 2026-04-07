@@ -5,6 +5,7 @@ from core.parsers.job_description import parse_jd, parse_job
 from core.parsers.cv import parse_cv
 from core.parsers.registry import datasource_registry
 from core.utils.cache import get_cached_data, save_to_cache
+from core.supabase import supabase
 import hashlib
 
 extraction_bp = Blueprint("extraction", __name__)
@@ -19,9 +20,9 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@extraction_bp.route("/extract-job-requirements", methods=["POST"])
-def extract_job_requirements():
-    """Handle extraction and structuring of Job Requirements"""
+@extraction_bp.route("/extract-job-description", methods=["POST"])
+def extract_job_description():
+    """Handle extraction and structuring of Job Descriptions"""
     text = request.form.get('text', '').strip()
     custom_title = request.form.get('title', '').strip()
     file = request.files.get('file')
@@ -40,7 +41,7 @@ def extract_job_requirements():
         content_hash = hashlib.md5(text.encode()).hexdigest()
 
     if cache_enabled:
-        cached = get_cached_data("job_req", content_hash)
+        cached = get_cached_data("job_desc", content_hash)
         if cached:
             cached["cached"] = True
             return jsonify(cached), 200
@@ -110,7 +111,7 @@ def extract_job_requirements():
     }
 
     if cache_enabled:
-        save_to_cache("job_req", content_hash, response_data)
+        save_to_cache("job_desc", content_hash, response_data)
 
     return jsonify(response_data), 200
 
@@ -134,15 +135,43 @@ def extract_cv():
 
         if cache_enabled:
             cached_res = get_cached_data("cv", cache_id)
-            if cached_res:
+            if cached_res and cached_res.get("cv_url"):
                 cached_res["cached"] = True
                 cached_res["file_id"] = cache_id
                 return jsonify(cached_res), 200
-
-        parsed_data = parse_cv(filepath)
+            elif cached_res:
+                # if cached but no cv_url, we keep the parsed data but proceed to upload
+                parsed_data = cached_res
+            else:
+                parsed_data = parse_cv(filepath)
+        else:
+            parsed_data = parse_cv(filepath)
+            
         parsed_data["cached"] = False
         parsed_data["file_id"] = cache_id
         
+        # uploading CV to Supabase Storage
+        cv_url = None
+        if supabase:
+            try:
+                supabase.storage.create_bucket('cvs', options={'public': True})
+
+                # uploading file
+                storage_path = f"{cache_id}_{filename}"
+                with open(filepath, 'rb') as f:
+                    supabase.storage.from_('cvs').upload(
+                        path=storage_path,
+                        file=f,
+                        file_options={"content-type": file.content_type}
+                    )
+                
+                # getting public URL
+                cv_url = supabase.storage.from_('cvs').get_public_url(storage_path)
+            except Exception as e:
+                print(f"Warning: Failed to upload CV to storage: {str(e)}")
+
+        parsed_data["cv_url"] = cv_url
+
         if cache_enabled:
             save_to_cache("cv", cache_id, parsed_data)
 
@@ -166,9 +195,14 @@ def scan_datasource():
             cached["cached"] = True
             return jsonify(cached), 200
     
-    source = datasource_registry.get_source(source_type)
-    data = source.process(url)
-    data["cached"] = False
+    try:
+        source = datasource_registry.get_source(source_type)
+        data = source.process(url)
+        data["cached"] = False
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
+    except Exception as e:
+        return jsonify({"error": f"Enrichment failed: {str(e)}"}), 500
     
     if cache_enabled:
         save_to_cache(source_type, url, data)

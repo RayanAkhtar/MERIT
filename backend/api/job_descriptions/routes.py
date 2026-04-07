@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, request
 from core.supabase import supabase
 
-job_reqs_bp = Blueprint("job_requirements", __name__)
 job_descriptions_bp = Blueprint("job_descriptions", __name__)
 
 @job_descriptions_bp.route("/save-cvs", methods=["POST"])
@@ -48,7 +47,7 @@ def _group_metrics(metrics):
 
 @job_descriptions_bp.route("/save-job-description", methods=["POST"])
 def save_job_description():
-    """Save finalized Job Description to Supabase"""
+    """Save finalised Job Description to Supabase"""
     try:
         data = request.json
         if not data:
@@ -92,6 +91,7 @@ def update_job_description(id):
         if not title or not metrics:
             return jsonify({"error": "Title and Metrics are required fields"}), 400
 
+        # Maintain grouped consistency
         grouped_metrics = _group_metrics(metrics)
 
         if not supabase:

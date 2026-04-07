@@ -89,7 +89,7 @@ const LinkedInPreview: React.FC<LinkedInPreviewProps> = ({ linkedinData, linkedi
                     </svg>
                 </div>
                 <div>
-                    <h5 className="font-black text-2xl tracking-tighter text-zinc-900 dark:text-white font-sans italic">LinkedIn Example Data</h5>
+                    <h5 className="font-black text-2xl tracking-tighter text-zinc-900 dark:text-white font-sans italic uppercase">Professional Identity</h5>
                     <p className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.4em]">Reputation and Professional Data</p>
                 </div>
             </div>
