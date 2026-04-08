@@ -1,81 +1,48 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 export default function ExecuteConfigPage() {
+  const [configs, setConfigs] = useState<any[]>([]);
   const [selectedConfig, setSelectedConfig] = useState<string | null>(null);
   const [isExecuting, setIsExecuting] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('ALL');
   const [sortBy, setSortBy] = useState('NEWEST');
 
-  // Mock saved configurations with execution status and timestamps
-  const dummyConfigs = [
-    { 
-      id: 'cfg_1', 
-      name: 'Senior ML Engineer Sourcing', 
-      reqDoc: 'Senior Machine Learning Engineer', 
-      batch: 'Batch B - LinkedIn Sourcing', 
-      createdOn: 'Mar 22, 2026',
-      timestamp: 1774137600000,
-      candidatesCount: 12,
-      skills: ['Python', 'PyTorch', 'Transformers', 'CUDA'],
-      topWeights: [
-        { label: 'Technical Skills', val: 0.95 },
-        { label: 'System Design', val: 0.90 },
-        { label: 'Experience (5+)', val: 0.85 },
-        { label: 'Job Level', val: 0.70 },
-        { label: 'Company Prestige', val: 0.65 }
-      ],
-      status: 'COMPUTED',
-      lastRunDate: 'Today, 10:45 AM'
-    },
-    { 
-      id: 'cfg_2', 
-      name: 'Summer DS Interns - Fair', 
-      reqDoc: 'Data Scientist Intern', 
-      batch: 'Batch A - Graduate Fair 2026', 
-      createdOn: 'Mar 25, 2026',
-      timestamp: 1774396800000,
-      candidatesCount: 45,
-      skills: ['Python', 'Pandas', 'Scikit-Learn', 'SQL'],
-      topWeights: [
-        { label: 'Academic Excellence', val: 0.98 },
-        { label: 'Technical Skills', val: 0.88 },
-        { label: 'Extracurriculars', val: 0.60 },
-        { label: 'Job Level', val: 0.50 },
-        { label: 'Experience', val: 0.30 }
-      ],
-      status: 'NEEDS_UPDATE',
-      lastRunDate: 'Yesterday'
-    },
-    { 
-      id: 'cfg_3', 
-      name: 'React Urgent Hire Filter', 
-      reqDoc: 'Frontend Developer (React)', 
-      batch: 'Batch C - Direct Apps', 
-      createdOn: 'Today',
-      timestamp: 1774483200000,
-      candidatesCount: 104,
-      skills: ['TypeScript', 'React', 'Next.js', 'Tailwind CSS'],
-      topWeights: [
-        { label: 'Experience (3+)', val: 1.00 },
-        { label: 'Technical Skills', val: 0.95 },
-        { label: 'UI/UX Sensitivity', val: 0.95 },
-        { label: 'Open Source', val: 0.80 },
-        { label: 'Job Level', val: 0.75 }
-      ],
-      status: 'PENDING',
-      lastRunDate: null
-    }
-  ];
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 
-  let processedConfigs = dummyConfigs.filter(cfg => {
-    if (statusFilter !== 'ALL' && cfg.status !== statusFilter) return false;
+  useEffect(() => {
+    fetchConfigs();
+  }, []);
+
+  const fetchConfigs = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/get-configs`);
+      if (response.ok) {
+        const data = await response.json();
+        setConfigs(data || []);
+      }
+    } catch (error) {
+      console.error('Error fetching configs:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const processedConfigs = configs.filter(cfg => {
+    // Current schema doesn't have status, so we use 'PENDING' as default for now
+    // or we could add more logic
+    const status = 'PENDING'; 
+    if (statusFilter !== 'ALL' && status !== statusFilter) return false;
+    
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
-      if (!cfg.name.toLowerCase().includes(q) && !cfg.reqDoc.toLowerCase().includes(q)) {
+      if (!cfg.name.toLowerCase().includes(q) && 
+          !(cfg.job_requirements?.title?.toLowerCase()?.includes(q))) {
         return false;
       }
     }
@@ -83,10 +50,12 @@ export default function ExecuteConfigPage() {
   });
 
   processedConfigs.sort((a, b) => {
-    if (sortBy === 'NEWEST') return b.timestamp - a.timestamp;
-    if (sortBy === 'OLDEST') return a.timestamp - b.timestamp;
+    const timeA = new Date(a.created_at).getTime();
+    const timeB = new Date(b.created_at).getTime();
+    if (sortBy === 'NEWEST') return timeB - timeA;
+    if (sortBy === 'OLDEST') return timeA - timeB;
     if (sortBy === 'NAME_ASC') return a.name.localeCompare(b.name);
-    if (sortBy === 'CANDIDATES_DESC') return b.candidatesCount - a.candidatesCount;
+    if (sortBy === 'CANDIDATES_DESC') return (b.batch_data?.candidate_ids?.length || 0) - (a.batch_data?.candidate_ids?.length || 0);
     return 0;
   });
 
@@ -95,11 +64,11 @@ export default function ExecuteConfigPage() {
     setIsExecuting(true);
     setTimeout(() => {
       setIsExecuting(false);
-      alert('Match Results generated successfully! Check Past Results to view them.');
-    }, 2000);
+      alert('ERROR: Matching Execution Pipeline is currently under development and not implemented yet.');
+    }, 1500);
   };
 
-  const selectedData = dummyConfigs.find(c => c.id === selectedConfig);
+  const selectedData = configs.find(c => c.id === selectedConfig);
 
   return (
     <main className="min-h-screen bg-zinc-50 dark:bg-zinc-950 px-4 py-8 md:py-12">
@@ -160,7 +129,12 @@ export default function ExecuteConfigPage() {
             </div>
 
             <div className="space-y-3">
-              {processedConfigs.length === 0 ? (
+              {isLoading ? (
+                <div className="text-center py-20">
+                  <div className="w-8 h-8 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                  <p className="text-sm text-zinc-500">Fetching configurations...</p>
+                </div>
+              ) : processedConfigs.length === 0 ? (
                 <div className="text-center py-12 border border-zinc-200 border-dashed rounded-lg dark:border-zinc-800">
                   <p className="text-sm text-zinc-500 dark:text-zinc-400">No configurations match your filters.</p>
                   <button onClick={() => { setSearchQuery(''); setStatusFilter('ALL'); }} className="mt-2 text-indigo-600 hover:text-indigo-800 hover:underline dark:text-indigo-400 dark:hover:text-indigo-300 text-sm font-medium">Clear filters</button>
@@ -170,7 +144,7 @@ export default function ExecuteConfigPage() {
                   key={config.id}
                   onClick={() => setSelectedConfig(config.id)}
                   className={`
-                    cursor-pointer transition-colors border
+                    cursor-pointer transition-colors border rounded-xl overflow-hidden
                     ${selectedConfig === config.id 
                         ? 'border-indigo-600 bg-indigo-50/20 dark:border-indigo-500 dark:bg-indigo-900/10 shadow-sm' 
                         : 'border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 bg-white dark:bg-zinc-900'}
@@ -187,30 +161,13 @@ export default function ExecuteConfigPage() {
                           {config.name}
                         </h3>
                         <div className="text-xs text-zinc-500 dark:text-zinc-400 mt-1.5 flex flex-wrap items-center gap-3">
-                           <span>Created {config.createdOn}</span>
+                           <span>Created {new Date(config.created_at).toLocaleDateString()}</span>
                            <span className="text-zinc-300 dark:text-zinc-700">|</span>
                            
-                           {/* Status Tag Map */}
+                           {/* Status Tag Map - Defaulting to PENDING for now */}
                            <span className="flex items-center gap-1.5">
-                             {config.status === 'COMPUTED' && <><span className="w-1.5 h-1.5 rounded-full bg-green-500" />Computed</>}
-                             {config.status === 'NEEDS_UPDATE' && <><span className="w-1.5 h-1.5 rounded-full bg-amber-500" />Needs Update</>}
-                             {config.status === 'PENDING' && <><span className="w-1.5 h-1.5 rounded-full bg-zinc-300 dark:bg-zinc-600" />Pending</>}
+                             <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 dark:bg-zinc-600" />Pending
                            </span>
-
-                           {/* Results Text Link */}
-                           {(config.status === 'COMPUTED' || config.status === 'NEEDS_UPDATE') && (
-                             <>
-                               <span className="text-zinc-300 dark:text-zinc-700">|</span>
-                               <Link 
-                                 href="/past-results"
-                                 onClick={(e) => e.stopPropagation()}
-                                 className="text-indigo-600 hover:text-indigo-800 hover:underline dark:text-indigo-400 transition-colors"
-                                 title="View past results dashboard"
-                               >
-                                 View past history ↗
-                               </Link>
-                             </>
-                           )}
                         </div>
                       </div>
                       
@@ -218,21 +175,13 @@ export default function ExecuteConfigPage() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm mt-4 lg:mt-6">
                         <div className="space-y-1">
                           <span className="text-zinc-500 dark:text-zinc-400 block text-[11px] uppercase tracking-wide font-medium">Job Requirement</span>
-                          <span className="text-zinc-900 dark:text-zinc-100">{config.reqDoc}</span>
+                           <span className="text-zinc-900 dark:text-zinc-100">{config.job_requirements?.title || 'Unknown Requirement'}</span>
                         </div>
                         <div className="space-y-1">
-                          <span className="text-zinc-500 dark:text-zinc-400 block text-[11px] uppercase tracking-wide font-medium">Candidate Array Goal</span>
-                          <span className="text-zinc-900 dark:text-zinc-100 block truncate" title={config.batch}>
-                            {config.batch} <span className="text-zinc-500 ml-1">({config.candidatesCount} entities)</span>
+                          <span className="text-zinc-500 dark:text-zinc-400 block text-[11px] uppercase tracking-wide font-medium">Candidate Batch</span>
+                          <span className="text-zinc-900 dark:text-zinc-100 block truncate">
+                            {config.batch_data?.batch_name || 'Unknown Batch'} <span className="text-zinc-500 ml-1">({config.batch_data?.candidate_ids?.length || 0} CVs)</span>
                           </span>
-                        </div>
-                      </div>
-
-                      {/* Explicit Required Skills String */}
-                      <div>
-                        <span className="text-zinc-500 dark:text-zinc-400 block text-[11px] uppercase tracking-wide font-medium mb-1.5">Parsed Core Requirements</span>
-                        <div className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
-                          {config.skills.join(', ')}
                         </div>
                       </div>
                       
@@ -241,30 +190,34 @@ export default function ExecuteConfigPage() {
                     {/* Divider Desktop */}
                     <div className="hidden xl:block w-px bg-zinc-200 dark:bg-zinc-800 my-1"></div>
 
-                    {/* Top Right Box: Formal Weighting Table Form */}
+                    {/* Right Box: Priority Parameters */}
                     <div className="xl:w-[280px] shrink-0">
                       <div>
                         <h4 className="text-[11px] uppercase font-medium text-zinc-500 dark:text-zinc-400 tracking-wide mb-3">
-                          Priority Parameters Table
+                          Priority Parameters
                         </h4>
                         
                         <div className="border border-zinc-200 dark:border-zinc-800 rounded bg-zinc-50/50 dark:bg-zinc-900/50">
                            <ul className="flex flex-col divide-y divide-zinc-200 dark:divide-zinc-800">
-                             {config.topWeights.map((weight, idx) => (
-                               <li key={idx} className="flex items-center justify-between py-2 px-3">
-                                 <span className="text-[13px] text-zinc-700 dark:text-zinc-300 truncate pr-3">
-                                   {weight.label}
-                                 </span>
-                                 <span className={`
-                                    flex shrink-0 items-center justify-center px-1.5 h-5 text-[11px] border rounded-sm font-mono font-medium tracking-tight
-                                    ${weight.val >= 0.80 
-                                      ? 'border-indigo-200 text-indigo-700 bg-indigo-50 dark:border-indigo-800 dark:text-indigo-300 dark:bg-indigo-900/40' 
-                                      : 'border-zinc-200 text-zinc-600 bg-zinc-50 dark:border-zinc-700 dark:text-zinc-400 dark:bg-zinc-800/50'}
-                                 `}>
-                                   {weight.val.toFixed(2)}
-                                 </span>
-                               </li>
-                             ))}
+                             {/* Show top 5 weights */}
+                             {Object.entries(config.weights || {})
+                                .sort(([, a]: any, [, b]: any) => b - a)
+                                .slice(0, 5)
+                                .map(([key, val]: [string, any], idx) => (
+                                <li key={idx} className="flex items-center justify-between py-2 px-3 text-xs">
+                                  <span className="text-zinc-700 dark:text-zinc-300 truncate pr-3">
+                                    {key.replace(/req_|batch_/, '').replace(/_/g, ' ')}
+                                  </span>
+                                  <span className={`
+                                     flex shrink-0 items-center justify-center px-1.5 h-5 text-[10px] border rounded-sm font-mono font-medium tracking-tight
+                                     ${val >= 0.80 
+                                       ? 'border-indigo-200 text-indigo-700 bg-indigo-50 dark:border-indigo-800 dark:text-indigo-300 dark:bg-indigo-900/40' 
+                                       : 'border-zinc-200 text-zinc-600 bg-zinc-50 dark:border-zinc-700 dark:text-zinc-400 dark:bg-zinc-800/50'}
+                                  `}>
+                                    {val.toFixed(2)}
+                                  </span>
+                                </li>
+                              ))}
                            </ul>
                         </div>
                       </div>
@@ -281,20 +234,11 @@ export default function ExecuteConfigPage() {
           <div className="px-4 md:px-6 py-4 bg-zinc-50 dark:bg-zinc-800/50 border-t border-zinc-200 dark:border-zinc-800 flex flex-col md:flex-row items-center justify-between gap-4">
             
             <div className="flex items-center gap-4 text-sm font-medium">
-              {selectedData && (selectedData.status === 'COMPUTED' || selectedData.status === 'NEEDS_UPDATE') ? (
+              {selectedData ? (
                 <div className="flex items-center gap-3">
                   <span className="text-zinc-500 dark:text-zinc-400 text-xs">
-                    Last Run: {selectedData.lastRunDate}
+                    Ready to execute matching on {selectedData.batch_data?.candidate_ids?.length || 0} candidates.
                   </span>
-                  <Link 
-                    href="/past-results"
-                    className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 flex items-center gap-1 hover:underline decoration-indigo-300 transition-colors"
-                  >
-                    View Past Result
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                  </Link>
                 </div>
               ) : (
                 <span className="text-zinc-400 dark:text-zinc-500 text-xs italic">

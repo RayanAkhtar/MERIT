@@ -107,6 +107,12 @@ export default function Navbar() {
                   >
                     Job Description
                   </Link>
+                  <Link
+                    href="/config/update"
+                    className="block px-4 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                  >
+                    Matching Protocol
+                  </Link>
                 </div>
               </div>
             </div>
@@ -152,6 +158,12 @@ export default function Navbar() {
                     className="block px-4 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
                   >
                     Create Config
+                  </Link>
+                  <Link
+                    href="/config/update"
+                    className="block px-4 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                  >
+                    Update Config
                   </Link>
                   <Link
                     href="/config/execute"

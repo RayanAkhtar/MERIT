@@ -8,6 +8,7 @@ from .general.routes import general_bp
 from .extraction.routes import extraction_bp
 from .job_descriptions.routes import job_descriptions_bp
 from .candidates.routes import candidates_bp
+from .config.routes import config_bp
 
 def create_app():
     app = Flask(__name__)
@@ -17,5 +18,6 @@ def create_app():
     app.register_blueprint(extraction_bp, url_prefix="/api")
     app.register_blueprint(job_descriptions_bp, url_prefix="/api")
     app.register_blueprint(candidates_bp, url_prefix="/api")
+    app.register_blueprint(config_bp, url_prefix="/api")
 
     return app
