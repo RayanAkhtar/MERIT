@@ -107,30 +107,30 @@ class ScoringRegistry:
                 # If no handler, skip or provide a zero score
                 continue
                 
-            # Determine "active_items" for the metric if it's a specific requirement
+            # figure out which bits are active for this metric
             active_items = None
             if key.startswith("req_"):
-                # Pass the specific item to the metric
+                # pass the specific item to the metric
                 clean_name = key.replace("req_", "").replace("_", " ")
                 active_items = [clean_name]
 
-            # Execute calculation
-            # Note: We pass the specific key as context if needed
-            res = metric.calculate(candidate_data, job_requirements, active_items=active_items)
+            # scoring
+            # pass the specific key as context if needed
+            res = metric.calculate(candidate_data, job_requirements, active_items=active_items) or {}
             
-            # Apply weight
-            raw_weight = weights.get(key, 3.0) if weights else 3.0
+            # apply the weight from the config
+            raw_weight = weights.get(key, 0.0) if (weights and weights.get(key) is not None) else 0.0
             
-            total_weighted_score += res["score"] * raw_weight
+            metric_score = float(res.get("score") or 0.0)
+            total_weighted_score += metric_score * raw_weight
             total_weight += raw_weight
             
-            # We use the 'key' from the config as the ID in the results for the frontend
-            # Merge everything from res, ensuring we don't overwrite crucial keys
+            # merge the results into the final dict for the frontend
             merged_res = {**res}
             merged_res.update({
-                "name": active_items[0] if active_items else metric.name,
+                "name": active_items[0] if (active_items and len(active_items) > 0) else (metric.name if metric else "Unknown Metric"),
                 "weight": raw_weight,
-                "score": res["score"],
+                "score": metric_score,
                 "formula": res.get("calculation_formula", "Simple Weighted Average"),
                 "technical_formula": res.get("technical_formula", ""),
                 "glossary": res.get("glossary", []),
@@ -142,7 +142,7 @@ class ScoringRegistry:
 
         overall_score = total_weighted_score / total_weight if total_weight > 0 else 0.0
 
-        # keyword stuffing penalty (for the audit Pass)
+        # penalty for keyword stuffing so people can't game the system
         target_keywords = []
         jd_metrics = job_requirements.get("metrics", {})
         for category in ["Languages", "Technologies"]:
@@ -153,14 +153,14 @@ class ScoringRegistry:
                 else:
                     target_keywords.append(str(v))
         
-        # specific requirements from active_metrics keys
+        # check specific requirements from the active keys
         for key in keys_to_run:
             if key.startswith("req_"):
                 target_keywords.append(key.replace("req_", "").replace("_", " "))
         
         # Deduplicate and run detector
         target_keywords = list(set(target_keywords))
-        # Use raw_cv_text for the most accurate density/frequency analysis
+        # use the raw cv text for the most accurate count
         cv_text = candidate_data.get("raw_cv_text") or candidate_data.get("full_cv_text") or ""
         stuffing_audit = self.stuffing_detector.analyze(cv_text, target_keywords)
         print(f"DEBUG [Registry]: Stuffing Audit -> Penalty: {stuffing_audit['penalty']} | Flagged: {len(stuffing_audit['flagged_terms'])}")
@@ -170,7 +170,7 @@ class ScoringRegistry:
         penalty = stuffing_audit["penalty"]
         final_adjusted_score = max(0.0, overall_score - penalty)
         
-        # finalize metrics (inject penalties into individual card math for transparency)
+        # wrap up the metrics and shove the penalties in so recruiters can see why
         flagged_keys = []
         for term_audit in stuffing_audit["flagged_terms"]:
             term = term_audit["term"].lower().replace(" ", "_")
@@ -215,7 +215,7 @@ class ScoringRegistry:
                 flagged_keys.append(req_key)
 
         # recalculate overall score based on the finalized (potentially penalized) metrics
-        new_total_weighted_score = sum(m["score"] * m["weight"] for m in results.values())
+        new_total_weighted_score = sum((m.get("score") or 0.0) * (m.get("weight") or 0.0) for m in results.values())
         final_adjusted_score = new_total_weighted_score / total_weight if total_weight > 0 else 0.0
 
         stuffing_notes = ""

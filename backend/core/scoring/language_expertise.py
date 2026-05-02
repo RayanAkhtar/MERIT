@@ -40,7 +40,7 @@ class LanguageExpertiseMetric(BaseMetric):
             if lang_lower in desc or lang_lower in pos:
                 last_li_year = max(last_li_year, current_year - i)
         
-        # final multiplier logic
+        # work out the final multiplier
         latest_activity = max(last_gh_year, last_li_year)
         if latest_activity == 0: 
             return 1.0, "Historical claim (No recent temporal data)"
@@ -102,13 +102,13 @@ class LanguageExpertiseMetric(BaseMetric):
             lang_lower = str(lang).lower()
             item_sources = []
             
-            # github signal
+            # github signal (code volume)
             # print(f"DEBUG: {lang} github pct -> {gh_pct}")
             gh_pct = gh_languages.get(lang_lower, 0)
             gh_score = min(1.0, gh_pct / cfg["GH_VERIFICATION_THRESHOLD"])
             if gh_pct > 0: item_sources.append("GitHub")
             
-            # cv Signal
+            # cv signal (how many times they mention it)
             cv_text = candidate_data.get("raw_cv_text") or candidate_data.get("full_cv_text") or ""
             mentions = self._count_mentions(lang, cv_text)
             
@@ -127,7 +127,7 @@ class LanguageExpertiseMetric(BaseMetric):
             
             total_item_score += final_item_score
             
-            # Mathematical Transparency
+            # mathematical transparency for the UI
             bonus_val = 1.15 if len(set(item_sources)) > 1 else 1.0
             logic_summary = f"(max({gh_score:.2f}, {cv_score:.2f}) * {bonus_val:.2f}) * {recency_mult:.1f} = {final_item_score:.2f}"
             
@@ -171,7 +171,7 @@ class LanguageExpertiseMetric(BaseMetric):
 
         final_score = total_item_score / len(target_languages) if target_languages else 0
         
-        # Determine technical formula: show aggregate if multi-item, show specific if single-item
+        # work out which formula to show in the UI
         if len(target_languages) == 1 and len(breakdown) == 1:
             tech_formula = breakdown[0]["notes"].replace("Logic: ", "")
         else:

@@ -11,7 +11,7 @@ def _upsert_github_profile(gh_data):
     
     username = gh_data.get("username")
     if not username:
-        # TODO: figure out how to extract this if missing, maybe from url?
+        # TODO: how to extract this if missing, maybe from url
         return None
 
     gh_profile_res = supabase.table("github_profiles").upsert({
@@ -30,6 +30,7 @@ def _upsert_github_profile(gh_data):
         "total_stars": gh_data.get("total_stars", 0),
         "total_lines": gh_data.get("total_lines", 0),
         "languages": gh_data.get("languages", []),
+        "language_history": gh_data.get("language_history", []),
         "raw_data": gh_data
     }, on_conflict="username").execute()
     
@@ -119,7 +120,6 @@ def _upsert_linkedin_profile(li_data, fallback_url=None):
     if edu_data:
         supabase.table("linkedin_education").insert(edu_data).execute()
 
-    # New sections from raw data
     certs = []
     for c in li_data.get("certifications", []):
         certs.append({
@@ -167,29 +167,64 @@ def save_candidates():
         linkedin_profile_id = _upsert_linkedin_profile(c.get("linkedin_enriched"), fallback_linkedin_url)
 
         try:
-            candidate_res = supabase.table("candidate_data").insert({
-                "name": c.get("name"),
-                "email": c.get("email"),
-                "phone": c.get("phone"),
-                "skills": c.get("skills", []),
-                "cv_experience": c.get("cv_experience", []),
-                "experience_summary": c.get("experience"),
-                "projects_history": c.get("projects", []),
-                "extracurricular": c.get("extracurricular", []),
-                "source_links": c.get("links", {}),
-                "github_profile_id": github_profile_id,
-                "linkedin_profile_id": linkedin_profile_id,
-                "cv_url": c.get("cv_url"),
-                "raw_cv_text": c.get("raw_cv_text")
-            }).execute()
+            # check for existing candidate with same CV hash for deduplication
+            cv_hash = c.get("cv_hash")
+            existing_candidate = None
+            if cv_hash:
+                existing_res = supabase.table("candidate_data").select("id").eq("cv_hash", cv_hash).execute()
+                if existing_res.data:
+                    existing_candidate = existing_res.data[0]
+            
+            if existing_candidate:
+                # update existing candidate
+                candidate_db_id = existing_candidate['id']
+                supabase.table("candidate_data").update({
+                    "name": c.get("name"),
+                    "email": c.get("email"),
+                    "phone": c.get("phone"),
+                    "skills": c.get("skills", []),
+                    "cv_experience": c.get("cv_experience", []),
+                    "experience_summary": c.get("experience"),
+                    "projects_history": c.get("projects", []),
+                    "extracurricular": c.get("extracurricular", []),
+                    "source_links": c.get("links", {}),
+                    "github_profile_id": github_profile_id,
+                    "linkedin_profile_id": linkedin_profile_id,
+                    "cv_url": c.get("cv_url"),
+                    "raw_cv_text": c.get("raw_cv_text")
+                }).eq("id", candidate_db_id).execute()
+                
+                # refresh education records (delete and re-insert for simplicity)
+                supabase.table("candidate_education").delete().eq("candidate_id", candidate_db_id).execute()
+                
+                candidate_res_data = [{"id": candidate_db_id}]
+            else:
+                # insert new candidate
+                candidate_res = supabase.table("candidate_data").insert({
+                    "name": c.get("name"),
+                    "email": c.get("email"),
+                    "phone": c.get("phone"),
+                    "skills": c.get("skills", []),
+                    "cv_experience": c.get("cv_experience", []),
+                    "experience_summary": c.get("experience"),
+                    "projects_history": c.get("projects", []),
+                    "extracurricular": c.get("extracurricular", []),
+                    "source_links": c.get("links", {}),
+                    "github_profile_id": github_profile_id,
+                    "linkedin_profile_id": linkedin_profile_id,
+                    "cv_url": c.get("cv_url"),
+                    "cv_hash": cv_hash,
+                    "raw_cv_text": c.get("raw_cv_text")
+                }).execute()
+                candidate_res_data = candidate_res.data
         except Exception as e:
-            print(f"CRITICAL: Failed to insert candidate into database: {str(e)}")
+            print(f"CRITICAL: Failed to process candidate {c.get('name')} in database: {str(e)}")
             import traceback
             traceback.print_exc()
             continue
 
-        if candidate_res.data:
-            candidate_db_id = candidate_res.data[0]['id']
+        if candidate_res_data:
+            candidate_db_id = candidate_res_data[0]['id']
             final_candidate_ids.append(candidate_db_id)
             
             cv_education = []
@@ -339,15 +374,15 @@ def get_candidate_detail(candidate_id):
         
     candidate = response.data[0]
     
-    # Map the embedded data
+    # map the embedded data
     candidate["cv_education"] = candidate.get("cv_education", [])
     
     gh_profile = candidate.get("github_profile")
     if gh_profile:
-        # Re-map database columns to frontend interface keys
+        # re-map database columns to frontend interface keys
         history = gh_profile.get("contribution_history")
         if history is None and "raw_data" in gh_profile and isinstance(gh_profile["raw_data"], dict):
-            # Failover to common raw data aliases
+            # failover to common raw data aliases
             history = gh_profile["raw_data"].get("contribution_history") or \
                       gh_profile["raw_data"].get("history") or \
                       gh_profile["raw_data"].get("language_history")
@@ -360,7 +395,7 @@ def get_candidate_detail(candidate_id):
         candidate["linkedin_experience"] = li_profile.get("linkedin_experience", [])
         candidate["linkedin_education"] = li_profile.get("linkedin_education", [])
         
-        # Defensive separate fetches for potentially missing optional tables
+        # separate fetches for potentially missing optional tables
         li_id = li_profile.get("id")
         for key, table in [("linkedin_projects", "linkedin_projects"), 
                            ("linkedin_certifications", "linkedin_certifications"), 

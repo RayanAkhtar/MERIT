@@ -27,6 +27,10 @@ interface ExtractedCV {
   cached?: boolean;
   file_id?: string;
   cv_url?: string;
+  cv_hash?: string;
+  reused_from_db?: boolean;
+  github_enriched?: any;
+  linkedin_enriched?: any;
 }
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
@@ -180,6 +184,16 @@ export default function CVUpload() {
         const link = candidateWithLink?.links[src]?.[0];
 
         if (link && !scannedSources.has(src)) {
+            // NEW: Check if this candidate already has the enriched data (reclaimed from DB)
+            const reclaimedData = candidateWithLink[`${src}_enriched` as keyof ExtractedCV];
+            
+            if (reclaimedData) {
+                console.log(`DEBUG: Reusing reclaimed ${src} data for batch preview.`);
+                setSourceData(prev => ({ ...prev, [src]: reclaimedData }));
+                scannedSources.add(src);
+                continue;
+            }
+
             setUploadStatus(`Performing ${src} intelligence scan for ${candidateWithLink.name || 'candidate'}...`);
             try {
                 const res = await fetch(`${API_BASE_URL}/api/scan-datasource`, {
@@ -234,7 +248,14 @@ export default function CVUpload() {
             const link = candidate.links[src]?.[0];
             if (!link) continue;
 
-            // Use first candidate's data if already scanned
+            // 1. Skip if data was already reclaimed from DB in extract-cv
+            if (candidate[`${src}_enriched` as keyof ExtractedCV]) {
+                console.log(`DEBUG: Skipping ${src} scan for ${candidate.name}, already reclaimed.`);
+                scanResults[`${src}_enriched`] = candidate[`${src}_enriched` as keyof ExtractedCV];
+                continue;
+            }
+
+            // 2. Use first candidate's data if already scanned in THIS batch (for preview consistency)
             if (i === 0 && sourceData[src]) {
                 scanResults[`${src}_enriched`] = sourceData[src];
                 continue;
@@ -323,12 +344,14 @@ export default function CVUpload() {
                                 {template.name || 'Not Detected'}
                             </h3>
                         </div>
-                        {template.cached !== undefined && (
+                        {template.cv_hash && (
                             <div className={`shrink-0 flex items-center gap-1.5 px-2 py-0.5 rounded border text-[8px] font-bold uppercase tracking-tighter ${
-                                template.cached ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20' : 'bg-amber-500/10 text-amber-500 border-amber-500/20'
+                                template.reused_from_db ? 'bg-indigo-500/10 text-indigo-500 border-indigo-500/20' : 
+                                template.cached ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20' : 
+                                'bg-amber-500/10 text-amber-500 border-amber-500/20'
                             }`}>
-                                <div className={`w-1 h-1 rounded-full ${template.cached ? 'bg-emerald-500' : 'bg-amber-500'}`} />
-                                {template.cached ? 'CACHED' : 'SAVED'}
+                                <div className={`w-1 h-1 rounded-full ${template.reused_from_db ? 'bg-indigo-500' : template.cached ? 'bg-emerald-500' : 'bg-amber-500'}`} />
+                                {template.reused_from_db ? 'RECLAIMED' : template.cached ? 'CACHED' : 'NEW'}
                             </div>
                         )}
                     </div>

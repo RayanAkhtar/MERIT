@@ -25,6 +25,7 @@ function RankingReport() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const configId = searchParams.get('config_id');
+  const snapshotId = searchParams.get('snapshot_id');
 
   const [rawResults, setRawResults] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -76,13 +77,39 @@ function RankingReport() {
   }, []);
 
   useEffect(() => {
-    if (configId) {
+    if (snapshotId) {
+      fetchSnapshot();
+    } else if (configId) {
       fetchResults();
     } else {
       setLoading(false);
-      setError("No configuration ID provided.");
+      setError("No identifier provided.");
     }
-  }, [configId]);
+  }, [configId, snapshotId]);
+
+  const fetchSnapshot = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/get-past-result/${snapshotId}`);
+      if (response.ok) {
+        const data = await response.json();
+        setRawResults(data);
+        
+        const firstCand = data.results[0];
+        if (firstCand) {
+           const keys = Object.keys(firstCand.metrics);
+           setVisibleColKeys(keys);
+        }
+      } else {
+        const err = await response.json();
+        setError(err.error || 'Failed to fetch snapshot details');
+      }
+    } catch (err) {
+      setError('Connection to server failed.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const fetchResults = async () => {
     setLoading(true);
@@ -300,14 +327,19 @@ function RankingReport() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 bg-white dark:bg-zinc-900 p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <span className="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest bg-indigo-600 text-white shadow-sm">Live Analysis</span>
-              <span className="text-zinc-400 text-xs font-medium">Ranking Execution ID: {configId}</span>
+              <span className={`px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest ${rawResults.is_snapshot ? 'bg-amber-600' : 'bg-indigo-600'} text-white shadow-sm`}>
+                {rawResults.is_snapshot ? 'Historical Snapshot' : 'Live Analysis'}
+              </span>
+              <span className="text-zinc-400 text-xs font-medium">
+                {rawResults.is_snapshot ? `Snapshot ID: ${rawResults.id.split('-')[0]}` : `Ranking Execution ID: ${configId}`}
+              </span>
             </div>
             <h1 className="text-4xl font-black text-zinc-900 dark:text-zinc-50 tracking-tight">Intelligence Report</h1>
           </div>
           <div className="flex items-center gap-3">
-             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold bg-green-50 text-green-700 border border-green-200 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800 shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" /> Computed & Live
+             <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold ${rawResults.is_snapshot ? 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/20 dark:text-amber-400 dark:border-amber-800' : 'bg-green-50 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800'} shadow-sm`}>
+                <span className={`w-2 h-2 rounded-full ${rawResults.is_snapshot ? 'bg-amber-500' : 'bg-green-500 animate-pulse'}`} /> 
+                {rawResults.is_snapshot ? `Static: ${new Date(rawResults.created_at).toLocaleString()}` : 'Computed & Live'}
              </span>
           </div>
         </div>

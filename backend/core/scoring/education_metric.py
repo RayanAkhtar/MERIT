@@ -48,17 +48,17 @@ class EducationMetric(BaseMetric):
             if current_level > 0:
                 if current_level >= max_candidate_level:
                     max_candidate_level = current_level
-                    # Only update best_school if this is a degree-level entry
+                    # only update best_school if this is a degree-level entry
                     best_school = edu.get("school_name", "Unknown")
             elif best_school == "Unknown":
-                # Fallback if no degree level found yet
+                # fallback if we haven't found a degree level yet
                 best_school = edu.get("school_name", "Unknown")
 
         if max_candidate_level == 0 and all_edu:
             max_candidate_level = 1 # Assume Bachelors if an education entry exists but level couldn't be parsed
 
 
-        # university prestige and grades
+        # university prestige and grades logic
         import json, os
         cfg = SCORING_CONSTANTS["EDUCATION"]
         prestige_bonus = 0.0
@@ -98,13 +98,13 @@ class EducationMetric(BaseMetric):
             if "phd" in target_str or "doctor" in target_str: target_level = 3
             elif "master" in target_str or "meng" in target_str or "msc" in target_str: target_level = 2
 
-        # final weighted calculation
+        # work out the final weighted score
         level_map = {0: "None", 1: "Bachelors", 2: "Masters/MEng", 3: "PhD/Doctorate"}
         level_score = 1.0 if max_candidate_level >= target_level else (0.5 if max_candidate_level > 0 else 0.0)
         note = f"Matches required level ({level_map.get(target_level)})." if max_candidate_level >= target_level else f"Partial match. Candidate has level {max_candidate_level} but requirement is {target_level}."
         
         # Weights: Degree Level (40%), Academic Performance (40%), Prestige (20%)
-        # Normalise Prestige for component display (Tier 1 = 1.0)
+        # normalise prestige for the breakdown display
         prestige_component_score = 1.0 if prestige_bonus >= 0.2 else (0.5 if prestige_bonus > 0 else 0.2)
         
         # Breakdown

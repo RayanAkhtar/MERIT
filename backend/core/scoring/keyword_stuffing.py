@@ -4,8 +4,7 @@ from .constants import SCORING_CONSTANTS
 
 class KeywordStuffingDetector:
     """
-    Heuristic-based detector for 'Keyword Stuffing'—a common tactic where 
-    candidates repeat buzzwords excessively to game automated screening systems.
+    detects 'keyword stuffing'—where people spam buzzwords to try and game the system.
     """
     
     def __init__(self):
@@ -18,14 +17,13 @@ class KeywordStuffingDetector:
 
     def analyze(self, cv_text: str, target_keywords: List[str]) -> Dict[str, Any]:
         """
-        Analyzes CV text for excessive keyword repetition.
-        Returns a penalty score and a breakdown of flagged terms.
+        checks the cv text for too much repetition
         """
         if not cv_text or not target_keywords:
             return {"penalty": 0.0, "flagged_terms": [], "is_stuffed": False}
 
         cv_text_lower = cv_text.lower()
-        # clean text for density calculation
+        # clean the text to work out the density
         words = re.findall(r'\w+', cv_text_lower)
         total_word_count = len(words)
         
@@ -34,7 +32,7 @@ class KeywordStuffingDetector:
 
         for keyword in target_keywords:
             keyword_lower = keyword.lower()
-            # use regex to find whole word matches only ('Java' vs 'JavaScript')
+            # only match whole words so we don't mix up 'Java' and 'JavaScript'
             pattern = rf'\b{re.escape(keyword_lower)}\b'
             occurrences = len(re.findall(pattern, cv_text_lower))
             
@@ -51,7 +49,7 @@ class KeywordStuffingDetector:
                 reason = f"Excessive repetition ({occurrences} occurrences)"
 
             if is_stuffed:
-                # calculate penalty for every occurrence strictly over the limit
+                # take points off for every occurrence over the limit
                 excess = occurrences - self.cfg["OCCURRENCE_LIMIT"]
                 penalty = excess * self.cfg["PENALTY_PER_OCCURRENCE"]
                 total_penalty += penalty
@@ -64,7 +62,7 @@ class KeywordStuffingDetector:
                     "penalty_contribution": round(penalty, 3)
                 })
 
-        # cap the total penalty to ensure we don't zero out a candidate completely
+        # cap the penalty so we don't zero someone out completely
         final_penalty = min(total_penalty, self.cfg["MAX_TOTAL_PENALTY"])
         
         return {

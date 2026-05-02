@@ -40,10 +40,10 @@ class ExperienceMetric(BaseMetric):
             year = int(match.group(2))
             return year * 12 + month
 
-        # Calculate tenure separately for each source
+        # work out the tenure for each source separately
         cv_exp_data = candidate_data.get('cv_experience', []) or []
         
-        # Fallback: If structured list is empty, try to parse the raw experience text
+        # if the structured list is empty, try to parse the raw text instead
         if not cv_exp_data and candidate_data.get('experience'):
             raw_text = candidate_data.get('experience', '')
             lines = raw_text.split('\n')
@@ -77,11 +77,11 @@ class ExperienceMetric(BaseMetric):
                 dur = e.get('duration_months') or e.get('duration') or e.get('months', 0)
                 if isinstance(dur, (int, float)): li_months += int(dur)
 
-        # Use the most comprehensive timeline as the primary tenure
+        # use the longest timeline as the main tenure
         total_months = max(cv_months, li_months)
         sources_used = list(set(["CV"] + (["LinkedIn"] if li_months > 0 else [])))
 
-        # Normalisation Target
+        # target for normalisation
         max_in_batch = candidate_data.get('batch_max_tenure', 60)
         normalisation_target = max(max_in_batch, 12) 
         
@@ -89,7 +89,7 @@ class ExperienceMetric(BaseMetric):
         cv_tenure_score = min(1.0, cv_months / normalisation_target)
         li_tenure_score = min(1.0, li_months / normalisation_target)
         
-        # Density proxy: Aggregating all descriptive text
+        # check the density by looking at all the descriptions
         all_summaries = " ".join([e.get("summary", "") for e in cv_exp if isinstance(e, dict)])
         primary_summary = str(candidate_data.get('experience_summary') or '')
         li_about = str((candidate_data.get('linkedin_profile', {}) or {}).get('about') or '')
@@ -105,7 +105,7 @@ class ExperienceMetric(BaseMetric):
         # Final Score: 60% CV Tenure, 30% LinkedIn Tenure, 10% Density
         final_score = (cv_tenure_score * 0.6) + (li_tenure_score * 0.3) + (quality_proxy * 0.1)
         
-        # Deduction reasoning
+        # why we're taking points off
         tenure_gap = max(0, normalisation_target - cv_months) # Focus on CV gap as it's the primary driver
         tenure_note = "Maximum tenure achieved for this batch benchmark." if tenure_score >= 1.0 else f"Current tenure is {tenure_gap} months below the batch peak of {normalisation_target} months."
         
@@ -170,14 +170,14 @@ class ProjectsMetric(BaseMetric):
             if any(len(w) > 3 and w not in ['project', 'task', 'code', 'app', 'main'] for w in common): return True
             return SequenceMatcher(None, cv_title.lower(), gh_name.lower()).ratio() > 0.5
 
-        # gather projects from everywhere we can find them
+        # get projects from everywhere we can
         cv_raw = candidate_data.get('projects_history', []) or []
         if not cv_raw: cv_raw = [{"title": p} if isinstance(p, str) else p for p in (candidate_data.get('projects', []) or [])]
         
         github_data = candidate_data.get('github_enriched', {}) or {}
         gh_raw = github_data.get('featured_projects', []) or github_data.get('repositories', []) or []
         
-        # matching up cv entries with github repos to find private stuff
+        # match up cv entries with github repos to find private stuff
         verifications = []
         private_projects = []
         for cv_p in cv_raw:
@@ -194,13 +194,13 @@ class ProjectsMetric(BaseMetric):
             if not matched:
                 private_projects.append(title)
 
-        # github traction (volume + impact)
-        repo_count = github_data.get('repo_count', 0) or len(gh_raw)
-        stars = github_data.get('total_stars', 0)
-        forks = github_data.get('total_forks', 0)
+        # github traction (how popular their stuff is)
+        repo_count = (github_data.get('repo_count') or 0) or len(gh_raw)
+        stars = github_data.get('total_stars') or 0
+        forks = github_data.get('total_forks') or 0
         
         # Raw Traction = (Repos * 0.05) + log10(Stars+Forks+1) * 0.15
-        # We use raw points for batch-wide scaling
+        # use raw points for the batch-wide scaling
         gh_base = repo_count * 0.05
         gh_impact = math.log10(stars + forks + 1) * 0.15
         raw_traction = gh_base + gh_impact
@@ -325,7 +325,7 @@ class TechSkillsMetric(BaseMetric):
         batch_max = candidate_data.get('batch_max_skill_count', 10)
         score = min(1.0, skill_count / batch_max) if batch_max > 0 else 0.0
         
-        # Build multi-source details for the UI audit
+        # stuff for the UI audit
         source_details = [
             {
                 "name": "Aggregate Breadth",
@@ -387,7 +387,7 @@ class GithubComplexityMetric(BaseMetric):
         
     def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: List[str] = None) -> Dict[str, Any]:
         gh_data = candidate_data.get('github_enriched', {})
-        # Use the full repository list for depth analysis
+        # use the full repo list for the depth analysis
         projects = gh_data.get('repositories', []) or gh_data.get('featured_projects', [])
         
         if not gh_data and not projects:
@@ -396,7 +396,7 @@ class GithubComplexityMetric(BaseMetric):
         project_complexities = []
         source_details = []
         
-        # We take the top 10 repositories to measure depth
+        # take the top 10 repos to measure depth
         sorted_projects = sorted(projects, key=lambda x: (x.get('lines') or x.get('estimated_lines') or 0), reverse=True)[:10]
         
         # First pass: calculate scores
@@ -438,7 +438,7 @@ class GithubComplexityMetric(BaseMetric):
                 "explanation": explanation
             })
 
-        # Detect stale historical data
+        # check if the data is a bit stale
         is_stale_data = final_score == 0 and gh_data.get('total_lines', 0) > 0
         
         tech_formula = f"Average({int(raw_avg):,} Pts) / BatchPeak({int(batch_max):,} Pts) = {final_score:.2f}"
@@ -490,7 +490,7 @@ class GithubAlignmentMetric(BaseMetric):
             # found in the other metrics. We only return 0 if there are NO requirements.
             pass
         
-        # extract requirements and weights from the user config
+        # grab requirements and weights from the user config
         req_langs = {}
         jd_metrics = job_requirements.get("metrics", {})
         active_keys = candidate_data.get("active_keys", [])
@@ -505,16 +505,16 @@ class GithubAlignmentMetric(BaseMetric):
                         # Construct key matching the config format (snake_case)
                         skill_key = f"req_{name.replace(' ', '_').replace('-', '_')}"
                         
-                        # STRICT CHECK: Only consider items that are active in the CURRENT CONFIG
+                        # ONLY consider items that are active in the CURRENT CONFIG
                         if skill_key not in active_keys:
                             continue
                             
-                        weight = item.get("weight", 3)
+                        weight = item.get("weight", 0)
                         if name: req_langs[name] = weight
                     else:
                         # Fallback for simple string lists
                         name = str(item).lower()
-                        if name: req_langs[name] = 3
+                        if name: req_langs[name] = 0
         
         if not req_langs:
             return {
@@ -543,7 +543,7 @@ class GithubAlignmentMetric(BaseMetric):
         
         for lang, default_weight in req_langs.items():
             # determine Weight (Priority-Aware)
-            # STRICT RULE: Only consider items explicitly configured in weights_map
+            # ONLY consider items explicitly configured in weights_map
             skill_key = f"req_{lang.replace(' ', '_').replace('-', '_')}".lower()
             
             if skill_key not in weights_map:
@@ -565,7 +565,7 @@ class GithubAlignmentMetric(BaseMetric):
                 multiplier = metric_score
                 label = f"Metric Score ({int(multiplier*100)}%)"
             else:
-                # Fallback to direct detection
+                # fallback if we don't have a direct metric score
                 pct = candidate_usage.get(lang, 0)
                 if pct >= 20: multiplier, label = 1.0, "High (GitHub)"
                 elif pct >= 5: multiplier, label = 0.7, "Moderate (GitHub)"
@@ -600,7 +600,7 @@ class GithubAlignmentMetric(BaseMetric):
         # Sort skills by actual score contribution for the breakdown: (score * weight)
         source_details.sort(key=lambda x: x["score"] * x["math_weight"], reverse=True)
 
-        # Sort for improvements by potential gain
+        # sort by potential gain for the improvements
         skill_impacts = []
         for detail in source_details:
             potential_gain = (1.0 - detail["score"]) * (detail["math_weight"] / total_weight)
@@ -625,7 +625,7 @@ class GithubAlignmentMetric(BaseMetric):
         if not improvements:
             improvements.append({"text": "Maximum ecosystem alignment achieved.", "gain": 0.0})
 
-        # Build ONE unified component breakdown for the left column
+        # build the breakdown for the left column
         component_breakdown = [
             {
                 "component": "Ecosystem Match & Alignment",
@@ -669,10 +669,10 @@ class GithubImpactMetric(BaseMetric):
         gh_data = candidate_data.get('github_enriched', {})
         if not gh_data: return {"score": 0.0, "breakdown": [], "sources_used": ["GitHub"], "formula": "none", "technical_formula": "none", "glossary": [], "improvements": [{"text": "No GitHub data available", "gain": 0.0}]}
         
-        stars = gh_data.get('total_stars', 0)
-        forks = gh_data.get('total_forks', 0)
+        stars = gh_data.get('total_stars') or 0
+        forks = gh_data.get('total_forks') or 0
         
-        # Weighted impact: Forks (2.5x) are higher fidelity than Stars (1.0x)
+        # forks (2.5x) are worth more than stars (1.0x)
         raw_impact = (stars * 1.0) + (forks * 2.5)
         raw_log = math.log10(max(1, raw_impact + 1))
         
@@ -774,11 +774,11 @@ class LinkedinNetworkMetric(BaseMetric):
         li_data = candidate_data.get('linkedin_enriched', {})
         if not li_data: return {"score": 0.3, "breakdown": [], "sources_used": ["LinkedIn"], "formula": "none", "technical_formula": "none", "glossary": [], "improvements": ["No LinkedIn data available"]}
         
-        connections = li_data.get('connections', 0)
+        connections = (li_data.get('connections') or 0)
         if connections == 0:
-            connections = li_data.get('followers', 0)
+            connections = (li_data.get('followers') or 0)
             
-        # Logarithmic Relative Scaling
+        # log scaling for the network size
         raw_val = math.log10(max(1, connections))
         batch_max = candidate_data.get('batch_max_connections', 500)
         max_val = math.log10(max(2, batch_max))

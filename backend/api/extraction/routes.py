@@ -136,20 +136,180 @@ def extract_cv():
             
             # only return early if we have a cloud url (not a local fallback)
             if cached_res and cached_url and not cached_url.startswith("http://localhost"):
-                # print(f"DEBUG: cache hit for {cache_id}")
                 cached_res["cached"] = True
                 cached_res["file_id"] = cache_id
+                cached_res["cv_hash"] = cache_id
                 return jsonify(cached_res), 200
             elif cached_res:
                 print("DEBUG: Cached CV is local-only or missing URL. Attempting cloud upgrade...")
                 parsed_data = cached_res
             else:
+                # if it's not in the local cache, check the database to see if we've seen this hash before
+                db_res = supabase.table("candidate_data").select("""
+                    *,
+                    github_profile:github_profiles(*, github_projects(*)),
+                    linkedin_profile:linkedin_profiles(*, 
+                        linkedin_experience(*), 
+                        linkedin_education(*)
+                    )
+                """).eq("cv_hash", cache_id).execute()
+                
+                if db_res.data:
+                    existing = db_res.data[0]
+                    # map the database fields back to the format the extraction engine expects
+                    parsed_data = {
+                        "name": existing.get("name"),
+                        "email": existing.get("email"),
+                        "phone": existing.get("phone"),
+                        "skills": existing.get("skills", []),
+                        "experience": existing.get("experience_summary"),
+                        "cv_experience": existing.get("cv_experience", []),
+                        "projects": existing.get("projects_history", []),
+                        "extracurricular": existing.get("extracurricular", []),
+                        "cv_url": existing.get("cv_url"),
+                        "cv_hash": cache_id,
+                        "file_id": cache_id,
+                        "cached": True,
+                        "reused_from_db": True
+                    }
+                    
+                    # if we already have the profile data, just grab it so we don't have to scan again
+                    gh_profile = existing.get("github_profile")
+                    if gh_profile:
+                        # shove it into the format the frontend and scoring engine expect
+                        parsed_data["github_enriched"] = gh_profile
+                        parsed_data["github_enriched"]["language_history"] = gh_profile.get("language_history", [])
+                        all_projects = gh_profile.get("github_projects", [])
+                        
+                        # split out the starred projects from the rest of the repos
+                        parsed_data["github_enriched"]["featured_projects"] = [
+                            {
+                                "name": p["name"],
+                                "description": p["description"],
+                                "url": p["url"],
+                                "stars": p["stars"],
+                                "type": "Repository", # lazy default
+                                "top_languages": [p["language"]] if p["language"] else []
+                            }
+                            for p in all_projects if p.get("is_featured")
+                        ]
+                        parsed_data["github_enriched"]["repositories"] = [
+                            {
+                                "name": p["name"],
+                                "description": p["description"],
+                                "url": p["url"],
+                                "stars": p["stars"],
+                                "language": p["language"]
+                            }
+                            for p in all_projects
+                        ]
+                        # make sure languages list isn't null or it'll crash later
+                        if "languages" not in parsed_data["github_enriched"] or parsed_data["github_enriched"]["languages"] is None:
+                            parsed_data["github_enriched"]["languages"] = []
+                        
+                        # frontend wants 'created_at' but the db uses 'created_at_platform'
+                        if gh_profile.get("created_at_platform"):
+                            parsed_data["github_enriched"]["created_at"] = gh_profile["created_at_platform"]
+                    if li_profile:
+                        # Map to the format scan-datasource returns
+                        parsed_data["linkedin_enriched"] = li_profile
+                        parsed_data["linkedin_enriched"]["experience"] = li_profile.get("linkedin_experience", [])
+                        parsed_data["linkedin_enriched"]["education"] = li_profile.get("linkedin_education", [])
+                    
+                    # Also need education records
+                    edu_res = supabase.table("candidate_education").select("*").eq("candidate_id", existing["id"]).execute()
+                    parsed_data["education"] = [
+                        {"name": e["school_name"], "subtitle": e["degree"], "grade": e["grade"], "start_date": e["start_date"], "end_date": e["end_date"]}
+                        for e in edu_res.data
+                    ]
+                    # Also need source links
+                    parsed_data["links"] = existing.get("source_links", {})
+                    
+                    return jsonify(parsed_data), 200
+                
                 parsed_data = parse_cv(filepath)
         else:
+            # check the database to see if we've seen this hash before (even if cache is disabled)
+            db_res = supabase.table("candidate_data").select("""
+                *,
+                github_profile:github_profiles(*, github_projects(*)),
+                linkedin_profile:linkedin_profiles(*, 
+                    linkedin_experience(*), 
+                    linkedin_education(*)
+                )
+            """).eq("cv_hash", cache_id).execute()
+            
+            if db_res.data:
+                 # Reuse logic same as above...
+                 existing = db_res.data[0]
+                 parsed_data = {
+                    "name": existing.get("name"),
+                    "email": existing.get("email"),
+                    "phone": existing.get("phone"),
+                    "skills": existing.get("skills", []),
+                    "experience": existing.get("experience_summary"),
+                    "cv_experience": existing.get("cv_experience", []),
+                    "projects": existing.get("projects_history", []),
+                    "extracurricular": existing.get("extracurricular", []),
+                    "cv_url": existing.get("cv_url"),
+                    "cv_hash": cache_id,
+                    "file_id": cache_id,
+                    "cached": True,
+                    "reused_from_db": True
+                }
+                 
+                 gh_profile = existing.get("github_profile")
+                 if gh_profile:
+                     parsed_data["github_enriched"] = gh_profile
+                     parsed_data["github_enriched"]["language_history"] = gh_profile.get("language_history", [])
+                     all_projects = gh_profile.get("github_projects", [])
+                     
+                     parsed_data["github_enriched"]["featured_projects"] = [
+                         {
+                             "name": p["name"],
+                             "description": p["description"],
+                             "url": p["url"],
+                             "stars": p["stars"],
+                             "type": "Repository",
+                             "top_languages": [p["language"]] if p["language"] else []
+                         }
+                         for p in all_projects if p.get("is_featured")
+                     ]
+                     parsed_data["github_enriched"]["repositories"] = [
+                         {
+                             "name": p["name"],
+                             "description": p["description"],
+                             "url": p["url"],
+                             "stars": p["stars"],
+                             "language": p["language"]
+                         }
+                         for p in all_projects
+                     ]
+                     if "languages" not in parsed_data["github_enriched"] or parsed_data["github_enriched"]["languages"] is None:
+                         parsed_data["github_enriched"]["languages"] = []
+                     
+                     if gh_profile.get("created_at_platform"):
+                        parsed_data["github_enriched"]["created_at"] = gh_profile["created_at_platform"]
+                 
+                 li_profile = existing.get("linkedin_profile")
+                 if li_profile:
+                     parsed_data["linkedin_enriched"] = li_profile
+                     parsed_data["linkedin_enriched"]["experience"] = li_profile.get("linkedin_experience", [])
+                     parsed_data["linkedin_enriched"]["education"] = li_profile.get("linkedin_education", [])
+
+                 edu_res = supabase.table("candidate_education").select("*").eq("candidate_id", existing["id"]).execute()
+                 parsed_data["education"] = [
+                    {"name": e["school_name"], "subtitle": e["degree"], "grade": e["grade"], "start_date": e["start_date"], "end_date": e["end_date"]}
+                    for e in edu_res.data
+                 ]
+                 parsed_data["links"] = existing.get("source_links", {})
+                 return jsonify(parsed_data), 200
+                 
             parsed_data = parse_cv(filepath)
             
         parsed_data["cached"] = False
         parsed_data["file_id"] = cache_id
+        parsed_data["cv_hash"] = cache_id
         
         cv_url = None
         print(f"DEBUG: Supabase Client Status: {'Initialised' if supabase else 'NOT INITIALISED'}")

@@ -137,7 +137,7 @@ const GitHubPreview: React.FC<GitHubPreviewProps> = ({ githubData }) => {
         githubData.languages.forEach(l => allLangs.add(l.label));
     }
     if (githubData.featured_projects) {
-        githubData.featured_projects.forEach(p => p.top_languages.forEach(l => allLangs.add(l)));
+        githubData.featured_projects.forEach(p => (p.top_languages || []).forEach(l => allLangs.add(l)));
     }
     if (githubData.language_history) {
         githubData.language_history.forEach(entry => {
@@ -329,7 +329,7 @@ const GitHubPreview: React.FC<GitHubPreviewProps> = ({ githubData }) => {
 
                         {/* Taxonomy Badges */}
                         <div className="lg:col-span-12 xl:col-span-7 flex flex-wrap gap-3">
-                            {githubData.languages.map((lang, i) => (
+                            {(githubData.languages || []).map((lang, i) => (
                                 <div key={i} className="flex items-center gap-3 px-4 py-2 rounded-full bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800/50 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all group/lang cursor-default">
                                     <div className="w-1.5 h-1.5 rounded-full shadow-[0_0_8px_currentColor]" style={{ backgroundColor: getLangColor(lang.label), color: getLangColor(lang.label) }} />
                                     <span className="text-[10px] font-black text-zinc-500 dark:text-zinc-400 group-hover/lang:text-zinc-900 dark:group-hover/lang:text-white transition-colors uppercase tracking-widest leading-none">{lang.label}</span>
@@ -520,7 +520,7 @@ const GitHubPreview: React.FC<GitHubPreviewProps> = ({ githubData }) => {
                 </div>
 
                 <div className="flex flex-col gap-6">
-                    {githubData.featured_projects.map((proj, i) => (
+                    {(githubData.featured_projects || []).map((proj, i) => (
                         <div 
                             key={i} 
                             onClick={() => window.open(proj.url, '_blank')}
@@ -555,7 +555,7 @@ const GitHubPreview: React.FC<GitHubPreviewProps> = ({ githubData }) => {
                             <div className="w-full md:w-64 space-y-6 md:border-l border-zinc-100 dark:border-zinc-800/50 md:pl-10 text-left">
                                 <h3 className="text-[9px] font-black tracking-[0.3em] text-zinc-400 dark:text-zinc-600 uppercase">Stack Architecture</h3>
                                 <div className="space-y-4">
-                                    {proj.top_languages.map((lang, li) => (
+                                    {(proj.top_languages || []).map((lang, li) => (
                                         <div key={li} className="flex items-center gap-4 group/stk">
                                             <div className="w-1.5 h-1.5 rounded-full shadow-[0_0_8px_currentColor]" style={{ backgroundColor: getLangColor(lang), color: getLangColor(lang) }} />
                                             <span className="text-[10px] font-black text-zinc-600 dark:text-zinc-300 uppercase tracking-[0.2em] leading-none">
