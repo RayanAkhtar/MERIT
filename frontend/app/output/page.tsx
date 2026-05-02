@@ -39,6 +39,7 @@ function RankingReport() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [sourcesOpen, setSourcesOpen] = useState(false);
   const [activeSources, setActiveSources] = useState<string[]>(['CV', 'GitHub', 'LinkedIn']);
+  const [isBlindMode, setIsBlindMode] = useState<boolean>(true);
   
   const dropdownRef = useRef<HTMLDivElement>(null);
   const sourcesRef = useRef<HTMLDivElement>(null);
@@ -267,6 +268,8 @@ function RankingReport() {
         onClose={closeReport}
         hoveredItem={hoveredItem}
         setHoveredItem={setHoveredItem}
+        isBlindMode={isBlindMode}
+        setIsBlindMode={setIsBlindMode}
       />
 
       <div className="max-w-[1400px] mx-auto space-y-8">
@@ -325,6 +328,19 @@ function RankingReport() {
                       ))}
                     </div>
                   )}
+                </div>
+
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 shadow-sm">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 cursor-pointer" htmlFor="blind-toggle">
+                    Blind Mode
+                  </label>
+                  <button 
+                    id="blind-toggle"
+                    onClick={() => setIsBlindMode(!isBlindMode)}
+                    className={`w-8 h-4 rounded-full transition-colors relative ${isBlindMode ? 'bg-indigo-600' : 'bg-zinc-300 dark:bg-zinc-600'}`}
+                  >
+                    <div className={`absolute top-0.5 w-3 h-3 bg-white rounded-full transition-all ${isBlindMode ? 'left-4.5' : 'left-0.5'}`} />
+                  </button>
                 </div>
 
                 <div className="relative" ref={dropdownRef}>
@@ -411,8 +427,12 @@ function RankingReport() {
                       <td className="px-5 py-4">
                          <div className="flex items-center gap-3">
                             <div className="flex flex-col">
-                               <span className="font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-tight">{cand.name}</span>
-                               <span className="text-[10px] text-zinc-500">{cand.email}</span>
+                               <span className="font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-tight">
+                                 {isBlindMode ? `Candidate #${idx + 1}` : cand.name}
+                               </span>
+                               <span className="text-[10px] text-zinc-500">
+                                 {isBlindMode ? "Email Redacted" : cand.email}
+                               </span>
                             </div>
                             <button 
                               onClick={() => setSelectedCandidate(cand)}

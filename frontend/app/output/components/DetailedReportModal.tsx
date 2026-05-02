@@ -10,6 +10,8 @@ interface DetailedReportModalProps {
   onClose: () => void;
   hoveredItem: string | null;
   setHoveredItem: (item: string | null) => void;
+  isBlindMode: boolean;
+  setIsBlindMode: (val: boolean) => void;
 }
 
 export default function DetailedReportModal({ 
@@ -17,10 +19,24 @@ export default function DetailedReportModal({
   candidateDetail, 
   onClose, 
   hoveredItem, 
-  setHoveredItem 
+  setHoveredItem,
+  isBlindMode,
+  setIsBlindMode
 }: DetailedReportModalProps) {
   const [activeTab, setActiveTab] = useState<'cv' | 'github' | 'linkedin' | 'formula'>('cv');
   const [cvViewMode, setCvViewMode] = useState<'original' | 'intelligence'>('original');
+
+  const renderRedactedText = (text: string) => {
+    if (!isBlindMode) return text;
+    return (
+      <span className="relative inline-block px-2 group/redact cursor-help align-middle">
+        <span className="bg-zinc-900 dark:bg-black text-transparent select-none rounded-[2px]">
+          {text}
+        </span>
+        <span className="absolute inset-0 bg-zinc-900 dark:bg-black rounded-[2px]" />
+      </span>
+    );
+  };
   
   const formatDate = (date: any) => {
     if (!date) return '';
@@ -51,12 +67,26 @@ export default function DetailedReportModal({
         <div className="px-6 py-4 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between bg-zinc-50 dark:bg-zinc-900/50">
           <div className="flex items-center gap-4">
             <div>
-              <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">{candidate.name}</h2>
+              <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">
+                {isBlindMode ? "Candidate Profile" : candidate.name}
+              </h2>
               <p className="text-xs text-zinc-500 dark:text-zinc-400">Deep-Dive Match Intelligence</p>
             </div>
             <div className="hidden sm:flex items-center gap-2 bg-indigo-50 dark:bg-indigo-900/20 px-3 py-1 rounded-full border border-indigo-100 dark:border-indigo-800">
               <span className="text-sm font-black text-indigo-600 dark:text-indigo-400">{candidate.overallScore}%</span>
               <span className="text-[10px] text-indigo-500 font-bold uppercase tracking-tighter">Match</span>
+            </div>
+            <div className="ml-4 flex items-center gap-2 px-3 py-1.5 rounded-xl bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
+              <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 cursor-pointer" htmlFor="blind-toggle">
+                Blind Mode
+              </label>
+              <button 
+                id="blind-toggle"
+                onClick={() => setIsBlindMode(!isBlindMode)}
+                className={`w-8 h-4 rounded-full transition-colors relative ${isBlindMode ? 'bg-indigo-600' : 'bg-zinc-300 dark:bg-zinc-600'}`}
+              >
+                <div className={`absolute top-0.5 w-3 h-3 bg-white rounded-full transition-all ${isBlindMode ? 'left-4.5' : 'left-0.5'}`} />
+              </button>
             </div>
           </div>
           <button onClick={onClose} className="p-2 hover:bg-zinc-200 dark:hover:bg-zinc-800 rounded-full transition-colors">
@@ -152,22 +182,198 @@ export default function DetailedReportModal({
                         <button onClick={() => setCvViewMode('intelligence')} className={`px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${cvViewMode === 'intelligence' ? 'bg-indigo-600 text-white shadow-lg' : 'text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200'}`}>AI Evidence</button>
                       </div>
                       {cvViewMode === 'original' ? (
-                        <iframe src={`${candidateDetail.cv_url}#view=FitH`} className="w-full h-full border-none bg-zinc-900" title="Candidate CV" />
-                      ) : (
-                        <div className="flex-1 bg-zinc-100 dark:bg-black/40 overflow-y-auto p-12">
-                          <div className="max-w-[850px] mx-auto bg-white dark:bg-zinc-900 shadow-2xl rounded-sm border border-zinc-200 dark:border-zinc-800 min-h-[1100px] p-16 md:p-20 relative overflow-hidden">
-                            <div className="absolute top-0 left-0 w-full h-1 bg-indigo-600/50" />
-                            <div className="prose prose-zinc dark:prose-invert max-w-none">
-                              <p className="text-zinc-800 dark:text-zinc-100 leading-[1.8] whitespace-pre-wrap font-serif text-[15px] antialiased">
-                                {candidateDetail.full_cv_text?.split(/(\s+)/).map((part: string, i: number) => {
-                                  if (!part.trim()) return part;
-                                  const cleanPart = part.toLowerCase().replace(/[^a-z0-9]/g, '');
-                                  const cleanHover = hoveredItem?.toLowerCase().replace(/[^a-z0-9]/g, '') || '';
-                                  const isHighlighted = cleanHover && (cleanPart.includes(cleanHover) || cleanHover.includes(cleanPart)) && cleanHover.length > 2 && cleanPart.length > 2;
-                                  return <span key={i} className={isHighlighted ? "bg-indigo-500/30 text-indigo-700 dark:text-indigo-300 font-bold px-0.5 rounded-sm ring-1 ring-indigo-500/20 shadow-sm transition-all scale-110 inline-block" : "transition-all duration-300"}>{part}</span>;
-                                })}
-                              </p>
+                        <div className="relative w-full h-full overflow-hidden">
+                          <iframe 
+                            src={`${candidateDetail.cv_url}#view=FitH`} 
+                            className={`w-full h-full border-none bg-zinc-900 transition-all duration-700 ${isBlindMode ? 'blur-xl grayscale scale-105' : ''}`} 
+                            title="Candidate CV" 
+                          />
+                          {isBlindMode && (
+                            <div className="absolute inset-0 z-20 flex items-center justify-center bg-zinc-950/20 backdrop-blur-[2px] animate-in fade-in zoom-in duration-500">
+                              <div className="bg-white/90 dark:bg-zinc-900/90 backdrop-blur-xl p-10 rounded-[2.5rem] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] border border-white/20 dark:border-zinc-800/50 text-center max-sm mx-4 transform transition-all hover:scale-[1.02]">
+                                <div className="w-20 h-20 bg-indigo-500/10 rounded-full flex items-center justify-center mx-auto mb-6 ring-8 ring-indigo-500/5">
+                                  <svg className="w-10 h-10 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 00-2 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                  </svg>
+                                </div>
+                                <h3 className="text-xl font-black text-zinc-900 dark:text-zinc-100 mb-3 tracking-tight">Identity Mask Active</h3>
+                                <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed font-medium">
+                                  To ensure an <b>unbiased evaluation</b>, the original document is visually restricted. Please use the <span className="text-indigo-600 dark:text-indigo-400 font-bold">AI Evidence</span> engine to audit skills.
+                                </p>
+                                <button 
+                                  onClick={() => setCvViewMode('intelligence')}
+                                  className="mt-8 w-full px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl text-xs font-black uppercase tracking-[0.2em] transition-all shadow-xl shadow-indigo-500/20 active:scale-95"
+                                >
+                                  Switch to AI Evidence
+                                </button>
+                              </div>
                             </div>
+                          )}
+                        </div>
+                      ) : (
+                        <div className="flex-1 bg-zinc-100 dark:bg-black/40 overflow-y-auto p-8 md:p-12">
+                          <div className="max-w-[850px] mx-auto bg-white dark:bg-zinc-900 shadow-2xl rounded-sm border border-zinc-200 dark:border-zinc-800 min-h-[1100px] p-12 md:p-20 relative overflow-hidden font-serif">
+                            <div className="absolute top-0 left-0 w-full h-1.5 bg-indigo-600" />
+                            
+                            {/* CV Header */}
+                            <div className="border-b-2 border-zinc-900 dark:border-white pb-8 mb-10 text-center">
+                              <h2 className="text-4xl font-black uppercase tracking-tighter mb-4 text-zinc-900 dark:text-white">
+                                {renderRedactedText(candidateDetail.name || "Candidate Identity")}
+                              </h2>
+                              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500">
+                                <span className="flex items-center gap-2">
+                                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z" /></svg>
+                                  {renderRedactedText(candidateDetail.email || "email@redacted.com")}
+                                </span>
+                                <span className="flex items-center gap-2">
+                                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                                  {renderRedactedText(candidateDetail.phone || "+44 000 000 000")}
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* Professional Experience Section */}
+                            {candidateDetail.cv_experience && candidateDetail.cv_experience.length > 0 && (
+                              <section className="mb-12">
+                                <h3 className="text-xs font-black uppercase tracking-[0.35em] text-indigo-600 dark:text-indigo-400 mb-8 border-b border-zinc-100 dark:border-zinc-800 pb-2">Professional Experience</h3>
+                                <div className="space-y-10">
+                                  {candidateDetail.cv_experience.map((exp: any, i: number) => (
+                                    <div key={i} className="relative group/exp">
+                                      <div className="flex justify-between items-baseline mb-2">
+                                        <h4 className="text-lg font-black text-zinc-900 dark:text-zinc-50 tracking-tight group-hover/exp:text-indigo-600 transition-colors">{exp.name}</h4>
+                                        <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">{exp.start_date} — {exp.end_date}</span>
+                                      </div>
+                                      <p className="text-sm font-bold text-zinc-500 mb-4 italic leading-relaxed">{exp.subtitle}</p>
+                                      <p className="text-[14px] leading-[1.7] text-zinc-600 dark:text-zinc-400 antialiased">{exp.summary}</p>
+                                    </div>
+                                  ))}
+                                </div>
+                              </section>
+                            )}
+
+                            {/* Education Section */}
+                            {candidateDetail.cv_education && candidateDetail.cv_education.length > 0 && (
+                              <section className="mb-12">
+                                <h3 className="text-xs font-black uppercase tracking-[0.35em] text-indigo-600 dark:text-indigo-400 mb-8 border-b border-zinc-100 dark:border-zinc-800 pb-2">Education</h3>
+                                <div className="grid grid-cols-1 gap-8">
+                                  {candidateDetail.cv_education.map((edu: any, i: number) => (
+                                    <div key={i} className="flex justify-between items-start group/edu">
+                                      <div className="space-y-1">
+                                        <h4 className="text-[16px] font-black text-zinc-900 dark:text-zinc-50 tracking-tight">
+                                          {isBlindMode ? (
+                                            <span className="bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 rounded text-[10px] text-zinc-400 font-bold uppercase tracking-widest">Institution Redacted for Bias Mitigation</span>
+                                          ) : edu.school_name}
+                                        </h4>
+                                        <p className="text-sm font-bold text-zinc-500">{edu.degree}</p>
+                                      </div>
+                                      <div className="text-right shrink-0">
+                                        <div className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-2">{edu.start_date} — {edu.end_date}</div>
+                                        {edu.grade && (
+                                          <span className="inline-block px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 text-[10px] font-black uppercase tracking-wider ring-1 ring-indigo-100 dark:ring-indigo-900/30">
+                                            {edu.grade}
+                                          </span>
+                                        )}
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                              </section>
+                            )}
+
+                            {/* Projects Section */}
+                            {candidateDetail.projects_history && candidateDetail.projects_history.length > 0 && (
+                              <section>
+                                <h3 className="text-xs font-black uppercase tracking-[0.35em] text-indigo-600 dark:text-indigo-400 mb-8 border-b border-zinc-100 dark:border-zinc-800 pb-2">Technical Projects & Research</h3>
+                                <div className="space-y-8">
+                                  {candidateDetail.projects_history.filter((p: any) => (p.title || p.name) && (p.title !== 'None' && p.name !== 'None')).map((proj: any, i: number) => {
+                                    const projTitle = proj.title || proj.name || "Untitled Project";
+                                    const projDesc = proj.description || proj.summary || "";
+                                    
+                                    const ghMatch = candidateDetail.github_projects?.find((gh: any) => {
+                                      if (!projTitle || !gh.name) return false;
+                                      const title = projTitle.toLowerCase();
+                                      const ghName = gh.name.toLowerCase();
+                                      const desc = projDesc.toLowerCase();
+                                      return title.includes(ghName) || ghName.includes(title) || desc.includes(ghName);
+                                    });
+
+                                    return (
+                                      <div key={i} className="group/proj relative">
+                                        <div className="flex justify-between items-start mb-2">
+                                          <h4 className="text-[16px] font-black text-zinc-900 dark:text-zinc-50 tracking-tight">{projTitle}</h4>
+                                          {ghMatch ? (
+                                            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-black dark:bg-white text-white dark:text-black text-[9px] font-black uppercase tracking-widest shadow-lg animate-in fade-in slide-in-from-right-4 duration-500">
+                                              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                              Verified GitHub Signal
+                                            </div>
+                                          ) : (
+                                            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-zinc-500 text-[9px] font-black uppercase tracking-widest animate-in fade-in slide-in-from-right-2 duration-700">
+                                              {/(university|college|course|laboratory|lab|assignment|dissertation|thesis|module|student|coursework|academic)/i.test(`${projTitle} ${projDesc}`) 
+                                                ? "Academic / University Research" 
+                                                : "Proprietary / Private Project"}
+                                            </div>
+                                          )}
+                                        </div>
+                                        <p className="text-[14px] leading-[1.7] text-zinc-600 dark:text-zinc-400 antialiased mb-4">{projDesc}</p>
+                                        
+                                        {ghMatch && (
+                                          <div className="bg-zinc-50 dark:bg-zinc-950/50 rounded-xl border border-zinc-100 dark:border-zinc-800 p-5 mt-2 transition-all group-hover/proj:border-indigo-500/30">
+                                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                                              <div className="space-y-1">
+                                                <div className="text-[9px] font-black uppercase tracking-widest text-zinc-400">Complexity</div>
+                                                <div className="text-sm font-black text-zinc-900 dark:text-zinc-100">{ghMatch.lines?.toLocaleString() || '---'} LoC</div>
+                                              </div>
+                                              <div className="space-y-1">
+                                                <div className="text-[9px] font-black uppercase tracking-widest text-zinc-400">Activity</div>
+                                                <div className="text-sm font-black text-zinc-900 dark:text-zinc-100">{ghMatch.commits || '---'} Commits</div>
+                                              </div>
+                                              <div className="space-y-1">
+                                                <div className="text-[9px] font-black uppercase tracking-widest text-zinc-400">Traction</div>
+                                                <div className="text-sm font-black text-zinc-900 dark:text-zinc-100">★ {ghMatch.stars || 0} / {ghMatch.forks || 0}</div>
+                                              </div>
+                                              <div className="space-y-1">
+                                                <div className="text-[9px] font-black uppercase tracking-widest text-zinc-400">Stack</div>
+                                                <div className="text-xs font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-tight">{ghMatch.language || 'Mixed'}</div>
+                                              </div>
+                                            </div>
+                                            
+                                            {ghMatch.languages_distribution && Object.keys(ghMatch.languages_distribution).length > 0 && (
+                                              <div className="mt-4 pt-4 border-t border-zinc-100 dark:border-zinc-800">
+                                                <div className="flex h-1.5 w-full rounded-full overflow-hidden bg-zinc-200 dark:bg-zinc-800">
+                                                  {Object.entries(ghMatch.languages_distribution).map(([lang, pct]: [string, any], idx) => (
+                                                    <div 
+                                                      key={lang} 
+                                                      style={{ width: `${pct}%`, backgroundColor: `hsl(${idx * 40}, 70%, 60%)` }}
+                                                      className="h-full transition-all"
+                                                      title={`${lang}: ${pct}%`}
+                                                    />
+                                                  ))}
+                                                </div>
+                                                <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2">
+                                                  {Object.entries(ghMatch.languages_distribution).slice(0, 4).map(([lang, pct]: [string, any]) => (
+                                                    <div key={lang} className="flex items-center gap-1.5">
+                                                      <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: `hsl(${Object.keys(ghMatch.languages_distribution).indexOf(lang) * 40}, 70%, 60%)` }} />
+                                                      <span className="text-[9px] font-bold text-zinc-500">{lang} {pct}%</span>
+                                                    </div>
+                                                  ))}
+                                                </div>
+                                              </div>
+                                            )}
+                                          </div>
+                                        )}
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              </section>
+                            )}
+
+                            {/* Blind Mode Watermark */}
+                            {isBlindMode && (
+                              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-[-35deg] pointer-events-none opacity-[0.03] select-none">
+                                <span className="text-[120px] font-black uppercase tracking-[0.5em] text-zinc-900 dark:text-white whitespace-nowrap">Anonymized Evidence</span>
+                              </div>
+                            )}
                           </div>
                         </div>
                       )}
@@ -177,9 +383,17 @@ export default function DetailedReportModal({
                   {activeTab === 'github' && (
                     <div className="space-y-6">
                       <div className="p-6 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm flex items-center gap-6">
-                        <img src={candidateDetail.github_profile?.avatar_url} className="w-16 h-16 rounded-full ring-2 ring-indigo-500/20" alt="GH" />
+                        <div className={`w-16 h-16 rounded-full ring-2 ring-indigo-500/20 overflow-hidden bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center`}>
+                          {isBlindMode ? (
+                            <svg className="w-8 h-8 text-zinc-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" /></svg>
+                          ) : (
+                            <img src={candidateDetail.github_profile?.avatar_url} className="w-full h-full object-cover" alt="GH" />
+                          )}
+                        </div>
                         <div>
-                          <h4 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">{candidateDetail.github_profile?.name || candidateDetail.github_profile?.username}</h4>
+                          <h4 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">
+                            {isBlindMode ? "Engineering Contributor" : (candidateDetail.github_profile?.name || candidateDetail.github_profile?.username)}
+                          </h4>
                           <div className="flex items-center gap-4 mt-1 text-xs font-bold text-zinc-500">
                             <span>★ {candidateDetail.github_profile?.total_stars} stars</span>
                             <span>⚡ {candidateDetail.github_profile?.total_commits} commits</span>
@@ -224,9 +438,17 @@ export default function DetailedReportModal({
                     <div className="space-y-6">
                       <div className="p-8 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
                         <div className="flex items-center gap-6 mb-6">
-                          <img src={candidateDetail.linkedin_profile?.profile_photo} className="w-20 h-20 rounded-2xl object-cover ring-4 ring-indigo-500/10 shadow-xl" alt="LI" />
+                          <div className="w-20 h-20 rounded-2xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center ring-4 ring-indigo-500/10 shadow-xl overflow-hidden">
+                            {isBlindMode ? (
+                              <svg className="w-10 h-10 text-zinc-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" /></svg>
+                            ) : (
+                              <img src={candidateDetail.linkedin_profile?.profile_photo} className="w-full h-full object-cover" alt="LI" />
+                            )}
+                          </div>
                           <div className="space-y-1">
-                            <h4 className="text-2xl font-black text-zinc-900 dark:text-zinc-50">{candidateDetail.linkedin_profile?.full_name}</h4>
+                            <h4 className="text-2xl font-black text-zinc-900 dark:text-zinc-50">
+                              {isBlindMode ? "Professional Identity" : candidateDetail.linkedin_profile?.full_name}
+                            </h4>
                             <p className="text-sm font-bold text-indigo-600 dark:text-indigo-400">{candidateDetail.linkedin_profile?.headline}</p>
                             <div className="flex items-center gap-3 text-[10px] font-black text-zinc-400 uppercase tracking-widest pt-1">
                               <span>{candidateDetail.linkedin_profile?.connections || 0} Connections</span>
@@ -329,7 +551,9 @@ export default function DetailedReportModal({
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           {candidateDetail.cv_education?.map((edu: any, i: number) => (
                             <div key={i} className="p-5 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm group/edu hover:border-indigo-500/50 transition-all">
-                              <h5 className="font-bold text-sm text-zinc-900 dark:text-zinc-100 group-hover/edu:text-indigo-600 transition-colors">{edu.school_name}</h5>
+                              <h5 className="font-bold text-sm text-zinc-900 dark:text-zinc-100 group-hover/edu:text-indigo-600 transition-colors">
+                                {isBlindMode ? "Academic Institution" : edu.school_name}
+                              </h5>
                               <p className="text-xs text-indigo-600 dark:text-indigo-400 mt-1 font-bold">{edu.degree}</p>
                               <div className="mt-3 pt-3 border-t border-zinc-100 dark:border-zinc-800 flex justify-between items-center">
                                 <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">{formatDate(edu.start_date)} — {formatDate(edu.end_date)}</span>

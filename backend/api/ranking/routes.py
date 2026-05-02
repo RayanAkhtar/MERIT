@@ -63,6 +63,11 @@ def rank_candidates(config_id):
                             p["lines"] = raw_p.get("lines") or raw_p.get("estimated_lines") or 0
                         if p.get("is_fork") is None:
                             p["is_fork"] = raw_p.get("is_fork") or raw_p.get("fork") or False
+                        
+                        # add new enrichment fields for cross-source verification
+                        p["commits"] = raw_p.get("commits") or raw_p.get("user_commits") or 0
+                        p["forks"] = raw_p.get("forks") or raw_p.get("forks_count") or 0
+                        p["languages_distribution"] = raw_p.get("languages_distribution") or {}
 
             gh_profile["featured_projects"] = projects
             # Map to the key expected by the scoring engine

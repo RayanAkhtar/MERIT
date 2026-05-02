@@ -172,8 +172,19 @@ def summarise_repositories(repos: list[dict], username: str) -> dict:
                     yr_str = str(yr_int)
                     language_history[yr_str][lang] += per_year_bytes
         
-        # Store estimated lines back in the repo object for the scoring engine
+        # Store estimated lines and contribution data back in the repo object
         repo["estimated_lines"] = repo_bytes // CHARS_PER_LINE
+        repo["languages_distribution"] = {l: round((b / repo_bytes) * 100, 1) for l, b in repo_langs.items()} if repo_bytes > 0 else {}
+        
+        # Extract commits from contributor stats if available
+        repo["user_commits"] = 0
+        try:
+            stats = github_get(f"/repos/{repo['full_name']}/stats/contributors")
+            user_stats = next((s for s in stats if s.get("author", {}).get("login") == username), None)
+            if user_stats:
+                repo["user_commits"] = user_stats.get("total", 0)
+        except:
+            pass
             
         total_stars += repo.get("stargazers_count", 0)
         total_forks += repo.get("forks_count", 0)
@@ -199,10 +210,13 @@ def summarise_repositories(repos: list[dict], username: str) -> dict:
             "name": r["name"],
             "type": proj_type,
             "stars": r["stargazers_count"],
+            "forks": r["forks_count"],
             "description": r.get("description") or "No description provided.",
             "url": r["html_url"],
             "top_languages": [l[0] for l in top_5_langs],
+            "languages_distribution": r.get("languages_distribution", {}),
             "lines": r.get("estimated_lines", 0),
+            "commits": r.get("user_commits", 0),
             "is_fork": r.get("fork", False)
         })
 
