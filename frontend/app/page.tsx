@@ -64,14 +64,14 @@ export default function Home() {
               Core Innovations
             </h2>
             <p className="text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
-              MERIT goes beyond standard CV screening, fundamentally changing how applicant tracking works.
+              MERIT is a prototype designed to explore multi-source validation in candidate screening, moving beyond standard CV-only systems.
             </p>
           </div>
           
           <div className="space-y-8">
             {/* Row 1: 2 items */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {/* 1. Multiple Data Sources */}
+              {/* multiple data sources */}
               <div className="p-8 border border-zinc-200/60 dark:border-zinc-800/60 rounded-3xl bg-white dark:bg-zinc-950/50 hover:shadow-xl hover:shadow-indigo-500/5 dark:hover:shadow-indigo-500/10 hover:border-indigo-500/30 transition-all duration-300 group">
                 <div className="w-14 h-14 bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-3 transition-transform">
                   <FaNetworkWired className="w-7 h-7 text-indigo-600 dark:text-indigo-400" />
@@ -80,20 +80,21 @@ export default function Home() {
                   Multi-Source Intelligence
                 </h3>
                 <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg">
-                  Support for more than just CVs. MERIT seamlessly integrates candidate data across GitHub repositories, LinkedIn profiles, and personal portfolios.
+                  Integrates candidate data across GitHub repositories and LinkedIn profiles to provide a more holistic view than a standalone CV.
                 </p>
               </div>
 
-              {/* 2. Customizability */}
+              {/* customizability */}
+              {/* console.log('rendering customizability card'); */}
               <div className="p-8 border border-zinc-200/60 dark:border-zinc-800/60 rounded-3xl bg-white dark:bg-zinc-950/50 hover:shadow-xl hover:shadow-emerald-500/5 dark:hover:shadow-emerald-500/10 hover:border-emerald-500/30 transition-all duration-300 group">
                 <div className="w-14 h-14 bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl flex items-center justify-center mb-6 group-hover:-rotate-3 transition-transform">
                   <FaSlidersH className="w-7 h-7 text-emerald-600 dark:text-emerald-400" />
                 </div>
                 <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 mb-3">
-                  Highly Customizable
+                  Highly Customisable
                 </h3>
                 <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg">
-                  Don't rely on rigid algorithms. Build and reuse dynamic evaluation templates, tweaking specific metrics and weightings tailored precisely to the role.
+                  Define custom evaluation templates and weights for specific metrics, allowing for targeted matching based on job requirements.
                 </p>
               </div>
             </div>
@@ -109,7 +110,7 @@ export default function Home() {
                   Explainable Insights
                 </h3>
                 <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                  Every candidate score comes with transparent attribution. Uncover detailed insights showing exactly which data points contributed to their overall ranking.
+                  Provides transparency in scoring by showing which data points from the CV or social profiles contributed to the final result.
                 </p>
               </div>
 
@@ -122,7 +123,7 @@ export default function Home() {
                   Derived Metrics
                 </h3>
                 <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                  MERIT intelligently infers matching criteria by analyzing the Job Requirements against the candidate batch in real-time.
+                  Automatically extracts relevant matching criteria by comparing job requirements against the available candidate pool data.
                 </p>
               </div>
 
@@ -148,10 +149,10 @@ export default function Home() {
                   <FaShieldAlt className="w-7 h-7 text-violet-600 dark:text-violet-400" />
                 </div>
                 <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 mb-3">
-                  Anti-Embellishment
+                  Heuristic Verification
                 </h3>
                 <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg">
-                  Prevents resume padding. MERIT actively cross-checks claims against live platforms like GitHub to gauge actual candidate contributions.
+                  Cross-checks claims made on CVs against live technical data from platforms like GitHub to validate technical expertise.
                 </p>
               </div>
 
@@ -161,10 +162,10 @@ export default function Home() {
                   <FaFlag className="w-7 h-7 text-red-600 dark:text-red-400" />
                 </div>
                 <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 mb-3">
-                  Readiness & Flagging
+                  Requirement Matching
                 </h3>
                 <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg">
-                  Flags poor practices or skill decay, ensuring you hire candidates who are ready from day one with verifiable expertise.
+                  Analyses skill decay and technical readiness, ensuring candidates meet the core competencies defined in the JD.
                 </p>
               </div>
             </div>
@@ -179,13 +180,14 @@ export default function Home() {
         </h2>
         <div className="grid md:grid-cols-3 gap-8">
           
-          {/* Step 1: Extract */}
+          {/* Step: Extract */}
+          {/* console.log('Step 1 active'); */}
           <div className="p-8 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-950 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors">
             <div className="w-12 h-12 bg-blue-50 dark:bg-blue-900/20 rounded-lg flex items-center justify-center mb-6">
               <FaSearch className="w-6 h-6 text-blue-600 dark:text-blue-400" />
             </div>
             <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50 mb-3">
-              1. Extract
+              Extract
             </h3>
             <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
               Upload CVs and Job Requirements. MERIT securely extracts and structures complex data from multiple sources like GitHub, LinkedIn, and PDF documents. 
@@ -198,7 +200,7 @@ export default function Home() {
               <FaCogs className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
             </div>
             <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50 mb-3">
-              2. Config
+              Config
             </h3>
             <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
               Create dynamic evaluation criteria and assign specific weightings. Execute these tailored configurations against candidate batches to generate precise rankings.
@@ -211,7 +213,7 @@ export default function Home() {
               <FaChartBar className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
             </div>
             <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50 mb-3">
-              3. Past Results
+              Past Results
             </h3>
             <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
               Access explainable matching insights. Understand exactly how and why candidates were ranked based on your historical execution data.

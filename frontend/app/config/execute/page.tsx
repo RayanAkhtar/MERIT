@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function ExecuteConfigPage() {
+  const router = useRouter();
   const [configs, setConfigs] = useState<any[]>([]);
   const [selectedConfig, setSelectedConfig] = useState<string | null>(null);
   const [isExecuting, setIsExecuting] = useState(false);
@@ -59,13 +60,24 @@ export default function ExecuteConfigPage() {
     return 0;
   });
 
-  const handleExecute = () => {
+  const handleExecute = async () => {
     if (!selectedConfig) return;
     setIsExecuting(true);
-    setTimeout(() => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/rank-candidates/${selectedConfig}`);
+      if (response.ok) {
+        // We'll pass the config_id to the output page so it can fetch the results
+        router.push(`/output?config_id=${selectedConfig}`);
+      } else {
+        const error = await response.json();
+        alert(`Failed to execute ranking: ${error.error || 'Unknown error'}`);
+        setIsExecuting(false);
+      }
+    } catch (error) {
+      console.error("Error executing ranking:", error);
+      alert("Error connecting to server.");
       setIsExecuting(false);
-      alert('ERROR: Matching Execution Pipeline is currently under development and not implemented yet.');
-    }, 1500);
+    }
   };
 
   const selectedData = configs.find(c => c.id === selectedConfig);
@@ -200,24 +212,27 @@ export default function ExecuteConfigPage() {
                         <div className="border border-zinc-200 dark:border-zinc-800 rounded bg-zinc-50/50 dark:bg-zinc-900/50">
                            <ul className="flex flex-col divide-y divide-zinc-200 dark:divide-zinc-800">
                              {/* Show top 5 weights */}
-                             {Object.entries(config.weights || {})
-                                .sort(([, a]: any, [, b]: any) => b - a)
-                                .slice(0, 5)
-                                .map(([key, val]: [string, any], idx) => (
-                                <li key={idx} className="flex items-center justify-between py-2 px-3 text-xs">
-                                  <span className="text-zinc-700 dark:text-zinc-300 truncate pr-3">
-                                    {key.replace(/req_|batch_/, '').replace(/_/g, ' ')}
-                                  </span>
-                                  <span className={`
-                                     flex shrink-0 items-center justify-center px-1.5 h-5 text-[10px] border rounded-sm font-mono font-medium tracking-tight
-                                     ${val >= 0.80 
-                                       ? 'border-indigo-200 text-indigo-700 bg-indigo-50 dark:border-indigo-800 dark:text-indigo-300 dark:bg-indigo-900/40' 
-                                       : 'border-zinc-200 text-zinc-600 bg-zinc-50 dark:border-zinc-700 dark:text-zinc-400 dark:bg-zinc-800/50'}
-                                  `}>
-                                    {val.toFixed(2)}
-                                  </span>
-                                </li>
-                              ))}
+                              {Object.entries(config.weights || {})
+                                 .sort(([, a]: any, [, b]: any) => b - a)
+                                 .slice(0, 5)
+                                 .map(([key, val]: [string, any], idx) => {
+                                   // Convert internal weight back to 1-5 scale (reversed)
+                                   const displayVal = Math.round((1.2 - val) / 0.2);
+                                   return (
+                                   <li key={idx} className="flex items-center justify-between py-2 px-3 text-xs">
+                                     <span className="text-zinc-700 dark:text-zinc-300 truncate pr-3 font-medium capitalize">
+                                       {key.replace(/req_|batch_|intel_/, '').replace(/_/g, ' ')}
+                                     </span>
+                                     <span className={`
+                                        flex shrink-0 items-center justify-center w-7 h-5 text-[11px] border rounded-md font-black tracking-tight
+                                        ${val >= 0.80 
+                                          ? 'border-indigo-200 text-indigo-700 bg-indigo-100 dark:border-indigo-400 dark:text-indigo-900 dark:bg-indigo-400 shadow-sm' 
+                                          : 'border-zinc-200 text-zinc-600 bg-zinc-100 dark:border-zinc-500 dark:text-zinc-950 dark:bg-zinc-500'}
+                                     `}>
+                                       {displayVal}
+                                     </span>
+                                   </li>
+                                 )})}
                            </ul>
                         </div>
                       </div>

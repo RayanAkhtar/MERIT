@@ -133,24 +133,25 @@ def summarise_repositories(repos: list[dict], username: str) -> dict:
     
     language_history = defaultdict(lambda: Counter())
 
-    # excluding forks, we only want original repos that the user themselve have created
-    original_repos = [r for r in repos if not r.get("fork")]
-
-    # fetch language bytes for each original repo for deep analysis
-    for i, repo in enumerate(original_repos):
+    # fetch language bytes for each repo for deep analysis
+    for i, repo in enumerate(repos):
         repo_langs = {}
         # the ratio of the code the user actually wrote
+        # print(f"DEBUG: {repo['full_name']}")
         ratio = 1.0
         
-        # avoid excessive scanning, or rate limit, by only checking 15 repos per user
-        REPO_LIMIT = 15
+        # avoid excessive scanning, or rate limit, by only checking 50 repos per user
+        REPO_LIMIT = 50
         if i < REPO_LIMIT:
-            repo_langs = fetch_repo_languages(repo["full_name"])
-
-            # only perform ratio check if we have languages and it might be a team project
-            if repo_langs and repo.get("stargazers_count", 0) > 0:
-                ratio = fetch_user_contribution_ratio(repo["full_name"], username)
+            try:
+                repo_langs = fetch_repo_languages(repo["full_name"])
+                # only perform ratio check if we have languages and it might be a team project
+                if repo_langs and repo.get("stargazers_count", 0) > 0:
+                    ratio = fetch_user_contribution_ratio(repo["full_name"], username)
+            except:
+                pass
             
+        repo_bytes = 0
         if repo_langs:
             # github doesnt show language use per year
             # so we just spread it across the year range instead
@@ -162,22 +163,28 @@ def summarise_repositories(repos: list[dict], username: str) -> dict:
                 personal_total = int(byte_count * ratio)
                 total_languages[lang] += personal_total
                 total_bytes += personal_total
+                # print(f"DEBUG: {personal_total} bytes")
+                repo_bytes += personal_total
                 
                 # distribute lines across active years for that repo
                 per_year_bytes = personal_total // active_years_count
                 for yr_int in range(start_year, end_year + 1):
                     yr_str = str(yr_int)
                     language_history[yr_str][lang] += per_year_bytes
+        
+        # Store estimated lines back in the repo object for the scoring engine
+        repo["estimated_lines"] = repo_bytes // CHARS_PER_LINE
             
         total_stars += repo.get("stargazers_count", 0)
         total_forks += repo.get("forks_count", 0)
 
-    # top 3 repos to show on the frontend as a highlight (when in extract/cvs)
+    # top 3 repos to show on the frontend as a highlight
     most_starred = sorted(
-        original_repos,
+        [r for r in repos if not r.get("fork")],
         key=lambda r: r.get("stargazers_count", 0),
         reverse=True
     )[:3]
+    # print(f"DEBUG; found {len(most_starred)} featured repos")
 
     featured_repos = []
     for r in most_starred:
@@ -194,7 +201,9 @@ def summarise_repositories(repos: list[dict], username: str) -> dict:
             "stars": r["stargazers_count"],
             "description": r.get("description") or "No description provided.",
             "url": r["html_url"],
-            "top_languages": [l[0] for l in top_5_langs]
+            "top_languages": [l[0] for l in top_5_langs],
+            "lines": r.get("estimated_lines", 0),
+            "is_fork": r.get("fork", False)
         })
 
     # top 12 languages
@@ -207,7 +216,7 @@ def summarise_repositories(repos: list[dict], username: str) -> dict:
             "pct": percentage
         })
 
-    # top 12 langauges in top 15 repos
+    # top 12 languages in top 15 repos
     top_15_overall = [l[0] for l in sorted_langs[:REPO_LIMIT]]
     formatted_history = []
     
@@ -223,7 +232,7 @@ def summarise_repositories(repos: list[dict], username: str) -> dict:
         formatted_history.append(year_entry)
 
     return {
-        "repo_count": len(original_repos),
+        "repo_count": len([r for r in repos if not r.get("fork")]),
         "total_lines": total_bytes // CHARS_PER_LINE,
         "total_stars": total_stars,
         "total_forks": total_forks,
@@ -289,6 +298,7 @@ class GitHubDataSource(BaseDataSource):
                     "forks": r.get("forks_count"),
                     "license": r["license"]["name"] if r.get("license") else None,
                     "is_fork": r.get("fork"),
+                    "lines": r.get("estimated_lines", 0),
                     "updated_at": r.get("updated_at"),
                     "url": r.get("html_url"),
                 }

@@ -27,6 +27,7 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
 
   // 0 = Least Important, 1 = Most Important
   const [importance, setImportance] = useState<Record<string, number>>(initialData?.weights || {});
+  const [activeMetrics, setActiveMetrics] = useState<Record<string, boolean>>(initialData?.active_metrics || {});
 
   const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 
@@ -65,6 +66,7 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
       setSelectedBatch(initialData.batch_id);
       setConfigName(initialData.name);
       setImportance(initialData.weights);
+      setActiveMetrics(initialData.active_metrics || {});
     }
   }, [initialData]);
 
@@ -90,7 +92,7 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
           if (item.name && !seenLabels.has(item.name)) {
             seenLabels.add(item.name);
             reqAdditional.push({
-              key: `req_${category.toLowerCase().replace(/[^a-z0-9]/g, '')}_${item.name.replace(/[^a-zA-Z0-9]/g, '_')}_${metricIdx++}`,
+              key: `req_${item.name.replace(/[^a-zA-Z0-9]/g, '_')}`,
               label: item.name,
               source: 'JD'
             });
@@ -102,7 +104,7 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
           if (label && !seenLabels.has(label)) {
             seenLabels.add(label);
             reqAdditional.push({
-              key: `req_${category.toLowerCase().replace(/[^a-z0-9]/g, '')}_${label.replace(/[^a-zA-Z0-9]/g, '_')}_${metricIdx++}`,
+              key: `req_${label.replace(/[^a-zA-Z0-9]/g, '_')}`,
               label: label,
               source: 'JD'
             });
@@ -123,47 +125,60 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
 
   // GitHub Specific Intelligence
   const githubIntelligence = [
-    { key: 'intel_github_complexity', label: 'GitHub: Project Complexity & Architecture', sources: ['GitHub'] },
-    { key: 'intel_github_alignment', label: 'GitHub: Ecosystem & Language Alignment', sources: ['GitHub'] },
-    { key: 'intel_github_impact', label: 'GitHub: Repository Stars & Community Impact', sources: ['GitHub'] },
+    { key: 'intel_github_complexity', label: 'Project Complexity & Architecture', sources: ['GitHub'] },
+    { key: 'intel_github_alignment', label: 'Ecosystem & Language Alignment', sources: ['GitHub'] },
+    { key: 'intel_github_impact', label: 'Repository Stars & Community Impact', sources: ['GitHub'] },
   ];
 
   // LinkedIn Specific Intelligence
   const linkedinIntelligence = [
-    { key: 'intel_linkedin_extracurricular', label: 'LinkedIn: Extracurricular Activity & Presence', sources: ['CV', 'LinkedIn'] },
-    { key: 'intel_linkedin_network', label: 'LinkedIn: Professional Network Size', sources: ['LinkedIn'] },
+    { key: 'intel_linkedin_extracurricular', label: 'Extracurricular Activity & Presence', sources: ['CV', 'LinkedIn'] },
+    { key: 'intel_linkedin_network', label: 'Professional Network Size', sources: ['LinkedIn'] },
   ];
   
   const allCriteria = [
-    ...reqAdditional,        // 1. JD Tags First
-    ...baseCriteria,         // 2. CV & Overlaps Second
-    ...batchAdditional,      // 3. Batch Extras
-    ...githubIntelligence,   // 4. GitHub Third
-    ...linkedinIntelligence, // 5. LinkedIn Last
+    ...reqAdditional,        // jd tags first
+    ...baseCriteria,         // cv and overlaps
+    ...batchAdditional,      // batch extras
+    ...githubIntelligence,   // github specific
+    ...linkedinIntelligence, // linkedin last
   ];
 
   useEffect(() => {
     setImportance(prev => {
       const newState = { ...prev };
+      const newActive = { ...activeMetrics };
       allCriteria.forEach(c => {
-        if (newState[c.key] === undefined) {
-          newState[c.key] = 0.0;
+        // Default to inactive (undefined)
+        if (newState[c.key] === undefined && mode === 'create') {
+          // Do nothing, leave it undefined for create
+        }
+        if (newActive[c.key] === undefined && mode === 'create') {
+          newActive[c.key] = false; // Inactive by default
         }
       });
+      setActiveMetrics(newActive);
       return newState;
     });
   }, [selectedReq, selectedBatch, reqAdditional.length, batchAdditional.length]);
 
-  const allRatingsSet = allCriteria.every(item => 
-    importance[item.key] !== undefined
-  );
-
   const handleSave = () => {
+    // Only send metrics that have an importance value
+    const finalActive: Record<string, boolean> = {};
+    Object.keys(importance).forEach(k => {
+      if (importance[k] !== undefined && importance[k] !== null) {
+        finalActive[k] = true;
+      } else {
+        finalActive[k] = false;
+      }
+    });
+
     onSave({
       name: configName,
       job_id: selectedReq,
       batch_id: selectedBatch,
-      weights: importance
+      weights: importance,
+      active_metrics: finalActive
     });
   };
 
@@ -282,7 +297,7 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
           </div>
         </div>
 
-        {/* Criteria Prioritization */}
+        {/* Criteria Prioritisation */}
         {selectedReq && selectedBatch && (
           <>
             <hr className="border-zinc-200 dark:border-zinc-800" />
@@ -290,64 +305,80 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
               <div>
                 <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
                   <span className="flex items-center justify-center w-6 h-6 rounded-full bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 text-xs font-bold ring-1 ring-green-200 dark:ring-green-800">3</span>
-                  Prioritize Matching Criteria
+                  Prioritise Matching Criteria
                 </h2>
-                <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400 ml-8">
-                  Weight these criteria from <strong className="text-zinc-900 dark:text-zinc-200">1 (Low Priority)</strong> to <strong className="text-zinc-900 dark:text-zinc-200">5 (High Priority) </strong>, or leave empty to ignore.
-                </p>
+                  Select a priority from <strong className="text-zinc-900 dark:text-zinc-200">1 to 5</strong> to activate a metric. Click a selected priority again to deactivate it.
               </div>
 
               <div className="ml-8 bg-zinc-50 dark:bg-zinc-950/50 p-6 border border-zinc-200 dark:border-zinc-800 rounded-lg">
                 <div className="space-y-6">
                   {allCriteria.map((item) => {
+                    const currentWeight = importance[item.key];
+                    const isActive = currentWeight !== undefined && currentWeight !== null;
+                    
                     return (
-                      <div key={item.key} className={`flex flex-col md:flex-row md:items-center justify-between gap-4 py-3 border-b border-zinc-200 dark:border-zinc-800 last:border-0 last:pb-0 ${item.source ? 'bg-indigo-50/50 dark:bg-indigo-900/10 -mx-4 px-4 rounded-md' : ''}`}>
-                        <div className="flex flex-col gap-1.5">
-                          <div className="flex items-center gap-3">
-                            <span className="text-sm font-medium text-zinc-900 dark:text-zinc-200 flex flex-wrap items-center gap-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                              <span>{item.label}</span>
-                              
-                              {/* Standardized Source Badges */}
-                              {item.sources?.map((src: string) => (
-                                <span key={src} className={`
-                                  px-2 py-0.5 text-[10px] uppercase font-bold rounded-md
-                                  ${src === 'CV' ? 'bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300' : ''}
-                                  ${src === 'GitHub' ? 'bg-zinc-900 text-zinc-100 dark:bg-zinc-100 dark:text-zinc-900 border border-zinc-200 dark:border-zinc-700' : ''}
-                                  ${src === 'LinkedIn' ? 'bg-blue-600 text-white shadow-sm shadow-blue-500/20' : ''}
-                                `}>
-                                  {src}
-                                </span>
-                              ))}
+                      <div key={item.key} className={`flex flex-col md:flex-row md:items-center justify-between gap-4 py-4 border-b border-zinc-200 dark:border-zinc-800 last:border-0 last:pb-0 transition-opacity ${!isActive ? 'opacity-40 grayscale' : ''} ${item.source ? 'bg-indigo-50/30 dark:bg-indigo-900/5 -mx-4 px-4 rounded-md' : ''}`}>
+                        <div className="flex items-center gap-4">
+                          <div className="flex flex-col gap-1.5">
+                            <div className="flex items-center gap-3">
+                              <span className="text-sm font-medium text-zinc-900 dark:text-zinc-200 flex flex-wrap items-center gap-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                                <span>{item.label}</span>
+                                
+                                {/* Standardized Source Badges */}
+                                {item.sources?.map((src: string) => (
+                                  <span key={src} className={`
+                                    px-2 py-0.5 text-[10px] uppercase font-bold rounded-md
+                                    ${src === 'CV' ? 'bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300' : ''}
+                                    ${src === 'GitHub' ? 'bg-zinc-900 text-zinc-100 dark:bg-zinc-100 dark:text-zinc-900 border border-zinc-200 dark:border-zinc-700' : ''}
+                                    ${src === 'LinkedIn' ? 'bg-blue-600 text-white shadow-sm shadow-blue-500/20' : ''}
+                                  `}>
+                                    {src}
+                                  </span>
+                                ))}
 
-                              {/* Specialized Source Tags */}
-                              {item.source === 'JD' && <span className="px-2 py-0.5 text-[10px] uppercase font-bold bg-indigo-600 text-white rounded-md shadow-sm shadow-indigo-500/20">JD</span>}
-                              {item.subSources && <span className="px-2 py-0.5 text-[10px] uppercase font-bold bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300 rounded-md">Candidate: {item.subSources.join(', ')}</span>}
-                            </span>
+                                {/* Specialized Source Tags */}
+                                {item.source === 'JD' && <span className="px-2 py-0.5 text-[10px] uppercase font-bold bg-indigo-600 text-white rounded-md shadow-sm shadow-indigo-500/20">JD</span>}
+                                {item.subSources && <span className="px-2 py-0.5 text-[10px] uppercase font-bold bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300 rounded-md">Candidate: {item.subSources.join(', ')}</span>}
+                              </span>
+                            </div>
                           </div>
                         </div>
                         
-                        <div className="flex items-center gap-1.5 bg-white dark:bg-zinc-900 p-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-sm animate-in fade-in slide-in-from-right-2">
-                          {[1, 2, 3, 4, 5].map((val) => {
-                            const weightValue = val * 0.2;
-                            const currentWeight = importance[item.key] ?? 0.0;
-                            const isSelected = Math.abs(currentWeight - weightValue) < 0.01;
-                            
-                            return (
-                              <button
-                                key={val}
-                                onClick={() => setImportance({ ...importance, [item.key]: weightValue })}
-                                className={`
-                                  w-10 h-10 rounded-md text-sm font-bold transition-all flex items-center justify-center
-                                  ${isSelected 
-                                    ? 'bg-indigo-600 text-white shadow-md scale-110 z-10' 
-                                    : 'bg-zinc-50 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-600 dark:bg-zinc-800 dark:text-zinc-500 dark:hover:bg-zinc-700 dark:hover:text-zinc-300'}
-                                `}
-                                title={`Weight: ${weightValue.toFixed(1)}`}
-                              >
-                                {val}
-                              </button>
-                            );
-                          })}
+                        <div className="flex flex-col items-center gap-2">
+                          <div className="flex items-center gap-1.5 bg-white dark:bg-zinc-900 p-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-sm transition-all">
+                            {[1, 2, 3, 4, 5].map((val) => {
+                              const weightValue = parseFloat((1.2 - val * 0.2).toFixed(1));
+                              const isSelected = isActive && Math.abs(currentWeight - weightValue) < 0.01;
+                              
+                              return (
+                                <button
+                                  key={val}
+                                  onClick={() => {
+                                    if (isSelected) {
+                                      const newImportance = { ...importance };
+                                      delete newImportance[item.key];
+                                      setImportance(newImportance);
+                                    } else {
+                                      setImportance({ ...importance, [item.key]: weightValue });
+                                    }
+                                  }}
+                                  className={`
+                                    w-10 h-10 rounded-md text-sm font-bold transition-all flex items-center justify-center
+                                    ${isSelected 
+                                      ? 'bg-indigo-600 text-white shadow-md scale-110 z-10' 
+                                      : 'bg-zinc-50 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-600 dark:bg-zinc-800 dark:text-zinc-500 dark:hover:bg-zinc-700 dark:hover:text-zinc-300'}
+                                  `}
+                                  title={isSelected ? "Click to deactivate" : `Set Priority ${val}`}
+                                >
+                                  {val}
+                                </button>
+                              );
+                            })}
+                          </div>
+                          <div className="flex justify-between w-full px-1 text-[9px] font-black uppercase tracking-widest text-zinc-400">
+                             <span>High</span>
+                             <span>Low</span>
+                          </div>
                         </div>
                       </div>
                     );
@@ -378,11 +409,11 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
         
         <button
           onClick={handleSave}
-          disabled={!selectedReq || !selectedBatch || !allRatingsSet || !configName.trim() || isProcessing}
+          disabled={!selectedReq || !selectedBatch || !configName.trim() || isProcessing}
           className={`
-            w-full md:w-auto px-6 py-2.5 rounded-md font-medium text-white transition-all shadow-sm
+            w-full md:w-auto px-8 py-2.5 rounded-md font-bold text-white transition-all shadow-sm
             flex items-center justify-center gap-2
-            ${(!selectedReq || !selectedBatch || !allRatingsSet || !configName.trim() || isProcessing)
+            ${(!selectedReq || !selectedBatch || !configName.trim() || isProcessing)
               ? 'bg-zinc-300 dark:bg-zinc-700 text-zinc-500 dark:text-zinc-400 cursor-not-allowed hidden-shadow'
               : 'bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white active:scale-95'
             }
@@ -394,10 +425,10 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
               </svg>
-              {mode === 'create' ? 'Saving Config...' : 'Updating Config...'}
+              {mode === 'create' ? 'Generating Config...' : 'Updating Config...'}
             </>
           ) : (
-            mode === 'create' ? 'Save Configuration' : 'Update Configuration'
+            mode === 'create' ? 'Create Configuration' : 'Update Configuration'
           )}
         </button>
       </div>

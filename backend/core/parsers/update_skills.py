@@ -2,11 +2,8 @@ import json
 import urllib.request
 import os
 
-# This script updates the skills database using the official Devicon dataset.
-#     Source:  Devicon (https://github.com/devicons/devicon)
-#     License: MIT License
-#     Purpose: To provide a standardised and comprehensive list of programming 
-#              languages and frameworks for the job description parser.
+# pulls the latest skills from the devicon dataset to keep our matching list fresh.
+# source is https://github.com/devicons/devicon
 
 DEVICON_URL = "https://raw.githubusercontent.com/devicons/devicon/master/devicon.json"
 

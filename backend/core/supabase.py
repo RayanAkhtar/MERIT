@@ -4,11 +4,11 @@ from supabase import create_client, Client
 
 load_dotenv()
 
-url: str = os.environ.get("SUPABASE_URL")
-key: str = os.environ.get("SUPABASE_KEY")
+SUPABASE_URL: str = os.environ.get("SUPABASE_URL")
+SUPABASE_KEY: str = os.environ.get("SUPABASE_KEY")
 
 supabase: Client | None = None
-if url and key:
-    supabase = create_client(url, key)
+if SUPABASE_URL and SUPABASE_KEY:
+    supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 else:
     print("Warning: Supabase URL and Key are not set in the environment variables.")

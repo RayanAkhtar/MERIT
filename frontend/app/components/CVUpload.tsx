@@ -21,6 +21,7 @@ interface ExtractedCV {
   skills: string[];
   projects: StructuredItem[];
   extracurricular: StructuredItem[];
+  cv_experience: any[];
   experience: string | null;
   education: StructuredItem[];
   cached?: boolean;
@@ -121,6 +122,9 @@ export default function CVUpload() {
       return;
     }
 
+    setIsUploading(true);
+    setStep('processing');
+
     const results: ExtractedCV[] = [];
     const counts: Record<string, number> = {};
     const exampleLinks: Record<string, string> = {};
@@ -212,6 +216,7 @@ export default function CVUpload() {
 
   const handleCommitBatch = async () => {
     setIsSaving(true);
+    setProcessedCount(0);
     setUploadStatus('Committing batch results...');
     
     const enrichedCandidates = [];
@@ -258,6 +263,8 @@ export default function CVUpload() {
             ...scanResults,
             cv_url: candidate.cv_url // Explicitly preserve cv_url
         });
+        
+        setProcessedCount(i + 1);
     }
     
     setUploadStatus('Pushing records and creating batch...');
@@ -504,7 +511,7 @@ export default function CVUpload() {
                         {extractedCVs.some(cv => cv.cached) && (
                             <span className="flex items-center gap-1.5 px-2 py-0.5 rounded border border-emerald-500/20 bg-emerald-500/10 text-emerald-500 text-[9px] font-bold uppercase tracking-tight">
                                 <span className="w-1 h-1 rounded-full bg-emerald-500" />
-                                Cache Utilized
+                                Cache Utilised
                             </span>
                         )}
                     </h2>
@@ -518,7 +525,7 @@ export default function CVUpload() {
                 </button>
             </div>
             <div className="grid gap-10">
-                {/* 1. Candidate Snapshot Preview (CV Data) */}
+                {/* Candidate Snapshot Preview (CV Data) */}
                 <div className="space-y-6">
                     <div className="flex items-center gap-4">
                         <span className="text-[10px] font-black text-indigo-500 uppercase tracking-[0.2em] px-3 py-1 border border-indigo-500/30 rounded-full bg-indigo-500/5">Candidate Snapshot Preview</span>
@@ -526,7 +533,7 @@ export default function CVUpload() {
                     {renderTemplatePreview()}
                 </div>
 
-                {/* 2. External Validation Streams (GitHub & LinkedIn) */}
+                {/* External Validation Streams (GitHub & LinkedIn) */}
                 <div className="space-y-6">
                     <div className="flex items-center gap-4">
                         <span className="text-[10px] font-black text-indigo-500 uppercase tracking-[0.2em] px-3 py-1 border border-indigo-500/30 rounded-full bg-indigo-500/5">Datasource Validation Streams</span>
@@ -540,7 +547,7 @@ export default function CVUpload() {
                     />
                 </div>
 
-                {/* 3. Batch Configuration & Commit */}
+                {/* Batch Configuration & Commit */}
                 <div className="pt-6 relative space-y-6">
                     <div className="flex items-center gap-4 p-4 border border-zinc-200 dark:border-zinc-800 rounded-2xl bg-white/50 dark:bg-zinc-950/50 backdrop-blur-sm">
                         <div className="w-1/3">
@@ -563,17 +570,23 @@ export default function CVUpload() {
                         <button
                             onClick={handleCommitBatch}
                             disabled={isSaving || !batchName.trim()}
-                            className="w-full py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-black uppercase tracking-[0.1em] text-sm shadow-xl shadow-indigo-600/20 transition-all hover:scale-[1.01] active:scale-[0.98] flex items-center justify-center gap-3 group disabled:opacity-40"
+                            className="relative w-full py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-black uppercase tracking-[0.1em] text-sm shadow-xl shadow-indigo-600/20 transition-all hover:scale-[1.01] active:scale-[0.98] flex items-center justify-center gap-3 group disabled:opacity-80 disabled:hover:scale-100 disabled:active:scale-100 overflow-hidden"
                         >
                             {isSaving ? (
                                 <>
-                                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                                    Synchronising...
+                                    <div 
+                                        className="absolute left-0 top-0 bottom-0 bg-indigo-800 transition-all duration-300 ease-out z-0"
+                                        style={{ width: `${(processedCount / Math.max(1, extractedCVs.length)) * 100}%` }}
+                                    />
+                                    <div className="relative z-10 flex items-center gap-3">
+                                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                        <span>Synchronising ({processedCount}/{extractedCVs.length})...</span>
+                                    </div>
                                 </>
                             ) : (
                                 <>
-                                    Commit Extracted Batch
-                                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <span className="relative z-10">Commit Extracted Batch</span>
+                                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                     </svg>
                                 </>

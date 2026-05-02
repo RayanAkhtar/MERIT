@@ -151,7 +151,7 @@ const JobDescriptionReview: React.FC<JobDescriptionReviewProps> = ({
                                                     value={metric.value || ''} 
                                                     onChange={(e) => updateMetric(metric.id, 'value', e.target.value)}
                                                     className="bg-transparent border-none p-0 text-sm font-black text-zinc-900 dark:text-zinc-100 focus:ring-0 min-w-[40px] w-auto uppercase tracking-tighter"
-                                                    style={{ width: `${Math.max((metric.value?.length || 0) * 8 + 8, 40)}px` }}
+                                                    style={{ width: `${Math.max((metric.value?.length || 0) * 11 + 16, 40)}px` }}
                                                 />
                                                 <button 
                                                     onClick={() => deleteMetric(metric.id)}

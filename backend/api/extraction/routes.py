@@ -5,7 +5,7 @@ from core.parsers.job_description import parse_jd, parse_job
 from core.parsers.cv import parse_cv
 from core.parsers.registry import datasource_registry
 from core.utils.cache import get_cached_data, save_to_cache
-from core.supabase import supabase
+from core.supabase import supabase, SUPABASE_URL
 import hashlib
 
 extraction_bp = Blueprint("extraction", __name__)
@@ -16,13 +16,12 @@ ALLOWED_EXTENSIONS = {'pdf', 'docx', 'txt', 'md'}
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 def allowed_file(filename):
-    """Check if file extension is allowed"""
+    # check if file extension is allowed
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @extraction_bp.route("/extract-job-description", methods=["POST"])
 def extract_job_description():
-    """Handle extraction and structuring of Job Descriptions"""
     text = request.form.get('text', '').strip()
     custom_title = request.form.get('title', '').strip()
     file = request.files.get('file')
@@ -31,7 +30,6 @@ def extract_job_description():
     if not file and not text:
         return jsonify({"error": "No files or text provided"}), 400
 
-    # caching check for job requirements
     content_hash = ""
     if file:
         file.seek(0)
@@ -43,12 +41,12 @@ def extract_job_description():
     if cache_enabled:
         cached = get_cached_data("job_desc", content_hash)
         if cached:
+            # print("DEBUG: Found cached JD!")
             cached["cached"] = True
             return jsonify(cached), 200
 
     results = []
 
-    # preference for file JD over text JD
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         filepath = os.path.join(UPLOAD_FOLDER, filename)
@@ -72,7 +70,8 @@ def extract_job_description():
     combined = results[0]
     formatted_metrics = []
     
-    # should probably change the way this is done later, but not too big an issue for now
+    # this mapping is a bit hardcoded and ugly, should probably refactor to use a schema later
+    # but for now it works for the MVP
     if combined.get("company"):
         formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Company", "value": combined["company"], "category": "General"})
     if combined.get("job_title"):
@@ -99,6 +98,7 @@ def extract_job_description():
     for s in combined.get("requirements", []):
         formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Requirement", "value": s, "category": "Requirements"})
 
+    # build a nice title for the UI
     company = combined.get("company")
     job_title = combined.get("job_title")
     display_title = f"{company} - {job_title}" if company and job_title else (job_title or company or "Extracted Role")
@@ -117,7 +117,6 @@ def extract_job_description():
 
 @extraction_bp.route("/extract-cv", methods=["POST"])
 def extract_cv():
-    """Handle extraction and structuring of a single CV"""
     if 'file' not in request.files:
         return jsonify({"error": "No file provided"}), 400
     
@@ -135,12 +134,16 @@ def extract_cv():
 
         if cache_enabled:
             cached_res = get_cached_data("cv", cache_id)
-            if cached_res and cached_res.get("cv_url"):
+            cached_url = cached_res.get("cv_url") if cached_res else None
+            
+            # Only return early if we have a cloud URL (not a local fallback)
+            if cached_res and cached_url and not cached_url.startswith("http://localhost"):
+                # print(f"DEBUG: cache hit for {cache_id}")
                 cached_res["cached"] = True
                 cached_res["file_id"] = cache_id
                 return jsonify(cached_res), 200
             elif cached_res:
-                # if cached but no cv_url, we keep the parsed data but proceed to upload
+                print("DEBUG: Cached CV is local-only or missing URL. Attempting cloud upgrade...")
                 parsed_data = cached_res
             else:
                 parsed_data = parse_cv(filepath)
@@ -150,25 +153,42 @@ def extract_cv():
         parsed_data["cached"] = False
         parsed_data["file_id"] = cache_id
         
-        # uploading CV to Supabase Storage
         cv_url = None
+        print(f"DEBUG: Supabase Client Status: {'Initialised' if supabase else 'NOT INITIALISED'}")
         if supabase:
             try:
-                supabase.storage.create_bucket('cvs', options={'public': True})
+                # Attempt to create bucket, but ignore if it already exists
+                try:
+                    supabase.storage.create_bucket('cvs', options={'public': True})
+                    print("DEBUG: Verified/Created 'cvs' bucket.")
+                except Exception:
+                    pass 
 
-                # uploading file
                 storage_path = f"{cache_id}_{filename}"
+                print(f"DEBUG: Attempting upload to path: {storage_path}")
+                
                 with open(filepath, 'rb') as f:
-                    supabase.storage.from_('cvs').upload(
+                    # Use upsert to prevent "File already exists" errors
+                    res = supabase.storage.from_('cvs').upload(
                         path=storage_path,
                         file=f,
-                        file_options={"content-type": file.content_type}
+                        file_options={
+                            "content-type": "application/pdf" if filename.endswith(".pdf") else "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                            "upsert": "true" 
+                        }
                     )
                 
-                # getting public URL
-                cv_url = supabase.storage.from_('cvs').get_public_url(storage_path)
+                # Construct the public URL manually
+                cv_url = f"{SUPABASE_URL}/storage/v1/object/public/cvs/{storage_path}"
+                print(f"SUCCESS: CV uploaded to storage. URL: {cv_url}")
             except Exception as e:
-                print(f"Warning: Failed to upload CV to storage: {str(e)}")
+                print(f"CRITICAL: Supabase Storage Upload Failed: {str(e)}")
+                # Fallback to local path if storage fails
+                cv_url = f"http://localhost:5000/uploads/{filename}" 
+                print(f"DEBUG: Falling back to local URL: {cv_url}")
+        else:
+            print("WARNING: Supabase client is None. Check your .env for SUPABASE_URL and SUPABASE_KEY.")
+            cv_url = f"http://localhost:5000/uploads/{filename}"
 
         parsed_data["cv_url"] = cv_url
 
@@ -181,7 +201,6 @@ def extract_cv():
 
 @extraction_bp.route("/scan-datasource", methods=["POST"])
 def scan_datasource():
-    """Generic endpoint to scan any supported data source"""
     source_type = request.json.get('source_type')
     url = request.json.get('url')
     cache_enabled = request.json.get('cache_data', False)

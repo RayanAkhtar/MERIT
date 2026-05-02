@@ -19,18 +19,18 @@ const LinkSelection: React.FC<LinkSelectionProps> = ({ metrics, selectedLinks, s
   const linkedinProjects = React.useMemo(() => {
     if (!linkedinData?.projects) return [];
     
-    const normalize = (name: string) => (name || '').toLowerCase().replace(/[^a-z0-9]/g, '').trim();
+    const normalise = (name: string) => (name || '').toLowerCase().replace(/[^a-z0-9]/g, '').trim();
 
-    const githubNormalizedNames = [
-        ...(githubData?.featured_projects || []).map(p => normalize(p.name)),
-        ...(githubData?.repositories || []).map(r => normalize(r.name))
+    const githubNormalisedNames = [
+        ...(githubData?.featured_projects || []).map(p => normalise(p.name)),
+        ...(githubData?.repositories || []).map(r => normalise(r.name))
     ].filter(n => n.length > 2);
     
     return linkedinData.projects.filter(proj => {
-        const lName = normalize(proj.title);
+        const lName = normalise(proj.title);
         if (lName.length <= 2) return true;
         
-        return !githubNormalizedNames.some(gName => 
+        return !githubNormalisedNames.some(gName => 
             lName.includes(gName) || gName.includes(lName)
         );
     });
@@ -48,7 +48,7 @@ const LinkSelection: React.FC<LinkSelectionProps> = ({ metrics, selectedLinks, s
           </p>
         </div>
         <span className="text-[10px] font-black text-zinc-500 dark:text-zinc-500 uppercase tracking-widest italic text-right px-4 py-1 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 shadow-sm dark:shadow-none">
-            {metrics.uploaded_files} PROFILES ANALYZED
+            {metrics.uploaded_files} PROFILES ANALYSED
         </span>
       </div>
       

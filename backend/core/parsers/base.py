@@ -1,9 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import Any, Dict, Optional
 
-# data sources that are used in candidate info
-# this is so that we can easily add new data sources in the future
-# without having to change the rest of the codebase
+# base class for external data sources (GitHub, LinkedIn, etc.)
+# added this so we can plug in new sources without breaking everything.
 
 class BaseDataSource(ABC):
     """
@@ -28,11 +27,11 @@ class BaseDataSource(ABC):
 
     @abstractmethod
     def parse(self, raw_data: Any) -> Dict[str, Any]:
-        """transform raw data into a structured candidate profile fragment"""
+        # convert the raw data into something the system can actually use
         pass
 
     def process(self, url: str) -> Dict[str, Any]:
-        """validate, scrape and parse a URL"""
+        # print(f"DEBUG: Processing {self.name} URL: {url}")
         if not self.validate_url(url):
             raise ValueError(f"Invalid URL for source {self.name}: {url}")
         

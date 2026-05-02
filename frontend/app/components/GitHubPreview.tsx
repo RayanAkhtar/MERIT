@@ -110,43 +110,62 @@ const GitHubPreview: React.FC<GitHubPreviewProps> = ({ githubData }) => {
   };
 
   const baseLanguageColors: Record<string, string> = {
-    'TypeScript': '#6366f1',
-    'JavaScript': '#10b981',
-    'Python': '#f59e0b',
-    'TeX': '#ec4899',
-    'Rust': '#a855f7',
-    'Go': '#64748b',
-    'Shell': '#f97316',
-    'HTML': '#3b82f6',
-    'CSS': '#ef4444',
-    'C++': '#06b6d4',
-    'SQL': '#8b5cf6',
-    'C#': '#f43f5e',
-    'Ruby': '#e11d48',
-    'Java': '#b91c1c',
-    'PHP': '#4f46e5',
-    'C': '#475569',
-    'Jupyter Notebook': '#f59e0b'
+    'TypeScript': '#818cf8',
+    'JavaScript': '#34d399',
+    'Python': '#fbbf24',
+    'TeX': '#f472b6',
+    'Rust': '#c084fc',
+    'Go': '#38bdf8',
+    'Shell': '#fb923c',
+    'HTML': '#60a5fa',
+    'CSS': '#f87171',
+    'C++': '#22d3ee',
+    'SQL': '#a78bfa',
+    'C#': '#fb7185',
+    'Ruby': '#f43f5e',
+    'Java': '#ef4444',
+    'PHP': '#818cf8',
+    'C': '#94a3b8',
+    'Jupyter Notebook': '#fbbf24'
   };
 
   const dynamicColorMap = React.useMemo(() => {
     const map: Record<string, string> = { ...baseLanguageColors };
     const allLangs = new Set<string>();
-    githubData.languages.forEach(l => allLangs.add(l.label));
-    githubData.featured_projects.forEach(p => p.top_languages.forEach(l => allLangs.add(l)));
+    
+    if (githubData.languages) {
+        githubData.languages.forEach(l => allLangs.add(l.label));
+    }
+    if (githubData.featured_projects) {
+        githubData.featured_projects.forEach(p => p.top_languages.forEach(l => allLangs.add(l)));
+    }
+    if (githubData.language_history) {
+        githubData.language_history.forEach(entry => {
+            Object.keys(entry).forEach(k => {
+                if (k !== 'year') allLangs.add(k);
+            });
+        });
+    }
 
     allLangs.forEach(lang => {
       if (!map[lang]) {
-        // Generate a random vibrant color for new languages
+        // Generate a random vibrant, bright color for new languages
         const hue = Math.floor(Math.random() * 360);
-        map[lang] = `hsl(${hue}, 70%, 50%)`;
+        map[lang] = `hsl(${hue}, 80%, 65%)`;
       }
     });
 
     return map;
   }, [githubData]);
 
-  const getLangColor = (lang: string) => dynamicColorMap[lang] || '#3f3f46';
+  const getLangColor = (lang: string) => {
+    if (dynamicColorMap[lang]) return dynamicColorMap[lang];
+    
+    // Deterministically pick a color from the base palette based on the string
+    const baseColorsList = Object.values(baseLanguageColors);
+    const hash = lang.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    return baseColorsList[hash % baseColorsList.length];
+  };
 
   const formatNumber = (num: number) => {
     if (num >= 1000) return (num / 1000).toFixed(1) + 'k';
@@ -351,6 +370,12 @@ const GitHubPreview: React.FC<GitHubPreviewProps> = ({ githubData }) => {
                                     <span>Present Day</span>
                                 </div>
                                 <div className="relative h-2 bg-zinc-200 dark:bg-zinc-950 rounded-full flex items-center">
+                                    <style>{`
+                                        .range-slider-input::-webkit-slider-runnable-track { pointer-events: none; background: none; border: none; }
+                                        .range-slider-input::-webkit-slider-thumb { pointer-events: auto; }
+                                        .range-slider-input::-moz-range-track { pointer-events: none; background: none; border: none; }
+                                        .range-slider-input::-moz-range-thumb { pointer-events: auto; }
+                                    `}</style>
                                     <div 
                                         className="absolute h-full bg-purple-500/20 dark:bg-purple-500/30 rounded-full"
                                         style={{ 
@@ -365,7 +390,7 @@ const GitHubPreview: React.FC<GitHubPreviewProps> = ({ githubData }) => {
                                         value={minYearIdx}
                                         onMouseDown={() => setLastActive('min')}
                                         onChange={(e) => setMinYearIdx(Math.min(parseInt(e.target.value), maxYearIdx))}
-                                        className={`absolute w-full appearance-none bg-transparent cursor-pointer pointer-events-auto h-1 accent-purple-600 dark:accent-purple-500 ${lastActive === 'min' ? 'z-30' : 'z-20'}`}
+                                        className={`range-slider-input absolute w-full appearance-none bg-transparent cursor-pointer h-1 accent-purple-600 dark:accent-purple-500 pointer-events-none ${lastActive === 'min' ? 'z-30' : 'z-20'}`}
                                     />
                                     <input 
                                         type="range"
@@ -374,11 +399,11 @@ const GitHubPreview: React.FC<GitHubPreviewProps> = ({ githubData }) => {
                                         value={maxYearIdx}
                                         onMouseDown={() => setLastActive('max')}
                                         onChange={(e) => setMaxYearIdx(Math.max(parseInt(e.target.value), minYearIdx))}
-                                        className={`absolute w-full appearance-none bg-transparent cursor-pointer pointer-events-auto h-1 accent-purple-600 dark:accent-purple-500 ${lastActive === 'max' ? 'z-30' : 'z-20'}`}
+                                        className={`range-slider-input absolute w-full appearance-none bg-transparent cursor-pointer h-1 accent-purple-600 dark:accent-purple-500 pointer-events-none ${lastActive === 'max' ? 'z-30' : 'z-20'}`}
                                     />
                                 </div>
                                 <p className="text-[8px] font-bold text-zinc-400 dark:text-zinc-500 italic text-center uppercase tracking-widest">
-                                    Slide to adjust the analytical window
+                                    Drag the handles to adjust the analytical window
                                 </p>
                             </div>
                         </div>
@@ -418,21 +443,23 @@ const GitHubPreview: React.FC<GitHubPreviewProps> = ({ githubData }) => {
                                 />
                                 <Tooltip 
                                     itemSorter={(item) => Number(item.value) * -1}
-                                    contentStyle={{ 
-                                        backgroundColor: 'var(--tw-backgroundColor-white)', 
-                                        border: '1px solid #e4e4e7',
-                                        borderRadius: '1rem',
-                                        padding: '12px',
-                                        boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)'
+                                    content={({ active, payload, label }) => {
+                                        if (active && payload && payload.length) {
+                                            return (
+                                                <div className="bg-white dark:bg-[#09090b] border border-zinc-200 dark:border-zinc-800 rounded-2xl p-4 shadow-xl">
+                                                    <p className="text-[9px] font-black text-zinc-500 mb-3 uppercase tracking-[0.2em]">{label}</p>
+                                                    {payload.map((entry, index) => (
+                                                        <div key={index} className="flex items-center gap-2 mb-1.5">
+                                                            <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: entry.color }}>
+                                                                {entry.name} : {formatNumber(Number(entry.value))} LINES
+                                                            </span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            );
+                                        }
+                                        return null;
                                     }}
-                                    dark-contentStyle={{
-                                        backgroundColor: '#09090b',
-                                        border: '1px solid #27272a',
-                                        boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.5)'
-                                    }}
-                                    itemStyle={{ fontSize: '10px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.05em' }}
-                                    labelStyle={{ color: '#71717a', fontSize: '9px', fontWeight: 900, marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.2em' }}
-                                    formatter={(value: any, name: any) => [`${formatNumber(Number(value))} Lines`, name.toString().toUpperCase()]}
                                 />
                                 <Legend 
                                     verticalAlign="top" 

@@ -223,6 +223,7 @@ def parse_job(text, source_file, meta=None):
     }
 
     # guess employment type
+    # print(f"DEBUG: checking title -> {res['job_title']}")
     if "intern" in low_text:
         res["employment_type"] = "Internship"
     elif "contract" in low_text or re.search(r"\d+\s?months", low_text):
@@ -237,6 +238,7 @@ def parse_job(text, source_file, meta=None):
         res["employment_type"] = meta["job_type"]
 
     # guess experience level
+    # print(f"DEBUG: low_text length -> {len(low_text)}")
     if not res["experience_level"]:
         if re.search(r"\bintern(ship)?\b", low_text):
             res["experience_level"] = "Internship"
@@ -255,9 +257,11 @@ def parse_job(text, source_file, meta=None):
         if m:
             res["location"] = m.group(1).split('\n')[0].strip()
         elif "London" in text:
+            # Most of the jobs I'm testing with are in London anyway
             res["location"] = "London, UK"
 
     # pull sections
+    # print(f"DEBUG: extracted {len(res_sec)} responsibilities")
     res_sec = get_section(text, HEADERS["responsibilities"])
     req_sec = get_section(text, HEADERS["requirements"])
     edu_sec = get_section(text, HEADERS["education"])

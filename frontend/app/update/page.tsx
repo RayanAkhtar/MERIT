@@ -7,7 +7,7 @@ export default function UpdateOverviewPage() {
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-extrabold text-zinc-900 dark:text-zinc-50 mb-6">
-            Data Update Center
+            Data Update Centre
           </h1>
           <p className="text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
             Keep your evaluations fresh. Instantly update existing job descriptions or add new candidates to an already extracted batch.
