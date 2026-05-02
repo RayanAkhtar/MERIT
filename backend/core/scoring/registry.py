@@ -11,6 +11,7 @@ from .intelligence_metrics import (
     GithubComplexityMetric, GithubAlignmentMetric, GithubImpactMetric,
     LinkedinExtracurricularMetric, LinkedinNetworkMetric
 )
+from .keyword_stuffing import KeywordStuffingDetector
 
 class ScoringRegistry:
     def __init__(self):
@@ -31,6 +32,8 @@ class ScoringRegistry:
         self.register(GithubImpactMetric())
         self.register(LinkedinExtracurricularMetric())
         self.register(LinkedinNetworkMetric())
+        
+        self.stuffing_detector = KeywordStuffingDetector()
 
     def register(self, metric: BaseMetric):
         self.metric_templates[metric.id] = metric
@@ -101,7 +104,7 @@ class ScoringRegistry:
         for key in keys_to_run:
             metric = self._get_metric_for_key(key, job_requirements)
             if not metric:
-                # If no handler, we skip or provide a zero score
+                # If no handler, skip or provide a zero score
                 continue
                 
             # Determine "active_items" for the metric if it's a specific requirement
@@ -139,13 +142,98 @@ class ScoringRegistry:
 
         overall_score = total_weighted_score / total_weight if total_weight > 0 else 0.0
 
+        # keyword stuffing penalty (for the audit Pass)
+        target_keywords = []
+        jd_metrics = job_requirements.get("metrics", {})
+        for category in ["Languages", "Technologies"]:
+            vals = jd_metrics.get(category, {}).get("value", [])
+            for v in vals:
+                if isinstance(v, dict):
+                    target_keywords.append(v.get("name", ""))
+                else:
+                    target_keywords.append(str(v))
+        
+        # specific requirements from active_metrics keys
+        for key in keys_to_run:
+            if key.startswith("req_"):
+                target_keywords.append(key.replace("req_", "").replace("_", " "))
+        
+        # Deduplicate and run detector
+        target_keywords = list(set(target_keywords))
+        # Use raw_cv_text for the most accurate density/frequency analysis
+        cv_text = candidate_data.get("raw_cv_text") or candidate_data.get("full_cv_text") or ""
+        stuffing_audit = self.stuffing_detector.analyze(cv_text, target_keywords)
+        print(f"DEBUG [Registry]: Stuffing Audit -> Penalty: {stuffing_audit['penalty']} | Flagged: {len(stuffing_audit['flagged_terms'])}")
+        for t in stuffing_audit['flagged_terms']:
+            print(f"  - Flagged: {t['term']} ({t['count']}x)")
+        
+        penalty = stuffing_audit["penalty"]
+        final_adjusted_score = max(0.0, overall_score - penalty)
+        
+        # finalize metrics (inject penalties into individual card math for transparency)
+        flagged_keys = []
+        for term_audit in stuffing_audit["flagged_terms"]:
+            term = term_audit["term"].lower().replace(" ", "_")
+            req_key = f"req_{term}"
+            if req_key in results:
+                m = results[req_key]
+                p_val = term_audit["penalty_contribution"]
+                
+                # update score (penalize once)
+                old_score = m["score"]
+                m["score"] = max(0.0, old_score - p_val)
+                
+                # update left-hand signals
+                m["breakdown"].append({
+                    "item": "Authenticity & Integrity Audit",
+                    "notes": f"INTEGRITY ENGINE: Detected {term_audit['count']} occurrences of '{term_audit['term']}', which exceeds the natural repetition limit ({self.stuffing_detector.cfg['OCCURRENCE_LIMIT']}). A penalty of 2% per excess occurrence was applied to ensure the match remains authentic and not gamed via keyword stuffing.",
+                    "source_details": [
+                        {
+                            "source": "INTEGRITY AUDIT",
+                            "explanation": f"Excessive keyword repetition detected for '{term_audit['term']}'. Frequency: {term_audit['count']}x | Density: {term_audit['density']}.",
+                            "score": -p_val
+                        }
+                    ]
+                })
+                
+                # add metadata for frontend highlighting
+                m["integrity_penalty_applied"] = True
+                m["integrity_penalty_value"] = p_val
+                m["integrity_audit_details"] = {
+                    "count": term_audit['count'],
+                    "limit": self.stuffing_detector.cfg['OCCURRENCE_LIMIT'],
+                    "penalty_per": self.stuffing_detector.cfg['PENALTY_PER_OCCURRENCE'],
+                    "term": term_audit['term']
+                }
+                
+                # update right-hand formula
+                if m.get("technical_formula"):
+                    m["technical_formula"] = f"({m['technical_formula']}) - {p_val:.2f} [Integrity Penalty] = {m['score']:.2f}"
+                else:
+                    m["technical_formula"] = f"{old_score:.2f} - {p_val:.2f} [Integrity Penalty] = {m['score']:.2f}"
+                
+                flagged_keys.append(req_key)
+
+        # recalculate overall score based on the finalized (potentially penalized) metrics
+        new_total_weighted_score = sum(m["score"] * m["weight"] for m in results.values())
+        final_adjusted_score = new_total_weighted_score / total_weight if total_weight > 0 else 0.0
+
+        stuffing_notes = ""
+        if stuffing_audit["is_stuffed"]:
+            terms = ", ".join([f"{t['term']} ({t['count']}x)" for t in stuffing_audit["flagged_terms"][:3]])
+            stuffing_notes = f"INTEGRITY PENALTY APPLIED: Multiple metrics flagged for keyword repetition: {terms}"
+
         return {
-            "overall_score": overall_score,
+            "overall_score": final_adjusted_score,
+            "integrity_penalty": penalty, 
             "calculation_summary": {
-                "formula": "SUM(MetricScore * Weight) / SUM(Weights)",
-                "weighted_sum": total_weighted_score,
+                "formula": "SUM(PenalizedMetricScore * Weight) / SUM(Weights)",
+                "weighted_sum": new_total_weighted_score,
                 "total_weight": total_weight,
-                "logic": f"Final Match % = ({total_weighted_score:.2f} weighted points) / ({total_weight:.1f} max weight points)"
+                "base_score": overall_score,
+                "integrity_penalty": penalty,
+                "stuffing_audit": stuffing_audit["flagged_terms"],
+                "logic": f"Final Match % [CONSISTENCY_SYNC_ACTIVE] = ({new_total_weighted_score:.2f} pts) / ({total_weight:.1f} max). {stuffing_notes}"
             },
             "metrics": results
         }

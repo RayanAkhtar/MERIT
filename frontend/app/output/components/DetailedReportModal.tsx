@@ -123,11 +123,15 @@ export default function DetailedReportModal({
                       onMouseLeave={() => setHoveredItem(null)}
                       onClick={() => handleMetricClick(key)}
                     >
-                      <h4 className={`font-bold transition-colors flex items-center gap-2 ${isSectionHovered ? 'text-indigo-600 dark:text-indigo-400' : 'text-zinc-900 dark:text-zinc-50'}`}>
+                      <h4 className={`font-bold transition-colors flex items-center gap-2 ${m.integrity_penalty_applied ? 'text-rose-500' : (isSectionHovered ? 'text-indigo-600 dark:text-indigo-400' : 'text-zinc-900 dark:text-zinc-50')}`}>
                         {m.name}
-                        <span className="text-[10px] px-1.5 py-0.5 rounded border border-indigo-200 dark:border-indigo-800 text-indigo-600 bg-indigo-50 dark:bg-indigo-900/20">W:{priority}</span>
+                        {m.integrity_penalty_applied ? (
+                          <span className="text-[10px] px-1.5 py-0.5 rounded border border-rose-200 dark:border-rose-800 text-rose-600 bg-rose-50 dark:bg-rose-900/20">W:{priority}</span>
+                        ) : (
+                          <span className="text-[10px] px-1.5 py-0.5 rounded border border-indigo-200 dark:border-indigo-800 text-indigo-600 bg-indigo-50 dark:bg-indigo-900/20">W:{priority}</span>
+                        )}
                       </h4>
-                      <div className={`text-lg font-black transition-colors ${isSectionHovered ? 'text-indigo-600 dark:text-indigo-400' : 'text-zinc-900 dark:text-zinc-100'}`}>{Math.round(m.score * 100)}%</div>
+                      <div className={`text-lg font-black transition-colors ${m.integrity_penalty_applied ? 'text-rose-600 dark:text-rose-500' : (isSectionHovered ? 'text-indigo-600 dark:text-indigo-400' : 'text-zinc-900 dark:text-zinc-100')}`}>{Math.round(m.score * 100)}%</div>
                     </div>
                     <div className="grid grid-cols-1 gap-3">
                       {(m.breakdown || []).map((item: any, i: number) => {
@@ -143,12 +147,29 @@ export default function DetailedReportModal({
                             <div className="text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-3 leading-relaxed">{item.notes}</div>
                             {item.source_details && item.source_details.length > 0 && (
                               <div className="grid grid-cols-1 gap-2">
-                                {item.source_details.map((sd: any, j: number) => (
-                                  <div key={j} className="p-3 bg-zinc-50 dark:bg-zinc-900/50 rounded-lg border border-zinc-100 dark:border-zinc-800 flex flex-col gap-1">
-                                    <span className="text-[10px] font-black uppercase text-indigo-500 dark:text-indigo-400">{sd.source} Signal</span>
-                                    <p className="text-xs text-zinc-800 dark:text-zinc-200 leading-tight italic">"{sd.explanation}"</p>
-                                  </div>
-                                ))}
+                                {item.source_details.map((sd: any, j: number) => {
+                                  const isPenalty = sd.score < 0;
+                                  return (
+                                    <div key={j} className={`p-3 rounded-lg border flex flex-col gap-1 ${isPenalty ? 'bg-rose-500/5 border-rose-500/20' : 'bg-zinc-50 dark:bg-zinc-900/50 border-zinc-100 dark:border-zinc-800'}`}>
+                                      <span className={`text-[10px] font-black uppercase tracking-widest ${isPenalty ? 'text-rose-500 flex items-center gap-1.5' : 'text-indigo-500 dark:text-indigo-400'}`}>
+                                        {isPenalty && (
+                                          <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                          </svg>
+                                        )}
+                                        {isPenalty ? `Penalty: ${sd.source}` : `${sd.source} Signal`}
+                                      </span>
+                                      <p className={`text-xs leading-tight italic ${isPenalty ? 'text-rose-700 dark:text-rose-400 font-bold' : 'text-zinc-800 dark:text-zinc-200'}`}>"{sd.explanation}"</p>
+                                      {isPenalty && (
+                                        <div className="mt-1 flex items-center gap-1.5">
+                                          <span className="text-[9px] font-black text-rose-500 bg-rose-500/10 px-1.5 py-0.5 rounded border border-rose-500/20 uppercase tracking-tighter">
+                                            Reduction: {(sd.score * 100).toFixed(0)}%
+                                          </span>
+                                        </div>
+                                      )}
+                                    </div>
+                                  );
+                                })}
                               </div>
                             )}
                           </div>

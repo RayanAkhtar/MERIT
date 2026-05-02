@@ -166,20 +166,27 @@ def save_candidates():
         
         linkedin_profile_id = _upsert_linkedin_profile(c.get("linkedin_enriched"), fallback_linkedin_url)
 
-        candidate_res = supabase.table("candidate_data").insert({
-            "name": c.get("name"),
-            "email": c.get("email"),
-            "phone": c.get("phone"),
-            "skills": c.get("skills", []),
-            "cv_experience": c.get("cv_experience", []),
-            "experience_summary": c.get("experience"),
-            "projects_history": c.get("projects", []),
-            "extracurricular": c.get("extracurricular", []),
-            "source_links": c.get("links", {}),
-            "github_profile_id": github_profile_id,
-            "linkedin_profile_id": linkedin_profile_id,
-            "cv_url": c.get("cv_url")
-        }).execute()
+        try:
+            candidate_res = supabase.table("candidate_data").insert({
+                "name": c.get("name"),
+                "email": c.get("email"),
+                "phone": c.get("phone"),
+                "skills": c.get("skills", []),
+                "cv_experience": c.get("cv_experience", []),
+                "experience_summary": c.get("experience"),
+                "projects_history": c.get("projects", []),
+                "extracurricular": c.get("extracurricular", []),
+                "source_links": c.get("links", {}),
+                "github_profile_id": github_profile_id,
+                "linkedin_profile_id": linkedin_profile_id,
+                "cv_url": c.get("cv_url"),
+                "raw_cv_text": c.get("raw_cv_text")
+            }).execute()
+        except Exception as e:
+            print(f"CRITICAL: Failed to insert candidate into database: {str(e)}")
+            import traceback
+            traceback.print_exc()
+            continue
 
         if candidate_res.data:
             candidate_db_id = candidate_res.data[0]['id']

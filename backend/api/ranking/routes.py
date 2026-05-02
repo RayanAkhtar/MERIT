@@ -21,7 +21,6 @@ def rank_candidates(config_id):
     if not job_reqs or not batch:
         return jsonify({"error": "Configuration is missing job or batch link"}), 400
 
-    # Performance Optimised: Single Relational Query (Batch Fetch + Resource Embedding)
     candidate_ids = batch.get("candidate_ids", [])
     if not candidate_ids:
         return jsonify({"results": [], "message": "No candidates in this batch."}), 200
@@ -38,11 +37,11 @@ def rank_candidates(config_id):
 
     results = []
     for candidate in candidates_res.data:
-        # Map the embedded data to the structure the scoring engine and frontend expect
+        # map embedded data to structure the scoring engine & frontend expect
         gh_profile = candidate.get("github_profile")
         if gh_profile:
-            # Re-map database columns to frontend interface keys
-            # Failover: If dedicated column is missing, try to extract from raw_data blob
+            # re-map db cols to frontend interface keys
+            # failover: if dedicated col missing, try to extract from raw_data blob
             history = gh_profile.get("contribution_history")
             if history is None and "raw_data" in gh_profile and isinstance(gh_profile["raw_data"], dict):
                 history = gh_profile["raw_data"].get("contribution_history")
@@ -58,7 +57,7 @@ def rank_candidates(config_id):
                 for p in projects:
                     if p.get("name") in raw_map:
                         raw_p = raw_map[p["name"]]
-                        # Map both 'lines' and 'is_fork' keys from raw JSON
+                        # map both 'lines' and 'is_fork' keys from raw JSON
                         if p.get("lines") is None or p.get("lines") == 0:
                             p["lines"] = raw_p.get("lines") or raw_p.get("estimated_lines") or 0
                         if p.get("is_fork") is None:
@@ -82,26 +81,26 @@ def rank_candidates(config_id):
         
         active_metrics = config.get("active_metrics", [])
         
-        # Pass 1: Raw Metrics (specifically for relative tenure, github depth, and traction)
+        # pass 1: raw metrics (specifically for relative tenure, github depth, and traction)
         raw_scored_data = scoring_registry.run_all(candidate, job_reqs, active_metrics, weights)
         candidate["raw_tenure_months"] = raw_scored_data["metrics"].get("experience", {}).get("raw_months", 0)
         candidate["raw_gh_complexity"] = raw_scored_data["metrics"].get("intel_github_complexity", {}).get("raw_complexity_sum", 0)
         candidate["raw_gh_traction"] = raw_scored_data["metrics"].get("projects", {}).get("raw_traction_points", 0)
         
-        # Extract Actual Stats for leader-based feedback
+        # extract actual stats for leader-based feedback
         gh_p = candidate.get("github_enriched", {}) or {}
-        # Count repositories from featured_projects (mapped) or raw repo list
+        # count repositories from featured_projects (mapped) or raw repo list
         repos = gh_p.get("featured_projects", []) or gh_p.get("repositories", [])
         candidate["raw_repo_count"] = gh_p.get("public_repos") or len(repos)
         candidate["raw_star_count"] = gh_p.get("total_stars") or sum(p.get("stars", 0) for p in repos)
         candidate["raw_fork_count"] = gh_p.get("total_forks") or sum(p.get("forks", 0) for p in repos)
-        # Weighted Impact: Forks (2.5x) are more valuable than Stars (1.0x)
+        # weighted impact: forks (2.5x) are more valuable than stars (1.0x)
         candidate["raw_impact_points"] = (candidate["raw_star_count"] * 1.0) + (candidate["raw_fork_count"] * 2.5)
         
         li_p = candidate.get("linkedin_enriched", {}) or {}
         candidate["raw_connections"] = li_p.get("connections", 0) or li_p.get("followers", 0)
         
-        # Track total skill breadth (CV + LI + GH detected)
+        # track total skill breadth (cv + li + gh detected)
         unique_skills = set([s.lower() for s in candidate.get('skills', [])])
         candidate["raw_skill_count"] = len(unique_skills)
 
@@ -110,7 +109,7 @@ def rank_candidates(config_id):
             "raw_scored_data": raw_scored_data
         })
 
-    # Calculate Batch Stats for relative scoring
+    # calculate batch stats for relative scoring
     max_tenure = max([r["candidate"].get("raw_tenure_months", 1) for r in results]) if results else 60
     max_complexity = max([r["candidate"].get("raw_gh_complexity", 1.0) for r in results]) if results else 1.0
     max_traction = max([r["candidate"].get("raw_gh_traction", 0.5) for r in results]) if results else 0.5
@@ -124,7 +123,7 @@ def rank_candidates(config_id):
     final_results = []
     for r in results:
         candidate = r["candidate"]
-        # Pass 2: Final Scored Result with batch context
+        # pass 2: final scored result with batch context
         candidate["batch_max_tenure"] = max_tenure
         candidate["batch_max_complexity"] = max_complexity
         candidate["batch_max_traction"] = max_traction
@@ -134,7 +133,7 @@ def rank_candidates(config_id):
         candidate["batch_max_forks"] = max_forks
         candidate["batch_max_connections"] = max_connections
         candidate["batch_max_skill_count"] = max_skills
-        # Inject individual skill scores, weights, and active status from Pass 1
+        # inject individual skill scores, weights, and active status from pass 1
         candidate["skill_scores"] = {k: v.get("score", 0) for k, v in r["raw_scored_data"]["metrics"].items()}
         candidate["skill_weights"] = weights
         candidate["active_keys"] = [k for k, v in active_metrics.items() if v is True] if isinstance(active_metrics, dict) else active_metrics
@@ -146,6 +145,7 @@ def rank_candidates(config_id):
             "name": candidate["name"],
             "email": candidate["email"],
             "total_score": scored_data["overall_score"],
+            "integrity_penalty": scored_data.get("integrity_penalty", 0.0),
             "metrics": scored_data["metrics"],
             "calculation_summary": scored_data["calculation_summary"]
         })

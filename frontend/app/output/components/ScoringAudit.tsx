@@ -5,6 +5,7 @@ interface ScoringAuditProps {
 }
 
 export default function ScoringAudit({ candidate }: ScoringAuditProps) {
+  console.log("DEBUG [ScoringAudit]: calculation_summary ->", candidate.calculation_summary);
   const sortedMetrics = Object.entries(candidate.fullMetrics || {})
     .sort(([, a]: [string, any], [, b]: [string, any]) => {
       if (a.score === 0 && b.score !== 0) return 1;
@@ -14,6 +15,35 @@ export default function ScoringAudit({ candidate }: ScoringAuditProps) {
 
   return (
     <div className="space-y-8 animate-in slide-in-from-right-4 duration-300 max-w-3xl mx-auto pb-12">
+      {/* Integrity Audit Pass */}
+      {(candidate.integrity_penalty > 0 || candidate.calculation_summary?.integrity_penalty > 0) && (
+        <div className="p-8 bg-rose-500/5 rounded-2xl border-2 border-rose-500/20 shadow-xl relative overflow-hidden group/penalty animate-in zoom-in-95 duration-500">
+          <div className="absolute -top-12 -right-12 w-32 h-32 bg-rose-500/10 rounded-full blur-3xl group-hover/penalty:bg-rose-500/20 transition-all duration-700" />
+          <div className="flex items-start gap-4">
+            <div className="p-3 bg-rose-500/20 rounded-xl border border-rose-500/30">
+              <svg className="w-6 h-6 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <div>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-rose-500 mb-2">Integrity Audit: Keyword Stuffing Detected</h4>
+              <p className="text-sm font-bold text-zinc-900 dark:text-zinc-100 mb-4">
+                The scoring engine detected unnatural repetition of buzzwords in the CV. 
+                An integrity penalty of <span className="text-rose-500">{(candidate.calculation_summary.integrity_penalty * 100).toFixed(0)}%</span> was subtracted from the final score.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {candidate.calculation_summary.stuffing_audit?.map((audit: any, i: number) => (
+                  <div key={i} className="p-2.5 bg-rose-500/5 rounded-lg border border-rose-500/10 flex justify-between items-center text-xs">
+                    <span className="font-bold text-rose-600 dark:text-rose-400">{audit.term}</span>
+                    <span className="text-[10px] font-black text-rose-400/80 uppercase tracking-widest">{audit.count}x / {audit.density} density</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="p-8 bg-zinc-900 rounded-2xl border border-zinc-800 shadow-2xl relative overflow-hidden">
         <h4 className="text-[10px] font-black uppercase tracking-widest text-indigo-400 mb-6">Global Scoring Algorithm</h4>
         <div className="space-y-6">
@@ -73,9 +103,23 @@ export default function ScoringAudit({ candidate }: ScoringAuditProps) {
         {sortedMetrics.map(([key, m]: [string, any]) => (
           <div key={key} id={`formula-${key}`} className="p-6 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm group/formula hover:border-indigo-500 transition-all">
             <div className="flex justify-between items-start mb-4">
-              <h5 className="font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">{m.name}</h5>
+              <div className="flex flex-col gap-1">
+                <h5 className="font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+                  {m.name}
+                  {m.integrity_penalty_applied && (
+                    <span className="flex items-center gap-1 text-[9px] font-black text-rose-500 bg-rose-500/10 px-1.5 py-0.5 rounded border border-rose-500/20 uppercase tracking-widest animate-pulse">
+                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                      </svg>
+                      Audit Flag
+                    </span>
+                  )}
+                </h5>
+              </div>
               <div className="flex items-center gap-3 text-xs font-black">
-                <span className="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 px-2 py-1 rounded">Score: {(m.score * 100).toFixed(0)}%</span>
+                <span className={`px-2 py-1 rounded flex items-center gap-2 ${m.integrity_penalty_applied ? 'text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-900/30 border border-rose-500/20' : 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30'}`}>
+                  Score: {(m.score * 100).toFixed(0)}%
+                </span>
                 <span className="text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">Weight: {m.weight.toFixed(2)}</span>
               </div>
             </div>
@@ -86,6 +130,26 @@ export default function ScoringAudit({ candidate }: ScoringAuditProps) {
                   <div className="font-mono text-sm text-indigo-600 dark:text-indigo-400 font-bold">{m.technical_formula}</div>
                 </div>
               )}
+              
+              {m.integrity_penalty_applied && (
+                <div className="p-4 bg-rose-500/5 rounded-xl border border-rose-500/20 animate-in slide-in-from-top-2 duration-500">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="p-1.5 bg-rose-500/20 rounded-md">
+                      <svg className="w-3.5 h-3.5 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-rose-500">Anti-Gamer Penalty Applied</span>
+                  </div>
+                  <p className="text-xs text-rose-600 dark:text-rose-400 font-medium leading-relaxed">
+                    This score was reduced by <span className="font-black">{(m.integrity_penalty_value * 100).toFixed(0)}%</span> because the system detected keyword stuffing tactics. 
+                    The natural repetition limit for <span className="font-bold">'{m.integrity_audit_details?.term}'</span> is <span className="font-bold">{m.integrity_audit_details?.limit}x</span>, 
+                    but <span className="font-bold text-rose-700 dark:text-rose-300 underline decoration-rose-500/30">{m.integrity_audit_details?.count}x</span> occurrences were found in the CV. 
+                    A penalty scale of <span className="font-bold">{(m.integrity_audit_details?.penalty_per * 100).toFixed(0)}%</span> per excess occurrence was applied to ensure the match remains authentic and not gamed.
+                  </p>
+                </div>
+              )}
+
               <div className="p-4 bg-zinc-50 dark:bg-black/40 rounded-xl font-mono text-xs border border-zinc-100 dark:border-zinc-800 text-zinc-600 dark:text-zinc-300 italic">Logic Variable: {m.formula}</div>
               {m.improvements && m.improvements.length > 0 && (
                 <div className="p-4 bg-amber-50/50 dark:bg-amber-900/10 rounded-xl border border-amber-200/50 dark:border-amber-700/30">

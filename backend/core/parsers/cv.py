@@ -86,6 +86,8 @@ def extract_text_and_links(path: str):
 
 
 def clean_text(text: str):
+    # remove null bytes which crash postgresql
+    text = text.replace("\u0000", "")
     text = text.replace("\xa0", " ")
     text = re.sub(r"\s+", " ", text)
     return text.strip()
@@ -174,7 +176,6 @@ def extract_skills(text: str):
             pattern += r"\b"
             
         # if the pattern is found in the text, add the skill to the set
-        # this regex took a lot of tweaking to stop 'C' matching everything
         if re.search(pattern, lower):
             found_skills.add(skill)
             
@@ -366,7 +367,7 @@ def extract_structured_section(text: str, section_key: str):
     if current_item:
         items.append(current_item)
 
-    # Stricter Filter: Must look like a real University Degree
+    # must look like a uni degree
     if section_key == "education":
         filtered_items = []
         SCHOOL_LEVEL_KEYWORDS = ["a-level", "gcse", "a level", "sixth form", "junior", "secondary", "grammar", "high school", "highschool", "boys", "girls"]
@@ -385,16 +386,19 @@ def extract_structured_section(text: str, section_key: str):
 
         return filtered_items
 
-    # Fallback for other sections
     return items
 
 
 def parse_cv(path: str):
     raw_text, embedded_links = extract_text_and_links(path)
+    # sanitize raw text to prevent database crashes (null bytes)
+    raw_text = raw_text.replace("\u0000", "")
+    
     cleaned_text = clean_text(raw_text)
     sections = split_sections(raw_text)
 
     return {
+        "raw_cv_text": raw_text,
         "name": extract_name(cleaned_text),
         "email": extract_email(cleaned_text),
         "phone": extract_phone(cleaned_text),

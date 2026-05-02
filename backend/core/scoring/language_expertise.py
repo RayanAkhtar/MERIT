@@ -56,6 +56,14 @@ class LanguageExpertiseMetric(BaseMetric):
         
         return cfg["LEGACY"], "Legacy Skill (No activity in 4+ years)"
 
+    def _count_mentions(self, lang: str, cv_text: str) -> int:
+        if not cv_text: return 0
+        import re
+        lang_lower = lang.lower()
+        # count occurrences with word boundaries to avoid substrings
+        pattern = rf"\b{re.escape(lang_lower)}\b"
+        return len(re.findall(pattern, cv_text.lower()))
+
     def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: Optional[List[str]] = None) -> Dict[str, Any]:
         breakdown = []
         sources_used = ["CV"]
@@ -101,33 +109,27 @@ class LanguageExpertiseMetric(BaseMetric):
             if gh_pct > 0: item_sources.append("GitHub")
             
             # cv Signal
-            mentions = mention_counts.get(lang_lower, 0)
+            cv_text = candidate_data.get("raw_cv_text") or candidate_data.get("full_cv_text") or ""
+            mentions = self._count_mentions(lang, cv_text)
+            
             cv_score = 0.0
             prominence_note = ""
             if mentions > 0:
-                base_cv_score = min(0.8, mentions * 0.2)
-                if mentions < max_cv_mentions:
-                    # If it's mentioned less than their 'top' skill, give it a small penalty
-                    cv_score = base_cv_score * cfg["CV_PROMINENCE_PENALTY"]
-                    prominence_note = " (Secondary Skill Penalty applied)"
-                else:
-                    cv_score = base_cv_score
+                # Scale score: 1 mention = 0.2, 2 = 0.4, 3 = 0.6, 4 = 0.8 (cap)
+                cv_score = min(0.8, mentions * 0.2)
                 item_sources.append("CV")
             
             recency_mult, recency_note = self._calculate_recency_multiplier(lang, candidate_data)
             
             primary_score = max(gh_score, cv_score)
             item_score = self._calculate_multi_source_bonus(item_sources, primary_score)
-            
             final_item_score = self._normalise_score(item_score * recency_mult)
             
             total_item_score += final_item_score
             
             # Mathematical Transparency
-            multiplier = 1.15 if len(item_sources) > 1 else 1.0
-            calc_formula = f"max({gh_score:.2f}, {cv_score:.2f})"
-            if multiplier > 1.0: calc_formula += f" * {multiplier:.2f}"
-            calc_formula += f" = {item_score:.2f}"
+            bonus_val = 1.15 if len(set(item_sources)) > 1 else 1.0
+            logic_summary = f"(max({gh_score:.2f}, {cv_score:.2f}) * {bonus_val:.2f}) * {recency_mult:.1f} = {final_item_score:.2f}"
             
             source_details = [
                 {
@@ -163,7 +165,7 @@ class LanguageExpertiseMetric(BaseMetric):
                 "item": lang,
                 "score": final_item_score,
                 "source_details": source_details,
-                "notes": f"Logic: ({calc_formula}) * {recency_mult}x recency = {final_item_score:.2f}",
+                "notes": f"Logic: {logic_summary}",
                 "sources": list(set(item_sources))
             })
 

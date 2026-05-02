@@ -55,6 +55,15 @@ class TechnologyStackMetric(BaseMetric):
         if years_since == 3: return cfg["DECAY"], "Significant Decay"
         return cfg["LEGACY"], "Legacy Skill"
 
+    def _count_mentions(self, tech: str, cv_text: str) -> int:
+        if not cv_text: return 0
+        import re
+        tech_lower = tech.lower()
+
+        # count occurrences with word boundaries to avoid substrings
+        pattern = rf"\b{re.escape(tech_lower)}\b"
+        return len(re.findall(pattern, cv_text.lower()))
+
     def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: Optional[List[str]] = None) -> Dict[str, Any]:
         breakdown = []
         sources_used = ["CV"]
@@ -84,19 +93,10 @@ class TechnologyStackMetric(BaseMetric):
         for tech in target_tech:
             tech_lower = str(tech).lower()
             
-            has_cv = False
-            match_evidence = None
-            for s in cv_skills:
-                if len(tech_lower) <= 3 or len(s) <= 3:
-                    if tech_lower == s:
-                        has_cv = True
-                        match_evidence = s
-                        break
-                else:
-                    if tech_lower in s or s in tech_lower:
-                        has_cv = True
-                        match_evidence = s
-                        break
+            # cv signal
+            cv_text = candidate_data.get("raw_cv_text") or candidate_data.get("full_cv_text") or ""
+            mentions = self._count_mentions(tech, cv_text)
+            has_cv = mentions > 0
             
             has_li = tech_lower in li_text and len(tech_lower) > 2
             
@@ -124,11 +124,10 @@ class TechnologyStackMetric(BaseMetric):
 
             if has_cv:
                 item_sources.append("CV")
-                evidence_str = match_evidence if match_evidence else tech_lower
                 source_details.append({
                     "source": "CV Signal",
                     "score": 0.50,
-                    "explanation": f"Explicitly listed as: \"{evidence_str}\"",
+                    "explanation": f"Found {mentions} occurrences in original document text.",
                     "weighting": "Self-reported claim (Baseline)"
                 })
             
@@ -145,11 +144,16 @@ class TechnologyStackMetric(BaseMetric):
             final_item_score = self._normalise_score(item_score * recency_mult)
             
             total_item_score += final_item_score
+
+            # mathematical transparency
+            bonus_val = 1.15 if len(set(item_sources)) > 1 else 1.0
+            logic_summary = f"(max({'0.70' if has_li else '0.00'}, {'0.50' if has_cv else '0.00'}) * {bonus_val:.2f}) * {recency_mult:.1f} = {final_item_score:.2f}"
+
             breakdown.append({
                 "item": tech,
                 "score": final_item_score,
                 "source_details": source_details,
-                "notes": f"Logic: ({item_score:.2f} base) * {recency_mult}x recency = {final_item_score:.2f}",
+                "notes": f"Logic: {logic_summary}",
                 "sources": list(set(item_sources))
             })
 

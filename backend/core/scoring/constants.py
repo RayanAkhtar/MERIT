@@ -41,5 +41,10 @@ SCORING_CONSTANTS = {
         "LI_BASE_SCORE": 0.70,
         "CV_BASE_SCORE": 0.50,
         "CONSENSUS_MULTIPLIER": 1.15,
+    },
+    "ANTI_STUFFING": {
+        "OCCURRENCE_LIMIT": 5,             # max times a keyword can appear (in the cv) before penalty to avoid keyword stuffing
+        "PENALTY_PER_OCCURRENCE": 0.03,    # Score reduction for each occurrence over limit
+        "MAX_TOTAL_PENALTY": 0.30          # Cap the penalty at 30% of score for that metric (no reason for them to mention that many times)
     }
 }

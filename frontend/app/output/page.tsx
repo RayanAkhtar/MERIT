@@ -132,7 +132,7 @@ function RankingReport() {
 
         const newMetric = JSON.parse(JSON.stringify(m));
         let metricTotalPoints = 0;
-        const validBreakdown = (newMetric.breakdown || []).map((item: any) => {
+        const validBreakdown = (newMetric.breakdown || []).filter(item => item.item !== "Authenticity & Integrity Audit").map((item: any) => {
           const activeSourceDetails = (item.source_details || []).filter((sd: any) => {
              if (['Temporal Analysis', 'University Anchor', 'Degree Match', 'Performance', 'Academic Audit', 'Grade Audit'].includes(sd.source) || sd.source.includes('Signal') || sd.source.includes('Detail')) return true;
              if (sd.source === 'Verification Bonus') return activeSources.includes('GitHub') && activeSources.includes('CV');
@@ -166,6 +166,9 @@ function RankingReport() {
           return { ...item, score: newItemScore, source_details: activeSourceDetails };
         }).filter((item: any) => item.source_details && item.source_details.length > 0);
 
+        // Keep the original breakdown for rendering, but use validBreakdown for math
+        newMetric.breakdown = newMetric.breakdown || [];
+
         const originalMetric = c.metrics[key] || {};
         
         // DYNAMIC RECALCULATION:
@@ -175,26 +178,40 @@ function RankingReport() {
         const isAllSourcesActive = activeSources.length === 3;
         
         // If the metric has items, we average their dynamically calculated scores
-        const newMetricScore = validBreakdown.length > 0 
+        let newMetricScore = validBreakdown.length > 0 
           ? Math.min(1.0, metricTotalPoints / validBreakdown.length) 
           : (isAllSourcesActive ? (originalMetric.score || 0) : 0);
+
+        // APPLY INTEGRITY PENALTY (if applicable)
+        // This ensures that even if sources are toggled, the keyword stuffing penalty
+        // persists as long as the CV source is active (since stuffing is CV-based).
+        if (originalMetric.integrity_penalty_applied && activeSources.includes('CV')) {
+            const pVal = originalMetric.integrity_penalty_value || 0;
+            newMetricScore = Math.max(0, newMetricScore - pVal);
+            newMetric.integrity_penalty_applied = true;
+            newMetric.integrity_penalty_value = pVal;
+        }
 
         newMetric.score = newMetricScore;
         newMetric.breakdown = validBreakdown;
         
-        if (validBreakdown.length === 1) {
-           const item = validBreakdown[0];
-           const li_s = activeSources.includes('LinkedIn') ? (item.source_details.find((sd: any) => sd.source === 'LinkedIn')?.score || 0) : 0;
-           const cv_s = activeSources.includes('CV') ? (item.source_details.find((sd: any) => sd.source === 'CV')?.score || 0) : 0;
-           const gh_s = activeSources.includes('GitHub') ? (item.source_details.find((sd: any) => sd.source === 'GitHub')?.score || 0) : 0;
-           const recency = item.source_details.find((sd: any) => sd.source === 'Temporal Analysis')?.score || 1.0;
-           const mult = item.source_details.filter((sd: any) => ['GitHub', 'CV', 'LinkedIn'].includes(sd.source)).length > 1 ? 1.15 : 1.0;
-           
-           if (newMetric.formula && newMetric.formula.includes('max(GH_Score, CV_Score)')) {
-               newMetric.technical_formula = `max(${gh_s.toFixed(2)}, ${cv_s.toFixed(2)})${mult > 1 ? ' * 1.15' : ''}${recency !== 1.0 ? ' * ' + recency.toFixed(2) : ''} = ${item.score.toFixed(2)}`;
-           } else if (newMetric.formula && newMetric.formula.includes('max(LinkedInSignal, CVSignal)')) {
-               newMetric.technical_formula = `max(${li_s.toFixed(2)}, ${cv_s.toFixed(2)})${mult > 1 ? ' * 1.15' : ''} = ${item.score.toFixed(2)}`;
-           }
+        // Use the backend's provided formula if available, otherwise reconstruct it
+        if (originalMetric.technical_formula && isAllSourcesActive) {
+            newMetric.technical_formula = originalMetric.technical_formula;
+        } else if (validBreakdown.length === 1) {
+            const item = validBreakdown[0];
+            const li_s = activeSources.includes('LinkedIn') ? (item.source_details.find((sd: any) => sd.source.includes('LinkedIn'))?.score || 0) : 0;
+            const cv_s = activeSources.includes('CV') ? (item.source_details.find((sd: any) => sd.source.includes('CV'))?.score || 0) : 0;
+            const gh_s = activeSources.includes('GitHub') ? (item.source_details.find((sd: any) => sd.source.includes('GitHub'))?.score || 0) : 0;
+            
+            const recency = item.source_details.find((sd: any) => sd.source.includes('Temporal'))?.score || 1.0;
+            const mult = item.source_details.filter((sd: any) => ['GitHub', 'CV', 'LinkedIn'].some(s => sd.source.includes(s))).length > 1 ? 1.15 : 1.0;
+            
+            if (newMetric.formula && newMetric.formula.includes('max(GH_Score, CV_Score)')) {
+                newMetric.technical_formula = `max(${gh_s.toFixed(2)}, ${cv_s.toFixed(2)})${mult > 1 ? ' * 1.15' : ''}${recency !== 1.0 ? ' * ' + recency.toFixed(2) : ''} = ${item.score.toFixed(2)}`;
+            } else if (newMetric.formula && newMetric.formula.includes('max(LinkedInSignal, CVSignal)')) {
+                newMetric.technical_formula = `max(${li_s.toFixed(2)}, ${cv_s.toFixed(2)})${mult > 1 ? ' * 1.15' : ''} = ${item.score.toFixed(2)}`;
+            }
         }
 
         dynamicMetrics[key] = newMetric;
@@ -444,14 +461,36 @@ function RankingReport() {
                       </td>
                       <td className="px-5 py-4 bg-indigo-50/30 dark:bg-indigo-900/5 border-x border-zinc-100 dark:border-zinc-800/60">
                          <div className="flex items-center gap-2">
-                            <span className="text-base font-black text-indigo-600 dark:text-indigo-400">{cand.overallScore}%</span>
+                            <span className={`text-base font-black ${cand.calculation_summary?.integrity_penalty > 0 ? 'text-amber-600 dark:text-amber-500' : 'text-indigo-600 dark:text-indigo-400'}`}>
+                              {cand.overallScore}%
+                            </span>
+                            {cand.calculation_summary?.integrity_penalty > 0 && (
+                               <svg className="w-3.5 h-3.5 text-amber-500 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                               </svg>
+                            )}
                          </div>
                       </td>
-                      {visibleMetrics.map(m => (
-                         <td key={m.key} className="px-4 py-4 font-mono text-sm border-r border-zinc-100 dark:border-zinc-800/30 last:border-0">
-                            <span className={cand.computedScores[m.key] > 70 ? "text-green-500" : "text-zinc-600 dark:text-zinc-400"}>{cand.computedScores[m.key]}%</span>
-                         </td>
-                      ))}
+                      {visibleMetrics.map(m => {
+                         const metricData = cand.fullMetrics[m.key];
+                         const hasPenalty = metricData?.integrity_penalty_applied;
+                         const score = cand.computedScores[m.key];
+                         
+                         return (
+                          <td key={m.key} className="px-4 py-4 font-mono text-sm border-r border-zinc-100 dark:border-zinc-800/30 last:border-0">
+                             <div className="flex items-center gap-2">
+                                <span className={hasPenalty ? "text-rose-500 font-bold" : (score > 70 ? "text-green-500" : "text-zinc-600 dark:text-zinc-400")}>
+                                   {score}%
+                                </span>
+                                {hasPenalty && (
+                                   <svg className="w-3 h-3 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                   </svg>
+                                )}
+                             </div>
+                          </td>
+                         );
+                      })}
                     </tr>
                   ))}
                 </tbody>

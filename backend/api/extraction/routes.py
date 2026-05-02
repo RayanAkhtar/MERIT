@@ -41,7 +41,7 @@ def extract_job_description():
     if cache_enabled:
         cached = get_cached_data("job_desc", content_hash)
         if cached:
-            # print("DEBUG: Found cached JD!")
+            # print("DEBUG: found cache jd")
             cached["cached"] = True
             return jsonify(cached), 200
 
@@ -70,8 +70,6 @@ def extract_job_description():
     combined = results[0]
     formatted_metrics = []
     
-    # this mapping is a bit hardcoded and ugly, should probably refactor to use a schema later
-    # but for now it works for the MVP
     if combined.get("company"):
         formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Company", "value": combined["company"], "category": "General"})
     if combined.get("job_title"):
@@ -136,7 +134,7 @@ def extract_cv():
             cached_res = get_cached_data("cv", cache_id)
             cached_url = cached_res.get("cv_url") if cached_res else None
             
-            # Only return early if we have a cloud URL (not a local fallback)
+            # only return early if we have a cloud url (not a local fallback)
             if cached_res and cached_url and not cached_url.startswith("http://localhost"):
                 # print(f"DEBUG: cache hit for {cache_id}")
                 cached_res["cached"] = True
@@ -157,7 +155,7 @@ def extract_cv():
         print(f"DEBUG: Supabase Client Status: {'Initialised' if supabase else 'NOT INITIALISED'}")
         if supabase:
             try:
-                # Attempt to create bucket, but ignore if it already exists
+                # attempt to create bucket, but ignore if it already exists
                 try:
                     supabase.storage.create_bucket('cvs', options={'public': True})
                     print("DEBUG: Verified/Created 'cvs' bucket.")
@@ -168,7 +166,8 @@ def extract_cv():
                 print(f"DEBUG: Attempting upload to path: {storage_path}")
                 
                 with open(filepath, 'rb') as f:
-                    # Use upsert to prevent "File already exists" errors
+                    # use upsert to prevent "File already exists" errors
+                    print(f"DEBUG: Uploading {filename} to Supabase Storage...")
                     res = supabase.storage.from_('cvs').upload(
                         path=storage_path,
                         file=f,
@@ -177,15 +176,18 @@ def extract_cv():
                             "upsert": "true" 
                         }
                     )
+                    # print(f"DEBUG: Storage Response: {res}")
                 
-                # Construct the public URL manually
+                # construct the public url manually
                 cv_url = f"{SUPABASE_URL}/storage/v1/object/public/cvs/{storage_path}"
                 print(f"SUCCESS: CV uploaded to storage. URL: {cv_url}")
             except Exception as e:
                 print(f"CRITICAL: Supabase Storage Upload Failed: {str(e)}")
-                # Fallback to local path if storage fails
+                import traceback
+                traceback.print_exc()
+                # fallback to local path if storage fails
                 cv_url = f"http://localhost:5000/uploads/{filename}" 
-                print(f"DEBUG: Falling back to local URL: {cv_url}")
+                #print(f"DEBUG: Falling back to local URL: {cv_url}")
         else:
             print("WARNING: Supabase client is None. Check your .env for SUPABASE_URL and SUPABASE_KEY.")
             cv_url = f"http://localhost:5000/uploads/{filename}"
