@@ -3,6 +3,7 @@
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useMemo, useState, useRef, useEffect, Suspense } from 'react';
 import DetailedReportModal from './components/DetailedReportModal';
+import BatchInfluenceChart from './components/BatchInfluenceChart';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 
@@ -267,10 +268,35 @@ function RankingReport() {
            total_weight: dynamicTotalWeight
         },
         total_score: finalDynamicScore,
-        overallScore: Math.round(finalDynamicScore * 100)
+        overallScore: Math.round(finalDynamicScore * 100),
+        shapley_values: c.shapley_values // Preserving XAI data for the modal
       };
     });
   }, [rawResults, activeSources, visibleColKeys]);
+
+  const batchShapley = useMemo(() => {
+    if (!candidates || candidates.length === 0) return null;
+    
+    const totals = { "CV": 0, "GitHub": 0, "LinkedIn": 0 };
+    let count = 0;
+    
+    candidates.forEach(c => {
+      if (c.shapley_values) {
+        Object.entries(c.shapley_values).forEach(([source, val]: [string, any]) => {
+          if (source in totals) totals[source as keyof typeof totals] += val;
+        });
+        count++;
+      }
+    });
+    
+    if (count === 0) return null;
+    
+    return {
+      "CV": totals["CV"] / count,
+      "GitHub": totals["GitHub"] / count,
+      "LinkedIn": totals["LinkedIn"] / count
+    };
+  }, [candidates]);
 
   const sortedCandidates = useMemo(() => {
     let sortable = [...candidates];
@@ -339,11 +365,18 @@ function RankingReport() {
             </div>
             <h1 className="text-4xl font-black text-zinc-900 dark:text-zinc-50 tracking-tight">Intelligence Report</h1>
           </div>
-          <div className="flex items-center gap-3">
-             <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold ${rawResults.is_snapshot ? 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/20 dark:text-amber-400 dark:border-amber-800' : 'bg-green-50 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800'} shadow-sm`}>
-                <span className={`w-2 h-2 rounded-full ${rawResults.is_snapshot ? 'bg-amber-500' : 'bg-green-500 animate-pulse'}`} /> 
-                {rawResults.is_snapshot ? `Static: ${new Date(rawResults.created_at).toLocaleString()}` : 'Computed & Live'}
-             </span>
+          
+          <div className="flex flex-col sm:flex-row items-center gap-6">
+            {batchShapley && (
+              <BatchInfluenceChart data={batchShapley} />
+            )}
+            
+            <div className="flex items-center gap-3">
+               <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold ${rawResults.is_snapshot ? 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/20 dark:text-amber-400 dark:border-amber-800' : 'bg-green-50 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800'} shadow-sm`}>
+                  <span className={`w-2 h-2 rounded-full ${rawResults.is_snapshot ? 'bg-amber-500' : 'bg-green-500 animate-pulse'}`} /> 
+                  {rawResults.is_snapshot ? `Static: ${new Date(rawResults.created_at).toLocaleString()}` : 'Computed & Live'}
+               </span>
+            </div>
           </div>
         </div>
 

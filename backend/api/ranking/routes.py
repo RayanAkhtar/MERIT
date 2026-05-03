@@ -147,6 +147,17 @@ def rank_candidates(config_id):
             
             scored_data = scoring_registry.run_all(candidate, job_reqs, active_metrics, weights)
             
+            # calculate explainable AI (XAI) metrics via Shapley Values
+            from core.scoring.explainability import ShapleyExplainer
+            explainer = ShapleyExplainer(scoring_registry)
+            shapley_results = explainer.calculate_contributions(candidate, job_reqs, active_metrics, weights)
+            
+            # inject "per metric" Shapley values into the metrics breakdown for the UI
+            for m_key, m_val in scored_data["metrics"].items():
+                if m_key in shapley_results["metrics"]:
+                    if m_val.get("breakdown") and len(m_val["breakdown"]) > 0:
+                        m_val["breakdown"][0]["impact_attribution"] = shapley_results["metrics"][m_key]
+            
             final_results.append({
                 "candidate_id": candidate["id"],
                 "name": candidate["name"],
@@ -154,6 +165,7 @@ def rank_candidates(config_id):
                 "total_score": scored_data["overall_score"],
                 "integrity_penalty": scored_data.get("integrity_penalty", 0.0),
                 "metrics": scored_data["metrics"],
+                "shapley_values": shapley_results["overall"],
                 "calculation_summary": scored_data["calculation_summary"]
             })
 

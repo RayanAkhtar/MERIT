@@ -116,6 +116,55 @@ export default function DetailedReportModal({
               </svg>
               Intelligence Report
             </h3>
+
+            {/* Global Source Influence (Shapley Values) */}
+            {candidate.shapley_values && (
+              <div className="p-5 rounded-2xl bg-indigo-600 shadow-xl shadow-indigo-600/20 border border-indigo-500/50 text-white relative overflow-hidden group">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-3xl group-hover:bg-white/20 transition-all duration-700" />
+                
+                <div className="relative z-10 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-[10px] font-black uppercase tracking-[0.25em] text-indigo-100">Source Influence Breakdown</h4>
+                    <span className="text-[9px] font-bold bg-white/20 px-2 py-0.5 rounded-full backdrop-blur-sm">XAI Audit</span>
+                  </div>
+
+                  <div className="space-y-3">
+                    {Object.entries(candidate.shapley_values)
+                      .sort((a: any, b: any) => Math.abs(b[1]) - Math.abs(a[1]))
+                      .map(([source, value]: [string, any], idx) => {
+                        const pct = (value * 100).toFixed(1);
+                        const isPositive = value >= 0;
+                        return (
+                          <div key={source} className="space-y-1.5">
+                            <div className="flex justify-between items-center text-[11px] font-bold">
+                              <span className="flex items-center gap-2">
+                                <span className={`w-1.5 h-1.5 rounded-full ${idx === 0 ? 'bg-white' : 'bg-white/50'}`} />
+                                {source}
+                              </span>
+                              <span className={isPositive ? 'text-white' : 'text-rose-200'}>
+                                {isPositive ? '+' : ''}{pct}%
+                              </span>
+                            </div>
+                            <div className="h-1.5 w-full bg-black/20 rounded-full overflow-hidden border border-white/5">
+                              <motion.div 
+                                initial={{ width: 0 }}
+                                animate={{ width: `${Math.max(0, Math.min(100, Math.abs(value * 100)))}%` }}
+                                transition={{ duration: 1, delay: 0.2 + idx * 0.1 }}
+                                className={`h-full ${isPositive ? 'bg-white' : 'bg-rose-300'}`} 
+                              />
+                            </div>
+                          </div>
+                        );
+                      })}
+                  </div>
+
+                  <p className="text-[9px] text-indigo-100/60 leading-relaxed font-medium">
+                    * Contributions calculated via <b>Shapley Values</b> across 8 source permutations.
+                  </p>
+                </div>
+              </div>
+            )}
+
             <div className="space-y-6">
               {Object.entries(candidate.fullMetrics)
                 .sort(([, a]: [string, any], [, b]: [string, any]) => {
@@ -372,6 +421,38 @@ export default function DetailedReportModal({
                                           </div>
 
                                           <div className="pt-2 flex justify-between items-center">
+
+                                            {/* Source Impact Attribution (Shapley Values) */}
+                                            {item.impact_attribution && Object.keys(item.impact_attribution).length > 0 && (
+                                              <div className="pt-4 space-y-3 px-1">
+                                                <div className="flex justify-between items-center text-[10px] font-black text-indigo-400 uppercase tracking-widest border-b border-indigo-500/20 pb-1">
+                                                  <span>Final Attribution: Source Impact</span>
+                                                </div>
+                                                <div className="space-y-2">
+                                                  {Object.entries(item.impact_attribution).sort((a: any, b: any) => Math.abs(b[1]) - Math.abs(a[1])).map(([src, val]: [string, any], idx) => {
+                                                    return (
+                                                      <div key={idx} className="space-y-1">
+                                                        <div className="flex justify-between text-[10px] font-mono px-1">
+                                                          <span className="text-zinc-400">{src}</span>
+                                                          <span className={`${val >= 0 ? 'text-emerald-400' : 'text-rose-400'} font-bold`}>
+                                                            {val >= 0 ? '+' : ''}{(val * 100).toFixed(1)}%
+                                                          </span>
+                                                        </div>
+                                                        <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                                                          <div 
+                                                            className={`h-full ${val >= 0 ? 'bg-emerald-500/50' : 'bg-rose-500/50'}`} 
+                                                            style={{ width: `${Math.min(100, Math.abs(val * 100))}%` }}
+                                                          />
+                                                        </div>
+                                                      </div>
+                                                    );
+                                                  })}
+                                                  <p className="text-[9px] text-zinc-500 italic mt-2">
+                                                    * Calculated via Shapley Values (Cooperative Game Theory) to isolate marginal contribution per source.
+                                                  </p>
+                                                </div>
+                                              </div>
+                                            )}
                                             <div className="text-xs font-bold text-zinc-500 uppercase tracking-tight">Final Aggregated State:</div>
                                             <div className="text-sm font-mono font-bold text-white bg-indigo-500/30 px-2 py-0.5 rounded border border-indigo-500/20">
                                               α={item.alpha?.toFixed(2)}, β={item.beta?.toFixed(2)}
