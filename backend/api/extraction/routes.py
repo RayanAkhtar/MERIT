@@ -6,6 +6,7 @@ from core.parsers.cv import parse_cv
 from core.parsers.registry import datasource_registry
 from core.utils.cache import get_cached_data, save_to_cache
 from core.supabase import supabase, SUPABASE_URL
+from core.scoring.dynamic_weighting import WeightingEngine
 import hashlib
 
 extraction_bp = Blueprint("extraction", __name__)
@@ -107,6 +108,32 @@ def extract_job_description():
         "metrics": formatted_metrics,
         "cached": False
     }
+
+    # dynamic weighting via tf-idf
+    try:
+        weight_engine = WeightingEngine()
+        
+        # collect all extractable skill values
+        skill_values = [m["value"] for m in formatted_metrics if m["category"] in ["Languages", "Technologies", "Soft Skills", "Education", "Experience"]]
+        
+        # TF-IDF suggested weights
+        suggested_weights = weight_engine.calculate_weights(combined.get("raw_text", ""), skill_values)
+        
+        # inject suggested weights back into formatted metrics
+        for m in formatted_metrics:
+            if m["value"] in suggested_weights:
+                m["suggested_weight"] = suggested_weights[m["value"]]["weight"]
+                m["suggested_weight_reasoning"] = suggested_weights[m["value"]]["reasoning"]
+                m["suggested_weight_math"] = suggested_weights[m["value"]]["math"]
+            else:
+                m["suggested_weight"] = 3.0 # Default fallback
+                m["suggested_weight_reasoning"] = "Standard importance."
+                m["suggested_weight_math"] = None
+    except Exception as e:
+        print(f"Warning: Dynamic Weighting failed: {e}")
+        for m in formatted_metrics:
+            m["suggested_weight"] = 3.0
+            m["suggested_weight_reasoning"] = "Calculation error."
 
     if cache_enabled:
         save_to_cache("job_desc", content_hash, response_data)

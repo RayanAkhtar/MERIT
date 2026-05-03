@@ -8,6 +8,9 @@ export interface JobDescriptionMetric {
     value: string;
     subValue?: string;
     category: string;
+    suggested_weight?: number;
+    suggested_weight_reasoning?: string;
+    suggested_weight_math?: any;
 }
 
 export interface ExtractedData {

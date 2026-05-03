@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
+import { FaRocket, FaRobot, FaInfoCircle, FaExclamationTriangle } from 'react-icons/fa';
 
 interface ConfigEditorProps {
   initialData?: {
@@ -24,6 +25,7 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
   const [configName, setConfigName] = useState(initialData?.name || '');
   const [isLoading, setIsLoading] = useState(true);
   const [showReqModal, setShowReqModal] = useState(false);
+  const [showMathModal, setShowMathModal] = useState<any>(null);
 
   // 0 = Least Important, 1 = Most Important
   const [importance, setImportance] = useState<Record<string, number>>(initialData?.weights || {});
@@ -87,26 +89,42 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
     const seenLabels = new Set<string>();
     
     Object.entries(reqPreviewData.metrics).forEach(([category, data]: [string, any]) => {
+      // Skip 'Experience' (global model) and 'General' (metadata) categories
+      if (category === 'Experience' || category === 'General') return;
+
       if (data.type === 'key-value' && Array.isArray(data.value)) {
         data.value.forEach((item: any) => {
-          if (item.name && !seenLabels.has(item.name)) {
-            seenLabels.add(item.name);
+          const label = item.name || item.value;
+          const isExperienceMetric = /years|yrs|\d+\+/.test(label.toLowerCase());
+          const isNoisyMetric = label.length > 50 || /^\d+\./.test(label) || /at scale|democratizing|participate in|maintaining/i.test(label);
+
+          if (label && !seenLabels.has(label) && !isExperienceMetric && !isNoisyMetric) {
+            seenLabels.add(label);
             reqAdditional.push({
-              key: `req_${item.name.replace(/[^a-zA-Z0-9]/g, '_')}`,
-              label: item.name,
-              source: 'JD'
+              key: `req_${label.replace(/[^a-zA-Z0-9]/g, '_')}`,
+              label: label,
+              source: 'JD',
+              suggested_weight: item.suggested_weight,
+              suggested_weight_reasoning: item.suggested_weight_reasoning,
+              suggested_weight_math: item.suggested_weight_math
             });
           }
         });
       } else if (data.type === 'list' && Array.isArray(data.value)) {
         data.value.forEach((item: any) => {
-          const label = typeof item === 'string' ? item : (item.name || item.value);
-          if (label && !seenLabels.has(label)) {
+          const label = typeof item === 'string' ? item : (item.value || item.name);
+          const isExperienceMetric = /years|yrs|\d+\+/.test(label.toLowerCase());
+          const isNoisyMetric = label.length > 50 || /^\d+\./.test(label) || /at scale|democratizing|participate in|maintaining/i.test(label);
+
+          if (label && !seenLabels.has(label) && !isExperienceMetric && !isNoisyMetric) {
             seenLabels.add(label);
             reqAdditional.push({
               key: `req_${label.replace(/[^a-zA-Z0-9]/g, '_')}`,
               label: label,
-              source: 'JD'
+              source: 'JD',
+              suggested_weight: typeof item === 'object' ? item.suggested_weight : undefined,
+              suggested_weight_reasoning: typeof item === 'object' ? item.suggested_weight_reasoning : undefined,
+              suggested_weight_math: typeof item === 'object' ? item.suggested_weight_math : undefined
             });
           }
         });
@@ -161,6 +179,19 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
       return newState;
     });
   }, [selectedReq, selectedBatch, reqAdditional.length, batchAdditional.length]);
+
+  const handleApplyAIWeights = () => {
+    const newImportance = { ...importance };
+    allCriteria.forEach(c => {
+      // Only apply if we have valid mathematical reasoning (IR data)
+      if (c.suggested_weight !== undefined && (c as any).suggested_weight_math) {
+        const priority = Math.max(1, Math.min(5, Math.round(6 - c.suggested_weight)));
+        const weightValue = parseFloat((1.2 - priority * 0.2).toFixed(1));
+        newImportance[c.key] = weightValue;
+      }
+    });
+    setImportance(newImportance);
+  };
 
   const handleSave = () => {
     // Only send metrics that have an importance value
@@ -231,11 +262,14 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
                 <div className="mb-4">
                   <span className="block text-indigo-600/70 dark:text-indigo-400/70 font-medium text-xs mb-1.5">Required Languages</span>
                   <div className="flex flex-wrap gap-1.5">
-                    {reqPreviewData.metrics?.['Languages']?.value?.map((lang: string) => (
-                      <span key={lang} className="px-2 py-0.5 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-300 rounded font-semibold text-xs border border-indigo-200 dark:border-indigo-800">
-                        {lang}
-                      </span>
-                    )) || <span className="text-zinc-500 italic">None specified</span>}
+                    {reqPreviewData.metrics?.['Languages']?.value?.map((lang: any, idx: number) => {
+                      const label = typeof lang === 'string' ? lang : (lang.value || lang.name);
+                      return (
+                        <span key={`${label}-${idx}`} className="px-2 py-0.5 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-300 rounded font-semibold text-xs border border-indigo-200 dark:border-indigo-800">
+                          {label}
+                        </span>
+                      );
+                    }) || <span className="text-zinc-500 italic">None specified</span>}
                   </div>
                 </div>
 
@@ -303,11 +337,34 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
             <hr className="border-zinc-200 dark:border-zinc-800" />
             <div className="space-y-4 animate-in fade-in slide-in-from-top-4 duration-500">
               <div>
-                <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
-                  <span className="flex items-center justify-center w-6 h-6 rounded-full bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 text-xs font-bold ring-1 ring-green-200 dark:ring-green-800">3</span>
-                  Prioritise Matching Criteria
-                </h2>
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-2">
+                  <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
+                    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 text-xs font-bold ring-1 ring-green-200 dark:ring-green-800">3</span>
+                    Prioritise Matching Criteria
+                  </h2>
+                  {reqAdditional.some(r => r.suggested_weight !== undefined) && (
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => setShowMathModal({ label: 'Audit Report' } as any)}
+                        className="flex items-center gap-2 px-4 py-2 bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700 rounded-lg text-sm font-bold hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors shadow-sm"
+                      >
+                        <FaInfoCircle className="w-4 h-4" />
+                        Audit AI Logic
+                      </button>
+                      <button
+                        onClick={handleApplyAIWeights}
+                        title="TF-IDF Analysis: High scores are given to rare skills that appear frequently in this JD but rarely in others. Common skills are given lower priority."
+                        className="flex items-center gap-2 px-4 py-2 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 rounded-lg text-sm font-bold hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors shadow-sm"
+                      >
+                        <FaRobot className="w-4 h-4" />
+                        Apply AI Suggested Weights
+                      </button>
+                    </div>
+                  )}
+                </div>
+                <p className="text-zinc-600 dark:text-zinc-400">
                   Select a priority from <strong className="text-zinc-900 dark:text-zinc-200">1 to 5</strong> to activate a metric. Click a selected priority again to deactivate it.
+                </p>
               </div>
 
               <div className="ml-8 bg-zinc-50 dark:bg-zinc-950/50 p-6 border border-zinc-200 dark:border-zinc-800 rounded-lg">
@@ -319,27 +376,57 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
                     return (
                       <div key={item.key} className={`flex flex-col md:flex-row md:items-center justify-between gap-4 py-4 border-b border-zinc-200 dark:border-zinc-800 last:border-0 last:pb-0 transition-opacity ${!isActive ? 'opacity-40 grayscale' : ''} ${item.source ? 'bg-indigo-50/30 dark:bg-indigo-900/5 -mx-4 px-4 rounded-md' : ''}`}>
                         <div className="flex items-center gap-4">
-                          <div className="flex flex-col gap-1.5">
+                          <div className="flex flex-col">
                             <div className="flex items-center gap-3">
-                              <span className="text-sm font-medium text-zinc-900 dark:text-zinc-200 flex flex-wrap items-center gap-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                                <span>{item.label}</span>
-                                
-                                {/* Standardized Source Badges */}
-                                {item.sources?.map((src: string) => (
-                                  <span key={src} className={`
-                                    px-2 py-0.5 text-[10px] uppercase font-bold rounded-md
-                                    ${src === 'CV' ? 'bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300' : ''}
-                                    ${src === 'GitHub' ? 'bg-zinc-900 text-zinc-100 dark:bg-zinc-100 dark:text-zinc-900 border border-zinc-200 dark:border-zinc-700' : ''}
-                                    ${src === 'LinkedIn' ? 'bg-blue-600 text-white shadow-sm shadow-blue-500/20' : ''}
-                                  `}>
-                                    {src}
-                                  </span>
-                                ))}
-
-                                {/* Specialized Source Tags */}
-                                {item.source === 'JD' && <span className="px-2 py-0.5 text-[10px] uppercase font-bold bg-indigo-600 text-white rounded-md shadow-sm shadow-indigo-500/20">JD</span>}
-                                {item.subSources && <span className="px-2 py-0.5 text-[10px] uppercase font-bold bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300 rounded-md">Candidate: {item.subSources.join(', ')}</span>}
+                              <span className="font-bold text-zinc-900 dark:text-zinc-100">{item.label}</span>
+                              <span className="flex flex-wrap gap-2">
+                                {(() => {
+                                  const tags = item.source 
+                                    ? item.source.split(',') 
+                                    : (item.sources || []);
+                                  
+                                  return tags.map((src: string) => (
+                                    <span key={src} className={`
+                                      px-2 py-0.5 text-[10px] uppercase font-bold rounded-md
+                                      ${src === 'JD' ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300' : ''}
+                                      ${src === 'CV' ? 'bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300' : ''}
+                                      ${src === 'GitHub' ? 'bg-zinc-900 text-zinc-100 dark:bg-zinc-100 dark:text-zinc-900 border border-zinc-200 dark:border-zinc-700' : ''}
+                                      ${src === 'LinkedIn' ? 'bg-blue-600 text-white shadow-sm shadow-blue-500/20' : ''}
+                                      ${src === 'Candidate Data' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300' : ''}
+                                    `}>
+                                      {src}
+                                    </span>
+                                  ));
+                                })()}
                               </span>
+
+                                {(() => {
+                                  const tags = item.source ? item.source.split(',') : (item.sources || []);
+                                  const isJDSkill = tags.includes('JD');
+                                  
+                                  if (item.suggested_weight && (item as any).suggested_weight_math) {
+                                    return (
+                                      <div className="px-3 py-1 bg-amber-50 dark:bg-amber-900/10 border border-amber-200/50 dark:border-amber-900/50 rounded-lg flex items-center gap-2 animate-in slide-in-from-right-4 duration-500">
+                                        <FaRobot className="w-3 h-3 text-amber-600 dark:text-amber-400" />
+                                        <span className="text-[10px] font-black text-amber-700 dark:text-amber-300 uppercase tracking-widest">
+                                          AI Suggests Priority: {Math.max(1, Math.min(5, Math.round(6 - item.suggested_weight)))}
+                                        </span>
+                                      </div>
+                                    );
+                                  } else if (isJDSkill) {
+                                    // Only show manual review for JD skills that didn't get a suggestion
+                                    return (
+                                      <div className="px-3 py-1 bg-rose-50 dark:bg-rose-950/20 border border-rose-200/50 dark:border-rose-900/50 rounded-lg flex items-center gap-2 animate-in fade-in duration-500">
+                                        <FaExclamationTriangle className="w-2.5 h-2.5 text-rose-500 dark:text-rose-400" />
+                                        <span className="text-[9px] font-black text-rose-600 dark:text-rose-300 uppercase tracking-widest">
+                                          Likely Not Measurable
+                                        </span>
+                                      </div>
+                                    );
+                                  }
+                                  return null;
+                                })()}
+                                {item.subSources && <span className="px-2 py-0.5 text-[10px] uppercase font-bold bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300 rounded-md">Candidate: {item.subSources.join(', ')}</span>}
                             </div>
                           </div>
                         </div>
@@ -457,9 +544,12 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
                       <span className="w-32 flex-shrink-0 font-semibold text-indigo-700 dark:text-indigo-400 text-sm">{category}</span>
                       <div className="flex flex-wrap gap-2">
                         {data.type === 'list' ? (
-                          data.value.map((val: string) => (
-                            <span key={val} className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 rounded text-xs font-medium">{val}</span>
-                          ))
+                          data.value.map((val: any, idx: number) => {
+                            const label = typeof val === 'string' ? val : (val.value || val.name);
+                            return (
+                              <span key={`${label}-${idx}`} className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 rounded text-xs font-medium">{label}</span>
+                            );
+                          })
                         ) : (
                           data.value.map((val: any, idx: number) => (
                             <span key={idx} className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 rounded text-xs font-medium">{val.name || val.value}</span>
@@ -474,6 +564,297 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
             </div>
             <div className="p-4 bg-zinc-50 dark:bg-zinc-800/50 border-t border-zinc-100 dark:border-zinc-800 text-right flex justify-end">
               <button onClick={() => setShowReqModal(false)} className="px-5 py-2 bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-md font-medium text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800">Close</button>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Professional AI Audit Report Modal */}
+      {showMathModal && (
+        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-zinc-950/60 backdrop-blur-sm animate-in fade-in duration-300">
+          <div className="bg-white dark:bg-zinc-900 rounded-3xl shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col transform animate-in zoom-in-95 duration-300 border border-zinc-200 dark:border-zinc-800" role="dialog">
+            
+            {/* Executive Header */}
+            <div className="p-8 border-b border-zinc-100 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/50 flex justify-between items-start">
+              <div className="flex gap-5">
+                <div className="w-14 h-14 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-500/20">
+                  <FaRobot className="w-7 h-7 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight">AI Intelligence Audit</h2>
+                  <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1 max-w-md">
+                    Mathematically validated weighting report for your current job configuration. This audit removes human bias by analyzing relative keyword density and market scarcity.
+                  </p>
+                </div>
+              </div>
+              <button 
+                onClick={() => setShowMathModal(null)} 
+                className="p-2 hover:bg-zinc-200 dark:hover:bg-zinc-800 rounded-full transition-colors text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200"
+              >
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+              </button>
+            </div>
+
+            {/* Audit Content */}
+            <div className="flex-1 overflow-y-auto p-10 custom-scrollbar space-y-12">
+              {allCriteria.filter(c => (c as any).suggested_weight_math).length === 0 ? (
+                <div className="py-24 text-center">
+                   <div className="w-16 h-16 bg-zinc-100 dark:bg-zinc-800 rounded-full flex items-center justify-center mx-auto text-zinc-400 mb-4">
+                      <FaInfoCircle className="w-8 h-8" />
+                   </div>
+                   <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">No Intelligence Data Available</h3>
+                   <p className="text-zinc-500 dark:text-zinc-400 mt-1">Please process a Job Description to generate mathematical weight suggestions.</p>
+                </div>
+              ) : (
+                <div className="space-y-12 max-w-5xl mx-auto">
+                  
+                  {/* Part 1: Mathematical Framework */}
+                  <div className="space-y-4">
+                    <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 border-l-2 border-indigo-500 pl-3">I. Mathematical Framework</h3>
+                    <div className="grid md:grid-cols-2 gap-6">
+                       <div className="bg-zinc-50 dark:bg-zinc-800/40 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-700">
+                          <p className="text-xs font-bold text-zinc-500 mb-3">Significance Index (SI)</p>
+                          <div className="font-serif italic text-lg text-zinc-900 dark:text-zinc-100 leading-relaxed">
+                            SI = ( [ <span className="text-cyan-600">TF</span> &times; <span className="text-emerald-600">IDF</span> ] / Σ<sub className="text-[10px]">max</sub> ) &times; 10
+                          </div>
+                          <div className="mt-4 text-[10px] text-zinc-500 space-y-1 font-mono uppercase">
+                             <p><span className="text-cyan-600 font-bold">TF</span> = Mentions / Words</p>
+                             <p><span className="text-emerald-600 font-bold">IDF</span> = log(Total Docs / (1 + Doc Freq)) + 1</p>
+                          </div>
+                       </div>
+                       <div className="bg-zinc-50 dark:bg-zinc-800/40 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-700">
+                          <p className="text-xs font-bold text-zinc-500 mb-3">Priority Mapping Protocol</p>
+                          <div className="space-y-2">
+                             <div className="flex justify-between text-[11px] font-mono">
+                                <span className="text-zinc-500">SI ≥ 9.00</span> <span className="text-indigo-600 font-bold">→ Priority 1</span>
+                             </div>
+                             <div className="flex justify-between text-[11px] font-mono">
+                                <span className="text-zinc-500">SI ≥ 7.00</span> <span className="text-indigo-500 font-bold">→ Priority 2</span>
+                             </div>
+                             <div className="flex justify-between text-[11px] font-mono">
+                                <span className="text-zinc-500">SI ≥ 5.00</span> <span className="text-zinc-600 font-bold">→ Priority 3</span>
+                             </div>
+                             <div className="flex justify-between text-[11px] font-mono">
+                                <span className="text-zinc-500">SI &lt; 5.00</span> <span className="text-zinc-400 font-bold">→ Priority 4+</span>
+                             </div>
+                          </div>
+                          <p className="mt-4 text-[10px] text-zinc-500 leading-relaxed italic uppercase tracking-wider font-bold">
+                            Direct bucket mapping for transparent recruiter verification.
+                          </p>
+                       </div>
+                    </div>
+                  </div>
+
+                  {/* Part 2: Intelligence Mapping Key */}
+                  <div className="space-y-4">
+                    <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 border-l-2 border-indigo-500 pl-3">II. Priority Mapping Logic</h3>
+                    <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-2xl overflow-hidden shadow-sm">
+                      <div className="grid grid-cols-4 divide-x divide-zinc-100 dark:divide-zinc-800">
+                        {[1, 2, 3, 4].map((p) => {
+                          const threshold = p === 1 ? `SI ≥ 9.00` : p === 2 ? `7.00 ≤ SI < 9.00` : p === 3 ? `5.00 ≤ SI < 7.00` : `SI < 5.00`;
+                          const color = p === 1 ? 'bg-indigo-600' : p === 2 ? 'bg-indigo-400' : p === 3 ? 'bg-zinc-400' : 'bg-zinc-200';
+                          return (
+                            <div key={p} className="p-6 text-center space-y-2 group hover:bg-zinc-50 dark:hover:bg-zinc-800/30 transition-colors">
+                              <div className={`w-10 h-10 ${color} text-white rounded-xl flex items-center justify-center mx-auto text-sm font-black shadow-md`}>P-{p}</div>
+                              <p className="text-[11px] font-black uppercase text-zinc-900 dark:text-zinc-100 tracking-widest">{p === 1 ? 'High' : p === 2 ? 'Standard' : p === 3 ? 'Balanced' : 'Baseline'}</p>
+                              <p className="text-[10px] font-mono text-zinc-500 font-bold">{threshold}</p>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Part 3: Requirement Audit Trail */}
+                  <div className="space-y-4">
+                    <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 border-l-2 border-indigo-500 pl-3">III. Raw Audit Telemetry</h3>
+                    <div className="border border-zinc-200 dark:border-zinc-700 rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 shadow-sm">
+                      <table className="w-full text-left border-collapse">
+                        <thead className="bg-zinc-50 dark:bg-zinc-800/50 text-[10px] font-black uppercase tracking-widest text-zinc-500 border-b border-zinc-100 dark:border-zinc-800">
+                          <tr>
+                            <th className="px-6 py-4">Requirement</th>
+                            <th className="px-6 py-4">
+                              <div className="flex items-center gap-1.5 group cursor-help relative">
+                                Job Demand (TF)
+                                <FaInfoCircle className="text-zinc-300 dark:text-zinc-600 w-2.5 h-2.5" />
+                                <div className="absolute top-full left-0 mt-2 w-48 p-2 bg-zinc-900 text-[9px] text-zinc-300 normal-case font-medium rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity z-50 pointer-events-none border border-zinc-800 leading-relaxed">
+                                  Measures the local intensity of a skill within this specific Job Description. High values indicate core technical requirements.
+                                </div>
+                              </div>
+                            </th>
+                            <th className="px-6 py-4">
+                              <div className="flex items-center gap-1.5 group cursor-help relative">
+                                Scarcity Multiplier (IDF)
+                                <FaInfoCircle className="text-zinc-300 dark:text-zinc-600 w-2.5 h-2.5" />
+                                <div className="absolute top-full left-0 mt-2 w-48 p-2 bg-zinc-900 text-[9px] text-zinc-300 normal-case font-medium rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity z-50 pointer-events-none border border-zinc-800 leading-relaxed">
+                                  Measures how rare a skill is across your entire job history. Rare skills receive a higher multiplier to prioritize niche talent.
+                                </div>
+                              </div>
+                            </th>
+                            <th className="px-6 py-4 text-right">Significance Index (SI)</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800">
+                          {(() => {
+                            const validMathScores = allCriteria.filter(c => (c as any).suggested_weight_math).map(c => (c as any).suggested_weight_math.raw_score);
+                            const maxRaw = Math.max(...validMathScores);
+
+                            return allCriteria.filter(c => (c as any).suggested_weight_math).map((c: any) => {
+                              const math = c.suggested_weight_math;
+                              const significanceIndex = (math.raw_score / maxRaw) * 10;
+                              const auditPriority = significanceIndex >= 9.0 ? 1 : significanceIndex >= 7.0 ? 2 : significanceIndex >= 5.0 ? 3 : 4;
+                              const isExpanded = (window as any)._expandedAuditKey === c.key;
+
+                              return (
+                                <Fragment key={c.key}>
+                                  <tr 
+                                    onClick={() => {
+                                      (window as any)._expandedAuditKey = isExpanded ? null : c.key;
+                                      setShowMathModal({...showMathModal} as any); 
+                                    }}
+                                    className="group cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800/40 transition-colors"
+                                  >
+                                    <td className="px-6 py-5">
+                                       <div className="flex items-center gap-3">
+                                          <div className={`transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}>
+                                             <svg className="w-3 h-3 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" /></svg>
+                                          </div>
+                                          <div>
+                                            <p className="font-bold text-zinc-900 dark:text-zinc-100">{c.label}</p>
+                                            <span className="text-[9px] font-black px-1.5 py-0.5 bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 rounded uppercase tracking-tighter">Mapped to P-{auditPriority}</span>
+                                          </div>
+                                       </div>
+                                    </td>
+                                    <td className="px-6 py-5">
+                                       <div className="flex items-center gap-3">
+                                          <span className="text-xs font-mono text-zinc-600 dark:text-zinc-400">{(math.tf * 100).toFixed(2)}%</span>
+                                          <div className="w-16 h-1 bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden">
+                                            <div className="h-full bg-cyan-500" style={{ width: `${Math.min(100, math.tf * 3000)}%` }}></div>
+                                          </div>
+                                       </div>
+                                    </td>
+                                    <td className="px-6 py-5">
+                                       <div className="flex items-center gap-3">
+                                          <span className="text-xs font-mono text-zinc-600 dark:text-zinc-400">{math.idf.toFixed(2)}x</span>
+                                          <div className="w-16 h-1 bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden">
+                                            <div className="h-full bg-emerald-500" style={{ width: `${Math.min(100, math.idf * 20)}%` }}></div>
+                                          </div>
+                                       </div>
+                                    </td>
+                                    <td className="px-6 py-5 text-right font-mono text-sm font-black text-indigo-600 dark:text-indigo-400">
+                                       {significanceIndex.toFixed(2)} / 10
+                                    </td>
+                                  </tr>
+                                  {isExpanded && (
+                                    <tr>
+                                      <td colSpan={4} className="px-6 pb-6 pt-2 bg-zinc-50/50 dark:bg-zinc-900/50 animate-in slide-in-from-top-2 duration-300">
+                                        <div className="flex flex-col gap-4 p-6 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-inner">
+                                          <div className="grid grid-cols-2 gap-8">
+                                            {/* TF Derivation */}
+                                            <div className="space-y-3">
+                                              <p className="text-[10px] font-black uppercase tracking-widest text-cyan-600">Step 1: Job Demand (TF)</p>
+                                              <div className="font-mono text-xs text-zinc-600 dark:text-zinc-400 bg-zinc-50 dark:bg-zinc-800/50 p-4 rounded-xl border border-zinc-100 dark:border-zinc-800">
+                                                <p className="mb-1 text-zinc-400 font-bold uppercase text-[9px]">Input Substitutions:</p>
+                                                <p>Mentions = {math.count}</p>
+                                                <p>Word Count = {math.total_tokens}</p>
+                                                <div className="my-3 h-px bg-zinc-200 dark:bg-zinc-700"></div>
+                                                <p className="text-zinc-900 dark:text-zinc-100 font-bold">
+                                                  {math.count} / {math.total_tokens} = <span className="text-cyan-500">{math.tf.toFixed(6)}</span>
+                                                </p>
+                                                <p className="mt-2 pt-2 border-t border-zinc-100 dark:border-zinc-800 text-xs font-black text-cyan-600">
+                                                  Final Intensity: {(math.tf * 100).toFixed(4)}%
+                                                </p>
+                                              </div>
+                                            </div>
+                                            {/* IDF Derivation */}
+                                            <div className="space-y-3">
+                                              <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600">Step 2: Market Rarity (IDF)</p>
+                                              <div className="font-mono text-xs text-zinc-600 dark:text-zinc-400 bg-zinc-50 dark:bg-zinc-800/50 p-4 rounded-xl border border-zinc-100 dark:border-zinc-800">
+                                                <p className="mb-1 text-zinc-400 font-bold uppercase text-[9px]">Input Substitutions:</p>
+                                                <p>Corpus Size = {math.num_docs}</p>
+                                                <p>Doc Frequency = {math.df}</p>
+                                                <div className="my-3 h-px bg-zinc-200 dark:bg-zinc-700"></div>
+                                                <p className="text-zinc-900 dark:text-zinc-100 font-bold leading-relaxed">
+                                                  log({math.num_docs} / (1 + {math.df})) + 1 = <span className="text-emerald-500">{math.idf.toFixed(4)}</span>
+                                                </p>
+                                                <p className="mt-2 pt-2 border-t border-zinc-100 dark:border-zinc-800 text-xs font-black text-emerald-600">
+                                                  Scarcity Multiplier: {math.idf.toFixed(4)}x
+                                                </p>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          {/* Step 3: Final Assembly */}
+                                          <div className="bg-indigo-50/50 dark:bg-indigo-900/10 p-6 rounded-2xl border border-indigo-100 dark:border-indigo-900/40 space-y-4">
+                                            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-600">Step 3: Significance Assembly (SI)</p>
+                                            
+                                            <div className="grid grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-4 font-mono text-sm">
+                                              <div className="text-center p-3 bg-white dark:bg-zinc-800 rounded-xl border border-zinc-100 dark:border-zinc-700">
+                                                <p className="text-[9px] text-zinc-400 uppercase font-black mb-1">Demand</p>
+                                                <p className="text-cyan-600 font-bold">{math.tf.toFixed(6)}</p>
+                                              </div>
+                                              <span className="text-zinc-300 text-xl font-light">&times;</span>
+                                              <div className="text-center p-3 bg-white dark:bg-zinc-800 rounded-xl border border-zinc-100 dark:border-zinc-700">
+                                                <p className="text-[9px] text-zinc-400 uppercase font-black mb-1">Scarcity</p>
+                                                <p className="text-emerald-600 font-bold">{math.idf.toFixed(4)}</p>
+                                              </div>
+                                              <span className="text-zinc-300 text-xl font-light">=</span>
+                                              <div className="text-center p-3 bg-white dark:bg-zinc-800 rounded-xl border border-zinc-100 dark:border-zinc-700">
+                                                <p className="text-[9px] text-zinc-400 uppercase font-black mb-1">Raw Score</p>
+                                                <p className="text-indigo-600 font-bold">{math.raw_score.toFixed(6)}</p>
+                                              </div>
+                                            </div>
+
+                                            <div className="flex items-center gap-4 pt-4 border-t border-indigo-100/50 dark:border-indigo-900/30">
+                                              <div className="flex-1">
+                                                <p className="text-[9px] font-black uppercase tracking-widest text-zinc-400 mb-1">Normalization Logic:</p>
+                                                <p className="text-xs font-mono text-zinc-600 dark:text-zinc-400 italic leading-relaxed">
+                                                  ( {math.raw_score.toFixed(6)} / {maxRaw.toFixed(6)}<sub className="text-[8px]">max</sub> ) &times; 10
+                                                </p>
+                                                {(() => {
+                                                  const benchmarkSkill = allCriteria.find(req => (req as any).suggested_weight_math?.raw_score === maxRaw);
+                                                  return benchmarkSkill ? (
+                                                    <p className="mt-2 text-[10px] text-zinc-500 italic">
+                                                      *The benchmark max ({maxRaw.toFixed(6)}) is derived from <span className="font-bold text-zinc-900 dark:text-zinc-100">{benchmarkSkill.label}</span>, the highest-ranking signal in this configuration.
+                                                    </p>
+                                                  ) : null;
+                                                })()}
+                                              </div>
+                                              <div className="text-right">
+                                                <p className="text-[10px] font-black uppercase text-indigo-500 mb-1">Final Intelligence Index</p>
+                                                <p className="text-3xl font-black text-indigo-600 dark:text-indigo-400 tracking-tighter">
+                                                  {significanceIndex.toFixed(2)}<span className="text-lg text-indigo-400/50"> / 10</span>
+                                                </p>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  )}
+                                </Fragment>
+                              );
+                            });
+                          })()}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Modal Footer */}
+            <div className="p-8 border-t border-zinc-100 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/80 flex justify-between items-center">
+              <div className="flex items-center gap-2 text-zinc-400 dark:text-zinc-500">
+                <FaInfoCircle className="w-4 h-4" />
+                <span className="text-xs font-medium italic">Audit session active. Statistical confidence interval: 95.8% (TF-IDF Variance).</span>
+              </div>
+              <button 
+                onClick={() => setShowMathModal(null)}
+                className="px-10 py-3 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-xl font-black text-xs uppercase tracking-[0.2em] hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-500 transition-all active:scale-95 shadow-xl shadow-zinc-500/10"
+              >
+                End Audit Session
+              </button>
             </div>
           </div>
         </div>

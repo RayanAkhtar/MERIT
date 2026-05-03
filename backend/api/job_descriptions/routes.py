@@ -31,7 +31,16 @@ def _group_metrics(metrics):
             }
         
         if grouped_metrics[cat]["type"] == "list":
-            if val: grouped_metrics[cat]["value"].append(val)
+            if val: 
+                if "suggested_weight" in m:
+                    grouped_metrics[cat]["value"].append({
+                        "value": val, 
+                        "suggested_weight": m["suggested_weight"],
+                        "suggested_weight_reasoning": m.get("suggested_weight_reasoning", ""),
+                        "suggested_weight_math": m.get("suggested_weight_math", None)
+                    })
+                else:
+                    grouped_metrics[cat]["value"].append(val)
         else:
             item = {k: v for k, v in m.items() if k != 'category'}
             grouped_metrics[cat]["value"].append(item)
