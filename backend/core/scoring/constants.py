@@ -46,5 +46,27 @@ SCORING_CONSTANTS = {
         "OCCURRENCE_LIMIT": 5,             # max times a keyword can appear (in the cv) before penalty to avoid keyword stuffing
         "PENALTY_PER_OCCURRENCE": 0.03,    # Score reduction for each occurrence over limit
         "MAX_TOTAL_PENALTY": 0.30          # Cap the penalty at 30% of score for that metric (no reason for them to mention that many times)
+    },
+    "FUSION": {
+        "SOURCE_CONFIDENCE": {
+            "TECHNICAL_SKILLS": {
+                "GITHUB": 0.90,     # Direct work sample evidence
+                "CV": 0.70,         # Self reported
+                "LINKEDIN": 0.30,   # Low trust for specific language skills
+                "RECENCY": 0.85     # Temporal analysis confidence
+            },
+            "PROFESSIONAL_HISTORY": {
+                "CV": 0.9,         # Primary source for role dates
+                "LINKEDIN": 0.50    # Strong public verification for tenure, lower score since linkedin experience is less focused to the job role
+            }
+        },
+        "THRESHOLDS": {
+            "HIGH": 0.15,       # std_dev below this is High Confidence
+            "MEDIUM": 0.25      # std_dev below this is Medium Confidence
+        },
+        "PRIORS": {
+            "ALPHA": 1.0,
+            "BETA": 1.0
+        }
     }
 }

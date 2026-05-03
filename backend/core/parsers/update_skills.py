@@ -40,6 +40,10 @@ def update_skills():
             for alt in altnames:
                 if len(alt) > 1: frameworks.add(alt.capitalize() if len(alt) > 3 else alt.upper())
 
+    # manual additions for stuff the devicon dataset misses or names differently
+    # this is key so the semantic matcher has these in the candidate skill set
+    languages.update(["SQL", "PostgreSQL", "MySQL", "SQLite", "NoSQL", "Python", "Java", "C++", "JavaScript", "TypeScript"])
+    frameworks.update(["React", "Node.js", "Express", "Django", "Flask", "AWS", "Docker", "Kubernetes", "Next.js", "Supabase"])
 
     output = {
         "languages": sorted(list(languages)),

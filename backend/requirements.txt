@@ -7,3 +7,5 @@ phonenumbers
 spacy
 python-docx
 supabase
+sentence-transformers
+torch

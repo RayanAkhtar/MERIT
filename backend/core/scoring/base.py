@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import Dict, Any, List, Optional
+from core.fusion.bayesian import BayesianEvidenceFusion, Evidence
 
 class BaseMetric(ABC):
     """
@@ -36,14 +37,17 @@ class BaseMetric(ABC):
         """Ensures score is between 0 and 1"""
         return max(0.0, min(1.0, score))
 
-    def _calculate_multi_source_bonus(self, found_sources: List[str], base_score: float) -> float:
+    def _fuse_evidence(self, evidence_list: List[Evidence]) -> Dict[str, Any]:
         """
-        Apply a little bonus if the skill is found in multiple places (e.g. CV and LinkedIn).
-        Using a 1.15x multiplier for now.
+        Helper to run Bayesian Evidence Fusion.
         """
-        if not found_sources:
-            return 0.0
-            
-        # If more than 1 source (e.g. CV + GitHub), apply 1.15x multiplier
-        multiplier = 1.15 if len(set(found_sources)) > 1 else 1.0
-        return self._normalise_score(base_score * multiplier)
+        from core.scoring.constants import SCORING_CONSTANTS
+        conf = SCORING_CONSTANTS["FUSION"]
+        
+        fusion = BayesianEvidenceFusion(
+            prior_alpha=conf["PRIORS"]["ALPHA"],
+            prior_beta=conf["PRIORS"]["BETA"],
+            high_threshold=conf["THRESHOLDS"]["HIGH"],
+            medium_threshold=conf["THRESHOLDS"]["MEDIUM"]
+        )
+        return fusion.fuse(evidence_list)

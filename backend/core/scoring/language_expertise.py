@@ -1,6 +1,8 @@
 from typing import Dict, Any, List, Optional
 from .base import BaseMetric
 from .constants import SCORING_CONSTANTS
+from .semantic_utils import semantic_matcher
+from core.fusion.bayesian import Evidence
 
 class LanguageExpertiseMetric(BaseMetric):
     @property
@@ -93,79 +95,136 @@ class LanguageExpertiseMetric(BaseMetric):
 
         raw_skills = candidate_data.get("skills") or []
         cv_skills = [str(s).lower() for s in raw_skills if s is not None]
-        from collections import Counter
-        mention_counts = Counter(cv_skills)
-        max_cv_mentions = max(mention_counts.values()) if mention_counts else 0
 
         total_item_score = 0.0
         for lang in target_languages:
             lang_lower = str(lang).lower()
             item_sources = []
+            best_semantic = {}
+            source_details = []
             
             # github signal (code volume)
-            # print(f"DEBUG: {lang} github pct -> {gh_pct}")
             gh_pct = gh_languages.get(lang_lower, 0)
             gh_score = min(1.0, gh_pct / cfg["GH_VERIFICATION_THRESHOLD"])
-            if gh_pct > 0: item_sources.append("GitHub")
             
             # cv signal (how many times they mention it)
             cv_text = candidate_data.get("raw_cv_text") or candidate_data.get("full_cv_text") or ""
             mentions = self._count_mentions(lang, cv_text)
             
             cv_score = 0.0
-            prominence_note = ""
             if mentions > 0:
                 # Scale score: 1 mention = 0.2, 2 = 0.4, 3 = 0.6, 4 = 0.8 (cap)
                 cv_score = min(0.8, mentions * 0.2)
-                item_sources.append("CV")
+            else:
+                # check for a semantic match in the technical skills section
+                best_semantic = semantic_matcher.find_best_match(lang, list(set(cv_skills)), threshold=0.50)
+                if best_semantic["match"]:
+                    semantic_mentions = self._count_mentions(best_semantic["match"], cv_text)
+                    cv_score = min(0.60, semantic_mentions * 0.15)
+                    mentions = semantic_mentions # store for explanation block
             
             recency_mult, recency_note = self._calculate_recency_multiplier(lang, candidate_data)
             
-            primary_score = max(gh_score, cv_score)
-            item_score = self._calculate_multi_source_bonus(item_sources, primary_score)
-            final_item_score = self._normalise_score(item_score * recency_mult)
-            
-            total_item_score += final_item_score
-            
-            # mathematical transparency for the UI
-            bonus_val = 1.15 if len(set(item_sources)) > 1 else 1.0
-            logic_summary = f"(max({gh_score:.2f}, {cv_score:.2f}) * {bonus_val:.2f}) * {recency_mult:.1f} = {final_item_score:.2f}"
-            
-            source_details = [
-                {
-                    "name": lang,
-                    "source": f"Tooling Detail: {lang}",
-                    "score": final_item_score,
-                    "explanation": f"Validated {lang} proficiency across professional signals."
-                }
-            ]
+            # --- Fusing evidence with probability ---
+            # Bayesian model here to combine what they say on their CV with what's actually on GitHub.
+            evidence = []
+            conf = SCORING_CONSTANTS["FUSION"]["SOURCE_CONFIDENCE"]["TECHNICAL_SKILLS"]
+
+            # GitHub Evidence
             if gh_pct > 0:
+                item_sources.append("GitHub")
+                evidence.append(Evidence(source="GitHub", confidence=conf["GITHUB"], strength=gh_score))
                 source_details.append({
-                    "source": "GitHub Signal",
+                    "source": "GitHub",
                     "score": gh_score,
-                    "explanation": f"{gh_pct}% Lines of Code (Normalised: {gh_score:.2f})",
-                    "weighting": f"Harsher Heuristic: {gh_pct}% / {cfg['GH_VERIFICATION_THRESHOLD']}% (cap 1.0)"
+                    "trust": conf["GITHUB"],
+                    "derivation": f"min(1.0, {gh_pct}% / {cfg['GH_VERIFICATION_THRESHOLD']}%)",
+                    "explanation": f"{gh_pct}% Code Density (Normalised: {gh_score:.2f})",
+                    "weighting": f"Work Sample (Conf: {conf['GITHUB']:.1f})"
                 })
-            if mentions > 0:
+
+            # CV Evidence
+            if mentions > 0 or cv_score > 0:
+                item_sources.append("CV")
+                evidence.append(Evidence(source="CV", confidence=conf["CV"], strength=cv_score))
+                explanation = f"{mentions} mentions" if not best_semantic.get("match") else f"Semantic Match: {best_semantic['match']} x{mentions}"
                 source_details.append({
-                    "source": "CV Signal",
+                    "source": "CV",
                     "score": cv_score,
-                    "explanation": f"{mentions} mentions{prominence_note} (Normalised: {cv_score:.2f})",
-                    "weighting": f"Heuristic: ({mentions}*0.2) * {'Penalty' if prominence_note else '1.0'} Prominence"
+                    "trust": conf["CV"],
+                    "derivation": f"min({0.8 if not best_semantic.get('match') else 0.6}, {mentions} mentions * {0.2 if not best_semantic.get('match') else 0.15})",
+                    "is_semantic_bridge": bool(best_semantic.get("match")),
+                    "explanation": f"{explanation} (Normalised: {cv_score:.2f})",
+                    "weighting": f"Self-reported (Conf: {conf['CV']:.1f})"
                 })
+
+            # LinkedIn Evidence
+            li_experience = candidate_data.get("linkedin_experience") or []
+            has_li = any(lang_lower in str(e.get("description") or "").lower() for e in li_experience)
+            if has_li:
+                item_sources.append("LinkedIn")
+                evidence.append(Evidence(source="LinkedIn", confidence=conf["LINKEDIN"], strength=1.0))
+                source_details.append({
+                    "source": "LinkedIn",
+                    "score": 1.0,
+                    "trust": conf["LINKEDIN"],
+                    "derivation": "Binary Presence (Mentions in role history = 1.0)",
+                    "explanation": f"Mentioned in professional experience history. (Normalised: 1.00)",
+                    "weighting": f"Historical Record (Conf: {conf['LINKEDIN']:.1f})"
+                })
+
+            # Temporal check (Skill Decay)
+            if recency_mult < 1.0:
+                # adding this as a negative signal to pull the score down if the skill is old
+                decay_strength = 1.0 - recency_mult
+                evidence.append(Evidence(source="Recency", confidence=conf["RECENCY"], strength=decay_strength, is_negative=True))
+                source_details.append({
+                    "source": "Temporal Decay Signal",
+                    "score": -decay_strength,
+                    "trust": conf["RECENCY"],
+                    "explanation": f"{recency_note} (Decay applied to Bayesian model).",
+                    "weighting": "Recency Audit"
+                })
+
+            # --- Run the actual fusion ---
+            fusion_result = self._fuse_evidence(evidence)
+            final_item_score = fusion_result["fused_score"]
+            conf_label = fusion_result["confidence_label"]
             
-            source_details.append({
-                "source": "Temporal Analysis Signal",
-                "score": recency_mult,
-                "explanation": f"{recency_note} (Factor: {recency_mult}x)",
-                "weighting": "Recency Audit (GitHub/LinkedIn Timeline)"
-            })
+            # Figure out which source is holding the candidate back
+            weakest_source = "None"
+            min_impact = 99.0
+            if evidence:
+                for ev in evidence:
+                    impact = ev.strength * ev.confidence
+                    if impact < min_impact and not ev.is_negative:
+                        min_impact = impact
+                        weakest_source = ev.source
+
+            # Friendly summary for the recruiter
+            if conf_label == "High Confidence":
+                human_note = "Strong consensus across CV, LinkedIn, and GitHub."
+            elif conf_label == "Medium Confidence":
+                human_note = "Skill verified by multiple sources with slight variation."
+            elif conf_label == "No Evidence":
+                human_note = "No professional activity found for this skill."
+            else:
+                human_note = f"Warning: Conflicting signals. {weakest_source} data is the weakest link in this profile."
+
+            total_item_score += final_item_score
 
             breakdown.append({
                 "item": lang,
                 "score": final_item_score,
+                "uncertainty": fusion_result["uncertainty"],
+                "confidence_label": conf_label,
+                "bottleneck": weakest_source,
+                "alpha": fusion_result["alpha"],
+                "beta": fusion_result["beta"],
+                "confidence_interval": fusion_result["confidence_interval"],
+                "is_semantic_bridge": bool(best_semantic.get("match")),
                 "source_details": source_details,
-                "notes": f"Logic: {logic_summary}",
+                "notes": f"{human_note} (Bayesian Audit: {fusion_result['logic']})",
                 "sources": list(set(item_sources))
             })
 
@@ -175,72 +234,71 @@ class LanguageExpertiseMetric(BaseMetric):
         if len(target_languages) == 1 and len(breakdown) == 1:
             tech_formula = breakdown[0]["notes"].replace("Logic: ", "")
         else:
-            # Construct a clear summation formula for the aggregate view
-            formula_parts = []
-            for item in breakdown:
-                # Extract the core math from the item notes (e.g., "(max(...) + ...) * ...")
-                core_math = item["notes"].replace("Logic: ", "").split(" = ")[0]
-                formula_parts.append(f"{core_math} [{item['item']}]")
-            
-            joined_parts = " + ".join(formula_parts)
-            if len(target_languages) > 2:
-                # If too many items, show a summary version to keep the UI clean
-                tech_formula = f"Avg({len(target_languages)} Items: {total_item_score:.2f} Total Points) = {final_score:.2f}"
-            else:
-                tech_formula = f"Avg({joined_parts}) = {final_score:.2f}"
+            tech_formula = f"Avg({len(target_languages)} Items: {total_item_score:.2f} Total Points) = {final_score:.2f}"
         
+        # --- Intelligent Improvement Analysis ---
         improvements = []
-        if final_score < 1.0:
+        if final_score < 0.95:
             remaining = 1.0 - final_score
-            avg_gh = sum(1 for b in breakdown if "GitHub" in b["sources"]) / len(breakdown) if breakdown else 0
-            avg_cv = sum(1 for b in breakdown if "CV" in b["sources"]) / len(breakdown) if breakdown else 0
-            avg_recency = sum(1 for b in breakdown if any("Temporal" in str(s.get("source", "")) for s in b.get("source_details", []))) / len(breakdown) if breakdown else 0
-            # Note: The above avg_recency check isn't perfectly accurate since recency mult is numeric, but we can just check if any recency mult < 1.0
-            has_low_recency = any("Temporal" in str(s.get("source", "")) and s.get("score", 1.0) < 1.0 for b in breakdown for s in b.get("source_details", []))
-
-            if avg_gh < 1.0:
-                improvements.append({"text": "Increase GitHub commit volume and line counts for the required languages to boost the code density signal.", "gain": remaining * 0.4, "variables": ["GH_Score"]})
-            if avg_cv < 1.0:
-                improvements.append({"text": "Ensure the required languages are prominently mentioned across both CV skills and recent LinkedIn roles.", "gain": remaining * 0.3, "variables": ["CV_Score"]})
-            if has_low_recency or (avg_gh == 1.0 and avg_cv == 1.0):
-                improvements.append({"text": "Contribute to repositories using the required languages recently to improve the temporal recency multiplier.", "gain": remaining * 0.3, "variables": ["Recency_Factor"]})
+            
+            # Aggregate source performance across all skills
+            source_scores = {} # source -> [scores]
+            for b in breakdown:
+                for sd in b.get("source_details", []):
+                    src = sd.get("source")
+                    if src not in source_scores: source_scores[src] = []
+                    source_scores[src].append(sd.get("score", 0))
+            
+            avg_sources = {k: sum(v)/len(v) for k, v in source_scores.items()}
+            
+            # uncertainty Bottleneck
+            any_uncertain = any(b.get("confidence_label") in ["Low Confidence", "Medium Confidence"] for b in breakdown)
+            if any_uncertain:
+                # most divergent source
+                max_score = max(avg_sources.values()) if avg_sources else 1.0
+                worst_src = min(avg_sources, key=avg_sources.get) if avg_sources else "CV"
                 
+                improvements.append({
+                    "text": f"The Bayesian model detected uncertainty due to conflicting signals, primarily from the {worst_src} profile. Align your self-reported skill levels with your actual public work to reduce Beta (Uncertainty).",
+                    "gain": remaining * 0.4,
+                    "id": "BETA_UNCERTAINTY"
+                })
+
+            # Source-Specific Advice
+            if avg_sources.get("GitHub", 1.0) < 0.8:
+                improvements.append({
+                    "text": f"Increase GitHub commit volume and line counts for the required languages ({', '.join(target_languages[:2])}) to boost the GH_Score variable (Alpha evidence).",
+                    "gain": remaining * 0.3,
+                    "id": "GH_SCORE"
+                })
+            
+            if avg_sources.get("CV", 1.0) < 0.7:
+                improvements.append({
+                    "text": "Enhance your CV by providing more detailed role descriptions and explicit project achievements for these languages to improve heuristic strength.",
+                    "gain": remaining * 0.2,
+                    "id": "CV_STRENGTH"
+                })
+
             if not improvements:
-                improvements.append({"text": "Ensure your language stack perfectly aligns with the job description.", "gain": remaining, "variables": []})
+                improvements.append({
+                    "text": "Demonstrate more consistent usage of these languages across all professional profiles to reach a High Confidence consensus.",
+                    "gain": 0.05
+                })
         else:
-            improvements.append({"text": "Maximum proficiency score achieved across all required languages.", "gain": 0.0, "variables": []})
+            improvements.append({"text": "Maximum proficiency score achieved across all required languages.", "gain": 0.0})
 
         return {
-            "score": self._normalise_score(final_score),
-            "calculation_formula": f"(max(GH_Score, CV_Score) * ConsensusMultiplier) * Recency_Factor",
+            "score": round(final_score, 2),
+            "name": self.name,
+            "id": self.id,
+            "calculation_formula": "Bayesian_Fusion(GH_Density, CV_Mentions, LinkedIn_Record, Temporal_Prior)",
             "technical_formula": tech_formula,
-            "glossary": [
-                {
-                    "variable": "GH_Score",
-                    "description": "How much code in this language is on their GitHub.",
-                    "impact": f"High impact (threshold is {cfg['GH_VERIFICATION_THRESHOLD']}%).",
-                    "sensitivity": "low if there's no public code."
-                },
-                {
-                    "variable": "CV_Score",
-                    "description": "How often the language appears in the CV.",
-                    "impact": "baseline verification.",
-                    "sensitivity": "low if the skill is just a footnote."
-                },
-                {
-                    "variable": "ConsensusMultiplier",
-                    "description": "Bonus for finding the skill in two places.",
-                    "impact": "1.15x boost for cross-verification.",
-                    "sensitivity": "n/a"
-                },
-                {
-                    "variable": "Recency_Factor",
-                    "description": "Penalty for skills not used in years.",
-                    "impact": "Can cut the score if it's a 'legacy' skill.",
-                    "sensitivity": "High if they haven't used it since uni."
-                }
-            ],
             "breakdown": breakdown,
-            "sources_used": list(set(sources_used)),
-            "improvements": improvements[:3]
+            "has_semantic_bridge": any(b.get("is_semantic_bridge") for b in breakdown),
+            "sources_used": list(set([src for b in breakdown for src in b.get("sources", [])])),
+            "glossary": [
+                {"term": "Alpha (α)", "definition": "Strength of supporting evidence across all sources."},
+                {"term": "Beta (β)", "definition": "Level of contradictory or missing signals causing uncertainty."}
+            ],
+            "improvements": improvements[:2]
         }

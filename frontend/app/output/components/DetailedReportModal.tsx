@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { BsCalculator, BsChevronDown, BsInfoCircle, BsLayers } from 'react-icons/bs';
 import GitHubEvolutionChart from './GitHubEvolutionChart';
 import ScoringAudit from './ScoringAudit';
 
@@ -25,6 +27,7 @@ export default function DetailedReportModal({
 }: DetailedReportModalProps) {
   const [activeTab, setActiveTab] = useState<'cv' | 'github' | 'linkedin' | 'formula'>('cv');
   const [cvViewMode, setCvViewMode] = useState<'original' | 'intelligence'>('original');
+  const [expandedAudit, setExpandedAudit] = useState<string | null>(null);
 
   const renderRedactedText = (text: string) => {
     if (!isBlindMode) return text;
@@ -51,11 +54,19 @@ export default function DetailedReportModal({
       const element = document.getElementById(`formula-${key}`);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        // Optional: briefly flash the element
         element.classList.add('ring-2', 'ring-indigo-500', 'transition-all');
         setTimeout(() => element.classList.remove('ring-2', 'ring-indigo-500'), 2000);
       }
     }, 100);
+  };
+
+  const handleSidebarScroll = (key: string) => {
+    const element = document.getElementById(`sidebar-${key}`);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      element.classList.add('bg-indigo-100', 'dark:bg-indigo-900/30', 'transition-all', 'duration-500');
+      setTimeout(() => element.classList.remove('bg-indigo-100', 'dark:bg-indigo-900/30'), 1500);
+    }
   };
 
   if (!candidate) return null;
@@ -116,7 +127,7 @@ export default function DetailedReportModal({
                 const priority = Math.round((1.2 - m.weight) / 0.2);
                 const isSectionHovered = hoveredItem === key;
                 return (
-                  <div key={key} className="space-y-3">
+                  <div key={key} id={`sidebar-${key}`} className="space-y-3 rounded-xl transition-all duration-300">
                     <div 
                       className={`flex items-start justify-between cursor-pointer p-2 -mx-2 rounded-xl transition-all ${isSectionHovered ? 'bg-indigo-50/50 dark:bg-indigo-900/10' : ''}`}
                       onMouseEnter={() => setHoveredItem(key)}
@@ -141,26 +152,84 @@ export default function DetailedReportModal({
                             className="p-4 rounded-xl border bg-white dark:bg-zinc-800/40 border-zinc-200 dark:border-zinc-800 transition-all cursor-default"
                           >
                             <div className="flex items-center justify-between mb-2">
-                              <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100">{item.item || item.component}</span>
-                              {/* Internal percentages removed for cleaner UI as requested */}
+                              <div className="flex items-center gap-2">
+                                <div className="flex flex-col">
+                                  <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100">{item.item || item.component}</span>
+                                  {item.score !== undefined && (
+                                    <span className="text-[10px] font-black text-indigo-500/70 uppercase tracking-tighter">
+                                      Component Score: {Math.round(item.score * 100)}%
+                                    </span>
+                                  )}
+                                </div>
+                                {item.confidence_label && (
+                                  <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-md uppercase tracking-widest ${
+                                    item.confidence_label === 'High Confidence' 
+                                      ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20'
+                                      : item.confidence_label === 'Medium Confidence'
+                                        ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20'
+                                        : 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20'
+                                  }`}>
+                                    {item.confidence_label}
+                                  </span>
+                                )}
+                              </div>
                             </div>
-                            <div className="text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-3 leading-relaxed">{item.notes}</div>
+                            <div className="text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-3 leading-relaxed">
+                              {item.notes}
+                              {item.notes?.includes('Beta') && (
+                                <span className="ml-1.5 inline-flex items-center group relative cursor-help align-middle">
+                                  <svg className="w-3.5 h-3.5 text-indigo-500/70 hover:text-indigo-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                  </svg>
+                                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 p-4 bg-zinc-900/95 dark:bg-zinc-800 backdrop-blur-md text-white text-[10px] rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10 z-50 leading-relaxed translate-y-2 group-hover:translate-y-0">
+                                    <p className="font-black mb-1.5 text-indigo-400 uppercase tracking-widest text-[9px]">The Math Behind the Match</p>
+                                    <p className="mb-2">MERIT uses a <b>Beta Distribution</b> to mathematically fuse evidence from multiple sources:</p>
+                                    <ul className="space-y-1 opacity-90">
+                                      <li>• <b>Alpha (α)</b>: Strength of supporting evidence (CV mentions, GitHub code density).</li>
+                                      <li>• <b>Beta (β)</b>: Level of uncertainty or contradictory signals (skill decay, lack of verified code).</li>
+                                    </ul>
+                                    <p className="mt-2 pt-2 border-t border-white/5 font-medium italic text-zinc-400">Score = α / (α + β)</p>
+                                  </div>
+                                </span>
+                              )}
+                            </div>
                             {item.source_details && item.source_details.length > 0 && (
                               <div className="grid grid-cols-1 gap-2">
                                 {item.source_details.map((sd: any, j: number) => {
-                                  const isPenalty = sd.score < 0;
-                                  return (
-                                    <div key={j} className={`p-3 rounded-lg border flex flex-col gap-1 ${isPenalty ? 'bg-rose-500/5 border-rose-500/20' : 'bg-zinc-50 dark:bg-zinc-900/50 border-zinc-100 dark:border-zinc-800'}`}>
-                                      <span className={`text-[10px] font-black uppercase tracking-widest ${isPenalty ? 'text-rose-500 flex items-center gap-1.5' : 'text-indigo-500 dark:text-indigo-400'}`}>
-                                        {isPenalty && (
-                                          <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                          </svg>
-                                        )}
-                                        {isPenalty ? `Penalty: ${sd.source}` : `${sd.source} Signal`}
-                                      </span>
-                                      <p className={`text-xs leading-tight italic ${isPenalty ? 'text-rose-700 dark:text-rose-400 font-bold' : 'text-zinc-800 dark:text-zinc-200'}`}>"{sd.explanation}"</p>
-                                      {isPenalty && (
+                                   const isPenalty = sd.score < 0;
+                                   const isBridge = sd.is_semantic_bridge;
+                                   
+                                   let cardStyles = 'bg-zinc-50 dark:bg-zinc-900/50 border-zinc-100 dark:border-zinc-800';
+                                   let textStyles = 'text-indigo-500 dark:text-indigo-400';
+                                   let label = `${sd.source} Signal`;
+
+                                   if (isPenalty) {
+                                     cardStyles = 'bg-rose-500/5 border-rose-500/20';
+                                     textStyles = 'text-rose-500 flex items-center gap-1.5';
+                                     label = `Penalty: ${sd.source}`;
+                                   } else if (isBridge) {
+                                     cardStyles = 'bg-amber-500/5 border-amber-500/20';
+                                     textStyles = 'text-amber-600 dark:text-amber-500 flex items-center gap-1.5';
+                                     label = `Semantic Bridge: ${sd.source}`;
+                                   }
+
+                                   return (
+                                     <div key={j} className={`p-3 rounded-lg border flex flex-col gap-1 ${cardStyles}`}>
+                                       <span className={`text-[10px] font-black uppercase tracking-widest ${textStyles}`}>
+                                         {isPenalty && (
+                                           <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                           </svg>
+                                         )}
+                                         {isBridge && (
+                                           <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                           </svg>
+                                         )}
+                                         {label}
+                                       </span>
+                                       <p className={`text-xs leading-tight italic ${isPenalty ? 'text-rose-700 dark:text-rose-400 font-bold' : (isBridge ? 'text-amber-800 dark:text-amber-400' : 'text-zinc-800 dark:text-zinc-200')}`}>"{sd.explanation}"</p>
+                                       {isPenalty && (
                                         <div className="mt-1 flex items-center gap-1.5">
                                           <span className="text-[9px] font-black text-rose-500 bg-rose-500/10 px-1.5 py-0.5 rounded border border-rose-500/20 uppercase tracking-tighter">
                                             Reduction: {(sd.score * 100).toFixed(0)}%
@@ -172,9 +241,156 @@ export default function DetailedReportModal({
                                 })}
                               </div>
                             )}
+
+                            {/* Signal Processing Audit - Generic Container */}
+                            {(item.alpha !== undefined || item.source_details?.length > 0) && (
+                              <div className="mt-4 p-4 rounded-xl border border-indigo-500/30 bg-slate-900/50 relative overflow-hidden group">
+                                <div className="flex items-center justify-between cursor-pointer" onClick={() => setExpandedAudit(expandedAudit === `${m.name}-${i}` ? null : `${m.name}-${i}`)}>
+                                  <div className="flex items-center gap-3">
+                                    <div className="p-2 rounded-lg bg-indigo-500/20">
+                                      <BsCalculator className="w-4 h-4 text-indigo-400" />
+                                    </div>
+                                    <div>
+                                      <p className="text-[10px] uppercase tracking-widest text-indigo-400 font-bold mb-0.5">Signal Processing Audit</p>
+                                      <p className="text-sm font-mono text-slate-300">
+                                        Result: {(item.score * 100).toFixed(0)}% 
+                                        {item.alpha !== undefined && <span className="text-[10px] text-zinc-500 ml-2">(Bayesian α={item.alpha?.toFixed(2)})</span>}
+                                      </p>
+                                    </div>
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-[10px] text-zinc-500 uppercase font-bold tracking-tighter">View Math Trail</span>
+                                    <BsChevronDown className={`w-4 h-4 text-slate-500 transition-transform ${expandedAudit === `${m.name}-${i}` ? 'rotate-180' : ''}`} />
+                                  </div>
+                                </div>
+
+                                {/* Expandable Step-by-Step Audit */}
+                                <AnimatePresence>
+                                  {expandedAudit === `${m.name}-${i}` && (
+                                    <motion.div 
+                                      initial={{ height: 0, opacity: 0 }}
+                                      animate={{ height: 'auto', opacity: 1 }}
+                                      exit={{ height: 0, opacity: 0 }}
+                                      className="mt-4 pt-4 border-t border-slate-800 space-y-4"
+                                    >
+                                      {/* Phase 1: Source Normalisation */}
+                                      <div className="space-y-3">
+                                        <div className="flex justify-between items-center text-[10px] font-black text-indigo-400/80 uppercase tracking-widest border-b border-indigo-500/10 pb-1">
+                                          <span>Phase 1: Heuristic Normalisation</span>
+                                        </div>
+                                        {item.source_details?.map((sd: any, idx: number) => (
+                                          <div key={`p1-${idx}`} className="flex flex-col gap-0.5 border-b border-white/5 pb-2">
+                                            <div className="flex justify-between items-center text-[11px]">
+                                              <span className="text-zinc-400 font-medium">{sd.source} Signal</span>
+                                              <span className="text-white font-mono font-bold">Strength: {sd.score?.toFixed(2)}</span>
+                                            </div>
+                                            <div className="text-[10px] font-mono text-indigo-400/60 pl-2 border-l border-indigo-500/20 italic">
+                                              {sd.derivation}
+                                            </div>
+                                          </div>
+                                        ))}
+                                      </div>
+
+                                      {/* Phase 2: Optional Bayesian Fusion */}
+                                      {item.alpha !== undefined && (
+                                        <>
+                                          <div className="pt-2 space-y-2">
+                                            <div className="flex justify-between items-center text-[10px] font-black text-indigo-400 uppercase tracking-widest border-b border-indigo-500/20 pb-1">
+                                              <span>Phase 2: Bayesian Evidence Fusion</span>
+                                            </div>
+                                            <div className="flex justify-between text-xs font-mono py-2 bg-indigo-500/5 px-2 rounded">
+                                              <span className="text-slate-500 italic">Starting Prior (Uniform)</span>
+                                              <span className="text-indigo-400 font-bold">α=1.00, β=1.00</span>
+                                            </div>
+                                          </div>
+                                          
+                                          <div className="space-y-2">
+                                            {item.source_details?.map((sd: any, idx: number) => {
+                                              const trust = sd.trust || 0.5;
+                                              const strength = sd.score || 0;
+                                              const isNeg = strength < 0;
+                                              const absStrength = Math.abs(strength);
+                                              
+                                              const alphaInc = !isNeg ? (absStrength * trust) : (1 - trust) * 0.05;
+                                              const betaInc = !isNeg ? (1 - absStrength) * trust : (absStrength * trust);
+
+                                              return (
+                                                <div key={`p2-${idx}`} className="flex justify-between text-xs font-mono items-center py-2 border-b border-zinc-800/50 ml-2 border-l-2 border-indigo-500/20 pl-3">
+                                                  <div className="flex flex-col gap-1">
+                                                    <span className="text-zinc-300 font-bold mb-1">{sd.source} Aggregation</span>
+                                                    <div className="flex flex-col gap-0.5 opacity-60">
+                                                      <span className="text-[9px] text-zinc-400 font-mono">
+                                                        Δα = {absStrength.toFixed(2)} (Str) × {trust.toFixed(2)} (Tr) = {alphaInc.toFixed(2)}
+                                                      </span>
+                                                      <span className="text-[9px] text-zinc-400 font-mono">
+                                                        Δβ = (1.0 - {absStrength.toFixed(2)}) × {trust.toFixed(2)} = {betaInc.toFixed(2)}
+                                                      </span>
+                                                    </div>
+                                                  </div>
+                                                  <div className="text-right flex flex-col justify-center">
+                                                    {alphaInc > 0 && <span className="text-emerald-400 font-bold">+α({alphaInc.toFixed(2)})</span>}
+                                                    {betaInc > 0 && <span className="text-rose-400 font-bold">+β({betaInc.toFixed(2)})</span>}
+                                                  </div>
+                                                </div>
+                                              );
+                                            })}
+                                          </div>
+
+                                          <div className="pt-2 flex justify-between items-center">
+                                            <div className="text-xs font-bold text-zinc-500 uppercase tracking-tight">Final Aggregated State:</div>
+                                            <div className="text-sm font-mono font-bold text-white bg-indigo-500/30 px-2 py-0.5 rounded border border-indigo-500/20">
+                                              α={item.alpha?.toFixed(2)}, β={item.beta?.toFixed(2)}
+                                            </div>
+                                          </div>
+
+                                          <div className="p-3 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-[10px] font-mono text-indigo-200">
+                                            <div className="flex justify-between mb-1 opacity-60">
+                                              <span>Score Formula:</span>
+                                              <span>α / (α + β)</span>
+                                            </div>
+                                            <div className="flex justify-between font-bold text-indigo-100">
+                                              <span>Calculation:</span>
+                                              <span>{item.alpha?.toFixed(2)} / {(item.alpha + item.beta)?.toFixed(2)} = <span className="text-white text-xs">{(item.score * 100).toFixed(0)}%</span></span>
+                                            </div>
+                                          </div>
+                                        </>
+                                      )}
+                                    </motion.div>
+                                  )}
+                                </AnimatePresence>
+                              </div>
+                            )}
                           </div>
                         );
                       })}
+
+                      {/* Final Metric Aggregator (for hybrid metrics) */}
+                      {(m.breakdown?.length > 1) && (
+                        <div className="mt-2 p-4 rounded-xl border-2 border-dashed border-indigo-500/20 bg-indigo-500/5">
+                          <div className="flex items-center gap-2 mb-3">
+                            <div className="p-1.5 rounded-lg bg-indigo-500/20">
+                              <BsLayers className="w-3.5 h-3.5 text-indigo-400" />
+                            </div>
+                            <span className="text-[10px] font-black uppercase tracking-widest text-indigo-400">Final Metric Aggregation</span>
+                          </div>
+                          <div className="space-y-2">
+                            {m.breakdown.map((item: any, idx: number) => (
+                              <div key={idx} className="flex justify-between items-center text-[11px] font-mono">
+                                <span className="text-zinc-500">{item.item || item.component}:</span>
+                                <span className="text-zinc-300">
+                                  {Math.round(item.score * 100)}% × {item.weight?.toFixed(2) || (1 / m.breakdown.length).toFixed(2)}
+                                </span>
+                              </div>
+                            ))}
+                            <div className="pt-2 border-t border-indigo-500/20 flex justify-between items-center">
+                              <span className="text-xs font-bold text-white">Aggregated Result:</span>
+                              <span className="text-sm font-black text-indigo-400">
+                                {Math.round(m.score * 100)}%
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 );
@@ -277,7 +493,7 @@ export default function DetailedReportModal({
                               <section className="mb-12">
                                 <h3 className="text-xs font-black uppercase tracking-[0.35em] text-indigo-600 dark:text-indigo-400 mb-8 border-b border-zinc-100 dark:border-zinc-800 pb-2">Education</h3>
                                 <div className="grid grid-cols-1 gap-8">
-                                  {candidateDetail.cv_education.map((edu: any, i: number) => (
+                                  {candidateDetail.cv_education?.map((edu: any, i: number) => (
                                     <div key={i} className="flex justify-between items-start group/edu">
                                       <div className="space-y-1">
                                         <h4 className="text-[16px] font-black text-zinc-900 dark:text-zinc-50 tracking-tight">
@@ -302,11 +518,11 @@ export default function DetailedReportModal({
                             )}
 
                             {/* Projects Section */}
-                            {candidateDetail.projects_history && candidateDetail.projects_history.length > 0 && (
+                            {candidateDetail.projects_history && candidateDetail.projects_history?.length > 0 && (
                               <section>
                                 <h3 className="text-xs font-black uppercase tracking-[0.35em] text-indigo-600 dark:text-indigo-400 mb-8 border-b border-zinc-100 dark:border-zinc-800 pb-2">Technical Projects & Research</h3>
                                 <div className="space-y-8">
-                                  {candidateDetail.projects_history.filter((p: any) => (p.title || p.name) && (p.title !== 'None' && p.name !== 'None')).map((proj: any, i: number) => {
+                                  {candidateDetail.projects_history?.filter((p: any) => (p.title || p.name) && (p.title !== 'None' && p.name !== 'None')).map((proj: any, i: number) => {
                                     const projTitle = proj.title || proj.name || "Untitled Project";
                                     const projDesc = proj.description || proj.summary || "";
                                     
@@ -452,6 +668,16 @@ export default function DetailedReportModal({
                           </div>
                         ))}
                       </div>
+
+                      {!candidateDetail.github_profile && (
+                        <div className="p-12 text-center bg-zinc-50 dark:bg-zinc-950/20 rounded-3xl border border-zinc-100 dark:border-zinc-800 border-dashed">
+                          <svg className="w-12 h-12 text-zinc-300 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                          </svg>
+                          <h3 className="text-sm font-black text-zinc-900 dark:text-zinc-50 uppercase tracking-widest">No GitHub Profile Linked</h3>
+                          <p className="text-xs text-zinc-500 mt-2">Open source contributions and technical evolution data are unavailable for this profile.</p>
+                        </div>
+                      )}
                     </div>
                   )}
 
@@ -486,14 +712,14 @@ export default function DetailedReportModal({
                       </div>
 
                       {/* Skills Grid */}
-                      {candidateDetail.linkedin_profile?.skills && candidateDetail.linkedin_profile.skills.length > 0 && (
+                      {candidateDetail.linkedin_profile?.skills && candidateDetail.linkedin_profile?.skills?.length > 0 && (
                         <div className="p-8 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
                           <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 mb-6 flex items-center gap-2">
                              Professional Endorsements
                              <span className="text-indigo-500">•</span>
                           </h4>
                           <div className="flex flex-wrap gap-2">
-                            {candidateDetail.linkedin_profile.skills.map((skill: string, i: number) => (
+                            {candidateDetail.linkedin_profile?.skills?.map((skill: string, i: number) => (
                               <span key={i} className="px-3 py-1.5 bg-zinc-50 dark:bg-zinc-800/50 rounded-lg text-[10px] font-black text-zinc-600 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800 uppercase tracking-tight">
                                 {skill}
                               </span>
@@ -583,10 +809,25 @@ export default function DetailedReportModal({
                           ))}
                         </div>
                       </div>
+                      
+                      {!candidateDetail.linkedin_profile && (
+                        <div className="p-12 text-center bg-zinc-50 dark:bg-zinc-950/20 rounded-3xl border border-zinc-100 dark:border-zinc-800 border-dashed">
+                          <svg className="w-12 h-12 text-zinc-300 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.826a4 4 0 015.656 0l4 4a4 4 0 01-5.656 5.656l-1.101-1.101" />
+                          </svg>
+                          <h3 className="text-sm font-black text-zinc-900 dark:text-zinc-50 uppercase tracking-widest">No LinkedIn Profile Found</h3>
+                          <p className="text-xs text-zinc-500 mt-2">Professional experience was extracted exclusively from the CV for this candidate.</p>
+                        </div>
+                      )}
                     </div>
                   )}
 
-                  {activeTab === 'formula' && <ScoringAudit candidate={candidate} />}
+                  {activeTab === 'formula' && (
+                    <ScoringAudit 
+                      candidate={candidate} 
+                      onMetricClick={handleSidebarScroll}
+                    />
+                  )}
                 </>
               )}
             </div>

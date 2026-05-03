@@ -358,76 +358,92 @@ def delete_candidate(candidate_id):
 
 @candidates_bp.route("/get-candidate-detail/<candidate_id>", methods=["GET"])
 def get_candidate_detail(candidate_id):
-    # Optimised: Safe-Hybrid Query (Join core data, defensive fetch for optional extras)
-    response = supabase.table("candidate_data").select("""
-        *,
-        cv_education:candidate_education(*),
-        github_profile:github_profiles(*, github_projects(*)),
-        linkedin_profile:linkedin_profiles(*, 
-            linkedin_experience(*), 
-            linkedin_education(*)
-        )
-    """).eq("id", candidate_id).execute()
+    try:
+        # query (join core data + fetch extras separately for speed)
+        response = supabase.table("candidate_data").select("""
+            *,
+            cv_education:candidate_education(*),
+            github_profile:github_profiles(*, github_projects(*)),
+            linkedin_profile:linkedin_profiles(*, 
+                linkedin_experience(*), 
+                linkedin_education(*)
+            )
+        """).eq("id", candidate_id).execute()
 
-    if not response.data:
-        return jsonify({"error": "Candidate not found"}), 404
-        
-    candidate = response.data[0]
-    
-    # map the embedded data
-    candidate["cv_education"] = candidate.get("cv_education", [])
-    
-    gh_profile = candidate.get("github_profile")
-    if gh_profile:
-        # re-map database columns to frontend interface keys
-        history = gh_profile.get("contribution_history")
-        if history is None and "raw_data" in gh_profile and isinstance(gh_profile["raw_data"], dict):
-            # failover to common raw data aliases
-            history = gh_profile["raw_data"].get("contribution_history") or \
-                      gh_profile["raw_data"].get("history") or \
-                      gh_profile["raw_data"].get("language_history")
-        
-        gh_profile["language_history"] = history or []
-        candidate["github_projects"] = gh_profile.get("github_projects", [])
+        if not response.data:
+            return jsonify({"error": "Candidate not found"}), 404
             
-    li_profile = candidate.get("linkedin_profile")
-    if li_profile:
-        candidate["linkedin_experience"] = li_profile.get("linkedin_experience", [])
-        candidate["linkedin_education"] = li_profile.get("linkedin_education", [])
+        candidate = response.data[0]
         
-        # separate fetches for potentially missing optional tables
-        li_id = li_profile.get("id")
-        for key, table in [("linkedin_projects", "linkedin_projects"), 
-                           ("linkedin_certifications", "linkedin_certifications"), 
-                           ("linkedin_volunteering", "linkedin_volunteering")]:
-            try:
-                extra_res = supabase.table(table).select("*").eq("profile_id", li_id).execute()
-                candidate[key] = extra_res.data
-            except Exception:
-                candidate[key] = []
+        # map the embedded data
+        candidate["cv_education"] = candidate.get("cv_education", [])
+        
+        gh_raw = candidate.get("github_profile")
+        # Supabase sometimes returns lists for nested selects
+        gh_profile = gh_raw[0] if isinstance(gh_raw, list) and len(gh_raw) > 0 else gh_raw
+        
+        if gh_profile and isinstance(gh_profile, dict):
+            # re-map database columns to frontend interface keys
+            history = gh_profile.get("contribution_history")
+            if history is None and "raw_data" in gh_profile and isinstance(gh_profile["raw_data"], dict):
+                # failover to common raw data aliases
+                history = gh_profile["raw_data"].get("contribution_history") or \
+                          gh_profile["raw_data"].get("history") or \
+                          gh_profile["raw_data"].get("language_history")
             
-    # Construct virtual full text for the "AI Evidence" view
-    full_text_parts = []
-    full_text_parts.append(f"{candidate.get('name', 'CANDIDATE')}")
-    full_text_parts.append(f"{candidate.get('email', '')} | {candidate.get('phone', '')}")
-    full_text_parts.append("\nPROFESSIONAL SUMMARY")
-    full_text_parts.append(candidate.get("experience_summary", ""))
-    
-    if candidate.get("cv_education"):
-        full_text_parts.append("\nEDUCATION")
-        for edu in candidate["cv_education"]:
-            full_text_parts.append(f"• {edu.get('school_name')} - {edu.get('degree')} ({edu.get('start_date')} - {edu.get('end_date')})")
-    
-    if candidate.get("projects_history"):
-        full_text_parts.append("\nPROJECTS")
-        for proj in candidate["projects_history"]:
-            full_text_parts.append(f"• {proj.get('title')}: {proj.get('description')}")
-    
-    if candidate.get("extracurricular"):
-        full_text_parts.append("\nEXTRACURRICULAR")
-        for extra in candidate["extracurricular"]:
-            full_text_parts.append(f"• {extra.get('title')}: {extra.get('description')}")
-    
-    candidate["full_cv_text"] = "\n".join(full_text_parts)
+            gh_profile["language_history"] = history or []
+            candidate["github_projects"] = gh_profile.get("github_projects", [])
+            candidate["github_profile"] = gh_profile # sync back if it was a list
+                
+        li_raw = candidate.get("linkedin_profile")
+        li_profile = li_raw[0] if isinstance(li_raw, list) and len(li_raw) > 0 else li_raw
+        
+        if li_profile and isinstance(li_profile, dict):
+            candidate["linkedin_experience"] = li_profile.get("linkedin_experience", [])
+            candidate["linkedin_education"] = li_profile.get("linkedin_education", [])
+            candidate["linkedin_profile"] = li_profile # sync back
             
-    return jsonify(candidate), 200
+            # separate fetches for potentially missing optional tables
+            li_id = li_profile.get("id")
+            for key, table in [("linkedin_projects", "linkedin_projects"), 
+                               ("linkedin_certifications", "linkedin_certifications"), 
+                               ("linkedin_volunteering", "linkedin_volunteering")]:
+                try:
+                    extra_res = supabase.table(table).select("*").eq("profile_id", li_id).execute()
+                    candidate[key] = extra_res.data
+                except Exception:
+                    candidate[key] = []
+                
+        # Construct virtual full text for the "AI Evidence" view
+        full_text_parts = []
+        full_text_parts.append(str(candidate.get('name') or 'CANDIDATE'))
+        full_text_parts.append(f"{str(candidate.get('email') or '')} | {str(candidate.get('phone') or '')}")
+        full_text_parts.append("\nPROFESSIONAL SUMMARY")
+        full_text_parts.append(str(candidate.get("experience_summary") or ""))
+        
+        if candidate.get("cv_education"):
+            full_text_parts.append("\nEDUCATION")
+            for edu in candidate["cv_education"]:
+                if isinstance(edu, dict):
+                    full_text_parts.append(f"• {str(edu.get('school_name') or '')} - {str(edu.get('degree') or '')} ({str(edu.get('start_date') or '')} - {str(edu.get('end_date') or '')})")
+        
+        if candidate.get("projects_history"):
+            full_text_parts.append("\nPROJECTS")
+            for proj in candidate["projects_history"]:
+                if isinstance(proj, dict):
+                    full_text_parts.append(f"• {str(proj.get('title') or proj.get('name') or 'Unnamed Project')}: {str(proj.get('description') or '')}")
+        
+        if candidate.get("extracurricular"):
+            full_text_parts.append("\nEXTRACURRICULAR")
+            for extra in candidate["extracurricular"]:
+                if isinstance(extra, dict):
+                    full_text_parts.append(f"• {str(extra.get('title') or 'Activity')}: {str(extra.get('description') or '')}")
+        
+        candidate["full_cv_text"] = "\n".join(full_text_parts)
+                
+        return jsonify(candidate), 200
+    except Exception as e:
+        print(f"CRITICAL ERROR in get_candidate_detail: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({"error": str(e)}), 500

@@ -1,8 +1,18 @@
 from typing import Dict, Any, List
 import math
 from .base import BaseMetric
+from .semantic_utils import semantic_matcher
+from .constants import SCORING_CONSTANTS
+from core.fusion.bayesian import BayesianEvidenceFusion, Evidence
 
 class ExperienceMetric(BaseMetric):
+    def _fuse_evidence(self, evidence: List[Evidence]) -> Dict[str, Any]:
+        fusion = BayesianEvidenceFusion(
+            prior_alpha=SCORING_CONSTANTS["FUSION"]["PRIORS"]["ALPHA"],
+            prior_beta=SCORING_CONSTANTS["FUSION"]["PRIORS"]["BETA"]
+        )
+        return fusion.fuse(evidence)
+
     @property
     def id(self) -> str:
         return "experience"
@@ -81,15 +91,18 @@ class ExperienceMetric(BaseMetric):
         total_months = max(cv_months, li_months)
         sources_used = list(set(["CV"] + (["LinkedIn"] if li_months > 0 else [])))
 
-        # target for normalisation
-        max_in_batch = candidate_data.get('batch_max_tenure', 60)
-        normalisation_target = max(max_in_batch, 12) 
+        # target for normalisation (per source to avoid one source clouding the other)
+        batch_max = candidate_data.get('batch_max_tenure', 60)
+        cv_target = max(candidate_data.get('batch_max_cv_tenure', batch_max), 12)
+        li_target = max(candidate_data.get('batch_max_li_tenure', batch_max), 12)
         
-        tenure_score = min(1.0, total_months / normalisation_target)
-        cv_tenure_score = min(1.0, cv_months / normalisation_target)
-        li_tenure_score = min(1.0, li_months / normalisation_target)
+        cv_tenure_score = min(1.0, cv_months / cv_target)
+        li_tenure_score = min(1.0, li_months / li_target)
         
-        # check the density by looking at all the descriptions
+        # for overall metrics, use the higher of the two normalised scores
+        tenure_score = max(cv_tenure_score, li_tenure_score)
+        
+        # check on description density, longer usually means better quality
         all_summaries = " ".join([e.get("summary", "") for e in cv_exp if isinstance(e, dict)])
         primary_summary = str(candidate_data.get('experience_summary') or '')
         li_about = str((candidate_data.get('linkedin_profile', {}) or {}).get('about') or '')
@@ -97,36 +110,77 @@ class ExperienceMetric(BaseMetric):
         combined_density_text = f"{all_summaries} {primary_summary} {li_about}".strip()
         text_length = len(combined_density_text)
         
-        # Base score of 0.2 if they have roles, then scaled by length up to 4000 chars
+        # base score for having roles, then scale it by how much theyve written
         quality_proxy = 0.0
         if text_length > 0 or len(cv_exp) > 0 or len(li_exp) > 0:
             quality_proxy = min(1.0, 0.2 + (text_length / 4000.0))
         
-        # Final Score: 60% CV Tenure, 30% LinkedIn Tenure, 10% Density
-        final_score = (cv_tenure_score * 0.6) + (li_tenure_score * 0.3) + (quality_proxy * 0.1)
+        # Probabilistic Evidence Aggregation
+        # Bayesian fusion handles discrepancies between CV and LinkedIn dates
+        evidence = []
+        conf = SCORING_CONSTANTS["FUSION"]["SOURCE_CONFIDENCE"]["PROFESSIONAL_HISTORY"]
         
-        # why we're taking points off
-        tenure_gap = max(0, normalisation_target - cv_months) # Focus on CV gap as it's the primary driver
-        tenure_note = "Maximum tenure achieved for this batch benchmark." if tenure_score >= 1.0 else f"Current tenure is {tenure_gap} months below the batch peak of {normalisation_target} months."
+        # CV Signal
+        if cv_months > 0:
+            evidence.append(Evidence(source="CV", confidence=conf["CV"], strength=cv_tenure_score))
+        
+        # LI Signal
+        if li_months > 0:
+            evidence.append(Evidence(source="LinkedIn", confidence=conf["LINKEDIN"], strength=li_tenure_score))
+            
+        fusion_result = self._fuse_evidence(evidence)
+        tenure_component_score = fusion_result["fused_score"]
+        conf_label = fusion_result["confidence_label"]
+        
+        # Combine the tenure (85%) and the quality proxy (15%) for the final metric
+        final_score = (tenure_component_score * 0.85) + (quality_proxy * 0.15)
+        
+        # Recruiter notes: keep it simple
+        human_note = "Professional history verified across multiple sources." if conf_label == "High Confidence" else "Variation detected in career timelines across sources."
+        if not evidence: human_note = "No verifiable professional history found."
+        
+        # Work out the gap for the improvements section
+        tenure_gap = max(0, cv_target - cv_months) 
+        tenure_note = "Maximum tenure achieved for this batch benchmark." if tenure_score >= 1.0 else f"Current tenure is {tenure_gap} months below the batch peak of {cv_target} months."
         
         density_note = "Highly detailed career narrative provided." if quality_proxy >= 0.8 else "Consider providing more detail for your roles to improve evidence depth."
 
         return {
             "score": round(final_score, 2),
             "raw_months": total_months,
+            "raw_cv_months": cv_months,
+            "raw_li_months": li_months,
+            "calculation_formula": "(FusedTenure * 0.85) + (NarrativeDepth * 0.15)",
+            "technical_formula": f"(Fused_Tenure({tenure_component_score:.2f}) * 0.85) + (Narrative_Depth({quality_proxy:.2f}) * 0.15) = {final_score:.2f}",
             "breakdown": [
                 {
                     "component": "Career Timeline Breadth",
-                    "score": round(tenure_score, 2),
-                    "notes": tenure_note,
+                    "score": round(tenure_component_score, 2),
+                    "weight": 0.85,
+                    "notes": f"{human_note} (Bayesian Audit: {fusion_result.get('logic', 'N/A')})",
+                    "alpha": fusion_result.get("alpha"),
+                    "beta": fusion_result.get("beta"),
                     "source_details": [
-                        {"source": "CV", "score": round(cv_tenure_score, 2), "explanation": f"Professional history extracted from CV: {cv_months} months."},
-                        {"source": "LinkedIn", "score": round(li_tenure_score, 2), "explanation": f"Professional history validated by LinkedIn: {li_months} months."}
+                        {
+                            "source": "CV", 
+                            "score": cv_tenure_score, 
+                            "trust": conf["CV"],
+                            "derivation": f"min(1.0, {cv_months}m / {cv_target}m)",
+                            "explanation": f"Professional history extracted from CV: {cv_months} months."
+                        },
+                        {
+                            "source": "LinkedIn", 
+                            "score": li_tenure_score, 
+                            "trust": conf["LINKEDIN"],
+                            "derivation": f"min(1.0, {li_months}m / {li_target}m)",
+                            "explanation": f"Professional history validated by LinkedIn: {li_months} months."
+                        }
                     ]
                 },
                 {
                     "component": "Contribution Narrative Depth",
                     "score": round(quality_proxy, 2),
+                    "weight": 0.15,
                     "notes": density_note,
                     "source_details": [
                         {"source": "CV", "score": round(quality_proxy, 2), "explanation": f"Detail level based on {text_length} characters of role descriptions."},
@@ -134,13 +188,11 @@ class ExperienceMetric(BaseMetric):
                     ]
                 }
             ],
-            "sources_used": sources_used,
-            "calculation_formula": "(CV_Tenure * 0.6) + (LinkedIn_Tenure * 0.3) + (NarrativeDepth * 0.1)",
-            "technical_formula": f"({cv_tenure_score:.2f} * 0.6) + ({li_tenure_score:.2f} * 0.3) + ({quality_proxy:.2f} * 0.1) = {final_score:.2f}",
+            "sources_used": list(set(sources_used)),
             "glossary": [],
             "improvements": [i for i in [
-                {"text": f"Add {tenure_gap} more months of relevant history to your CV to match the top candidate.", "gain": 0.6 * (1.0 - cv_tenure_score)} if cv_tenure_score < 1.0 else None,
-                {"text": "Elaborate on your specific responsibilities in your most recent roles to improve Narrative Depth.", "gain": 0.1 * (1.0 - quality_proxy)} if quality_proxy < 0.9 else None
+                {"text": f"Add {tenure_gap} more months of relevant history to your CV to match the top candidate.", "gain": 0.85 * (1.0 - tenure_component_score)} if tenure_component_score < 0.9 else None,
+                {"text": "Elaborate on your specific responsibilities in your most recent roles to improve Narrative Depth.", "gain": 0.15 * (1.0 - quality_proxy)} if quality_proxy < 0.9 else None
             ] if i is not None]
         }
 
@@ -483,7 +535,7 @@ class GithubAlignmentMetric(BaseMetric):
     def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: List[str] = None) -> Dict[str, Any]:
         gh_data = candidate_data.get('github_enriched', {})
         # DEBUG: See what the scoring engine actually sees
-        print(f"DEBUG: Scoring Candidate: {candidate_data.get('name')} | GH Data Keys: {list(gh_data.keys()) if gh_data else 'None'}")
+        # print(f"DEBUG: Scoring Candidate: {candidate_data.get('name')} | GH Data Keys: {list(gh_data.keys()) if gh_data else 'None'}")
         
         if not gh_data or not gh_data.get('languages'):
             # Don't return 0.0 here! We can still calculate alignment based on CV/LinkedIn signals
@@ -571,6 +623,16 @@ class GithubAlignmentMetric(BaseMetric):
                 elif pct >= 5: multiplier, label = 0.7, "Moderate (GitHub)"
                 elif pct > 0: multiplier, label = 0.3, "Low (GitHub)"
                 elif lang in combined_skills: multiplier, label = 0.8, "Validated (CV/LI)"
+                else:
+                    # check if we can find a semantic match in their skills
+                    print(f"DEBUG [GithubAlignment]: Checking '{lang}' against candidate skills: {combined_skills}")
+                    best_semantic = semantic_matcher.find_best_match(lang, list(combined_skills), threshold=0.50)
+                    if best_semantic["match"]:
+                        print(f"DEBUG [GithubAlignment]: SUCCESS! Matched '{lang}' -> '{best_semantic['match']}' (Score: {best_semantic['score']:.2f})")
+                        multiplier = 0.75 # slightly lower than a direct match
+                        label = f"Semantic Match: {best_semantic['match']} ({int(best_semantic['score']*100)}%)"
+                    else:
+                        print(f"DEBUG [GithubAlignment]: FAIL. No match for '{lang}' (Best was '{best_semantic.get('best_candidate')}' at {best_semantic.get('score'):.2f})")
             
             # Resolve the standard source for the frontend toggle
             resolved_source = "CV"

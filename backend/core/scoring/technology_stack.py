@@ -1,6 +1,7 @@
 from typing import Dict, Any, List, Optional
 from .base import BaseMetric
 from .constants import SCORING_CONSTANTS
+from core.fusion.bayesian import Evidence
 
 class TechnologyStackMetric(BaseMetric):
     @property
@@ -110,50 +111,106 @@ class TechnologyStackMetric(BaseMetric):
                 }
             ]
             
+            # --- Bayesian Evidence Aggregation ---
+            evidence = []
+            conf = SCORING_CONSTANTS["FUSION"]["SOURCE_CONFIDENCE"]["TECHNICAL_SKILLS"]
+            
+            # CV signal
+            if has_cv:
+                item_sources.append("CV")
+                evidence.append(Evidence(source="CV", confidence=conf["CV"], strength=1.0))
+                source_details.append({
+                    "source": "CV",
+                    "score": 1.0,
+                    "trust": conf["CV"],
+                    "derivation": f"Binary Presence (Mentions: {mentions} >= 1)",
+                    "explanation": f"Found {mentions} occurrences in document.",
+                    "weighting": f"Self-reported (Conf: {conf['CV']:.1f})"
+                })
+            
+            # LinkedIn Evidence
             if has_li:
                 item_sources.append("LinkedIn")
+                evidence.append(Evidence(source="LinkedIn", confidence=conf["LINKEDIN"], strength=1.0))
                 start_idx = max(0, li_text.find(tech_lower) - 40)
                 end_idx = min(len(li_text), li_text.find(tech_lower) + 60)
                 snippet = li_text[start_idx:end_idx].strip()
                 source_details.append({
-                    "source": "LinkedIn Signal",
-                    "score": 0.70,
-                    "explanation": f"Found in experience: \"...{snippet}...\"",
-                    "weighting": "Primary significance (Historical Record)"
+                    "source": "LinkedIn",
+                    "score": 1.0,
+                    "trust": conf["LINKEDIN"],
+                    "derivation": "Binary Presence (Mentions in history = 1.0)",
+                    "explanation": f"Found in experience history: \"...{snippet}...\" (Normalised: 1.00)",
+                    "weighting": f"Professional Record (Conf: {conf['LINKEDIN']:.1f})"
                 })
 
-            if has_cv:
-                item_sources.append("CV")
+            # GitHub Evidence
+            gh_repos = candidate_data.get("github_projects") or []
+            has_gh = any(tech_lower in str(r.get("name") or "").lower() or tech_lower in str(r.get("description") or "").lower() for r in gh_repos)
+            if has_gh:
+                item_sources.append("GitHub")
+                evidence.append(Evidence(source="GitHub", confidence=conf["GITHUB"], strength=1.0))
                 source_details.append({
-                    "source": "CV Signal",
-                    "score": 0.50,
-                    "explanation": f"Found {mentions} occurrences in original document text.",
-                    "weighting": "Self-reported claim (Baseline)"
+                    "source": "GitHub",
+                    "score": 1.0,
+                    "trust": conf["GITHUB"],
+                    "derivation": "Binary Presence (Relevant project found = 1.0)",
+                    "explanation": f"Found dedicated repositories or mentions in projects.",
+                    "weighting": f"Work Sample (Conf: {conf['GITHUB']:.1f})"
                 })
-            
+
+            # Temporal check (Skill Decay)
             recency_mult, recency_note = self._calculate_recency_multiplier(tech, candidate_data)
-            source_details.append({
-                "source": "Temporal Analysis Signal",
-                "score": recency_mult,
-                "explanation": f"{recency_note} (Factor: {recency_mult}x)",
-                "weighting": "Recency Audit"
-            })
+            # mapping recency decay to negative evidence to pull the score down if it's an old skill
+            if recency_mult < 1.0:
+                decay_strength = 1.0 - recency_mult
+                evidence.append(Evidence(source="Recency", confidence=conf["RECENCY"], strength=decay_strength, is_negative=True))
+                source_details.append({
+                    "source": "Temporal Decay Signal",
+                    "score": -decay_strength,
+                    "trust": conf["RECENCY"],
+                    "explanation": f"{recency_note} (Decay applied to Bayesian model).",
+                    "weighting": "Recency Audit"
+                })
 
-            base_score = 0.70 if has_li else (0.50 if has_cv else 0.0)
-            item_score = self._calculate_multi_source_bonus(item_sources, base_score)
-            final_item_score = self._normalise_score(item_score * recency_mult)
+            # --- Probabilistic Evidence Fusion ---
+            fusion_result = self._fuse_evidence(evidence)
+            final_item_score = fusion_result["fused_score"]
+            conf_label = fusion_result["confidence_label"]
             
-            total_item_score += final_item_score
+            # weakest source
+            weakest_source = "None"
+            min_impact = 99.0
+            if evidence:
+                for ev in evidence:
+                    impact = ev.strength * ev.confidence
+                    if impact < min_impact and not ev.is_negative:
+                        min_impact = impact
+                        weakest_source = ev.source
 
-            # mathematical transparency
-            bonus_val = 1.15 if len(set(item_sources)) > 1 else 1.0
-            logic_summary = f"(max({'0.70' if has_li else '0.00'}, {'0.50' if has_cv else '0.00'}) * {bonus_val:.2f}) * {recency_mult:.1f} = {final_item_score:.2f}"
+            # Summary for the UI
+            if conf_label == "High Confidence":
+                human_note = "Multi-source consensus achieved."
+            elif conf_label == "Medium Confidence":
+                human_note = "Skill verified across multiple professional profiles."
+            elif conf_label == "No Evidence":
+                human_note = "No verifiable records found for this technology."
+            else:
+                human_note = f"Inconsistent data. {weakest_source} verification is the primary bottleneck."
+
+            total_item_score += final_item_score
 
             breakdown.append({
                 "item": tech,
                 "score": final_item_score,
+                "uncertainty": fusion_result["uncertainty"],
+                "confidence_label": conf_label,
+                "bottleneck": weakest_source,
+                "alpha": fusion_result["alpha"],
+                "beta": fusion_result["beta"],
+                "confidence_interval": fusion_result["confidence_interval"],
                 "source_details": source_details,
-                "notes": f"Logic: {logic_summary}",
+                "notes": f"{human_note} (Bayesian Audit: {fusion_result['logic']})",
                 "sources": list(set(item_sources))
             })
 
@@ -165,50 +222,60 @@ class TechnologyStackMetric(BaseMetric):
         else:
             tech_formula = f"Avg({total_item_score:.2f} Total Points / {len(target_tech)} Items) = {final_score:.2f}"
 
+        # --- Improvement Analysis ---
         improvements = []
-        if final_score < 1.0:
+        if final_score < 0.95:
             remaining = 1.0 - final_score
-            avg_cv = sum(1 for b in breakdown if "CV" in b["sources"]) / len(breakdown) if breakdown else 0
-            avg_li = sum(1 for b in breakdown if "LinkedIn" in b["sources"]) / len(breakdown) if breakdown else 0
-            has_low_recency = any(s.get("source") == "Temporal Analysis Signal" and s.get("score", 1.0) < 1.0 for b in breakdown for s in b.get("source_details", []))
-
-            if avg_cv < 1.0:
-                improvements.append({"text": "Explicitly list the exact framework/tool keywords in the CV skills section or experience bullet points.", "gain": remaining * 0.4, "variables": ["CVSignal"]})
-            if avg_li < 1.0:
-                improvements.append({"text": "Mention the required tools in your most recent LinkedIn experience descriptions to gain a multi-source verification bonus.", "gain": remaining * 0.3, "variables": ["LinkedInSignal"]})
-            if has_low_recency:
-                improvements.append({"text": "Update your profile with recent projects using these tools to improve the temporal multiplier.", "gain": remaining * 0.3, "variables": ["Recency_Factor"]})
             
-            if not improvements:
-                improvements.append({"text": "Ensure your technology stack perfectly aligns with the job description.", "gain": remaining, "variables": []})
+            # Source performance
+            source_scores = {}
+            for b in breakdown:
+                for sd in b.get("source_details", []):
+                    src = sd.get("source")
+                    if src not in source_scores: source_scores[src] = []
+                    source_scores[src].append(sd.get("score", 0))
+            
+            avg_sources = {k: sum(v)/len(v) for k, v in source_scores.items()}
+            
+            # Uncertainty Bottleneck
+            any_uncertain = any(b.get("confidence_label") in ["Low Confidence", "Medium Confidence"] for b in breakdown)
+            if any_uncertain:
+                worst_src = min(avg_sources, key=avg_sources.get) if avg_sources else "CV"
+                improvements.append({
+                    "text": f"The model detected inconsistent evidence for your tech stack, primarily on the {worst_src} profile. Ensure your professional records are synchronized to reduce Beta (Uncertainty).",
+                    "gain": remaining * 0.4,
+                    "id": "BETA_UNCERTAINTY"
+                })
+
+            # Source-Specific Advice
+            if avg_sources.get("LinkedIn", 1.0) < 0.8:
+                improvements.append({
+                    "text": "Your LinkedIn profile lacks explicit verification for several key technologies. Add these to your Skills section to improve cross-platform consensus.",
+                    "gain": remaining * 0.3,
+                    "id": "LI_CONSENSUS"
+                })
+            
+            if avg_sources.get("GitHub", 1.0) < 0.7:
+                improvements.append({
+                    "text": "Increase your public code footprint for these technologies by contributing to relevant open-source projects or creating documented repositories.",
+                    "gain": remaining * 0.2,
+                    "id": "GH_FOOTPRINT"
+                })
         else:
-            improvements.append({"text": "Maximum technology stack score achieved.", "gain": 0.0, "variables": []})
+            improvements.append({"text": "Maximum technology stack score achieved across all requirements.", "gain": 0.0})
 
         return {
-            "score": self._normalise_score(final_score),
-            "calculation_formula": "(max(LinkedInSignal, CVSignal) * ConsensusMultiplier) * Recency_Factor",
+            "score": round(final_score, 2),
+            "name": self.name,
+            "id": self.id,
+            "calculation_formula": "Bayesian_Fusion(CV_Presence, LI_Endorsement, GH_Project_Affinity)",
             "technical_formula": tech_formula,
-            "glossary": [
-                {
-                    "variable": "LinkedInSignal",
-                    "description": "Checks if they've actually mentioned this in their work history on LinkedIn.",
-                    "impact": "High-confidence signal (0.70 baseline).",
-                    "sensitivity": "Might be low if it's not mentioned in their last couple of roles."
-                },
-                {
-                    "variable": "CVSignal",
-                    "description": "Looks for the tool or framework explicitly listed in the CV.",
-                    "impact": "Self-reported baseline (0.50).",
-                    "sensitivity": "Sensitive to spelling differences or missing keywords."
-                },
-                {
-                    "variable": "Recency_Factor",
-                    "description": "A multiplier that drops if they haven't used the tool recently.",
-                    "impact": "Scales score based on how long ago the tool was last used.",
-                    "sensitivity": "Starts dropping quite a bit after 3 years of no activity."
-                }
-            ],
             "breakdown": breakdown,
-            "sources_used": list(set(sources_used)),
-            "improvements": improvements[:3]
+            "has_semantic_bridge": any(b.get("is_semantic_bridge") for b in breakdown),
+            "sources_used": list(set([src for b in breakdown for src in b["sources"]])),
+            "glossary": [
+                {"term": "Alpha (α)", "definition": "Strength of supporting evidence across all sources."},
+                {"term": "Beta (β)", "definition": "Level of contradictory or missing signals causing uncertainty."}
+            ],
+            "improvements": improvements[:2]
         }

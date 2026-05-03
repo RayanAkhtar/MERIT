@@ -83,7 +83,10 @@ def rank_candidates(config_id):
             
             # first pass: just getting the raw metrics
             raw_scored_data = scoring_registry.run_all(candidate, job_reqs, active_metrics, weights)
-            candidate["raw_tenure_months"] = raw_scored_data["metrics"].get("experience", {}).get("raw_months") or 0
+            exp_metrics = raw_scored_data["metrics"].get("experience", {})
+            candidate["raw_tenure_months"] = exp_metrics.get("raw_months") or 0
+            candidate["raw_cv_tenure_months"] = exp_metrics.get("raw_cv_months") or 0
+            candidate["raw_li_tenure_months"] = exp_metrics.get("raw_li_months") or 0
             candidate["raw_gh_complexity"] = raw_scored_data["metrics"].get("intel_github_complexity", {}).get("raw_complexity_sum") or 0
             candidate["raw_gh_traction"] = raw_scored_data["metrics"].get("projects", {}).get("raw_traction_points") or 0
             
@@ -107,6 +110,8 @@ def rank_candidates(config_id):
 
         # work out the batch stats for relative scoring
         max_tenure = max([r["candidate"].get("raw_tenure_months") or 0 for r in results] + [60])
+        max_cv_tenure = max([r["candidate"].get("raw_cv_tenure_months") or 0 for r in results] + [60])
+        max_li_tenure = max([r["candidate"].get("raw_li_tenure_months") or 0 for r in results] + [60])
         max_complexity = max([r["candidate"].get("raw_gh_complexity") or 0.0 for r in results] + [1.0])
         max_traction = max([r["candidate"].get("raw_gh_traction") or 0.0 for r in results] + [0.5])
         max_impact = max([r["candidate"].get("raw_impact_points") or 0.0 for r in results] + [1.0])
@@ -121,6 +126,8 @@ def rank_candidates(config_id):
             candidate = r["candidate"]
             # second pass: final score using the batch context we just found
             candidate["batch_max_tenure"] = max_tenure
+            candidate["batch_max_cv_tenure"] = max_cv_tenure
+            candidate["batch_max_li_tenure"] = max_li_tenure
             candidate["batch_max_complexity"] = max_complexity
             candidate["batch_max_traction"] = max_traction
             candidate["batch_max_impact"] = max_impact

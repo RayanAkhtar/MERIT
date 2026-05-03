@@ -116,6 +116,8 @@ class EducationMetric(BaseMetric):
                 {
                     "source": "Academic Audit",
                     "score": level_score,
+                    "trust": 0.9,
+                    "derivation": f"Match({level_map.get(max_candidate_level, 'None')}) vs Target({level_map.get(target_level, 'Bachelors')})",
                     "explanation": f"Candidate: {level_map.get(max_candidate_level, 'Unknown')} vs Requirement: {level_map.get(target_level, 'Bachelors')}"
                 }
             ]
@@ -129,6 +131,8 @@ class EducationMetric(BaseMetric):
                 {
                     "source": "University Anchor",
                     "score": prestige_component_score,
+                    "trust": 0.8,
+                    "derivation": f"Tier Mapping: {prestige_note} (Bonus: {prestige_bonus:.2f})",
                     "explanation": f"Tier Rank: {prestige_note}"
                 }
             ]
@@ -142,6 +146,8 @@ class EducationMetric(BaseMetric):
                 {
                     "source": "Grade Audit",
                     "score": grade_multiplier,
+                    "trust": 0.7,
+                    "derivation": f"Normalisation: {grade_label} (Multiplier: {grade_multiplier:.2f})",
                     "explanation": f"Classification: {grade_label}"
                 }
             ]

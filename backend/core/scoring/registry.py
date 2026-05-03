@@ -163,9 +163,10 @@ class ScoringRegistry:
         # use the raw cv text for the most accurate count
         cv_text = candidate_data.get("raw_cv_text") or candidate_data.get("full_cv_text") or ""
         stuffing_audit = self.stuffing_detector.analyze(cv_text, target_keywords)
-        print(f"DEBUG [Registry]: Stuffing Audit -> Penalty: {stuffing_audit['penalty']} | Flagged: {len(stuffing_audit['flagged_terms'])}")
+        # print(f"DEBUG [Registry]: Stuffing Audit -> Penalty: {stuffing_audit['penalty']} | Flagged: {len(stuffing_audit['flagged_terms'])}")
         for t in stuffing_audit['flagged_terms']:
-            print(f"  - Flagged: {t['term']} ({t['count']}x)")
+            # print(f"  - Flagged: {t['term']} ({t['count']}x)")
+            pass
         
         penalty = stuffing_audit["penalty"]
         final_adjusted_score = max(0.0, overall_score - penalty)

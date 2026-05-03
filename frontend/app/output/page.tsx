@@ -189,8 +189,11 @@ function RankingReport() {
           }
           newItemScore = Math.min(1.0, newItemScore);
           
-          metricTotalPoints += newItemScore;
-          return { ...item, score: newItemScore, source_details: activeSourceDetails };
+          // Use the backend's provided Bayesian score if all sources are active
+          const finalItemScore = (item.score !== undefined && activeSources.length === 3) ? item.score : newItemScore;
+          
+          metricTotalPoints += finalItemScore;
+          return { ...item, score: finalItemScore, source_details: activeSourceDetails };
         }).filter((item: any) => item.source_details && item.source_details.length > 0);
 
         // Keep the original breakdown for rendering, but use validBreakdown for math
@@ -511,12 +514,17 @@ function RankingReport() {
                          return (
                           <td key={m.key} className="px-4 py-4 font-mono text-sm border-r border-zinc-100 dark:border-zinc-800/30 last:border-0">
                              <div className="flex items-center gap-2">
-                                <span className={hasPenalty ? "text-rose-500 font-bold" : (score > 70 ? "text-green-500" : "text-zinc-600 dark:text-zinc-400")}>
+                                <span className={hasPenalty ? "text-rose-500 font-bold" : (metricData?.has_semantic_bridge ? "text-amber-600 dark:text-amber-500 font-semibold" : (score > 70 ? "text-green-500" : "text-zinc-600 dark:text-zinc-400"))}>
                                    {score}%
                                 </span>
                                 {hasPenalty && (
                                    <svg className="w-3 h-3 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                   </svg>
+                                )}
+                                {metricData?.has_semantic_bridge && !hasPenalty && (
+                                   <svg className="w-3 h-3 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                                    </svg>
                                 )}
                              </div>

@@ -2,9 +2,10 @@
 
 interface ScoringAuditProps {
   candidate: any;
+  onMetricClick?: (key: string) => void;
 }
 
-export default function ScoringAudit({ candidate }: ScoringAuditProps) {
+export default function ScoringAudit({ candidate, onMetricClick }: ScoringAuditProps) {
   console.log("DEBUG [ScoringAudit]: calculation_summary ->", candidate.calculation_summary);
   const sortedMetrics = Object.entries(candidate.fullMetrics || {})
     .sort(([, a]: [string, any], [, b]: [string, any]) => {
@@ -101,10 +102,15 @@ export default function ScoringAudit({ candidate }: ScoringAuditProps) {
       </div>
       <div className="space-y-4">
         {sortedMetrics.map(([key, m]: [string, any]) => (
-          <div key={key} id={`formula-${key}`} className="p-6 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm group/formula hover:border-indigo-500 transition-all">
+          <div 
+            key={key} 
+            id={`formula-${key}`} 
+            onClick={() => onMetricClick?.(key)}
+            className="p-6 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm group/formula hover:border-indigo-500 transition-all cursor-pointer hover:shadow-lg active:scale-[0.99]"
+          >
             <div className="flex justify-between items-start mb-4">
               <div className="flex flex-col gap-1">
-                <h5 className="font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+                <h5 className="font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2 group-hover/formula:text-indigo-600 transition-colors">
                   {m.name}
                   {m.integrity_penalty_applied && (
                     <span className="flex items-center gap-1 text-[9px] font-black text-rose-500 bg-rose-500/10 px-1.5 py-0.5 rounded border border-rose-500/20 uppercase tracking-widest animate-pulse">
@@ -124,10 +130,33 @@ export default function ScoringAudit({ candidate }: ScoringAuditProps) {
               </div>
             </div>
             <div className="space-y-4">
-              {m.technical_formula && (
-                <div className="p-4 bg-indigo-500/10 rounded-xl border border-indigo-500/20">
-                  <span className="text-[8px] font-black uppercase text-indigo-500 block mb-1">Numerical Audit</span>
-                  <div className="font-mono text-sm text-indigo-600 dark:text-indigo-400 font-bold">{m.technical_formula}</div>
+              {m.technical_formula && m.technical_formula.includes('α') && (
+                <div className="p-4 bg-zinc-50 dark:bg-black/40 rounded-xl border border-zinc-100 dark:border-zinc-800">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-[10px] font-black uppercase text-zinc-400 tracking-widest">Statistical Audit Summary</span>
+                    <span className="text-[9px] text-indigo-500 font-bold uppercase">Deep Audit available in sidebar</span>
+                  </div>
+                  <div className="flex items-center gap-6">
+                    <div className="flex flex-col">
+                      <span className="text-[9px] text-zinc-500 uppercase font-bold">Signal (α)</span>
+                      <span className="text-sm font-mono font-bold text-zinc-900 dark:text-zinc-100">
+                        {m.technical_formula.match(/α.*?=\s*([\d.]+)/)?.[1] || '---'}
+                      </span>
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[9px] text-zinc-500 uppercase font-bold">Uncertainty (β)</span>
+                      <span className="text-sm font-mono font-bold text-zinc-900 dark:text-zinc-100">
+                        {m.technical_formula.match(/β.*?=\s*([\d.]+)/)?.[1] || '---'}
+                      </span>
+                    </div>
+                    <div className="h-8 w-px bg-zinc-200 dark:bg-zinc-800 mx-2" />
+                    <div className="flex flex-col">
+                      <span className="text-[9px] text-indigo-500 uppercase font-bold">Fused Result</span>
+                      <span className="text-sm font-mono font-black text-indigo-600 dark:text-indigo-400">
+                        {(m.score * 100).toFixed(0)}%
+                      </span>
+                    </div>
+                  </div>
                 </div>
               )}
               
