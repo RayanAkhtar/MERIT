@@ -379,17 +379,18 @@ def get_candidate_detail(candidate_id):
         candidate["cv_education"] = candidate.get("cv_education", [])
         
         gh_raw = candidate.get("github_profile")
-        # Supabase sometimes returns lists for nested selects
+        # supabase sometimes returns lists for nested selects
         gh_profile = gh_raw[0] if isinstance(gh_raw, list) and len(gh_raw) > 0 else gh_raw
         
         if gh_profile and isinstance(gh_profile, dict):
-            # re-map database columns to frontend interface keys
-            history = gh_profile.get("contribution_history")
+            # remap database columns to frontend interface keys
+            # ensuring correct history key from db or raw_data failover
+            history = gh_profile.get("language_history") or gh_profile.get("contribution_history")
+            
             if history is None and "raw_data" in gh_profile and isinstance(gh_profile["raw_data"], dict):
-                # failover to common raw data aliases
-                history = gh_profile["raw_data"].get("contribution_history") or \
-                          gh_profile["raw_data"].get("history") or \
-                          gh_profile["raw_data"].get("language_history")
+                # check common aliases if primary column was missing
+                rd = gh_profile["raw_data"]
+                history = rd.get("language_history") or rd.get("contribution_history") or rd.get("history")
             
             gh_profile["language_history"] = history or []
             candidate["github_projects"] = gh_profile.get("github_projects", [])

@@ -1,3 +1,4 @@
+import math
 from typing import Dict, Any, List, Optional
 from .base import BaseMetric
 from .constants import SCORING_CONSTANTS
@@ -50,11 +51,21 @@ class TechnologyStackMetric(BaseMetric):
         if latest_activity == 0: 
             return 1.0, "Historical claim (No recent temporal activity)"
             
-        years_since = current_year - latest_activity
-        if years_since <= 1: return cfg["ACTIVE"], "Active Proficiency"
-        if years_since == 2: return cfg["NEAR_RECENT"], "Slight Decay"
-        if years_since == 3: return cfg["DECAY"], "Significant Decay"
-        return cfg["LEGACY"], "Legacy Skill"
+        years_since = float(current_year - latest_activity)
+        
+        # Exponential decay: Score * e^(-lambda * t)
+        decay_mult = math.exp(-cfg["DECAY_LAMBDA"] * years_since)
+        
+        if years_since <= cfg["ACTIVE_THRESHOLD"]:
+            return cfg["BOOST_ACTIVE"], f"Active Proficiency (Last seen {latest_activity})"
+            
+        # Round it to 2 decimal places for the UI
+        decay_mult = round(decay_mult, 2)
+        
+        if years_since <= 3:
+            return decay_mult, f"Temporal Decay (Last used ~{int(years_since)} years ago)"
+        
+        return max(0.2, decay_mult), f"Legacy Skill ({int(years_since)}+ years since last activity)"
 
     def _count_mentions(self, tech: str, cv_text: str) -> int:
         if not cv_text: return 0
@@ -161,17 +172,18 @@ class TechnologyStackMetric(BaseMetric):
 
             # Temporal check (Skill Decay)
             recency_mult, recency_note = self._calculate_recency_multiplier(tech, candidate_data)
-            # mapping recency decay to negative evidence to pull the score down if it's an old skill
-            if recency_mult < 1.0:
-                decay_strength = 1.0 - recency_mult
-                evidence.append(Evidence(source="Recency", confidence=conf["RECENCY"], strength=decay_strength, is_negative=True))
-                source_details.append({
-                    "source": "Temporal Decay Signal",
-                    "score": -decay_strength,
-                    "trust": conf["RECENCY"],
-                    "explanation": f"{recency_note} (Decay applied to Bayesian model).",
-                    "weighting": "Recency Audit"
-                })
+            decay_penalty = max(0, 1.0 - recency_mult)
+            if decay_penalty > 0:
+                # mapping recency decay to negative evidence to pull the score down if it's an old skill
+                evidence.append(Evidence(source="Recency", confidence=conf["RECENCY"], strength=decay_penalty, is_negative=True))
+            
+            source_details.append({
+                "source": "Temporal Audit",
+                "score": -decay_penalty if decay_penalty > 0 else 1.0,
+                "trust": conf["RECENCY"],
+                "explanation": f"{recency_note} (Multiplier: {recency_mult:.2f})",
+                "weighting": "Recency Check"
+            })
 
             # --- Probabilistic Evidence Fusion ---
             fusion_result = self._fuse_evidence(evidence)

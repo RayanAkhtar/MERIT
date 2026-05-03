@@ -43,9 +43,12 @@ def rank_candidates(config_id):
             gh_profile = candidate.get("github_profile")
             if gh_profile:
                 # map db columns to frontend keys
-                history = gh_profile.get("contribution_history")
+                # ensure we get the correct history key from the database or raw_data failover
+                history = gh_profile.get("language_history") or gh_profile.get("contribution_history")
                 if history is None and "raw_data" in gh_profile and isinstance(gh_profile["raw_data"], dict):
-                    history = gh_profile["raw_data"].get("contribution_history")
+                    # failover to common raw data aliases
+                    rd = gh_profile["raw_data"]
+                    history = rd.get("language_history") or rd.get("contribution_history") or rd.get("history")
                 
                 gh_profile["language_history"] = history or []
                 

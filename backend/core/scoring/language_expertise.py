@@ -1,3 +1,4 @@
+import math
 from typing import Dict, Any, List, Optional
 from .base import BaseMetric
 from .constants import SCORING_CONSTANTS
@@ -24,14 +25,28 @@ class LanguageExpertiseMetric(BaseMetric):
         
         cfg = SCORING_CONSTANTS["LANGUAGES"]["RECENCY"]
         
-        # github recency check
+        # github recency check using weighted average to catch past peaks
         gh_profile = candidate_data.get("github_profile") or {}
         gh_history = gh_profile.get("language_history") or []
+        
+        weighted_gh_sum = 0
+        total_gh_volume = 0
         last_gh_year = 0
+        
         for entry in gh_history:
             year = int(entry.get("year", 0))
-            if any(str(k).lower() == lang_lower and (v or 0) > 0 for k, v in entry.items()):
+            volume = 0
+            for k, v in entry.items():
+                if str(k).lower() == lang_lower:
+                    volume = float(v or 0)
+                    break
+            
+            if volume > 0:
+                weighted_gh_sum += (year * volume)
+                total_gh_volume += volume
                 last_gh_year = max(last_gh_year, year)
+        
+        effective_gh_year = weighted_gh_sum / total_gh_volume if total_gh_volume > 0 else 0
         
         # linkedin recency check
         li_experience = candidate_data.get("linkedin_experience") or []
@@ -42,31 +57,38 @@ class LanguageExpertiseMetric(BaseMetric):
             if lang_lower in desc or lang_lower in pos:
                 last_li_year = max(last_li_year, current_year - i)
         
-        # work out the final multiplier
-        latest_activity = max(last_gh_year, last_li_year)
+        # calculate the multiplier using exponential decay
+        latest_activity = max(effective_gh_year, float(last_li_year))
         if latest_activity == 0: 
             return 1.0, "Historical claim (No recent temporal data)"
             
-        years_since = current_year - latest_activity
+        years_since = float(current_year - latest_activity)
         
-        if years_since <= 1:
-            return cfg["ACTIVE"], "Active Proficiency (Used in current/recent cycle)"
-        if years_since == 2:
-            return cfg["NEAR_RECENT"], "Slight Decay (Last seen ~2 years ago)"
-        if years_since == 3:
-            return cfg["DECAY"], "Significant Decay (Moving away from technology)"
+        #  exponential decay
+        decay_mult = math.exp(-cfg["DECAY_LAMBDA"] * years_since)
         
-        return cfg["LEGACY"], "Legacy Skill (No activity in 4+ years)"
+        if years_since <= cfg["ACTIVE_THRESHOLD"]:
+            return cfg["BOOST_ACTIVE"], f"Active Proficiency (Last seen {latest_activity})"
+        
+        decay_mult = round(decay_mult, 2)
+        
+        if years_since <= 3:
+            return decay_mult, f"Temporal Decay (Last used ~{int(years_since)} years ago)"
+        
+        return max(0.2, decay_mult), f"Legacy Skill ({int(years_since)}+ years since last activity)"
 
     def _count_mentions(self, lang: str, cv_text: str) -> int:
         if not cv_text: return 0
         import re
         lang_lower = lang.lower()
+
         # count occurrences with word boundaries to avoid substrings
         pattern = rf"\b{re.escape(lang_lower)}\b"
         return len(re.findall(pattern, cv_text.lower()))
-
+        
     def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: Optional[List[str]] = None) -> Dict[str, Any]:
+        import datetime
+        current_year = datetime.datetime.now().year
         breakdown = []
         sources_used = ["CV"]
         cfg = SCORING_CONSTANTS["LANGUAGES"]
@@ -86,8 +108,9 @@ class LanguageExpertiseMetric(BaseMetric):
         if not target_languages:
              return {"score": 0.0, "breakdown": [], "sources_used": sources_used}
 
-        gh_profile = candidate_data.get("github_profile")
+        gh_profile = candidate_data.get("github_profile") or {}
         gh_languages = {}
+        gh_history = gh_profile.get("language_history") or []
         if gh_profile:
             sources_used.append("GitHub")
             gh_raw = gh_profile.get("languages") or []
@@ -103,9 +126,31 @@ class LanguageExpertiseMetric(BaseMetric):
             best_semantic = {}
             source_details = []
             
-            # github signal (code volume)
+            # github signal (code volume + temporal weighting)
             gh_pct = gh_languages.get(lang_lower, 0)
-            gh_score = min(1.0, gh_pct / cfg["GH_VERIFICATION_THRESHOLD"])
+            
+            # github recency for this language
+            gh_weighted_sum = 0
+            gh_total_vol = 0
+            for entry in gh_history:
+                year = int(entry.get("year", 0))
+                # case insensitive lookup for the language volume
+                vol = 0
+                for k, v in entry.items():
+                    if str(k).lower() == lang_lower:
+                        vol = float(v or 0)
+                        break
+                
+                if vol > 0:
+                    gh_weighted_sum += (year * vol)
+                    gh_total_vol += vol
+            
+            gh_effective_year = gh_weighted_sum / gh_total_vol if gh_total_vol > 0 else 0
+            gh_years_since = float(current_year - gh_effective_year) if gh_effective_year > 0 else 0
+            
+            # apply github decay to the volume score
+            gh_decay = math.exp(-cfg["RECENCY"]["DECAY_LAMBDA"] * gh_years_since)
+            gh_score = min(1.0, (gh_pct / cfg["GH_VERIFICATION_THRESHOLD"]) * gh_decay)
             
             # cv signal (how many times they mention it)
             cv_text = candidate_data.get("raw_cv_text") or candidate_data.get("full_cv_text") or ""
@@ -113,10 +158,9 @@ class LanguageExpertiseMetric(BaseMetric):
             
             cv_score = 0.0
             if mentions > 0:
-                # Scale score: 1 mention = 0.2, 2 = 0.4, 3 = 0.6, 4 = 0.8 (cap)
                 cv_score = min(0.8, mentions * 0.2)
             else:
-                # check for a semantic match in the technical skills section
+                # semantic match in technical skills
                 best_semantic = semantic_matcher.find_best_match(lang, list(set(cv_skills)), threshold=0.50)
                 if best_semantic["match"]:
                     semantic_mentions = self._count_mentions(best_semantic["match"], cv_text)
@@ -125,12 +169,11 @@ class LanguageExpertiseMetric(BaseMetric):
             
             recency_mult, recency_note = self._calculate_recency_multiplier(lang, candidate_data)
             
-            # --- Fusing evidence with probability ---
-            # Bayesian model here to combine what they say on their CV with what's actually on GitHub.
+            # fusing evidence with probability
             evidence = []
             conf = SCORING_CONSTANTS["FUSION"]["SOURCE_CONFIDENCE"]["TECHNICAL_SKILLS"]
 
-            # GitHub Evidence
+            # github evidence
             if gh_pct > 0:
                 item_sources.append("GitHub")
                 evidence.append(Evidence(source="GitHub", confidence=conf["GITHUB"], strength=gh_score))
@@ -138,8 +181,8 @@ class LanguageExpertiseMetric(BaseMetric):
                     "source": "GitHub",
                     "score": gh_score,
                     "trust": conf["GITHUB"],
-                    "derivation": f"min(1.0, {gh_pct}% / {cfg['GH_VERIFICATION_THRESHOLD']}%)",
-                    "explanation": f"{gh_pct}% Code Density (Normalised: {gh_score:.2f})",
+                    "derivation": f"{gh_pct:.1f}% Code Density * {gh_decay:.2f} (Temporal Weight)",
+                    "explanation": f"Found {gh_pct:.1f}% code volume on GitHub. Last significant activity (Weighted Center): {gh_effective_year:.1f}.",
                     "weighting": f"Work Sample (Conf: {conf['GITHUB']:.1f})"
                 })
 
@@ -173,25 +216,25 @@ class LanguageExpertiseMetric(BaseMetric):
                     "weighting": f"Historical Record (Conf: {conf['LINKEDIN']:.1f})"
                 })
 
-            # Temporal check (Skill Decay)
-            if recency_mult < 1.0:
-                # adding this as a negative signal to pull the score down if the skill is old
-                decay_strength = 1.0 - recency_mult
-                evidence.append(Evidence(source="Recency", confidence=conf["RECENCY"], strength=decay_strength, is_negative=True))
-                source_details.append({
-                    "source": "Temporal Decay Signal",
-                    "score": -decay_strength,
-                    "trust": conf["RECENCY"],
-                    "explanation": f"{recency_note} (Decay applied to Bayesian model).",
-                    "weighting": "Recency Audit"
-                })
+            # temporal check (skill decay)
+            decay_penalty = max(0, 1.0 - recency_mult)
+            if decay_penalty > 0:
+                evidence.append(Evidence(source="Recency", confidence=conf["RECENCY"], strength=decay_penalty, is_negative=True))
+            
+            source_details.append({
+                "source": "Temporal Audit",
+                "score": -decay_penalty if decay_penalty > 0 else 1.0,
+                "trust": conf["RECENCY"],
+                "explanation": f"{recency_note} (Multiplier: {recency_mult:.2f})",
+                "weighting": "Recency Check"
+            })
 
-            # --- Run the actual fusion ---
+            # run the actual fusion
             fusion_result = self._fuse_evidence(evidence)
             final_item_score = fusion_result["fused_score"]
             conf_label = fusion_result["confidence_label"]
             
-            # Figure out which source is holding the candidate back
+            # figure out which source is holding the candidate back
             weakest_source = "None"
             min_impact = 99.0
             if evidence:
@@ -201,7 +244,7 @@ class LanguageExpertiseMetric(BaseMetric):
                         min_impact = impact
                         weakest_source = ev.source
 
-            # Friendly summary for the recruiter
+            # summary for the recruiter
             if conf_label == "High Confidence":
                 human_note = "Strong consensus across CV, LinkedIn, and GitHub."
             elif conf_label == "Medium Confidence":
@@ -224,6 +267,12 @@ class LanguageExpertiseMetric(BaseMetric):
                 "confidence_interval": fusion_result["confidence_interval"],
                 "is_semantic_bridge": bool(best_semantic.get("match")),
                 "source_details": source_details,
+                "temporal_formula": "S_{decay} = S_{base} \cdot e^{-\lambda \Delta t}",
+                "temporal_params": {
+                    "lambda": cfg["RECENCY"]["DECAY_LAMBDA"], 
+                    "delta_t": round(current_year - gh_effective_year, 2) if gh_effective_year > 0 else 0,
+                    "weight": round(gh_decay, 2)
+                },
                 "notes": f"{human_note} (Bayesian Audit: {fusion_result['logic']})",
                 "sources": list(set(item_sources))
             })
@@ -236,7 +285,7 @@ class LanguageExpertiseMetric(BaseMetric):
         else:
             tech_formula = f"Avg({len(target_languages)} Items: {total_item_score:.2f} Total Points) = {final_score:.2f}"
         
-        # --- Intelligent Improvement Analysis ---
+        # intelligent improvement analysis
         improvements = []
         if final_score < 0.95:
             remaining = 1.0 - final_score
