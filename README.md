@@ -1,6 +1,9 @@
 # MERIT
 
+[![AI Disclosure](https://img.shields.io/badge/AI-Disclosed-blue)](./DECLARATIONS.md)
+
 This project consists of a Next.js frontend and a Flask backend.
+
 
 ## Prerequisites
 - Node.js (for the frontend)
