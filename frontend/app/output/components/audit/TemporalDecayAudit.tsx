@@ -1,7 +1,7 @@
-import React from 'react';
+import { AuditItem } from '@/types/audit';
 
 interface TemporalDecayAuditProps {
-  item: any;
+  item: AuditItem;
 }
 
 const TemporalDecayAudit: React.FC<TemporalDecayAuditProps> = ({ item }) => {
@@ -31,7 +31,7 @@ const TemporalDecayAudit: React.FC<TemporalDecayAuditProps> = ({ item }) => {
         <div className="pt-2 border-t border-indigo-500/10 flex justify-between items-center bg-white/5 px-2 py-1 rounded">
           <span className="text-[10px] text-zinc-500 font-mono uppercase font-bold">Substitution:</span>
           <span className="text-sm font-mono text-indigo-300">
-            e<sup>-{item.temporal_params?.lambda}·{item.temporal_params?.delta_t}</sup> = <span className="text-white font-black underline decoration-indigo-500/50">{(item.temporal_params?.weight || 0).toFixed(2)}</span>
+            e<sup>-{item.temporal_params?.lambda || 0}·{item.temporal_params?.delta_t || 0}</sup> = <span className="text-white font-black underline decoration-indigo-500/50">{(item.temporal_params?.weight || 0).toFixed(2)}</span>
           </span>
         </div>
         <p className="text-[10px] text-zinc-400 leading-relaxed text-center px-2">

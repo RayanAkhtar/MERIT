@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BsCalculator, BsChevronDown, BsInfoCircle, BsLayers } from 'react-icons/bs';
+import { MetricAudit, AuditItem, CandidateDetail } from '@/types/audit';
 import GitHubEvolutionChart from './GitHubEvolutionChart';
 import ScoringAudit from './ScoringAudit';
 import TemporalDecayAudit from './audit/TemporalDecayAudit';
@@ -11,8 +12,8 @@ import WeightedAverageAudit from './audit/WeightedAverageAudit';
 import AuditSourceCard from './audit/AuditSourceCard';
 
 interface DetailedReportModalProps {
-  candidate: any;
-  candidateDetail: any;
+  candidate: any; // PDF candidate object (unstructured)
+  candidateDetail: CandidateDetail | null;
   onClose: () => void;
   hoveredItem: string | null;
   setHoveredItem: (item: string | null) => void;
@@ -133,9 +134,9 @@ export default function DetailedReportModal({
                   </div>
 
                   <div className="space-y-3">
-                    {Object.entries(candidate.shapley_values)
-                      .sort((a: any, b: any) => Math.abs(b[1]) - Math.abs(a[1]))
-                      .map(([source, value]: [string, any], idx) => {
+                    {(Object.entries(candidate.shapley_values || {}) as [string, number][])
+                      .sort((a, b) => Math.abs(b[1]) - Math.abs(a[1]))
+                      .map(([source, value], idx) => {
                         const pct = (value * 100).toFixed(1);
                         const isPositive = value >= 0;
                         return (
@@ -170,14 +171,14 @@ export default function DetailedReportModal({
             )}
 
             <div className="space-y-6">
-              {Object.entries(candidate.fullMetrics)
-                .sort(([, a]: [string, any], [, b]: [string, any]) => {
-                  if (a.score === 0 && b.score !== 0) return 1;
-                  if (a.score !== 0 && b.score === 0) return -1;
+              {(Object.entries(candidate.fullMetrics || {}) as [string, MetricAudit][])
+                .sort(([, a], [, b]) => {
+                  if (a.score === 0 && (b.score || 0) !== 0) return 1;
+                  if ((a.score || 0) !== 0 && b.score === 0) return -1;
                   return 0;
                 })
-                .map(([key, m]: [string, any]) => {
-                const priority = Math.round((1.2 - m.weight) / 0.2);
+                .map(([key, m]) => {
+                const priority = Math.round((1.2 - (m.weight || 1.0)) / 0.2);
                 const isSectionHovered = hoveredItem === key;
                 return (
                   <div key={key} id={`sidebar-${key}`} className="space-y-3 rounded-xl transition-all duration-300">
@@ -222,7 +223,7 @@ export default function DetailedReportModal({
                     )}
 
                     <div className="grid grid-cols-1 gap-3">
-                      {(m.breakdown || []).map((item: any, i: number) => {
+                      {(m.breakdown || []).map((item: AuditItem, i: number) => {
                         return (
                           <div 
                             key={i} 
@@ -270,16 +271,16 @@ export default function DetailedReportModal({
                                 </span>
                               )}
                             </div>
-                            {item.source_details && item.source_details.length > 0 && (
+                            {(item.source_details || []).length > 0 && (
                               <div className="grid grid-cols-1 gap-2">
-                                {item.source_details.map((sd: any, j: number) => (
+                                {(item.source_details || []).map((sd: any, j: number) => (
                                   <AuditSourceCard key={j} sd={sd} j={j} />
                                 ))}
                               </div>
                             )}
 
                             {/* Signal Processing Audit - Generic Container */}
-                            {(item.alpha !== undefined || item.source_details?.length > 0) && (
+                            {(item.alpha !== undefined || (item.source_details?.length || 0) > 0) && (
                               <div className="mt-4 p-4 rounded-xl border border-indigo-500/30 bg-slate-900/50 relative overflow-hidden group">
                                 <div className="flex items-center justify-between cursor-pointer" onClick={() => setExpandedAudit(expandedAudit === `${m.name}-${i}` ? null : `${m.name}-${i}`)}>
                                   <div className="flex items-center gap-3">
@@ -321,7 +322,7 @@ export default function DetailedReportModal({
                                         <div className="flex justify-between items-center text-[10px] font-black text-indigo-400/80 uppercase tracking-widest border-b border-indigo-500/10 pb-1">
                                           <span>Phase 1: Heuristic Normalisation</span>
                                         </div>
-                                        {item.source_details?.map((sd: any, idx: number) => (
+                                        {(item.source_details || []).map((sd: any, idx: number) => (
                                           <div key={`p1-${idx}`} className="flex flex-col gap-0.5 border-b border-white/5 pb-2">
                                             <div className="flex justify-between items-center text-[11px]">
                                               <span className="text-zinc-400 font-medium">{sd.source} Signal</span>
@@ -345,7 +346,7 @@ export default function DetailedReportModal({
                       })}
 
                       {/* Final Metric Aggregator (for hybrid metrics) */}
-                      {(m.breakdown?.length > 1) && (
+                      {((m.breakdown?.length || 0) > 1) && (
                         <div className="mt-2 p-4 rounded-xl border-2 border-dashed border-indigo-500/20 bg-indigo-500/5">
                           <div className="flex items-center gap-2 mb-3">
                             <div className="p-1.5 rounded-lg bg-indigo-500/20">
@@ -354,11 +355,11 @@ export default function DetailedReportModal({
                             <span className="text-[10px] font-black uppercase tracking-widest text-indigo-400">Final Metric Aggregation</span>
                           </div>
                           <div className="space-y-2">
-                            {m.breakdown.map((item: any, idx: number) => (
+                            {(m.breakdown || []).map((item: AuditItem, idx: number) => (
                               <div key={idx} className="flex justify-between items-center text-[11px] font-mono">
                                 <span className="text-zinc-500">{item.item || item.component}:</span>
                                 <span className="text-zinc-300">
-                                  {Math.round(item.score * 100)}% × {item.weight?.toFixed(2) || (1 / m.breakdown.length).toFixed(2)}
+                                  {Math.round((item.score || 0) * 100)}% × {item.weight?.toFixed(2) || (1 / (m.breakdown?.length || 1)).toFixed(2)}
                                 </span>
                               </div>
                             ))}
@@ -450,11 +451,11 @@ export default function DetailedReportModal({
                             </div>
 
                             {/* Professional Experience Section */}
-                            {candidateDetail.cv_experience && candidateDetail.cv_experience.length > 0 && (
+                            {(candidateDetail.cv_experience?.length || 0) > 0 && (
                               <section className="mb-12">
                                 <h3 className="text-xs font-black uppercase tracking-[0.35em] text-indigo-600 dark:text-indigo-400 mb-8 border-b border-zinc-100 dark:border-zinc-800 pb-2">Professional Experience</h3>
                                 <div className="space-y-10">
-                                  {candidateDetail.cv_experience.map((exp: any, i: number) => (
+                                  {(candidateDetail.cv_experience || []).map((exp: any, i: number) => (
                                     <div key={i} className="relative group/exp">
                                       <div className="flex justify-between items-baseline mb-2">
                                         <h4 className="text-lg font-black text-zinc-900 dark:text-zinc-50 tracking-tight group-hover/exp:text-indigo-600 transition-colors">{exp.name}</h4>
@@ -469,11 +470,11 @@ export default function DetailedReportModal({
                             )}
 
                             {/* Education Section */}
-                            {candidateDetail.cv_education && candidateDetail.cv_education.length > 0 && (
+                            {(candidateDetail.cv_education?.length || 0) > 0 && (
                               <section className="mb-12">
                                 <h3 className="text-xs font-black uppercase tracking-[0.35em] text-indigo-600 dark:text-indigo-400 mb-8 border-b border-zinc-100 dark:border-zinc-800 pb-2">Education</h3>
                                 <div className="grid grid-cols-1 gap-8">
-                                  {candidateDetail.cv_education?.map((edu: any, i: number) => (
+                                 {(candidateDetail.cv_education || []).map((edu: any, i: number) => (
                                     <div key={i} className="flex justify-between items-start group/edu">
                                       <div className="space-y-1">
                                         <h4 className="text-[16px] font-black text-zinc-900 dark:text-zinc-50 tracking-tight">
@@ -498,11 +499,11 @@ export default function DetailedReportModal({
                             )}
 
                             {/* Projects Section */}
-                            {candidateDetail.projects_history && candidateDetail.projects_history?.length > 0 && (
+                            {(candidateDetail.projects_history?.length || 0) > 0 && (
                               <section>
                                 <h3 className="text-xs font-black uppercase tracking-[0.35em] text-indigo-600 dark:text-indigo-400 mb-8 border-b border-zinc-100 dark:border-zinc-800 pb-2">Technical Projects & Research</h3>
                                 <div className="space-y-8">
-                                  {candidateDetail.projects_history?.filter((p: any) => (p.title || p.name) && (p.title !== 'None' && p.name !== 'None')).map((proj: any, i: number) => {
+                                  {(candidateDetail.projects_history || []).filter((p: any) => (p.title || p.name) && (p.title !== 'None' && p.name !== 'None')).map((proj: any, i: number) => {
                                     const projTitle = proj.title || proj.name || "Untitled Project";
                                     const projDesc = proj.description || proj.summary || "";
                                     
@@ -557,7 +558,7 @@ export default function DetailedReportModal({
                                             {ghMatch.languages_distribution && Object.keys(ghMatch.languages_distribution).length > 0 && (
                                               <div className="mt-4 pt-4 border-t border-zinc-100 dark:border-zinc-800">
                                                 <div className="flex h-1.5 w-full rounded-full overflow-hidden bg-zinc-200 dark:bg-zinc-800">
-                                                  {Object.entries(ghMatch.languages_distribution).map(([lang, pct]: [string, any], idx) => (
+                                                  {(Object.entries(ghMatch.languages_distribution || {}) as [string, number][]).map(([lang, pct], idx) => (
                                                     <div 
                                                       key={lang} 
                                                       style={{ width: `${pct}%`, backgroundColor: `hsl(${idx * 40}, 70%, 60%)` }}
@@ -567,7 +568,7 @@ export default function DetailedReportModal({
                                                   ))}
                                                 </div>
                                                 <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2">
-                                                  {Object.entries(ghMatch.languages_distribution).slice(0, 4).map(([lang, pct]: [string, any]) => (
+                                                  {(Object.entries(ghMatch.languages_distribution || {}) as [string, number][]).slice(0, 4).map(([lang, pct]) => (
                                                     <div key={lang} className="flex items-center gap-1.5">
                                                       <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: `hsl(${Object.keys(ghMatch.languages_distribution).indexOf(lang) * 40}, 70%, 60%)` }} />
                                                       <span className="text-[9px] font-bold text-zinc-500">{lang} {pct}%</span>
@@ -692,7 +693,7 @@ export default function DetailedReportModal({
                       </div>
 
                       {/* Skills Grid */}
-                      {candidateDetail.linkedin_profile?.skills && candidateDetail.linkedin_profile?.skills?.length > 0 && (
+                      {((candidateDetail.linkedin_profile?.skills?.length || 0) > 0) && (
                         <div className="p-8 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
                           <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 mb-6 flex items-center gap-2">
                              Professional Endorsements
@@ -710,7 +711,7 @@ export default function DetailedReportModal({
 
                       <div className="space-y-4">
                         <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 px-2">Professional Experience</h4>
-                        {candidateDetail.linkedin_experience?.map((exp: any) => (
+                        {(candidateDetail.linkedin_experience || []).map((exp: any) => (
                           <div key={exp.id} className="p-6 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800">
                             <div className="flex justify-between items-start mb-4">
                               <div>
@@ -727,7 +728,7 @@ export default function DetailedReportModal({
                       <div className="space-y-4">
                         <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 px-2">Featured Projects</h4>
                         <div className="grid grid-cols-1 gap-4">
-                          {candidateDetail.linkedin_projects?.map((proj: any, i: number) => (
+                          {(candidateDetail.linkedin_projects || []).map((proj: any, i: number) => (
                             <div key={i} className="p-6 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
                               <div className="flex justify-between items-start mb-2">
                                 <h5 className="font-bold text-sm text-zinc-900 dark:text-zinc-50">{proj.title}</h5>
@@ -742,7 +743,7 @@ export default function DetailedReportModal({
                       <div className="space-y-4">
                         <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 px-2">Certifications & Credentials</h4>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                          {candidateDetail.linkedin_certifications?.map((cert: any, i: number) => (
+                          {(candidateDetail.linkedin_certifications || []).map((cert: any, i: number) => (
                             <div key={i} className="p-4 bg-zinc-50 dark:bg-zinc-800/30 rounded-xl border border-zinc-200 dark:border-zinc-800 flex items-center gap-4">
                               <div className="w-10 h-10 rounded-lg bg-white dark:bg-zinc-900 flex items-center justify-center border border-zinc-200 dark:border-zinc-700 shrink-0">
                                 <svg className="w-5 h-5 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -761,7 +762,7 @@ export default function DetailedReportModal({
                       <div className="space-y-4">
                         <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 px-2">Volunteering & Community</h4>
                         <div className="grid grid-cols-1 gap-4">
-                          {candidateDetail.linkedin_volunteering?.map((vol: any, i: number) => (
+                          {(candidateDetail.linkedin_volunteering || []).map((vol: any, i: number) => (
                             <div key={i} className="p-4 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm flex justify-between items-center">
                               <div>
                                 <h5 className="text-xs font-bold text-zinc-900 dark:text-zinc-50">{vol.position}</h5>
@@ -776,7 +777,7 @@ export default function DetailedReportModal({
                       <div className="space-y-4">
                         <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 px-2">Academic Credentials</h4>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                          {candidateDetail.cv_education?.map((edu: any, i: number) => (
+                          {(candidateDetail.cv_education || []).map((edu: any, i: number) => (
                             <div key={i} className="p-5 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm group/edu hover:border-indigo-500/50 transition-all">
                               <h5 className="font-bold text-sm text-zinc-900 dark:text-zinc-100 group-hover/edu:text-indigo-600 transition-colors">
                                 {isBlindMode ? "Academic Institution" : edu.school_name}

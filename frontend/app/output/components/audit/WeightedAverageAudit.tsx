@@ -1,8 +1,8 @@
-import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { MetricAudit } from '@/types/audit';
 
 interface WeightedAverageAuditProps {
-  m: any;
+  m: MetricAudit;
   expandedAudit: string | null;
 }
 
@@ -23,10 +23,10 @@ const WeightedAverageAudit: React.FC<WeightedAverageAuditProps> = ({ m, expanded
               <span>Phase 1: Active Requirement Scores</span>
             </div>
             <div className="grid grid-cols-1 gap-2">
-              {m.weighted_average_breakdown.map((wa: any, waIdx: number) => (
+              {(m.weighted_average_breakdown || []).map((wa: any, waIdx: number) => (
                 <div key={waIdx} className="flex justify-between items-center text-[11px] font-mono p-2 bg-indigo-500/5 rounded border border-indigo-500/10">
                   <span className="text-zinc-400">{wa.name} Score:</span>
-                  <span className="text-white font-bold">{Math.round(wa.score * 100)}%</span>
+                  <span className="text-white font-bold">{Math.round((wa.score || 0) * 100)}%</span>
                 </div>
               ))}
             </div>
@@ -35,10 +35,10 @@ const WeightedAverageAudit: React.FC<WeightedAverageAuditProps> = ({ m, expanded
               <span>Phase 2: Priority Weighting</span>
             </div>
             <div className="grid grid-cols-1 gap-1">
-              {m.weighted_average_breakdown.map((wa: any, waIdx: number) => (
+              {(m.weighted_average_breakdown || []).map((wa: any, waIdx: number) => (
                 <div key={waIdx} className="flex justify-between items-center text-[10px] font-mono px-2 py-1 opacity-80">
                   <span className="text-zinc-500">{wa.name}:</span>
-                  <span className="text-indigo-300 italic">{wa.score.toFixed(2)} * {wa.weight.toFixed(1)} = {(wa.score * wa.weight).toFixed(2)}</span>
+                  <span className="text-indigo-300 italic">{(wa.score || 0).toFixed(2)} * {(wa.weight || 1).toFixed(1)} = {((wa.score || 0) * (wa.weight || 1)).toFixed(2)}</span>
                 </div>
               ))}
             </div>
@@ -48,9 +48,9 @@ const WeightedAverageAudit: React.FC<WeightedAverageAuditProps> = ({ m, expanded
             </div>
             <div className="p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-center space-y-2">
                <div className="text-[10px] font-mono text-indigo-400 uppercase tracking-widest font-bold">Sum(Weighted Scores) / Sum(Weights)</div>
-               <div className="text-sm font-mono text-white font-black">
-                 {m.weighted_sum?.toFixed(2)} / {m.total_weight?.toFixed(1)} = <span className="underline decoration-indigo-500">{Math.round(m.score * 100)}%</span>
-               </div>
+                <div className="text-sm font-mono text-white font-black">
+                  {(m.weighted_sum || 0).toFixed(2)} / {(m.total_weight || 1).toFixed(1)} = <span className="underline decoration-indigo-500">{Math.round((m.score || 0) * 100)}%</span>
+                </div>
             </div>
           </div>
         </motion.div>

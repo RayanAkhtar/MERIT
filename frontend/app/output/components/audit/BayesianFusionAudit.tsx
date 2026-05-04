@@ -1,7 +1,7 @@
-import React from 'react';
+import { AuditItem } from '@/types/audit';
 
 interface BayesianFusionAuditProps {
-  item: any;
+  item: AuditItem;
 }
 
 const BayesianFusionAudit: React.FC<BayesianFusionAuditProps> = ({ item }) => {
@@ -22,7 +22,7 @@ const BayesianFusionAudit: React.FC<BayesianFusionAuditProps> = ({ item }) => {
       </div>
       
       <div className="space-y-2">
-        {item.source_details?.map((sd: any, idx: number) => {
+        {(item.source_details || []).map((sd: any, idx: number) => {
           const trust = sd.trust || 0.5;
           const strength = sd.score || 0;
           const isNeg = strength < 0;
@@ -59,7 +59,9 @@ const BayesianFusionAudit: React.FC<BayesianFusionAuditProps> = ({ item }) => {
               <span>Final Attribution: Source Impact</span>
             </div>
             <div className="space-y-2">
-              {Object.entries(item.impact_attribution).sort((a: any, b: any) => Math.abs(b[1]) - Math.abs(a[1])).map(([src, val]: [string, any], idx) => {
+              {(Object.entries(item.impact_attribution || {}) as [string, number][])
+                .sort((a, b) => Math.abs(b[1]) - Math.abs(a[1]))
+                .map(([src, val], idx) => {
                 return (
                   <div key={idx} className="space-y-1">
                     <div className="flex justify-between text-[10px] font-mono px-1">
@@ -139,7 +141,7 @@ const BayesianFusionAudit: React.FC<BayesianFusionAuditProps> = ({ item }) => {
           </div>
           <div className="flex justify-between font-bold text-indigo-100">
             <span>Calculation:</span>
-            <span>{item.alpha?.toFixed(2)} / {(item.alpha + item.beta)?.toFixed(2)} = <span className="text-white text-xs">{(item.score * 100).toFixed(0)}%</span></span>
+            <span>{item.alpha?.toFixed(2)} / {((item.alpha || 0) + (item.beta || 0)).toFixed(2)} = <span className="text-white text-xs">{((item.score || 0) * 100).toFixed(0)}%</span></span>
           </div>
         </div>
       </div>

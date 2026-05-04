@@ -45,7 +45,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 export default function GitHubEvolutionChart({ history }: GitHubEvolutionChartProps) {
   if (!history || history.length === 0) return null;
 
-  const languages = Object.keys(history[0]).filter(k => k !== 'year');
+  const languages = history.length > 0 ? Object.keys(history[0] || {}).filter(k => k !== 'year') : [];
   const colors = ['#6366f1', '#10b981', '#f59e0b', '#ec4899', '#a855f7', '#06b6d4', '#64748b', '#f97316'];
 
   return (
@@ -57,7 +57,7 @@ export default function GitHubEvolutionChart({ history }: GitHubEvolutionChartPr
         </div>
         <div className="px-3 py-1 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg border border-indigo-100 dark:border-indigo-800">
           <span className="text-[10px] font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">
-            {history[0].year} — {history[history.length - 1].year}
+            {history[0]?.year || '---'} — {history[history.length - 1]?.year || '---'}
           </span>
         </div>
       </div>

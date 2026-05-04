@@ -1,12 +1,12 @@
-import React from 'react';
+import { SourceDetail } from '@/types/audit';
 
 interface AuditSourceCardProps {
-  sd: any;
+  sd: SourceDetail;
   j: number;
 }
 
 const AuditSourceCard: React.FC<AuditSourceCardProps> = ({ sd, j }) => {
-  const isPenalty = sd.score < 0;
+  const isPenalty = (sd.score || 0) < 0;
   const isBridge = sd.is_semantic_bridge;
   
   let cardStyles = 'bg-zinc-50 dark:bg-zinc-900/50 border-zinc-100 dark:border-zinc-800';
@@ -42,7 +42,7 @@ const AuditSourceCard: React.FC<AuditSourceCardProps> = ({ sd, j }) => {
       {isPenalty && (
         <div className="mt-1 flex items-center gap-1.5">
           <span className="text-[9px] font-black text-rose-500 bg-rose-500/10 px-1.5 py-0.5 rounded border border-rose-500/20 uppercase tracking-tighter">
-            Reduction: {(sd.score * 100).toFixed(0)}%
+            Reduction: {((sd.score || 0) * 100).toFixed(0)}%
           </span>
         </div>
       )}

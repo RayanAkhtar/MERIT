@@ -1,4 +1,4 @@
-'use client';
+import { MetricAudit, StuffingAudit } from '@/types/audit';
 
 interface ScoringAuditProps {
   candidate: any;
@@ -7,10 +7,10 @@ interface ScoringAuditProps {
 
 export default function ScoringAudit({ candidate, onMetricClick }: ScoringAuditProps) {
   console.log("DEBUG [ScoringAudit]: calculation_summary ->", candidate.calculation_summary);
-  const sortedMetrics = Object.entries(candidate.fullMetrics || {})
-    .sort(([, a]: [string, any], [, b]: [string, any]) => {
-      if (a.score === 0 && b.score !== 0) return 1;
-      if (a.score !== 0 && b.score === 0) return -1;
+  const sortedMetrics = (Object.entries(candidate.fullMetrics || {}) as [string, MetricAudit][])
+    .sort(([, a], [, b]) => {
+      if (a.score === 0 && (b.score || 0) !== 0) return 1;
+      if ((a.score || 0) !== 0 && b.score === 0) return -1;
       return 0;
     });
 
@@ -33,7 +33,7 @@ export default function ScoringAudit({ candidate, onMetricClick }: ScoringAuditP
                 An integrity penalty of <span className="text-rose-500">{(candidate.calculation_summary.integrity_penalty * 100).toFixed(0)}%</span> was subtracted from the final score.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {candidate.calculation_summary.stuffing_audit?.map((audit: any, i: number) => (
+                {(candidate.calculation_summary.stuffing_audit || []).map((audit: StuffingAudit, i: number) => (
                   <div key={i} className="p-2.5 bg-rose-500/5 rounded-lg border border-rose-500/10 flex justify-between items-center text-xs">
                     <span className="font-bold text-rose-600 dark:text-rose-400">{audit.term}</span>
                     <span className="text-[10px] font-black text-rose-400/80 uppercase tracking-widest">{audit.count}x / {audit.density} density</span>
@@ -53,9 +53,9 @@ export default function ScoringAudit({ candidate, onMetricClick }: ScoringAuditP
               Contribution Sum (Final Aggregation)
             </div>
             <div className="flex flex-wrap items-center gap-x-4 gap-y-8 text-white text-xl md:text-2xl font-light tracking-tight pb-8 border-b border-white/10">
-              {sortedMetrics.map(([key, m]: [string, any], i, arr) => {
+              {sortedMetrics.map(([key, m], i, arr) => {
                 const totalW = candidate.calculation_summary?.total_weight || 1;
-                const weightedPoints = m.score * m.weight;
+                const weightedPoints = (m.score || 0) * (m.weight || 0);
                 return (
                   <div key={key} className="flex items-center gap-2 group/eq relative pt-6">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 text-[10px] font-black text-indigo-400 bg-indigo-500/10 px-1.5 py-0.5 rounded border border-indigo-500/20">#{i + 1}</div>
@@ -75,9 +75,9 @@ export default function ScoringAudit({ candidate, onMetricClick }: ScoringAuditP
             <div className="mt-8 space-y-4">
               <h5 className="text-[10px] font-black uppercase text-zinc-400 tracking-widest">Detailed Manual Audit Trail</h5>
               <div className="grid grid-cols-1 gap-4">
-                {sortedMetrics.map(([key, m]: [string, any], i) => {
+                {sortedMetrics.map(([key, m], i) => {
                   const totalW = candidate.calculation_summary?.total_weight || 1;
-                  const contribution = (m.score * m.weight) / totalW;
+                  const contribution = ((m.score || 0) * (m.weight || 0)) / totalW;
                   return (
                     <div key={key} className="flex justify-between items-start text-sm group/row hover:bg-white/5 p-2 rounded-lg transition-colors">
                       <span className="flex items-start gap-3 text-zinc-100 font-medium max-w-[60%]">
@@ -85,7 +85,7 @@ export default function ScoringAudit({ candidate, onMetricClick }: ScoringAuditP
                         <span>{m.name} contribution</span>
                       </span>
                       <span className="font-mono text-right">
-                        <div className="text-zinc-400 text-xs mb-1 italic">({m.score.toFixed(2)} × {m.weight.toFixed(2)}) / {totalW.toFixed(2)}</div>
+                        <div className="text-zinc-400 text-xs mb-1 italic">({(m.score || 0).toFixed(2)} × {(m.weight || 0).toFixed(2)}) / {totalW.toFixed(2)}</div>
                         <div className="text-indigo-400 font-black text-base">= {contribution.toFixed(3)}</div>
                       </span>
                     </div>
@@ -101,7 +101,7 @@ export default function ScoringAudit({ candidate, onMetricClick }: ScoringAuditP
         <p className="text-sm text-zinc-400 font-medium leading-relaxed italic border-l-2 border-indigo-500 pl-4 mt-6">{candidate.calculation_summary?.logic}</p>
       </div>
       <div className="space-y-4">
-        {sortedMetrics.map(([key, m]: [string, any]) => (
+        {sortedMetrics.map(([key, m]) => (
           <div 
             key={key} 
             id={`formula-${key}`} 
@@ -126,7 +126,7 @@ export default function ScoringAudit({ candidate, onMetricClick }: ScoringAuditP
                 <span className={`px-2 py-1 rounded flex items-center gap-2 ${m.integrity_penalty_applied ? 'text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-900/30 border border-rose-500/20' : 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30'}`}>
                   Score: {(m.score * 100).toFixed(0)}%
                 </span>
-                <span className="text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">Weight: {m.weight.toFixed(2)}</span>
+                <span className="text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">Weight: {(m.weight || 0).toFixed(2)}</span>
               </div>
             </div>
             <div className="space-y-4">
@@ -171,27 +171,27 @@ export default function ScoringAudit({ candidate, onMetricClick }: ScoringAuditP
                     <span className="text-[10px] font-black uppercase tracking-widest text-rose-500">Anti-Gamer Penalty Applied</span>
                   </div>
                   <p className="text-xs text-rose-600 dark:text-rose-400 font-medium leading-relaxed">
-                    This score was reduced by <span className="font-black">{(m.integrity_penalty_value * 100).toFixed(0)}%</span> because the system detected keyword stuffing tactics. 
+                    This score was reduced by <span className="font-black">{((m.integrity_penalty_value || 0) * 100).toFixed(0)}%</span> because the system detected keyword stuffing tactics. 
                     The natural repetition limit for <span className="font-bold">'{m.integrity_audit_details?.term}'</span> is <span className="font-bold">{m.integrity_audit_details?.limit}x</span>, 
                     but <span className="font-bold text-rose-700 dark:text-rose-300 underline decoration-rose-500/30">{m.integrity_audit_details?.count}x</span> occurrences were found in the CV. 
-                    A penalty scale of <span className="font-bold">{(m.integrity_audit_details?.penalty_per * 100).toFixed(0)}%</span> per excess occurrence was applied to ensure the match remains authentic and not gamed.
+                    A penalty scale of <span className="font-bold">{((m.integrity_audit_details?.penalty_per || 0) * 100).toFixed(0)}%</span> per excess occurrence was applied to ensure the match remains authentic and not gamed.
                   </p>
                 </div>
               )}
 
               <div className="p-4 bg-zinc-50 dark:bg-black/40 rounded-xl font-mono text-xs border border-zinc-100 dark:border-zinc-800 text-zinc-600 dark:text-zinc-300 italic">Logic Variable: {m.formula}</div>
-              {m.improvements && m.improvements.length > 0 && (
+              {(m.improvements?.length || 0) > 0 && (
                 <div className="p-4 bg-amber-50/50 dark:bg-amber-900/10 rounded-xl border border-amber-200/50 dark:border-amber-700/30">
                   <span className="text-[10px] font-black uppercase text-amber-600 dark:text-amber-500 block mb-3 tracking-widest">How to maximise this score</span>
                   <ul className="space-y-2">
-                    {m.improvements.filter(Boolean).map((imp: any, idx: number) => (
+                    {m.improvements?.filter(Boolean).map((imp: any, idx: number) => (
                       <li key={idx} className="flex gap-2 text-xs text-zinc-700 dark:text-zinc-300 font-medium leading-relaxed">
                         <span className="text-amber-500 shrink-0 mt-0.5">•</span>
                         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 w-full">
                           <span className="flex-1">{imp?.text || imp}</span>
-                          {imp.variables && imp.variables.length > 0 && (
+                          {(imp.variables?.length || 0) > 0 && (
                             <div className="flex flex-wrap gap-1 mt-1 sm:mt-0 shrink-0">
-                              {imp.variables.map((v: string, vIdx: number) => (
+                              {(imp.variables || []).map((v: string, vIdx: number) => (
                                 <span key={vIdx} className="text-[9px] font-mono font-bold text-amber-700/80 dark:text-amber-500/80 bg-amber-200/50 dark:bg-amber-900/50 px-1.5 py-0.5 rounded border border-amber-300/30 dark:border-amber-700/30 uppercase tracking-wider">
                                   {v}
                                 </span>
