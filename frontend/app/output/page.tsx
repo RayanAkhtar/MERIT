@@ -160,7 +160,7 @@ function RankingReport() {
 
         const newMetric = JSON.parse(JSON.stringify(m));
         let metricTotalPoints = 0;
-        const validBreakdown = (newMetric.breakdown || []).filter(item => item.item !== "Authenticity & Integrity Audit").map((item: any) => {
+        const validBreakdown = (newMetric.breakdown || []).filter((item: { item: string; }) => item.item !== "Authenticity & Integrity Audit").map((item: any) => {
           const activeSourceDetails = (item.source_details || []).filter((sd: any) => {
              if (['Temporal Analysis', 'University Anchor', 'Degree Match', 'Performance', 'Academic Audit', 'Grade Audit'].includes(sd.source) || sd.source.includes('Signal') || sd.source.includes('Detail')) return true;
              if (sd.source === 'Verification Bonus') return activeSources.includes('GitHub') && activeSources.includes('CV');
@@ -280,7 +280,7 @@ function RankingReport() {
     const totals = { "CV": 0, "GitHub": 0, "LinkedIn": 0 };
     let count = 0;
     
-    candidates.forEach(c => {
+    candidates.forEach((c: { shapley_values: { [s: string]: unknown; } | ArrayLike<unknown>; }) => {
       if (c.shapley_values) {
         Object.entries(c.shapley_values).forEach(([source, val]: [string, any]) => {
           if (source in totals) totals[source as keyof typeof totals] += val;
@@ -547,7 +547,7 @@ function RankingReport() {
                          return (
                           <td key={m.key} className="px-4 py-4 font-mono text-sm border-r border-zinc-100 dark:border-zinc-800/30 last:border-0">
                              <div className="flex items-center gap-2">
-                                <span className={hasPenalty ? "text-rose-500 font-bold" : (metricData?.has_semantic_bridge ? "text-amber-600 dark:text-amber-500 font-semibold" : (score > 70 ? "text-green-500" : "text-zinc-600 dark:text-zinc-400"))}>
+                                <span className={hasPenalty ? "text-rose-500 font-bold" : (metricData?.has_semantic_bridge ? "text-fuchsia-600 dark:text-fuchsia-400 font-bold" : (score > 70 ? "text-green-500" : "text-zinc-600 dark:text-zinc-400"))}>
                                    {score}%
                                 </span>
                                 {hasPenalty && (
@@ -556,7 +556,7 @@ function RankingReport() {
                                    </svg>
                                 )}
                                 {metricData?.has_semantic_bridge && !hasPenalty && (
-                                   <svg className="w-3 h-3 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                   <svg className="w-3 h-3 text-fuchsia-500 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                                    </svg>
                                 )}

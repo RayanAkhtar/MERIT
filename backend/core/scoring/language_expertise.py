@@ -221,13 +221,13 @@ class LanguageExpertiseMetric(BaseMetric):
             has_li = any(lang_lower in str(e.get("description") or "").lower() for e in li_experience)
             if has_li:
                 item_sources.append("LinkedIn")
-                evidence.append(Evidence(source="LinkedIn", confidence=conf["LINKEDIN"], strength=1.0))
+                evidence.append(Evidence(source="LinkedIn", confidence=conf["LINKEDIN"], strength=0.8))
                 source_details.append({
                     "source": "LinkedIn",
-                    "score": 1.0,
+                    "score": 0.8,
                     "trust": conf["LINKEDIN"],
-                    "derivation": "Binary Presence (Mentions in role history = 1.0)",
-                    "explanation": f"Mentioned in professional experience history. (Normalised: 1.00)",
+                    "derivation": "Binary Presence (Mentions in role history = 0.8 Cap)",
+                    "explanation": f"Mentioned in professional experience history. (Normalised: 0.80)",
                     "weighting": f"Historical Record (Conf: {conf['LINKEDIN']:.1f})"
                 })
 

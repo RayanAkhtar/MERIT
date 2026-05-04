@@ -240,15 +240,27 @@ export default function DetailedReportModal({
                                   )}
                                 </div>
                                 {item.confidence_label && (
-                                  <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-md uppercase tracking-widest ${
-                                    item.confidence_label === 'High Confidence' 
-                                      ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20'
-                                      : item.confidence_label === 'Medium Confidence'
-                                        ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20'
-                                        : 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20'
-                                  }`}>
-                                    {item.confidence_label}
-                                  </span>
+                                  <div className="flex items-center gap-1.5">
+                                    <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-md uppercase tracking-widest ${
+                                      item.confidence_label === 'High Confidence' 
+                                        ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20'
+                                        : item.confidence_label === 'Medium Confidence'
+                                          ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20'
+                                          : 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20'
+                                    }`}>
+                                      {item.confidence_label}
+                                    </span>
+                                    
+                                    {/* Unverified Tag - Shown if no GitHub source is present in the signals */}
+                                    {!((item.source_details || []).some((sd: any) => sd.source === 'GitHub') || (item.sources || []).includes('GitHub')) && (
+                                      <span className="text-[9px] font-black px-1.5 py-0.5 rounded-md uppercase tracking-widest bg-zinc-500/10 text-zinc-500 border border-zinc-500/20 flex items-center gap-1">
+                                        <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                        </svg>
+                                        Unverified
+                                      </span>
+                                    )}
+                                  </div>
                                 )}
                               </div>
                             </div>
@@ -319,18 +331,28 @@ export default function DetailedReportModal({
 
                                       {/* Phase 1: Source Normalisation */}
                                       <div className="space-y-3">
-                                        <div className="flex justify-between items-center text-[10px] font-black text-indigo-400/80 uppercase tracking-widest border-b border-indigo-500/10 pb-1">
+                                        <div className="flex justify-between items-center text-xs font-black text-indigo-300 uppercase tracking-[0.15em] border-b border-indigo-500/20 pb-2 mb-1">
                                           <span>Phase 1: Heuristic Normalisation</span>
                                         </div>
                                         {(item.source_details || []).map((sd: any, idx: number) => (
-                                          <div key={`p1-${idx}`} className="flex flex-col gap-0.5 border-b border-white/5 pb-2">
-                                            <div className="flex justify-between items-center text-[11px]">
-                                              <span className="text-zinc-400 font-medium">{sd.source} Signal</span>
-                                              <span className="text-white font-mono font-bold">Strength: {sd.score?.toFixed(2)}</span>
+                                          <div key={`p1-${idx}`} className="flex flex-col gap-1.5 border-b border-white/5 pb-3">
+                                            <div className="flex justify-between items-center text-[12px]">
+                                              <span className="text-zinc-300 font-bold tracking-tight">{sd.source} Signal</span>
+                                              <span className="text-indigo-400 font-mono font-black bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20">
+                                                Strength: {sd.score?.toFixed(2)}
+                                              </span>
                                             </div>
-                                            <div className="text-[10px] font-mono text-indigo-400/60 pl-2 border-l border-indigo-500/20 italic">
+                                            <div className="text-[11px] font-mono text-zinc-400/90 pl-3 border-l-2 border-indigo-500/30 leading-relaxed italic">
                                               {sd.derivation}
                                             </div>
+                                            {(sd.source === 'CV' || sd.source === 'LinkedIn') && (
+                                              <div className="mt-1 pl-3 text-[9px] font-bold text-amber-500/70 uppercase tracking-tight flex items-center gap-1.5">
+                                                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                                </svg>
+                                                Source Trust Anchor: Self-reported data capped at 0.8
+                                              </div>
+                                            )}
                                           </div>
                                         ))}
                                       </div>

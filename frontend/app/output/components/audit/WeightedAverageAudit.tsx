@@ -19,7 +19,7 @@ const WeightedAverageAudit: React.FC<WeightedAverageAuditProps> = ({ m, expanded
           className="mt-4 pt-4 border-t border-slate-800 space-y-4"
         >
           <div className="space-y-4">
-            <div className="flex justify-between items-center text-[10px] font-black text-indigo-400 uppercase tracking-widest border-b border-indigo-500/10 pb-1">
+            <div className="flex justify-between items-center text-xs font-black text-indigo-300 uppercase tracking-[0.15em] border-b border-indigo-500/20 pb-2 mb-1">
               <span>Phase 1: Active Requirement Scores</span>
             </div>
             <div className="grid grid-cols-1 gap-2">
@@ -31,7 +31,7 @@ const WeightedAverageAudit: React.FC<WeightedAverageAuditProps> = ({ m, expanded
               ))}
             </div>
 
-            <div className="flex justify-between items-center text-[10px] font-black text-indigo-400 uppercase tracking-widest border-b border-indigo-500/10 pb-1 pt-2">
+            <div className="flex justify-between items-center text-xs font-black text-indigo-300 uppercase tracking-[0.15em] border-b border-indigo-500/20 pb-2 mb-1">
               <span>Phase 2: Priority Weighting</span>
             </div>
             <div className="grid grid-cols-1 gap-1">
@@ -43,7 +43,7 @@ const WeightedAverageAudit: React.FC<WeightedAverageAuditProps> = ({ m, expanded
               ))}
             </div>
 
-            <div className="flex justify-between items-center text-[10px] font-black text-indigo-400 uppercase tracking-widest border-b border-indigo-500/10 pb-1 pt-2">
+            <div className="flex justify-between items-center text-xs font-black text-indigo-300 uppercase tracking-[0.15em] border-b border-indigo-500/20 pb-2 mb-1">
               <span>Phase 3: Global Aggregation</span>
             </div>
             <div className="p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-center space-y-2">

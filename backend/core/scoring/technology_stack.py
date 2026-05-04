@@ -142,29 +142,29 @@ class TechnologyStackMetric(BaseMetric):
             # CV signal
             if has_cv:
                 item_sources.append("CV")
-                evidence.append(Evidence(source="CV", confidence=conf["CV"], strength=1.0))
+                evidence.append(Evidence(source="CV", confidence=conf["CV"], strength=0.8))
                 source_details.append({
                     "source": "CV",
-                    "score": 1.0,
+                    "score": 0.8,
                     "trust": conf["CV"],
                     "derivation": f"Binary Presence (Mentions: {mentions} >= 1)",
-                    "explanation": f"Found {mentions} occurrences in document.",
+                    "explanation": f"Found {mentions} occurrences in document. (Capped at 0.8)",
                     "weighting": f"Self-reported (Conf: {conf['CV']:.1f})"
                 })
             
             # LinkedIn Evidence
             if has_li:
                 item_sources.append("LinkedIn")
-                evidence.append(Evidence(source="LinkedIn", confidence=conf["LINKEDIN"], strength=1.0))
+                evidence.append(Evidence(source="LinkedIn", confidence=conf["LINKEDIN"], strength=0.8))
                 start_idx = max(0, li_text.find(tech_lower) - 40)
                 end_idx = min(len(li_text), li_text.find(tech_lower) + 60)
                 snippet = li_text[start_idx:end_idx].strip()
                 source_details.append({
                     "source": "LinkedIn",
-                    "score": 1.0,
+                    "score": 0.8,
                     "trust": conf["LINKEDIN"],
-                    "derivation": "Binary Presence (Mentions in history = 1.0)",
-                    "explanation": f"Found in experience history: \"...{snippet}...\" (Normalised: 1.00)",
+                    "derivation": "Binary Presence (Mentions in history = 0.8 Cap)",
+                    "explanation": f"Found in experience history: \"...{snippet}...\" (Normalised: 0.80)",
                     "weighting": f"Professional Record (Conf: {conf['LINKEDIN']:.1f})"
                 })
 

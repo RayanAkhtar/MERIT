@@ -19,6 +19,7 @@ export interface TemporalParams {
 }
 
 export interface AuditItem {
+  sources: string[];
   item?: string;
   component?: string;
   score: number;

@@ -9,7 +9,9 @@ class ExperienceMetric(BaseMetric):
     def _fuse_evidence(self, evidence: List[Evidence]) -> Dict[str, Any]:
         fusion = BayesianEvidenceFusion(
             prior_alpha=SCORING_CONSTANTS["FUSION"]["PRIORS"]["ALPHA"],
-            prior_beta=SCORING_CONSTANTS["FUSION"]["PRIORS"]["BETA"]
+            prior_beta=SCORING_CONSTANTS["FUSION"]["PRIORS"]["BETA"],
+            high_threshold=SCORING_CONSTANTS["FUSION"]["THRESHOLDS"]["HIGH"],
+            medium_threshold=SCORING_CONSTANTS["FUSION"]["THRESHOLDS"]["MEDIUM"]
         )
         return fusion.fuse(evidence)
 

@@ -4,7 +4,7 @@
 
 SCORING_CONSTANTS = {
     "LANGUAGES": {
-        "GH_VERIFICATION_THRESHOLD": 50.0,  # LoC % required for 100% score on the github side
+        "GH_VERIFICATION_THRESHOLD": 30.0,  # LoC % required for 100% score on the github side
         "CV_PROMINENCE_PENALTY": 0.8,       # 20% penalty if not the primary skill
         "CONSENSUS_MULTIPLIER": 1.15,      # Multiplier if found on both CV and GitHub
         "RECENCY": {
@@ -50,8 +50,8 @@ SCORING_CONSTANTS = {
         "SOURCE_CONFIDENCE": {
             "TECHNICAL_SKILLS": {
                 "GITHUB": 0.90,     # Direct work sample evidence
-                "CV": 0.70,         # Self reported
-                "LINKEDIN": 0.30,   # Low trust for specific language skills
+                "CV": 0.50,         # Self reported
+                "LINKEDIN": 0.20,   # Low trust for specific language skills
                 "RECENCY": 0.85     # Temporal analysis confidence
             },
             "PROFESSIONAL_HISTORY": {
@@ -60,12 +60,12 @@ SCORING_CONSTANTS = {
             }
         },
         "THRESHOLDS": {
-            "HIGH": 0.15,       # std_dev below this is High Confidence
-            "MEDIUM": 0.25      # std_dev below this is Medium Confidence
+            "HIGH": 0.2,       # std_dev below this is High Confidence
+            "MEDIUM": 0.35      # std_dev below this is Medium Confidence
         },
         "PRIORS": {
-            "ALPHA": 1.0,
-            "BETA": 1.0
+            "ALPHA": 0.1,
+            "BETA": 0.1
         }
     }
 }

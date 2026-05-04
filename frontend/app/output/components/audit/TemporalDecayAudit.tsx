@@ -9,7 +9,7 @@ const TemporalDecayAudit: React.FC<TemporalDecayAuditProps> = ({ item }) => {
 
   return (
     <div className="space-y-3">
-      <div className="flex justify-between items-center text-[10px] font-black text-indigo-400/80 uppercase tracking-widest border-b border-indigo-500/10 pb-1">
+      <div className="flex justify-between items-center text-xs font-black text-indigo-300 uppercase tracking-[0.15em] border-b border-indigo-500/20 pb-2 mb-1">
         <span>Phase 0: Temporal Decay Analysis</span>
       </div>
       <div className="p-4 rounded-xl bg-gradient-to-br from-indigo-500/10 to-transparent border border-indigo-500/20 shadow-inner space-y-3">

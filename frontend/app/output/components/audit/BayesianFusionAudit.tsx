@@ -11,17 +11,17 @@ const BayesianFusionAudit: React.FC<BayesianFusionAuditProps> = ({ item }) => {
     <div className="space-y-2">
       <div className="pt-2 space-y-2">
         
-        <div className="flex justify-between items-center text-[10px] font-black text-indigo-400 uppercase tracking-widest border-b border-indigo-500/20 pb-1">
+        <div className="flex justify-between items-center text-xs font-black text-indigo-300 uppercase tracking-[0.15em] border-b border-indigo-500/20 pb-2 mb-1">
           <span>Phase 2: Bayesian Evidence Fusion</span>
         </div>
 
-        <div className="flex justify-between text-xs font-mono py-2 bg-indigo-500/5 px-2 rounded">
-          <span className="text-slate-500 italic">Starting Prior (Uniform)</span>
-          <span className="text-indigo-400 font-bold">α=1.00, β=1.00</span>
+        <div className="flex justify-between items-center text-[11px] font-mono py-2.5 bg-indigo-500/10 px-3 rounded-lg border border-indigo-500/20 mb-4">
+          <span className="text-zinc-400 font-bold uppercase tracking-wider">Starting Prior (Uniform)</span>
+          <span className="text-indigo-300 font-black">α=0.10, β=0.10</span>
         </div>
       </div>
       
-      <div className="space-y-2">
+      <div className="space-y-4">
         {(item.source_details || []).map((sd: any, idx: number) => {
           const trust = sd.trust || 0.5;
           const strength = sd.score || 0;
@@ -32,21 +32,21 @@ const BayesianFusionAudit: React.FC<BayesianFusionAuditProps> = ({ item }) => {
           const betaInc = !isNeg ? (1 - absStrength) * trust : (absStrength * trust);
 
           return (
-            <div key={`p2-${idx}`} className="flex justify-between text-xs font-mono items-center py-2 border-b border-zinc-800/50 ml-2 border-l-2 border-indigo-500/20 pl-3">
-              <div className="flex flex-col gap-1">
-                <span className="text-zinc-300 font-bold mb-1">{sd.source} Aggregation</span>
-                <div className="flex flex-col gap-0.5 opacity-60">
-                  <span className="text-[9px] text-zinc-400 font-mono">
-                    Δα = {absStrength.toFixed(2)} (Str) × {trust.toFixed(2)} (Tr) = {alphaInc.toFixed(2)}
+            <div key={`p2-${idx}`} className="flex justify-between items-center py-4 border-b border-white/5 ml-2 border-l-2 border-indigo-500/30 pl-4 bg-white/[0.02] rounded-r-xl">
+              <div className="flex flex-col gap-2">
+                <span className="text-sm font-black text-white tracking-tight">{sd.source} Aggregation</span>
+                <div className="flex flex-col gap-1">
+                  <span className="text-[11px] text-zinc-400 font-mono leading-none">
+                    Δα = {absStrength.toFixed(2)} (Str) × {trust.toFixed(2)} (Tr) = <span className="text-indigo-300 font-bold">{alphaInc.toFixed(2)}</span>
                   </span>
-                  <span className="text-[9px] text-zinc-400 font-mono">
-                    Δβ = (1.0 - {absStrength.toFixed(2)}) × {trust.toFixed(2)} = {betaInc.toFixed(2)}
+                  <span className="text-[11px] text-zinc-400 font-mono leading-none">
+                    Δβ = (1.0 - {absStrength.toFixed(2)}) × {trust.toFixed(2)} = <span className="text-indigo-300 font-bold">{betaInc.toFixed(2)}</span>
                   </span>
                 </div>
               </div>
-              <div className="text-right flex flex-col justify-center">
-                {alphaInc > 0 && <span className="text-emerald-400 font-bold">+α({alphaInc.toFixed(2)})</span>}
-                {betaInc > 0 && <span className="text-rose-400 font-bold">+β({betaInc.toFixed(2)})</span>}
+              <div className="text-right flex flex-col gap-1 pr-2">
+                {alphaInc > 0 && <span className="text-xs font-black text-emerald-400 uppercase tracking-tighter">+α({alphaInc.toFixed(2)})</span>}
+                {betaInc > 0 && <span className="text-xs font-black text-rose-400 uppercase tracking-tighter">+β({betaInc.toFixed(2)})</span>}
               </div>
             </div>
           );
@@ -55,7 +55,7 @@ const BayesianFusionAudit: React.FC<BayesianFusionAuditProps> = ({ item }) => {
         {/* Shapley Values */}
         {item.impact_attribution && Object.keys(item.impact_attribution).length > 0 && (
           <div className="pt-4 space-y-3 px-1">
-            <div className="flex justify-between items-center text-[10px] font-black text-indigo-400 uppercase tracking-widest border-b border-indigo-500/20 pb-1">
+            <div className="flex justify-between items-center text-xs font-black text-indigo-300 uppercase tracking-[0.15em] border-b border-indigo-500/20 pb-2 mb-1">
               <span>Final Attribution: Source Impact</span>
             </div>
             <div className="space-y-2">
@@ -94,7 +94,7 @@ const BayesianFusionAudit: React.FC<BayesianFusionAuditProps> = ({ item }) => {
 
         {item.confidence_label && (
           <div className="pt-4 space-y-3">
-            <div className="flex justify-between items-center text-[10px] font-black text-indigo-400 uppercase tracking-widest border-b border-indigo-500/20 pb-1">
+            <div className="flex justify-between items-center text-xs font-black text-indigo-300 uppercase tracking-[0.15em] border-b border-indigo-500/20 pb-2 mb-1">
               <span>Phase 3: Confidence Audit</span>
             </div>
             <div className="p-4 rounded-xl bg-indigo-500/5 border border-indigo-500/10 space-y-3 shadow-inner">
@@ -119,7 +119,7 @@ const BayesianFusionAudit: React.FC<BayesianFusionAuditProps> = ({ item }) => {
 
         {item.influence !== undefined && (
           <div className="pt-4 space-y-3">
-            <div className="flex justify-between items-center text-[10px] font-black text-indigo-400 uppercase tracking-widest border-b border-indigo-500/20 pb-1">
+            <div className="flex justify-between items-center text-xs font-black text-indigo-300 uppercase tracking-[0.15em] border-b border-indigo-500/20 pb-2 mb-1">
               <span>Phase 4: Weighted Contribution</span>
             </div>
             <div className="p-4 rounded-xl bg-indigo-500/5 border border-indigo-500/10 space-y-3 shadow-inner text-center">
