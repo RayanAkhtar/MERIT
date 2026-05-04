@@ -20,8 +20,9 @@ class ScoringRegistry:
         self.register(LanguageExpertiseMetric())
         self.register(TechnologyStackMetric())
         self.register(EducationMetric())
-        self.register(SoftSkillsMetric())
+        # self.register(SoftSkillsMetric())
         self.register(ProfessionalGravityMetric())
+
         
         # Register Intelligence Metrics
         self.register(ExperienceMetric())
@@ -52,20 +53,31 @@ class ScoringRegistry:
             clean_name = key.replace("req_", "").replace("_", " ").lower()
             jd_metrics = job_requirements.get("metrics", {})
             
-            # Check Languages
-            langs = [l.lower() for l in jd_metrics.get("Languages", {}).get("value", [])]
+            # TODO: at some point, get rid of experience, responsibilities and requirements since they are unused
+            # Helper to extract names from potentially complex JD value lists
+            def extract_names(items):
+                names = []
+                for item in items:
+                    if isinstance(item, dict):
+
+                        val = item.get("value") or item.get("name") or ""
+                        names.append(str(val).lower())
+                    else:
+                        names.append(str(item).lower())
+                return names
+
+            langs = extract_names(jd_metrics.get("Languages", {}).get("value", []))
             if clean_name in langs:
                 return self.metric_templates.get("languages")
             
-            # Check Technologies
-            techs = [t.lower() for t in jd_metrics.get("Technologies", {}).get("value", [])]
-            if any(clean_name in t.lower() or t.lower() in clean_name for t in techs):
+            techs = extract_names(jd_metrics.get("Technologies", {}).get("value", []))
+            if any(clean_name in t or t in clean_name for t in techs):
                 return self.metric_templates.get("technologies")
             
-            # Check Soft Skills
-            soft = [s.lower() for s in jd_metrics.get("Soft Skills", {}).get("value", [])]
-            if any(clean_name in s.lower() or s.lower() in clean_name for s in soft):
-                return self.metric_templates.get("soft_skills")
+            # soft = extract_names(jd_metrics.get("Soft Skills", {}).get("value", []))
+            # if any(clean_name in s or s in clean_name for s in soft):
+            #     return self.metric_templates.get("soft_skills")
+
                 
             # Default to tech stack if unknown requirement
             return self.metric_templates.get("technologies")
@@ -149,17 +161,20 @@ class ScoringRegistry:
             vals = jd_metrics.get(category, {}).get("value", [])
             for v in vals:
                 if isinstance(v, dict):
-                    target_keywords.append(v.get("name", ""))
+                    target_keywords.append(v.get("value") or v.get("name") or "")
                 else:
                     target_keywords.append(str(v))
+
         
         # check specific requirements from the active keys
         for key in keys_to_run:
             if key.startswith("req_"):
                 target_keywords.append(key.replace("req_", "").replace("_", " "))
         
-        # Deduplicate and run detector
-        target_keywords = list(set(target_keywords))
+        # Deduplicate and filter out empty strings to prevent the '200% density' bug
+        target_keywords = list(set([k for k in target_keywords if k and str(k).strip()]))
+
+
         # use the raw cv text for the most accurate count
         cv_text = candidate_data.get("raw_cv_text") or candidate_data.get("full_cv_text") or ""
         stuffing_audit = self.stuffing_detector.analyze(cv_text, target_keywords)
@@ -180,7 +195,7 @@ class ScoringRegistry:
                 m = results[req_key]
                 p_val = term_audit["penalty_contribution"]
                 
-                # update score (penalize once)
+                # update score (penalise once)
                 old_score = m["score"]
                 m["score"] = max(0.0, old_score - p_val)
                 
@@ -215,7 +230,7 @@ class ScoringRegistry:
                 
                 flagged_keys.append(req_key)
 
-        # recalculate overall score based on the finalized (potentially penalized) metrics
+        # recalculate overall score based on the finalised (potentially penalised) metrics
         new_total_weighted_score = sum((m.get("score") or 0.0) * (m.get("weight") or 0.0) for m in results.values())
         final_adjusted_score = new_total_weighted_score / total_weight if total_weight > 0 else 0.0
 
@@ -228,7 +243,7 @@ class ScoringRegistry:
             "overall_score": final_adjusted_score,
             "integrity_penalty": penalty, 
             "calculation_summary": {
-                "formula": "SUM(PenalizedMetricScore * Weight) / SUM(Weights)",
+                "formula": "SUM(PenalisedMetricScore * Weight) / SUM(Weights)",
                 "weighted_sum": new_total_weighted_score,
                 "total_weight": total_weight,
                 "base_score": overall_score,

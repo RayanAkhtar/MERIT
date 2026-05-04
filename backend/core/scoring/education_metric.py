@@ -94,7 +94,15 @@ class EducationMetric(BaseMetric):
         target_level = 1 # Default to Bachelors
         jd_metrics = job_requirements.get("metrics", {})
         if "Education" in jd_metrics:
-            target_str = str(jd_metrics["Education"].get("value", "")).lower()
+            edu_vals = jd_metrics["Education"].get("value", [])
+            # Combine all text from education requirements to find degree level
+            target_str = ""
+            for v in edu_vals:
+                if isinstance(v, dict):
+                    target_str += " " + str(v.get("value", "")).lower()
+                else:
+                    target_str += " " + str(v).lower()
+            
             if "phd" in target_str or "doctor" in target_str: target_level = 3
             elif "master" in target_str or "meng" in target_str or "msc" in target_str: target_level = 2
 

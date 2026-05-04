@@ -7,13 +7,19 @@ from docx import Document
 from pdfminer.high_level import extract_text
 
 # help find sections in the text
+
+
+# ARCHITECTURAL DECISION:
+# In the past, responsibilities and requirements were extracted, but we never used them when calculating metrics
+# So we will just stick to the technical skills, education, and "nice to have"
 HEADERS = {
-    "responsibilities": ["responsibilities", "duties", "what you will do", "role requirements"],
-    "requirements": ["requirements", "qualifications", "what we are looking for", "skills", "competencies", "what you will have", "ideal candidate"],
+    # "responsibilities": ["responsibilities", "duties", "what you will do", "role requirements"],
+    # "requirements": ["requirements", "qualifications", "what we are looking for", "skills", "competencies", "what you will have", "ideal candidate"],
     "technical_skills": ["technical skills", "stack", "tech stack", "technologies"],
     "education": ["education", "degree", "academic", "university"],
     "nice_to_have": ["nice to have", "preferred", "bonus", "desirable"]
 }
+
 
 def read_txt(path):
     with open(path, "r", encoding="utf-8", errors="ignore") as f:
@@ -98,8 +104,9 @@ def find_skills(text, reqs, tech, resps=None):
 
     langs = set()
     tools = set()
-    exp = []
+    # exp = []
     edu = []
+
     
     low_text = text.lower()
     
@@ -128,22 +135,26 @@ def find_skills(text, reqs, tech, resps=None):
                 seen_tools.add(low_t)
     
     # pull out years of experience
-    yrs = re.findall(r'(\d+(?:\s?-\s?\d+)?[\+]?\s?year[s]?(?:\s?of\s?experience)?)', text, re.IGNORECASE)
-    for y in yrs:
-        exp.append(y)
+    # yrs = re.findall(r'(\d+(?:\s?-\s?\d+)?[\+]?\s?year[s]?(?:\s?of\s?experience)?)', text, re.IGNORECASE)
+    # for y in yrs:
+    #     exp.append(y)
+
         
     # pull out education lines
     edu_keys = ["degree", "bachelor", "master", "phd", "bsc", "msc", "ba", "ma", "diploma", "doctorate"]
-    for line in (reqs + (resps or [])):
+    # Scan full text for education instead of just sections
+    for line in text.splitlines():
         if any(re.search(r'\b' + re.escape(k) + r'\b', line.lower()) for k in edu_keys):
             edu.append(line.strip())
+
 
     return {
         "languages": sorted(list(langs)),
         "technology": sorted(list(tools)),
-        "experience": sorted(list(set(exp))),
+        # "experience": sorted(list(set(exp))),
         "education": sorted(list(set(edu)))
     }
+
 
 def get_job_type(text):
     t = text.lower()
@@ -213,9 +224,9 @@ def parse_job(text, source_file, meta=None):
         "employment_type": None,
         "experience_level": meta.get("job_level"),
         "technical_skills": [],
-        "soft_skills": [],
-        "responsibilities": [],
-        "requirements": [],
+        # "soft_skills": [],
+        # "responsibilities": [],
+        # "requirements": [],
         "education": [],
         "nice_to_have": [],
         "salary": None,
@@ -261,23 +272,22 @@ def parse_job(text, source_file, meta=None):
             res["location"] = "London, UK"
 
     # pull sections
-    # print(f"DEBUG: extracted {len(res_sec)} responsibilities")
-    res_sec = get_section(text, HEADERS["responsibilities"])
-    req_sec = get_section(text, HEADERS["requirements"])
+    # res_sec = get_section(text, HEADERS["responsibilities"])
+    # req_sec = get_section(text, HEADERS["requirements"])
     edu_sec = get_section(text, HEADERS["education"])
     nic_sec = get_section(text, HEADERS["nice_to_have"])
     tec_sec = get_section(text, HEADERS["technical_skills"])
 
-    res["responsibilities"] = res_sec
-    res["requirements"] = req_sec
+    # res["responsibilities"] = res_sec
+    # res["requirements"] = req_sec
     res["education"] = edu_sec
     res["nice_to_have"] = nic_sec
     
     # compute skills
-    skills = find_skills(text, req_sec + res_sec + nic_sec, tec_sec)
+    skills = find_skills(text, [], tec_sec)
     res["technical_skills"] = sorted(list(set(skills["technology"])))
     res["languages"] = sorted(list(set(skills["languages"])))
-    res["experience_required"] = sorted(list(set(skills["experience"])))
+    # res["experience_required"] = sorted(list(set(skills["experience"])))
     res["education_required"] = sorted(list(set(skills["education"])))
     res["salary"] = get_salary(text)
 

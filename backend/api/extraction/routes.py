@@ -86,16 +86,17 @@ def extract_job_description():
         formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Language", "value": s, "category": "Languages"})
     for s in combined.get("technical_skills", []):
         formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Technology", "value": s, "category": "Technologies"})
-    for s in combined.get("experience_required", []):
-        formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Required Experience", "value": s, "category": "Experience"})
+    # for s in combined.get("experience_required", []):
+    #     formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Required Experience", "value": s, "category": "Experience"})
     for s in combined.get("education_required", []):
         formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Degree", "value": s, "category": "Education"})
-    for s in combined.get("soft_skills", []):
-        formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Soft Skill", "value": s, "category": "Soft Skills"})
-    for s in combined.get("responsibilities", []):
-        formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Duty", "value": s, "category": "Responsibilities"})
-    for s in combined.get("requirements", []):
-        formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Requirement", "value": s, "category": "Requirements"})
+    # for s in combined.get("soft_skills", []):
+    #     formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Soft Skill", "value": s, "category": "Soft Skills"})
+    # for s in combined.get("responsibilities", []):
+    #     formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Duty", "value": s, "category": "Responsibilities"})
+    # for s in combined.get("requirements", []):
+    #     formatted_metrics.append({"id": os.urandom(4).hex(), "label": "Requirement", "value": s, "category": "Requirements"})
+
 
     # build a nice title for the UI
     company = combined.get("company")
@@ -114,7 +115,9 @@ def extract_job_description():
         weight_engine = WeightingEngine()
         
         # collect all extractable skill values
-        skill_values = [m["value"] for m in formatted_metrics if m["category"] in ["Languages", "Technologies", "Soft Skills", "Education", "Experience"]]
+        # only weight technical skills and education
+        skill_values = [m["value"] for m in formatted_metrics if m["category"] in ["Languages", "Technologies", "Education"]]
+
         
         # TF-IDF suggested weights
         suggested_weights = weight_engine.calculate_weights(combined.get("raw_text", ""), skill_values)
@@ -196,6 +199,7 @@ def extract_cv():
                         "cv_url": existing.get("cv_url"),
                         "cv_hash": cache_id,
                         "file_id": cache_id,
+                        "raw_cv_text": existing.get("raw_cv_text"),
                         "cached": True,
                         "reused_from_db": True
                     }
@@ -281,6 +285,7 @@ def extract_cv():
                     "cv_url": existing.get("cv_url"),
                     "cv_hash": cache_id,
                     "file_id": cache_id,
+                    "raw_cv_text": existing.get("raw_cv_text"),
                     "cached": True,
                     "reused_from_db": True
                 }

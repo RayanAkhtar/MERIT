@@ -189,7 +189,7 @@ export default function UpdateConfigPage() {
                 <div className="w-20 h-20 bg-indigo-50 dark:bg-indigo-950/50 rounded-[1.5rem] flex items-center justify-center mb-8 text-indigo-600 dark:text-indigo-400">
                   <IoSettingsOutline className="w-10 h-10 animate-spin-slow" />
                 </div>
-                <h3 className="text-2xl font-black text-zinc-900 dark:text-zinc-50 mb-3 tracking-tighter">Select a Protocol</h3>
+                <h3 className="text-2xl font-black text-zinc-900 dark:text-zinc-50 mb-3 tracking-tighter">Select a Config</h3>
                 <p className="max-w-xs text-zinc-500 dark:text-zinc-400 text-base leading-relaxed font-medium">Select a configuration to adjust weights, datasets, and matching rules.</p>
               </div>
             )}

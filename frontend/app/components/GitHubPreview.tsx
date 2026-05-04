@@ -81,7 +81,7 @@ const GitHubPreview: React.FC<GitHubPreviewProps> = ({ githubData }) => {
   const [maxYearIdx, setMaxYearIdx] = React.useState(0);
   const [lastActive, setLastActive] = React.useState<'min' | 'max'>('min');
 
-  // Initialize indices when data loads
+  // Initialise indices when data loads
   React.useEffect(() => {
     if (availableYears.length > 0) {
       setMinYearIdx(0);

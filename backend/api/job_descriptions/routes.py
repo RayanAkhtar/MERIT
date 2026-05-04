@@ -17,10 +17,18 @@ def get_job_descriptions():
 
 def _group_metrics(metrics):
     """Internal helper to structure flat metric lists into category-based groups for Supabase storage."""
-    list_type_cats = ["Languages", "Technologies", "Soft Skills", "Responsibilities", "Requirements", "Education"]
+    # list_type_cats = ["Languages", "Technologies", "Soft Skills", "Responsibilities", "Requirements", "Education"]
+    list_type_cats = ["Languages", "Technologies", "Education"]
+    
+    # Excluded categories (Soft Skills, Responsibilities, etc.) since they were never used, and just caused errors later down the line
+    active_categories = ["Languages", "Technologies", "Education", "General"]
+    
     grouped_metrics = {}
     for m in metrics:
         cat = m.get("category", "General")
+        if cat not in active_categories:
+            continue
+            
         val = m.get("value", "")
         
         if cat not in grouped_metrics:

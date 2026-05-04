@@ -111,7 +111,7 @@ export default function Navbar() {
                     href="/config/update"
                     className="block px-4 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
                   >
-                    Matching Protocol
+                    Matching Config
                   </Link>
                 </div>
               </div>

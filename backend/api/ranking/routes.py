@@ -82,6 +82,34 @@ def rank_candidates(config_id):
             candidate["linkedin_experience"] = (li_profile or {}).get("linkedin_experience", [])
             candidate["linkedin_education"] = (li_profile or {}).get("linkedin_education", [])
             
+            # Ensure full_cv_text is available as fallback for CV skill detection if raw_cv_text is missing
+            if not candidate.get("raw_cv_text"):
+                full_text_parts = []
+                full_text_parts.append(str(candidate.get('name') or 'CANDIDATE'))
+                full_text_parts.append(f"{str(candidate.get('email') or '')} | {str(candidate.get('phone') or '')}")
+                full_text_parts.append("\nPROFESSIONAL SUMMARY")
+                full_text_parts.append(str(candidate.get("experience_summary") or ""))
+                
+                if candidate.get("cv_education"):
+                    full_text_parts.append("\nEDUCATION")
+                    for edu in candidate["cv_education"]:
+                        if isinstance(edu, dict):
+                            full_text_parts.append(f"• {str(edu.get('school_name') or '')} - {str(edu.get('degree') or '')} ({str(edu.get('start_date') or '')} - {str(edu.get('end_date') or '')})")
+                
+                if candidate.get("projects_history"):
+                    full_text_parts.append("\nPROJECTS")
+                    for proj in candidate["projects_history"]:
+                        if isinstance(proj, dict):
+                            full_text_parts.append(f"• {str(proj.get('title') or proj.get('name') or 'Unnamed Project')}: {str(proj.get('description') or '')}")
+                
+                if candidate.get("extracurricular"):
+                    full_text_parts.append("\nEXTRACURRICULAR")
+                    for extra in candidate["extracurricular"]:
+                        if isinstance(extra, dict):
+                            full_text_parts.append(f"• {str(extra.get('title') or 'Activity')}: {str(extra.get('description') or '')}")
+                
+                candidate["full_cv_text"] = "\n".join(full_text_parts)
+
             active_metrics = config.get("active_metrics", [])
             
             # first pass: just getting the raw metrics
@@ -140,7 +168,8 @@ def rank_candidates(config_id):
             candidate["batch_max_connections"] = max_connections
             candidate["batch_max_skill_count"] = max_skills
             
-            # shove in individual skill scores and weights from the first pass
+            # shove in full metric data and weights from the first pass
+            candidate["skill_metrics"] = r["raw_scored_data"]["metrics"]
             candidate["skill_scores"] = {k: (v.get("score") or 0.0) for k, v in r["raw_scored_data"]["metrics"].items()}
             candidate["skill_weights"] = weights
             candidate["active_keys"] = [k for k, v in active_metrics.items() if v is True] if isinstance(active_metrics, dict) else active_metrics

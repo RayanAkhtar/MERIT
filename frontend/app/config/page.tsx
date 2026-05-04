@@ -30,7 +30,7 @@ export default function ConfigOverviewPage() {
               </div>
               
               <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 mb-3">
-                Create Protocol
+                Create Config
               </h2>
               
               <p className="text-zinc-600 dark:text-zinc-400 mb-6 leading-relaxed text-sm">
@@ -59,7 +59,7 @@ export default function ConfigOverviewPage() {
               </div>
               
               <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 mb-3">
-                Update Protocol
+                Update Config
               </h2>
               
               <p className="text-zinc-600 dark:text-zinc-400 mb-6 leading-relaxed text-sm">
@@ -88,7 +88,7 @@ export default function ConfigOverviewPage() {
               </div>
               
               <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 mb-3">
-                Execute Match
+                Execute Config
               </h2>
               
               <p className="text-zinc-600 dark:text-zinc-400 mb-6 leading-relaxed text-sm">

@@ -248,14 +248,14 @@ export default function CVUpload() {
             const link = candidate.links[src]?.[0];
             if (!link) continue;
 
-            // 1. Skip if data was already reclaimed from DB in extract-cv
+            // Skip if data was already reclaimed from DB in extract-cv
             if (candidate[`${src}_enriched` as keyof ExtractedCV]) {
                 console.log(`DEBUG: Skipping ${src} scan for ${candidate.name}, already reclaimed.`);
                 scanResults[`${src}_enriched`] = candidate[`${src}_enriched` as keyof ExtractedCV];
                 continue;
             }
 
-            // 2. Use first candidate's data if already scanned in THIS batch (for preview consistency)
+            // Use first candidate's data if already scanned in THIS batch (for preview consistency)
             if (i === 0 && sourceData[src]) {
                 scanResults[`${src}_enriched`] = sourceData[src];
                 continue;
@@ -538,7 +538,7 @@ export default function CVUpload() {
                             </span>
                         )}
                     </h2>
-                    <p className="text-zinc-500 font-medium">{extractedCVs.length} successfuly extracted from {files.length} files.</p>
+                    <p className="text-zinc-500 font-medium">{extractedCVs.length} successfully extracted from {files.length} files.</p>
                 </div>
                 <button 
                   onClick={() => setStep('upload')}
@@ -673,7 +673,7 @@ export default function CVUpload() {
           </div>
           <div className="space-y-2">
             <p className="text-base font-bold text-zinc-900 dark:text-zinc-50 tracking-tight">
-              <span className="text-indigo-600 dark:text-indigo-400">Initialize Batch Upload</span> or drag and drop
+              <span className="text-indigo-600 dark:text-indigo-400">Initialise Batch Upload</span> or drag and drop
             </p>
             <p className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">
                Securely processes PDF, DOCX, TXT and MD profiles
@@ -760,7 +760,7 @@ export default function CVUpload() {
             {isUploading ? (
                 <>
                     <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    Initializing Engines...
+                    Initialising Engines...
                 </>
             ) : (
                 <>

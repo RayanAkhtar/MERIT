@@ -67,10 +67,13 @@ class BayesianEvidenceFusion:
         # work out a human-friendly label based on the standard deviation
         if std_dev < self.high_threshold:
             conf_label = "High Confidence"
+            conf_reason = f"Uncertainty (σ={std_dev:.3f}) is below the {self.high_threshold} high-certainty threshold."
         elif std_dev < self.medium_threshold:
             conf_label = "Medium Confidence"
+            conf_reason = f"Uncertainty (σ={std_dev:.3f}) is within the {self.high_threshold}-{self.medium_threshold} range."
         else:
             conf_label = "Low Confidence"
+            conf_reason = f"Uncertainty (σ={std_dev:.3f}) exceeds the {self.medium_threshold} maximum uncertainty threshold."
 
         # 95% confidence interval approximation (mean +/- 1.96 * std_dev)
         ci_low = max(0.0, fused_score - 1.96 * std_dev)
@@ -80,6 +83,7 @@ class BayesianEvidenceFusion:
             "fused_score": fused_score,
             "uncertainty": std_dev,
             "confidence_label": conf_label,
+            "confidence_reason": conf_reason,
             "confidence_interval": (ci_low, ci_high),
             "alpha": alpha,
             "beta": beta,

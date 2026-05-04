@@ -27,7 +27,7 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
   const [showReqModal, setShowReqModal] = useState(false);
   const [showMathModal, setShowMathModal] = useState<any>(null);
 
-  // 0 = Least Important, 1 = Most Important
+  // Weight range: 0 (Least Important) to 1 (Most Important)
   const [importance, setImportance] = useState<Record<string, number>>(initialData?.weights || {});
   const [activeMetrics, setActiveMetrics] = useState<Record<string, boolean>>(initialData?.active_metrics || {});
 
@@ -89,14 +89,15 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
     const seenLabels = new Set<string>();
     
     Object.entries(reqPreviewData.metrics).forEach(([category, data]: [string, any]) => {
-      // Skip 'Experience' (global model) and 'General' (metadata) categories
-      if (category === 'Experience' || category === 'General') return;
+      // Skip categories that are no longer used for execution
+      if (['Experience', 'General', 'Soft Skills', 'Responsibilities', 'Requirements'].includes(category)) return;
+
 
       if (data.type === 'key-value' && Array.isArray(data.value)) {
         data.value.forEach((item: any) => {
           const label = item.name || item.value;
           const isExperienceMetric = /years|yrs|\d+\+/.test(label.toLowerCase());
-          const isNoisyMetric = label.length > 50 || /^\d+\./.test(label) || /at scale|democratizing|participate in|maintaining/i.test(label);
+          const isNoisyMetric = label.length > 50 || /^\d+\./.test(label) || /at scale|democratising|participate in|maintaining/i.test(label);
 
           if (label && !seenLabels.has(label) && !isExperienceMetric && !isNoisyMetric) {
             seenLabels.add(label);
@@ -487,7 +488,7 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
           <input 
             id="configName"
             type="text" 
-            placeholder="e.g. Senior ML Grad Protocol" 
+            placeholder="e.g. Senior ML Grad Config" 
             value={configName}
             onChange={(e) => setConfigName(e.target.value)}
             className="w-full bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -539,7 +540,10 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
               <div className="mb-6">
                 <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-4 border-b border-zinc-100 dark:border-zinc-800 pb-2">Extracted Metrics</h3>
                 <div className="space-y-4">
-                  {Object.entries(reqPreviewData.metrics || {}).map(([category, data]: [string, any]) => (
+                  {Object.entries(reqPreviewData.metrics || {})
+                    .filter(([category]) => !['Experience', 'General', 'Soft Skills', 'Responsibilities', 'Requirements'].includes(category))
+                    .map(([category, data]: [string, any]) => (
+
                     <div key={category} className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4">
                       <span className="w-32 flex-shrink-0 font-semibold text-indigo-700 dark:text-indigo-400 text-sm">{category}</span>
                       <div className="flex flex-wrap gap-2">
@@ -582,7 +586,7 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
                 <div>
                   <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight">AI Intelligence Audit</h2>
                   <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1 max-w-md">
-                    Mathematically validated weighting report for your current job configuration. This audit removes human bias by analyzing relative keyword density and market scarcity.
+                    Mathematically validated weighting report for your current job configuration. This audit removes human bias by analysing relative keyword density and market scarcity.
                   </p>
                 </div>
               </div>
@@ -622,7 +626,7 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
                           </div>
                        </div>
                        <div className="bg-zinc-50 dark:bg-zinc-800/40 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-700">
-                          <p className="text-xs font-bold text-zinc-500 mb-3">Priority Mapping Protocol</p>
+                          <p className="text-xs font-bold text-zinc-500 mb-3">Priority Mapping Config</p>
                           <div className="space-y-2">
                              <div className="flex justify-between text-[11px] font-mono">
                                 <span className="text-zinc-500">SI ≥ 9.00</span> <span className="text-indigo-600 font-bold">→ Priority 1</span>
@@ -686,7 +690,7 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
                                 Scarcity Multiplier (IDF)
                                 <FaInfoCircle className="text-zinc-300 dark:text-zinc-600 w-2.5 h-2.5" />
                                 <div className="absolute top-full left-0 mt-2 w-48 p-2 bg-zinc-900 text-[9px] text-zinc-300 normal-case font-medium rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity z-50 pointer-events-none border border-zinc-800 leading-relaxed">
-                                  Measures how rare a skill is across your entire job history. Rare skills receive a higher multiplier to prioritize niche talent.
+                                  Measures how rare a skill is across your entire job history. Rare skills receive a higher multiplier to prioritise niche talent.
                                 </div>
                               </div>
                             </th>

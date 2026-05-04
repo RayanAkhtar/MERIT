@@ -76,7 +76,7 @@ def parse_linkedin_profile(data):
     for vol in vol_list:
         profile["volunteering"].append({
             "position": vol.get("title") or vol.get("role"),
-            "organization": vol.get("companyName") or vol.get("organization"),
+            "organisation": vol.get("companyName") or vol.get("organization"),
             "start_date": vol.get("startDateText"),
             "end_date": vol.get("endDateText"),
             "url": vol.get("companyUrl")

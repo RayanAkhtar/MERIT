@@ -50,11 +50,9 @@ const JobDescriptionReview: React.FC<JobDescriptionReviewProps> = ({
         'Education': 'row',
         'Languages': 'tag',
         'Technologies': 'tag',
-        'Experience': 'row',
-        'Soft Skills': 'tag',
-        'Responsibilities': 'row',
-        'Requirements': 'row'
+        'Experience': 'row'
     };
+
 
     const updateMetric = (id: string, field: 'value' | 'subValue' | 'label', newValue: string) => {
         setData({
@@ -113,11 +111,13 @@ const JobDescriptionReview: React.FC<JobDescriptionReviewProps> = ({
 
             {/* Metrics List - Grouped by Category */}
             <div className="grid gap-12">
-                {(['General', 'Education', 'Languages', 'Technologies', 'Experience', 'Soft Skills', 'Responsibilities', 'Requirements'] as const).map((cat) => {
+                {(['General', 'Education', 'Languages', 'Technologies', 'Experience'] as const).map((cat) => {
+
                     const catMetrics = data.metrics.filter(m => m.category === cat);
                     const isTagType = categoryTypes[cat] === 'tag';
                     
-                    if (catMetrics.length === 0 && !['Languages', 'Technologies', 'Soft Skills', 'Responsibilities', 'Requirements'].includes(cat)) return null;
+                    if (catMetrics.length === 0 && !['Languages', 'Technologies'].includes(cat)) return null;
+
 
                     return (
                         <div key={cat} className="space-y-6">
@@ -130,7 +130,7 @@ const JobDescriptionReview: React.FC<JobDescriptionReviewProps> = ({
                                 </div>
                                 <button 
                                     onClick={() => {
-                                        setNewMetric({ id: '', label: cat === 'Languages' ? 'Language' : cat === 'Technologies' ? 'Technology' : cat === 'Soft Skills' ? 'Soft Skill' : 'Requirement', value: '', subValue: '', category: cat });
+                                        setNewMetric({ id: '', label: cat === 'Languages' ? 'Language' : 'Technology', value: '', subValue: '', category: cat });
                                         setIsAddingMetric(true);
                                     }}
                                     className="text-[9px] font-black uppercase text-indigo-500 hover:text-indigo-400 transition-all bg-indigo-50 dark:bg-indigo-900/20 px-4 py-2 rounded-lg border border-indigo-500/10 active:scale-95 flex items-center gap-2"

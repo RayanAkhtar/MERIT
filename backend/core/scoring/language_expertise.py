@@ -100,9 +100,15 @@ class LanguageExpertiseMetric(BaseMetric):
         target_languages = languages_config
         if active_items:
             active_set = {str(a).lower() for a in active_items if a is not None}
-            target_languages = [l for l in languages_config if l and str(l).lower() in active_set]
+            # Extract names from config if they are dictionaries
+            target_languages = []
+            for l in languages_config:
+                l_val = l.get("value") if isinstance(l, dict) else l
+                if l_val and str(l_val).lower() in active_set:
+                    target_languages.append(l)
+            
             for a in active_items:
-                if a and str(a).lower() not in {str(l).lower() for l in languages_config if l is not None}:
+                if a and str(a).lower() not in {str(l.get("value") if isinstance(l, dict) else l).lower() for l in languages_config if l is not None}:
                     target_languages.append(a)
 
         if not target_languages:
@@ -121,7 +127,13 @@ class LanguageExpertiseMetric(BaseMetric):
 
         total_item_score = 0.0
         for lang in target_languages:
-            lang_lower = str(lang).lower()
+            # item could be a string or a dict {"value": "Python", ...}
+            lang_val = lang.get("value") if isinstance(lang, dict) else lang
+            lang_lower = str(lang_val).lower()
+            
+            # also extract the item name for the breakdown display
+            lang_display = lang_val
+
             item_sources = []
             best_semantic = {}
             source_details = []
@@ -154,20 +166,23 @@ class LanguageExpertiseMetric(BaseMetric):
             
             # cv signal (how many times they mention it)
             cv_text = candidate_data.get("raw_cv_text") or candidate_data.get("full_cv_text") or ""
-            mentions = self._count_mentions(lang, cv_text)
+            mentions = self._count_mentions(lang_val, cv_text)
+
             
             cv_score = 0.0
             if mentions > 0:
                 cv_score = min(0.8, mentions * 0.2)
             else:
                 # semantic match in technical skills
-                best_semantic = semantic_matcher.find_best_match(lang, list(set(cv_skills)), threshold=0.50)
+                best_semantic = semantic_matcher.find_best_match(lang_val, list(set(cv_skills)), threshold=0.50)
+
                 if best_semantic["match"]:
                     semantic_mentions = self._count_mentions(best_semantic["match"], cv_text)
                     cv_score = min(0.60, semantic_mentions * 0.15)
                     mentions = semantic_mentions # store for explanation block
             
-            recency_mult, recency_note = self._calculate_recency_multiplier(lang, candidate_data)
+            recency_mult, recency_note = self._calculate_recency_multiplier(lang_val, candidate_data)
+
             
             # fusing evidence with probability
             evidence = []
@@ -181,7 +196,7 @@ class LanguageExpertiseMetric(BaseMetric):
                     "source": "GitHub",
                     "score": gh_score,
                     "trust": conf["GITHUB"],
-                    "derivation": f"{gh_pct:.1f}% Code Density * {gh_decay:.2f} (Temporal Weight)",
+                    "derivation": f"({gh_pct:.1f}% / {cfg['GH_VERIFICATION_THRESHOLD']:.0f}% Threshold) * {gh_decay:.2f} (Temporal Weight)",
                     "explanation": f"Found {gh_pct:.1f}% code volume on GitHub. Last significant activity (Weighted Center): {gh_effective_year:.1f}.",
                     "weighting": f"Work Sample (Conf: {conf['GITHUB']:.1f})"
                 })
@@ -257,10 +272,11 @@ class LanguageExpertiseMetric(BaseMetric):
             total_item_score += final_item_score
 
             breakdown.append({
-                "item": lang,
+                "item": lang_display,
                 "score": final_item_score,
                 "uncertainty": fusion_result["uncertainty"],
                 "confidence_label": conf_label,
+                "confidence_reason": fusion_result.get("confidence_reason"),
                 "bottleneck": weakest_source,
                 "alpha": fusion_result["alpha"],
                 "beta": fusion_result["beta"],
@@ -315,8 +331,9 @@ class LanguageExpertiseMetric(BaseMetric):
 
             # Source-Specific Advice
             if avg_sources.get("GitHub", 1.0) < 0.8:
+                display_langs = [l.get("value") if isinstance(l, dict) else l for l in target_languages[:2]]
                 improvements.append({
-                    "text": f"Increase GitHub commit volume and line counts for the required languages ({', '.join(target_languages[:2])}) to boost the GH_Score variable (Alpha evidence).",
+                    "text": f"Increase GitHub commit volume and line counts for the required languages ({', '.join(display_langs)}) to boost the GH_Score variable (Alpha evidence).",
                     "gain": remaining * 0.3,
                     "id": "GH_SCORE"
                 })

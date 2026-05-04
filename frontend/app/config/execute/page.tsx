@@ -88,7 +88,7 @@ export default function ExecuteConfigPage() {
         <div>
           <h1 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight">Execute Configuration</h1>
           <p className="mt-2 text-zinc-600 dark:text-zinc-400">
-            Select a highly-optimized matching preset to evaluate your latest candidate batches.
+            Select a highly-optimised matching preset to evaluate your latest candidate batches.
           </p>
         </div>
 
@@ -252,12 +252,12 @@ export default function ExecuteConfigPage() {
               {selectedData ? (
                 <div className="flex items-center gap-3">
                   <span className="text-zinc-500 dark:text-zinc-400 text-xs">
-                    Ready to execute matching on {selectedData.batch_data?.candidate_ids?.length || 0} candidates.
+                    Ready to execute config on {selectedData.batch_data?.candidate_ids?.length || 0} candidates.
                   </span>
                 </div>
               ) : (
                 <span className="text-zinc-400 dark:text-zinc-500 text-xs italic">
-                  Select a configuration to execute matching processes.
+                  Select a configuration to execute config processes.
                 </span>
               )}
             </div>
@@ -287,7 +287,7 @@ export default function ExecuteConfigPage() {
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
                   </svg>
-                  {selectedData?.status === 'NEEDS_UPDATE' ? 'Re-Execute Match' : 'Execute Match'}
+                  {selectedData?.status === 'NEEDS_UPDATE' ? 'Re-Execute Config' : 'Execute Config'}
                 </>
               )}
             </button>

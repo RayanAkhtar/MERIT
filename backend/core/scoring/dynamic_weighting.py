@@ -21,7 +21,7 @@ class WeightingEngine:
         if response.data:
             self.corpus = [d["description"] for d in response.data if d.get("description")]
 
-    def _clean_and_tokenize(self, text: str) -> List[str]:
+    def _clean_and_tokenise(self, text: str) -> List[str]:
         if not text:
             return []
         return re.findall(r'\w+', text.lower())
@@ -35,7 +35,7 @@ class WeightingEngine:
         if not jd_text or not skills:
             return {s: {"weight": 3.0, "reasoning": "Standard baseline."} for s in skills}
 
-        tokens = self._clean_and_tokenize(jd_text)
+        tokens = self._clean_and_tokenise(jd_text)
         total_words = len(tokens)
         
         if total_words == 0:

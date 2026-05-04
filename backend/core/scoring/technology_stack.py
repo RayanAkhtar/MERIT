@@ -87,10 +87,17 @@ class TechnologyStackMetric(BaseMetric):
         target_tech = tech_config
         if active_items:
             active_set = {a.lower() for a in active_items}
-            target_tech = [t for t in tech_config if t.lower() in active_set]
+            # Handle list of dicts
+            target_tech = []
+            for t in tech_config:
+                t_val = t.get("value") if isinstance(t, dict) else t
+                if t_val and str(t_val).lower() in active_set:
+                    target_tech.append(t)
+            
             for a in active_items:
-                if a.lower() not in {t.lower() for t in tech_config}:
+                if a.lower() not in {str(t.get("value") if isinstance(t, dict) else t).lower() for t in tech_config if t is not None}:
                     target_tech.append(a)
+
 
         if not target_tech:
              return {"score": 0.0, "breakdown": [], "sources_used": sources_used}
@@ -103,11 +110,16 @@ class TechnologyStackMetric(BaseMetric):
 
         total_item_score = 0.0
         for tech in target_tech:
-            tech_lower = str(tech).lower()
+            # handle dict or string
+            tech_val = tech.get("value") if isinstance(tech, dict) else tech
+            tech_lower = str(tech_val).lower()
+            tech_display = tech_val
+
             
             # cv signal
             cv_text = candidate_data.get("raw_cv_text") or candidate_data.get("full_cv_text") or ""
-            mentions = self._count_mentions(tech, cv_text)
+            mentions = self._count_mentions(tech_val, cv_text)
+
             has_cv = mentions > 0
             
             has_li = tech_lower in li_text and len(tech_lower) > 2
@@ -115,11 +127,12 @@ class TechnologyStackMetric(BaseMetric):
             item_sources = []
             source_details = [
                 {
-                    "name": tech,
-                    "source": f"Tooling Detail: {tech}",
+                    "name": tech_display,
+                    "source": f"Tooling Detail: {tech_display}",
                     "score": 1.0 if (has_cv or has_li) else 0.0,
-                    "explanation": f"Analysing professional footprint for {tech}."
+                    "explanation": f"Analysing professional footprint for {tech_display}."
                 }
+
             ]
             
             # --- Bayesian Evidence Aggregation ---
@@ -170,8 +183,9 @@ class TechnologyStackMetric(BaseMetric):
                     "weighting": f"Work Sample (Conf: {conf['GITHUB']:.1f})"
                 })
 
-            # Temporal check (Skill Decay)
-            recency_mult, recency_note = self._calculate_recency_multiplier(tech, candidate_data)
+            # skill decay
+            recency_mult, recency_note = self._calculate_recency_multiplier(tech_val, candidate_data)
+
             decay_penalty = max(0, 1.0 - recency_mult)
             if decay_penalty > 0:
                 # mapping recency decay to negative evidence to pull the score down if it's an old skill
@@ -213,10 +227,12 @@ class TechnologyStackMetric(BaseMetric):
             total_item_score += final_item_score
 
             breakdown.append({
-                "item": tech,
+                "item": tech_display,
+
                 "score": final_item_score,
                 "uncertainty": fusion_result["uncertainty"],
                 "confidence_label": conf_label,
+                "confidence_reason": fusion_result.get("confidence_reason"),
                 "bottleneck": weakest_source,
                 "alpha": fusion_result["alpha"],
                 "beta": fusion_result["beta"],
@@ -254,7 +270,7 @@ class TechnologyStackMetric(BaseMetric):
             if any_uncertain:
                 worst_src = min(avg_sources, key=avg_sources.get) if avg_sources else "CV"
                 improvements.append({
-                    "text": f"The model detected inconsistent evidence for your tech stack, primarily on the {worst_src} profile. Ensure your professional records are synchronized to reduce Beta (Uncertainty).",
+                    "text": f"The model detected inconsistent evidence for your tech stack, primarily on the {worst_src} profile. Ensure your professional records are synchronised to reduce Beta (Uncertainty).",
                     "gain": remaining * 0.4,
                     "id": "BETA_UNCERTAINTY"
                 })

@@ -299,7 +299,7 @@ const LinkedInPreview: React.FC<LinkedInPreviewProps> = ({ linkedinData, linkedi
                                             <h5 className="text-xs font-black text-zinc-900 dark:text-white group-hover/vol:text-emerald-600 dark:group-hover/vol:text-emerald-400 transition-colors uppercase tracking-tight">{vol.position}</h5>
                                             <span className="text-[8px] font-black text-zinc-400 dark:text-zinc-700 uppercase tracking-tighter">{renderDate(vol.start_date)}</span>
                                         </div>
-                                        <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">{vol.organization}</p>
+                                        <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">{vol.organisation}</p>
                                     </div>
                                 ))}
                             </div>

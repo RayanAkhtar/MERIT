@@ -40,7 +40,9 @@ class SoftSkillsMetric(BaseMetric):
         # print(f"checking {len(soft_reqs)} skills")
         total_item_score = 0.0
         for skill in soft_reqs:
-            skill_lower = str(skill).lower()
+            # handle dict or string
+            skill_val = skill.get("value") if isinstance(skill, dict) else skill
+            skill_lower = str(skill_val).lower()
             
             # Significance-based base score - I've set LinkedIn higher because 
             # people usually lie less on public profiles than on a private CV.

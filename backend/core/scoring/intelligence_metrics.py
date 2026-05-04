@@ -568,7 +568,7 @@ class GithubAlignmentMetric(BaseMetric):
                         name = str(item).lower()
                         if name: req_langs[name] = 0
         
-        if not req_langs:
+        if not any(k.startswith("req_") for k in active_keys):
             return {
                 "score": 0.5,
                 "breakdown": [],
@@ -576,7 +576,7 @@ class GithubAlignmentMetric(BaseMetric):
                 "calculation_formula": "Default",
                 "technical_formula": "none",
                 "glossary": [],
-                "improvements": [{"text": "No specific language requirements set in JD.", "gain": 0.0}]
+                "improvements": [{"text": "No specific technical requirements activated in Config.", "gain": 0.0}]
             }
             
         # map candidate proficiency (blends GitHub LOC and CV/LinkedIn skills)
@@ -589,71 +589,78 @@ class GithubAlignmentMetric(BaseMetric):
         weighted_sum = 0
         audit_parts = []
         source_details = []
+        skill_breakdown = []
         
         # Helper for case-insensitive weight lookup
         weights_map = {k.lower(): v for k, v in candidate_data.get("skill_weights", {}).items()}
-        
-        for lang, default_weight in req_langs.items():
-            # determine Weight (Priority-Aware)
-            # ONLY consider items explicitly configured in weights_map
-            skill_key = f"req_{lang.replace(' ', '_').replace('-', '_')}".lower()
-            
-            if skill_key not in weights_map:
+        # Determine which requirements are actually active and weighted
+        for key in active_keys:
+            if not key.startswith("req_"):
                 continue
                 
-            config_weight = weights_map[skill_key]
-            math_weight = float(config_weight)
+            # clean the name for display
+            display_name = key.replace("req_", "").replace("_", " ").capitalize()
             
-            # get the pre-calculated individual metric score
-            metric_score = candidate_data.get("skill_scores", {}).get(skill_key)
-            if metric_score is None:
-                metric_score = candidate_data.get("skill_scores", {}).get(lang.lower())
+            # get the weight from the config
+            config_weight = weights_map.get(key.lower())
+            if config_weight is None:
+                continue
+                
+            math_weight = float(config_weight)
+                      # get the pre-calculated score and full metric data from the first pass
+            full_metric = candidate_data.get("skill_metrics", {}).get(key, {})
+            metric_score = full_metric.get("score")
             
             multiplier = 0.0
             label = "None"
-            evidence_source = "Intelligence Metric"
             
             if metric_score is not None:
                 multiplier = metric_score
                 label = f"Metric Score ({int(multiplier*100)}%)"
             else:
-                # fallback if we don't have a direct metric score
-                pct = candidate_usage.get(lang, 0)
-                if pct >= 20: multiplier, label = 1.0, "High (GitHub)"
-                elif pct >= 5: multiplier, label = 0.7, "Moderate (GitHub)"
-                elif pct > 0: multiplier, label = 0.3, "Low (GitHub)"
-                elif lang in combined_skills: multiplier, label = 0.8, "Validated (CV/LI)"
-                else:
-                    # check if we can find a semantic match in their skills
-                    print(f"DEBUG [GithubAlignment]: Checking '{lang}' against candidate skills: {combined_skills}")
-                    best_semantic = semantic_matcher.find_best_match(lang, list(combined_skills), threshold=0.50)
-                    if best_semantic["match"]:
-                        print(f"DEBUG [GithubAlignment]: SUCCESS! Matched '{lang}' -> '{best_semantic['match']}' (Score: {best_semantic['score']:.2f})")
-                        multiplier = 0.75 # slightly lower than a direct match
-                        label = f"Semantic Match: {best_semantic['match']} ({int(best_semantic['score']*100)}%)"
-                    else:
-                        print(f"DEBUG [GithubAlignment]: FAIL. No match for '{lang}' (Best was '{best_semantic.get('best_candidate')}' at {best_semantic.get('score'):.2f})")
+                lang_name = key.replace("req_", "").lower()
+                pct = candidate_usage.get(lang_name, 0)
+                if pct > 0:
+                    multiplier = min(1.0, pct / 10.0)
+                    label = f"Raw GitHub Signal ({int(multiplier*100)}%)"
+                elif lang_name in combined_skills:
+                    multiplier = 0.7
+                    label = "CV/LI Validated"
             
-            # Resolve the standard source for the frontend toggle
             resolved_source = "CV"
             if "GitHub" in label: resolved_source = "GitHub"
             elif "LI" in label: resolved_source = "LinkedIn"
-            elif "CV" in label: resolved_source = "CV"
-            elif "Metric" in label: resolved_source = "CV" # Baseline fallback
 
             weighted_sum += (math_weight * multiplier)
             total_weight += math_weight
-            audit_parts.append(f"({lang.capitalize()}: {math_weight:.1f} * {multiplier:.2f})")
+            audit_parts.append(f"({display_name}: {multiplier:.2f} * {math_weight:.1f})")
             
-            source_details.append({
-                "name": lang.capitalize(),
-                "math_weight": math_weight,
-                "label": label,
-                "source": resolved_source,
+            # Construct breakdown item with simple audit data (no Bayesian jargon for this metric)
+            breakdown_item = {
+                "item": display_name,
                 "score": multiplier,
-                "explanation": f"{lang.capitalize()}: {label} | Influence {math_weight:.1f}"
+                "influence": math_weight,
+                "weight": math_weight,
+                "contribution": multiplier * math_weight,
+                "notes": f"{display_name}: Cross-referenced metric signal ({int(multiplier*100)}%) | Weight: {math_weight:.1f}",
+                "sources": ["System Intelligence"],
+                "source_details": [{
+                    "name": display_name,
+                    "math_weight": math_weight,
+                    "label": f"{display_name} Match",
+                    "source": "Metric Intelligence",
+                    "score": multiplier,
+                    "explanation": f"This score is derived from the verified {display_name} expertise metric."
+                }]
+            }
+            skill_breakdown.append(breakdown_item)
+            source_details.append({
+                "name": display_name,
+                "score": multiplier,
+                "math_weight": math_weight,
+                "source": "Metric Intelligence"
             })
-            
+
         total_weight = round(total_weight, 2)
         final_score = round(weighted_sum / total_weight, 2) if total_weight > 0 else 0.0
         tech_formula = f"({' + '.join(audit_parts)}) / {total_weight} = {final_score:.2f}"
@@ -687,19 +694,15 @@ class GithubAlignmentMetric(BaseMetric):
         if not improvements:
             improvements.append({"text": "Maximum ecosystem alignment achieved.", "gain": 0.0})
 
-        # build the breakdown for the left column
-        component_breakdown = [
-            {
-                "component": "Ecosystem Match & Alignment",
-                "score": final_score,
-                "notes": f"Cross-referenced {len(source_details)} prioritized technologies.",
-                "source_details": source_details
-            }
-        ]
-
         return {
             "score": final_score,
-            "breakdown": component_breakdown,
+            "breakdown": skill_breakdown,
+            "weighted_average_breakdown": [
+                {"name": b["item"], "score": b["score"], "weight": b["influence"]}
+                for b in skill_breakdown
+            ],
+            "weighted_sum": weighted_sum,
+            "total_weight": total_weight,
             "sources_used": ["GitHub", "CV", "LinkedIn"],
             "calculation_formula": "Σ(Skill_Match * Priority_Weight) / Total_Weight",
             "technical_formula": tech_formula,
