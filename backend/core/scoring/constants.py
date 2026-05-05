@@ -42,9 +42,9 @@ SCORING_CONSTANTS = {
         "CONSENSUS_MULTIPLIER": 1.15,
     },
     "ANTI_STUFFING": {
-        "OCCURRENCE_LIMIT": 5,             # max times a keyword can appear (in the cv) before penalty to avoid keyword stuffing
-        "PENALTY_PER_OCCURRENCE": 0.03,    # Score reduction for each occurrence over limit
-        "MAX_TOTAL_PENALTY": 0.30          # Cap the penalty at 30% of score for that metric (no reason for them to mention that many times)
+        "OCCURRENCE_LIMIT": 4,             # max times a keyword can appear (in the cv) before penalty to avoid keyword stuffing
+        "PENALTY_PER_OCCURRENCE": 0.08,    # Score reduction for each occurrence over limit
+        "MAX_TOTAL_PENALTY": 0.60          # Cap the penalty at 60% of score for that metric
     },
     "FUSION": {
         "SOURCE_CONFIDENCE": {

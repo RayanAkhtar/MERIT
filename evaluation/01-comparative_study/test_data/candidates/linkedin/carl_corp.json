@@ -1,0 +1,8 @@
+{
+  "connections": 4500,
+  "followers": 6000,
+  "linkedin_experience": [
+    {"title": "Software Engineer", "company": "Google", "years": 5},
+    {"title": "Software Engineer", "company": "Facebook", "years": 5}
+  ]
+}

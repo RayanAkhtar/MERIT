@@ -1,0 +1,8 @@
+{
+  "name": "Jordan Smith",
+  "email": "jordan.codes@example.com",
+  "raw_cv_text": "Developer looking for new opportunities. I love coding and working on open source projects. Have some experience with web development.",
+  "experience": [{"company": "Self-employed", "years": 1, "title": "Developer"}],
+  "skills": ["Coding", "Git"],
+  "cv_education": [{"school_name": "Local College", "degree": "Foundation Degree"}]
+}

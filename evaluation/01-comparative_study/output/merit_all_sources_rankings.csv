@@ -1,0 +1,11 @@
+Rank,Candidate Name,MERIT Total Score,GitHub Weight,CV Weight,Total Years,Metric: education,Metric: experience,Metric: intel_github_alignment,Metric: intel_github_complexity,Metric: intel_github_impact,Metric: professional_gravity,Metric: projects,Metric: req_aws,Metric: req_java,Metric: req_react,Metric: req_spring_boot
+1,Alex Rivers,64.2,34.75,24.51,5.0,94.0,34.0,54.0,18.0,96.0,66.67,70.0,71.0,69.0,87.0,71.0
+2,Jordan Smith,51.27,45.76,1.62,1.0,78.0,15.0,0.0,55.0,100.0,72.0,70.0,0.0,91.0,91.0,0.0
+3,Felix Vance,47.66,17.27,24.18,10.0,38.0,57.0,19.0,0.0,80.0,60.0,70.0,71.0,71.0,0.0,71.0
+4,Fiona Frost,36.75,18.69,11.86,10.0,38.0,57.0,23.0,0.0,80.0,60.0,70.0,0.0,71.0,0.0,0.0
+5,Sam Old,32.12,18.83,5.29,15.0,78.0,80.0,23.0,4.0,40.0,80.0,42.0,0.0,69.0,0.0,0.0
+6,Nadia Nomad,30.65,16.97,8.46,5.0,38.0,34.0,23.0,0.0,63.0,80.0,70.0,0.0,43.0,0.0,0.0
+7,Ghost Gary,29.23,0.0,22.63,10.0,38.0,57.0,54.0,0.0,0.0,80.0,0.0,71.0,29.0,71.0,0.0
+8,Kim Junior,28.44,16.59,9.05,0.5,78.0,13.0,8.0,24.0,63.0,24.0,52.0,0.0,0.0,71.0,0.0
+9,Buzz Ward,15.96,0.0,9.49,8.0,38.0,48.0,54.0,0.0,0.0,100.0,0.0,0.0,0.0,0.0,23.0
+10,Carl Corp,13.37,0.0,6.77,10.0,38.0,57.0,23.0,0.0,0.0,80.0,0.0,0.0,29.0,0.0,0.0

@@ -1,0 +1,11 @@
+{
+  "total_stars": 10,
+  "total_forks": 2,
+  "repo_count": 5,
+  "featured_projects": [
+    {"name": "old-java-lib", "stars": 5, "forks": 1, "languages_distribution": {"Java": 2000}, "lines": 2000}
+  ],
+  "language_history": [
+    {"language": "Java", "count": 20, "last_active": "2018-01-01"}
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Felix Vance",
+  "email": "felix@fraud.com",
+  "summary": "Expert Java Architect with 10+ years of experience building Spring Boot microservices. Leading contributor to many core Java libraries.",
+  "experience": [
+    {
+      "company": "Enterprise Java Solutions",
+      "role": "Lead Java Architect",
+      "years": 10,
+      "description": "Architected high-throughput Java systems using Spring Boot, Hibernate, and AWS.",
+      "skills": ["Java", "Spring Boot", "Hibernate", "AWS"]
+    }
+  ],
+  "skills": ["Java", "Spring Boot", "Hibernate", "AWS", "SQL", "Docker"]
+}

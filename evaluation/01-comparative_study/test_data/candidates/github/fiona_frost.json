@@ -1,0 +1,23 @@
+{
+  "total_stars": 150,
+  "total_forks": 40,
+  "repo_count": 25,
+  "featured_projects": [
+    {
+      "name": "java-hello-world",
+      "stars": 1,
+      "language": "Java",
+      "complexity_score": 5
+    },
+    {
+      "name": "python-massive-library",
+      "stars": 149,
+      "language": "Python",
+      "complexity_score": 90
+    }
+  ],
+  "language_history": [
+    {"language": "Java", "percentage": 2},
+    {"language": "Python", "percentage": 98}
+  ]
+}

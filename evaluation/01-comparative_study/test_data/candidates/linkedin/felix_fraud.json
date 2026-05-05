@@ -1,0 +1,5 @@
+{
+  "connections": 500,
+  "recommendations": 15,
+  "certifications": ["AWS Certified Architect", "Oracle Certified Java Professional"]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Fiona Frost",
+  "email": "fiona@fake.dev",
+  "summary": "Senior Java Developer with a decade of enterprise experience. Specialized in high-performance Java systems.",
+  "experience": [
+    {
+      "company": "Enterprise Java Corp",
+      "role": "Senior Developer",
+      "years": 10,
+      "description": "Built massive Java backends.",
+      "skills": ["Java", "Spring", "SQL"]
+    }
+  ],
+  "skills": ["Java", "Spring", "SQL", "Docker"]
+}

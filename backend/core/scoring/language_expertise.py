@@ -115,12 +115,29 @@ class LanguageExpertiseMetric(BaseMetric):
              return {"score": 0.0, "breakdown": [], "sources_used": sources_used}
 
         gh_profile = candidate_data.get("github_profile") or {}
+        # support both 'github_profile' and 'github_enriched' keys
+        if not gh_profile:
+            gh_profile = candidate_data.get("github_enriched") or {}
+            
         gh_languages = {}
         gh_history = gh_profile.get("language_history") or []
         if gh_profile:
             sources_used.append("GitHub")
             gh_raw = gh_profile.get("languages") or []
-            gh_languages = {str(l.get("label") or "").lower(): (l.get("pct") or 0) for l in gh_raw if isinstance(l, dict)}
+            if not gh_raw:
+                # aggregate from featured projects if top-level is missing
+                agg_langs = {}
+                projects = (gh_profile.get("featured_projects") or []) + (gh_profile.get("repositories") or [])
+                for p in projects:
+                    dist = p.get("languages_distribution") or {}
+                    for lang, vol in dist.items():
+                        agg_langs[lang.lower()] = agg_langs.get(lang.lower(), 0) + vol
+                
+                total_vol = sum(agg_langs.values())
+                if total_vol > 0:
+                    gh_languages = {k: (v / total_vol * 100) for k, v in agg_langs.items()}
+            else:
+                gh_languages = {str(l.get("label") or "").lower(): (l.get("pct") or 0) for l in gh_raw if isinstance(l, dict)}
 
         raw_skills = candidate_data.get("skills") or []
         cv_skills = [str(s).lower() for s in raw_skills if s is not None]

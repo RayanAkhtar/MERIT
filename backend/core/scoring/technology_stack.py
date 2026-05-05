@@ -169,7 +169,8 @@ class TechnologyStackMetric(BaseMetric):
                 })
 
             # GitHub Evidence
-            gh_repos = candidate_data.get("github_projects") or []
+            gh_profile = candidate_data.get("github_enriched") or candidate_data.get("github_profile") or {}
+            gh_repos = (gh_profile.get("featured_projects") or []) + (gh_profile.get("repositories") or []) + (candidate_data.get("github_projects") or [])
             has_gh = any(tech_lower in str(r.get("name") or "").lower() or tech_lower in str(r.get("description") or "").lower() for r in gh_repos)
             if has_gh:
                 item_sources.append("GitHub")

@@ -1,0 +1,8 @@
+{
+  "name": "Alex Rivers",
+  "email": "alex.rivers@example.com",
+  "raw_cv_text": "Senior Fullstack Engineer with 5 years of experience in React, Node.js, and Java. Built scalable microservices at TechCorp. Expert in Spring Boot and AWS.",
+  "experience": [{"company": "TechCorp", "years": 5, "title": "Senior Engineer"}],
+  "skills": ["React", "Node.js", "Java", "Spring Boot", "AWS", "Docker"],
+  "cv_education": [{"school_name": "Imperial College London", "degree": "BSc Computer Science"}]
+}

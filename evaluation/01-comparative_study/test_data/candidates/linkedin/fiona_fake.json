@@ -1,0 +1,5 @@
+{
+  "connections": 500,
+  "recommendations": 10,
+  "certifications": ["Java Professional"]
+}

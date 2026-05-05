@@ -1,0 +1,8 @@
+{
+  "connections": 1200,
+  "followers": 1500,
+  "linkedin_experience": [
+    {"title": "Senior Software Engineer", "company": "TechCorp", "years": 3},
+    {"title": "Software Engineer", "company": "StartupX", "years": 2}
+  ]
+}

@@ -45,6 +45,8 @@ function RankingReport() {
   
   const dropdownRef = useRef<HTMLDivElement>(null);
   const sourcesRef = useRef<HTMLDivElement>(null);
+  const exportRef = useRef<HTMLDivElement>(null);
+  const [exportMenuOpen, setExportMenuOpen] = useState(false);
 
   useEffect(() => {
     if (selectedCandidate && !selectedCandidateDetail) {
@@ -71,6 +73,9 @@ function RankingReport() {
       }
       if (sourcesRef.current && !sourcesRef.current.contains(event.target as Node)) {
         setSourcesOpen(false);
+      }
+      if (exportRef.current && !exportRef.current.contains(event.target as Node)) {
+        setExportMenuOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -318,6 +323,37 @@ function RankingReport() {
 
   const visibleMetrics = allMetricsInfo.filter(m => visibleColKeys.includes(m.key));
 
+  const handleExport = async (format: 'csv' | 'xlsx') => {
+    if (!sortedCandidates || sortedCandidates.length === 0) return;
+
+    const data = sortedCandidates.map((cand, idx) => ({
+      'Rank': idx + 1,
+      'Name': isBlindMode ? `Candidate #${idx + 1}` : cand.name,
+      'Email': isBlindMode ? 'Redacted' : cand.email,
+      'Overall Score (%)': cand.overallScore,
+      ...Object.fromEntries(visibleMetrics.map(m => [m.label, cand.computedScores[m.key] || 0]))
+    }));
+
+    if (format === 'csv') {
+      const headers = Object.keys(data[0]);
+      const rows = data.map(row => Object.values(row).join(','));
+      const csvContent = [headers.join(','), ...rows].join('\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', `MERIT_Report_${new Date().toISOString().split('T')[0]}.csv`);
+      link.click();
+    } else {
+      const XLSX = await import('xlsx');
+      const ws = XLSX.utils.json_to_sheet(data);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "Rankings");
+      XLSX.writeFile(wb, `MERIT_Report_${new Date().toISOString().split('T')[0]}.xlsx`);
+    }
+    setExportMenuOpen(false);
+  };
+
   const closeReport = () => {
     setSelectedCandidate(null);
     setSelectedCandidateDetail(null);
@@ -346,12 +382,47 @@ function RankingReport() {
       />
 
       <div className="max-w-[1400px] mx-auto space-y-8">
-        <button onClick={() => router.push('/config/execute')} className="flex items-center text-sm font-medium text-zinc-500 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400 transition-colors group">
-          <svg className="w-4 h-4 mr-1 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-          Back to Ranking Engine
-        </button>
+        <div className="flex items-center justify-between">
+          <button onClick={() => router.push('/config/execute')} className="flex items-center text-sm font-medium text-zinc-500 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400 transition-colors group">
+            <svg className="w-4 h-4 mr-1 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Ranking Engine
+          </button>
+
+          <div className="relative" ref={exportRef}>
+            <button 
+              onClick={() => setExportMenuOpen(!exportMenuOpen)}
+              className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold rounded-xl shadow-lg shadow-indigo-500/20 transition-all active:scale-95"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              Export Report
+              <svg className={`w-3 h-3 transition-transform ${exportMenuOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {exportMenuOpen && (
+              <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-2xl z-30 py-2 animate-in fade-in slide-in-from-top-2 duration-200">
+                <button 
+                  onClick={() => handleExport('csv')}
+                  className="w-full text-left px-4 py-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors flex items-center gap-3"
+                >
+                  <svg className="w-4 h-4 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                  Export as CSV (.csv)
+                </button>
+                <button 
+                  onClick={() => handleExport('xlsx')}
+                  className="w-full text-left px-4 py-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors flex items-center gap-3"
+                >
+                  <svg className="w-4 h-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                  Export as Excel (.xlsx)
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
 
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 bg-white dark:bg-zinc-900 p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
           <div className="space-y-2">
@@ -539,31 +610,41 @@ function RankingReport() {
                             )}
                          </div>
                       </td>
-                      {visibleMetrics.map(m => {
-                         const metricData = cand.fullMetrics[m.key];
-                         const hasPenalty = metricData?.integrity_penalty_applied;
-                         const score = cand.computedScores[m.key];
-                         
-                         return (
-                          <td key={m.key} className="px-4 py-4 font-mono text-sm border-r border-zinc-100 dark:border-zinc-800/30 last:border-0">
-                             <div className="flex items-center gap-2">
-                                <span className={hasPenalty ? "text-rose-500 font-bold" : (metricData?.has_semantic_bridge ? "text-fuchsia-600 dark:text-fuchsia-400 font-bold" : (score > 70 ? "text-green-500" : "text-zinc-600 dark:text-zinc-400"))}>
-                                   {score}%
-                                </span>
-                                {hasPenalty && (
-                                   <svg className="w-3 h-3 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                   </svg>
-                                )}
-                                {metricData?.has_semantic_bridge && !hasPenalty && (
-                                   <svg className="w-3 h-3 text-fuchsia-500 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                   </svg>
-                                )}
-                             </div>
-                          </td>
-                         );
-                      })}
+                       {visibleMetrics.map(m => {
+                          const metricData = cand.fullMetrics[m.key];
+                          const hasPenalty = metricData?.integrity_penalty_applied;
+                          const hasWarning = metricData?.is_warning || metricData?.status === 'warning';
+                          const score = cand.computedScores[m.key];
+                          
+                          return (
+                           <td key={m.key} className="px-4 py-4 font-mono text-sm border-r border-zinc-100 dark:border-zinc-800/30 last:border-0">
+                              <div className="flex items-center gap-2">
+                                 <span className={
+                                   hasPenalty ? "text-rose-500 font-bold" : 
+                                   hasWarning ? "text-amber-600 dark:text-amber-500 font-bold" :
+                                   (metricData?.has_semantic_bridge ? "text-fuchsia-600 dark:text-fuchsia-400 font-bold" : (score > 70 ? "text-green-500" : "text-zinc-600 dark:text-zinc-400"))
+                                 }>
+                                    {score}%
+                                 </span>
+                                 {hasPenalty && (
+                                    <svg className="w-3 h-3 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                    </svg>
+                                 )}
+                                 {hasWarning && !hasPenalty && (
+                                    <svg className="w-3 h-3 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                    </svg>
+                                 )}
+                                 {metricData?.has_semantic_bridge && !hasPenalty && !hasWarning && (
+                                    <svg className="w-3 h-3 text-fuchsia-500 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    </svg>
+                                 )}
+                              </div>
+                           </td>
+                          );
+                       })}
                     </tr>
                   ))}
                 </tbody>

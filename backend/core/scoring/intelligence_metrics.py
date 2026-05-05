@@ -58,13 +58,18 @@ class ExperienceMetric(BaseMetric):
         # if the structured list is empty, try to parse the raw text instead
         if not cv_exp_data and candidate_data.get('experience'):
             raw_text = candidate_data.get('experience', '')
-            lines = raw_text.split('\n')
-            cv_exp = []
-            for line in lines:
-                # Look for things like "2020 - 2023" or "2021 to Present"
-                range_match = re.search(r'(\d{4})\s*[\-\u2013\u2014\w]+\s*(\d{4}|Present|Current)', line, re.IGNORECASE)
-                if range_match:
-                    cv_exp.append({"start_date": range_match.group(1), "end_date": range_match.group(2)})
+            if isinstance(raw_text, str):
+                lines = raw_text.split('\n')
+                cv_exp = []
+                for line in lines:
+                    # Look for things like "2020 - 2023" or "2021 to Present"
+                    range_match = re.search(r'(\d{4})\s*[\-\u2013\u2014\w]+\s*(\d{4}|Present|Current)', line, re.IGNORECASE)
+                    if range_match:
+                        cv_exp.append({"start_date": range_match.group(1), "end_date": range_match.group(2)})
+            elif isinstance(raw_text, list):
+                cv_exp = raw_text
+            else:
+                cv_exp = []
         else:
             cv_exp = cv_exp_data if isinstance(cv_exp_data, list) else []
 
@@ -77,7 +82,7 @@ class ExperienceMetric(BaseMetric):
             if s and en: 
                 cv_months += max(0, en - s)
             else:
-                dur = e.get('duration_months') or e.get('duration') or e.get('months', 0)
+                dur = e.get('duration_months') or e.get('duration') or e.get('months') or (e.get('years', 0) * 12)
                 if isinstance(dur, (int, float)): cv_months += int(dur)
         
         li_months = 0
@@ -633,26 +638,53 @@ class GithubAlignmentMetric(BaseMetric):
             if "GitHub" in label: resolved_source = "GitHub"
             elif "LI" in label: resolved_source = "LinkedIn"
 
+            # if the candidate has a large GitHub profile but it has ZERO overlap with their CV skills,
+            # its a high-probability identity mismatch (e.g. felix fraud from evaluation/01_case study)
+            # aggregate from usage map (fixed to look at all possible keys)
+            gh_langs = {l.lower() for l, pct in candidate_usage.items() if pct > 5}
+            if not gh_langs:
+                # fallback to language_history if top-level is empty
+                gh_hist = candidate_data.get("github_enriched", {}).get("language_history") or []
+                gh_langs = {str(l.get("language") or "").lower() for l in gh_hist}
+
+            if gh_langs and combined_skills:
+                overlap = gh_langs.intersection(combined_skills)
+                if not overlap and len(gh_langs) >= 1:
+                    # caution: The profile is active but doesn't match the human at all.
+                    # apply a 50% Tax for the data gap 
+                    multiplier *= 0.5 
+                    label = "IDENTITY MISMATCH WARNING (Suspicious Ecosystem)"
+
             weighted_sum += (math_weight * multiplier)
             total_weight += math_weight
             audit_parts.append(f"({display_name}: {multiplier:.2f} * {math_weight:.1f})")
             
-            # Construct breakdown item with simple audit data (no Bayesian jargon for this metric)
+            # construct breakdown item with simple audit data (no Bayesian jargon for this metric)
+            notes_text = f"{display_name}: {label} | Weight: {math_weight:.1f}"
+            explanation_text = f"This score is derived from the verified {display_name} expertise metric."
+            is_warning = False
+            if "WARNING" in label:
+                is_warning = True
+                explanation_text = f"CRITICAL: {label}. The system detected zero overlap between claimed CV skills and public GitHub artifacts. A 50% integrity multiplier has been applied."
+
             breakdown_item = {
                 "item": display_name,
                 "score": multiplier,
                 "influence": math_weight,
                 "weight": math_weight,
                 "contribution": multiplier * math_weight,
-                "notes": f"{display_name}: Cross-referenced metric signal ({int(multiplier*100)}%) | Weight: {math_weight:.1f}",
+                "notes": notes_text,
+                "is_warning": is_warning,
+                "status": "warning" if is_warning else "normal",
                 "sources": ["System Intelligence"],
                 "source_details": [{
                     "name": display_name,
                     "math_weight": math_weight,
-                    "label": f"{display_name} Match",
+                    "label": label if "WARNING" in label else f"{display_name} Match",
                     "source": "Metric Intelligence",
                     "score": multiplier,
-                    "explanation": f"This score is derived from the verified {display_name} expertise metric."
+                    "explanation": explanation_text,
+                    "is_warning": is_warning
                 }]
             }
             skill_breakdown.append(breakdown_item)
@@ -696,8 +728,13 @@ class GithubAlignmentMetric(BaseMetric):
         if not improvements:
             improvements.append({"text": "Maximum ecosystem alignment achieved.", "gain": 0.0})
 
+        # Determine if parent metric should have warning status
+        parent_is_warning = any(item.get("is_warning") for item in skill_breakdown)
+
         return {
             "score": final_score,
+            "status": "warning" if parent_is_warning else "normal",
+            "is_warning": parent_is_warning,
             "breakdown": skill_breakdown,
             "weighted_average_breakdown": [
                 {"name": b["item"], "score": b["score"], "weight": b["influence"]}

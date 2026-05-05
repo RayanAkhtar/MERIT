@@ -23,45 +23,67 @@ class ProfessionalGravityMetric(BaseMetric):
         
         # what level does the JD actually want
         jd_metrics = job_requirements.get("metrics") or {}
-        general_metrics = jd_metrics.get("General") or {}
-        jd_level = str(general_metrics.get("value") or "").lower()
+        level_data = jd_metrics.get("General") or jd_metrics.get("Experience") or {}
+        jd_level = str(level_data.get("value") or "").lower()
         
         if not jd_level:
              # Try searching in flat metrics if grouped failed
              jd_level = str(job_requirements.get("experience_level") or "not specified").lower()
 
         # stability check: how long do they usually stay in a role?
-        li_profile = candidate_data.get("linkedin_profile")
-        experience = []
-        if li_profile:
-            sources_used.append("LinkedIn")
-            experience = candidate_data.get("linkedin_experience") or []
+        li_data = candidate_data.get("linkedin_enriched") or candidate_data.get("linkedin_profile")
         
+        # determine seniority alignement
+        # check if candidate headline or roles match JD level (e.g. 'Senior', 'Lead')
+        headline = ""
+        if li_data:
+            sources_used.append("LinkedIn")
+            headline = str(li_data.get("headline") or "").lower()
+        
+        # calculate actual tenure stability from experience list
+        cv_exp = candidate_data.get("experience") or candidate_data.get("cv_experience") or []
+        li_exp = []
+        if li_data:
+            li_exp = li_data.get("linkedin_experience") or li_data.get("experience") or []
+        
+        all_exp = cv_exp + li_exp
         tenure_score = 0.5 # Default middle ground
-        if experience:
-            # Heuristic: Average years per role
-            avg_tenure_years = 2.5 # Mock calculation
-            tenure_score = self._normalise_score(avg_tenure_years / 5.0) # 5 years = perfect stability
-            breakdown.append({
-                "component": "Tenure Stability",
-                "score": tenure_score,
-                "notes": f"Average tenure per role is approximately {avg_tenure_years} years."
-            })
+        
+        if all_exp:
+            total_tenure_months = 0
+            count = 0
+            for exp in all_exp:
+                if not isinstance(exp, dict): continue
+                # Use pre-parsed months if available, otherwise estimate from dates
+                m = exp.get("duration_months") or exp.get("months") or (exp.get("years", 0) * 12)
+                if m and isinstance(m, (int, float)):
+                    total_tenure_months += m
+                    count += 1
+            
+            if count > 0:
+                avg_tenure_years = (total_tenure_months / count) / 12.0
+                tenure_score = self._normalise_score(avg_tenure_years / 5.0)
+                breakdown.append({
+                    "component": "Tenure Stability",
+                    "score": tenure_score,
+                    "notes": f"Average tenure per role is {avg_tenure_years:.1f} years."
+                })
         else:
             breakdown.append({
                 "component": "Tenure Stability",
                 "score": 0.5,
-                "notes": "Insufficient granular experience data to calculate stability accurately."
+                "notes": "Insufficient granular experience data to calculate stability."
             })
 
-        # check if their titles match the seniority level
+        # seniority check
         seniority_score = 0.5
-        # Check if candidate headline or roles match JD level (e.g. 'Senior', 'Lead')
-        headline = ""
-        if li_profile:
-            headline = str(li_profile.get("headline") or "").lower()
-        
-        if jd_level in ["senior", "lead", "principal"] and any(kw in headline for kw in ["senior", "lead", "principal", "architect"]):
+        # also check CV experience titles if headline is missing
+        if not headline and cv_exp:
+            headline = " ".join([str(e.get("title", "")) for e in cv_exp]).lower()
+
+        if jd_level in ["senior", "lead", "principal", "mid-to-senior"] and any(kw in headline for kw in ["senior", "lead", "principal", "architect"]):
+            seniority_score = 1.0
+        elif jd_level in ["mid-level", "mid", "intermediate"] and any(kw in headline for kw in ["mid", "intermediate", "software engineer", "developer"]):
             seniority_score = 1.0
         elif jd_level in ["junior", "entry"] and any(kw in headline for kw in ["junior", "intern", "entry"]):
             seniority_score = 1.0
@@ -69,15 +91,15 @@ class ProfessionalGravityMetric(BaseMetric):
         breakdown.append({
             "component": "Seniority Alignment",
             "score": seniority_score,
-            "notes": f"Candidate profile signals alignment with {jd_level} requirements."
+            "notes": f"Candidate profile signals alignment with {jd_level} seniority."
         })
 
         # can we verify their experience?
-        verification_score = 1.0 if li_profile else 0.0
+        verification_score = 1.0 if li_data else 0.0
         breakdown.append({
             "component": "Experience Verification",
             "score": verification_score,
-            "notes": "Verified via LinkedIn profile." if li_profile else "Unable to verify professional claims via social sources."
+            "notes": "Verified via LinkedIn profile." if li_data else "Unable to verify via social sources."
         })
 
         final_score = (tenure_score * 0.4) + (seniority_score * 0.4) + (verification_score * 0.2)

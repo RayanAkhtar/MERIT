@@ -1,0 +1,15 @@
+{
+  "name": "Nadia Nomad",
+  "email": "nadia@nomad.io",
+  "summary": "Polyglot developer with experience in 15+ programming languages. I love learning new stacks and pivoting between different technologies every year.",
+  "experience": [
+    {
+      "company": "Tech Pivot Inc",
+      "role": "Generalist Developer",
+      "years": 5,
+      "description": "Moved between Java, Ruby, Go, Rust, and Elixir teams to provide flexibility.",
+      "skills": ["Java", "Ruby", "Go", "Rust", "Elixir", "C++", "C#", "PHP", "Swift", "Kotlin"]
+    }
+  ],
+  "skills": ["Java", "Ruby", "Go", "Rust", "Elixir", "TypeScript", "Python", "SQL", "C++"]
+}
