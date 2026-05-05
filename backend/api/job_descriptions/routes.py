@@ -60,22 +60,42 @@ def save_job_description():
     if not data:
         return jsonify({"error": "No data provided"}), 400
 
-    title = data.get("title")
-    description = data.get("description")
-    metrics = data.get("metrics")
+    # Handle both single object and list of objects
+    if isinstance(data, list):
+        results = []
+        for item in data:
+            title = item.get("title")
+            description = item.get("description")
+            metrics = item.get("metrics")
 
-    if not title or not metrics:
-        return jsonify({"error": "Title and Metrics are required fields"}), 400
+            if not title or not metrics:
+                continue
 
-    grouped_metrics = _group_metrics(metrics)
+            grouped_metrics = _group_metrics(metrics)
+            response = supabase.table("job_requirements").insert({
+                "title": title,
+                "description": description,
+                "metrics": grouped_metrics
+            }).execute()
+            results.append(response.data)
+        return jsonify({"success": True, "data": results}), 201
+    else:
+        title = data.get("title")
+        description = data.get("description")
+        metrics = data.get("metrics")
 
-    response = supabase.table("job_requirements").insert({
-        "title": title,
-        "description": description,
-        "metrics": grouped_metrics
-    }).execute()
+        if not title or not metrics:
+            return jsonify({"error": "Title and Metrics are required fields"}), 400
 
-    return jsonify({"success": True, "data": response.data}), 201
+        grouped_metrics = _group_metrics(metrics)
+
+        response = supabase.table("job_requirements").insert({
+            "title": title,
+            "description": description,
+            "metrics": grouped_metrics
+        }).execute()
+
+        return jsonify({"success": True, "data": response.data}), 201
 
 @job_descriptions_bp.route("/update-job-description/<id>", methods=["PUT"])
 def update_job_description(id):

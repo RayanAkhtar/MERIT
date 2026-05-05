@@ -36,16 +36,38 @@ interface ExtractedCV {
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 
 export default function CVUpload() {
+  const [mode, setMode] = useState<'extract' | 'import'>('extract');
   const [step, setStep] = useState<'upload' | 'processing' | 'result'>('upload');
   const [files, setFiles] = useState<FileWithPreview[]>([]);
   const [cacheData, setCacheData] = useState(true);
-  const [isDragging, setIsDragging] = useState(false);
+  const [activeDragZone, setActiveDragZone] = useState<'cv' | 'cv_doc' | 'github' | 'linkedin' | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [batchName, setBatchName] = useState('');
   const [uploadStatus, setUploadStatus] = useState<string>('');
   const [processedCount, setProcessedCount] = useState(0);
   const [extractedCVs, setExtractedCVs] = useState<ExtractedCV[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Triple-Source Import States
+  const [importFiles, setImportFiles] = useState<{
+    cv: FileWithPreview[],
+    cv_doc: FileWithPreview[],
+    github: FileWithPreview[],
+    linkedin: FileWithPreview[]
+  }>({ cv: [], cv_doc: [], github: [], linkedin: [] });
+
+  const nextCandidate = () => {
+    if (currentIndex < extractedCVs.length - 1) {
+        setCurrentIndex(currentIndex + 1);
+    }
+  };
+
+  const prevCandidate = () => {
+    if (currentIndex > 0) {
+        setCurrentIndex(currentIndex - 1);
+    }
+  };
   const [linkMetrics, setLinkMetrics] = useState<{ 
     uploaded_files: number, 
     link_counts: Record<string, number>,
@@ -58,71 +80,99 @@ export default function CVUpload() {
   const [selectedLinks, setSelectedLinks] = useState<Record<string, boolean>>({});
   const [sourceData, setSourceData] = useState<Record<string, any>>({});
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const cvDocInputRef = useRef<HTMLInputElement>(null);
+  const githubInputRef = useRef<HTMLInputElement>(null);
+  const linkedinInputRef = useRef<HTMLInputElement>(null);
 
-  const allowedTypes = [
-    'application/pdf',
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-    'text/plain',
-    'text/markdown'
-  ];
-  const allowedExtensions = ['.pdf', '.docx', '.txt', '.md'];
+  const allowedTypes = mode === 'extract' 
+    ? ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain', 'text/markdown']
+    : ['application/json'];
+  const allowedExtensions = mode === 'extract' 
+    ? ['.pdf', '.docx', '.txt', '.md']
+    : ['.json'];
 
-  const validateFile = (file: File): boolean => {
-    const isValidType = allowedTypes.includes(file.type);
-    const isValidExtension = allowedExtensions.some(ext => 
-      file.name.toLowerCase().endsWith(ext)
-    );
-    return isValidType || isValidExtension;
+  const validateFile = (file: File, type: string = 'cv'): boolean => {
+    if (mode === 'extract') {
+        const extractTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain', 'text/markdown'];
+        return extractTypes.includes(file.type) || ['.pdf', '.docx', '.txt', '.md'].some(ext => file.name.toLowerCase().endsWith(ext));
+    }
+    
+    // Import Mode
+    if (type === 'cv_doc') {
+        const docTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain', 'text/markdown'];
+        return docTypes.includes(file.type) || ['.pdf', '.docx', '.txt', '.md'].some(ext => file.name.toLowerCase().endsWith(ext));
+    }
+    
+    return file.type === 'application/json' || file.name.toLowerCase().endsWith('.json');
   };
 
-  const handleFiles = (fileList: FileList | null) => {
+  const handleFiles = (fileList: FileList | null, type: 'cv' | 'cv_doc' | 'github' | 'linkedin' = 'cv') => {
     if (!fileList) return;
 
     const newFiles: FileWithPreview[] = [];
     for (let i = 0; i < fileList.length; i++) {
         const file = fileList[i];
-        if (validateFile(file)) {
+        if (validateFile(file, type)) {
             newFiles.push(file);
         }
     }
 
     if (newFiles.length !== fileList.length) {
-        setUploadStatus('Some files were rejected. Only PDF, DOCX, TXT and MD files are allowed.');
+        setUploadStatus(`Rejected some files. ${type === 'cv_doc' ? 'CV Documents must be PDF, DOCX, TXT or MD.' : 'JSON sources must be .json files.'}`);
     }
 
-    setFiles(prev => [...prev, ...newFiles]);
+    if (mode === 'extract') {
+        setFiles(prev => [...prev, ...newFiles]);
+    } else {
+        setImportFiles(prev => ({
+            ...prev,
+            [type]: [...prev[type], ...newFiles]
+        }));
+    }
   };
 
-  const handleDragOver = (e: React.DragEvent) => {
+  const handleDragOver = (e: React.DragEvent, type: 'cv' | 'cv_doc' | 'github' | 'linkedin' = 'cv') => {
     e.preventDefault();
-    setIsDragging(true);
+    setActiveDragZone(type);
   };
 
   const handleDragLeave = (e: React.DragEvent) => {
     e.preventDefault();
-    setIsDragging(false);
+    setActiveDragZone(null);
   };
 
-  const handleDrop = (e: React.DragEvent) => {
+  const handleDrop = (e: React.DragEvent, type: 'cv' | 'cv_doc' | 'github' | 'linkedin' = 'cv') => {
     e.preventDefault();
-    setIsDragging(false);
-    handleFiles(e.dataTransfer.files);
+    setActiveDragZone(null);
+    handleFiles(e.dataTransfer.files, type);
   };
 
-  const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    handleFiles(e.target.files);
-    if (fileInputRef.current) {
-        fileInputRef.current.value = '';
+  const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>, type: 'cv' | 'cv_doc' | 'github' | 'linkedin' = 'cv') => {
+    handleFiles(e.target.files, type);
+    if (e.target) {
+        e.target.value = '';
     }
   };
 
-  const removeFile = (index: number) => {
-    setFiles(prev => prev.filter((_, i) => i !== index));
+  const removeFile = (index: number, type: 'cv' | 'cv_doc' | 'github' | 'linkedin' = 'cv') => {
+    if (mode === 'extract') {
+        setFiles(prev => prev.filter((_, i) => i !== index));
+    } else {
+        setImportFiles(prev => ({
+            ...prev,
+            [type]: prev[type].filter((_, i) => i !== index)
+        }));
+    }
   };
 
   const handleExtractBatch = async () => {
-    if (files.length === 0) {
-      setUploadStatus('Please select at least one candidate file.');
+    const isImport = mode === 'import';
+    const totalFiles = isImport 
+        ? importFiles.cv.length + importFiles.github.length + importFiles.linkedin.length 
+        : files.length;
+
+    if (totalFiles === 0) {
+      setUploadStatus('Please select at least one file.');
       return;
     }
 
@@ -133,85 +183,179 @@ export default function CVUpload() {
     const counts: Record<string, number> = {};
     const exampleLinks: Record<string, string> = {};
 
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      setUploadStatus(`Processing ${file.name}...`);
-      
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('cache_data', cacheData.toString());
+    if (isImport) {
+        setUploadStatus('Processing multi-source import...');
+        
+        // Helper to load and parse all files in a category
+        const loadBatch = async (fileList: FileWithPreview[]) => {
+            const items: any[] = [];
+            for (const f of fileList) {
+                try {
+                    const text = await f.text();
+                    const data = JSON.parse(text);
+                    if (Array.isArray(data)) items.push(...data);
+                    else items.push(data);
+                } catch (e) { console.error("Parse error:", e); }
+            }
+            return items;
+        };
 
-      try {
-        const response = await fetch(`${API_BASE_URL}/api/extract-cv`, {
-          method: 'POST',
-          body: formData,
+        const cvData = await loadBatch(importFiles.cv);
+        const ghData = await loadBatch(importFiles.github);
+        const liData = await loadBatch(importFiles.linkedin);
+        const rawDocs = importFiles.cv_doc;
+
+        setUploadStatus('Unifying candidate identities...');
+        
+        // Merge strategy: CV is the anchor. Match GH/LI by URL if possible.
+        cvData.forEach((cand: any) => {
+            const unified: ExtractedCV = { ...cand };
+            
+            // Robust Matching Helpers
+            const normalizeUrl = (url: string) => url?.toLowerCase().replace(/\/$/, '').trim();
+            const extractUsername = (url: string) => {
+                const parts = normalizeUrl(url)?.split('/');
+                return parts ? parts[parts.length - 1] : null;
+            };
+            const normalizeName = (name: string) => name?.toLowerCase().replace(/[^a-z]/g, '').trim();
+
+            const cvName = normalizeName(cand.name || '');
+
+            // --- CV Doc Match ---
+            const docMatch = rawDocs.find(d => {
+                const fileName = normalizeName(d.name.split('.')[0]);
+                return fileName && cvName && (fileName.includes(cvName) || cvName.includes(fileName));
+            });
+            if (docMatch) (unified as any).raw_cv = docMatch;
+
+            // --- GitHub Match ---
+            const cvGhUrl = normalizeUrl(cand.links?.github?.[0]);
+            const cvGhUser = cvGhUrl ? extractUsername(cvGhUrl) : null;
+            
+            let ghMatch = ghData.find(g => {
+                const gUrl = normalizeUrl(g.url || g.github_url || g.profile_url);
+                const gUser = g.username || g.login || (gUrl ? extractUsername(gUrl) : null);
+                const gName = normalizeName(g.name || g.full_name || '');
+                
+                // Priority 1: Username
+                if (cvGhUser && gUser && cvGhUser === gUser) return true;
+                // Priority 2: URL
+                if (cvGhUrl && gUrl && cvGhUrl === gUrl) return true;
+                // Priority 3: Name Fallback (Fuzzy/Contains)
+                if (cvName && gName && (cvName === gName || cvName.includes(gName) || gName.includes(cvName))) return true;
+                return false;
+            });
+            if (ghMatch) unified.github_enriched = ghMatch;
+
+            // --- LinkedIn Match ---
+            const cvLiUrl = normalizeUrl(cand.links?.linkedin?.[0]);
+            const cvLiUser = cvLiUrl ? extractUsername(cvLiUrl) : null;
+
+            let liMatch = liData.find(l => {
+                const lUrl = normalizeUrl(l.url || l.linkedin_url || l.profile_url || l.linkedin_profile_url);
+                const lUser = l.username || l.profile_id || (lUrl ? extractUsername(lUrl) : null);
+                const lName = normalizeName(l.name || l.full_name || '');
+
+                // Priority 1: Username
+                if (cvLiUser && lUser && cvLiUser === lUser) return true;
+                // Priority 2: URL
+                if (cvLiUrl && lUrl && cvLiUrl === lUrl) return true;
+                // Priority 3: Name Fallback (Fuzzy/Contains)
+                if (cvName && lName && (cvName === lName || cvName.includes(lName) || lName.includes(cvName))) return true;
+                return false;
+            });
+            if (liMatch) unified.linkedin_enriched = liMatch;
+
+            results.push(unified);
+
+            // Metrics
+            Object.keys(unified.links || {}).forEach(src => {
+                if (unified.links[src]?.length > 0) {
+                    counts[src] = (counts[src] || 0) + 1;
+                    if (!exampleLinks[src]) exampleLinks[src] = unified.links[src][0];
+                }
+            });
         });
 
-        if (response.ok) {
-          const data: ExtractedCV = await response.json();
-          results.push(data);
-          
-          Object.keys(data.links).forEach(sourceIdx => {
-            if (data.links[sourceIdx] && data.links[sourceIdx].length > 0) {
-              counts[sourceIdx] = (counts[sourceIdx] || 0) + 1;
-              if (!exampleLinks[sourceIdx]) {
-                exampleLinks[sourceIdx] = data.links[sourceIdx][0];
-              }
+        // we assume cv is the primary record.
+        setProcessedCount(totalFiles);
+    } else {
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            setUploadStatus(`Processing ${file.name}...`);
+            
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('cache_data', cacheData.toString());
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/extract-cv`, {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (response.ok) {
+                    const data: ExtractedCV = await response.json();
+                    results.push(data);
+                    
+                    Object.keys(data.links || {}).forEach(sourceIdx => {
+                        if (data.links[sourceIdx] && data.links[sourceIdx].length > 0) {
+                            counts[sourceIdx] = (counts[sourceIdx] || 0) + 1;
+                            if (!exampleLinks[sourceIdx]) {
+                                exampleLinks[sourceIdx] = data.links[sourceIdx][0];
+                            }
+                        }
+                    });
+                }
+            } catch (error) {
+                console.error(`Failed to process ${file.name}:`, error);
             }
-          });
+            setProcessedCount(i + 1);
         }
-      } catch (error) {
-        console.error(`Failed to process ${file.name}:`, error);
-      }
-      setProcessedCount(i + 1);
     }
 
     setExtractedCVs(results);
     setLinkMetrics({
-      uploaded_files: files.length,
+      uploaded_files: mode === 'import' ? results.length : files.length,
       link_counts: counts,
       example_links: exampleLinks
     });
 
-    // Search the entire batch for at least one candidate for each source preview
-    setExtractedCVs(results);
-    const sourcesToScan = ['github', 'linkedin'];
-    const scannedSources = new Set<string>();
+    if (mode === 'extract') {
+        const sourcesToScan = ['github', 'linkedin'];
+        const scannedSources = new Set<string>();
 
-    for (const src of sourcesToScan) {
-        // Find the first candidate in the batch that has a link for this source
-        const candidateWithLink = results.find(c => c.links[src]?.[0]);
-        const link = candidateWithLink?.links[src]?.[0];
+        for (const src of sourcesToScan) {
+            const candidateWithLink = results.find(c => c.links[src]?.[0]);
+            const link = candidateWithLink?.links[src]?.[0];
 
-        if (link && !scannedSources.has(src)) {
-            // NEW: Check if this candidate already has the enriched data (reclaimed from DB)
-            const reclaimedData = candidateWithLink[`${src}_enriched` as keyof ExtractedCV];
-            
-            if (reclaimedData) {
-                console.log(`DEBUG: Reusing reclaimed ${src} data for batch preview.`);
-                setSourceData(prev => ({ ...prev, [src]: reclaimedData }));
-                scannedSources.add(src);
-                continue;
-            }
-
-            setUploadStatus(`Performing ${src} intelligence scan for ${candidateWithLink.name || 'candidate'}...`);
-            try {
-                const res = await fetch(`${API_BASE_URL}/api/scan-datasource`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                        source_type: src, 
-                        url: link, 
-                        cache_data: cacheData 
-                    })
-                });
-                if (res.ok) {
-                    const data = await res.json();
-                    setSourceData(prev => ({ ...prev, [src]: data }));
+            if (link && !scannedSources.has(src)) {
+                const reclaimedData = candidateWithLink[`${src}_enriched` as keyof ExtractedCV];
+                if (reclaimedData) {
+                    setSourceData(prev => ({ ...prev, [src]: reclaimedData }));
                     scannedSources.add(src);
+                    continue;
                 }
-            } catch (err) {
-                console.error(`${src} scan failed:`, err);
+
+                setUploadStatus(`Performing ${src} intelligence scan for ${candidateWithLink.name || 'candidate'}...`);
+                try {
+                    const res = await fetch(`${API_BASE_URL}/api/scan-datasource`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ 
+                            source_type: src, 
+                            url: link, 
+                            cache_data: cacheData 
+                        })
+                    });
+                    if (res.ok) {
+                        const data = await res.json();
+                        setSourceData(prev => ({ ...prev, [src]: data }));
+                        scannedSources.add(src);
+                    }
+                } catch (err) {
+                    console.error(`${src} scan failed:`, err);
+                }
             }
         }
     }
@@ -237,6 +381,36 @@ export default function CVUpload() {
     
     for (let i = 0; i < extractedCVs.length; i++) {
         const candidate = extractedCVs[i];
+        
+        if (mode === 'import') {
+            const importCandidate = { ...candidate };
+            
+            // Check if we need to upload a raw CV doc
+            if ((candidate as any).raw_cv) {
+                setUploadStatus(`Uploading CV for ${candidate.name || `Candidate ${i+1}`}...`);
+                const formData = new FormData();
+                formData.append('file', (candidate as any).raw_cv);
+                
+                try {
+                    const uploadRes = await fetch(`${API_BASE_URL}/api/upload-cv`, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    if (uploadRes.ok) {
+                        const uploadData = await uploadRes.json();
+                        importCandidate.cv_url = uploadData.cv_url;
+                        importCandidate.cv_hash = uploadData.cv_hash;
+                    }
+                } catch (e) {
+                    console.error("CV upload failed:", e);
+                }
+            }
+
+            enrichedCandidates.push(importCandidate);
+            setProcessedCount(i + 1);
+            continue;
+        }
+
         setUploadStatus(`Enriching ${candidate.name || `Candidate ${i+1}`}...`);
         
         const scanResults: Record<string, any> = {};
@@ -248,14 +422,11 @@ export default function CVUpload() {
             const link = candidate.links[src]?.[0];
             if (!link) continue;
 
-            // Skip if data was already reclaimed from DB in extract-cv
             if (candidate[`${src}_enriched` as keyof ExtractedCV]) {
-                console.log(`DEBUG: Skipping ${src} scan for ${candidate.name}, already reclaimed.`);
                 scanResults[`${src}_enriched`] = candidate[`${src}_enriched` as keyof ExtractedCV];
                 continue;
             }
 
-            // Use first candidate's data if already scanned in THIS batch (for preview consistency)
             if (i === 0 && sourceData[src]) {
                 scanResults[`${src}_enriched`] = sourceData[src];
                 continue;
@@ -282,7 +453,7 @@ export default function CVUpload() {
         enrichedCandidates.push({
             ...candidate,
             ...scanResults,
-            cv_url: candidate.cv_url // Explicitly preserve cv_url
+            cv_url: candidate.cv_url
         });
         
         setProcessedCount(i + 1);
@@ -308,6 +479,7 @@ export default function CVUpload() {
                 setUploadStatus('');
                 setBatchName('');
                 setSourceData({});
+                setCurrentIndex(0);
             }, 2500);
         } else {
             const err = await response.json();
@@ -321,167 +493,93 @@ export default function CVUpload() {
   };
 
   const renderTemplatePreview = () => {
-    if (extractedCVs.length === 0) return null;
-    const template = extractedCVs[0];
-    
+    const candidate = extractedCVs[currentIndex];
+    if (!candidate) return null;
+
     return (
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-        {/* Left Column: Personal Info & Expertise */}
-        <div className="lg:col-span-1 space-y-6">
-            <div className="p-8 rounded-[2rem] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 shadow-xl shadow-zinc-200/40 dark:shadow-none relative overflow-hidden group min-h-[200px] flex flex-col justify-center">
-                {/* Decorative background icon to avoid text overlap */}
-                <div className="absolute -right-2 -top-2 p-6 opacity-[0.03] dark:opacity-[0.08] transition-transform duration-700 pointer-events-none">
-                    <svg className="w-24 h-24 text-indigo-600 dark:text-indigo-400" fill="currentColor" viewBox="0 0 24 24">
-                       <path d="M12 14c3.31 0 6-2.69 6-6s-2.69-6-6-6-6 2.69-6 6 2.69 6 6 6zm0 2c-4.42 0-8 3.58-8 8h16c0-4.42-3.58-8-8-8z" />
-                    </svg>
-                </div>
-                
-                <div className="relative space-y-4">
-                    <div className="flex items-start justify-between gap-4">
-                        <div className="min-w-0">
-                            <p className="text-[10px] font-black text-indigo-500 uppercase tracking-widest mb-1">Full Name</p>
-                            <h3 className="text-xl font-black dark:text-white leading-none truncate">
-                                {template.name || 'Not Detected'}
-                            </h3>
-                        </div>
-                        {template.cv_hash && (
-                            <div className={`shrink-0 flex items-center gap-1.5 px-2 py-0.5 rounded border text-[8px] font-bold uppercase tracking-tighter ${
-                                template.reused_from_db ? 'bg-indigo-500/10 text-indigo-500 border-indigo-500/20' : 
-                                template.cached ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20' : 
-                                'bg-amber-500/10 text-amber-500 border-amber-500/20'
-                            }`}>
-                                <div className={`w-1 h-1 rounded-full ${template.reused_from_db ? 'bg-indigo-500' : template.cached ? 'bg-emerald-500' : 'bg-amber-500'}`} />
-                                {template.reused_from_db ? 'RECLAIMED' : template.cached ? 'CACHED' : 'NEW'}
-                            </div>
-                        )}
-                    </div>
-                    
-                    <div className="pt-4 space-y-3">
-                        <div className="flex items-center gap-3 text-zinc-500 dark:text-zinc-400">
-                           <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                           <span className="text-xs font-bold truncate">{template.email || 'Email missing'}</span>
-                        </div>
-                        <div className="flex items-center gap-3 text-zinc-500 dark:text-zinc-400">
-                           <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                           <span className="text-xs font-bold truncate">{template.phone || 'Phone missing'}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className="p-8 rounded-[2rem] bg-indigo-600 text-white shadow-xl shadow-indigo-600/20 relative overflow-hidden group">
-                <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-white/10 rounded-full blur-2xl group-hover:scale-125 transition-transform" />
-                <p className="text-[10px] font-black uppercase tracking-widest mb-4 opacity-70">Detected Expertise</p>
-                <div className="max-h-[160px] overflow-y-auto pr-2 custom-scrollbar relative z-10">
-                    <div className="flex flex-wrap gap-2">
-                        {template.skills.slice(0, 20).map((skill, i) => (
-                            <span key={i} className="px-3 py-1 bg-white/20 rounded-full text-[10px] font-black uppercase tracking-tight backdrop-blur-md border border-white/10">
-                                {skill}
-                            </span>
-                        ))}
-                        {template.skills.length === 0 && <span className="text-xs font-bold opacity-50 italic">No skills extracted</span>}
-                    </div>
-                </div>
-            </div>
-
-            {/* Academic Credentials (Structured - Moved here to balance) */}
-            <div className="p-8 rounded-[2.5rem] bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 transition-colors">
-                <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 mb-6">
-                    Academic Credentials
-                </h4>
-                <div className="overflow-y-auto max-h-[220px] pr-4 custom-scrollbar space-y-6">
-                    {template.education.map((edu, i) => (
-                        <div key={i} className="space-y-1.5 border-l-2 border-emerald-500/30 pl-4 py-1.5 transition-colors">
-                            <h5 className="text-[11px] font-black text-zinc-800 dark:text-zinc-200 leading-tight uppercase tracking-tight">{edu.name}</h5>
-                            <p className="text-[10px] font-bold text-indigo-500/80 dark:text-indigo-400/80 italic">
-                                {edu.subtitle}
-                            </p>
-                        </div>
-                    ))}
-                    {template.education.length === 0 && (
-                        <p className="text-xs font-bold text-zinc-400 italic font-mono uppercase tracking-widest opacity-40">No academic detections</p>
-                    )}
-                </div>
-            </div>
-
-            {/* Extracurricular Activities (Moved here to balance height) */}
-            <div className="p-8 rounded-[2rem] bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 group/extra">
-                <div className="flex items-center justify-between mb-6">
-                    <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400">
-                        Extracurricular
-                    </h4>
-                    <span className="text-[10px] font-black px-2.5 py-0.5 bg-blue-500/10 text-blue-500 rounded-full border border-blue-500/20">
-                        {template.extracurricular.length}
+      <div className="p-8 rounded-[2.5rem] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 shadow-xl space-y-10 relative overflow-hidden group">
+        {/* Header: Identity & Contact */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-zinc-100 dark:border-zinc-800/50 pb-8">
+            <div className="space-y-2">
+                <h3 className="text-4xl font-black text-zinc-900 dark:text-zinc-50 tracking-tighter uppercase leading-none italic">
+                    {candidate.name || 'Anonymous Candidate'}
+                </h3>
+                <div className="flex flex-wrap gap-4 text-[10px] font-black uppercase tracking-widest text-zinc-400">
+                    <span className="flex items-center gap-2">
+                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                        {candidate.email || 'No Email'}
+                    </span>
+                    <span className="flex items-center gap-2">
+                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                        {candidate.phone || 'No Phone'}
                     </span>
                 </div>
-                <div className="overflow-y-auto max-h-[260px] pr-4 custom-scrollbar space-y-4">
-                    {template.extracurricular.map((act, i) => (
-                        <div key={i} className="space-y-1 border-l-2 border-indigo-500/30 pl-4 py-1">
-                            <h5 className="text-[11px] font-black text-zinc-800 dark:text-zinc-200 leading-none transition-colors">{act.name}</h5>
-                            <p className="text-[9px] font-bold text-indigo-500/70 uppercase tracking-tighter">{act.subtitle}</p>
-                            <p className="text-[10px] text-zinc-500 dark:text-zinc-400 line-clamp-2 leading-relaxed">{act.summary}</p>
-                        </div>
-                    ))}
-                    {template.extracurricular.length === 0 && (
-                        <p className="text-xs font-bold text-zinc-400 italic">No extracurricular records</p>
-                    )}
-                </div>
             </div>
+            {((candidate as any).raw_cv || candidate.cv_url) && (
+                <a 
+                    href={(candidate as any).raw_cv ? URL.createObjectURL((candidate as any).raw_cv) : candidate.cv_url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="px-6 py-3 rounded-2xl bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50 text-[10px] font-black uppercase tracking-widest border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-all flex items-center gap-3"
+                >
+                    {(candidate as any).raw_cv ? 'Preview Local CV' : 'View Original Document'}
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                </a>
+            )}
         </div>
 
-        {/* Right Column: Experience and Projects */}
-        <div className="lg:col-span-2 space-y-10">
-            {/* Experience Card (Expanded height) */}
-            <div className="p-8 rounded-[2.5rem] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 shadow-xl shadow-zinc-200/40 dark:shadow-none h-[480px] flex flex-col group overflow-hidden shrink-0">
-                <div className="flex items-center justify-between mb-8">
-                     <div className="flex items-center gap-3">
-                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 group-hover:animate-ping" />
-                        <h4 className="text-sm font-black uppercase tracking-[0.2em] text-zinc-400">
-                            Extracted Experience
-                        </h4>
-                     </div>
-                     <span className="px-3 py-1 bg-emerald-500/5 text-emerald-500 text-[9px] font-black rounded-lg border border-emerald-500/10 uppercase tracking-widest">
-                        Validated Context
-                     </span>
-                </div>
-                
-                <div className="flex-1 overflow-y-auto pr-4 custom-scrollbar">
-                    {template.experience ? (
-                        <div className="text-sm font-medium leading-relaxed text-zinc-600 dark:text-zinc-300/80 whitespace-pre-wrap px-1">
-                            {template.experience}
-                        </div>
-                    ) : (
-                        <div className="h-full flex flex-col items-center justify-center text-center space-y-4 py-12 opacity-20">
-                            <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                            </svg>
-                            <p className="text-xs font-black uppercase tracking-widest">No Professional History Extracted</p>
-                        </div>
-                    )}
-                </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Left: Skills & Experience */}
+            <div className="space-y-10 text-left">
+                <section className="space-y-4 text-left">
+                    <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-500 flex items-center gap-3">
+                        Technical Skill Palette
+                        <div className="h-px flex-1 bg-gradient-to-r from-indigo-500/20 to-transparent" />
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                        {candidate.skills?.length > 0 ? (
+                            candidate.skills.map((skill, i) => (
+                                <span key={i} className="px-3 py-1 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 text-[10px] font-bold text-zinc-600 dark:text-zinc-400">
+                                    {skill}
+                                </span>
+                            ))
+                        ) : (
+                            <p className="text-xs text-zinc-500 italic">No skills extracted.</p>
+                        )}
+                    </div>
+                </section>
+
+                <section className="space-y-4 text-left">
+                    <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-500 flex items-center gap-3">
+                        Extracted Experience
+                        <div className="h-px flex-1 bg-gradient-to-r from-indigo-500/20 to-transparent" />
+                    </h4>
+                    <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed font-medium whitespace-pre-wrap">
+                        {candidate.experience || 'No detailed experience summary found.'}
+                    </p>
+                </section>
             </div>
 
-            {/* Structured Projects Section (Expanded height) */}
-            <div className="p-8 rounded-[2rem] bg-zinc-900 border border-zinc-800 shadow-xl shadow-indigo-500/5 h-[400px] flex flex-col relative overflow-hidden group">
-                <div className="flex items-center justify-between mb-6">
-                    <p className="text-[10px] font-black text-indigo-400 uppercase tracking-widest">Key Projects</p>
-                    <span className="text-[10px] px-2 py-0.5 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded font-mono group-hover:bg-indigo-500/20 transition-colors">
-                        {template.projects.length}
-                    </span>
-                </div>
-                
-                <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
-                    {template.projects.map((proj, i) => (
-                        <div key={i} className="space-y-1.5 pb-4 border-b border-zinc-800 last:border-0 transition-colors rounded-lg">
-                            <h5 className="text-xs font-black text-white uppercase tracking-tight">{proj.name}</h5>
-                            <p className="text-[10px] font-bold text-indigo-400 italic leading-tight">{proj.subtitle}</p>
-                            <p className="text-[10px] text-zinc-400 leading-relaxed line-clamp-2">{proj.summary}</p>
-                        </div>
-                    ))}
-                    {template.projects.length === 0 && (
-                        <p className="text-xs font-bold text-zinc-600 italic">No project data available</p>
-                    )}
-                </div>
+            {/* Right: Featured Projects/History */}
+            <div className="space-y-10 text-left">
+                <section className="space-y-6 text-left">
+                    <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-500 flex items-center gap-3">
+                        Project Evidence
+                        <div className="h-px flex-1 bg-gradient-to-r from-indigo-500/20 to-transparent" />
+                    </h4>
+                    <div className="space-y-4">
+                        {candidate.projects?.length > 0 ? (
+                            candidate.projects.slice(0, 3).map((proj, i) => (
+                                <div key={i} className="p-4 rounded-2xl bg-zinc-50/50 dark:bg-zinc-900/30 border border-zinc-100 dark:border-zinc-800/50 space-y-1">
+                                    <p className="text-xs font-black text-zinc-900 dark:text-zinc-50 uppercase tracking-tight">{proj.name}</p>
+                                    <p className="text-[10px] text-zinc-500 font-medium line-clamp-2">{proj.summary}</p>
+                                </div>
+                            ))
+                        ) : (
+                            <p className="text-xs text-zinc-500 italic">No specific projects identified.</p>
+                        )}
+                    </div>
+                </section>
             </div>
         </div>
       </div>
@@ -538,14 +636,51 @@ export default function CVUpload() {
                             </span>
                         )}
                     </h2>
-                    <p className="text-zinc-500 font-medium">{extractedCVs.length} successfully extracted from {files.length} files.</p>
+                    {mode === 'import' ? (
+                        <p className="text-zinc-500 font-medium">
+                            Showing candidate {currentIndex + 1} of {extractedCVs.length}.
+                        </p>
+                    ) : (
+                        <p className="text-zinc-500 font-medium">
+                            Displaying representative batch preview ({extractedCVs.length} profiles).
+                        </p>
+                    )}
                 </div>
-                <button 
-                  onClick={() => setStep('upload')}
-                  className="text-xs font-black uppercase text-zinc-400 hover:text-indigo-500 transition-colors"
-                >
-                  Restart Batch
-                </button>
+                <div className="flex items-center gap-4">
+                    {extractedCVs.length > 1 && mode === 'import' && (
+                        <div className="flex items-center gap-2 mr-4">
+                            <button 
+                                onClick={prevCandidate}
+                                disabled={currentIndex === 0}
+                                className="p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 disabled:opacity-30 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-all"
+                            >
+                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </button>
+                            <button 
+                                onClick={nextCandidate}
+                                disabled={currentIndex === extractedCVs.length - 1}
+                                className="p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 disabled:opacity-30 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-all"
+                            >
+                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </div>
+                    )}
+                    <button 
+                        onClick={() => {
+                            setStep('upload');
+                            setFiles([]);
+                            setExtractedCVs([]);
+                            setCurrentIndex(0);
+                        }}
+                        className="text-xs font-black uppercase text-zinc-400 hover:text-indigo-500 transition-colors"
+                    >
+                    Restart Batch
+                    </button>
+                </div>
             </div>
             <div className="grid gap-10">
                 {/* Candidate Snapshot Preview (CV Data) */}
@@ -562,11 +697,12 @@ export default function CVUpload() {
                         <span className="text-[10px] font-black text-indigo-500 uppercase tracking-[0.2em] px-3 py-1 border border-indigo-500/30 rounded-full bg-indigo-500/5">Datasource Validation Streams</span>
                     </div>
                     <LinkSelection 
+                        mode={mode}
                         metrics={linkMetrics}
                         selectedLinks={selectedLinks}
                         setSelectedLinks={setSelectedLinks}
-                        githubData={sourceData['github']}
-                        linkedinData={sourceData['linkedin']}
+                        githubData={extractedCVs[currentIndex]?.github_enriched || sourceData['github']}
+                        linkedinData={extractedCVs[currentIndex]?.linkedin_enriched || sourceData['linkedin']}
                     />
                 </div>
 
@@ -627,108 +763,216 @@ export default function CVUpload() {
 
   return (
     <div className="w-full max-w-4xl mx-auto space-y-6 mt-6 pb-12">
-      {/* Drop Zone */}
-      <div
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
-        className={`
-          relative border-2 border-dashed rounded-3xl p-16 text-center transition-all duration-300 group
-          ${isDragging 
-            ? 'border-indigo-400 dark:border-indigo-600 bg-indigo-50 dark:bg-zinc-900/50 scale-[1.02] shadow-2xl' 
-            : 'border-zinc-300 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-700 bg-white dark:bg-zinc-950 overflow-hidden'
-          }
-        `}
-      >
-        {!isDragging && (
-            <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-indigo-100/30 dark:bg-indigo-900/10 rounded-full blur-3xl pointer-events-none" />
-        )}
-        <input
-          ref={fileInputRef}
-          type="file"
-          multiple
-          accept=".pdf,.docx,.txt,.md,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain,text/markdown"
-          onChange={handleFileInput}
-          className="hidden"
-          id="cv-upload"
-        />
-        <label
-          htmlFor="cv-upload"
-          className="cursor-pointer flex flex-col items-center gap-6 relative"
+      {/* Mode Selector */}
+      <div className="flex p-1 bg-zinc-100 dark:bg-zinc-900 rounded-2xl w-fit mx-auto mb-8 border border-zinc-200 dark:border-zinc-800">
+        <button
+          onClick={() => { setMode('extract'); setFiles([]); setUploadStatus(''); }}
+          className={`px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${
+            mode === 'extract' 
+              ? 'bg-white dark:bg-zinc-800 text-indigo-600 shadow-md' 
+              : 'text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300'
+          }`}
         >
-          <div className="w-16 h-16 bg-zinc-100 dark:bg-zinc-900 rounded-2xl flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform duration-300">
-            <svg
-              className="w-8 h-8 text-indigo-600 dark:text-indigo-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-              />
-            </svg>
-          </div>
-          <div className="space-y-2">
-            <p className="text-base font-bold text-zinc-900 dark:text-zinc-50 tracking-tight">
-              <span className="text-indigo-600 dark:text-indigo-400">Initialise Batch Upload</span> or drag and drop
-            </p>
-            <p className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">
-               Securely processes PDF, DOCX, TXT and MD profiles
-            </p>
-          </div>
-        </label>
+          Intelligence Extraction
+        </button>
+        <button
+          onClick={() => { setMode('import'); setFiles([]); setUploadStatus(''); }}
+          className={`px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${
+            mode === 'import' 
+              ? 'bg-white dark:bg-zinc-800 text-amber-600 shadow-md' 
+              : 'text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300'
+          }`}
+        >
+          Static Data Import
+        </button>
       </div>
 
-      {/* File List */}
-      {files.length > 0 && (
-        <div className="space-y-4 pt-4">
-          <div className="flex items-center justify-between border-b border-zinc-100 dark:border-zinc-800 pb-4 px-2">
-            <h3 className="text-sm font-black uppercase tracking-[0.1em] text-zinc-400 flex items-center gap-3">
-              Selected Profiles
-              <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
-            </h3>
-            <span className="px-3 py-1 rounded-full text-[10px] font-black bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 uppercase tracking-widest border border-zinc-200 dark:border-zinc-700">
-              {files.length} {files.length === 1 ? 'record' : 'records'}
-            </span>
-          </div>
-          <div className="grid gap-3 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar pb-2">
-            {files.map((file, index) => (
-              <div
-                key={index}
-                className="flex items-center justify-between p-4 border border-zinc-200 dark:border-zinc-800/50 rounded-2xl bg-white dark:bg-zinc-950/50 group hover:border-indigo-500/50 transition-all hover:bg-zinc-50/50 dark:hover:bg-zinc-901/50"
-              >
-                <div className="flex items-center gap-4 flex-1 min-w-0">
-                  <div className="w-10 h-10 rounded-xl bg-zinc-50 dark:bg-zinc-900 flex items-center justify-center font-black dark:text-zinc-400 text-xs">
-                    {index + 1}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-bold text-zinc-900 dark:text-zinc-50 truncate">
-                      {file.name}
-                    </p>
-                    <p className="text-[10px] font-black text-zinc-400 uppercase mt-0.5 tracking-widest">
-                      {(file.size / 1024 / 1024).toFixed(2)} MB • {file.name.split('.').pop()?.toUpperCase()}
-                    </p>
-                  </div>
-                </div>
-                <button
-                  onClick={() => removeFile(index)}
-                  className="ml-4 p-2 text-zinc-300 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100"
-                >
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                  </svg>
-                </button>
+      {/* Drop Zone(s) */}
+      {mode === 'extract' ? (
+        <div
+          onDragOver={(e) => handleDragOver(e, 'cv')}
+          onDragLeave={handleDragLeave}
+          onDrop={(e) => handleDrop(e, 'cv')}
+          className={`
+            relative border-2 border-dashed rounded-3xl p-16 text-center transition-all duration-300 group
+            ${activeDragZone === 'cv' ? 'border-indigo-400 bg-indigo-50' : 'border-zinc-300 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-700 bg-white dark:bg-zinc-950 overflow-hidden'}
+          `}
+        >
+          <input
+            ref={fileInputRef}
+            type="file"
+            multiple
+            accept=".pdf,.docx,.txt,.md"
+            onChange={(e) => handleFileInput(e, 'cv')}
+            className="hidden"
+            id="cv-upload"
+          />
+          <label htmlFor="cv-upload" className="cursor-pointer flex flex-col items-center gap-6 relative">
+            <div className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform duration-300 bg-indigo-100 dark:bg-indigo-900/30">
+                <svg className="w-8 h-8 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                </svg>
+            </div>
+            <div className="space-y-2">
+              <p className="text-base font-bold text-zinc-900 dark:text-zinc-50 tracking-tight text-center">
+                <span className="text-indigo-600 dark:text-indigo-400">Initialise Batch Upload</span> or drag and drop
+              </p>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 font-medium text-center">
+                 Securely processes PDF, DOCX, TXT and MD profiles
+              </p>
+            </div>
+          </label>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          {/* CV JSON Import Zone */}
+          <div
+            onDragOver={(e) => handleDragOver(e, 'cv')}
+            onDragLeave={handleDragLeave}
+            onDrop={(e) => handleDrop(e, 'cv')}
+            className={`relative border-2 border-dashed rounded-3xl p-8 text-center transition-all duration-300 group ${activeDragZone === 'cv' ? 'border-amber-400 bg-amber-50' : 'border-zinc-300 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-700 bg-white dark:bg-zinc-950 overflow-hidden'}`}
+          >
+            <input ref={fileInputRef} type="file" multiple accept=".json" onChange={(e) => handleFileInput(e, 'cv')} className="hidden" id="import-cv" />
+            <label htmlFor="import-cv" className="cursor-pointer flex flex-col items-center gap-4">
+              <div className="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
               </div>
-            ))}
+              <div className="space-y-1">
+                <p className="text-sm font-bold text-zinc-900 dark:text-zinc-50 leading-tight">CV JSONs</p>
+                <p className="text-[10px] text-zinc-500 uppercase font-black tracking-tighter">{importFiles.cv.length} Selected</p>
+              </div>
+            </label>
+          </div>
+
+          {/* Raw CV Documents Zone */}
+          <div
+            onDragOver={(e) => handleDragOver(e, 'cv_doc')}
+            onDragLeave={handleDragLeave}
+            onDrop={(e) => handleDrop(e, 'cv_doc')}
+            className={`relative border-2 border-dashed rounded-3xl p-8 text-center transition-all duration-300 group ${activeDragZone === 'cv_doc' ? 'border-amber-400 bg-amber-50' : 'border-zinc-300 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-700 bg-white dark:bg-zinc-950 overflow-hidden'}`}
+          >
+            <input ref={cvDocInputRef} type="file" multiple accept=".pdf,.docx,.txt,.md" onChange={(e) => handleFileInput(e, 'cv_doc')} className="hidden" id="import-cv-doc" />
+            <label htmlFor="import-cv-doc" className="cursor-pointer flex flex-col items-center gap-4">
+              <div className="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+              </div>
+              <div className="space-y-1">
+                <p className="text-sm font-bold text-zinc-900 dark:text-zinc-50 leading-tight">Raw CV Docs</p>
+                <p className="text-[10px] text-zinc-500 uppercase font-black tracking-tighter">{importFiles.cv_doc.length} Selected</p>
+              </div>
+            </label>
+          </div>
+
+          {/* GitHub Import Zone */}
+          <div
+            onDragOver={(e) => handleDragOver(e, 'github')}
+            onDragLeave={handleDragLeave}
+            onDrop={(e) => handleDrop(e, 'github')}
+            className={`relative border-2 border-dashed rounded-3xl p-8 text-center transition-all duration-300 group ${activeDragZone === 'github' ? 'border-amber-400 bg-amber-50' : 'border-zinc-300 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-700 bg-white dark:bg-zinc-950 overflow-hidden'}`}
+          >
+            <input ref={githubInputRef} type="file" multiple accept=".json" onChange={(e) => handleFileInput(e, 'github')} className="hidden" id="import-github" />
+            <label htmlFor="import-github" className="cursor-pointer flex flex-col items-center gap-4">
+              <div className="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform">
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.43.372.823 1.102.823 2.222 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg>
+              </div>
+              <div className="space-y-1">
+                <p className="text-sm font-bold text-zinc-900 dark:text-zinc-50 leading-tight">GitHub JSONs</p>
+                <p className="text-[10px] text-zinc-500 uppercase font-black tracking-tighter">{importFiles.github.length} Selected</p>
+              </div>
+            </label>
+          </div>
+
+          {/* LinkedIn Import Zone */}
+          <div
+            onDragOver={(e) => handleDragOver(e, 'linkedin')}
+            onDragLeave={handleDragLeave}
+            onDrop={(e) => handleDrop(e, 'linkedin')}
+            className={`relative border-2 border-dashed rounded-3xl p-8 text-center transition-all duration-300 group ${activeDragZone === 'linkedin' ? 'border-amber-400 bg-amber-50' : 'border-zinc-300 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-700 bg-white dark:bg-zinc-950 overflow-hidden'}`}
+          >
+            <input ref={linkedinInputRef} type="file" multiple accept=".json" onChange={(e) => handleFileInput(e, 'linkedin')} className="hidden" id="import-linkedin" />
+            <label htmlFor="import-linkedin" className="cursor-pointer flex flex-col items-center gap-4">
+              <div className="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform">
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
+              </div>
+              <div className="space-y-1">
+                <p className="text-sm font-bold text-zinc-900 dark:text-zinc-50 leading-tight">LinkedIn JSONs</p>
+                <p className="text-[10px] text-zinc-500 uppercase font-black tracking-tighter">{importFiles.linkedin.length} Selected</p>
+              </div>
+            </label>
           </div>
         </div>
       )}
 
-      {/* Cache Data Option */}
-      {files.length > 0 && (
+      {/* File Lists */}
+      {mode === 'extract' ? (
+        files.length > 0 && (
+            <div className="space-y-4 pt-4 text-left">
+              <div className="flex items-center justify-between border-b border-zinc-100 dark:border-zinc-800 pb-4 px-2">
+                <h3 className="text-sm font-black uppercase tracking-[0.1em] text-zinc-400 flex items-center gap-3">
+                  Selected Profiles
+                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
+                </h3>
+                <span className="px-3 py-1 rounded-full text-[10px] font-black bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 uppercase tracking-widest border border-zinc-200 dark:border-zinc-700">
+                  {files.length} {files.length === 1 ? 'file' : 'files'}
+                </span>
+              </div>
+              <div className="grid gap-3 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar pb-2">
+                {files.map((file, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center justify-between p-4 border rounded-2xl bg-white dark:bg-zinc-950/50 group transition-all border-zinc-200 dark:border-zinc-800/50 hover:border-indigo-500/50"
+                  >
+                    <div className="flex items-center gap-4 flex-1 min-w-0">
+                      <div className="w-10 h-10 rounded-xl bg-zinc-50 dark:bg-zinc-900 flex items-center justify-center font-black dark:text-zinc-400 text-xs text-left">
+                        {index + 1}
+                      </div>
+                      <div className="flex-1 min-w-0 text-left">
+                        <p className="text-sm font-bold text-zinc-900 dark:text-zinc-50 truncate">
+                          {file.name}
+                        </p>
+                        <p className="text-[10px] font-black text-zinc-400 uppercase mt-0.5 tracking-widest">
+                          {(file.size / 1024).toFixed(1)} KB • {file.name.split('.').pop()?.toUpperCase()}
+                        </p>
+                      </div>
+                    </div>
+                    <button onClick={() => removeFile(index, 'cv')} className="ml-4 p-2 text-zinc-300 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100">
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      </svg>
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )
+      ) : (
+        (importFiles.cv.length > 0 || importFiles.cv_doc.length > 0 || importFiles.github.length > 0 || importFiles.linkedin.length > 0) && (
+            <div className="space-y-6 pt-4">
+                {['cv', 'cv_doc', 'github', 'linkedin'].map((type) => (
+                    importFiles[type as keyof typeof importFiles].length > 0 && (
+                        <div key={type} className="space-y-3">
+                            <div className="flex items-center justify-between border-b border-zinc-100 dark:border-zinc-800 pb-2 px-2">
+                                <h3 className="text-[10px] font-black uppercase tracking-widest text-zinc-400">{type.replace('_', ' ')} Batch</h3>
+                            </div>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                {importFiles[type as keyof typeof importFiles].map((f, i) => (
+                                    <div key={i} className="flex items-center justify-between p-3 border border-zinc-100 dark:border-zinc-800/50 rounded-xl bg-white dark:bg-zinc-950/50 group">
+                                        <p className="text-[10px] font-bold text-zinc-600 dark:text-zinc-400 truncate max-w-[200px]">{f.name}</p>
+                                        <button onClick={() => removeFile(i, type as any)} className="text-zinc-300 hover:text-red-500 transition-colors">
+                                            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )
+                ))}
+            </div>
+        )
+      )}
+
+      {/* Cache Data Option (Only for Standard Extraction) */}
+      {mode === 'extract' && files.length > 0 && (
         <div className="flex flex-col gap-2 p-5 border border-zinc-200 dark:border-zinc-800 rounded-2xl bg-zinc-50/50 dark:bg-zinc-900/50 mt-4">
             <div className="flex items-center gap-3">
               <input 
@@ -750,12 +994,14 @@ export default function CVUpload() {
       )}
 
       {/* Submit Button */}
-      {files.length > 0 && (
+      {(files.length > 0 || Object.values(importFiles).some(f => f.length > 0)) && (
         <div className="pt-6">
             <button
             onClick={handleExtractBatch}
             disabled={isUploading}
-            className="w-full px-8 py-5 rounded-2xl font-black text-white bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-xl shadow-indigo-600/20 uppercase tracking-[0.2em] text-sm flex items-center justify-center gap-4 hover:scale-[1.01] active:scale-[0.99]"
+            className={`w-full px-8 py-5 rounded-2xl font-black text-white disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-xl uppercase tracking-[0.2em] text-sm flex items-center justify-center gap-4 hover:scale-[1.01] active:scale-[0.99] ${
+                mode === 'extract' ? 'bg-indigo-600 hover:bg-indigo-500 shadow-indigo-600/20' : 'bg-amber-600 hover:bg-amber-500 shadow-amber-600/20'
+            }`}
             >
             {isUploading ? (
                 <>
@@ -767,7 +1013,7 @@ export default function CVUpload() {
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
-                    Extract Candidate Batch
+                    {mode === 'extract' ? 'Extract Candidate Batch' : 'Ingest Unified Batch'}
                 </>
             )}
             </button>
@@ -778,12 +1024,14 @@ export default function CVUpload() {
       {uploadStatus && (
         <div
           className={`px-6 py-4 rounded-xl border text-xs font-bold uppercase tracking-widest flex items-center gap-3 ${
-            uploadStatus.includes('failed')
+            uploadStatus.includes('failed') || uploadStatus.includes('Rejected')
               ? 'bg-red-50 text-red-800 border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-800'
-              : 'bg-zinc-50 text-zinc-500 border-zinc-200 dark:bg-zinc-900/30 dark:text-zinc-500 dark:border-zinc-800'
+              : mode === 'extract' 
+                ? 'bg-zinc-50 text-zinc-500 border-zinc-200 dark:bg-zinc-900/30 dark:text-zinc-500 dark:border-zinc-800'
+                : 'bg-amber-50 text-amber-800 border-amber-200 dark:bg-amber-900/20 dark:text-amber-400 dark:border-amber-800'
           }`}
         >
-          <div className={`w-2 h-2 rounded-full ${uploadStatus.includes('failed') ? 'bg-red-500' : 'bg-emerald-500'} animate-pulse`} />
+          <div className={`w-2 h-2 rounded-full ${uploadStatus.includes('failed') || uploadStatus.includes('Rejected') ? 'bg-red-500' : mode === 'extract' ? 'bg-emerald-500' : 'bg-amber-500'} animate-pulse`} />
           {uploadStatus}
         </div>
       )}

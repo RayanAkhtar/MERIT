@@ -3,6 +3,7 @@ import GitHubPreview, { GithubData } from './GitHubPreview';
 import LinkedInPreview, { LinkedinData } from './LinkedInPreview';
 
 interface LinkSelectionProps {
+  mode: 'extract' | 'import';
   metrics: {
     uploaded_files: number;
     link_counts: Record<string, number>;
@@ -14,7 +15,7 @@ interface LinkSelectionProps {
   linkedinData?: LinkedinData | null;
 }
 
-const LinkSelection: React.FC<LinkSelectionProps> = ({ metrics, selectedLinks, setSelectedLinks, githubData, linkedinData }) => {
+const LinkSelection: React.FC<LinkSelectionProps> = ({ mode, metrics, selectedLinks, setSelectedLinks, githubData, linkedinData }) => {
 
   const linkedinProjects = React.useMemo(() => {
     if (!linkedinData?.projects) return [];
@@ -148,11 +149,23 @@ const LinkSelection: React.FC<LinkSelectionProps> = ({ metrics, selectedLinks, s
                 !githubData ? (
                     <div className="p-10 rounded-[2.5rem] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 shadow-xl space-y-12 relative overflow-hidden min-h-[500px]">
                         <div className="w-full flex flex-col items-center justify-center py-24 space-y-8">
-                            <div className="relative w-16 h-16">
-                                <div className="absolute inset-0 border-4 border-indigo-500/20 rounded-full" />
-                                <div className="absolute inset-0 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin" />
-                            </div>
-                            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-600 animate-pulse text-center">Infiltrating Technical Repositories...</p>
+                            {mode === 'extract' ? (
+                                <>
+                                    <div className="relative w-16 h-16">
+                                        <div className="absolute inset-0 border-4 border-indigo-500/20 rounded-full" />
+                                        <div className="absolute inset-0 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin" />
+                                    </div>
+                                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-600 animate-pulse text-center">Infiltrating Technical Repositories...</p>
+                                </>
+                            ) : (
+                                <>
+                                    <div className="w-16 h-16 rounded-full bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center text-zinc-400">
+                                        <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636" /></svg>
+                                    </div>
+                                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400 text-center">Static GitHub Data Unavailable</p>
+                                    <p className="text-xs text-zinc-500 max-w-xs text-center font-medium leading-relaxed">No matching GitHub dataset was found in your import batch for this candidate.</p>
+                                </>
+                            )}
                         </div>
                     </div>
                 ) : (
@@ -165,11 +178,23 @@ const LinkSelection: React.FC<LinkSelectionProps> = ({ metrics, selectedLinks, s
                 !linkedinData ? (
                     <div className="p-10 rounded-[2.5rem] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 shadow-2xl relative overflow-hidden group min-h-[500px]">
                         <div className="w-full flex flex-col items-center justify-center py-24 space-y-8">
-                            <div className="relative w-16 h-16">
-                                <div className="absolute inset-0 border-4 border-blue-500/20 rounded-full" />
-                                <div className="absolute inset-0 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
-                            </div>
-                            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-600 animate-pulse text-center">Parsing Professional Trajectories...</p>
+                            {mode === 'extract' ? (
+                                <>
+                                    <div className="relative w-16 h-16">
+                                        <div className="absolute inset-0 border-4 border-blue-500/20 rounded-full" />
+                                        <div className="absolute inset-0 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
+                                    </div>
+                                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-600 animate-pulse text-center">Parsing Professional Trajectories...</p>
+                                </>
+                            ) : (
+                                <>
+                                    <div className="w-16 h-16 rounded-full bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center text-zinc-400">
+                                        <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636" /></svg>
+                                    </div>
+                                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400 text-center">Static LinkedIn Data Unavailable</p>
+                                    <p className="text-xs text-zinc-500 max-w-xs text-center font-medium leading-relaxed">No matching LinkedIn dataset was found in your import batch for this candidate.</p>
+                                </>
+                            )}
                         </div>
                     </div>
                 ) : (

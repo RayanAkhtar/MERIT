@@ -25,50 +25,71 @@ def allowed_file(filename):
 def extract_job_description():
     text = request.form.get('text', '').strip()
     custom_title = request.form.get('title', '').strip()
-    file = request.files.get('file')
+    files = request.files.getlist('file')
     cache_enabled = request.form.get('cache_data', 'false').lower() == 'true'
     
-    if not file and not text:
+    if not files and not text:
         return jsonify({"error": "No files or text provided"}), 400
 
-    content_hash = ""
-    if file:
-        file.seek(0)
-        content_hash = hashlib.md5(file.read()).hexdigest()
-        file.seek(0)
-    else:
+    results_to_return = []
+
+    # Handle text input if provided
+    if text:
         content_hash = hashlib.md5(text.encode()).hexdigest()
-
-    if cache_enabled:
-        cached = get_cached_data("job_desc", content_hash)
-        if cached:
+        if cache_enabled:
+            cached = get_cached_data("job_desc", content_hash)
+            if cached:
             # print("DEBUG: found cache jd")
-            cached["cached"] = True
-            return jsonify(cached), 200
-
-    results = []
-
-    if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        filepath = os.path.join(UPLOAD_FOLDER, filename)
-        file.save(filepath)
+                cached["cached"] = True
+                results_to_return.append(cached)
         
-        meta = {"job_title": custom_title} if custom_title else None
-        parsed_file = parse_jd(filepath, meta=meta)
+        if not results_to_return or results_to_return[0].get("cached") is not True:
+            meta = {"job_title": custom_title} if custom_title else None
+            parsed_text = parse_job(text, source_file="manual_input", meta=meta)
+            res_data = format_extraction_result(parsed_text)
+            if cache_enabled:
+                save_to_cache("job_desc", content_hash, res_data)
+            results_to_return.append(res_data)
 
-        if isinstance(parsed_file, list):
-            results = parsed_file
-        else:
-            results = [parsed_file]
-    elif text:
-        meta = {"job_title": custom_title} if custom_title else None
-        parsed_text = parse_job(text, source_file="manual_input", meta=meta)
-        results = [parsed_text]
+    # Handle file uploads
+    for file in files:
+        if file and allowed_file(file.filename):
+            file.seek(0)
+            content_hash = hashlib.md5(file.read()).hexdigest()
+            file.seek(0)
 
-    if not results:
+            if cache_enabled:
+                cached = get_cached_data("job_desc", content_hash)
+                if cached:
+                    cached["cached"] = True
+                    results_to_return.append(cached)
+                    continue
+
+            filename = secure_filename(file.filename)
+            filepath = os.path.join(UPLOAD_FOLDER, filename)
+            file.save(filepath)
+            
+            meta = {"job_title": custom_title} if custom_title else None
+            parsed_file = parse_jd(filepath, meta=meta)
+
+            if isinstance(parsed_file, list):
+                for p in parsed_file:
+                    res_data = format_extraction_result(p)
+                    if cache_enabled:
+                        save_to_cache("job_desc", content_hash, res_data)
+                    results_to_return.append(res_data)
+            else:
+                res_data = format_extraction_result(parsed_file)
+                if cache_enabled:
+                    save_to_cache("job_desc", content_hash, res_data)
+                results_to_return.append(res_data)
+
+    if not results_to_return:
         return jsonify({"error": "No data could be extracted"}), 422
 
-    combined = results[0]
+    return jsonify(results_to_return), 200
+
+def format_extraction_result(combined):
     formatted_metrics = []
     
     if combined.get("company"):
@@ -113,23 +134,19 @@ def extract_job_description():
     # dynamic weighting via tf-idf
     try:
         weight_engine = WeightingEngine()
-        
-        # collect all extractable skill values
-        # only weight technical skills and education
         skill_values = [m["value"] for m in formatted_metrics if m["category"] in ["Languages", "Technologies", "Education"]]
 
         
         # TF-IDF suggested weights
         suggested_weights = weight_engine.calculate_weights(combined.get("raw_text", ""), skill_values)
         
-        # inject suggested weights back into formatted metrics
         for m in formatted_metrics:
             if m["value"] in suggested_weights:
                 m["suggested_weight"] = suggested_weights[m["value"]]["weight"]
                 m["suggested_weight_reasoning"] = suggested_weights[m["value"]]["reasoning"]
                 m["suggested_weight_math"] = suggested_weights[m["value"]]["math"]
             else:
-                m["suggested_weight"] = 3.0 # Default fallback
+                m["suggested_weight"] = 3.0
                 m["suggested_weight_reasoning"] = "Standard importance."
                 m["suggested_weight_math"] = None
     except Exception as e:
@@ -138,10 +155,8 @@ def extract_job_description():
             m["suggested_weight"] = 3.0
             m["suggested_weight_reasoning"] = "Calculation error."
 
-    if cache_enabled:
-        save_to_cache("job_desc", content_hash, response_data)
+    return response_data
 
-    return jsonify(response_data), 200
 
 @extraction_bp.route("/extract-cv", methods=["POST"])
 def extract_cv():
@@ -390,6 +405,54 @@ def extract_cv():
             save_to_cache("cv", cache_id, parsed_data)
 
         return jsonify(parsed_data), 200
+    
+    return jsonify({"error": "Invalid file type"}), 400
+
+@extraction_bp.route("/upload-cv", methods=["POST"])
+def upload_cv_only():
+    if 'file' not in request.files:
+        return jsonify({"error": "No file provided"}), 400
+    
+    file = request.files['file']
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(UPLOAD_FOLDER, filename)
+        file.save(filepath)
+        
+        with open(filepath, 'rb') as f:
+            file_content = f.read()
+            cache_id = hashlib.md5(file_content).hexdigest()
+
+        cv_url = None
+        if supabase:
+            try:
+                try:
+                    supabase.storage.create_bucket('cvs', options={'public': True})
+                except Exception:
+                    pass 
+
+                storage_path = f"{cache_id}_{filename}"
+                with open(filepath, 'rb') as f:
+                    supabase.storage.from_('cvs').upload(
+                        path=storage_path,
+                        file=f,
+                        file_options={
+                            "content-type": "application/pdf" if filename.endswith(".pdf") else "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                            "upsert": "true" 
+                        }
+                    )
+                cv_url = f"{SUPABASE_URL}/storage/v1/object/public/cvs/{storage_path}"
+            except Exception as e:
+                print(f"Upload failed: {e}")
+                cv_url = f"http://localhost:5000/uploads/{filename}" 
+        else:
+            cv_url = f"http://localhost:5000/uploads/{filename}"
+
+        return jsonify({
+            "cv_url": cv_url,
+            "cv_hash": cache_id,
+            "filename": filename
+        }), 200
     
     return jsonify({"error": "Invalid file type"}), 400
 

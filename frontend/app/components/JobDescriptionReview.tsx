@@ -301,7 +301,7 @@ const JobDescriptionReview: React.FC<JobDescriptionReviewProps> = ({
                                         Creating
                                     </>
                                 ) : (
-                                    'Create Benchmark'
+                                    saveButtonText
                                 )}
                             </button>
                         </div>
