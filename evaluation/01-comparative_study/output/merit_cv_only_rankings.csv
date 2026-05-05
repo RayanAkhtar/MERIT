@@ -1,4 +1,4 @@
-Rank,Candidate Name,MERIT CV Score,Total Years,Has Degree,Metric: education,Metric: experience,Metric: professional_gravity,Metric: projects,Metric: req_aws,Metric: req_java,Metric: req_react,Metric: req_spring_boot
+Rank,Candidate Name,MERIT CV Score (%),Total Years,Has Degree,Metric: education,Metric: experience,Metric: professional_gravity,Metric: projects,Metric: req_aws,Metric: req_java,Metric: req_react,Metric: req_spring_boot
 1,Alex Rivers,51.92,5.0,Yes,94.0,34.0,60.0,0.0,71.0,29.0,71.0,71.0
 2,Felix Vance,49.09,10.0,Yes,38.0,57.0,60.0,0.0,71.0,71.0,0.0,71.0
 3,Ghost Gary,40.34,10.0,Yes,38.0,57.0,80.0,0.0,71.0,29.0,71.0,0.0

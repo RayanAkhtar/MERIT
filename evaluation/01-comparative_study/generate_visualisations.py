@@ -13,7 +13,9 @@ def load_csv_data(filepath):
         with open(filepath, 'r') as f:
             reader = csv.DictReader(f)
             for row in reader:
-                name = row['Candidate Name']
+                name = row.get('Candidate Name') or row.get('candidate_name')
+                if not name:
+                    continue
                 score_val = 0.0
                 # normalising the score key across different study outputs
                 for key in ['Score', 'Final Score', 'Modern AI Score', 'ai_score', 'merit_score', 'MERIT CV Score (%)', 'MERIT Total Score']:
@@ -137,10 +139,11 @@ def plot_rank_displacement_chart(title, focus_candidates, filename, baseline, ai
 
 def generate_evaluation_visualisations():
     # load all four study stages for the comparative plots
-    baseline = load_csv_data('evaluation/01-comparative_study/output/baseline_rankings.csv')
-    ai = load_csv_data('evaluation/01-comparative_study/output/modern_ai_ats_rankings.csv')
-    cv_only = load_csv_data('evaluation/01-comparative_study/output/merit_cv_only_rankings.csv')
-    merit_full = load_csv_data('evaluation/01-comparative_study/output/merit_all_sources_rankings.csv')
+    base_dir = os.path.dirname(__file__)
+    baseline = load_csv_data(os.path.join(base_dir, 'output/baseline_rankings.csv'))
+    ai = load_csv_data(os.path.join(base_dir, 'output/modern_ai_ats_rankings.csv'))
+    cv_only = load_csv_data(os.path.join(base_dir, 'output/merit_cv_only_rankings.csv'))
+    merit_full = load_csv_data(os.path.join(base_dir, 'output/merit_all_sources_rankings.csv'))
 
     all_names = list(baseline.keys())
     

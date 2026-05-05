@@ -165,7 +165,7 @@ def run_full_fusion_study(candidates: List[Dict[str, Any]], job_description: Dic
 
 if __name__ == "__main__":
     # central jd for the comparative study
-    jd_path = "evaluation/01-comparative_study/test_data/job_description/fullstack_developer.json"
+    jd_path = os.path.join(os.path.dirname(__file__), 'test_data/job_description/fullstack_developer.json')
     with open(jd_path, 'r') as f:
         job_description = json.load(f)
     

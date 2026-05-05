@@ -50,18 +50,19 @@ class TraditionalATS:
         score = (total_hits * 0.5) + (total_years * 0.3) + (has_degree * 0.2)
         
         return {
-            "candidate_name": candidate_data.get("name"),
-            "ats_score": round(score, 2),
-            "total_years": total_years,
-            "has_degree": "Yes" if has_degree > 0 else "No",
-            "hits": total_hits
+            "Candidate Name": candidate_data.get("name"),
+            "Score": round(score, 2),
+            "Total Years": total_years,
+            "Has Degree": "Yes" if has_degree > 0 else "No",
+            "Hits": total_hits
         }
 
 def run_baseline_study():
     # load the jd used for the imperial fyp evaluation
-    jd_path = "evaluation/01-comparative_study/test_data/job_description/fullstack_developer.json"
-    cv_dir = "evaluation/01-comparative_study/test_data/candidates/cv"
-    output_path = "evaluation/01-comparative_study/output/baseline_rankings.csv"
+    base_dir = os.path.dirname(__file__)
+    jd_path = os.path.join(base_dir, 'test_data/job_description/fullstack_developer.json')
+    cv_dir = os.path.join(base_dir, 'test_data/candidates/cv')
+    output_path = os.path.join(base_dir, 'output/baseline_rankings.csv')
     
     if not os.path.exists(jd_path):
         print(f"Error: Could not find JD at {jd_path}")
@@ -88,18 +89,21 @@ def run_baseline_study():
             results.append(ats.score_candidate(cand))
             
     # sort by the ats score to see who won
-    results.sort(key=lambda x: x["ats_score"], reverse=True)
+    results.sort(key=lambda x: x["Score"], reverse=True)
     
     # output results for the comparative analysis
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     with open(output_path, 'w', newline='') as f:
-        writer = csv.DictWriter(f, fieldnames=["candidate_name", "ats_score", "total_years", "has_degree", "hits"])
+        headers = ["Rank", "Candidate Name", "Score", "Total Years", "Has Degree", "Hits"]
+        writer = csv.DictWriter(f, fieldnames=headers)
         writer.writeheader()
-        writer.writerows(results)
+        for i, res in enumerate(results):
+            res["Rank"] = i + 1
+            writer.writerow(res)
         
     print("Traditional ATS Rankings:")
     for i, res in enumerate(results):
-        print(f"{i+1}. {res['candidate_name']} - Score: {res['ats_score']}")
+        print(f"{i+1}. {res['Candidate Name']} - Score: {res['Score']}")
 
 if __name__ == "__main__":
     run_baseline_study()
