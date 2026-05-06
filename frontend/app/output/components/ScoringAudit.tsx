@@ -16,8 +16,70 @@ export default function ScoringAudit({ candidate, onMetricClick }: ScoringAuditP
 
   return (
     <div className="space-y-8 animate-in slide-in-from-right-4 duration-300 max-w-3xl mx-auto pb-12">
-      {/* Integrity Audit Pass */}
-      {(candidate.integrity_penalty > 0 || candidate.calculation_summary?.integrity_penalty > 0) && (
+      {/* Identity Integrity Audit */}
+      {candidate.calculation_summary?.identity_audit_details && (
+        <div className={`p-8 rounded-2xl border-2 shadow-xl relative overflow-hidden group/identity animate-in zoom-in-95 duration-500 ${
+          candidate.calculation_summary.identity_penalty > 0 
+            ? 'bg-indigo-500/5 border-indigo-500/20' 
+            : 'bg-emerald-500/5 border-emerald-500/10 mb-8'
+        }`}>
+          <div className={`absolute -top-12 -right-12 w-32 h-32 rounded-full blur-3xl transition-all duration-700 ${
+            candidate.calculation_summary.identity_penalty > 0 ? 'bg-indigo-500/10' : 'bg-emerald-500/10'
+          }`} />
+          <div className="flex items-start gap-4">
+            <div className={`p-3 rounded-xl border ${
+              candidate.calculation_summary.identity_penalty > 0 
+                ? 'bg-indigo-500/20 border-indigo-500/30' 
+                : 'bg-emerald-500/20 border-emerald-500/30'
+            }`}>
+              <svg className={`w-6 h-6 ${candidate.calculation_summary.identity_penalty > 0 ? 'text-indigo-500' : 'text-emerald-500'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <h4 className={`text-[10px] font-black uppercase tracking-[0.2em] ${candidate.calculation_summary.identity_penalty > 0 ? 'text-indigo-500' : 'text-emerald-500'}`}>
+                    Identity Integrity Audit: {candidate.calculation_summary.identity_penalty > 0 ? 'Mismatch Detected' : 'Verified'}
+                  </h4>
+                  {candidate.calculation_summary.identity_penalty > 0 && (
+                    <span className="px-1.5 py-0.5 bg-rose-500 text-white text-[8px] font-black rounded uppercase tracking-widest animate-pulse">Critical Flag</span>
+                  )}
+                </div>
+                <div className={`px-2 py-1 rounded text-[10px] font-black ${candidate.calculation_summary.identity_penalty > 0 ? 'bg-indigo-500/10 text-indigo-500' : 'bg-emerald-500/10 text-emerald-500'}`}>
+                  {candidate.calculation_summary.identity_audit_details.similarity}% Match
+                </div>
+              </div>
+              
+              {candidate.calculation_summary.identity_penalty > 0 ? (
+                <>
+                  <p className="text-sm font-bold text-zinc-900 dark:text-zinc-100 mb-6 leading-relaxed">
+                    The identity audit found a significant mismatch (Confidence: {candidate.calculation_summary.identity_audit_details.similarity}%). 
+                    A penalty of <span className="text-indigo-500 font-black">{(candidate.calculation_summary.identity_penalty * 100).toFixed(0)}%</span> has been applied.
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="p-4 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
+                      <p className="text-[9px] font-black text-zinc-400 uppercase tracking-widest mb-1">Name on CV</p>
+                      <p className="text-sm font-black text-zinc-800 dark:text-zinc-200">{candidate.calculation_summary.identity_audit_details?.cv_name}</p>
+                    </div>
+                    <div className="p-4 bg-indigo-500/5 rounded-xl border border-indigo-500/20 shadow-sm">
+                      <p className="text-[9px] font-black text-indigo-400 uppercase tracking-widest mb-1">Social Profile Owner</p>
+                      <p className="text-sm font-black text-indigo-600 dark:text-indigo-400">{candidate.calculation_summary.identity_audit_details?.profile_name}</p>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <p className="text-xs font-bold text-zinc-500 dark:text-zinc-400">
+                  Identity consistency confirmed. Signal from <span className="text-emerald-500 uppercase tracking-tight font-black">{candidate.calculation_summary.identity_audit_details.profile_name}</span> has been successfully linked to <span className="text-emerald-500 uppercase tracking-tight font-black">{candidate.name}</span>.
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Integrity Audit: Keyword Stuffing */}
+      {(candidate.integrity_penalty > 0 || candidate.calculation_summary?.integrity_penalty > 0) && (candidate.calculation_summary?.stuffing_audit?.length > 0) && (
         <div className="p-8 bg-rose-500/5 rounded-2xl border-2 border-rose-500/20 shadow-xl relative overflow-hidden group/penalty animate-in zoom-in-95 duration-500">
           <div className="absolute -top-12 -right-12 w-32 h-32 bg-rose-500/10 rounded-full blur-3xl group-hover/penalty:bg-rose-500/20 transition-all duration-700" />
           <div className="flex items-start gap-4">

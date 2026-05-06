@@ -8,7 +8,7 @@ SCORING_CONSTANTS = {
         "CV_PROMINENCE_PENALTY": 0.8,       # 20% penalty if not the primary skill
         "CONSENSUS_MULTIPLIER": 1.15,      # Multiplier if found on both CV and GitHub
         "RECENCY": {
-            "DECAY_LAMBDA": 0.12,          # lambda for exponential decay: e^(-lambda * years)
+            "DECAY_LAMBDA": 0.25,          # lambda for exponential decay: e^(-lambda * years)
             "ACTIVE_THRESHOLD": 1.0,       # years before decay starts hitting hard
             "BOOST_ACTIVE": 1.05           # slight bonus for current skills
         }

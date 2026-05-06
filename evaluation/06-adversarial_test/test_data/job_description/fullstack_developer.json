@@ -1,0 +1,37 @@
+{
+    "job_title": "Junior Full Stack Engineer",
+    "company": "Nexus Solutions",
+    "technical_skills": [
+        "React",
+        "Node.js",
+        "TypeScript",
+        "Python",
+        "Rust",
+        "PostgreSQL",
+        "Docker",
+        "AWS",
+        "Kubernetes"
+    ],
+    "experience_level": "Junior",
+    "education_required": [
+        "Bachelor in Computer Science"
+    ],
+    "metrics": {
+        "Technologies": {
+            "weight": 0.6,
+            "value": ["React", "PostgreSQL"]
+        },
+        "Languages": {
+            "weight": 1.0,
+            "value": ["TypeScript", "Python"]
+        },
+        "Experience": {
+            "weight": 0.5,
+            "value": 5
+        },
+        "Education": {
+            "weight": 0.4,
+            "value": "Bachelor"
+        }
+    }
+}

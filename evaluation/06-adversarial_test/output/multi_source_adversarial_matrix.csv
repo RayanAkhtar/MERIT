@@ -1,0 +1,10 @@
+Scenario,Candidate,ATS Score (CV Only),MERIT Score (Multi-Source),Delta
+Honest,Honest Candidate,34.44,54.65,20.21
+Ghost,The Ghost,28.4,36.52,8.120000000000005
+Fraud,The Fraud,34.44,39.23,4.789999999999999
+Stale,Stale Candidate,39.85,42.77,2.9200000000000017
+Gamer,The Time Traveler,39.85,62.98,23.129999999999995
+Squatter,Squatter Candidate,34.44,34.65,0.21000000000000085
+Smart_squatter,Rayan Akhtar Smith,34.44,54.65,20.21
+Shadow,The Shadow,34.44,35.27,0.8300000000000054
+Inflater,The Inflater,34.44,50.9,16.46

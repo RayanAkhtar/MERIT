@@ -1,0 +1,17 @@
+{
+    "name": "The Inflater",
+    "languages": [
+        {
+            "label": "TypeScript",
+            "pct": 100.0
+        }
+    ],
+    "language_history": [
+        {
+            "year": "2026",
+            "TypeScript": 1000000
+        }
+    ],
+    "total_stars": 1000,
+    "repo_count": 250
+}

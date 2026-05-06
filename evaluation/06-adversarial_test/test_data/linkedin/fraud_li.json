@@ -1,0 +1,239 @@
+{
+    "experience": [
+        {
+            "company_name": "Imperial College London",
+            "company_image": null,
+            "position": "Personal Programming Tutor (PPT)",
+            "start_date": {
+                "month": "Aug",
+                "year": 2025,
+                "text": "Aug 2025"
+            },
+            "end_date": {
+                "text": "Present"
+            },
+            "description": "Providing programming assistance to Imperial students in weekly tutor sessions, with a focus on Haskell, Kotlin, Java and C.\n\nDesigned and implemented customised lesson plans to enhance understanding and mastery of various programming concepts across both Object-Oriented and Functional programming.\n\nOffer detailed explanations and support in small group sessions, fostering confidence and academic growth.",
+            "skills": [
+                "Teaching"
+            ]
+        },
+        {
+            "company_name": "Imperial College London",
+            "company_image": null,
+            "position": "Personal Mathematics Tutor (PMT)",
+            "start_date": {
+                "month": "Aug",
+                "year": 2024,
+                "text": "Aug 2024"
+            },
+            "end_date": {
+                "month": "Jul",
+                "year": 2025,
+                "text": "Jul 2025"
+            },
+            "description": "Provide personalised tutoring to Imperial College students, focusing on individual learning needs and mathematical challenges.\n\nDesign and implement customised lesson plans to enhance understanding and mastery of complex mathematical concepts.\n\nOffer detailed explanations and support in small group sessions, fostering confidence and academic growth.\n\nContributed to improved student performance and academic success through dedicated and targeted instruction.",
+            "skills": [
+                "Teaching",
+                "Mathematics"
+            ]
+        },
+        {
+            "company_name": "Imperial College London",
+            "company_image": null,
+            "position": "Undergraduate Teaching Assistant (UTA)",
+            "start_date": {
+                "month": "Aug",
+                "year": 2024,
+                "text": "Aug 2024"
+            },
+            "end_date": {
+                "month": "Jul",
+                "year": 2025,
+                "text": "Jul 2025"
+            },
+            "description": "Provided one-on-one assistance to students, clarifying challenging concepts and offering personalised feedback on lab assignments and practical exercises.\n\nFacilitated peer learning by encouraging discussions among students during lab sessions, enhancing their understanding of complex programming concepts.\n\nDeveloped effective communication skills by explaining technical concepts clearly and concisely to diverse student groups.",
+            "skills": [
+                "Algorithms",
+                "Software Development",
+                "Software Design",
+                "Algorithm Design",
+                "Haskell",
+                "GNU Debugger",
+                "C (Programming Language)",
+                "Java",
+                "Programming",
+                "Teaching",
+                "Algorithm Development",
+                "Linux",
+                "Kotlin",
+                "Software",
+                "University Teaching"
+            ]
+        },
+        {
+            "company_name": "STEM Muslims",
+            "company_image": null,
+            "position": "Technical Lead",
+            "start_date": {
+                "month": "Jun",
+                "year": 2025,
+                "text": "Jun 2025"
+            },
+            "end_date": {
+                "text": "Present"
+            },
+            "description": "Leading weekly Leetcode club sessions, helping students beak into the tech industry, with a focus on preparation for Online Assessments and Technical Interviews.\n\nOrganising tech events with various speakers to give advice on internship and placement applications.\n\nOrganising career events to help recruiters connect with students to help them discover opportunities.",
+            "skills": [
+                "Teaching"
+            ]
+        },
+        {
+            "company_name": "STEM Muslims",
+            "company_image": null,
+            "position": "Sponsorship Manager",
+            "start_date": {
+                "month": "Jun",
+                "year": 2024,
+                "text": "Jun 2024"
+            },
+            "end_date": {
+                "month": "Jul",
+                "year": 2025,
+                "text": "Jul 2025"
+            },
+            "description": "Identified and secured sponsorships from various companies, enhancing the organisation\u2019s funding and reach.\n\n Built and maintained strong relationships with sponsors, ensuring ongoing support and collaboration.\n\nNegotiated sponsorship agreements, maximizing benefits for both the organisation and sponsors.\n\nConducted market research to identify new sponsorship opportunities and trends.",
+            "skills": []
+        },
+        {
+            "company_name": "STEM Muslims",
+            "company_image": null,
+            "position": "Treasurer",
+            "start_date": {
+                "month": "Jun",
+                "year": 2024,
+                "text": "Jun 2024"
+            },
+            "end_date": {
+                "month": "Jul",
+                "year": 2025,
+                "text": "Jul 2025"
+            },
+            "description": "Managed the organisation's budget, overseeing income, expenses, and financial planning to ensure sustainability.\n\nDeveloped and implemented budgets for various projects, ensuring efficient use of resources.\n\nMaintained accurate records of all financial transactions, providing transparency and accountability.\n\nEnsured all financial activities complied with organizational policies and legal requirements.",
+            "skills": []
+        },
+        {
+            "company_name": "STEM Muslims",
+            "company_image": null,
+            "position": "Academic Representative for Computing",
+            "start_date": {
+                "month": "Jun",
+                "year": 2023,
+                "text": "Jun 2023"
+            },
+            "end_date": {
+                "month": "Jul",
+                "year": 2024,
+                "text": "Jul 2024"
+            },
+            "description": "Helping fresher students settle into life at Imperial, providing handbooks to provide general guidance as well as an in-depth analysis of the university modules that will be covered for their first year.\nAlso responsible for hosting tutorials in order to ensure that students are comfortable with course content.",
+            "skills": [
+                "Teaching"
+            ]
+        },
+        {
+            "company_name": "Virlo",
+            "company_image": null,
+            "position": "Software Engineer Intern",
+            "start_date": {
+                "month": "Jun",
+                "year": 2025,
+                "text": "Jun 2025"
+            },
+            "end_date": {
+                "month": "Sep",
+                "year": 2025,
+                "text": "Sep 2025"
+            },
+            "description": "Languages: Python, Typescript, Javascript\nTechnology: Recharts, React, Next.js, Supabase, OpenAI, Postman, Swagger, OpenAPI, GitHub API\n\nDesigned an automated changelog generator that leverages commit data to help ensure up-to-date documentation.\nEngineered comprehensive internal API documentation with Swagger and OpenAPI.\nRevamped multiple pages to display more detailed data insights, leveraging packages such as rechart.",
+            "skills": [
+                "Software Design",
+                "Programming"
+            ]
+        },
+        {
+            "company_name": "Solidatus",
+            "company_image": null,
+            "position": "Software Engineer Intern",
+            "start_date": {
+                "month": "Mar",
+                "year": 2025,
+                "text": "Mar 2025"
+            },
+            "end_date": {
+                "month": "Sep",
+                "year": 2025,
+                "text": "Sep 2025"
+            },
+            "description": "Languages: C#, Java, Typescript, Javascript\nTechnology: Docker, MongoDB, Postman, React.js, PEG.js, IBM Datastage, PowerBI, \n\nResponsible for the full-stack development of the application for the first 2 months, with a core focus on bugs. Was tasked with a feature to merge zero-change pull requests on Solidatus models, as well as hiding them from the commit summary to reduce bloating.\n\nWorked on connector implementations in the next 4 months of this placement, being tasked with a multitude of features and bugs. Reduced job configuration time by 92% through the automation of connector setup through leveraging underlying metadata to enable the seamless integration of customer data with diverse data sources.",
+            "skills": [
+                "Software Development",
+                "Software Design",
+                "Programming"
+            ]
+        },
+        {
+            "company_name": "Medical Stealth Startup",
+            "company_image": null,
+            "position": "Software Engineer Intern",
+            "start_date": {
+                "month": "Jan",
+                "year": 2025,
+                "text": "Jan 2025"
+            },
+            "end_date": {
+                "month": "Mar",
+                "year": 2025,
+                "text": "Mar 2025"
+            },
+            "description": "Increased image generation model accuracy by 10% through the development of a gamified web application that facilitated data collection through labelling of real and AI-generated images.\nSlashed reporting time by 33% through the introduction of an interactive dashboard leveraging real-time analytics, providing insights into performance for a deep learning model for image generation.",
+            "skills": []
+        },
+        {
+            "company_name": "7Dxperts",
+            "company_image": null,
+            "position": "Software Engineer Intern",
+            "start_date": {
+                "month": "Jun",
+                "year": 2024,
+                "text": "Jun 2024"
+            },
+            "end_date": {
+                "month": "Sep",
+                "year": 2024,
+                "text": "Sep 2024"
+            },
+            "description": "Languages: Python\nTechnology: Pandas, Psycopg2, Matplotlib, Langchain, Whisper, OpenAI\n\nDevelop virtual AI assistant for use in calls and meetings, using RAG to provide context-specific output.\n\nResponsible for developing and optimising data cleaning libraries using tools such as SQLAlchemy, Pandas and Psycopg2.\n\nImplemented data rejection, notification and correction on data likely to suffer from human error.\n\nImplemented profilers to display structural and contextual information of database, spreadsheet and parquet files.",
+            "skills": [
+                "Communication",
+                "SQLAlchemy",
+                "Software Development",
+                "Software Design",
+                "psycopg2",
+                "Query Optimization",
+                "Artificial Intelligence (AI)",
+                "LangChain",
+                "Statistical Data Analysis",
+                "Code Review",
+                "SQL",
+                "Data Validation",
+                "Large Language Models (LLM)",
+                "Data Cleaning",
+                "Python (Programming Language)",
+                "Pandas (Software)",
+                "Data Science",
+                "Data Profiling",
+                "Data Analysis"
+            ]
+        }
+    ]
+}

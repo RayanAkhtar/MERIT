@@ -38,6 +38,9 @@ def main():
     study_05 = os.path.join(root_dir, "05-jd_parser_test")
     run_study(study_05, "run_study.py")
 
+    study_06 = os.path.join(root_dir, "06-adversarial_test")
+    run_study(study_06, "run_study.py")
+
 
 
     print("\n" + "="*60)

@@ -1,0 +1,51 @@
+{
+    "name": "The Time Traveler",
+    "languages": [
+        {
+            "label": "TypeScript",
+            "pct": 46.9
+        },
+        {
+            "label": "Python",
+            "pct": 31.8
+        },
+        {
+            "label": "JavaScript",
+            "pct": 8.0
+        },
+        {
+            "label": "SCSS",
+            "pct": 6.9
+        },
+        {
+            "label": "TeX",
+            "pct": 3.4
+        },
+        {
+            "label": "CSS",
+            "pct": 2.6
+        },
+        {
+            "label": "HTML",
+            "pct": 0.3
+        },
+        {
+            "label": "Dockerfile",
+            "pct": 0.0
+        },
+        {
+            "label": "Procfile",
+            "pct": 0.0
+        }
+    ],
+    "language_history": [
+        {
+            "year": "2026",
+            "TypeScript": 10000,
+            "Python": 5000
+        }
+    ],
+    "updated_at": "2026-01-01T00:00:00Z",
+    "total_stars": 8,
+    "repo_count": 12
+}

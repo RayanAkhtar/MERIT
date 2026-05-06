@@ -1,0 +1,17 @@
+{
+    "name": "The Ghost",
+    "languages": [
+        {
+            "label": "HTML",
+            "pct": 100.0
+        }
+    ],
+    "language_history": [
+        {
+            "year": "2026",
+            "HTML": 100
+        }
+    ],
+    "total_stars": 8,
+    "repo_count": 12
+}

@@ -178,12 +178,32 @@ class ScoringRegistry:
         # use the raw cv text for the most accurate count
         cv_text = candidate_data.get("raw_cv_text") or candidate_data.get("full_cv_text") or ""
         stuffing_audit = self.stuffing_detector.analyze(cv_text, target_keywords)
-        # print(f"DEBUG [Registry]: Stuffing Audit -> Penalty: {stuffing_audit['penalty']} | Flagged: {len(stuffing_audit['flagged_terms'])}")
-        for t in stuffing_audit['flagged_terms']:
-            # print(f"  - Flagged: {t['term']} ({t['count']}x)")
-            pass
+
+        # 1. Identity Consistency Audit (The Squatter Defense)
+        # 2. Identity Lock: Cross-reference CV name with Social Profile
+        # We use fuzzy matching to allow for middle names, initials, or minor typos
+        import difflib
         
-        penalty = stuffing_audit["penalty"]
+        cv_name = str(candidate_data.get("name", "")).lower().strip()
+        gh_profile = candidate_data.get("github_enriched") or candidate_data.get("github_profile") or {}
+        gh_name = str(gh_profile.get("name", "")).lower().strip()
+        
+        identity_penalty = 0.0
+        similarity = 1.0
+        
+        if gh_name and cv_name:
+            # Calculate similarity ratio (0.0 to 1.0)
+            similarity = difflib.SequenceMatcher(None, cv_name, gh_name).ratio()
+            
+            # Threshold Check: If similarity < 70%, it's likely a different person
+            # We also check for name inclusion (e.g., "Rayan Akhtar" in "Rayan S. Akhtar")
+            if similarity < 0.7 and cv_name not in gh_name and gh_name not in cv_name:
+                # Identity Hijack detected: Apply a flat 20% integrity tax
+                identity_penalty = 0.20
+                # print(f"DEBUG [Registry]: Identity Mismatch! {cv_name} vs {gh_name} (Sim: {similarity:.2f})")
+            # print(f"DEBUG [Registry]: IDENTITY MISMATCH! CV({cv_name}) vs GH({gh_name})")
+
+        penalty = stuffing_audit["penalty"] + identity_penalty
         final_adjusted_score = max(0.0, overall_score - penalty)
         
         # wrap up the metrics and shove the penalties in so recruiters can see why
@@ -233,21 +253,36 @@ class ScoringRegistry:
         # recalculate overall score based on the finalised (potentially penalised) metrics
         new_total_weighted_score = sum((m.get("score") or 0.0) * (m.get("weight") or 0.0) for m in results.values())
         final_adjusted_score = new_total_weighted_score / total_weight if total_weight > 0 else 0.0
+        
+        # APPLY GLOBAL IDENTITY PENALTY (VETO)
+        if identity_penalty > 0:
+            final_adjusted_score = max(0.0, final_adjusted_score - identity_penalty)
+            # print(f"DEBUG [Registry]: Final Adjusted Score after Identity Tax: {final_adjusted_score}")
 
         stuffing_notes = ""
+        if identity_penalty > 0:
+            stuffing_notes = "IDENTITY MISMATCH PENALTY APPLIED: CV Name does not match Social Profile. "
+        
         if stuffing_audit["is_stuffed"]:
             terms = ", ".join([f"{t['term']} ({t['count']}x)" for t in stuffing_audit["flagged_terms"][:3]])
-            stuffing_notes = f"INTEGRITY PENALTY APPLIED: Multiple metrics flagged for keyword repetition: {terms}"
+            stuffing_notes += f"INTEGRITY PENALTY APPLIED: Multiple metrics flagged for keyword repetition: {terms}"
 
         return {
             "overall_score": final_adjusted_score,
             "integrity_penalty": penalty, 
             "calculation_summary": {
-                "formula": "SUM(PenalisedMetricScore * Weight) / SUM(Weights)",
+                "formula": "SUM(PenalisedMetricScore * Weight) / SUM(Weights) - IdentityPenalty",
                 "weighted_sum": new_total_weighted_score,
                 "total_weight": total_weight,
                 "base_score": overall_score,
                 "integrity_penalty": penalty,
+                "identity_penalty": identity_penalty,
+                "identity_audit_details": {
+                    "cv_name": cv_name.title(),
+                    "profile_name": gh_name.title(),
+                    "similarity": round(similarity * 100, 1),
+                    "status": "MISMATCH" if identity_penalty > 0 else "VERIFIED"
+                } if gh_name else None,
                 "stuffing_audit": stuffing_audit["flagged_terms"],
                 "logic": f"Final Match % [CONSISTENCY_SYNC_ACTIVE] = ({new_total_weighted_score:.2f} pts) / ({total_weight:.1f} max). {stuffing_notes}"
             },

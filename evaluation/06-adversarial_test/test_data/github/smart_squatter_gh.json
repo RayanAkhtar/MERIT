@@ -1,0 +1,93 @@
+{
+    "name": "Rayan Akhtar",
+    "languages": [
+        {
+            "label": "TypeScript",
+            "pct": 46.9
+        },
+        {
+            "label": "Python",
+            "pct": 31.8
+        },
+        {
+            "label": "JavaScript",
+            "pct": 8.0
+        },
+        {
+            "label": "SCSS",
+            "pct": 6.9
+        },
+        {
+            "label": "TeX",
+            "pct": 3.4
+        },
+        {
+            "label": "CSS",
+            "pct": 2.6
+        },
+        {
+            "label": "HTML",
+            "pct": 0.3
+        },
+        {
+            "label": "Dockerfile",
+            "pct": 0.0
+        },
+        {
+            "label": "Procfile",
+            "pct": 0.0
+        }
+    ],
+    "language_history": [
+        {
+            "year": "2023",
+            "TypeScript": 0,
+            "Python": 2127,
+            "JavaScript": 0,
+            "SCSS": 0,
+            "TeX": 0,
+            "CSS": 0,
+            "HTML": 0,
+            "Dockerfile": 0,
+            "Procfile": 0
+        },
+        {
+            "year": "2024",
+            "TypeScript": 315,
+            "Python": 688,
+            "JavaScript": 1717,
+            "SCSS": 0,
+            "TeX": 0,
+            "CSS": 435,
+            "HTML": 90,
+            "Dockerfile": 0,
+            "Procfile": 0
+        },
+        {
+            "year": "2025",
+            "TypeScript": 9046,
+            "Python": 4716,
+            "JavaScript": 479,
+            "SCSS": 1012,
+            "TeX": 495,
+            "CSS": 308,
+            "HTML": 2,
+            "Dockerfile": 3,
+            "Procfile": 0
+        },
+        {
+            "year": "2026",
+            "TypeScript": 4360,
+            "Python": 1777,
+            "JavaScript": 136,
+            "SCSS": 1012,
+            "TeX": 495,
+            "CSS": 9,
+            "HTML": 0,
+            "Dockerfile": 0,
+            "Procfile": 0
+        }
+    ],
+    "total_stars": 8,
+    "repo_count": 12
+}

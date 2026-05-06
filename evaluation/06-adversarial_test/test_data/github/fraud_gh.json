@@ -1,0 +1,22 @@
+{
+    "name": "The Fraud",
+    "languages": [
+        {
+            "label": "HTML",
+            "pct": 99.8
+        },
+        {
+            "label": "TypeScript",
+            "pct": 0.1
+        }
+    ],
+    "language_history": [
+        {
+            "year": "2026",
+            "HTML": 10000,
+            "TypeScript": 1
+        }
+    ],
+    "total_stars": 8,
+    "repo_count": 12
+}
