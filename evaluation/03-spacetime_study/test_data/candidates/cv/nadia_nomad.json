@@ -1,0 +1,287 @@
+{
+    "raw_cv_text": "Nadia Nomad\nmperial College London \u2013 MEng Computing (Artificial Intelligence and Machine Learning) October 2022 \u2013 Present\n\u2022 Year 2: First Class Honours\n\u2022 Year 1: Upper Second Class Honours\n\u2022 Key Modules: Data Structures and Algorithms, Databases, Compilers, Computer Architecture, Operating Systems,\nProgramming (C, Java, Kotlin, Haskell, Scala).\nSishya \u2013 Higher Secondary Education, India May 2020 \u2013 June 2022\n\u2022 Achieved 98.5% overall.\n\u2022 Top Scores: 100% in Mathematics, 99% in Computer Science, 98% in Physics, and 94% in Chemistry.\nWORK EXPERIENCE\nSoftware Developer \u2013 Dotplot January 2023 \u2013 Present\n\u2022 Spearheaded the development of an at-home breast health monitoring system.\no Created a patented core functionality that accurately tracks user interactions on a torso rendering.\n\u2022 Designed and implemented both frontend (SwiftUI, AVFoundation, Vision, MetalKit) and backend systems.\no Transitioned from using Python\u2019s FastAPI framework on an Azure Virtual Machine to a serverless\narchitecture using Azure App Functions.\n\u2022 Innovated GPU programming and graphics rendering techniques using Metal. This impacted the product\u2019s\nperformance, such as using up less battery and preventing overheating.\nCherry Hill Tuitions November 2022 \u2013 January 2023\n\u2022 Tutored students across all age groups in the subjects of Mathematics, Science, and English.\n\u2022 Main challenge: Hold the interest of students while delivering the required content.\nPROJECTS\nTransitWatch (Swift) 2024\n\u2022 Developed an iOS app that helps London commuters avoid delays caused by public transport by providing real-\ntime updates, alternate routes and departure reminders based on their schedule in their iCloud calendar.\n\u2022 Applied the principles of Human-Centered Development, iterating the app based on user feedback to enhance\nuser experience and functionality.\nWACC Compiler (Scala) 2024\n\u2022 Engineered a compiler for a made up language in Scala, to compile into x86 AT&T syntax assembly.\n\u2022 The Parsley parser combinator library is used to convert high-level code into the internal representation (three\naddress code). Symbol tables are generated for efficient variable to register mapping and scoping.\n\u2022 Extended functionality to include class and object creation, alongside robust runtime error handling.\nPintOS 2023 \u2013 2024\n\u2022 Iterated on a simple operating system, with a focus on process scheduling, user program management, and virtual\nmemory implementation.\n\u2022 Gained deep insight into low-level OS design, concurrency for single-core processors, and programming in C.\nT.M. Muhammad Mohsin\nLondon, United Kingdom\n+44 77788 32565\nmuhammadmohsin0404@gmail.com\nx86 Emulator and Assembler 2023\n\u2022 Developed an x86 emulator and assembler in C, demonstrating proficiency in low-level programming.\n\u2022 Extended the project with a Quizlet-like application capable of querying Wikipedia, showcasing adaptability and\ninnovation in software development.\nMedical Transcription Software 2019 \u2013 2022\n\u2022 Developed an AI-powered medical transcription software capable of analyzing voice input to identify and\ndocument medical issues.\n\u2022 Applied Natural Language Processing (NLP) techniques and implemented machine learning algorithms.\nReverse Backdoor Trojan 2020\n\u2022 Engineered a sophisticated reverse backdoor trojan capable of bypassing detection by leading antivirus software,\nincluding Symantec.\n\u2022 Innovatively used GitHub Gists for covert communication with the hacker machine, effectively evading firewalls.\nAutomated Water Pump with Mobile App | School's Science Fest 2019\n\u2022 Designed and developed an app-controlled automated water pump system that uses real-time water level data to\ncontrol pump activation and deactivation.\n\u2022 Implemented manual controls and monitoring via a mobile app for ease of access.\nDigital Clinometer | ICSE Board Math project 2019\n\u2022 Created a device to measure the height and distance of any large object, by the press of a button.\n\u2022 Automates trigonometric calculations typically done by hand for traditional clinometers.\nGuiding Car for Blind People | School Fest \u2018Jubilaire\u2019 2018\n\u2022 Developed a car designed to assist blind individuals in navigating complex environments, such as a maze.\n\u2022 Built an app for this car that would communicate information about obstacles through vibrations.\nACHIEVEMENTS AND AWARDS\nModel United Nations: Placed 3rd in the MUN held at Chettinad Vidyashram School, Chennai, India. 2020\nRobotics Event: Secured 1st place in the inter-house robotics competition at the school science fest. 2019\nAthletics: Won 1st place in the Medley event at the school's annual sports meet. 2019\nIT PowerPoint Event: Awarded 1st place in the IT PowerPoint competition at the \u2018Avsar\u2019 school fest. 2018\nOlympiads: School topper in National Science and Cyber Olympiads, International Mathematics and English Olympiads.\nCOURSES\nCertified in Cybersecurity (ISC2) August 2023 \u2013 Present\nCS50\u2019s Introduction to Artificial Intelligence with Python (Harvard) January 2021\nLearn Ethical Hacking from Scratch (Udemy) January 2020\nBuild real world application using Python (Udemy) October 2018\nUsing Python for Research (Harvard) November 2017\nIntroduction to Python: Fundamentals (Microsoft) September 2017\nCS50: Introduction to Computer Science (Harvard) September 2016\nSKILLS\nProgramming Languages: Swift, Python, Java, C, Kotlin, JavaScript, Haskell, Scala.\nPlatforms: Microsoft Azure, MacOS, iOS, Windows, Linux, Android.\nSoft Skills: Curiosity, Teamwork and Leadership, Problem Solving, Initiative, Communication, Attention to Detail.",
+    "name": "Nadia Nomad",
+    "email": "nadia.nomad@example.com",
+    "phone": "+440000000000",
+    "links": {
+        "linkedin": [
+            "https://www.linkedin.com/in/nadia-nomad"
+        ],
+        "github": [
+            "https://github.com/nadianomad"
+        ],
+        "other": []
+    },
+    "skills": [
+        "azure",
+        "c",
+        "fastapi",
+        "haskell",
+        "java",
+        "javascript",
+        "kotlin",
+        "processing",
+        "python",
+        "scala",
+        "swift"
+    ],
+    "projects": [
+        {
+            "name": "TransitWatch (Swift)",
+            "subtitle": "",
+            "start_date": "2024",
+            "end_date": null,
+            "grade": null,
+            "summary": "Developed an iOS app that helps London commuters avoid delays caused by public transport by providing real- Applied the principles of Human-Centered Development, iterating the app based on user feedback to enhance"
+        },
+        {
+            "name": "user experience and functionality.",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "WACC Compiler (Scala)",
+            "subtitle": "",
+            "start_date": "2024",
+            "end_date": null,
+            "grade": null,
+            "summary": "Engineered a compiler for a made up language in Scala, to compile into x86 AT&T syntax assembly. The Parsley parser combinator library is used to convert high-level code into the internal representation (three"
+        },
+        {
+            "name": "PintOS",
+            "subtitle": "",
+            "start_date": "2023",
+            "end_date": "2024",
+            "grade": null,
+            "summary": "Iterated on a simple operating system, with a focus on process scheduling, user program management, and virtual"
+        },
+        {
+            "name": "memory implementation.",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Gained deep insight into low-level OS design, concurrency for single-core processors, and programming in C."
+        },
+        {
+            "name": "T.M. Muhammad Mohsin",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "London, United Kingdom",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "+44 77788 3",
+            "subtitle": "",
+            "start_date": "2565",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "muhammadmohsin0404@gmail.com",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "x86 Emulator and Assembler",
+            "subtitle": "",
+            "start_date": "2023",
+            "end_date": null,
+            "grade": null,
+            "summary": "Developed an x86 emulator and assembler in C, demonstrating proficiency in low-level programming. Extended the project with a Quizlet-like application capable of querying Wikipedia, showcasing adaptability and"
+        },
+        {
+            "name": "innovation in software development.",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Medical Transcription Software",
+            "subtitle": "",
+            "start_date": "2019",
+            "end_date": "2022",
+            "grade": null,
+            "summary": "Developed an AI-powered medical transcription software capable of analyzing voice input to identify and"
+        },
+        {
+            "name": "document medical issues.",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Applied Natural Language Processing (NLP) techniques and implemented machine learning algorithms."
+        },
+        {
+            "name": "Reverse Backdoor Tro",
+            "subtitle": "",
+            "start_date": "jan 2020",
+            "end_date": null,
+            "grade": null,
+            "summary": "Engineered a sophisticated reverse backdoor trojan capable of bypassing detection by leading antivirus software,"
+        },
+        {
+            "name": "including Symantec.",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Innovatively used GitHub Gists for covert communication with the hacker machine, effectively evading firewalls."
+        },
+        {
+            "name": "Automated Water Pump with Mobile App",
+            "subtitle": "School's Science Fest",
+            "start_date": "2019",
+            "end_date": null,
+            "grade": null,
+            "summary": "Designed and developed an app-controlled automated water pump system that uses real-time water level data to"
+        },
+        {
+            "name": "control pump activation and deactivation.",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Implemented manual controls and monitoring via a mobile app for ease of access."
+        },
+        {
+            "name": "Digital Clinometer",
+            "subtitle": "ICSE Board Math project",
+            "start_date": "2019",
+            "end_date": null,
+            "grade": null,
+            "summary": "Created a device to measure the height and distance of any large object, by the press of a button. Automates trigonometric calculations typically done by hand for traditional clinometers."
+        },
+        {
+            "name": "Guiding Car for Blind People",
+            "subtitle": "School Fest \u2018Jubilaire\u2019",
+            "start_date": "2018",
+            "end_date": null,
+            "grade": null,
+            "summary": "Developed a car designed to assist blind individuals in navigating complex environments, such as a maze. Built an app for this car that would communicate information about obstacles through vibrations."
+        },
+        {
+            "name": "ACHIEVEMENTS AND AWARDS",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Model United Nations",
+            "subtitle": "Placed 3rd in the MUN held at Chettinad Vidyashram School, Chennai, India.",
+            "start_date": "2020",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Robotics Event",
+            "subtitle": "Secured 1st place in the inter-house robotics competition at the school science fest.",
+            "start_date": "2019",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Athletics",
+            "subtitle": "Won 1st place in the Medley event at the school's annual sports meet.",
+            "start_date": "2019",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "IT PowerPoint Event",
+            "subtitle": "Awarded 1st place in the IT PowerPoint competition at the \u2018Avsar\u2019 school fest.",
+            "start_date": "2018",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Olympiads",
+            "subtitle": "School topper in National Science and Cyber Olympiads, International Mathematics and English Olympiads.",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "COURSES",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Introduction to Python",
+            "subtitle": "Fundamentals (Microsoft)",
+            "start_date": "September 2017",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "CS50",
+            "subtitle": "Introduction to Computer Science (Harvard)",
+            "start_date": "September 2016",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [],
+    "cv_experience": [],
+    "experience": null,
+    "education": [
+        {
+            "name": "Imperial College London \u2013",
+            "subtitle": "MEng Computing (Artificial Intelligence and Machine Learning)",
+            "start_date": "October 2022",
+            "end_date": "Present",
+            "grade": "Year 2: First Class Honours",
+            "summary": "Year 2: First Class Honours Year 1: Upper Second Class Honours Key Modules: Data Structures and Algorithms, Databases, Compilers, Computer Architecture, Operating Systems,"
+        },
+        {
+            "name": "o Transitioned from using Python\u2019s FastAPI framework on an Azure Virtual",
+            "subtitle": "Machine to a serverless",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Innovated GPU programming and graphics rendering techniques using Metal. This impacted the product\u2019s"
+        },
+        {
+            "name": "performance",
+            "subtitle": "such as using up less battery and preventing overheating.",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Tutored students across all age groups in the subjects of Mathematics, Science, and English. Main challenge: Hold the interest of students while delivering the required content."
+        }
+    ],
+    "cached": false,
+    "file_id": "0e61aebc7407c94acdf36c82ecb19fe9",
+    "cv_hash": "0e61aebc7407c94acdf36c82ecb19fe9",
+    "cv_url": ""
+}

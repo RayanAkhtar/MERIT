@@ -1,0 +1,295 @@
+{
+    "source": "linkedin",
+    "full_name": "Felix Vance",
+    "first_name": "Felix",
+    "last_name": "Vance",
+    "headline": "Final Year MEng CS @ Imperial | Ex-Amazon, DOJO",
+    "location": {
+        "linkedinText": "London Area, United Kingdom",
+        "countryCode": "GB",
+        "parsed": {
+            "text": "United Kingdom, United Kingdom",
+            "countryCode": "GB",
+            "regionCode": null,
+            "country": "UK",
+            "countryFull": "United Kingdom",
+            "state": "United Kingdom"
+        }
+    },
+    "followers": null,
+    "connections": 1808,
+    "about": "more info at: mohamedsharif.tech\n\nMy goal is to help build something millions of people use and love. Think Notion, Figma, Claude. The opposite is imagine your workplace and you\u2019re forced to use the most outdated, cumbersome, hateful app for your payroll, or ticketing or communication. That\u2019s where I want to stay as far away from",
+    "profile_photo": null,
+    "background_image": null,
+    "experience": [
+        {
+            "company_name": "Starlight AI",
+            "company_image": null,
+            "position": "AI Engineer",
+            "start_date": {
+                "month": "Mar",
+                "year": 2026,
+                "text": "Mar 2026"
+            },
+            "end_date": {
+                "text": "Present"
+            },
+            "description": "Building Sovereign AI for Government",
+            "skills": []
+        },
+        {
+            "company_name": "nymb.ly",
+            "company_image": null,
+            "position": "Co-Founder ",
+            "start_date": {
+                "month": "Aug",
+                "year": 2025,
+                "text": "Aug 2025"
+            },
+            "end_date": {
+                "text": "Present"
+            },
+            "description": "Now building Proposer - an AI Legal Mediation System. It uses a hybrid RAG + Knowledge Graph architecture to predict tribunal outcomes and facilitate fair settlements, no lawyers required. With Glass-Box reasoning to understand fully why a judge might land on a settlement, as well as rational mediation to help propose satisfiable outcomes for both landlords and tenants.\n\nPrev: Building an AI memory layer integrated with your browser so that when you use your favourite chatbot, it has automatic context from the content you've researched. (Parked)",
+            "skills": []
+        },
+        {
+            "company_name": "Imperial College London",
+            "company_image": null,
+            "position": "Undergraduate Teaching Assistant",
+            "start_date": {
+                "month": "Oct",
+                "year": 2024,
+                "text": "Oct 2024"
+            },
+            "end_date": {
+                "text": "Present"
+            },
+            "description": null,
+            "skills": []
+        },
+        {
+            "company_name": "Imperial College London",
+            "company_image": null,
+            "position": "Ambassador",
+            "start_date": {
+                "month": "Nov",
+                "year": 2022,
+                "text": "Nov 2022"
+            },
+            "end_date": {
+                "month": "Jan",
+                "year": 2025,
+                "text": "Jan 2025"
+            },
+            "description": "Engaged with prospective students from diverse backgrounds, promoting STEM fields and inspiring the new scientific brightest minds during summer schools and open days.\nConducted academic sessions as well as university support sessions in various different areas and subjects.\nPresented at educational institutions as well as honed essential skills in communication, teamwork, organization, and marketing.",
+            "skills": [
+                "Mentoring",
+                "Public Relations",
+                "Interpersonal Skills",
+                "Teamwork",
+                "Communication"
+            ]
+        },
+        {
+            "company_name": "Amazon Web Services",
+            "company_image": null,
+            "position": "Software Development Engineer Intern",
+            "start_date": {
+                "month": "Mar",
+                "year": 2025,
+                "text": "Mar 2025"
+            },
+            "end_date": {
+                "month": "Oct",
+                "year": 2025,
+                "text": "Oct 2025"
+            },
+            "description": "Worked on large-scale AI training workloads at Amazon Web Services (between S3 and Pytorch) where I optimised the AWS S3 Connector for PyTorch to speed up distributed ML training jobs.\nBenchmarked performance using Python/Boto3, analysing latency & throughput to guide design improvements.\nScaled distributed checkpointing to support workloads from 80 instances to 300+ EC2 instances (1M+ S3 requests/min).\nBuilt a \u201cshadow copy\u201d system that reduced S3 5xx errors by 90%, making training pipelines more reliable.\nAdded error-rate analysis + logging dashboards to pinpoint I/O bottlenecks in large training jobs.\nAnalysed model-training patterns and FSDP sharding behaviour from AI Labs to improve data-loading efficiency and training reliability.",
+            "skills": []
+        },
+        {
+            "company_name": "STEM Muslims Imperial College London",
+            "company_image": null,
+            "position": "Head",
+            "start_date": {
+                "month": "Jul",
+                "year": 2024,
+                "text": "Jul 2024"
+            },
+            "end_date": {
+                "month": "Aug",
+                "year": 2025,
+                "text": "Aug 2025"
+            },
+            "description": "1.3k community members\n\n>30 events\n\n> few thousand attendees\n\norganized 2 24-hour hackathons\n\n\n\n\n\n...nearly burnt out",
+            "skills": []
+        },
+        {
+            "company_name": "Dojo",
+            "company_image": null,
+            "position": "Software Engineer Intern",
+            "start_date": {
+                "month": "Jul",
+                "year": 2024,
+                "text": "Jul 2024"
+            },
+            "end_date": {
+                "month": "Sep",
+                "year": 2024,
+                "text": "Sep 2024"
+            },
+            "description": "Delivered high-impact features across Dojo\u2019s merchant ecosystem, working on C# .NET backend services, GraphQL APIs, and React frontends.\nCore contributor to Hardware Care, a new flagship revenue stream projected to generate \u00a310.5M+ per year.\nDesigned and implemented key workflows for pricing, eligibility, and back-book customer rollout.\nDemonstrated strong ownership by driving major feature delivery during a period where 60\u201370% of the team was on holiday, handling blockers, coordinating with dependencies, and ensuring deadlines were met.\nCollaborated with product, design, and leadership, culminating in presentations to senior execs including the CEO.\nGained deep experience in designing customer-facing financial products, large-scale system behaviour, and shipping high-quality software under real-world constraints.",
+            "skills": []
+        },
+        {
+            "company_name": "Cypher Coders",
+            "company_image": null,
+            "position": "Coding Club Teacher",
+            "start_date": {
+                "month": "Jan",
+                "year": 2023,
+                "text": "Jan 2023"
+            },
+            "end_date": {
+                "month": "Jan",
+                "year": 2024,
+                "text": "Jan 2024"
+            },
+            "description": "Delivered programming content to children in primary schools in different applications such as Scratch and p5.js, allowing me to gain experience in explaining concepts in a simple and concise way as well as to inspire creativity into upcoming computer science enthusiasts.",
+            "skills": [
+                "Computer Science",
+                "JavaScript",
+                "Educational Technology",
+                "Edtech"
+            ]
+        },
+        {
+            "company_name": "Jabba Engineering Ltd",
+            "company_image": null,
+            "position": "Assistant Project Manager",
+            "start_date": {
+                "month": "Jul",
+                "year": 2022,
+                "text": "Jul 2022"
+            },
+            "end_date": {
+                "month": "Oct",
+                "year": 2022,
+                "text": "Oct 2022"
+            },
+            "description": "Achieved significant contributions to successful product launches for the new NHS SystmOne and played a pivotal role in guiding 95% of our team's product developments at Vodafone.\n    Collaborated closely with the Product Owner to simplify processes and tackle complex challenges, leveraging technical skills to analyze intricate issues.\n    Led sprint planning, daily stand-ups, and retrospectives, driving iterative development by working closely with diverse teams in different companies.\n    Streamlined the development process by translating business requirements into user stories and acceptance criteria.",
+            "skills": [
+                "Backlog Management",
+                "Microsoft Azure",
+                "Leadership",
+                "Software Product Management",
+                "Agile Development"
+            ]
+        },
+        {
+            "company_name": "American Century Investments",
+            "company_image": null,
+            "position": "Intern",
+            "start_date": {
+                "month": "Jul",
+                "year": 2022,
+                "text": "Jul 2022"
+            },
+            "end_date": {
+                "month": "Jul",
+                "year": 2022,
+                "text": "Jul 2022"
+            },
+            "description": "Collaborated with a diverse team to propose a sustainable product for potential investment and conducted research on the effects of the cost of living on investment firms.\nThrough analysis of different datasets and using our skills in Python and SQL, we helped advise\ndata-driven decisions that would provide valuable insights to guide the firm's strategies.",
+            "skills": [
+                "Teamwork",
+                "Communication",
+                "Blockchain",
+                "Finance",
+                "Microsoft Excel"
+            ]
+        },
+        {
+            "company_name": "Nuffield Foundation",
+            "company_image": null,
+            "position": "Nuffield Research Placement",
+            "start_date": {
+                "month": "Mar",
+                "year": 2021,
+                "text": "Mar 2021"
+            },
+            "end_date": {
+                "month": "Sep",
+                "year": 2021,
+                "text": "Sep 2021"
+            },
+            "description": "I took part in the research placement where I analyzed the aerodynamics and performance of an aero-engine compressor. The project involves the use of an in-house axial-flow compressor performance simulation software to model, simulate a compressor blading at specific operating conditions.\nI took on the part of improving the GUI of the compressor (written in Python) and fixing errors.",
+            "skills": []
+        }
+    ],
+    "education": [
+        {
+            "school_name": "Imperial College London",
+            "degree": "Master of Engineering - MEng",
+            "start_date": {
+                "month": "Oct",
+                "year": 2022,
+                "text": "Oct 2022"
+            },
+            "end_date": {
+                "year": 2026,
+                "text": "2026"
+            },
+            "field_of_study": "Computing"
+        },
+        {
+            "school_name": "London Academy of Excellence, Tottenham",
+            "degree": "A Levels",
+            "start_date": {
+                "year": 2020,
+                "text": "2020"
+            },
+            "end_date": {
+                "year": 2022,
+                "text": "2022"
+            },
+            "field_of_study": "Maths"
+        },
+        {
+            "school_name": "Arts and Media School, Islington",
+            "degree": "GCSEs",
+            "start_date": {
+                "year": 2015,
+                "text": "2015"
+            },
+            "end_date": {
+                "year": 2020,
+                "text": "2020"
+            },
+            "field_of_study": "Maths"
+        },
+        {
+            "school_name": "Financial Edge Training",
+            "degree": null,
+            "start_date": null,
+            "end_date": {
+                "text": ""
+            },
+            "field_of_study": null
+        }
+    ],
+    "volunteering": [],
+    "projects": [],
+    "certifications": [
+        {
+            "title": "CyberStart Essentials",
+            "issuer": null,
+            "issue_date": null,
+            "credential_url": null
+        }
+    ],
+    "cached": false,
+    "profile_url": "https://www.linkedin.com/in/felix-vance",
+    "avatar_url": "",
+    "public_identifier": "felix-vance"
+}

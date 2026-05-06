@@ -1,0 +1,103 @@
+{
+    "raw_cv_text": "Kim Junior\n: mazenabosalem95@gmail.com LinkedIn: www.linkedin.com/in/mabosalem\nEducation\n2022-present University of Sheffield \u2013 MEng Mechatronics and Robotics\n\u2022 Achieved 2.1 in my second year (Upper second class)\n\u2022 Relevant coursework: Introduction to Electric and Electronic Circuits, Modelling\nAnalysis and Control, Physical Systems, Intelligent Systems, Predictive Maintenance for\na CP Lab Factory.\n\u2022 Volunteering:\n\u2022 Inclusion officer at the Egyptian Society in Sheffield\n2021-2022 University of Sheffield \u2013 Foundation degree in Science and Engineering\n\u2022 Graduated with 78%\n2019-2022 Mansoura College (Egypt)\n\u2022 A-Levels:\no Physics A, Mathematics A (P1, P2, P3, Mechanics)\n\u2022 IGCSEs:\no Math A*, Physics A*, Biology A*, Chemistry A*, English A*, Accounting A*,\nEconomics A*, ICT A*\nWorking Experience\n2024 SURE Scheme \u2013 University of Sheffield\n\u2022 6 weeks internship with the goal of developing a replica of a gas measuring device used in\nanaerobic lab applications\n\u2022 Created a STL file of one part of the device, chose the right electronic components\naccording to the device\u2019s purpose and the university budget.\n\u2022 Utilized Microsoft Excel to interpret and analyze data collected from an Arduino\n\u2022 Result is the replica is partially created; I didn\u2019t have enough time to finish it. Documented\nmy progress for next year\u2019s students.\n2024 International Student Ambassador \u2013 University of Sheffield\n\u2022 Part time job\n\u2022 Delivered a presentation about Mechatronics and Robotics at the University of Sheffield to\nprospective students and parents\n\u2022 Led campus tours and engaged with visitors during open days\n2023 Academic Mentor \u2013 University of Sheffield\n\u2022 Full time volunteering job\n\u2022 Mentored the students through giving advice on how to approach their modules, sending\nthem my modules notes, telling them what to prioritize now and what to leave for later.\n\u2022 One student was very active, and he has grown both academically and personally (still\nmentoring him till now)\nTechnical Experience from University Projects & Competitions\n2026 Tactile Sensation Prediction\n\u2022 Final year dissertation project (Still in progress)\n\u2022 Used CAN Protocol to configure one of the sensors\n\u2022 Potential of using Deep Learning to predict the tactile sensation given loads of tactile data\n2025 & 2026 MATLAB for Machine Learning\n\u2022 Two individual assignments\n\u2022 Used Data Processing techniques to prepare the data\n\u2022 Created Linear Regression, Feed Forward Neural Network, K-Nearest Neighbor, Logistic\nRegression models.\n\u2022 Achieved 62% in both assignments\n\u2022 More details are covered in the cover letter and the presentation.\n2025 Predictive Maintenance for Siemens/Festo Kit using IoT\n\u2022 MEng group project of 7\n\u2022 Gained hands-on experience working on PLCs, Conveyer Belt systems\n\u2022 Used python to configure 4 Raspberry Pi\u2019s for data collection\n\u2022 Used OPC UA as a communication protocol to transfer data between the kit devices\n\u2022 Engaged with various aspects of system engineering such as Gantt Charts, Risk Assessments\n\u2022 Achieved 2nd Place in Siemens Connected Curriculum Competition\n\u2022 Achieved 77% in this module\n2023 Physical Systems modelling using MATLAB and Simulink\n\u2022 1st year project at the University of Sheffield\n\u2022 Used MATLAB and Simulink to simulate the behavior of a quarter car suspension\n\u2022 Modelled different car road profiles to inspect their effect on the car suspension system\n\u2022 Modelled different thermals systems using Simulink\n\u2022 Achieved 77% in the Car report submission and 72% in the Thermal system one.",
+    "name": "Kim Junior",
+    "email": "kim.junior@example.com",
+    "phone": "+440000000000",
+    "links": {
+        "linkedin": [
+            "https://www.linkedin.com/in/kim-junior"
+        ],
+        "github": [
+            "https://github.com/kimjunior"
+        ],
+        "other": []
+    },
+    "skills": [
+        "foundation",
+        "matlab",
+        "processing",
+        "python"
+    ],
+    "projects": [],
+    "extracurricular": [],
+    "cv_experience": [],
+    "experience": null,
+    "education": [
+        {
+            "name": "University of Sheffield \u2013",
+            "subtitle": "MEng Mechatronics and Robotics",
+            "start_date": "2022",
+            "end_date": "present",
+            "grade": null,
+            "summary": "Achieved 2.1 in my second year (Upper second class) Relevant coursework: Introduction to Electric and Electronic Circuits, Modelling"
+        },
+        {
+            "name": "Analysis and Control",
+            "subtitle": "Physical Systems, Intelligent Systems, Predictive Maintenance for",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Volunteering: Inclusion officer at the Egyptian Society in Sheffield"
+        },
+        {
+            "name": "",
+            "subtitle": "Mansoura College (Egypt)",
+            "start_date": "2019",
+            "end_date": "2022",
+            "grade": null,
+            "summary": "A-Levels:"
+        },
+        {
+            "name": "o Physics A",
+            "subtitle": "Mathematics A (P1, P2, P3, Mechanics)",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "IGCSEs:"
+        },
+        {
+            "name": "o Math A*",
+            "subtitle": "Physics A*, Biology A*, Chemistry A*, English A*, Accounting A*,",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "International Student Ambassador \u2013 University of Sheffield",
+            "subtitle": "",
+            "start_date": "2024",
+            "end_date": null,
+            "grade": null,
+            "summary": "Part time job Delivered a presentation about Mechatronics and Robotics at the University of Sheffield to Led campus tours and engaged with visitors during open days"
+        },
+        {
+            "name": "& 2026",
+            "subtitle": "MATLAB for Machine Learning",
+            "start_date": "2025",
+            "end_date": null,
+            "grade": null,
+            "summary": "Two individual assignments Used Data Processing techniques to prepare the data Created Linear Regression, Feed Forward Neural Network, K-Nearest Neighbor, Logistic Achieved 62% in both assignments"
+        },
+        {
+            "name": "Predictive",
+            "subtitle": "Maintenance for Siemens/Festo Kit using IoT",
+            "start_date": "2025",
+            "end_date": null,
+            "grade": null,
+            "summary": "MEng group project of 7 Gained hands-on experience working on PLCs, Conveyer Belt systems Used python to configure 4 Raspberry Pi\u2019s for data collection Used OPC UA as a communication protocol to transfer data between the kit devices"
+        },
+        {
+            "name": "Physical Systems modelling using",
+            "subtitle": "MATLAB and Simulink",
+            "start_date": "2023",
+            "end_date": null,
+            "grade": null,
+            "summary": "1st year project at the University of Sheffield Used MATLAB and Simulink to simulate the behavior of a quarter car suspension Modelled different car road profiles to inspect their effect on the car suspension system"
+        }
+    ],
+    "cached": false,
+    "file_id": "d5beb3cff8939cabe31f623b4ba41a1d",
+    "cv_hash": "d5beb3cff8939cabe31f623b4ba41a1d",
+    "cv_url": ""
+}

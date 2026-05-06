@@ -1,11 +1,11 @@
-Rank,Candidate Name,Score,Total Years,Has Degree,Hits
-1,Buzz Ward,21.9,8,No,39
-2,Felix Vance,7.5,10,No,9
-3,Fiona Frost,5.0,10,No,4
-4,Sam Old,5.0,15,No,1
-5,Ghost Gary,4.5,10,No,3
-6,Alex Rivers,3.5,5,No,4
-7,Carl Corp,3.5,10,No,1
-8,Nadia Nomad,2.5,5,No,2
-9,Kim Junior,0.65,0.5,No,1
-10,Jordan Smith,0.3,1,No,0
+Candidate Name,Score,Rank
+Buzz Ward,21.9,1
+Felix Vance,7.5,2
+Fiona Frost,5.0,3
+Sam Old,5.0,4
+Ghost Gary,4.5,5
+Alex Rivers,3.5,6
+Carl Corp,3.5,7
+Nadia Nomad,2.5,8
+Kim Junior,0.65,9
+Jordan Smith,0.3,10

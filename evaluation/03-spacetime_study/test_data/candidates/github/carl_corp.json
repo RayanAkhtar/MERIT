@@ -1,0 +1,205 @@
+{
+    "source": "github",
+    "username": "carlcorp",
+    "name": "Carl Corp",
+    "bio": "Hey! This is Muhammed Nawfal. Building full-stack apps with React, Spring Boot & Flutter. Interested in Software Engineering & Cybersecurity. ",
+    "company": null,
+    "location": null,
+    "email": "carl.corp@example.com",
+    "avatar_url": "",
+    "profile_url": "https://github.com/carlcorp",
+    "created_at": "2025-01-30T18:46:13Z",
+    "followers": 0,
+    "following": 1,
+    "public_repos": 4,
+    "repositories": [
+        {
+            "name": "Project_0",
+            "description": "",
+            "language": "Java",
+            "topics": [],
+            "stars": 0,
+            "forks": 0,
+            "license": null,
+            "is_fork": false,
+            "lines": 291,
+            "updated_at": "2025-09-30T23:32:53Z",
+            "url": "https://github.com/carlcorp/repo_0"
+        },
+        {
+            "name": "Project_1",
+            "description": "",
+            "language": null,
+            "topics": [],
+            "stars": 0,
+            "forks": 0,
+            "license": null,
+            "is_fork": false,
+            "lines": 0,
+            "updated_at": "2025-09-18T02:18:49Z",
+            "url": "https://github.com/carlcorp/repo_1"
+        },
+        {
+            "name": "Project_2",
+            "description": "",
+            "language": "TypeScript",
+            "topics": [],
+            "stars": 0,
+            "forks": 0,
+            "license": null,
+            "is_fork": false,
+            "lines": 2167,
+            "updated_at": "2025-09-18T02:02:43Z",
+            "url": "https://github.com/carlcorp/repo_2"
+        },
+        {
+            "name": "Project_3",
+            "description": "",
+            "language": "TypeScript",
+            "topics": [],
+            "stars": 0,
+            "forks": 0,
+            "license": null,
+            "is_fork": false,
+            "lines": 40386,
+            "updated_at": "2025-09-18T01:59:42Z",
+            "url": "https://github.com/carlcorp/repo_3"
+        }
+    ],
+    "total_prs": 6,
+    "total_commits": 71,
+    "oss_prs": 0,
+    "external_repos": 0,
+    "repo_count": 4,
+    "total_lines": 42845,
+    "total_stars": 0,
+    "total_forks": 0,
+    "languages": [
+        {
+            "label": "TypeScript",
+            "pct": 46.7
+        },
+        {
+            "label": "Java",
+            "pct": 33.0
+        },
+        {
+            "label": "HTML",
+            "pct": 15.8
+        },
+        {
+            "label": "SCSS",
+            "pct": 3.4
+        },
+        {
+            "label": "JavaScript",
+            "pct": 0.7
+        },
+        {
+            "label": "CSS",
+            "pct": 0.2
+        },
+        {
+            "label": "Shell",
+            "pct": 0.1
+        },
+        {
+            "label": "Dockerfile",
+            "pct": 0.0
+        },
+        {
+            "label": "Batchfile",
+            "pct": 0.0
+        }
+    ],
+    "featured_projects": [
+        {
+            "name": "Featured_0",
+            "type": "Original Project",
+            "stars": 0,
+            "forks": 0,
+            "description": "",
+            "url": "https://github.com/carlcorp/featured_0",
+            "top_languages": [
+                "Java",
+                "CSS",
+                "TypeScript",
+                "JavaScript",
+                "HTML"
+            ],
+            "languages_distribution": {
+                "Java": 81.3,
+                "CSS": 7.8,
+                "TypeScript": 5.6,
+                "JavaScript": 3.8,
+                "HTML": 1.6
+            },
+            "lines": 291,
+            "commits": 0,
+            "is_fork": false
+        },
+        {
+            "name": "Featured_1",
+            "type": "Original Project",
+            "stars": 0,
+            "forks": 0,
+            "description": "",
+            "url": "https://github.com/carlcorp/featured_1",
+            "top_languages": [],
+            "languages_distribution": {},
+            "lines": 0,
+            "commits": 0,
+            "is_fork": false
+        },
+        {
+            "name": "Featured_2",
+            "type": "Original Project",
+            "stars": 0,
+            "forks": 0,
+            "description": "",
+            "url": "https://github.com/carlcorp/featured_2",
+            "top_languages": [
+                "TypeScript",
+                "JavaScript",
+                "HTML",
+                "CSS"
+            ],
+            "languages_distribution": {
+                "TypeScript": 88.2,
+                "JavaScript": 7.3,
+                "HTML": 4.3,
+                "CSS": 0.1
+            },
+            "lines": 2167,
+            "commits": 0,
+            "is_fork": false
+        }
+    ],
+    "language_history": [
+        {
+            "year": "2025",
+            "TypeScript": 19998,
+            "Java": 14159,
+            "HTML": 6761,
+            "SCSS": 1453,
+            "JavaScript": 303,
+            "CSS": 77,
+            "Shell": 59,
+            "Dockerfile": 17,
+            "Batchfile": 13
+        },
+        {
+            "year": "2026",
+            "TypeScript": 0,
+            "Java": 0,
+            "HTML": 0,
+            "SCSS": 0,
+            "JavaScript": 0,
+            "CSS": 0,
+            "Shell": 0,
+            "Dockerfile": 0,
+            "Batchfile": 0
+        }
+    ],
+    "cached": false
+}

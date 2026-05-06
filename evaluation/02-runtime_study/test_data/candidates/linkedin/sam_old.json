@@ -1,0 +1,517 @@
+{
+    "source": "linkedin",
+    "full_name": "Sam Old",
+    "first_name": "Sam",
+    "last_name": "Old",
+    "headline": "Final Yr CS @ Imperial | SWE @ Solidatus | Tech Lead @ StemMuslims",
+    "location": {
+        "linkedinText": "Birmingham, England, United Kingdom",
+        "countryCode": "GB",
+        "parsed": {
+            "text": "Birmingham, United Kingdom",
+            "countryCode": "GB",
+            "regionCode": null,
+            "country": "UK",
+            "countryFull": "United Kingdom",
+            "state": "England",
+            "city": "Birmingham"
+        }
+    },
+    "followers": null,
+    "connections": 3955,
+    "about": "Welcome to my journey in software development! As a dedicated developer, I thrive on pushing the boundaries of innovation. Whether optimising operating systems, crafting AI-powered solutions, or tackling diverse challenges, I bring a dynamic approach to the ever-evolving tech landscape.\n\nWith a keen eye for streamlining processes and a passion for leveraging cutting-edge technologies, I'm poised for new opportunities and collaborations in the dynamic world of software engineering. Let's connect and explore the endless possibilities together!",
+    "profile_photo": null,
+    "background_image": null,
+    "experience": [
+        {
+            "company_name": "Imperial College London",
+            "company_image": null,
+            "position": "Personal Programming Tutor (PPT)",
+            "start_date": {
+                "month": "Aug",
+                "year": 2025,
+                "text": "Aug 2025"
+            },
+            "end_date": {
+                "text": "Present"
+            },
+            "description": "Providing programming assistance to Imperial students in weekly tutor sessions, with a focus on Haskell, Kotlin, Java and C.\n\nDesigned and implemented customised lesson plans to enhance understanding and mastery of various programming concepts across both Object-Oriented and Functional programming.\n\nOffer detailed explanations and support in small group sessions, fostering confidence and academic growth.",
+            "skills": [
+                "Teaching"
+            ]
+        },
+        {
+            "company_name": "Imperial College London",
+            "company_image": null,
+            "position": "Personal Mathematics Tutor (PMT)",
+            "start_date": {
+                "month": "Aug",
+                "year": 2024,
+                "text": "Aug 2024"
+            },
+            "end_date": {
+                "month": "Jul",
+                "year": 2025,
+                "text": "Jul 2025"
+            },
+            "description": "Provide personalised tutoring to Imperial College students, focusing on individual learning needs and mathematical challenges.\n\nDesign and implement customised lesson plans to enhance understanding and mastery of complex mathematical concepts.\n\nOffer detailed explanations and support in small group sessions, fostering confidence and academic growth.\n\nContributed to improved student performance and academic success through dedicated and targeted instruction.",
+            "skills": [
+                "Teaching",
+                "Mathematics"
+            ]
+        },
+        {
+            "company_name": "Imperial College London",
+            "company_image": null,
+            "position": "Undergraduate Teaching Assistant (UTA)",
+            "start_date": {
+                "month": "Aug",
+                "year": 2024,
+                "text": "Aug 2024"
+            },
+            "end_date": {
+                "month": "Jul",
+                "year": 2025,
+                "text": "Jul 2025"
+            },
+            "description": "Provided one-on-one assistance to students, clarifying challenging concepts and offering personalised feedback on lab assignments and practical exercises.\n\nFacilitated peer learning by encouraging discussions among students during lab sessions, enhancing their understanding of complex programming concepts.\n\nDeveloped effective communication skills by explaining technical concepts clearly and concisely to diverse student groups.",
+            "skills": [
+                "Algorithms",
+                "Software Development",
+                "Software Design",
+                "Algorithm Design",
+                "Haskell",
+                "GNU Debugger",
+                "C (Programming Language)",
+                "Java",
+                "Programming",
+                "Teaching",
+                "Algorithm Development",
+                "Linux",
+                "Kotlin",
+                "Software",
+                "University Teaching"
+            ]
+        },
+        {
+            "company_name": "STEM Muslims",
+            "company_image": null,
+            "position": "Technical Lead",
+            "start_date": {
+                "month": "Jun",
+                "year": 2025,
+                "text": "Jun 2025"
+            },
+            "end_date": {
+                "text": "Present"
+            },
+            "description": "Leading weekly Leetcode club sessions, helping students beak into the tech industry, with a focus on preparation for Online Assessments and Technical Interviews.\n\nOrganising tech events with various speakers to give advice on internship and placement applications.\n\nOrganising career events to help recruiters connect with students to help them discover opportunities.",
+            "skills": [
+                "Teaching"
+            ]
+        },
+        {
+            "company_name": "STEM Muslims",
+            "company_image": null,
+            "position": "Sponsorship Manager",
+            "start_date": {
+                "month": "Jun",
+                "year": 2024,
+                "text": "Jun 2024"
+            },
+            "end_date": {
+                "month": "Jul",
+                "year": 2025,
+                "text": "Jul 2025"
+            },
+            "description": "Identified and secured sponsorships from various companies, enhancing the organisation\u2019s funding and reach.\n\n Built and maintained strong relationships with sponsors, ensuring ongoing support and collaboration.\n\nNegotiated sponsorship agreements, maximizing benefits for both the organisation and sponsors.\n\nConducted market research to identify new sponsorship opportunities and trends.",
+            "skills": []
+        },
+        {
+            "company_name": "STEM Muslims",
+            "company_image": null,
+            "position": "Treasurer",
+            "start_date": {
+                "month": "Jun",
+                "year": 2024,
+                "text": "Jun 2024"
+            },
+            "end_date": {
+                "month": "Jul",
+                "year": 2025,
+                "text": "Jul 2025"
+            },
+            "description": "Managed the organisation's budget, overseeing income, expenses, and financial planning to ensure sustainability.\n\nDeveloped and implemented budgets for various projects, ensuring efficient use of resources.\n\nMaintained accurate records of all financial transactions, providing transparency and accountability.\n\nEnsured all financial activities complied with organizational policies and legal requirements.",
+            "skills": []
+        },
+        {
+            "company_name": "STEM Muslims",
+            "company_image": null,
+            "position": "Academic Representative for Computing",
+            "start_date": {
+                "month": "Jun",
+                "year": 2023,
+                "text": "Jun 2023"
+            },
+            "end_date": {
+                "month": "Jul",
+                "year": 2024,
+                "text": "Jul 2024"
+            },
+            "description": "Helping fresher students settle into life at Imperial, providing handbooks to provide general guidance as well as an in-depth analysis of the university modules that will be covered for their first year.\nAlso responsible for hosting tutorials in order to ensure that students are comfortable with course content.",
+            "skills": [
+                "Teaching"
+            ]
+        },
+        {
+            "company_name": "Virlo",
+            "company_image": null,
+            "position": "Software Engineer Intern",
+            "start_date": {
+                "month": "Jun",
+                "year": 2025,
+                "text": "Jun 2025"
+            },
+            "end_date": {
+                "month": "Sep",
+                "year": 2025,
+                "text": "Sep 2025"
+            },
+            "description": "Languages: Python, Typescript, Javascript\nTechnology: Recharts, React, Next.js, Supabase, OpenAI, Postman, Swagger, OpenAPI, GitHub API\n\nDesigned an automated changelog generator that leverages commit data to help ensure up-to-date documentation.\nEngineered comprehensive internal API documentation with Swagger and OpenAPI.\nRevamped multiple pages to display more detailed data insights, leveraging packages such as rechart.",
+            "skills": [
+                "Software Design",
+                "Programming"
+            ]
+        },
+        {
+            "company_name": "Solidatus",
+            "company_image": null,
+            "position": "Software Engineer Intern",
+            "start_date": {
+                "month": "Mar",
+                "year": 2025,
+                "text": "Mar 2025"
+            },
+            "end_date": {
+                "month": "Sep",
+                "year": 2025,
+                "text": "Sep 2025"
+            },
+            "description": "Languages: C#, Java, Typescript, Javascript\nTechnology: Docker, MongoDB, Postman, React.js, PEG.js, IBM Datastage, PowerBI, \n\nResponsible for the full-stack development of the application for the first 2 months, with a core focus on bugs. Was tasked with a feature to merge zero-change pull requests on Solidatus models, as well as hiding them from the commit summary to reduce bloating.\n\nWorked on connector implementations in the next 4 months of this placement, being tasked with a multitude of features and bugs. Reduced job configuration time by 92% through the automation of connector setup through leveraging underlying metadata to enable the seamless integration of customer data with diverse data sources.",
+            "skills": [
+                "Software Development",
+                "Software Design",
+                "Programming"
+            ]
+        },
+        {
+            "company_name": "Medical Stealth Startup",
+            "company_image": null,
+            "position": "Software Engineer Intern",
+            "start_date": {
+                "month": "Jan",
+                "year": 2025,
+                "text": "Jan 2025"
+            },
+            "end_date": {
+                "month": "Mar",
+                "year": 2025,
+                "text": "Mar 2025"
+            },
+            "description": "Increased image generation model accuracy by 10% through the development of a gamified web application that facilitated data collection through labelling of real and AI-generated images.\nSlashed reporting time by 33% through the introduction of an interactive dashboard leveraging real-time analytics, providing insights into performance for a deep learning model for image generation.",
+            "skills": []
+        },
+        {
+            "company_name": "7Dxperts",
+            "company_image": null,
+            "position": "Software Engineer Intern",
+            "start_date": {
+                "month": "Jun",
+                "year": 2024,
+                "text": "Jun 2024"
+            },
+            "end_date": {
+                "month": "Sep",
+                "year": 2024,
+                "text": "Sep 2024"
+            },
+            "description": "Languages: Python\nTechnology: Pandas, Psycopg2, Matplotlib, Langchain, Whisper, OpenAI\n\nDevelop virtual AI assistant for use in calls and meetings, using RAG to provide context-specific output.\n\nResponsible for developing and optimising data cleaning libraries using tools such as SQLAlchemy, Pandas and Psycopg2.\n\nImplemented data rejection, notification and correction on data likely to suffer from human error.\n\nImplemented profilers to display structural and contextual information of database, spreadsheet and parquet files.",
+            "skills": [
+                "Communication",
+                "SQLAlchemy",
+                "Software Development",
+                "Software Design",
+                "psycopg2",
+                "Query Optimization",
+                "Artificial Intelligence (AI)",
+                "LangChain",
+                "Statistical Data Analysis",
+                "Code Review",
+                "SQL",
+                "Data Validation",
+                "Large Language Models (LLM)",
+                "Data Cleaning",
+                "Python (Programming Language)",
+                "Pandas (Software)",
+                "Data Science",
+                "Data Profiling",
+                "Data Analysis"
+            ]
+        }
+    ],
+    "education": [
+        {
+            "school_name": "Imperial College London",
+            "degree": "Master's degree",
+            "start_date": {
+                "month": "Sep",
+                "year": 2022,
+                "text": "Sep 2022"
+            },
+            "end_date": {
+                "month": "Jul",
+                "year": 2026,
+                "text": "Jul 2026"
+            },
+            "field_of_study": "Computing (Artificial Intelligence and Machine Learning)"
+        },
+        {
+            "school_name": "King Edwards VI Handsworth Grammar School For Boys",
+            "degree": "A-Levels",
+            "start_date": {
+                "month": "Sep",
+                "year": 2020,
+                "text": "Sep 2020"
+            },
+            "end_date": {
+                "month": "Jun",
+                "year": 2022,
+                "text": "Jun 2022"
+            },
+            "field_of_study": null
+        },
+        {
+            "school_name": "handsworth grammar school",
+            "degree": "Gcse",
+            "start_date": {
+                "month": "Sep",
+                "year": 2015,
+                "text": "Sep 2015"
+            },
+            "end_date": {
+                "month": "Jun",
+                "year": 2020,
+                "text": "Jun 2020"
+            },
+            "field_of_study": null
+        }
+    ],
+    "volunteering": [
+        {
+            "position": "House Captain",
+            "organisation": null,
+            "start_date": null,
+            "end_date": null,
+            "url": null
+        },
+        {
+            "position": "Charity Week Sponsorship Committee Member",
+            "organisation": null,
+            "start_date": null,
+            "end_date": null,
+            "url": null
+        }
+    ],
+    "projects": [
+        {
+            "title": "Brickpi Robotics project",
+            "start_date": "Jan 2025",
+            "end_date": "Mar 2025",
+            "duration": "N/A",
+            "description": "Performing multiple tasks with a robot, with increasing difficulty, features include:\nPlanar Camera pathfinding\nMonte Carlo Localisation via the use of a sonar sensor\nProbabilistic Motion\nWaypoint navigation"
+        },
+        {
+            "title": "Call Of Diagnosis",
+            "start_date": "Jan 2025",
+            "end_date": "Mar 2025",
+            "duration": "N/A",
+            "description": "A Medical Generative AI game to help administrators collect data to evaluate the performance of a machine learning model."
+        },
+        {
+            "title": "Cook Of Duty",
+            "start_date": "Feb 2025",
+            "end_date": "Mar 2025",
+            "duration": "N/A",
+            "description": "Creating a game using Unity as well as Imperial's ViRSE system to help students learn how to cook via a hands-on experience."
+        },
+        {
+            "title": "Computer Vision projects",
+            "start_date": "Jan 2025",
+            "end_date": "Feb 2025",
+            "duration": "N/A",
+            "description": "Generated edge maps by leveraging convolution, using sobel filters.\nPerformed image segmentation through the use of convolutional neural networks, trained a model to detect brain tumors"
+        },
+        {
+            "title": "Personal Portfolio",
+            "start_date": "Dec 2024",
+            "end_date": "Jan 2025",
+            "duration": "N/A",
+            "description": "A personal portfolio showcasing projects that demonstrate my technical skills, problem-solving abilities, and experience in web development, design, and coding. Each project reflects my ability to develop efficient solutions and apply industry best practices."
+        },
+        {
+            "title": "STEMMuslims Website",
+            "start_date": "Dec 2024",
+            "end_date": "Jan 2025",
+            "duration": "N/A",
+            "description": "Currently helping with the production of the STEMMuslims website, website address to be confirmed."
+        },
+        {
+            "title": "BOSS Data Management System",
+            "start_date": "Oct 2024",
+            "end_date": "Nov 2024",
+            "duration": "N/A",
+            "description": "Worked alongside a team of four to develop different engines for the BOSS (Building Orchestrated Systems Simply) data management system, designed for modular system composition.\n\nImplemented a symmetric hash join operator to improve the performance of query processing.\n\nDeveloped systems for partial query evaluation, spanned query parsing, data transformation as well as execution pipelines.\n\nOptimised nested expressions and significantly reduced memory overheads through spanned arguments and move-only semantics to minimise deep copying operations when handling complex data structures."
+        },
+        {
+            "title": "Neural Network and Regression Analysis",
+            "start_date": "Oct 2024",
+            "end_date": "Nov 2024",
+            "duration": "N/A",
+            "description": "Designed a neural network library from scratch using NumPy, implementing core functionality such as a linear layer class, activation functions, as well as classes for data pre-processing, training and evaluation.\n\nCreated a multi-layer network class capable of handling both forward passes as well as back propagation in order to support gradient descent.\n\nDeveloped and trained a neural network for regression tasks using the California house prices dataset through the created library.\n\nPerformed hyperparameter tuning for use in optimisation, achieving accurate predictions for house prices."
+        },
+        {
+            "title": "Decision tree model for indoor localisation",
+            "start_date": "Oct 2024",
+            "end_date": "Oct 2024",
+            "duration": "N/A",
+            "description": "Designed and implemented a decision tree algorithm in python to predict indoor locations through the analysis of WIFI signal strengths from mobile phones.\n\nEvaluated model performance through 10-fold cross-validation on clean/noisy datasets, and delivered metrics such as confusion matrices, precision, recall, f1 and accuracy.\n\nLeveraged Matplotlib to provide a visualisation to the results to ensure interpretability, also utilised the library to visualise the decision tree itself."
+        },
+        {
+            "title": "CallSage",
+            "start_date": "Jul 2024",
+            "end_date": "Sep 2024",
+            "duration": "N/A",
+            "description": "Developing CallSage, an advanced Python-based program designed to assist callers in effectively selling products by providing real-time guidance during calls.\n\nUtilises Python, LangChain, OpenAI, and Whisper to analyze conversations and deliver actionable insights.\n\nSuggests relevant case studies and selling points to strengthen the caller\u2019s pitch and enhance the effectiveness of the sales approach.\n\nEmploys LangChain and OpenAI for natural language understanding and Whisper for accurate transcription and analysis.\n\nEnhance the sales process by equipping callers with the tools and knowledge needed to improve their sales tactics and outcomes."
+        },
+        {
+            "title": "StudyChain",
+            "start_date": "Jun 2024",
+            "end_date": "Jun 2024",
+            "duration": "N/A",
+            "description": "Developed a student learning system that allows students to effectively visualise the required prerequisites in order to understand content in a vast variety of STEM subjects. \n\nDesigned a system to allow lecturers to share content for student in order to enhance their learning, with a feedback system that allows users to display their confidence in a given topic. \n\nUtilised D3 to generate Directed Acyclic Graphs on the frontend for the user to interact with, storing these objects as react components for reuse in other areas of the website."
+        },
+        {
+            "title": "WACC",
+            "start_date": "Jan 2024",
+            "end_date": "Mar 2024",
+            "duration": "N/A",
+            "description": "Developed a compiler for the WACC programming language, encompassing the implementation of a lexer, parser, and abstract syntax tree.\n\nInnovated optimisations to minimise runtime overheads and enhance time and space complexities, employing techniques such as graph colouring and dataflow analysis.\n\nDesigned a system to allow users to import other WACC files in order to help modularise code."
+        },
+        {
+            "title": "Automated Email Client with AI-Based text formatting",
+            "start_date": "Dec 2023",
+            "end_date": "Jan 2024",
+            "duration": "N/A",
+            "description": "A python-based email client that utilises AI text generation alongside strict and optional reformatting to remove the bottlenecks on manual mundane tasks such as creating sending emails as well as formatting text. Applications involve Cover Letters and Job Applications."
+        },
+        {
+            "title": "Pintos",
+            "start_date": "Oct 2023",
+            "end_date": "Dec 2023",
+            "duration": "N/A",
+            "description": "Reduced the overall runtime of programs through the implementation of a BSD scheduler. Developed a system to allow user programs to interact with the kernel via system calls. Removed restrictions on the size limitations of user programs by implementing virtual memory.Developed an alternative implementation to thread sleeping in order to eliminate busy waiting."
+        },
+        {
+            "title": "ARMV8 Assembler and Emulator",
+            "start_date": "May 2023",
+            "end_date": "Jun 2023",
+            "duration": "N/A",
+            "description": "I worked as part of a team in order to build an emulator and assembler for an ARMV8 processor, this was achieved using C. We were also able to complete an extension using the C programming language. The extension we chose for this project was a wordle solving algorithm."
+        },
+        {
+            "title": "R_RPG",
+            "start_date": "Dec 2021",
+            "end_date": "Mar 2022",
+            "duration": "N/A",
+            "description": "A turn-based role playing game with a focus on strategy and planning. This was a project that I developed for my NEA (non-examined assessment) during my time at Handsworth Grammar School."
+        }
+    ],
+    "certifications": [
+        {
+            "title": "SQL_(Advanced)",
+            "issuer": null,
+            "issue_date": null,
+            "credential_url": null
+        },
+        {
+            "title": "SQL (Intermediate)",
+            "issuer": null,
+            "issue_date": null,
+            "credential_url": null
+        },
+        {
+            "title": "Java (Basic)",
+            "issuer": null,
+            "issue_date": null,
+            "credential_url": null
+        },
+        {
+            "title": "SQL (Basic)",
+            "issuer": null,
+            "issue_date": null,
+            "credential_url": null
+        },
+        {
+            "title": "Javascript (Basic)",
+            "issuer": null,
+            "issue_date": null,
+            "credential_url": null
+        },
+        {
+            "title": "Python (Basic)",
+            "issuer": null,
+            "issue_date": null,
+            "credential_url": null
+        },
+        {
+            "title": "Problem Solving (Basic)",
+            "issuer": null,
+            "issue_date": null,
+            "credential_url": null
+        },
+        {
+            "title": "Software Engineer Intern",
+            "issuer": null,
+            "issue_date": null,
+            "credential_url": null
+        },
+        {
+            "title": "Software Engineer",
+            "issuer": null,
+            "issue_date": null,
+            "credential_url": null
+        },
+        {
+            "title": "LangChain and Vector Databases in Production",
+            "issuer": null,
+            "issue_date": null,
+            "credential_url": null
+        },
+        {
+            "title": "SQL for Data Science",
+            "issuer": null,
+            "issue_date": null,
+            "credential_url": null
+        },
+        {
+            "title": "LangChain for LLM Application Development",
+            "issuer": null,
+            "issue_date": null,
+            "credential_url": null
+        }
+    ],
+    "cached": false,
+    "profile_url": "https://www.linkedin.com/in/sam-old",
+    "avatar_url": "",
+    "public_identifier": "sam-old"
+}

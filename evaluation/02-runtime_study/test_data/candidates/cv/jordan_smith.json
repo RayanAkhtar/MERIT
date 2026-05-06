@@ -1,0 +1,125 @@
+{
+    "raw_cv_text": "Jordan Smith\nNCE\nVolunteer Maths Tutor | REDACTED REDACTED Aug 2025 - Present\nProactively created revision material before training, leveraging existing academic experience\nEnvironmental Volunteer | REDACTED Jun 2025 - Present\nLobbied local government pushing positive environmental action\nFreelance Software Developer | Privately & On Freelance Platforms Dec 2024 - Present\nFull Stack E-Commerce Dashboard & Platform | Reference Available\nCollaborated with developer & team to build real-time analytics dashboard from existing CRM\npipeline\nBuilt responsive React components with Typescript; Redux Toolkit for state management\nIncreased site performance & loading times by 55% (devtools & pagespeed score)\nIntegrated REST APIs for order tracking & customer analytics boosting order fulfillment speed\nSecure Task Management Software | Reference Available\nClient described software as \"Very well put together\", described communication as \"outstanding\"\nDeveloped full-stack application using Typescript & PostgreSQL\nEDUCATION\nREDACTED | Software Engineering BSc (with a year in industry) 2024 - Present\n1st Class overall grade in Y1\nRelevant Modules: DSA, Intro to OOP (Java), Comp Architecture\nREDACTED (CITY) 2017 - 2024\nA-Levels: Economics, Business Studies, Sociology; GCSEs: 9 GCSEs\nNOTABLE PROJECTS | FULL PORTFOLIO: WEBSITE\nOCR Neural Network for Self-Hosted Media Gallery Git Repository\nBuilt & trained an OCR neural network model; > 95% prediction accuracy\nIntegrated into media gallery with complete stack provisioning frontend, backend & database code\nTech: Python, Svelte, Typescript, Docker, Flutter, Databases\nDesktop Application for CMF Earbuds Git Repository\nReverse-engineered the Bluetooth packets using Wireshark, then implemented into application\nSolved the issue of not being able to control the \"CMF Earbuds\" on desktop platforms\nTech: Flutter & Dart, Wireshark, ADB\nEmail Alias Manager with Multi-Device Sync Git Repository\nReal-time sync across multiple devices & platforms\nImplemented conflict resolution algorithms & used containerized & redundant deployment\nTech: Flutter & Dart, SQLite, Docker & Kubernetes\nCERTIFICATIONS & TRAINING\nDeloitte Cyber Security & SWE Job Simulation (Aug 2025)\nJaguar Land Rover Professional Insights Programme (Aug 2025)\nHarvard CS50 Computer Science Course (Nov 2024)\nTECHNICAL SKILLS\nLanguages: Java, Javascript/Typescript, Flutter & Dart, Python, Bash, SQL, Nix\nTechnologies: React, Astro JS, Databases, Docker & Kubernetes, ML\nMiscellaneous: AWS & GCP, Linux/Unix Server Provisioning, CI/CD, Neovim\nInterests & Hobbies:\nHomelabbing, Cooking & Cuisine, Hiking & Rambling",
+    "name": "Jordan Smith",
+    "email": "jordan.smith@example.com",
+    "phone": "+440000000000",
+    "links": {
+        "linkedin": [
+            "https://www.linkedin.com/in/jordan-smith"
+        ],
+        "github": [
+            "https://github.com/jordansmith"
+        ],
+        "other": []
+    },
+    "skills": [
+        "astro",
+        "aws",
+        "dart",
+        "docker",
+        "flutter",
+        "java",
+        "javascript",
+        "js",
+        "kubernetes",
+        "postgresql",
+        "python",
+        "react",
+        "redux",
+        "sql",
+        "sqlite",
+        "svelte",
+        "typescript"
+    ],
+    "projects": [],
+    "extracurricular": [],
+    "cv_experience": [
+        {
+            "name": "Volunteer Maths Tutor",
+            "subtitle": "REDACTED REDACTED",
+            "start_date": "Aug 2025",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Environmental Volunteer",
+            "subtitle": "REDACTED",
+            "start_date": "Jun 2025",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Freelance Software Developer",
+            "subtitle": "Privately & On Freelance Platforms",
+            "start_date": "Dec 2024",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Full Stack E-Commerce Dashboard & Platform",
+            "subtitle": "Reference Available",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "pipeline",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Secure Task Management Software",
+            "subtitle": "Reference Available",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Volunteer Maths Tutor | REDACTED REDACTED Aug 2025 - Present\nProactively created revision material before training, leveraging existing academic experience\nEnvironmental Volunteer | REDACTED Jun 2025 - Present\nLobbied local government pushing positive environmental action\nFreelance Software Developer | Privately & On Freelance Platforms Dec 2024 - Present\nFull Stack E-Commerce Dashboard & Platform | Reference Available\nCollaborated with developer & team to build real-time analytics dashboard from existing CRM\npipeline\nBuilt responsive React components with Typescript; Redux Toolkit for state management\nIncreased site performance & loading times by 55% (devtools & pagespeed score)\nIntegrated REST APIs for order tracking & customer analytics boosting order fulfillment speed\nSecure Task Management Software | Reference Available\nClient described software as \"Very well put together\", described communication as \"outstanding\"\nDeveloped full-stack application using Typescript & PostgreSQL",
+    "education": [
+        {
+            "name": "REDACTED",
+            "subtitle": "Software Engineering BSc (with a year in industry)",
+            "start_date": "2024",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Integrated into media gallery with complete stack provisioning frontend",
+            "subtitle": "backend & database code",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Tech: Python",
+            "subtitle": "Svelte, Typescript, Docker, Flutter, Databases",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "E",
+            "subtitle": "mail Alias Manager with Multi-Device Sync Git Repository",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cached": false,
+    "file_id": "adefb1e86affdeb1e553ca117abdc647",
+    "cv_hash": "adefb1e86affdeb1e553ca117abdc647",
+    "cv_url": ""
+}

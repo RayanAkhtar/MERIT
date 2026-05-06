@@ -1,0 +1,144 @@
+{
+    "raw_cv_text": "Sam Old\nsnim-Uddin\nEducation\nImperial College London | BEng September 2024 \u2013 June 2027\n\u2022 Computing\nBrampton Manor Academy | A-Levels September 2022 \u2013 June 2024\n\u2022 Achieved A*A*A*A in Mathematics, Computer Science, Physics, Further Mathematics\n\u2022 Ranked 1/50 in Cambridge STEP for Mathematics exam in school\n\u2022 Gold in UKMT Senior Mathematical Challenge, Merit in UKMT Senior Kangaroo, Distinction in UK Oxford\nBebras Computer Science Challenge\nLangdon Academy | GCSEs September 2017 \u2013 June 2022\n\u2022 9 Grade 9s (A**) and 2 Grade 8s (A*)\nExperience\nTutoring September 2022 - Present\nPrivate and group lessons\n\u2022 Teaching 50+ students STEM subjects GCSE and A-Level leading to improvements by 3 grades\n\u2022 Clear and concise presentations to students to ensure easy understanding of content\nSmart Futures Intern July 2023 \u2013 August 2023\nEY Foundation\n\u2022 Conducted meetings with head of strategy and transformation at MET police alongside stakeholders discussing\nplans helping to improve safety in London using new system Connect\n\u2022 Project management whilst leading a large team through online platforms and maintaining the online Connect\nsystem\u2019s database\n\u2022 Developed a new way of reducing knife crime throughout London via an app with a team of 8 and gave a\ncomprehensive presentation discussing possible benefits and drawbacks of this solution\nProjects\nClient-Server Game | Python, SQLite, API requests, Flask, websockets, JSON, Pygame, GitHub\n\u2022 Developed a client-server sandbox game with dynamic lighting, complex crafting, and mob logic, enabling\ncross-machine save file access via JSON data transfer, working across various clients on a network\n\u2022 Implemented SHA-256 encryption with salting for secure user authentication, managed through Flask API and\nWebSockets, with user data stored in a centralised SQL database\nOrganised data storage and plotter | Python, SQLite, GitHub, MATLAB\n\u2022 Created a brushing behaviour tracker with synthetic data generation and export to CSV for further analysis\n\u2022 Designed a normalised relational database in SQL and performed efficient queries for structured data retrieval\n\u2022 Used MATLAB to visualise user data and demonstrate basic analytics and reporting features\nAutomated Plant Health Analysis | C, Python, Raspberry Pi 3B, RP2040 (Pico), libcamera, GitLab\n\u2022 Built a fully embedded plant monitoring system with all image processing, sensor input, and automation logic\nrunning on a Raspberry Pi 3B\n\u2022 Designed a multi-stage health scoring algorithm using edge detection, colour segmentation, texture analysis, and\ndisease detection from live plant images\n\u2022 Interfaced with humidity, light, and soil moisture sensors via I2C and RC circuits, triggering a 5V USB water pump\nthrough a relay when needed depending on moisture level\n\u2022 Packaged scores and sensor data into UDP packets (having written a custom UDP server) sent to Raspberry Pi\nPico to be rendered directly to a screen\n\u2022 Utilised Git and GitLab for version control, conducted extensive unit testing, and created detailed project\ndocumentation to track all features for team collaboration\nTechnical Skills\nLanguages: Python, C, Haskell, Kotlin, Java, SQL\nPrograms & Tools: GitHub, GitLab, Git, Google Colab, VS Code, PyCharm, IntelliJ, Flask API, JSON",
+    "name": "Sam Old",
+    "email": "sam.old@example.com",
+    "phone": "+440000000000",
+    "links": {
+        "linkedin": [
+            "https://www.linkedin.com/in/sam-old"
+        ],
+        "github": [
+            "https://github.com/samold"
+        ],
+        "other": []
+    },
+    "skills": [
+        "c",
+        "flask",
+        "foundation",
+        "haskell",
+        "java",
+        "kotlin",
+        "matlab",
+        "processing",
+        "python",
+        "sql",
+        "sqlite"
+    ],
+    "projects": [
+        {
+            "name": "Client-Server Game",
+            "subtitle": "Python, SQLite, API requests, Flask, websockets, JSON, Pygame, GitHub",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Developed a client-server sandbox game with dynamic lighting, complex crafting, and mob logic, enabling Implemented SHA-256 encryption with salting for secure user authentication, managed through Flask API and"
+        },
+        {
+            "name": "Organised data storage and plotter",
+            "subtitle": "Python, SQLite, GitHub, MATLAB",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Created a brushing behaviour tracker with synthetic data generation and export to CSV for further analysis Designed a normalised relational database in SQL and performed efficient queries for structured data retrieval"
+        },
+        {
+            "name": "Automated Plant Health Analysis",
+            "subtitle": "C, Python, Raspberry Pi 3B, RP (Pico), libcamera, GitLab",
+            "start_date": "2040",
+            "end_date": null,
+            "grade": null,
+            "summary": "Built a fully embedded plant monitoring system with all image processing, sensor input, and automation logic"
+        },
+        {
+            "name": "running on a Raspberry Pi 3B",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Designed a multi-stage health scoring algorithm using edge detection, colour segmentation, texture analysis, and"
+        },
+        {
+            "name": "disease detection from live plant images",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Interfaced with humidity, light, and soil moisture sensors via I2C and RC circuits, triggering a 5V USB water pump Packaged scores and sensor data into UDP packets (having written a custom UDP server) sent to Raspberry Pi"
+        },
+        {
+            "name": "Technical Skills",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Languages",
+            "subtitle": "Python, C, Haskell, Kotlin, Java, SQL",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Programs & Tools",
+            "subtitle": "GitHub, GitLab, Git, Google Colab, VS Code, PyCharm, IntelliJ, Flask API, JSON",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [],
+    "cv_experience": [
+        {
+            "name": "Tutoring",
+            "subtitle": "",
+            "start_date": "September 2022",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Private and group lessons",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Teaching 50+ students STEM subjects GCSE and A-Level leading to improvements by 3 grades Clear and concise presentations to students to ensure easy understanding of content"
+        },
+        {
+            "name": "EY Foundation",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Conducted meetings with head of strategy and transformation at MET police alongside stakeholders discussing Project management whilst leading a large team through online platforms and maintaining the online Connect"
+        },
+        {
+            "name": "system\u2019s database",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Developed a new way of reducing knife crime throughout London via an app with a team of 8 and gave a"
+        }
+    ],
+    "experience": "Tutoring September 2022 - Present\nPrivate and group lessons\n\u2022 Teaching 50+ students STEM subjects GCSE and A-Level leading to improvements by 3 grades\n\u2022 Clear and concise presentations to students to ensure easy understanding of content\nSmart Futures Intern July 2023 \u2013 August 2023\nEY Foundation\n\u2022 Conducted meetings with head of strategy and transformation at MET police alongside stakeholders discussing\nplans helping to improve safety in London using new system Connect\n\u2022 Project management whilst leading a large team through online platforms and maintaining the online Connect\nsystem\u2019s database\n\u2022 Developed a new way of reducing knife crime throughout London via an app with a team of 8 and gave a\ncomprehensive presentation discussing possible benefits and drawbacks of this solution",
+    "education": [
+        {
+            "name": "Imperial College London",
+            "subtitle": "BEng",
+            "start_date": "September 2024",
+            "end_date": "June 2027",
+            "grade": null,
+            "summary": "Computing"
+        }
+    ],
+    "cached": false,
+    "file_id": "61a2f76515ded3f2dfe83acc60ff1365",
+    "cv_hash": "61a2f76515ded3f2dfe83acc60ff1365",
+    "cv_url": ""
+}

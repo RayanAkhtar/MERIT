@@ -1,0 +1,118 @@
+{
+    "source": "linkedin",
+    "full_name": "Carl Corp",
+    "first_name": "Carl",
+    "last_name": "Corp",
+    "headline": "Computer Science Student @ University of Birmingham",
+    "location": {
+        "linkedinText": "Birmingham, England, United Kingdom",
+        "countryCode": "GB",
+        "parsed": {
+            "text": "Birmingham, United Kingdom",
+            "countryCode": "GB",
+            "regionCode": null,
+            "country": "UK",
+            "countryFull": "United Kingdom",
+            "state": "England",
+            "city": "Birmingham"
+        }
+    },
+    "followers": null,
+    "connections": 165,
+    "about": "Computer Science finalist at the University of Birmingham.",
+    "profile_photo": null,
+    "background_image": null,
+    "experience": [
+        {
+            "company_name": "University of Birmingham Guild of Students",
+            "company_image": null,
+            "position": "IT Assistant",
+            "start_date": {
+                "month": "Jun",
+                "year": 2025,
+                "text": "Jun 2025"
+            },
+            "end_date": {
+                "text": "Present"
+            },
+            "description": null,
+            "skills": []
+        },
+        {
+            "company_name": "The Birmingham Institute of Forest Research (BIFoR)",
+            "company_image": null,
+            "position": "Sustainability Intern",
+            "start_date": {
+                "month": "Jun",
+                "year": 2025,
+                "text": "Jun 2025"
+            },
+            "end_date": {
+                "month": "Jun",
+                "year": 2025,
+                "text": "Jun 2025"
+            },
+            "description": null,
+            "skills": []
+        },
+        {
+            "company_name": "Goldman Sachs",
+            "company_image": null,
+            "position": "Spring Intern",
+            "start_date": {
+                "month": "Apr",
+                "year": 2024,
+                "text": "Apr 2024"
+            },
+            "end_date": {
+                "month": "Apr",
+                "year": 2024,
+                "text": "Apr 2024"
+            },
+            "description": "Engineering division",
+            "skills": []
+        }
+    ],
+    "education": [
+        {
+            "school_name": "University of Birmingham",
+            "degree": "Bachelor of Science - BS",
+            "start_date": {
+                "year": 2023,
+                "text": "2023"
+            },
+            "end_date": {
+                "year": 2026,
+                "text": "2026"
+            },
+            "field_of_study": "Computer Science"
+        },
+        {
+            "school_name": "Handsworth Grammar School",
+            "degree": "A-Level",
+            "start_date": {
+                "year": 2020,
+                "text": "2020"
+            },
+            "end_date": {
+                "year": 2022,
+                "text": "2022"
+            },
+            "field_of_study": "Biology"
+        }
+    ],
+    "volunteering": [],
+    "projects": [],
+    "certifications": [
+        {
+            "title": "Technology & Data Insight",
+            "issuer": null,
+            "issue_date": null,
+            "credential_url": null
+        }
+    ],
+    "cached": false,
+    "profile_url": "https://www.linkedin.com/in/carl-corp",
+    "avatar_url": "",
+    "public_identifier": "carl-corp"
+}

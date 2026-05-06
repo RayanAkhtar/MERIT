@@ -1,0 +1,166 @@
+{
+    "raw_cv_text": "Carl Corp\nmperial College London 2022 \u2013 2026\nMEng Computing (Machine Learning)\nCurrently in Year 3: 68% (2:1)\nSKILLS\nPython, Java, C++, C, Front-End (Flutter, React, SvelteKit, Next.js), Javascript,\nCSS (Tailwind and Vanilla), Haskell, Git, Linux, GDB, Docker, CI/CD\nEXPERIENCE\nSoftware Engineering Intern 2024\nGreat Wave AI - Multi Agent RAG Startup\nDeveloped full-stack platform features with Python (Flask), SQLAlchemy, fastAPI and SvelteKit, all code\n\u2022\ndeployed to production\nImplemented instruction versioning and draft support, optimising for read performance through schema\n\u2022\ndesign\nWorked with Sales to rapidly develop POCs for potential clients including HMRC, CGI, iterating our\n\u2022\nproduct using feedback ( new features and API endpoints personally implemented )\nExpanded userbase by building custom connectors for no-code platforms like Zapier\n\u2022\nPROJECTS\nMedical GenAI with HeartFlow present\nFull Stack Group Project, Spring\nFull stack application to enhance data collection for image-generation AI\n\u2022\nCurrently working with HeartFlow and Dr Ben Glocker\n\u2022\nBloom - AI-based Language Learning App (Flutter, Firebase) - Group Project 2024\nFull Stack Group Project, Summer (78%)\nCreated a language learning app, using generative AI to tailor around use cases.\n\u2022\nTargeting languages that are lost from the children of immigrant parents (Urdu,\nArabic, etc)\nConversation feature with speech or text, with levels of difficulty and specific\n\u2022\nscenarios available, users are able to get hints on how to respond.\nReading feature generates text of variable complexity, and provides help in the\n\u2022\nform of generated context-relevant flash cards.\nWACC Compiler (Scala) - Group Project 2024\nCompilers Group Project, Spring (80%)\nImplementing full compiler for a while-based language in using CI/CD.\n\u2022\nParsing/AST generation and semantic analysis\n\u2022\nBackend (AST to x86 Assembly) (all tests passed)\n\u2022\nExtensions: Global monomorphic type inference, Peephole optimisations, REPL\n\u2022\nPintOS Operating Systems (C) - Group Project 2023\nOperating Systems Group Project, Winter (86%)\nImplemented scheduling/memory features in a barebones operating system\n\u2022\nScheduling with priority donations and Multi-Level feedback queue system\n\u2022\nSupport for concurrent system calls with process forking\n\u2022\nVirtual Memory support, using a modified second chance algorithm\n\u2022\nRaspberry Pi Assembler and Emulator - Group Project\nComputing Practical Project, Summer 2023 (100%)\nDeveloped an AArch64 emulator that would simulate the execution of a binary\n\u2022\nfile on a Raspberry Pi in C\nDeveloped an assembler that translated AArch64 source files into executable\n\u2022\nbinary",
+    "name": "Carl Corp",
+    "email": "carl.corp@example.com",
+    "phone": "+440000000000",
+    "links": {
+        "linkedin": [
+            "https://www.linkedin.com/in/carl-corp"
+        ],
+        "github": [
+            "https://github.com/carlcorp"
+        ],
+        "other": []
+    },
+    "skills": [
+        "aarch64",
+        "c",
+        "c++",
+        "docker",
+        "fastapi",
+        "firebase",
+        "flask",
+        "flutter",
+        "haskell",
+        "java",
+        "javascript",
+        "js",
+        "next.js",
+        "python",
+        "react",
+        "scala",
+        "spring"
+    ],
+    "projects": [
+        {
+            "name": "Medical GenAI with HeartFlow present",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Full Stack Group Project, Spring",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Full Stack Group Project, Summer (78%)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Arabic, etc)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "form of generated context-relevant flash cards.",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Compilers Group Project, Spring (80%)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Parsing/AST generation and semantic analysis",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Extensions",
+            "subtitle": "Global monomorphic type inference, Peephole optimisations, REPL",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Operating Systems Group Project, Winter (86%)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Computing Practical Project, Summer  (100%)",
+            "subtitle": "",
+            "start_date": "2023",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "binary",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [],
+    "cv_experience": [
+        {
+            "name": "Software Engineering Intern",
+            "subtitle": "",
+            "start_date": "2024",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "deployed to production",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "design",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Software Engineering Intern 2024\nGreat Wave AI - Multi Agent RAG Startup\nDeveloped full-stack platform features with Python (Flask), SQLAlchemy, fastAPI and SvelteKit, all code\n\u2022\ndeployed to production\nImplemented instruction versioning and draft support, optimising for read performance through schema\n\u2022\ndesign\nWorked with Sales to rapidly develop POCs for potential clients including HMRC, CGI, iterating our\n\u2022\nproduct using feedback ( new features and API endpoints personally implemented )\nExpanded userbase by building custom connectors for no-code platforms like Zapier\n\u2022",
+    "education": [
+        {
+            "name": "",
+            "subtitle": "MEng Computing (Machine Learning)",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cached": false,
+    "file_id": "36bda57618aa2ce3055074746df3b88e",
+    "cv_hash": "36bda57618aa2ce3055074746df3b88e",
+    "cv_url": ""
+}

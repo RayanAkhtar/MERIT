@@ -1,0 +1,221 @@
+{
+    "source": "linkedin",
+    "full_name": "Alex Rivers",
+    "first_name": "Alex",
+    "last_name": "Rivers",
+    "headline": "Computer Science Student at UoB | Part-time Software Engineering Intern at LyncFit | Passionate about Software Development and Cybersecurity",
+    "location": {
+        "linkedinText": "Birmingham, England, United Kingdom",
+        "countryCode": "GB",
+        "parsed": {
+            "text": "Birmingham, United Kingdom",
+            "countryCode": "GB",
+            "regionCode": null,
+            "country": "UK",
+            "countryFull": "United Kingdom",
+            "state": "England",
+            "city": "Birmingham"
+        }
+    },
+    "followers": null,
+    "connections": 680,
+    "about": "As a Computer Science student at the University of Birmingham, I am passionate about exploring the dynamic world of technology, and cybersecurity which is an essential and challenging field critical to today's industries. My enthusiasm for software development has led me to gain experience of working with frameworks such as React (JavaScript), SpringBoot (Java), and more. I have applied my skills into developing full stack applications. \ud83d\udcbb\n\nAdditionally, I have gained valuable knowledge of software engineering techniques and development processes, including Agile, and Git. Working as a part time Software Engineering intern at LyncFit, has given me an exposure into the professional software development life cycle and experience of working in a cross functional team. This practical exposure has deepened my understanding of how different technologies integrate in real-world applications.\n\nMy greatest strengths include my resilience and passion for technology, which drives me to continuously expand my knowledge. I thrive in fast-paced environments, learning quickly and adapting to new challenges. I'm driven by the desire to turn the seemingly impossible into reality. \ud83d\udcd6\n\nMy ability to deliver high-quality results, even under tight deadlines, was exemplified during the Birmingham Project, where my team and I developed a remarkable solution for TfWM within just four days. \ud83d\udca1\n\nBeyond my passion for technology, I strive to maintain a balanced lifestyle. I've been actively involved in playing cricket since my school days, and I am proud to admit that I am a Gym Rat \ud83d\ude05. I also place great importance on connecting with people. \ud83e\udd1d",
+    "profile_photo": null,
+    "background_image": null,
+    "experience": [
+        {
+            "company_name": "LyncFit",
+            "company_image": null,
+            "position": "Software Engineer Intern",
+            "start_date": {
+                "month": "Jun",
+                "year": 2025,
+                "text": "Jun 2025"
+            },
+            "end_date": {
+                "text": "Present"
+            },
+            "description": "As a Software Engineering Intern, I am responsible for the front end development and testing of a React Based project for a web application. I am also building and testing development of a Flutter based project for a mobile app. Working in an Agile environment with cross-functional team.",
+            "skills": [
+                "React.js",
+                "Flutter",
+                "Agile Application Development",
+                "Dart",
+                "Java",
+                "JavaScript",
+                "Software Development"
+            ]
+        },
+        {
+            "company_name": "UoB Tamil Society",
+            "company_image": null,
+            "position": "Treasurer",
+            "start_date": {
+                "month": "Jul",
+                "year": 2024,
+                "text": "Jul 2024"
+            },
+            "end_date": {
+                "month": "May",
+                "year": 2025,
+                "text": "May 2025"
+            },
+            "description": "As Treasurer of the UOB Tamil Society, I manage the society's expenses, maintain accurate financial records and prepare regular reports. I collaborate with committee members to allocate funds for activities and events, ensuring cost-effective budgeting. Through this position, I've significantly strengthened my skills in financial management, budgeting, and organizational leadership.",
+            "skills": [
+                "Problem Solving",
+                "Communication",
+                "Negotiation",
+                "Student Services",
+                "Financial Planning",
+                "Budgeting",
+                "Maths",
+                "Leadership"
+            ]
+        },
+        {
+            "company_name": "School of Computer Science, University of Birmingham",
+            "company_image": null,
+            "position": "Year 2 Student Rep",
+            "start_date": {
+                "month": "Oct",
+                "year": 2024,
+                "text": "Oct 2024"
+            },
+            "end_date": {
+                "month": "Apr",
+                "year": 2025,
+                "text": "Apr 2025"
+            },
+            "description": "Represented Year 2 Computer Science students by communicating feedback on lectures, modules and overall learning experience to University officials.",
+            "skills": []
+        },
+        {
+            "company_name": "Marks and Spencer",
+            "company_image": null,
+            "position": "Christmas Customer Assistant",
+            "start_date": {
+                "month": "Dec",
+                "year": 2024,
+                "text": "Dec 2024"
+            },
+            "end_date": {
+                "month": "Dec",
+                "year": 2024,
+                "text": "Dec 2024"
+            },
+            "description": "My primary responsibility was to ensure that the shelves were well-stocked to meet customer demands. Additionally, I assisted customers throughout the store, providing support as needed. Through this role, I developed skills such as teamwork by collaborating effectively with my colleagues.",
+            "skills": [
+                "Teamwork",
+                "Inventory Management",
+                "Customer Service",
+                "Work under pressure"
+            ]
+        }
+    ],
+    "education": [
+        {
+            "school_name": "University of Birmingham",
+            "degree": "Bachelor of Science - BS",
+            "start_date": {
+                "month": "Sep",
+                "year": 2023,
+                "text": "Sep 2023"
+            },
+            "end_date": {
+                "month": "Jun",
+                "year": 2026,
+                "text": "Jun 2026"
+            },
+            "field_of_study": "Computer Science"
+        },
+        {
+            "school_name": "Chettinad  Vidyashram",
+            "degree": "CBSE Senior School Certificate Examination",
+            "start_date": {
+                "month": "Mar",
+                "year": 2022,
+                "text": "Mar 2022"
+            },
+            "end_date": {
+                "month": "May",
+                "year": 2023,
+                "text": "May 2023"
+            },
+            "field_of_study": "Maths"
+        },
+        {
+            "school_name": "Chettinad  Vidyashram",
+            "degree": "CBSE Secondary School Examination",
+            "start_date": {
+                "month": "Mar",
+                "year": 2020,
+                "text": "Mar 2020"
+            },
+            "end_date": {
+                "month": "May",
+                "year": 2021,
+                "text": "May 2021"
+            },
+            "field_of_study": "Maths"
+        },
+        {
+            "school_name": "Chettinad  Vidyashram",
+            "degree": null,
+            "start_date": {
+                "month": "Jun",
+                "year": 2009,
+                "text": "Jun 2009"
+            },
+            "end_date": {
+                "month": "May",
+                "year": 2023,
+                "text": "May 2023"
+            },
+            "field_of_study": null
+        }
+    ],
+    "volunteering": [
+        {
+            "position": "Treasurer",
+            "organisation": null,
+            "start_date": null,
+            "end_date": null,
+            "url": null
+        },
+        {
+            "position": "Cultural Event Volunteer",
+            "organisation": null,
+            "start_date": null,
+            "end_date": null,
+            "url": null
+        }
+    ],
+    "projects": [
+        {
+            "title": "StudySync",
+            "start_date": "Apr 2025",
+            "end_date": "Apr 2025",
+            "duration": "N/A",
+            "description": "During the 2025 Encode AI Hackathon, me and my team LUMIO, built an AI-powered academic companion designed to help students to manage their studies and materials. Our bounty was \u201cVibe-code your own little internet of mini-apps\u201d sponsored by Tonk. My teammates were Nithin Santhosh, Raisa Anvar and Nethra Venkatakrishna.\nOur app, StudySync, is a trio of vibe-coded, student-focused mini-apps that integrate your notes, calendar, and study plans. Using the Tonk stack, we brought all 3 following mini apps, into one ecosystem \u2014 sharing a datastore and syncing seamlessly:\n\nNoteBank \u2013 A structured note-taking app with tagging.\nSemSync \u2013 A schedule manager for exams, classes, and deadlines.\nCramBot \u2013 An AI-powered assistant that turns your notes into flashcards.\n\nThe front end of the apps were built using the React framework. Our project led us to secure the First place for the bounty."
+        },
+        {
+            "title": "The Birmingham Project",
+            "start_date": "Jun 2024",
+            "end_date": "Jun 2024",
+            "duration": "N/A",
+            "description": "In June 2024, I participated in the Birmingham Project conducted by the University of Birmingham in which was supported by Conde Nast, Expedia Group, HSBC, Siemens, Transport for West Midlands and West Midlands Combined Authority. I was chosen to work with a team to formulate a construction plan aimed at making HS2's Curzon Street station an accessible public transport hub for people with disabilities, in collaboration with Transport for West Midlands.\n\nOur team, BindTheGap, considered all types of disabilities, ensuring that no one feels excluded from society. Our motto was to empower disabled individuals to live independently without needing assistance. We developed a user-friendly app for people with disabilities and designed inclusive features such as headphones and tinted glasses for individuals with cognitive impairments, separate accessible ticket barriers, elevators, moving walkways, and more.\n\nI personally created an outstanding video presentation, with the support of my teammates, that was used to present our proposal to employers. The presentation featured unique designs and transitions, effectively conveying our message in a clear and engaging manner.\n\nWe were awarded first place for our proposal and gifted with an opportunity to visit the Curzon Street Station in person, to take a look into the technological and civil aspects of its construction.\n\nCreating the presentation greatly improved my creativity, while working with an amazing team enhanced my teamwork skills. Additionally, my critical thinking and problem-solving abilities were key in developing and refining our ideas."
+        }
+    ],
+    "certifications": [
+        {
+            "title": "Networking Foundations: Networking Basics",
+            "issuer": null,
+            "issue_date": null,
+            "credential_url": null
+        }
+    ],
+    "cached": false,
+    "profile_url": "https://www.linkedin.com/in/alex-rivers",
+    "avatar_url": "",
+    "public_identifier": "alex-rivers"
+}

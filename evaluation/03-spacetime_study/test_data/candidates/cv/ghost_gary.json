@@ -1,0 +1,145 @@
+{
+    "raw_cv_text": "Ghost Gary\nrmingham Birmingham, UK\nBachelor of Science, Computer Science Sep. 2023 \u2013 (Expected) June 2026\nTechnical Skills\nProgramming languages: C, Haskell, Java, JavaScript, TypeScript, Python, SQL, HTML, CSS\nFrameworks and libraries: React, Node.js, Express, Spring Boot, JavaFX\nTools: Git, GitHub Actions, Docker, Postman, Maven\nExperience\nFreelance Developer Aug 2024 \u2013 Sep 2024\n\u2022 Collaborated with a client to design and implement an automated email workflow using the SendGrid API,\nstreamlining email campaigns, reminders, and responses to key user interactions\n\u2022 Built a custom referral system with subscription-based incentives, enabling users to easily generate and share\npersonalized referral links to boost engagement\n\u2022 Achieved a 13% increase in user engagement within two weeks, driven by a surge in new sign-ups and reactivation\nof previously inactive users\nTechnology & Data Insight Programme July 2023 \u2013 Aug 2023\nLloyds Banking Group\n\u2022 Engineered predictive models to assess customer overdraft behavior, utilising transactional data with pandas and\nscikit-learn to improve the efficiency of the data processing pipeline.\n\u2022 Successfully predicted repeat overdraft customers with an accuracy of \u02dc72% using logistic regression, enhancing the\ndecision-making process for financial risk management.\n\u2022 Created insightful data visualisations using matplotlib and presented findings to a panel of senior stakeholders\nProjects\nEducache | Spring Boot, JPA, Hibernate, React, PostgreSQL, Docker, OpenAI API Aug 2024 \u2013 Present\n\u2217 Created a full-stack student management system, implementing key features for managing student profiles,\nacademic records and performance tracking\n\u2217 Integrated OpenAI\u2019s API to automate feedback generation, allowing tutors to quickly produce detailed reports,\ncutting manual input and review time by 57%\n\u2217 Dockerised the entire application, ensuring smooth deployment across different environments\nAdvanced News Classifier | Java, Deeplearning4J, ND4J Oct 2023 \u2013 Dec 2023\n\u2217 Developed an advanced machine learning system to classify news articles into distinct categories, leveraging GloVe\nembeddings to capture semantic relationships between words\n\u2217 Employed pre-trained GloVe embeddings to represent words as dense vectors, enabling the model to understand\ncontext and meaning beyond individual words\n\u2217 Built a robust data pre-processing pipeline, incorporating essential steps like text cleaning, lemmatization, and\nstop word filtering, ensuring the data was optimally prepared for model training\n\u2217 Trained the classifier using document-level embeddings, using ND4J to optimize array manipulation, significantly\nimproving training efficiency\nVolunteering\nTutor & Academic Mentor Feb 2022 \u2013 Present\n\u2217 Deliver personalised tutoring sessions in computer science, mathematics, biology, and chemistry, using Educache\nto efficiently manage student profiles and track academic progress\n\u2217 Design and implement personalised learning plans, monitor academic progress, and provide regular, detailed\nfeedback reports to address specific learning challenges",
+    "name": "Ghost Gary",
+    "email": "ghost.gary@example.com",
+    "phone": "+440000000000",
+    "links": {
+        "linkedin": [
+            "https://www.linkedin.com/in/ghost-gary"
+        ],
+        "github": [
+            "https://github.com/ghostgary"
+        ],
+        "other": []
+    },
+    "skills": [
+        "c",
+        "docker",
+        "express",
+        "haskell",
+        "hibernate",
+        "java",
+        "javascript",
+        "js",
+        "matplotlib",
+        "node.js",
+        "pandas",
+        "postgresql",
+        "processing",
+        "python",
+        "react",
+        "scikit",
+        "scikit-learn",
+        "spring",
+        "sql",
+        "typescript"
+    ],
+    "projects": [
+        {
+            "name": "Educache",
+            "subtitle": "Spring Boot, JPA, Hibernate, React, PostgreSQL, Docker, OpenAI API",
+            "start_date": "Aug 2024",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "academic records and performance tracking",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Advanced News Classifier",
+            "subtitle": "Java, Deeplearning4J, ND4J",
+            "start_date": "Oct 2023",
+            "end_date": "Dec 2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "context and meaning beyond individual words",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "improving training efficiency",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Volunteering",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [],
+    "cv_experience": [
+        {
+            "name": "personalized referral links to boost engagement",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Achieved a 13% increase in user engagement within two weeks, driven by a surge in new sign-ups and reactivation"
+        },
+        {
+            "name": "of previously inactive users",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Lloyds Banking Group",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Engineered predictive models to assess customer overdraft behavior, utilising transactional data with pandas and Successfully predicted repeat overdraft customers with an accuracy of \u02dc72% using logistic regression, enhancing the"
+        },
+        {
+            "name": "decision-making process for financial risk management.",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Created insightful data visualisations using matplotlib and presented findings to a panel of senior stakeholders"
+        }
+    ],
+    "experience": "Freelance Developer Aug 2024 \u2013 Sep 2024\n\u2022 Collaborated with a client to design and implement an automated email workflow using the SendGrid API,\nstreamlining email campaigns, reminders, and responses to key user interactions\n\u2022 Built a custom referral system with subscription-based incentives, enabling users to easily generate and share\npersonalized referral links to boost engagement\n\u2022 Achieved a 13% increase in user engagement within two weeks, driven by a surge in new sign-ups and reactivation\nof previously inactive users\nTechnology & Data Insight Programme July 2023 \u2013 Aug 2023\nLloyds Banking Group\n\u2022 Engineered predictive models to assess customer overdraft behavior, utilising transactional data with pandas and\nscikit-learn to improve the efficiency of the data processing pipeline.\n\u2022 Successfully predicted repeat overdraft customers with an accuracy of \u02dc72% using logistic regression, enhancing the\ndecision-making process for financial risk management.\n\u2022 Created insightful data visualisations using matplotlib and presented findings to a panel of senior stakeholders",
+    "education": [
+        {
+            "name": "Bachelor of Science",
+            "subtitle": "Computer Science Sep.  \u2013 (Expected) June 2026",
+            "start_date": "2023",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Tools: Git",
+            "subtitle": "GitHub Actions, Docker, Postman, Maven",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cached": false,
+    "file_id": "76d61f944e4865440b6bf201c49783b4",
+    "cv_hash": "76d61f944e4865440b6bf201c49783b4",
+    "cv_url": ""
+}

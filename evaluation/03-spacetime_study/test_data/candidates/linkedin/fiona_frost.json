@@ -1,0 +1,130 @@
+{
+    "source": "linkedin",
+    "full_name": "Fiona Frost",
+    "first_name": "Fiona",
+    "last_name": "Frost",
+    "headline": "Final Year CS @ Imperial",
+    "location": {
+        "linkedinText": "London, England, United Kingdom",
+        "countryCode": "GB",
+        "parsed": {
+            "text": "London, United Kingdom",
+            "countryCode": "GB",
+            "regionCode": null,
+            "country": "UK",
+            "countryFull": "United Kingdom",
+            "state": "England",
+            "city": "London"
+        }
+    },
+    "followers": null,
+    "connections": 854,
+    "about": "Hi, I'm an Imperial MEng Computing student coming into my final year. I recently started working as an Integrator Intern for a 6 month placement at SGX FX. Feel free to message me if you have any graduate roles for 2026.\n\nSoftware engineering has always been fascinating to me and I couldn't ask for more.",
+    "profile_photo": null,
+    "background_image": null,
+    "experience": [
+        {
+            "company_name": "SGX FX",
+            "company_image": null,
+            "position": "Integrator Intern",
+            "start_date": {
+                "month": "Apr",
+                "year": 2025,
+                "text": "Apr 2025"
+            },
+            "end_date": {
+                "month": "Oct",
+                "year": 2025,
+                "text": "Oct 2025"
+            },
+            "description": "6 Month Placement at SGX FX' BuySide Solutions, working with FIX API",
+            "skills": []
+        },
+        {
+            "company_name": "Great Wave AI",
+            "company_image": null,
+            "position": "Software Engineer Intern",
+            "start_date": {
+                "month": "Jul",
+                "year": 2024,
+                "text": "Jul 2024"
+            },
+            "end_date": {
+                "month": "Jan",
+                "year": 2025,
+                "text": "Jan 2025"
+            },
+            "description": "6th employee for an agentic AI startup targeting government and regulated industries. Worked across all parts of the business building backend and frontend features alongside demoing to HMRC and other clients.",
+            "skills": []
+        },
+        {
+            "company_name": "Stealth Startup",
+            "company_image": null,
+            "position": "Software Engineer",
+            "start_date": {
+                "month": "May",
+                "year": 2024,
+                "text": "May 2024"
+            },
+            "end_date": {
+                "month": "Jul",
+                "year": 2024,
+                "text": "Jul 2024"
+            },
+            "description": "Led a team for a crypto startup, wrote the entire frontend, and did all API/System Architecture design",
+            "skills": []
+        },
+        {
+            "company_name": "World Duty Free - WDF",
+            "company_image": null,
+            "position": "Sales Assistant",
+            "start_date": {
+                "month": "Jul",
+                "year": 2022,
+                "text": "Jul 2022"
+            },
+            "end_date": {
+                "month": "Oct",
+                "year": 2022,
+                "text": "Oct 2022"
+            },
+            "description": null,
+            "skills": []
+        }
+    ],
+    "education": [
+        {
+            "school_name": "Imperial College London",
+            "degree": "Master of Engineering - MEng",
+            "start_date": {
+                "year": 2022,
+                "text": "2022"
+            },
+            "end_date": {
+                "year": 2026,
+                "text": "2026"
+            },
+            "field_of_study": " Computing"
+        },
+        {
+            "school_name": "BURNHAM GRAMMAR SCHOOL",
+            "degree": "A Levels",
+            "start_date": {
+                "year": 2014,
+                "text": "2014"
+            },
+            "end_date": {
+                "year": 2021,
+                "text": "2021"
+            },
+            "field_of_study": "Further Mathematics"
+        }
+    ],
+    "volunteering": [],
+    "projects": [],
+    "certifications": [],
+    "cached": false,
+    "profile_url": "https://www.linkedin.com/in/fiona-frost",
+    "avatar_url": "",
+    "public_identifier": "fiona-frost"
+}

@@ -1,0 +1,185 @@
+{
+    "source": "linkedin",
+    "full_name": "Buzz Ward",
+    "first_name": "Buzz",
+    "last_name": "Ward",
+    "headline": "AI & Data Consultant @ Kubrick | BEng Mechanical Engineering | University of Manchester",
+    "location": {
+        "linkedinText": "United Kingdom",
+        "countryCode": "GB",
+        "parsed": {
+            "text": "United Kingdom, United Kingdom",
+            "countryCode": "GB",
+            "regionCode": null,
+            "country": "UK",
+            "countryFull": "United Kingdom",
+            "state": "United Kingdom"
+        }
+    },
+    "followers": null,
+    "connections": 2497,
+    "about": "AI & Data Consultant @ Kubrick, as part of their Generative AI and Advanced Analytics stream.\n\nI'm always open to connecting with new people \u2013 feel free to reach out here on LinkedIn!",
+    "profile_photo": null,
+    "background_image": null,
+    "experience": [
+        {
+            "company_name": "Kubrick Group",
+            "company_image": null,
+            "position": "AI & Data Consultant",
+            "start_date": {
+                "month": "Feb",
+                "year": 2026,
+                "text": "Feb 2026"
+            },
+            "end_date": {
+                "text": "Present"
+            },
+            "description": "Generative AI & Advanced Analytics",
+            "skills": []
+        },
+        {
+            "company_name": "Kestrl",
+            "company_image": null,
+            "position": "Intern Developer",
+            "start_date": {
+                "month": "Oct",
+                "year": 2025,
+                "text": "Oct 2025"
+            },
+            "end_date": {
+                "month": "Dec",
+                "year": 2025,
+                "text": "Dec 2025"
+            },
+            "description": null,
+            "skills": []
+        },
+        {
+            "company_name": "Avanade",
+            "company_image": null,
+            "position": "Technology Programme",
+            "start_date": {
+                "month": "May",
+                "year": 2021,
+                "text": "May 2021"
+            },
+            "end_date": {
+                "month": "May",
+                "year": 2021,
+                "text": "May 2021"
+            },
+            "description": null,
+            "skills": []
+        },
+        {
+            "company_name": "Sky",
+            "company_image": null,
+            "position": "Project Management",
+            "start_date": {
+                "month": "Feb",
+                "year": 2019,
+                "text": "Feb 2019"
+            },
+            "end_date": {
+                "month": "Feb",
+                "year": 2019,
+                "text": "Feb 2019"
+            },
+            "description": null,
+            "skills": []
+        }
+    ],
+    "education": [
+        {
+            "school_name": "The University of Manchester",
+            "degree": "BEng Mechanical Engineering",
+            "start_date": {
+                "month": "Sep",
+                "year": 2022,
+                "text": "Sep 2022"
+            },
+            "end_date": {
+                "month": "Jul",
+                "year": 2025,
+                "text": "Jul 2025"
+            },
+            "field_of_study": null
+        },
+        {
+            "school_name": "Mount Grace School",
+            "degree": "A' Levels",
+            "start_date": {
+                "year": 2019,
+                "text": "2019"
+            },
+            "end_date": {
+                "year": 2021,
+                "text": "2021"
+            },
+            "field_of_study": null
+        },
+        {
+            "school_name": "Mount Grace School",
+            "degree": "GCSE's",
+            "start_date": {
+                "year": 2014,
+                "text": "2014"
+            },
+            "end_date": {
+                "year": 2019,
+                "text": "2019"
+            },
+            "field_of_study": null
+        }
+    ],
+    "volunteering": [
+        {
+            "position": "Freshers Committee Member and Events Lead",
+            "organisation": null,
+            "start_date": null,
+            "end_date": null,
+            "url": null
+        }
+    ],
+    "projects": [
+        {
+            "title": "Leveraging LLMs & Prompt Engineering for EV Battery Cost Estimation",
+            "start_date": "Sep 2024",
+            "end_date": "May 2025",
+            "duration": "N/A",
+            "description": "Conducted strategic research into applying Large Language Models (LLMs) and advanced prompt engineering techniques to enhance Electric Vehicle (EV) battery cost estimation. This involved synthesising literature, developing data modelling approaches, and implementing rigorous prompt engineering strategies using OpenAI's ChatGPT models (GPT-4.5, GPT-4o, GPT-o3). Through practical experimentation and a structured case study, I achieved LLM estimation accuracy to within \u00b11% of industry benchmarks and evaluated their performance regarding feasibility, stakeholder value, and workflow integration, culminating in actionable recommendations. This project achieved a First-Class."
+        },
+        {
+            "title": "BTC Price Prediction Machine Learning Model",
+            "start_date": "Aug 2024",
+            "end_date": "Aug 2024",
+            "duration": "N/A",
+            "description": "Developed a machine learning project to predict Bitcoin price movements. This involved scraping over 3000 Bitcoin data points and applying a transformer-based sentiment analysis model to generate sentiment scores from textual data. I then manipulated custom Pandas DataFrames to integrate financial and sentiment data, preparing a robust dataset for model training. The project included training and testing both RandomForest and XGBoost models using a backtesting methodology, and evaluating performance with precision scoring, achieving over 50% accuracy in price movement prediction."
+        },
+        {
+            "title": "CNC Lathe Design Project",
+            "start_date": "Sep 2023",
+            "end_date": "Dec 2023",
+            "duration": "N/A",
+            "description": "Led a 5-person team in the design and optimisation of a 2-axis tabletop CNC lathe for educational demonstrations and small-scale prototyping. Demonstrated strong analytical skills in meeting stringent project specifications and enhanced CAD proficiencies by developing a comprehensive 3D model in SolidWorks. Accelerated design calculations by 50% using a MATLAB automation script to simulate and optimise spindle shaft deflection for machining precision. Successfully managed development timelines, delegated tasks, and presented findings to stakeholders, achieving a First-Class grade."
+        }
+    ],
+    "certifications": [
+        {
+            "title": "Technology Consulting",
+            "issuer": null,
+            "issue_date": null,
+            "credential_url": null
+        },
+        {
+            "title": "Python for Data Science, AI and Development",
+            "issuer": null,
+            "issue_date": null,
+            "credential_url": null
+        }
+    ],
+    "cached": false,
+    "profile_url": "https://www.linkedin.com/in/buzz-ward",
+    "avatar_url": "",
+    "public_identifier": "buzz-ward"
+}

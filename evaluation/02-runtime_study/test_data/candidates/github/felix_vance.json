@@ -1,0 +1,329 @@
+{
+    "source": "github",
+    "username": "felixvance",
+    "name": "Felix Vance",
+    "bio": "This is my github which mirrors some of my repo's from my private git server\r\n\r\nPlease see my **private git server** for all of my contributions and repos",
+    "company": null,
+    "location": null,
+    "email": "felix.vance@example.com",
+    "avatar_url": "",
+    "profile_url": "https://github.com/felixvance",
+    "created_at": "2025-08-04T17:47:33Z",
+    "followers": 1,
+    "following": 1,
+    "public_repos": 11,
+    "repositories": [
+        {
+            "name": "Project_0",
+            "description": "",
+            "language": null,
+            "topics": [],
+            "stars": 1,
+            "forks": 0,
+            "license": null,
+            "is_fork": false,
+            "lines": 0,
+            "updated_at": "2026-03-20T16:51:52Z",
+            "url": "https://github.com/felixvance/repo_0"
+        },
+        {
+            "name": "Project_1",
+            "description": "",
+            "language": "C++",
+            "topics": [],
+            "stars": 3,
+            "forks": 0,
+            "license": null,
+            "is_fork": false,
+            "lines": 860,
+            "updated_at": "2026-02-12T12:56:26Z",
+            "url": "https://github.com/felixvance/repo_1"
+        },
+        {
+            "name": "Project_2",
+            "description": "",
+            "language": "Dockerfile",
+            "topics": [],
+            "stars": 1,
+            "forks": 0,
+            "license": null,
+            "is_fork": false,
+            "lines": 10,
+            "updated_at": "2025-10-31T07:03:18Z",
+            "url": "https://github.com/felixvance/repo_2"
+        },
+        {
+            "name": "Project_3",
+            "description": "",
+            "language": "TypeScript",
+            "topics": [],
+            "stars": 1,
+            "forks": 0,
+            "license": "GNU Affero General Public License v3.0",
+            "is_fork": false,
+            "lines": 110811,
+            "updated_at": "2025-10-07T00:40:58Z",
+            "url": "https://github.com/felixvance/repo_3"
+        },
+        {
+            "name": "Project_4",
+            "description": "",
+            "language": "Nix",
+            "topics": [],
+            "stars": 1,
+            "forks": 0,
+            "license": null,
+            "is_fork": false,
+            "lines": 115,
+            "updated_at": "2025-09-18T06:36:31Z",
+            "url": "https://github.com/felixvance/repo_4"
+        },
+        {
+            "name": "Project_5",
+            "description": "",
+            "language": "TypeScript",
+            "topics": [],
+            "stars": 1,
+            "forks": 0,
+            "license": "GNU Affero General Public License v3.0",
+            "is_fork": false,
+            "lines": 107165,
+            "updated_at": "2025-09-16T18:23:40Z",
+            "url": "https://github.com/felixvance/repo_5"
+        },
+        {
+            "name": "Project_6",
+            "description": "",
+            "language": null,
+            "topics": [],
+            "stars": 1,
+            "forks": 0,
+            "license": null,
+            "is_fork": false,
+            "lines": 0,
+            "updated_at": "2025-09-16T18:23:39Z",
+            "url": "https://github.com/felixvance/repo_6"
+        },
+        {
+            "name": "Project_7",
+            "description": "",
+            "language": "Shell",
+            "topics": [],
+            "stars": 1,
+            "forks": 0,
+            "license": null,
+            "is_fork": false,
+            "lines": 10,
+            "updated_at": "2025-09-16T18:23:34Z",
+            "url": "https://github.com/felixvance/repo_7"
+        },
+        {
+            "name": "Project_8",
+            "description": "",
+            "language": "Shell",
+            "topics": [],
+            "stars": 1,
+            "forks": 0,
+            "license": null,
+            "is_fork": false,
+            "lines": 156,
+            "updated_at": "2025-09-16T18:23:32Z",
+            "url": "https://github.com/felixvance/repo_8"
+        },
+        {
+            "name": "Project_9",
+            "description": "",
+            "language": "Shell",
+            "topics": [],
+            "stars": 1,
+            "forks": 0,
+            "license": null,
+            "is_fork": false,
+            "lines": 9,
+            "updated_at": "2025-09-16T18:23:31Z",
+            "url": "https://github.com/felixvance/repo_9"
+        },
+        {
+            "name": "Project_10",
+            "description": "",
+            "language": null,
+            "topics": [],
+            "stars": 1,
+            "forks": 0,
+            "license": null,
+            "is_fork": false,
+            "lines": 0,
+            "updated_at": "2025-09-16T18:23:26Z",
+            "url": "https://github.com/felixvance/repo_10"
+        }
+    ],
+    "total_prs": 1,
+    "total_commits": 30,
+    "oss_prs": 1,
+    "external_repos": 1,
+    "repo_count": 11,
+    "total_lines": 219139,
+    "total_stars": 13,
+    "total_forks": 0,
+    "languages": [
+        {
+            "label": "TypeScript",
+            "pct": 43.7
+        },
+        {
+            "label": "Dart",
+            "pct": 35.5
+        },
+        {
+            "label": "Svelte",
+            "pct": 14.9
+        },
+        {
+            "label": "Python",
+            "pct": 1.5
+        },
+        {
+            "label": "Kotlin",
+            "pct": 1.3
+        },
+        {
+            "label": "Swift",
+            "pct": 1.1
+        },
+        {
+            "label": "JavaScript",
+            "pct": 0.4
+        },
+        {
+            "label": "Shell",
+            "pct": 0.3
+        },
+        {
+            "label": "C++",
+            "pct": 0.3
+        },
+        {
+            "label": "Mustache",
+            "pct": 0.2
+        },
+        {
+            "label": "Dockerfile",
+            "pct": 0.2
+        },
+        {
+            "label": "CMake",
+            "pct": 0.1
+        }
+    ],
+    "featured_projects": [
+        {
+            "name": "Featured_0",
+            "type": "Original Project",
+            "stars": 3,
+            "forks": 0,
+            "description": "",
+            "url": "https://github.com/felixvance/featured_0",
+            "top_languages": [
+                "C++",
+                "Dart",
+                "CMake",
+                "Swift",
+                "C"
+            ],
+            "languages_distribution": {
+                "C++": 33.5,
+                "Dart": 31.1,
+                "CMake": 28.6,
+                "Swift": 2.6,
+                "C": 2.1,
+                "HTML": 1.8,
+                "Kotlin": 0.2,
+                "Objective-C": 0.1
+            },
+            "lines": 860,
+            "commits": 0,
+            "is_fork": false
+        },
+        {
+            "name": "Featured_1",
+            "type": "Original Project",
+            "stars": 1,
+            "forks": 0,
+            "description": "",
+            "url": "https://github.com/felixvance/featured_1",
+            "top_languages": [],
+            "languages_distribution": {},
+            "lines": 0,
+            "commits": 0,
+            "is_fork": false
+        },
+        {
+            "name": "Featured_2",
+            "type": "Original Project",
+            "stars": 1,
+            "forks": 0,
+            "description": "",
+            "url": "https://github.com/felixvance/featured_2",
+            "top_languages": [
+                "Dockerfile"
+            ],
+            "languages_distribution": {
+                "Dockerfile": 100.0
+            },
+            "lines": 10,
+            "commits": 0,
+            "is_fork": false
+        }
+    ],
+    "language_history": [
+        {
+            "year": "2025",
+            "TypeScript": 95751,
+            "Dart": 77688,
+            "Svelte": 32740,
+            "Python": 3304,
+            "Kotlin": 2853,
+            "Swift": 2499,
+            "JavaScript": 911,
+            "Shell": 672,
+            "C++": 416,
+            "Mustache": 475,
+            "Dockerfile": 341,
+            "CMake": 125,
+            "Ruby": 167,
+            "Makefile": 160,
+            "HTML": 144,
+            "HCL": 130,
+            "Nix": 115,
+            "CSS": 97,
+            "Java": 85,
+            "C": 24,
+            "Objective-C": 1
+        },
+        {
+            "year": "2026",
+            "TypeScript": 0,
+            "Dart": 133,
+            "Svelte": 0,
+            "Python": 0,
+            "Kotlin": 0,
+            "Swift": 11,
+            "JavaScript": 0,
+            "Shell": 0,
+            "C++": 144,
+            "Mustache": 0,
+            "Dockerfile": 0,
+            "CMake": 123,
+            "Ruby": 0,
+            "Makefile": 0,
+            "HTML": 7,
+            "HCL": 0,
+            "Nix": 0,
+            "CSS": 0,
+            "Java": 0,
+            "C": 8,
+            "Objective-C": 0
+        }
+    ],
+    "cached": false
+}

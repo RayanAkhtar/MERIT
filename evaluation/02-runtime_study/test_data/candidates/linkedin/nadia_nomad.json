@@ -1,0 +1,129 @@
+{
+    "source": "linkedin",
+    "full_name": "Nadia Nomad",
+    "first_name": "Nadia",
+    "last_name": "Nomad",
+    "headline": "Computing @ Imperial College London | Aspiring Software Engineer | Private Tutor",
+    "location": {
+        "linkedinText": "Newham, England, United Kingdom",
+        "countryCode": "GB",
+        "parsed": {
+            "text": "London Borough of Newham, United Kingdom",
+            "countryCode": "GB",
+            "regionCode": null,
+            "country": "UK",
+            "countryFull": "United Kingdom",
+            "state": "London Borough of Newham"
+        }
+    },
+    "followers": null,
+    "connections": 547,
+    "about": null,
+    "profile_photo": null,
+    "background_image": null,
+    "experience": [
+        {
+            "company_name": "Private Tutor",
+            "company_image": null,
+            "position": "Tutor",
+            "start_date": {
+                "month": "Sep",
+                "year": 2020,
+                "text": "Sep 2020"
+            },
+            "end_date": {
+                "text": "Present"
+            },
+            "description": "Do a wide range of tutoring (one-to-one as well as group sessions where both can either be online or in person). Tailor lesson structure speficially to the needs of students to ensure students are able to understand the content and apply it. Teaching at both GCSE and A-Level in Maths, Further Maths, Computer Science.",
+            "skills": []
+        },
+        {
+            "company_name": "Imperial College London",
+            "company_image": null,
+            "position": "Imperial Hackathon",
+            "start_date": {
+                "month": "Jun",
+                "year": 2024,
+                "text": "Jun 2024"
+            },
+            "end_date": {
+                "month": "Jun",
+                "year": 2024,
+                "text": "Jun 2024"
+            },
+            "description": "Worked with charities and other entrepeneurs to develop a system which monitors oral hygience through a toothbrush and designed a prototype. All data can be analysed and feedback returned to user so that they are able to get a visual representation of how well they maintained their teeth and then improve upon it.",
+            "skills": []
+        },
+        {
+            "company_name": "EY Foundation",
+            "company_image": null,
+            "position": "Data Analyst",
+            "start_date": {
+                "month": "Jun",
+                "year": 2023,
+                "text": "Jun 2023"
+            },
+            "end_date": {
+                "month": "Jul",
+                "year": 2023,
+                "text": "Jul 2023"
+            },
+            "description": null,
+            "skills": []
+        }
+    ],
+    "education": [
+        {
+            "school_name": "Imperial College London",
+            "degree": "Bachelor of Engineering - BEng",
+            "start_date": {
+                "month": "Sep",
+                "year": 2024,
+                "text": "Sep 2024"
+            },
+            "end_date": {
+                "month": "Jun",
+                "year": 2027,
+                "text": "Jun 2027"
+            },
+            "field_of_study": "Computer Science"
+        },
+        {
+            "school_name": "Brampton Manor Academy",
+            "degree": "A levels",
+            "start_date": {
+                "month": "Sep",
+                "year": 2022,
+                "text": "Sep 2022"
+            },
+            "end_date": {
+                "month": "Jun",
+                "year": 2024,
+                "text": "Jun 2024"
+            },
+            "field_of_study": null
+        },
+        {
+            "school_name": "Langdon Academy",
+            "degree": "GCSE",
+            "start_date": {
+                "month": "Sep",
+                "year": 2017,
+                "text": "Sep 2017"
+            },
+            "end_date": {
+                "month": "Jun",
+                "year": 2022,
+                "text": "Jun 2022"
+            },
+            "field_of_study": null
+        }
+    ],
+    "volunteering": [],
+    "projects": [],
+    "certifications": [],
+    "cached": false,
+    "profile_url": "https://www.linkedin.com/in/nadia-nomad",
+    "avatar_url": "",
+    "public_identifier": "nadia-nomad"
+}

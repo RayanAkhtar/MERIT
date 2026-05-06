@@ -1,0 +1,73 @@
+{
+    "raw_cv_text": "Fiona Frost\nl | github.com/Muhammed-Nawfal |Birmingham, UK\nEDUCATION\nUniversity of Birmingham Birmingham, UK\nBSc Computer Science Graduating June 2026\nGrade: Predicted First-class (1:1)\nRelevant modules \u2013 Software Engineering and Professional Practice, Agile Team Project, Full Stack Application Development,\nOperating Systems and Systems Programming, Data Structures and Algorithms, Artificial Intelligence.\nChettinad Vidyashram Chennai, India\nClass 12 Senior School Certificate (CBSE - Science Stream) May 2023\nGrade: 95.2% (A*A*A*)\nWORK EXPERIENCE\nLyncFit Remote (UK)\nSoftware Engineering Intern (Part-time) June 2025 - Present\n\u2022 Built core front-end features of the React (JavaScript) based web app for run-clubs to manage events and members efficiently.\n\u2022 Designed reusable UI components for chat, forum, and broadcast pages, improving consistency and reducing duplicate code.\n\u2022 Developed ~25% of the mobile app\u2019s front-end using Flutter (Dart), including Rewards and Profile sections, for general users.\n\u2022 Integrated frontend with Spring Boot APIs and managed state, background data refreshing and light caching using services\nand Provider package, ensuring the UI reflects live backend updates.\n\u2022 Collaborated with a cross-functional team in an agile environment, contributing to decision-making processes on key UI\nchanges and fixing bugs to enhance user experience.\nMarks & Spencer Food Birmingham, UK\nChristmas Customer Assistant December 2024\n\u2022 Replenished 200+ products per shift overnight, ensuring stock availability for morning opening to improve sales.\n\u2022 Worked with a team of 15+ to check expiries for product freshness, demonstrating reliability and efficiency under pressure.\nPROJECTS\nAI Gym Coach \u2013 Personal Project August 2025 - Present\n\u2022 Planned and set up a full-stack fitness app to help gym users log workouts, track goals, and access AI-powered gym Q&A, to\naddress early dropouts from gym due to lack of proper guidance.\n\u2022 Defined requirements and architecture, initiating backend development with Spring Boot (Java) and PostgreSQL, and\nintegrating a React (TypeScript) frontend with an OpenAI-powered Node.js microservice for workout generation and Q&A.\nAgile Team Project \u2013 University of Birmingham January 2025 \u2013 May 2025\n\u2022 Developed the user matching feature of a full-stack web student networking app, implementing accept/decline profile flows\nand match request handling while collaborating with a team of eight for other features.\n\u2022 Built the front end in Angular (TypeScript) with HTML/CSS and integrated it with a Spring Boot (Java) backend and PostgreSQL\ndatabase, within a JHipster (JDL) application, following Agile methodology and version control with GitHub.\n\u2022 Coordinated project planning and guided less technical teammates to ensure smooth project submission.\nTECHNICAL SKILLS\nProgramming Languages & Databases: Java, JavaScript, TypeScript, Dart, HTML, SQL (PostgreSQL), C.\nFrameworks & Tools: React, Flutter, Spring Boot, Angular, JHipster, REST APIs, Git.\nOperating Systems: Microsoft Windows, Linux.\nACHIEVEMENTS\nEncode Club - AI Hackathon April 2024\n\u2022 Built a React-based \u201cinternet of mini-apps\u201d focused on collaborative group studying, in 48 hours \u2013 NoteBank (note-sharing),\nSemSync (deadline tracking), and CramBot (flashcard generation with Ollama AI API).\n\u2022 Developed the full UI for NoteBank as part of a team of four, and integrated all three apps over a shared backend and\ndatabase using the Tonk stack. The project was awarded first place in the bounty category.\nTransport for West Midlands - The Birmingham Project Birmingham, UK\nThe Birmingham Project June 2024\n\u2022 Designed a plan for HS2\u2019s Curzon Street station, focusing on accessible transport solutions for disabled people.\n\u2022 Collaborated with a team to develop solutions through analysis of disability, transport, engineering and cost data.\n\u2022 Created a PowerPoint video independently to present the team\u2019s solutions, earning first place among five teams.\nPOSITION OF RESPONSIBILITY\nEvent Success Team Volunteer London, UK\nPropTech Connect 2025 September 2025\n\u2022 Supported 6000+ attendees at Europe\u2019s largest real estate tech event, assisting with queries, navigation and the networking\napp at the Help Desk while developing professionalism, communication, and problem-solving skills.\n\u2022 Engaged with exhibitors on emerging tech solutions, strengthening understanding of technology integration in real estate.",
+    "name": "Fiona Frost",
+    "email": "fiona.frost@example.com",
+    "phone": "+440000000000",
+    "links": {
+        "linkedin": [
+            "https://www.linkedin.com/in/fiona-frost"
+        ],
+        "github": [
+            "https://github.com/fionafrost"
+        ],
+        "other": []
+    },
+    "skills": [
+        "angular",
+        "c",
+        "dart",
+        "flutter",
+        "java",
+        "javascript",
+        "jhipster",
+        "js",
+        "node.js",
+        "postgresql",
+        "react",
+        "spring",
+        "sql",
+        "typescript"
+    ],
+    "projects": [],
+    "extracurricular": [],
+    "cv_experience": [],
+    "experience": null,
+    "education": [
+        {
+            "name": "",
+            "subtitle": "BSc Computer Science Graduating",
+            "start_date": "June 2026",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "and Provider package",
+            "subtitle": "ensuring the UI reflects live backend updates.",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Collaborated with a cross-functional team in an agile environment, contributing to decision-making processes on key UI"
+        },
+        {
+            "name": "Marks & Spencer Food Birmingham",
+            "subtitle": "UK",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Christmas Customer Assistant",
+            "subtitle": "",
+            "start_date": "December 2024",
+            "end_date": null,
+            "grade": null,
+            "summary": "Replenished 200+ products per shift overnight, ensuring stock availability for morning opening to improve sales. Worked with a team of 15+ to check expiries for product freshness, demonstrating reliability and efficiency under pressure."
+        }
+    ],
+    "cached": false,
+    "file_id": "5a7eebe8ff2cfadea94dd614d58cd070",
+    "cv_hash": "5a7eebe8ff2cfadea94dd614d58cd070",
+    "cv_url": ""
+}

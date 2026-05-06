@@ -1,11 +1,11 @@
-Rank,Candidate Name,MERIT CV Score (%),Total Years,Has Degree,Metric: education,Metric: experience,Metric: professional_gravity,Metric: projects,Metric: req_aws,Metric: req_java,Metric: req_react,Metric: req_spring_boot
-1,Alex Rivers,51.92,5.0,Yes,94.0,34.0,60.0,0.0,71.0,29.0,71.0,71.0
-2,Felix Vance,49.09,10.0,Yes,38.0,57.0,60.0,0.0,71.0,71.0,0.0,71.0
-3,Ghost Gary,40.34,10.0,Yes,38.0,57.0,80.0,0.0,71.0,29.0,71.0,0.0
-4,Fiona Frost,27.66,10.0,Yes,38.0,57.0,60.0,0.0,0.0,71.0,0.0,0.0
-5,Sam Old,23.77,15.0,Yes,78.0,80.0,60.0,0.0,0.0,29.0,0.0,0.0
-6,Kim Junior,18.98,0.5,Yes,78.0,13.0,24.0,0.0,0.0,0.0,71.0,0.0
-7,Nadia Nomad,18.72,5.0,Yes,38.0,34.0,60.0,0.0,0.0,43.0,0.0,0.0
-8,Carl Corp,18.15,10.0,Yes,38.0,57.0,60.0,0.0,0.0,29.0,0.0,0.0
-9,Buzz Ward,14.79,8.0,Yes,38.0,48.0,80.0,0.0,0.0,0.0,0.0,23.0
-10,Jordan Smith,9.4,1.0,Yes,78.0,15.0,48.0,0.0,0.0,0.0,0.0,0.0
+Candidate Name,MERIT CV Score (%),Rank
+Alex Rivers,57.13,1
+Felix Vance,51.7,2
+Ghost Gary,42.94,3
+Fiona Frost,30.26,4
+Nadia Nomad,23.92,5
+Sam Old,23.77,6
+Carl Corp,20.75,7
+Kim Junior,19.55,8
+Buzz Ward,18.42,9
+Jordan Smith,10.53,10

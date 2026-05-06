@@ -1,0 +1,193 @@
+{
+    "raw_cv_text": "Buzz Ward\ncom\nEducation\nImperial College London, MEng Computing - First 2022 \u2013 2026\nRelevant modules: Introduction to Machine Learning, Computer Vision\nKing Edward VI Camp Hill School for Boys sixth form \u2013 A*A*A*A*A* 2020 \u2013 2022\nA Levels: Mathematics, Further Mathematics, Computing, Physics, Arabic\nExperience\nArm | Machine Learning Intern April - September 2025\n- Worked on optimising machine learning libraries such as Pytorch for Arm CPUs, using C++, Python and AArch64\nassembly\n- Contributed upstream patches to multiple open-source projects, resulting in up to 2\u00d7 performance gains in PyTorch\nworkloads\n- Collaborated with engineers across Arm and external organizations to support open-source development and\nintegration\nGemba Advantage | Software Engineer Intern June - August 2024\n- Designed and built an internal proof-of-concept application using React, TypeScript, Java (Spring Boot), and\nOpenSearch\n- Reduced deployment time by 90% and improved environment consistency by containerising the application using\nDocker\n- Presented final project to an audience of over 70 people, including senior developers and executives\nGovernment and industry funded placement | Cybersecurity Intern July - August 2023\n- Covered all areas of cybersecurity, including networking, cloud, infosec and digital forensics\n- Participated in Microsoft KC7 Cyber Challenge, IoT and HackTheBox hackathons providing practical experience in\nred/blue team exercises\nSkills\nLanguages: Java, C/C++, Python, Scala, JavaScript, TypeScript, SQL, x86-64/Aarch64 assembly, Dart (Flutter)\nTools and frameworks: Git, Docker, AWS (Certified Cloud Practitioner), Firebase, Spring Boot, Flask, React, OpenSearch\nProjects\nFullPlate mobile application | Dart, Flutter, Firebase, GitHub Actions May - June 2024\n- Created a mobile application to redistribute excess supermarket produce to charities, reducing waste and\nbenefitting local communities\n- Used Git for version control, and CI/CD pipelines to automate testing, building and creating an app executable\n- Features include real-time database listeners, Google Maps integration, user authentication, and responsive user\ninterfaces\nWACC compiler | Scala, Gitlab CI/CD, TDD, x86-64 assembly January - April 2024\n- Led a team of 4 in developing a full compiler for the statically typed WACC language\n- Implemented a lexer, parser, semantic analyser and code generator to produce an x86-64 assembly output\n- Extended functionality with global monomorphic type inference, eliminating the need for explicit type declaration for\neasier development\nFace recognition registration | Python, Flask, MySQL, OpenCV, JavaScript, HTML October - February 2022\n- Worked with a client to design and implement a face recognition system to register students at a school\n- Used accessible design principles to design interfaces for students and teachers\n- Reduced time to register entire class by 75% over traditional methods\nAchievements and Extra-curriculars\n- Raised over \u00a31000 for charity through a sponsored cycle from London to Paris, covering over 300 km August 2025\n- Won 1st place in an inter-university hackathon by building a low-cost hardware and software solution to facilitate long\ndistance communication in rural areas June 2024\n- Volunteer at Children of Adam soup kitchen for over 3 years 2022 - Present",
+    "name": "Buzz Ward",
+    "email": "buzz.ward@example.com",
+    "phone": "+440000000000",
+    "links": {
+        "linkedin": [
+            "https://www.linkedin.com/in/buzz-ward"
+        ],
+        "github": [
+            "https://github.com/buzzward"
+        ],
+        "other": []
+    },
+    "skills": [
+        "aarch64",
+        "aws",
+        "c",
+        "c++",
+        "dart",
+        "docker",
+        "firebase",
+        "flask",
+        "flutter",
+        "java",
+        "javascript",
+        "mysql",
+        "opencv",
+        "python",
+        "pytorch",
+        "react",
+        "scala",
+        "spring",
+        "sql",
+        "typescript"
+    ],
+    "projects": [
+        {
+            "name": "FullPlate mobile application",
+            "subtitle": "Dart, Flutter, Firebase, GitHub Actions May",
+            "start_date": "June 2024",
+            "end_date": null,
+            "grade": null,
+            "summary": "Created a mobile application to redistribute excess supermarket produce to charities, reducing waste and"
+        },
+        {
+            "name": "benefitting local communities",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Used Git for version control, and CI/CD pipelines to automate testing, building and creating an app executable Features include real-time database listeners, Google Maps integration, user authentication, and responsive user"
+        },
+        {
+            "name": "interfaces",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "WACC compiler",
+            "subtitle": "Scala, Gitlab CI/CD, TDD, x86-64 assembly January",
+            "start_date": "April 2024",
+            "end_date": null,
+            "grade": null,
+            "summary": "Led a team of 4 in developing a full compiler for the statically typed WACC language Implemented a lexer, parser, semantic analyser and code generator to produce an x86-64 assembly output"
+        },
+        {
+            "name": "easier development",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Face recognition registration",
+            "subtitle": "Python, Flask, MySQL, OpenCV, JavaScript, HTML October",
+            "start_date": "February 2022",
+            "end_date": null,
+            "grade": null,
+            "summary": "Worked with a client to design and implement a face recognition system to register students at a school Used accessible design principles to design interfaces for students and teachers"
+        },
+        {
+            "name": "Achievements and Extra-curriculars",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Raised over \u00a31000 for charity through a sponsored cycle from London to Paris, covering over 300 km August 2025 Won 1st place in an inter-university hackathon by building a low-cost hardware and software solution to facilitate long"
+        }
+    ],
+    "extracurricular": [],
+    "cv_experience": [
+        {
+            "name": "Arm",
+            "subtitle": "Machine Learning Intern April",
+            "start_date": "September 2025",
+            "end_date": null,
+            "grade": null,
+            "summary": "Worked on optimising machine learning libraries such as Pytorch for Arm CPUs, using C++, Python and AArch64"
+        },
+        {
+            "name": "assembly",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Contributed upstream patches to multiple open-source projects, resulting in up to 2\u00d7 performance gains in PyTorch"
+        },
+        {
+            "name": "workloads",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Collaborated with engineers across Arm and external organizations to support open-source development and"
+        },
+        {
+            "name": "integration",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Gemba Advantage",
+            "subtitle": "Software Engineer Intern June",
+            "start_date": "August 2024",
+            "end_date": null,
+            "grade": null,
+            "summary": "Designed and built an internal proof-of-concept application using React, TypeScript, Java (Spring Boot), and"
+        },
+        {
+            "name": "OpenSearch",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Reduced deployment time by 90% and improved environment consistency by containerising the application using"
+        },
+        {
+            "name": "Docker",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Presented final project to an audience of over 70 people, including senior developers and executives"
+        },
+        {
+            "name": "Government and industry funded placement",
+            "subtitle": "Cybersecurity Intern July",
+            "start_date": "August 2023",
+            "end_date": null,
+            "grade": null,
+            "summary": "Covered all areas of cybersecurity, including networking, cloud, infosec and digital forensics Participated in Microsoft KC7 Cyber Challenge, IoT and HackTheBox hackathons providing practical experience in"
+        },
+        {
+            "name": "red/blue team exercises",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Arm | Machine Learning Intern April - September 2025\n- Worked on optimising machine learning libraries such as Pytorch for Arm CPUs, using C++, Python and AArch64\nassembly\n- Contributed upstream patches to multiple open-source projects, resulting in up to 2\u00d7 performance gains in PyTorch\nworkloads\n- Collaborated with engineers across Arm and external organizations to support open-source development and\nintegration\nGemba Advantage | Software Engineer Intern June - August 2024\n- Designed and built an internal proof-of-concept application using React, TypeScript, Java (Spring Boot), and\nOpenSearch\n- Reduced deployment time by 90% and improved environment consistency by containerising the application using\nDocker\n- Presented final project to an audience of over 70 people, including senior developers and executives\nGovernment and industry funded placement | Cybersecurity Intern July - August 2023\n- Covered all areas of cybersecurity, including networking, cloud, infosec and digital forensics\n- Participated in Microsoft KC7 Cyber Challenge, IoT and HackTheBox hackathons providing practical experience in\nred/blue team exercises",
+    "education": [
+        {
+            "name": "Imperial College London",
+            "subtitle": "MEng Computing - First",
+            "start_date": "2022",
+            "end_date": "2026",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Relevant modules: Introduction to Machine Learning",
+            "subtitle": "Computer Vision",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cached": false,
+    "file_id": "96d7f36980fabf433702344eecbc9d65",
+    "cv_hash": "96d7f36980fabf433702344eecbc9d65",
+    "cv_url": ""
+}

@@ -1,0 +1,130 @@
+{
+    "raw_cv_text": "Alex Rivers\ncom/in/declanloo/\nhttps://github.com/Declan-Loo\nEDUCATION\nBSc Computer Science, University College London Sep 2023 \u2013 Jun 2026 | London, United Kingdom\nGrades: First Class Honours (Year 1 / Year 2)\n\u2022\nFinal Year Project: To develop a system to estimate expected returns by predicting the spread between asset pairs to optimise a\n\u2022\nportfolio\nCommittee Member (Route Officer) / Walk Leader for UCL Hiking Club\n\u2022\nProgramming Tutor for UCL Computer Science (Sep 2024 - Apr 2025)\n\u2022\nEXPERIENCE\nSoftware Engineer Intern - Data, Macquarie Group Jun 2025 \u2013 Aug 2025 | London, United Kingdom\nBuilt an end-to-end ETL pipeline for coal market data using Apache Airflow, including database schema creation, REST API data\n\u2022\nextraction, Pandas transformations, and generated Parquet files using Spark for Amazon S3 storage, automating previous manual\nprocesses, enabling coal traders to query processed data for daily price fluctuation forecasting via Trino.\nDeveloped CI/CD pipeline using Argo Workflows and custom Docker base image to automate Git cloning, unit testing and quality\n\u2022\nchecks, enforcing 80% test coverage and Pylint scores above 8.0, then building and pushing application images to Amazon ECR.\nIntegrated Bitbucket webhooks to trigger CI/CD pipeline upon pull request merge to development and production branches,\n\u2022\nreducing deployment time by 30 minutes per release, enabling continuous delivery on Amazon EKS.\nSoftware Engineer Intern, Sunway Group Jun 2024 \u2013 Sep 2024 | Kuala Lumpur, Malaysia\nDeveloped an automation system using Selenium and Python for web crawling, extracting account information and downloading\n\u2022\nenergy bills for sales galleries, reducing manual processing time by 73%.\nExposed the automation system through authenticated FastAPI endpoints, integrated into daily Google Cloud cron jobs with\n\u2022\nCloudflare tunnelling for secure access.\nEngineered a PDF extraction process with PyTesseract to retrieve key information from energy bills, storing data in a cloud-based\n\u2022\nMongoDB database, automating and improving bill monitoring efficiency by 64%.\nPackaged the endpoints as LangChain tools for LLM chatbot integration, accelerating data retrieval by 82%.\n\u2022\nPROJECTS\nCommunity Action Portal, NTT DATA / UCL IXN Oct 2024 \u2013 Mar 2025\nCollaborated with NTT DATA's open-source sustainability portal, developing a full-stack Android application with Kotlin and a\n\u2022\nwebsite for users to upload and discover local reports.\nHosted and maintained the Node.js RESTful API server on Azure App Services, with Azure MySQL database, handling report data\n\u2022\nmanagement and connecting mobile and web platforms.\nDeployed a Docker container with GPU acceleration via Nvidia CUDA on Microsoft Azure running Meta Llama 3.2, powering a\n\u2022\nlocation-aware chatbot across mobile and web platforms using users' geographical data.\nDeveloped AR experience using ARSceneView and ARCore to display community reports within 15 metres with accurate positioning\n\u2022\nand proximity-based scaling, improving user experience based on positive feedback.\nStudent Grade Management System Sep 2024 \u2013 Dec 2024\nDeveloped a full-stack student management web application with Spring Boot and H2 database backend, React frontend, and Google\n\u2022\nFirebase authentication to support university staff access and role-based permissions.\nEstablished MVC architecture with relational database design and unit tests, achieving 100% test coverage across backend components\n\u2022\nusing TDD methodology.\nDefined RESTful API controller endpoints with Spring Boot repositories handling CRUD operations for student grades, course\n\u2022\nregistrations, and module management.\nEmergencyGo! Feb 2024 \u2013 Mar 2024\nDeveloped the 'EmergencyGo' mobile emergency response application with React Native frontend, implementing connectivity to\n\u2022\nGoogle Firebase Authentication and Realtime Database for paramedics and doctors.\nConfigured Realtime Database for live user and casualty data synchronisation leveraging casualty location coordinates and FHIR API\n\u2022\nduring emergencies.\nWon UCL Computer Science Society FHIRworks hackathon in collaboration with Great Ormond Street Hospital and Roche.\n\u2022\nBio-reactor Vaccine Project Oct 2023 \u2013 Dec 2023\nLed a cross-disciplinary team of 7 CS and EEE students to develop a feedback mechanism for a real-time bio-reactor control system.\n\u2022\nImplemented control algorithms achieving \u00b10.5\u00b0C temperature precision, pH 3-7 regulation, and \u00b120 RPM stirring accuracy with\n\u2022\nautomated sensor processing.\nDeveloped ESP32 connectivity system in C++ using I2C and MQTT protocols for real-time monitoring and remote control.\n\u2022\nSKILLS\nProgramming Languages: Python, Java, HTML, CSS, JavaScript, SQL\nFramework/Tools: React, Pandas, Git, FastAPI, Selenium, Django, Maven, Spring Boot, Node.js, Docker, Kubernetes\nCloud: Firebase, MongoDB, Google Cloud Platform, Microsoft Azure, Amazon Web Services",
+    "name": "Alex Rivers",
+    "email": "alex.rivers@example.com",
+    "phone": "+440000000000",
+    "links": {
+        "linkedin": [
+            "https://www.linkedin.com/in/alex-rivers"
+        ],
+        "github": [
+            "https://github.com/alexrivers"
+        ],
+        "other": []
+    },
+    "skills": [
+        "azure",
+        "c",
+        "c++",
+        "django",
+        "docker",
+        "fastapi",
+        "firebase",
+        "java",
+        "javascript",
+        "js",
+        "kotlin",
+        "kubernetes",
+        "mongodb",
+        "mysql",
+        "node.js",
+        "pandas",
+        "processing",
+        "python",
+        "react",
+        "spring",
+        "sql"
+    ],
+    "projects": [
+        {
+            "name": "using TDD methodology.",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "registrations, and module management.",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "EmergencyGo!",
+            "subtitle": "",
+            "start_date": "Feb 2024",
+            "end_date": "Mar 2024",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "during emergencies.",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "automated sensor processing.",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [],
+    "cv_experience": [
+        {
+            "name": "Software Engineer Intern - Data, Macquarie Group",
+            "subtitle": "London, United Kingdom",
+            "start_date": "Jun 2025",
+            "end_date": "Aug 2025",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Software Engineer Intern, Sunway Group",
+            "subtitle": "Kuala Lumpur, Malaysia",
+            "start_date": "Jun 2024",
+            "end_date": "Sep 2024",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Cloudflare tunnelling for secure access.",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Software Engineer Intern - Data, Macquarie Group Jun 2025 \u2013 Aug 2025 | London, United Kingdom\nBuilt an end-to-end ETL pipeline for coal market data using Apache Airflow, including database schema creation, REST API data\n\u2022\nextraction, Pandas transformations, and generated Parquet files using Spark for Amazon S3 storage, automating previous manual\nprocesses, enabling coal traders to query processed data for daily price fluctuation forecasting via Trino.\nDeveloped CI/CD pipeline using Argo Workflows and custom Docker base image to automate Git cloning, unit testing and quality\n\u2022\nchecks, enforcing 80% test coverage and Pylint scores above 8.0, then building and pushing application images to Amazon ECR.\nIntegrated Bitbucket webhooks to trigger CI/CD pipeline upon pull request merge to development and production branches,\n\u2022\nreducing deployment time by 30 minutes per release, enabling continuous delivery on Amazon EKS.\nSoftware Engineer Intern, Sunway Group Jun 2024 \u2013 Sep 2024 | Kuala Lumpur, Malaysia\nDeveloped an automation system using Selenium and Python for web crawling, extracting account information and downloading\n\u2022\nenergy bills for sales galleries, reducing manual processing time by 73%.\nExposed the automation system through authenticated FastAPI endpoints, integrated into daily Google Cloud cron jobs with\n\u2022\nCloudflare tunnelling for secure access.\nEngineered a PDF extraction process with PyTesseract to retrieve key information from energy bills, storing data in a cloud-based\n\u2022\nMongoDB database, automating and improving bill monitoring efficiency by 64%.\nPackaged the endpoints as LangChain tools for LLM chatbot integration, accelerating data retrieval by 82%.\n\u2022",
+    "education": [
+        {
+            "name": "BSc Computer Science, University College London",
+            "subtitle": "London, United Kingdom",
+            "start_date": "Sep 2023",
+            "end_date": "Jun 2026",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Final Year Project",
+            "subtitle": "To develop a system to estimate expected returns by predicting the spread between asset pairs to optimise a",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cached": false,
+    "file_id": "962bc07d49230214729d2d689937cfc5",
+    "cv_hash": "962bc07d49230214729d2d689937cfc5",
+    "cv_url": ""
+}

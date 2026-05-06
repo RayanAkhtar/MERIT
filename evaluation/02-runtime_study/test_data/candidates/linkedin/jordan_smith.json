@@ -1,0 +1,197 @@
+{
+    "source": "linkedin",
+    "full_name": "Jordan Smith",
+    "first_name": "Jordan",
+    "last_name": "Smith",
+    "headline": "Business Development Manager at Nester",
+    "location": {
+        "linkedinText": "United Kingdom",
+        "countryCode": "GB",
+        "parsed": {
+            "text": "United Kingdom, United Kingdom",
+            "countryCode": "GB",
+            "regionCode": null,
+            "country": "UK",
+            "countryFull": "United Kingdom",
+            "state": "United Kingdom"
+        }
+    },
+    "followers": null,
+    "connections": 504,
+    "about": "I\u2019m an Islamic finance professional with experience across Shariah-compliant real-estate finance, business development and cross-border advisory between the UK and GCC.\n\nMy professional career began in London, working on ethical property-finance structures that connected investors with real economic assets. That experience taught me that successful finance doesn\u2019t have to just be about yield, it can also be about clarity, trust and purpose.\n\nAlongside my professional journey, I\u2019ve built and advised multiple ventures, including Two Shades, a multinational automotive customisation brand that now operates across Dubai, London and Leicester. Acting as a consultant to this and other businesses has given me practical insight into how strategy, communication and ethical discipline can transform small ideas into scalable operations. \n\nI\u2019m passionate about helping organisations and entrepreneurs design products that align commercial growth with shariah-based principles. Whether structuring a facility, developing a new financial product, or mentoring an early-stage business, I focus on one goal: creating value that serves both investors and the communities they touch.\n\nI\u2019m now expanding my work to connect the UK\u2019s real estate and Islamic-finance expertise with the opportunities emerging in Saudi Arabia and the wider GCC\u2014building bridges between ethical capital, innovation and impact.",
+    "profile_photo": null,
+    "background_image": null,
+    "experience": [
+        {
+            "company_name": "Nester",
+            "company_image": null,
+            "position": "Business Development Manager",
+            "start_date": {
+                "month": "Apr",
+                "year": 2026,
+                "text": "Apr 2026"
+            },
+            "end_date": {
+                "text": "Present"
+            },
+            "description": "Business Development Manager at Nester, a Shariah\u2011compliant, property\u2011backed real estate finance and investment platform providing bridge, refurbishment, development and Buy-to-Let facilities secured on UK assets. I focus on originating and structuring Shariah\u2011compliant commercial real estate transactions for corporates and SPVs, building long\u2011term relationships with developers and intermediaries across key UK markets.  My experience spans managing live loan books, overseeing site visits, and coordinating with credit and operations to deliver competitive, ethical funding solutions that align with Islamic and socially responsible finance principles.",
+            "skills": [
+                "Real Estate",
+                "Business Development",
+                "Real Estate Financing",
+                "Commercial Real Estate"
+            ]
+        },
+        {
+            "company_name": "Arpus",
+            "company_image": null,
+            "position": "Associate Analyst",
+            "start_date": {
+                "month": "Dec",
+                "year": 2025,
+                "text": "Dec 2025"
+            },
+            "end_date": {
+                "text": "Present"
+            },
+            "description": "Support public and private sector clients in Saudi Arabia across strategy development, feasibility studies, and operating model design, with a focus on healthcare and government entities.\n\nConduct structured market research, benchmarking, and data analysis to build market sizing, demand forecasts, and commercial assumptions for large\u2011scale projects.\n\nContribute to client strategies by synthesising findings into clear storylines, building executive\u2011level PowerPoint presentations, and supporting workshops with senior stakeholders.\n\nHelp design operating models covering people, process, and governance, developing frameworks and documentation that can be implemented by client teams.",
+            "skills": [
+                "Analytical Support",
+                "Business Development",
+                "Performance Analysis",
+                "Financial Modeling",
+                "Presentation Skills"
+            ]
+        },
+        {
+            "company_name": "Twoshades London",
+            "company_image": null,
+            "position": "Business Consultant",
+            "start_date": {
+                "month": "Jan",
+                "year": 2023,
+                "text": "Jan 2023"
+            },
+            "end_date": {
+                "text": "Present"
+            },
+            "description": "Helped grow a specialist automotive-lighting brand from a start-up into a multi-branch business now operating across London, Leicester and Dubai.\nAdvised on strategy, partnerships and supply-chain development, enabling consistent monthly revenue.\nLed early marketing and digital initiatives that built a social-media following and steady inbound sales pipeline.\nProvided advisory input on international expansion into the Middle-East luxury-car segment and ongoing operational optimisation.",
+            "skills": []
+        },
+        {
+            "company_name": "Nester",
+            "company_image": null,
+            "position": "Associate",
+            "start_date": {
+                "month": "Mar",
+                "year": 2025,
+                "text": "Mar 2025"
+            },
+            "end_date": {
+                "month": "Nov",
+                "year": 2025,
+                "text": "Nov 2025"
+            },
+            "description": "- Managing a diverse portfolio of real estate assets, ensuring optimal performance and risk management.\n- Assisting in financial forecasting and portfolio analysis to drive strategic decision-making.\n- Supporting the development of new products to enhance market offerings.\n- Collaborating with other organisations to educate communities about real estate and real estate investments.\n- Leveraging data-driven insights to optimise asset management strategies and long-term growth.",
+            "skills": []
+        },
+        {
+            "company_name": "Nester",
+            "company_image": null,
+            "position": "Real Estate Finance Analyst",
+            "start_date": {
+                "month": "May",
+                "year": 2024,
+                "text": "May 2024"
+            },
+            "end_date": {
+                "month": "Nov",
+                "year": 2025,
+                "text": "Nov 2025"
+            },
+            "description": "As a Real Estate Finance Analyst, I support the financial analysis and modeling efforts for real estate investments and development projects. My responsibilities include:\n\n- Financial Modeling: Develop and maintain models to evaluate the performance of real estate assets, including cash flow projections and ROI calculations.\n- Market Research: Conduct market research to assess economic trends, property values, and market conditions, providing insights to support investment decisions.\n- Due Diligence: Assist in due diligence for acquisitions and dispositions, reviewing financial statements, leases, and other relevant documents.\n- Data Management: Maintain and update real estate databases and tracking systems to ensure accurate and timely information.\n\nIn this role, I leverage my analytical skills, attention to detail, and passion for real estate to contribute to the growth and success of our portfolio. My goal is to continuously enhance my expertise in real estate finance and add value through rigorous analysis and strategic insights.",
+            "skills": [
+                "Analytical Skills",
+                "Microsoft Excel",
+                "Quantitative Analytics"
+            ]
+        },
+        {
+            "company_name": "Abellio Group",
+            "company_image": null,
+            "position": "Bus Driver",
+            "start_date": {
+                "month": "Sep",
+                "year": 2022,
+                "text": "Sep 2022"
+            },
+            "end_date": {
+                "month": "May",
+                "year": 2024,
+                "text": "May 2024"
+            },
+            "description": null,
+            "skills": [
+                "Problem Solving",
+                "Customer Service",
+                "Communication"
+            ]
+        },
+        {
+            "company_name": "Arriva Group",
+            "company_image": null,
+            "position": "Bus Driver",
+            "start_date": null,
+            "end_date": "Present",
+            "description": null,
+            "skills": [
+                "Problem Solving",
+                "Communication"
+            ]
+        },
+        {
+            "company_name": "RATP Dev",
+            "company_image": null,
+            "position": "Bus Driver",
+            "start_date": {
+                "month": "Apr",
+                "year": 2022,
+                "text": "Apr 2022"
+            },
+            "end_date": {
+                "month": "Dec",
+                "year": 2022,
+                "text": "Dec 2022"
+            },
+            "description": null,
+            "skills": [
+                "Problem Solving",
+                "Communication"
+            ]
+        }
+    ],
+    "education": [
+        {
+            "school_name": "University of Hertfordshire",
+            "degree": "Bsc. Pharmaceutical Sciences with Honours, Chemistry",
+            "start_date": {
+                "month": "Sep",
+                "year": 2018,
+                "text": "Sep 2018"
+            },
+            "end_date": {
+                "month": "May",
+                "year": 2023,
+                "text": "May 2023"
+            },
+            "field_of_study": null
+        }
+    ],
+    "volunteering": [],
+    "projects": [],
+    "certifications": [],
+    "cached": false,
+    "profile_url": "https://www.linkedin.com/in/jordan-smith",
+    "avatar_url": "",
+    "public_identifier": "jordan-smith"
+}

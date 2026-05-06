@@ -41,10 +41,12 @@ class ProfessionalGravityMetric(BaseMetric):
             headline = str(li_data.get("headline") or "").lower()
         
         # calculate actual tenure stability from experience list
-        cv_exp = candidate_data.get("experience") or candidate_data.get("cv_experience") or []
+        cv_exp = candidate_data.get("cv_experience") or candidate_data.get("experience") or []
+        if isinstance(cv_exp, str): cv_exp = []
         li_exp = []
         if li_data:
-            li_exp = li_data.get("linkedin_experience") or li_data.get("experience") or []
+            li_exp = li_data.get("experiences") or li_data.get("linkedin_experience") or li_data.get("experience") or []
+            if isinstance(li_exp, str): li_exp = []
         
         all_exp = cv_exp + li_exp
         tenure_score = 0.5 # Default middle ground

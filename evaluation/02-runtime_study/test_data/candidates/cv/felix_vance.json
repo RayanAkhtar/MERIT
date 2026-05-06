@@ -1,0 +1,207 @@
+{
+    "raw_cv_text": "Felix Vance\n/Bitmapp3r\nEducation\nImperial College London London, United Kingdom\nMEng in Computing Sep 2023 \u2013 Jun 2027\nSt. Olave\u2019s Grammar School Orpington, United Kingdom\nGCSEs: Six Grade 9s, One Grade 8, Three Grade 7s Sep 2015 \u2013 Jun 2022\nA-Levels: Computer Science, Mathematics, Further Mathematics, Physics | A*s in All Subjects\nExperience\nFull-Stack App Developer | My Salah Mat Jun 2025 \u2013 Present\n\u2022 Developing a cross-platform app mobile app that will be pitched to investors using Flutter for the frontend and\nFirebase as the backend\n\u2022 Responsible for deciding the application architecture and technology stack\n\u2022 Implementing a feature to allow users to save posts in a chronological structure\nProjects\nQuickMed | Flutter, Dart Jul 2025\n\u2022 As part of a hackathon, developed a medical mobile app to allow patients to quickly transfer data to and from an\nNFC tag and a phone; designed with humanitarian crises in mind\n\u2022 Implemented loading and storing of medical JSON data\nReadventure | NextJS, React, TypeScript, TailwindCSS, Firebase, GitLab CI/CD May 2025 \u2013 Jun 2025\n\u2022 Created a webapp to improve children\u2019s interest in reading by providing stories with choices that affect the\nnarrative and ending\n\u2022 Implemented a genre filtering system to the story collection to help users find what they would like to read\nWACC Compiler | Scala, Parsley, x86-64 Assembly, GitLab CI/CD Jan 2025 \u2013 Mar 2025\n\u2022 Implemented a compiler for the WACC programming language which involved lexical, syntactic, and semantic\nanalysis, along with x86-64 code generation\n\u2022 Extended the compiler by implementing peephole optimisations to the generated assembly code\nPintOS Operating System | C, GDB Oct 2025 \u2013 Dec 2025\n\u2022 implemented core operating system functionality and features to the \u2018PintOS\u2019 operating system such as CPU\nscheduling, threading, support for user programs, and memory management\n\u2022 Implemented the advanced BSD scheduler as an alternative to the default CPU scheduler\nAarch64 ARMv8 Emulator, Assembler and Wireless Morse Code Device | C Jan 2025 \u2013 Mar 2025\n\u2022 Developed an emulator and assembler for the Aarch64 mode of the ARMv8 ISA that was then used to create an\nassembly program to flash an LED connected to the Raspberry Pi\u2019s GPIO pins\n\u2022 Created a wireless Morse code device using the Raspberry Pi\u2019s GPIO pins that can send and receive messages\nwirelessly to and from another device\nTechnical Skills\nLanguages: Java, Python, C/C++, SQL, JavaScript, TypeScript, HTML/CSS, Scala, Dart, Haskell, Assembly\n(x86-64, ARMv8)\nFrameworks: Nextjs, React, Flutter\nDeveloper Tools: Git, Firebase, VS Code, Visual Studio, PyCharm, IntelliJ, Android Studio\nLibraries: Parsley, Matplotlib\nVolunteering and Other Experience\nTeacher Assistant | \u2018Life Changing\u2019 Tuition Aug 2023\n\u2022 Volunteered at \u2018Life Changing Tuition\u2019 to help primary school students prepare for 11+ exams\n\u2022 Helped mark exam papers, set up the venue, and also worked alongside Teachers to help students\u2019 confusion over\ncertain topics",
+    "name": "Felix Vance",
+    "email": "felix.vance@example.com",
+    "phone": "+440000000000",
+    "links": {
+        "linkedin": [
+            "https://www.linkedin.com/in/felix-vance"
+        ],
+        "github": [
+            "https://github.com/felixvance"
+        ],
+        "other": []
+    },
+    "skills": [
+        "aarch64",
+        "c",
+        "c++",
+        "dart",
+        "firebase",
+        "flutter",
+        "haskell",
+        "java",
+        "javascript",
+        "matplotlib",
+        "nextjs",
+        "python",
+        "react",
+        "scala",
+        "sql",
+        "tailwindcss",
+        "ts",
+        "typescript"
+    ],
+    "projects": [
+        {
+            "name": "QuickMed",
+            "subtitle": "Flutter, Dart",
+            "start_date": "Jul 2025",
+            "end_date": null,
+            "grade": null,
+            "summary": "As part of a hackathon, developed a medical mobile app to allow patients to quickly transfer data to and from an Implemented loading and storing of medical JSON data"
+        },
+        {
+            "name": "Readventure",
+            "subtitle": "NextJS, React, TypeScript, TailwindCSS, Firebase, GitLab CI/CD",
+            "start_date": "May 2025",
+            "end_date": "Jun 2025",
+            "grade": null,
+            "summary": "Created a webapp to improve children\u2019s interest in reading by providing stories with choices that affect the"
+        },
+        {
+            "name": "narrative and ending",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Implemented a genre filtering system to the story collection to help users find what they would like to read"
+        },
+        {
+            "name": "WACC Compiler",
+            "subtitle": "Scala, Parsley, x86-64 Assembly, GitLab CI/CD",
+            "start_date": "Jan 2025",
+            "end_date": "Mar 2025",
+            "grade": null,
+            "summary": "Implemented a compiler for the WACC programming language which involved lexical, syntactic, and semantic"
+        },
+        {
+            "name": "analysis, along with x86-64 code generation",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Extended the compiler by implementing peephole optimisations to the generated assembly code"
+        },
+        {
+            "name": "PintOS Operating System",
+            "subtitle": "C, GDB",
+            "start_date": "Oct 2025",
+            "end_date": "Dec 2025",
+            "grade": null,
+            "summary": "implemented core operating system functionality and features to the \u2018PintOS\u2019 operating system such as CPU Implemented the advanced BSD scheduler as an alternative to the default CPU scheduler"
+        },
+        {
+            "name": "Aarch64 ARMv8 Emulator, Assembler and Wireless Morse Code Device",
+            "subtitle": "C",
+            "start_date": "Jan 2025",
+            "end_date": "Mar 2025",
+            "grade": null,
+            "summary": "Developed an emulator and assembler for the Aarch64 mode of the ARMv8 ISA that was then used to create an Created a wireless Morse code device using the Raspberry Pi\u2019s GPIO pins that can send and receive messages"
+        },
+        {
+            "name": "wirelessly to and from another device",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Technical Skills",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Languages",
+            "subtitle": "Java, Python, C/C++, SQL, JavaScript, TypeScript, HTML/CSS, Scala, Dart, Haskell, Assembly",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "(x86-64, ARMv8)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Frameworks",
+            "subtitle": "Nextjs, React, Flutter",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Developer Tools",
+            "subtitle": "Git, Firebase, VS Code, Visual Studio, PyCharm, IntelliJ, Android Studio",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Libraries",
+            "subtitle": "Parsley, Matplotlib",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Volunteering and Other Experience",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Teacher Assistant",
+            "subtitle": "\u2018Life Changing\u2019 Tuition",
+            "start_date": "Aug 2023",
+            "end_date": null,
+            "grade": null,
+            "summary": "Volunteered at \u2018Life Changing Tuition\u2019 to help primary school students prepare for 11+ exams Helped mark exam papers, set up the venue, and also worked alongside Teachers to help students\u2019 confusion over"
+        },
+        {
+            "name": "certain topics",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [],
+    "cv_experience": [
+        {
+            "name": "Full-Stack App Developer",
+            "subtitle": "My Salah Mat",
+            "start_date": "Jun 2025",
+            "end_date": "Present",
+            "grade": null,
+            "summary": "Developing a cross-platform app mobile app that will be pitched to investors using Flutter for the frontend and"
+        },
+        {
+            "name": "Firebase as the backend",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": "Responsible for deciding the application architecture and technology stack Implementing a feature to allow users to save posts in a chronological structure"
+        }
+    ],
+    "experience": "Full-Stack App Developer | My Salah Mat Jun 2025 \u2013 Present\n\u2022 Developing a cross-platform app mobile app that will be pitched to investors using Flutter for the frontend and\nFirebase as the backend\n\u2022 Responsible for deciding the application architecture and technology stack\n\u2022 Implementing a feature to allow users to save posts in a chronological structure",
+    "education": [
+        {
+            "name": "",
+            "subtitle": "MEng in Computing",
+            "start_date": "Sep 2023",
+            "end_date": "Jun 2027",
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cached": false,
+    "file_id": "ae9ae7b9c9b9adf7cb51c17db6489d0a",
+    "cv_hash": "ae9ae7b9c9b9adf7cb51c17db6489d0a",
+    "cv_url": ""
+}
