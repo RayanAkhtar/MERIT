@@ -1,0 +1,37 @@
+{
+    "Skills": {
+        "Matched": [
+            "cypress",
+            "jenkins",
+            "python"
+        ],
+        "Missed (False Negatives)": [
+            "appium",
+            "git",
+            "java",
+            "junit",
+            "selenium"
+        ],
+        "Extra (False Positives/Noise)": [
+            "aws",
+            "azure",
+            "docker",
+            "gcp",
+            "github",
+            "javascript",
+            "playwright"
+        ]
+    },
+    "Details": {
+        "Title Match": true,
+        "Company Match": false,
+        "Extracted": {
+            "title": "Director of QA Engineering",
+            "company": "VerifyTech Solutions"
+        },
+        "Expected": {
+            "title": "Director of QA Engineering",
+            "company": "QualiTest"
+        }
+    }
+}

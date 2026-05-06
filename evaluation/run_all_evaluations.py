@@ -32,6 +32,12 @@ def main():
     study_03 = os.path.join(root_dir, "03-spacetime_study")
     run_study(study_03, "run_spacetime.py")
 
+    study_04 = os.path.join(root_dir, "04-ir_parser_test")
+    run_study(study_04, "run_study.py")
+
+    study_05 = os.path.join(root_dir, "05-jd_parser_test")
+    run_study(study_05, "run_study.py")
+
 
 
     print("\n" + "="*60)

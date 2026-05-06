@@ -1,0 +1,38 @@
+{
+    "Skills": {
+        "Matched": [
+            "docker",
+            "git",
+            "numpy",
+            "pandas",
+            "python",
+            "pytorch",
+            "scikit-learn",
+            "tensorflow"
+        ],
+        "Missed (False Negatives)": [
+            "gcp",
+            "sql"
+        ],
+        "Extra (False Positives/Noise)": [
+            "aws",
+            "azure",
+            "github",
+            "google cloud",
+            "jupyter",
+            "processing"
+        ]
+    },
+    "Details": {
+        "Title Match": false,
+        "Company Match": false,
+        "Extracted": {
+            "title": "INTERN MACHINE LEARNING ENGINEER",
+            "company": "Neuralflow AI is a fast"
+        },
+        "Expected": {
+            "title": "Machine Learning Engineer Intern",
+            "company": "NeuralPath AI"
+        }
+    }
+}

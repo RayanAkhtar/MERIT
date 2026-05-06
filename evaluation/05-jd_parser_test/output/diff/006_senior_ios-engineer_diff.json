@@ -1,0 +1,30 @@
+{
+    "Skills": {
+        "Matched": [
+            "swift"
+        ],
+        "Missed (False Negatives)": [
+            "c++",
+            "combine",
+            "git",
+            "javascript",
+            "objective-c",
+            "swiftui"
+        ],
+        "Extra (False Positives/Noise)": [
+            "github"
+        ]
+    },
+    "Details": {
+        "Title Match": true,
+        "Company Match": false,
+        "Extracted": {
+            "title": "Senior iOS Engineer",
+            "company": "Prism Labs"
+        },
+        "Expected": {
+            "title": "Senior iOS Engineer",
+            "company": "MobileSwift"
+        }
+    }
+}

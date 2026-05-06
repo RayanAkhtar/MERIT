@@ -1,0 +1,139 @@
+{
+    "raw_cv_text": "Sven Kramer\nsven.kramer@gmail.com \u2022 +1-206-447-8923 \u2022 https://github.com/svenk-infra\nEDUCATION\nUniversity of Washington | B.S. Computer Science 2010 - 2014\nEXPERIENCE\nStripe | Staff DevOps Engineer Jan 2021 - Present\nArchitected and deployed multi-region Kubernetes infrastructure serving 400+ microservices, reducing latency by 34% and\nimproving availability to 99.99% SLA across production environments\nLed cross-functional platform engineering team of 6 engineers, establishing IaC standards and mentoring 3 junior engineers\non infrastructure design patterns, resulting in 45% faster onboarding time\nDesigned and implemented automated disaster recovery solution using Terraform and custom Go orchestration tools, reducing\nmean recovery time from 8 hours to 12 minutes for critical payment processing systems\nShopify | Senior DevOps Engineer Jun 2018 - Dec 2020\nMigrated 200+ services from EC2 to containerized ECS architecture, reducing infrastructure costs by $2.1M annually while\nimproving deployment frequency from weekly to 50+ daily releases\nImplemented GitOps workflow using ArgoCD across 12 development teams, automating 95% of manual deployment\nprocesses and reducing production incident response time by 60%\nBuilt comprehensive observability platform integrating Prometheus, Grafana, and ELK Stack for 15K+ monitoring endpoints,\nenabling real-time alerting and reducing MTTR by 40 minutes on average\nDatabricks | Lead Infrastructure Engineer Mar 2016 - May 2018\nDesigned and operationalized multi-cloud strategy supporting AWS, GCP, and Azure, enabling 3 new enterprise customer\ndeployments and generating $8M incremental ARR\nEstablished infrastructure-as-code standards using Terraform and Ansible, reducing manual configuration drift incidents by\n89% and cutting infrastructure provisioning time from 4 weeks to 3 days\nMentored team of 4 engineers on Kubernetes architecture and networking, facilitating 12 internal knowledge-sharing sessions\nthat improved team velocity and reduced critical incident resolution time by 35%\nAirbnb | Senior Platform Engineer Jul 2014 - Feb 2016\nChampioned containerization initiative, containerizing 80 legacy monolithic applications using Docker, reducing deployment\ntime from 2 hours to 8 minutes and improving service reliability by 28%\nDesigned distributed configuration management system using Consul and custom Python tooling, serving 500+ service\ninstances and eliminating 73% of configuration-related production incidents\nOwned platform security hardening initiative, implementing HashiCorp Vault for secrets management across infrastructure,\nachieving zero unauthorized access incidents across 200+ production workloads\nPROJECTS\nMulti-Tenancy Kubernetes Platform Architecture | Kubernetes, Helm, Istio, Prometheus, Terraform 2022 - 2023\nArchitected isolated multi-tenancy model supporting 25+ independent customers with complete resource isolation and billing\nmetering, generating design patterns adopted company-wide\nImplemented advanced networking and observability using Istio service mesh, reducing inter-service latency by 22% and\nachieving 99.95% SLA across all customer environments\nEXTRACURRICULAR\nCloud Native Computing Foundation (CNCF) | Kubernetes Community Contributor 2019 - Present\nContributed 15+ PRs to Kubernetes core networking and storage subsystems, with 8 merged contributions adopted in v1.24\nand v1.25 releases\nOrganized quarterly CNCF Kubernetes workshops in Seattle, attracting 200+ attendees and establishing local community\nchapter with 800+ members\nDevOps Institute | Certified Kubernetes Administrator (CKA) Mentor 2020 - Present\nMentored 30+ engineers through CKA certification program, achieving 92% first-attempt pass rate compared to industry\naverage of 65%\nCreated comprehensive Kubernetes troubleshooting course adopted by 5 enterprise organizations\nTECHNICAL SKILLS\nLanguages \u2013 Python, Bash, Go, YAML, HCL, SQL\nTechnologies \u2013 Kubernetes, Docker, Terraform, Ansible, AWS (EC2, ECS, Lambda, RDS), GCP (GKE, Cloud Run), Azure (AKS),\nPrometheus, Grafana, ELK Stack, Vault, ArgoCD\nTools \u2013 Jenkins, GitLab CI/CD, GitHub Actions, CloudFormation, Helm, Datadog, PagerDuty, Consul, etcd, Kafka, RabbitMQ",
+    "name": "Sven Kramer",
+    "email": "sven.kramer@gmail.com",
+    "phone": "+12064478923",
+    "links": {
+        "github": [
+            "https://github.com/svenk-infra"
+        ],
+        "linkedin": []
+    },
+    "skills": [
+        "ansible",
+        "aws",
+        "azure",
+        "bash",
+        "docker",
+        "foundation",
+        "gcp",
+        "github",
+        "gitlab",
+        "go",
+        "grafana",
+        "istio",
+        "jenkins",
+        "kafka",
+        "kubernetes",
+        "processing",
+        "prometheus",
+        "python",
+        "sql",
+        "terraform",
+        "yaml"
+    ],
+    "projects": [
+        {
+            "name": "Multi-Tenancy Kubernetes Platform Architecture",
+            "subtitle": "Kubernetes, Helm, Istio, Prometheus, Terraform",
+            "start_date": "2022",
+            "end_date": "2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "metering, generating design patterns adopted company-wide",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "Cloud Native Computing Foundation (CNCF)",
+            "subtitle": "Kubernetes Community Contributor",
+            "start_date": "2019",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "and v1.25 releases",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "chapter with 800+ members",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "DevOps Institute",
+            "subtitle": "Certified Kubernetes Administrator (CKA) Mentor",
+            "start_date": "2020",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "average of 65%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Stripe",
+            "subtitle": "Staff DevOps Engineer",
+            "start_date": "Jan 2021",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Shopify",
+            "subtitle": "Senior DevOps Engineer",
+            "start_date": "Jun 2018",
+            "end_date": "Dec 2020",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Databricks",
+            "subtitle": "Lead Infrastructure Engineer",
+            "start_date": "Mar 2016",
+            "end_date": "May 2018",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "deployments and generating $8M incremental ARR",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Airbnb",
+            "subtitle": "Senior Platform Engineer",
+            "start_date": "Jul 2014",
+            "end_date": "Feb 2016",
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Stripe | Staff DevOps Engineer Jan 2021 - Present\nArchitected and deployed multi-region Kubernetes infrastructure serving 400+ microservices, reducing latency by 34% and\nimproving availability to 99.99% SLA across production environments\nLed cross-functional platform engineering team of 6 engineers, establishing IaC standards and mentoring 3 junior engineers\non infrastructure design patterns, resulting in 45% faster onboarding time\nDesigned and implemented automated disaster recovery solution using Terraform and custom Go orchestration tools, reducing\nmean recovery time from 8 hours to 12 minutes for critical payment processing systems\nShopify | Senior DevOps Engineer Jun 2018 - Dec 2020\nMigrated 200+ services from EC2 to containerized ECS architecture, reducing infrastructure costs by $2.1M annually while\nimproving deployment frequency from weekly to 50+ daily releases\nImplemented GitOps workflow using ArgoCD across 12 development teams, automating 95% of manual deployment\nprocesses and reducing production incident response time by 60%\nBuilt comprehensive observability platform integrating Prometheus, Grafana, and ELK Stack for 15K+ monitoring endpoints,\nenabling real-time alerting and reducing MTTR by 40 minutes on average\nDatabricks | Lead Infrastructure Engineer Mar 2016 - May 2018\nDesigned and operationalized multi-cloud strategy supporting AWS, GCP, and Azure, enabling 3 new enterprise customer\ndeployments and generating $8M incremental ARR\nEstablished infrastructure-as-code standards using Terraform and Ansible, reducing manual configuration drift incidents by\n89% and cutting infrastructure provisioning time from 4 weeks to 3 days\nMentored team of 4 engineers on Kubernetes architecture and networking, facilitating 12 internal knowledge-sharing sessions\nthat improved team velocity and reduced critical incident resolution time by 35%\nAirbnb | Senior Platform Engineer Jul 2014 - Feb 2016\nChampioned containerization initiative, containerizing 80 legacy monolithic applications using Docker, reducing deployment\ntime from 2 hours to 8 minutes and improving service reliability by 28%\nDesigned distributed configuration management system using Consul and custom Python tooling, serving 500+ service\ninstances and eliminating 73% of configuration-related production incidents\nOwned platform security hardening initiative, implementing HashiCorp Vault for secrets management across infrastructure,\nachieving zero unauthorized access incidents across 200+ production workloads",
+    "education": []
+}

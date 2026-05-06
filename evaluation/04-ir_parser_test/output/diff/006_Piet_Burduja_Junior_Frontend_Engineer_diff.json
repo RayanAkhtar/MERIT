@@ -1,0 +1,63 @@
+{
+    "Skills": {
+        "Matched": [
+            "git",
+            "github",
+            "graphql",
+            "javascript",
+            "js",
+            "next.js",
+            "node.js",
+            "react",
+            "redux",
+            "typescript"
+        ],
+        "Missed (False Negatives)": [
+            "figma",
+            "jest",
+            "sass",
+            "tailwind css"
+        ],
+        "Extra (False Positives/Noise)": [
+            "css3",
+            "firebase",
+            "html5",
+            "postgresql",
+            "processing",
+            "sql",
+            "storybook",
+            "styled components",
+            "zustand"
+        ]
+    },
+    "Experience": {
+        "Matched": [],
+        "Missed": [
+            "shopify",
+            "vercel"
+        ],
+        "All Extracted Entities": [
+            "stripe",
+            "daily active users",
+            "score from 72 to 94",
+            "notion",
+            "time by 31%",
+            "figma",
+            "users with <100ms latency",
+            "modules",
+            "incidents"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": false,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Piet Burduja +44",
+            "email": "piet.burduja@gmail.com"
+        },
+        "Expected": {
+            "name": "Piet Burduja",
+            "email": "piet.burduja@gmail.com"
+        }
+    }
+}

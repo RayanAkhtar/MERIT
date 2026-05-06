@@ -1,0 +1,73 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "c++",
+            "clickhouse",
+            "docker",
+            "fastapi",
+            "gcp",
+            "git",
+            "github",
+            "go",
+            "graphql",
+            "grpc",
+            "java",
+            "kafka",
+            "kubernetes",
+            "postgresql",
+            "prometheus",
+            "python",
+            "rust",
+            "sql",
+            "typescript"
+        ],
+        "Missed (False Negatives)": [
+            "datadog",
+            "github actions",
+            "machine learning",
+            "microservices",
+            "protocol buffers",
+            "redis",
+            "websockets"
+        ],
+        "Extra (False Positives/Noise)": [
+            "c",
+            "foundation",
+            "processing"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "stripe",
+            "datadog",
+            "palantir technologies",
+            "figma"
+        ],
+        "Missed": [],
+        "All Extracted Entities": [
+            "stripe",
+            "growth programs",
+            "datadog",
+            "customers and generating $4.2m arr",
+            "palantir technologies",
+            "across 12 fortune 500 companies",
+            "reducing production bugs by 42%",
+            "figma",
+            "100k+ concurrent users during peak hours",
+            "uptime"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": true,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Henriette Romero",
+            "email": "henriette.romero@outlook.com"
+        },
+        "Expected": {
+            "name": "Henriette Romero",
+            "email": "henriette.romero@outlook.com"
+        }
+    }
+}

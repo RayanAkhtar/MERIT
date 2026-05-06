@@ -1,0 +1,226 @@
+{
+    "raw_cv_text": "Yusuf Nilsson\n+44 20 7946 0958 | Email: yusuf.nilsson@outlook.com | LinkedIn: yusuf-nilsson | GitHub: YusufNilsson | https://yusufjoy.dev\nEDUCATION\nUniversity of Waterloo | Bachelor of Computer Science (Co-op) 2021 - 2025\nAchieved Dean's List honors with 3.8 GPA in core systems and database courses\nCompleted 3 industrial co-op terms at top-tier tech companies, gaining hands-on backend development experience\nQueen Mary University of London | Summer Exchange - Distributed Systems Specialization Summer 2023\nStudied advanced microservices architecture and cloud infrastructure patterns\nBuilt 2 production-grade distributed system prototypes in Go and Rust\nEXPERIENCE\nStripe | Backend Engineering Intern Jan 2024 - Apr 2024\nOptimized payment reconciliation pipeline to reduce processing latency by 38%, improving real-time reporting accuracy\nfor 2,000+ merchants\nDesigned and deployed 3 new REST API endpoints for subscription management, handling 5M+ daily requests with\n99.95% uptime\nReduced database query execution time by 42% through strategic indexing and query optimization on PostgreSQL\nNotion | Junior Backend Developer May 2023 - Aug 2023\nBuilt real-time synchronization service using WebSockets and event streaming, decreasing client-server sync latency from\n450ms to 120ms\nImplemented Redis caching layer for frequently accessed database queries, reducing backend CPU usage by 31% and\ncutting response times by 55%\nMentored 2 interns on TypeScript best practices and helped them ship 4 feature flags that improved product reliability\nDatadog | Software Engineering Co-op Sep 2022 - Dec 2022\nEngineered high-throughput log ingestion service in Go that processed 120M+ events daily with sub-100ms p99 latency\nDebugged and fixed 12 production incidents related to metric aggregation, improving data consistency by 26%\nDeveloped comprehensive integration tests that increased code coverage from 67% to 84% and caught 8 critical edge\ncases\nPROJECTS\nAsyncCache | Go, Redis, gRPC, Docker Feb 2024 - Apr 2024\nBuilt a distributed caching service supporting 50K+ concurrent connections with automatic invalidation, achieving 94%\ncache hit rate\nImplemented cache coherence protocol reducing stale data scenarios by 73% across multi-node deployments\nPulseDB | Rust, PostgreSQL, Kafka, Tokio Nov 2023 - Jan 2024\nCreated time-series database engine handling 1M+ data points per second with 99.9% accuracy\nDecreased memory footprint by 48% through columnar storage optimization and compression algorithms\nShardFlow | Python, FastAPI, SQLAlchemy, Prometheus Jul 2023 - Sep 2023\nDeveloped database sharding middleware that horizontally scaled read operations by 340% without application\nrefactoring\nReduced query routing latency from 8ms to 1.2ms through consistent hashing optimization\nMicroTrace | TypeScript, Node.js, Jaeger, OpenTelemetry Apr 2023 - Jun 2023\nEngineered distributed tracing library for microservices, enabling engineers to identify performance bottlenecks 65%\nfaster\nReduced trace processing overhead from 12% to 2% of request latency through intelligent sampling\nEventStorm | Java, Spring Boot, Kafka, Elasticsearch Dec 2022 - Feb 2023\nBuilt event sourcing framework processing 200K+ domain events hourly with zero data loss guarantees\nAchieved 99.99% event delivery reliability through idempotency tokens and retry logic\nEXTRACURRICULAR\nWaterloo Distributed Systems Club | Core Contributor & Workshop Lead 2022 - Present\nOrganized and led 8 technical workshops on Kafka, gRPC, and consensus algorithms for 150+ students\nGrew community from 40 to 280+ active members through curated content and mentorship programs\nOpen Source Maintainer | Creator of go-fastcache library 2023 - Present\nPublished Go caching library with 2,400+ GitHub stars and 180+ community contributions\nReduced download bandwidth costs for users by 67% through compression innovations featured in Hacker News top 5\nTECHNICAL SKILLS\nLanguages \u2013 Go, Python, TypeScript, Rust, Java, SQL\nTechnologies \u2013 PostgreSQL, Redis, Kafka, gRPC, REST APIs, GraphQL, Docker, Kubernetes, Apache Spark\nTools \u2013 Git, GitHub, Datadog, New Relic, Prometheus, Grafana, CI/CD pipelines, Linux, VS Code",
+    "name": "Yusuf Nilsson +44",
+    "email": "yusuf.nilsson@outlook.com",
+    "phone": "+442079460958",
+    "links": {
+        "other": [
+            "https://yusufjoy.dev"
+        ],
+        "linkedin": [
+            "https://linkedin.com/in/yusuf-nilsson"
+        ],
+        "github": [
+            "https://github.com/YusufNilsson"
+        ]
+    },
+    "skills": [
+        "docker",
+        "elasticsearch",
+        "fastapi",
+        "git",
+        "github",
+        "go",
+        "grafana",
+        "graphql",
+        "grpc",
+        "java",
+        "js",
+        "kafka",
+        "kubernetes",
+        "node.js",
+        "postgresql",
+        "processing",
+        "prometheus",
+        "python",
+        "rust",
+        "spring",
+        "sql",
+        "typescript"
+    ],
+    "projects": [
+        {
+            "name": "AsyncCache",
+            "subtitle": "Go, Redis, gRPC, Docker",
+            "start_date": "Feb 2024",
+            "end_date": "Apr 2024",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "cache hit rate",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "PulseDB",
+            "subtitle": "Rust, PostgreSQL, Kafka, Tokio",
+            "start_date": "Nov 2023",
+            "end_date": "Jan 2024",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "ShardFlow",
+            "subtitle": "Python, FastAPI, SQLAlchemy, Prometheus",
+            "start_date": "Jul 2023",
+            "end_date": "Sep 2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "refactoring",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "MicroTrace",
+            "subtitle": "TypeScript, Node.js, Jaeger, OpenTelemetry",
+            "start_date": "Apr 2023",
+            "end_date": "Jun 2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "faster",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "EventStorm",
+            "subtitle": "Java, Spring Boot, Kafka, Elasticsearch",
+            "start_date": "Dec 2022",
+            "end_date": "Feb 2023",
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "Waterloo Distributed Systems Club",
+            "subtitle": "Core Contributor & Workshop Lead",
+            "start_date": "2022",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Open Source Maintainer",
+            "subtitle": "Creator of go-fastcache library",
+            "start_date": "2023",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Stripe",
+            "subtitle": "Backend Engineering Intern",
+            "start_date": "Jan 2024",
+            "end_date": "Apr 2024",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "for 2,000+ merchants",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "99.95% uptime",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Notion",
+            "subtitle": "Junior Backend Developer",
+            "start_date": "May 2023",
+            "end_date": "Aug 2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "450ms to 120ms",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "cutting response times by 55%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Datadog",
+            "subtitle": "Software Engineering Co-op",
+            "start_date": "Sep 2022",
+            "end_date": "Dec 2022",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "cases",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Stripe | Backend Engineering Intern Jan 2024 - Apr 2024\nOptimized payment reconciliation pipeline to reduce processing latency by 38%, improving real-time reporting accuracy\nfor 2,000+ merchants\nDesigned and deployed 3 new REST API endpoints for subscription management, handling 5M+ daily requests with\n99.95% uptime\nReduced database query execution time by 42% through strategic indexing and query optimization on PostgreSQL\nNotion | Junior Backend Developer May 2023 - Aug 2023\nBuilt real-time synchronization service using WebSockets and event streaming, decreasing client-server sync latency from\n450ms to 120ms\nImplemented Redis caching layer for frequently accessed database queries, reducing backend CPU usage by 31% and\ncutting response times by 55%\nMentored 2 interns on TypeScript best practices and helped them ship 4 feature flags that improved product reliability\nDatadog | Software Engineering Co-op Sep 2022 - Dec 2022\nEngineered high-throughput log ingestion service in Go that processed 120M+ events daily with sub-100ms p99 latency\nDebugged and fixed 12 production incidents related to metric aggregation, improving data consistency by 26%\nDeveloped comprehensive integration tests that increased code coverage from 67% to 84% and caught 8 critical edge\ncases",
+    "education": [
+        {
+            "name": "University of Waterloo",
+            "subtitle": "Bachelor of Computer Science (Co-op)",
+            "start_date": "2021",
+            "end_date": "2025",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Achieved Dean's List honors with 3.8 GPA in core systems and database courses",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Completed 3 industrial co-op terms at top-tier tech companies",
+            "subtitle": "gaining hands-on backend development experience",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Queen Mary University of London",
+            "subtitle": "Summer Exchange - Distributed Systems Specialization Summer",
+            "start_date": "2023",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ]
+}

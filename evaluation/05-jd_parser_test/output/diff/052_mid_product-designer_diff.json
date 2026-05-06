@@ -1,0 +1,29 @@
+{
+    "Skills": {
+        "Matched": [],
+        "Missed (False Negatives)": [
+            "adobe xd",
+            "css",
+            "figma",
+            "html",
+            "invision",
+            "javascript",
+            "react"
+        ],
+        "Extra (False Positives/Noise)": [
+            "framer"
+        ]
+    },
+    "Details": {
+        "Title Match": false,
+        "Company Match": false,
+        "Extracted": {
+            "title": "and familiarity with developer",
+            "company": "Veridian Design Systems is a SaaS platform that helps enterprises build"
+        },
+        "Expected": {
+            "title": "Mid-Level Product Designer",
+            "company": "CreativeSphere"
+        }
+    }
+}

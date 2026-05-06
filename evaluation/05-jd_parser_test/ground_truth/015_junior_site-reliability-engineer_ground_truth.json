@@ -1,0 +1,17 @@
+{
+    "job_title": "Junior Site Reliability Engineer",
+    "company": "ScaleOps",
+    "skills": [
+        "Python",
+        "Go",
+        "Bash",
+        "Terraform",
+        "Kubernetes",
+        "Docker",
+        "AWS",
+        "Prometheus",
+        "Grafana",
+        "Linux",
+        "Git"
+    ]
+}

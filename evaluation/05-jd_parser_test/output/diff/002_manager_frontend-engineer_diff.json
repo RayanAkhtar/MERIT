@@ -1,0 +1,39 @@
+{
+    "Skills": {
+        "Matched": [
+            "next.js",
+            "react",
+            "typescript"
+        ],
+        "Missed (False Negatives)": [
+            "cypress",
+            "figma",
+            "git",
+            "graphql",
+            "javascript",
+            "node.js",
+            "tailwind css"
+        ],
+        "Extra (False Positives/Noise)": [
+            "c",
+            "github",
+            "js",
+            "playwright",
+            "r",
+            "storybook",
+            "vitest"
+        ]
+    },
+    "Details": {
+        "Title Match": false,
+        "Company Match": false,
+        "Extracted": {
+            "title": "Now Hiring: Manager, Frontend Engineering",
+            "company": "performance"
+        },
+        "Expected": {
+            "title": "Frontend Engineering Manager",
+            "company": "PixelFlow"
+        }
+    }
+}

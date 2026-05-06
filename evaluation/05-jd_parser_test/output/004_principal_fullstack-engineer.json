@@ -1,0 +1,42 @@
+{
+    "raw_text": "Principal Full Stack Engineer\nCloudNative Labs \u2014 Empowering enterprises to build scalable, resilient cloud architectures with elegant, open-\n\nsource-first solutions.\n\nLocation\n\nSan Francisco, CA (Remote-friendly)\n\nEmployment Type\n\nFull-time\n\nCompensation\n\n$280,000 - $380,000 per year\n\nThe Opportunity\n\nCloudNative Labs seeks an exceptional Principal Full Stack Engineer to join our platform architecture team.\n\nThis is a high-impact leadership position where you'll define our organization-wide technical strategy, architect\nnext-generation cloud infrastructure solutions, and mentor engineering teams across product domains. You'll\n\nwork across the full stack\u2014from TypeScript/React frontends to Node.js microservices to PostgreSQL databases\n\u2014while establishing best practices and technical direction for our entire engineering organization. This role\nrequires 12+ years of experience and a demonstrated track record of leading large-scale distributed systems and\ntechnical transformation initiatives.\n\nAbout CloudNative Labs\n\nCloudNative Labs is a B2B SaaS platform that provides enterprise-grade infrastructure orchestration and\n\nobservability tools for companies managing distributed systems at scale. Founded in 2015, we serve Fortune 500\ncompanies across financial services, e-commerce, and healthcare sectors. Our mission is to make cloud-native\narchitecture accessible and manageable for organizations of all sizes. We employ 250+ engineers across 5 offices\n\nand are backed by Series C funding.\n\nDay-to-Day\n\nDefine and communicate org-wide technical strategy for cloud-native systems, including architecture\ndecisions, technology choices, and long-term infrastructure roadmap\n\nDesign and implement scalable full-stack solutions using Node.js, TypeScript, React, GraphQL, and\nPostgreSQL, setting architectural patterns that become standards across teams\n\nLead cross-functional technical initiatives involving 3+ engineering teams, ensuring alignment with business\nobjectives and platform scalability requirements\n\nArchitect microservices patterns and distributed system designs on AWS/GCP, establishing deployment best\npractices and infrastructure-as-code standards using Kubernetes and Terraform\n\nConduct technology evaluations and vendor assessments for mission-critical infrastructure decisions;\n\nestablish guidelines for API design (REST/GraphQL), database scaling, and observability tooling\n\nMentor and develop senior engineers and tech leads, including conducting technical reviews, architectural\nguidance, and career development planning\n\nDrive technical debt reduction initiatives and establish engineering excellence standards across codebases;\nestablish code review practices and testing frameworks\n\n\fRepresent engineering in executive strategy sessions; provide technical feasibility assessment for product and\nbusiness roadmaps\n\nLead high-impact projects from conception through delivery, ensuring technical rigor, performance\noptimization, and security compliance at every stage\n\nYou Have\n\n12+ years of software engineering experience with at least 5+ years in full-stack distributed systems\ndevelopment\n\nExpert-level proficiency in TypeScript and modern Node.js ecosystems; proven ability to architect and scale\nbackend systems\n\nDeep experience with React, frontend state management patterns, and building high-performance user\ninterfaces at scale\n\nAdvanced expertise with PostgreSQL and relational database design, including query optimization and\nscaling strategies\n\nDemonstrated experience architecting microservices on AWS or GCP, including Kubernetes orchestration,\nserverless patterns, and cloud-native deployment\n\nProven track record of defining technical strategy and influencing engineering direction across multiple\nteams or organizations\n\nStrong systems design skills including REST and GraphQL API design, event-driven architectures, and\nasynchronous messaging patterns\n\nBonus\n\nExperience leading technical architectural reviews and establishing engineering standards across large\norganizations\n\nExpertise with observability platforms (Prometheus, Datadog, ELK stack) and distributed tracing tools\n\nOpen-source contribution history or maintainership of infrastructure/developer tools projects\n\nExperience with infrastructure-as-code frameworks such as Terraform, CloudFormation, or Pulumi\n\nTrack record of successful large-scale system migrations or major technical transformations\n\nPublished technical writing, conference talks, or recognized thought leadership in cloud architecture or\ndistributed systems\n\nOur Stack\n\nTypeScript   Node.js   React   GraphQL   PostgreSQL   AWS   Kubernetes   Terraform   Docker   Prometheus\n\nWhat We Offer\n\nCompetitive equity package with refresher grants (0.25-0.5% depending on background)\n\nComprehensive health coverage including medical, dental, vision for employee and dependents\n\nUnlimited PTO with minimum 15 days recommended; sabbatical program after 5 years\n\nProfessional development budget of $5,000/year for conferences, courses, and training\n\nHome office stipend ($2,000) and annual hardware refresh allocation\n\n401(k) matching (4% of salary) with immediate vesting\n\n\fParental leave (16 weeks paid for primary caregiver, 8 weeks for secondary)\n\nMental health support including therapy coverage and wellness platform\n\nApply\n\nSubmit your resume, a 1-2 page statement on your technical leadership philosophy, and GitHub/portfolio links\nto careers@cloudnativelabs.com with subject line 'Principal Full Stack Engineer Application.' Applications\n\nreviewed on rolling basis. Candidates will participate in a technical deep-dive, architectural discussion, and\nexecutive leadership alignment interview over 4-5 weeks.\n\n\f",
+    "job_title": "Principal Full Stack Engineer",
+    "company": "CloudNative Labs",
+    "location": null,
+    "employment_type": "Full-time",
+    "experience_level": "Senior",
+    "technical_skills": [
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "Node.js",
+        "React",
+        "gcp",
+        "postgresql",
+        "prometheus",
+        "pulumi",
+        "terraform"
+    ],
+    "education": [],
+    "nice_to_have": [
+        "Experience leading technical architectural reviews and establishing engineering standards across large",
+        "organizations",
+        "Expertise with observability platforms (Prometheus, Datadog, ELK stack) and distributed tracing tools",
+        "Open-source contribution history or maintainership of infrastructure/developer tools projects",
+        "Experience with infrastructure-as-code frameworks such as Terraform, CloudFormation, or Pulumi",
+        "Track record of successful large-scale system migrations or major technical transformations",
+        "Published technical writing, conference talks, or recognized thought leadership in cloud architecture or",
+        "distributed systems"
+    ],
+    "salary": "$280,000 - $380,000 per year",
+    "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\evaluation\\05-jd_parser_test\\test_data/jds\\004_principal_fullstack-engineer.pdf",
+    "languages": [
+        "JS",
+        "PostgreSQL",
+        "TypeScript",
+        "c",
+        "github",
+        "graphql"
+    ],
+    "education_required": []
+}

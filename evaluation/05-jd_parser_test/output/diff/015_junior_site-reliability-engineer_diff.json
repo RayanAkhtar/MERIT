@@ -1,0 +1,36 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "docker",
+            "git",
+            "go",
+            "grafana",
+            "kubernetes",
+            "prometheus",
+            "python",
+            "terraform"
+        ],
+        "Missed (False Negatives)": [
+            "bash",
+            "linux"
+        ],
+        "Extra (False Positives/Noise)": [
+            "azure",
+            "gcp",
+            "github"
+        ]
+    },
+    "Details": {
+        "Title Match": false,
+        "Company Match": false,
+        "Extracted": {
+            "title": "CloudWeave Systems // Junior Site Reliability Engineer",
+            "company": "CloudWeave Systems is a mid"
+        },
+        "Expected": {
+            "title": "Junior Site Reliability Engineer",
+            "company": "ScaleOps"
+        }
+    }
+}

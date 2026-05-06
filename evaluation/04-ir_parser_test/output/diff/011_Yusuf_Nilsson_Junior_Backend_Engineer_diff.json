@@ -1,0 +1,66 @@
+{
+    "Skills": {
+        "Matched": [
+            "docker",
+            "fastapi",
+            "git",
+            "github",
+            "go",
+            "js",
+            "kubernetes",
+            "postgresql",
+            "python",
+            "sql"
+        ],
+        "Missed (False Negatives)": [
+            "aws",
+            "django",
+            "jenkins",
+            "pytest",
+            "redis"
+        ],
+        "Extra (False Positives/Noise)": [
+            "elasticsearch",
+            "grafana",
+            "graphql",
+            "grpc",
+            "java",
+            "kafka",
+            "node.js",
+            "processing",
+            "prometheus",
+            "rust",
+            "spring",
+            "typescript"
+        ]
+    },
+    "Experience": {
+        "Matched": [],
+        "Missed": [
+            "spotify",
+            "klarna"
+        ],
+        "All Extracted Entities": [
+            "stripe",
+            "for 2,000+ merchants",
+            "99.95% uptime",
+            "notion",
+            "450ms to 120ms",
+            "cutting response times by 55%",
+            "datadog",
+            "cases"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": false,
+        "Email Correct": false,
+        "Extracted": {
+            "name": "Yusuf Nilsson +44",
+            "email": "yusuf.nilsson@outlook.com"
+        },
+        "Expected": {
+            "name": "Yusuf Nilsson",
+            "email": "yusuf.nilsson@gmail.com"
+        }
+    }
+}

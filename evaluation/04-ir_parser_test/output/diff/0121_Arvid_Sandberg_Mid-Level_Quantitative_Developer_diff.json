@@ -1,0 +1,60 @@
+{
+    "Skills": {
+        "Matched": [
+            "c++",
+            "clickhouse",
+            "docker",
+            "git",
+            "github",
+            "jupyter",
+            "kubernetes",
+            "numpy",
+            "pandas",
+            "python",
+            "sql",
+            "tensorflow"
+        ],
+        "Missed (False Negatives)": [
+            "kdb+",
+            "linux",
+            "q",
+            "r"
+        ],
+        "Extra (False Positives/Noise)": [
+            "c",
+            "c#",
+            "f#",
+            "ocaml",
+            "postgresql",
+            "processing",
+            "pytorch",
+            "scikit",
+            "scikit-learn"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "jane street",
+            "citadel"
+        ],
+        "Missed": [],
+        "All Extracted Entities": [
+            "citadel securities",
+            "jane street",
+            "numerai (quantitative research division)",
+            "vectorizing covariance calculations for 8,000-stock universe."
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": false,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Arvid Sandberg +1",
+            "email": "arvid.sandberg@gmail.com"
+        },
+        "Expected": {
+            "name": "Arvid Sandberg",
+            "email": "arvid.sandberg@gmail.com"
+        }
+    }
+}

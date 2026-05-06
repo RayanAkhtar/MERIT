@@ -1,0 +1,43 @@
+{
+    "name": "Henriette Romero",
+    "email": "henriette.romero@outlook.com",
+    "skills": [
+        "Go",
+        "Python",
+        "Rust",
+        "TypeScript",
+        "Java",
+        "C++",
+        "SQL",
+        "Kubernetes",
+        "Microservices",
+        "gRPC",
+        "Protocol Buffers",
+        "GraphQL",
+        "WebSockets",
+        "Machine Learning",
+        "Docker",
+        "Kafka",
+        "Redis",
+        "PostgreSQL",
+        "ClickHouse",
+        "Datadog",
+        "Prometheus",
+        "Git",
+        "GitHub Actions",
+        "AWS",
+        "GCP",
+        "FastAPI",
+        "github"
+    ],
+    "experience": [
+        "Stripe",
+        "Datadog",
+        "Palantir Technologies",
+        "Figma"
+    ],
+    "education": [
+        "University of Cambridge",
+        "UC Berkeley"
+    ]
+}

@@ -1,0 +1,72 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "bash",
+            "c++",
+            "cassandra",
+            "clickhouse",
+            "docker",
+            "dynamodb",
+            "gcp",
+            "git",
+            "github",
+            "go",
+            "grafana",
+            "grpc",
+            "java",
+            "jenkins",
+            "kafka",
+            "kubernetes",
+            "nosql",
+            "postgresql",
+            "prometheus",
+            "python",
+            "rust",
+            "sql",
+            "terraform"
+        ],
+        "Missed (False Negatives)": [],
+        "Extra (False Positives/Noise)": [
+            "c",
+            "processing"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "stripe",
+            "palantir technologies",
+            "cloudflare",
+            "figma",
+            "wise"
+        ],
+        "Missed": [],
+        "All Extracted Entities": [
+            "stripe",
+            "months",
+            "palantir technologies",
+            "real-time analytics for government agencies",
+            "cloudflare",
+            "improving global latency performance by 31%",
+            "figma",
+            "synchronization latency across global datacenters",
+            "for 10x larger design files",
+            "wise (formerly transferwise)",
+            "payment semantics across 190+ countries",
+            "increasing feature velocity by 4x",
+            "and improving customer trust scores measurably"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": true,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Patricia Al-Bahar",
+            "email": "patricia.albahar@outlook.com"
+        },
+        "Expected": {
+            "name": "Patricia Al-Bahar",
+            "email": "patricia.albahar@outlook.com"
+        }
+    }
+}

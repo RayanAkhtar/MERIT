@@ -1,0 +1,55 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "git",
+            "github",
+            "jupyter",
+            "matplotlib",
+            "numpy",
+            "pandas",
+            "python",
+            "r",
+            "scikit-learn",
+            "sql",
+            "tensorflow"
+        ],
+        "Missed (False Negatives)": [
+            "tableau"
+        ],
+        "Extra (False Positives/Noise)": [
+            "dbeaver",
+            "docker",
+            "nltk",
+            "postgresql",
+            "scikit",
+            "spacy"
+        ]
+    },
+    "Experience": {
+        "Matched": [],
+        "Missed": [
+            "intercom",
+            "accenture"
+        ],
+        "All Extracted Entities": [
+            "stripe",
+            "positive rate, impacting 50k+ daily transactions",
+            "informed roadmap prioritization",
+            "datarobot",
+            "improvement in model accuracy"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": true,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Aisling Hunt",
+            "email": "aisling.hunt@gmail.com"
+        },
+        "Expected": {
+            "name": "Aisling Hunt",
+            "email": "aisling.hunt@gmail.com"
+        }
+    }
+}

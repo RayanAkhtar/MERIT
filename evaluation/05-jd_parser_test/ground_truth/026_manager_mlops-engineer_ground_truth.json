@@ -1,0 +1,16 @@
+{
+    "job_title": "MLOps Engineering Manager",
+    "company": "AIFlow",
+    "skills": [
+        "Python",
+        "Kubernetes",
+        "Docker",
+        "Terraform",
+        "MLflow",
+        "AWS",
+        "GCP",
+        "PyTorch",
+        "TensorFlow",
+        "Kubeflow"
+    ]
+}

@@ -1,0 +1,87 @@
+{
+    "Skills": {
+        "Matched": [
+            "c++",
+            "docker",
+            "envoy",
+            "git",
+            "github",
+            "go",
+            "grafana",
+            "grpc",
+            "java",
+            "kafka",
+            "kubernetes",
+            "postgresql",
+            "prometheus",
+            "python",
+            "rust",
+            "sql",
+            "terraform"
+        ],
+        "Missed (False Negatives)": [
+            "aws",
+            "cassandra",
+            "clickhouse",
+            "distributed systems",
+            "dynamodb",
+            "elasticsearch",
+            "gcp",
+            "microservices",
+            "protocol buffers",
+            "redis"
+        ],
+        "Extra (False Positives/Noise)": [
+            "c",
+            "foundation",
+            "graphql",
+            "jenkins",
+            "llvm",
+            "processing",
+            "scala",
+            "typescript"
+        ]
+    },
+    "Experience": {
+        "Matched": [],
+        "Missed": [
+            "google",
+            "meta",
+            "netflix",
+            "uber"
+        ],
+        "All Extracted Entities": [
+            "palantir technologies",
+            "improving system throughput by 4.2x",
+            "78%",
+            "savings",
+            "stripe",
+            "supporting $50b+ annual transaction volume",
+            "$8.5m in customer revenue loss",
+            "from 45 minutes to 8 minutes",
+            "cloudflare",
+            "10m+ requests per second",
+            "90 seconds across fleet",
+            "findings by 84%",
+            "shopify",
+            "annually",
+            "downtime",
+            "rates by 3.2%",
+            "datadog",
+            "340%",
+            "loss"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": false,
+        "Email Correct": false,
+        "Extracted": {
+            "name": "Lihna Deli\u0107",
+            "email": "lihna.delic@outlook.com"
+        },
+        "Expected": {
+            "name": "Lihna Deli",
+            "email": "lihna.deli@outlook.com"
+        }
+    }
+}

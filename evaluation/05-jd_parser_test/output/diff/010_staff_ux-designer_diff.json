@@ -1,0 +1,32 @@
+{
+    "Skills": {
+        "Matched": [],
+        "Missed (False Negatives)": [
+            "adobe creative suite",
+            "css",
+            "figma",
+            "html",
+            "javascript",
+            "sketch",
+            "user research"
+        ],
+        "Extra (False Positives/Noise)": [
+            "c",
+            "framer",
+            "r",
+            "react"
+        ]
+    },
+    "Details": {
+        "Title Match": false,
+        "Company Match": false,
+        "Extracted": {
+            "title": null,
+            "company": null
+        },
+        "Expected": {
+            "title": "Staff UX Designer",
+            "company": "Visionary Design"
+        }
+    }
+}

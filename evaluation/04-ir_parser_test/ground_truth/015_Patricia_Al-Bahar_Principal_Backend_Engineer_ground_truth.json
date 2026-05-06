@@ -1,0 +1,41 @@
+{
+    "name": "Patricia Al-Bahar",
+    "email": "patricia.albahar@outlook.com",
+    "skills": [
+        "Go",
+        "Rust",
+        "Python",
+        "Java",
+        "SQL",
+        "Bash",
+        "C++",
+        "Kubernetes",
+        "Docker",
+        "gRPC",
+        "Kafka",
+        "PostgreSQL",
+        "AWS",
+        "Terraform",
+        "Cassandra",
+        "DynamoDB",
+        "Prometheus",
+        "Grafana",
+        "Jenkins",
+        "Git",
+        "clickhouse",
+        "gcp",
+        "github",
+        "nosql"
+    ],
+    "experience": [
+        "Stripe",
+        "Palantir Technologies",
+        "Cloudflare",
+        "Figma",
+        "Wise"
+    ],
+    "education": [
+        "University of Cambridge",
+        "University of Edinburgh"
+    ]
+}

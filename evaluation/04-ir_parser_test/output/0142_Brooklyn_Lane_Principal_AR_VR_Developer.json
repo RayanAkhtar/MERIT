@@ -1,0 +1,77 @@
+{
+    "raw_cv_text": "Brooklyn Lane\nbrooklyn.lane@gmail.com \u2022 (415) 823-7641 \u2022 https://brooklyn-lane.dev/portfolio\nEDUCATION\nUniversity of Washington \u2014 Ph.D. in Computer Science (Computer Vision & Graphics) 2002 - 2006\nCarnegie Mellon University \u2014 B.S. in Computer Science with Honors 1998 - 2002\nEXPERIENCE\nMagic Leap \u2014 Principal AR/VR Architect 2021 - Present\nArchitected spatial computing platform serving 2.3M+ enterprise users across healthcare, manufacturing, and design\nindustries; improved depth perception accuracy by 34% through novel optical calibration algorithms.\nLed cross-functional team of 18 engineers to develop next-generation hand tracking system, reducing latency from\n45ms to 12ms and achieving 98.7% gesture recognition accuracy in real-world environments.\nPublished 4 peer-reviewed papers at SIGGRAPH and IEEE VR on real-time photogrammetry optimization and\npersistent scene understanding, garnering 2,100+ citations and establishing industry standards for XR content delivery.\nNiantic (Pok\u00e9mon GO, Lightship) \u2014 Distinguished Engineer - AR Systems 2018 - 2021\nDesigned and implemented Lightship ARDK core rendering engine used by 4,000+ developers, processing 150M+ daily\nAR sessions and generating $45M in developer ecosystem revenue.\nPioneered visual-inertial odometry improvements that reduced drift by 62% in GPS-denied environments, enabling\naccurate waypoint navigation for outdoor AR experiences across 195 countries.\nMentored 12 staff-level engineers and managed $8.2M R&D budget for spatial awareness research; sponsored 8\nsuccessful promotions to senior engineer level.\nQualcomm Innovation Center \u2014 Principal Research Scientist - Immersive Computing 2014 - 2018\nInvented patented real-time ray-tracing optimization for mobile AR, reducing GPU power consumption by 48% while\nmaintaining visual fidelity; licensed to 12+ semiconductor manufacturers generating $12M annual licensing revenue.\nCollaborated with Khronos Group to author OpenXR compliance specifications adopted by 89% of commercial AR/VR\nplatforms; presented keynote at GDC 2017 reaching 3,200+ attendees.\nDeveloped computer vision pipeline for robust marker-less tracking achieving 99.2% stability across varying lighting\nconditions, accelerating adoption in enterprise field service platforms by 3 major customers.\nMicrosoft Mixed Reality Capture Studios (MRCS) \u2014 Principal Software Engineer - Volume Rendering 2010 - 2014\nLed architecture overhaul of volumetric capture and playback pipeline, reducing file sizes by 71% while maintaining sub-\n3mm geometric accuracy, enabling live-streamed photogrammetry for HoloLens enterprise applications.\nEstablished performance testing framework capturing 150+ metrics across 8 hardware platforms; identified and resolved\ncritical memory leaks reducing system crashes by 87% in production deployments.\nDrove adoption of physically-based rendering for mixed reality environments across 5 AAA game studios; benchmarked\nsolutions managing 2.8B polygons at 90FPS on mobile hardware.\nIntel Visual Computing Institute \u2014 Senior Research Engineer - 3D Reconstruction 2006 - 2010\nEngineered real-time 3D mesh reconstruction algorithm processing multi-camera feeds at 60FPS; deployed in 15\nbroadcast production facilities for live virtual set composition.\nPublished 6 technical papers on structure-from-motion optimization at CVPR and ICCV conferences; work cited 1,800+\ntimes influencing commercial SLAM implementations industry-wide.\nOptimized photogrammetry processing pipeline reducing computation time from 8 hours to 22 minutes per asset,\nenabling production teams to increase scanning throughput by 340%.\nEXTRACURRICULAR\nIEEE Computer Society \u2014 Executive Committee Member - Virtual Reality Technical Committee 2019 - Present\nChaired 3 international symposiums on immersive computing attracting 2,400+ researchers; curated 180+ peer-\nreviewed submissions establishing new conference standards.\nEstablished VR accessibility working group producing 12 technical standards adopted by W3C WebXR specification,\nbenefiting 15M+ users with disabilities accessing XR content.\nVRDC (Virtual Reality Developers Conference) \u2014 Technical Track Chair & Keynote Speaker 2015 - Present\nDelivered 8 keynotes and technical deep-dives reaching cumulative audience of 12,000+ developers; presentations\nranked top 3% in attendee satisfaction scoring 4.8/5.0 average.\nRecruited and mentored 24 emerging speakers from underrepresented backgrounds in XR; 18 speakers advanced to\ninvited conference presentations at top-tier venues.\nTECHNICAL SKILLS\nLanguages \u2013 C++, C#, Python, GLSL, HLSL, JavaScript, Java\nTechnologies \u2013 SLAM, ARKit, ARCore, WebXR, OpenXR, Vulkan, Metal, CUDA, TensorFlow, PyTorch, photogrammetry,\nvolumetric capture, spatial mapping, hand tracking, eye gaze estimation, depth estimation, neural rendering\nTools \u2013 Unity, Unreal Engine 5, Blender, OpenCV, PCL, RealSense SDK, Vuforia, Cesium.js, Git, Docker, Kubernetes,\nAWS, Azure Spatial Anchors",
+    "name": null,
+    "email": "brooklyn.lane@gmail.com",
+    "phone": null,
+    "links": {
+        "other": [
+            "https://brooklyn-lane.dev/portfolio"
+        ],
+        "linkedin": [],
+        "github": []
+    },
+    "skills": [
+        "aws",
+        "azure",
+        "blender",
+        "c",
+        "c#",
+        "c++",
+        "docker",
+        "git",
+        "go",
+        "java",
+        "javascript",
+        "js",
+        "kubernetes",
+        "opencv",
+        "processing",
+        "python",
+        "pytorch",
+        "r",
+        "tensorflow",
+        "unity",
+        "unreal engine",
+        "vulkan",
+        "webxr"
+    ],
+    "projects": [],
+    "extracurricular": [
+        {
+            "name": "reviewed submissions establishing new conference standards.",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "invited conference presentations at top-tier venues.",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "successful promotions to senior engineer level.",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "times influencing commercial SLAM implementations industry-wide.",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Magic Leap \u2014 Principal AR/VR Architect 2021 - Present\nArchitected spatial computing platform serving 2.3M+ enterprise users across healthcare, manufacturing, and design\nindustries; improved depth perception accuracy by 34% through novel optical calibration algorithms.\nLed cross-functional team of 18 engineers to develop next-generation hand tracking system, reducing latency from\n45ms to 12ms and achieving 98.7% gesture recognition accuracy in real-world environments.\nPublished 4 peer-reviewed papers at SIGGRAPH and IEEE VR on real-time photogrammetry optimization and\npersistent scene understanding, garnering 2,100+ citations and establishing industry standards for XR content delivery.\nNiantic (Pok\u00e9mon GO, Lightship) \u2014 Distinguished Engineer - AR Systems 2018 - 2021\nDesigned and implemented Lightship ARDK core rendering engine used by 4,000+ developers, processing 150M+ daily\nAR sessions and generating $45M in developer ecosystem revenue.\nPioneered visual-inertial odometry improvements that reduced drift by 62% in GPS-denied environments, enabling\naccurate waypoint navigation for outdoor AR experiences across 195 countries.\nMentored 12 staff-level engineers and managed $8.2M R&D budget for spatial awareness research; sponsored 8\nsuccessful promotions to senior engineer level.\nQualcomm Innovation Center \u2014 Principal Research Scientist - Immersive Computing 2014 - 2018\nInvented patented real-time ray-tracing optimization for mobile AR, reducing GPU power consumption by 48% while\nmaintaining visual fidelity; licensed to 12+ semiconductor manufacturers generating $12M annual licensing revenue.\nCollaborated with Khronos Group to author OpenXR compliance specifications adopted by 89% of commercial AR/VR\nplatforms; presented keynote at GDC 2017 reaching 3,200+ attendees.\nDeveloped computer vision pipeline for robust marker-less tracking achieving 99.2% stability across varying lighting\nconditions, accelerating adoption in enterprise field service platforms by 3 major customers.\nMicrosoft Mixed Reality Capture Studios (MRCS) \u2014 Principal Software Engineer - Volume Rendering 2010 - 2014\nLed architecture overhaul of volumetric capture and playback pipeline, reducing file sizes by 71% while maintaining sub-\n3mm geometric accuracy, enabling live-streamed photogrammetry for HoloLens enterprise applications.\nEstablished performance testing framework capturing 150+ metrics across 8 hardware platforms; identified and resolved\ncritical memory leaks reducing system crashes by 87% in production deployments.\nDrove adoption of physically-based rendering for mixed reality environments across 5 AAA game studios; benchmarked\nsolutions managing 2.8B polygons at 90FPS on mobile hardware.\nIntel Visual Computing Institute \u2014 Senior Research Engineer - 3D Reconstruction 2006 - 2010\nEngineered real-time 3D mesh reconstruction algorithm processing multi-camera feeds at 60FPS; deployed in 15\nbroadcast production facilities for live virtual set composition.\nPublished 6 technical papers on structure-from-motion optimization at CVPR and ICCV conferences; work cited 1,800+\ntimes influencing commercial SLAM implementations industry-wide.\nOptimized photogrammetry processing pipeline reducing computation time from 8 hours to 22 minutes per asset,\nenabling production teams to increase scanning throughput by 340%.",
+    "education": []
+}

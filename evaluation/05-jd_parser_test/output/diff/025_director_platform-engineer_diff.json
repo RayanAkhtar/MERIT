@@ -1,0 +1,37 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "go",
+            "kubernetes",
+            "python",
+            "terraform"
+        ],
+        "Missed (False Negatives)": [
+            "ansible",
+            "docker",
+            "jenkins",
+            "linux"
+        ],
+        "Extra (False Positives/Noise)": [
+            "azure",
+            "gcp",
+            "github",
+            "grafana",
+            "postgresql",
+            "prometheus"
+        ]
+    },
+    "Details": {
+        "Title Match": false,
+        "Company Match": false,
+        "Extracted": {
+            "title": "Director, Platform Engineering",
+            "company": "CloudWeave Systems"
+        },
+        "Expected": {
+            "title": "Director of Platform Engineering",
+            "company": "CoreCloud"
+        }
+    }
+}

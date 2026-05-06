@@ -1,0 +1,32 @@
+{
+    "name": "Daniel Miles",
+    "email": "daniel.miles@gmail.com",
+    "skills": [
+        "Python",
+        "PyTorch",
+        "Transformers",
+        "Hugging Face",
+        "BERT",
+        "NLTK",
+        "SpaCy",
+        "Elasticsearch",
+        "SQL",
+        "FastAPI",
+        "Docker",
+        "Git",
+        "aws",
+        "bash",
+        "github",
+        "jupyter",
+        "keras",
+        "kubernetes",
+        "tensorflow"
+    ],
+    "experience": [
+        "DeepMind",
+        "OpenAI"
+    ],
+    "education": [
+        "University of Oxford"
+    ]
+}

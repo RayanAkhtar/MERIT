@@ -1,7 +1,41 @@
-*.pdf
-data
-*.txt
-decisions
-findings
-temporary
-reports
+# Ignore compiled Python files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore large/local data but ALLOW evaluation data
+data/
+!evaluation/**/*.pdf
+!evaluation/**/*.json
+!evaluation/**/*.csv
+!evaluation/**/*.png
+
+# Allow documentation
+!*.txt
+!*.md
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore environment/temporary files
+.env
+.venv
+env/
+venv/
+temporary/
+reports/
+findings/
+decisions/
+
+# Temporary files
+roadmap.txt
+interim_text.txt
+interim.pdf
+plan_evaluation.txt
+plan.txt
+timeline.txt
+todo_report.txt

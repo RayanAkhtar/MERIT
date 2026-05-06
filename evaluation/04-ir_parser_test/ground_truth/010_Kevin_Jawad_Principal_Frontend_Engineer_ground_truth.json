@@ -1,0 +1,32 @@
+{
+    "name": "Kevin Jawad",
+    "email": "kevin.jawad@gmail.com",
+    "skills": [
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Vue.js",
+        "WebAssembly",
+        "GraphQL",
+        "Next.js",
+        "Node.js",
+        "CSS",
+        "Sass",
+        "Figma",
+        "Web Performance",
+        "Jest",
+        "Cypress",
+        "Git",
+        "AWS",
+        "github",
+        "js"
+    ],
+    "experience": [
+        "Airbnb",
+        "Slack",
+        "Frontend Pros"
+    ],
+    "education": [
+        "American University of Beirut"
+    ]
+}

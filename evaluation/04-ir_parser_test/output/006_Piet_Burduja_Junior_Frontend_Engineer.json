@@ -1,0 +1,231 @@
+{
+    "raw_cv_text": "Piet Burduja\n+44 7911 534 628 | Email: piet.burduja@gmail.com | LinkedIn: piet-burduja | GitHub: PietBurduja | https://pietburduja.dev\nEDUCATION\nUniversity of Waterloo | Bachelor of Computer Science, Honours Co-op 2020 - 2024\nAchieved 3.8/4.0 GPA and received Dean's Honours List recognition for three consecutive years\nLed web development track in campus coding competition, mentoring 12 first-year students on React fundamentals\nUniversity of Toronto | Summer Bridge Program - Advanced Web Technologies June 2022 - August 2022\nCompleted intensive 12-week full-stack bootcamp with focus on modern frontend frameworks and TypeScript\nEXPERIENCE\nStripe | Frontend Engineer Intern May 2023 - August 2023\nRefactored payment form components reducing bundle size by 23% through tree-shaking optimization and lazy loading\nImplemented real-time validation UI for merchant dashboard, decreasing form submission errors by 18% across 50K+\ndaily active users\nCollaborated with design team to migrate 8 legacy components to new Stripe Design System, improving accessibility\nscore from 72 to 94\nNotion | Junior Frontend Developer September 2023 - Present\nDeveloped interactive table filtering feature used by 2.3M+ workspace members, increasing engagement time by 12%\nOptimized React component rendering performance through memoization and virtualization, reducing initial page load\ntime by 31%\nLed A/B testing initiative for dark mode UI variant, achieving 64% user adoption within 6 weeks\nFigma | Frontend Engineering Co-op January 2022 - April 2022\nBuilt WebSocket-based real-time collaboration indicator component handling concurrent updates from 50+ simultaneous\nusers with <100ms latency\nReduced CSS-in-JS runtime overhead by 27% through static extraction and CSS module conversion across design panel\nmodules\nDebugged and fixed critical SVG rendering bug affecting 8% of canvas interactions, preventing 15K+ daily frustration\nincidents\nPROJECTS\nPixelFlow | React, TypeScript, Tailwind CSS, Firebase March 2023 - June 2023\nBuilt collaborative image editing web app with real-time layer synchronization across 5 simultaneous editors, achieving\n99.2% uptime\nImplemented WebGL-based image filters reducing processing time by 68% compared to canvas-based solution\nCodeSnap | Next.js, Prisma, PostgreSQL, Vercel July 2022 - October 2022\nCreated code snippet management platform with syntax highlighting, attracting 340+ GitHub stars and 12K monthly\nvisitors\nOptimized database queries reducing average page load time from 1.8s to 420ms through strategic indexing and caching\nVoiceChat Dashboard | Vue.js, WebRTC, Node.js, Socket.io November 2022 - February 2023\nEngineered real-time audio/video call metrics dashboard handling 500+ concurrent peer connections with 94% accuracy\nin latency reporting\nDecreased dashboard load time by 45% implementing virtual scrolling for metrics tables containing 50K+ data points\nOpenUI Components Library | React, Storybook, TypeScript, npm August 2021 - Present\nContributed 18 accessible UI components to open-source library, accumulating 2,100+ npm weekly downloads\nImproved component test coverage from 56% to 89%, reducing production bugs by 34% in dependent projects\nPerformanceMonitor Browser Extension | JavaScript (Vanilla), Chrome Extension API, D3.js May 2021 - August 2021\nDeveloped Chrome extension providing real-time Core Web Vitals visualization for 1,200+ active users\nAchieved 4.7/5.0 rating on Chrome Web Store with 89% positive reviews\nEXTRACURRICULAR\nFrontend Masters Study Group | Co-Organizer & Mentor January 2022 - Present\nOrganized bi-weekly study sessions on advanced React patterns for 35+ members, creating comprehensive learning\nmaterials covering hooks and state management\nMentored 8 junior developers transitioning into tech roles, with 6 successfully landing frontend internships within 6\nmonths\nReact Toronto Meetup & HackTO Conference | Speaker & Volunteer March 2023\nDelivered 45-minute technical talk on 'Performance Optimization in Large-Scale React Applications' to 120+ developers,\nreceiving 4.8/5.0 average feedback score\nVolunteered as frontend track mentor at HackTO 2023, guiding 24 participants to build 6 production-ready projects\nTECHNICAL SKILLS\nLanguages \u2013 JavaScript, TypeScript, HTML5, CSS3, SQL\nTechnologies \u2013 React, Next.js, Vue.js, Redux, Zustand, Tailwind CSS, Material-UI, Styled Components, Jest, React Testing\nLibrary, GraphQL, REST APIs, WebRTC, Socket.io\nTools \u2013 Git, GitHub, Webpack, Vite, Chrome DevTools, VS Code, Figma, Storybook, JIRA, Vercel, Netlify, Firebase,\nPostgreSQL",
+    "name": "Piet Burduja +44",
+    "email": "piet.burduja@gmail.com",
+    "phone": null,
+    "links": {
+        "other": [
+            "https://pietburduja.dev"
+        ],
+        "linkedin": [
+            "https://linkedin.com/in/piet-burduja"
+        ],
+        "github": [
+            "https://github.com/PietBurduja"
+        ]
+    },
+    "skills": [
+        "css3",
+        "firebase",
+        "git",
+        "github",
+        "graphql",
+        "html5",
+        "javascript",
+        "js",
+        "next.js",
+        "node.js",
+        "postgresql",
+        "processing",
+        "react",
+        "redux",
+        "sql",
+        "storybook",
+        "styled components",
+        "typescript",
+        "zustand"
+    ],
+    "projects": [
+        {
+            "name": "PixelFlow",
+            "subtitle": "React, TypeScript, Tailwind CSS, Firebase",
+            "start_date": "March 2023",
+            "end_date": "June 2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "99.2% uptime",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "CodeSnap",
+            "subtitle": "Next.js, Prisma, PostgreSQL, Vercel",
+            "start_date": "July 2022",
+            "end_date": "October 2022",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "visitors",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "VoiceChat Dashboard",
+            "subtitle": "Vue.js, WebRTC, Node.js, Socket.io",
+            "start_date": "November 2022",
+            "end_date": "February 2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "in latency reporting",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "OpenUI Components Library",
+            "subtitle": "React, Storybook, TypeScript, npm",
+            "start_date": "August 2021",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "PerformanceMonitor Browser Extension",
+            "subtitle": "JavaScript (Vanilla), Chrome Extension API, D3.js",
+            "start_date": "May 2021",
+            "end_date": "August 2021",
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "Frontend Masters Study Group",
+            "subtitle": "Co-Organizer & Mentor",
+            "start_date": "January 2022",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "materials covering hooks and state management",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "months",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "React Toronto Meetup & HackTO Conference",
+            "subtitle": "Speaker & Volunteer",
+            "start_date": "March 2023",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "receiving 4.8/5.0 average feedback score",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Stripe",
+            "subtitle": "Frontend Engineer Intern",
+            "start_date": "May 2023",
+            "end_date": "August 2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "daily active users",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "score from 72 to 94",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Notion",
+            "subtitle": "Junior Frontend Developer",
+            "start_date": "September 2023",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "time by 31%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Figma",
+            "subtitle": "Frontend Engineering Co-op",
+            "start_date": "January 2022",
+            "end_date": "April 2022",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "users with <100ms latency",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "modules",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "incidents",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Stripe | Frontend Engineer Intern May 2023 - August 2023\nRefactored payment form components reducing bundle size by 23% through tree-shaking optimization and lazy loading\nImplemented real-time validation UI for merchant dashboard, decreasing form submission errors by 18% across 50K+\ndaily active users\nCollaborated with design team to migrate 8 legacy components to new Stripe Design System, improving accessibility\nscore from 72 to 94\nNotion | Junior Frontend Developer September 2023 - Present\nDeveloped interactive table filtering feature used by 2.3M+ workspace members, increasing engagement time by 12%\nOptimized React component rendering performance through memoization and virtualization, reducing initial page load\ntime by 31%\nLed A/B testing initiative for dark mode UI variant, achieving 64% user adoption within 6 weeks\nFigma | Frontend Engineering Co-op January 2022 - April 2022\nBuilt WebSocket-based real-time collaboration indicator component handling concurrent updates from 50+ simultaneous\nusers with <100ms latency\nReduced CSS-in-JS runtime overhead by 27% through static extraction and CSS module conversion across design panel\nmodules\nDebugged and fixed critical SVG rendering bug affecting 8% of canvas interactions, preventing 15K+ daily frustration\nincidents",
+    "education": [
+        {
+            "name": "University of Waterloo",
+            "subtitle": "Bachelor of Computer Science, Honours Co-op",
+            "start_date": "2020",
+            "end_date": "2024",
+            "grade": null,
+            "summary": ""
+        }
+    ]
+}

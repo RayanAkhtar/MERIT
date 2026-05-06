@@ -1,0 +1,70 @@
+{
+    "raw_cv_text": "Moa Lundh\n+46 70 234 5678 | moa.lundh@gmail.com | https://www.linkedin.com/in/moa-lundh\nEDUCATION\nRoyal Institute of Technology (KTH) \u2014 M.S. in Computer Science, specialization in Distributed Systems 2007 - 2009\nLund University \u2014 B.S. in Computer Science and Mathematics 2003 - 2007\nEXPERIENCE\nSpotify \u2014 Principal Data Engineer Jan 2021 - Present\nArchitected and led adoption of real-time analytics platform processing 2.8B events/day across 400M users, reducing\nquery latency by 64% and enabling 12 product teams to ship features 3x faster\nEstablished data quality framework using Monte Carlo Data and Great Expectations, reducing incidents by 82% and\nachieving 99.7% SLA compliance across 300+ critical pipelines\nMentored 8 senior data engineers and 3 staff engineers on advanced streaming architecture and contributed 15\narchitectural decision records adopted org-wide\nUber \u2014 Staff Data Engineer Jun 2018 - Dec 2020\nDesigned and shipped unified data lakehouse on Delta Lake handling 1.2PB of daily ingestion for 50+ teams,\nimproving ETL reliability to 99.95% and reducing infrastructure costs by $4.2M annually\nBuilt distributed feature store serving 800+ ML models with sub-100ms latency, enabling 40+ data scientists to\nreduce feature engineering time by 70% and accelerate model deployment cycles\nLed migration of 200+ legacy batch pipelines to Kafka + Spark Structured Streaming, eliminating 14-hour SLA\nwindow and enabling real-time decisioning for surge pricing and dispatch algorithms\nGoogle Cloud \u2014 Senior Data Engineer (Cloud Data Analytics) Feb 2016 - May 2018\nArchitected BigQuery optimization patterns adopted by 500+ enterprise customers, generating $15M incremental\nARR and published 3 technical papers on cost-efficient analytics at VLDB 2017\nDesigned Dataflow-based ETL framework processing 200TB+ daily across financial services, healthcare, and media\nverticals with 99.98% accuracy and enabling 2,000+ analysts to run ad-hoc queries sub-second\nEstablished data governance and lineage platform serving 100+ GCP projects, reducing compliance audit time by\n76% and enabling automated PII detection across 800+ datasets\nGoldman Sachs \u2014 Vice President, Data Engineering Aug 2013 - Jan 2016\nLed platform team of 6 engineers to build real-time risk data pipeline ingesting 50TB daily from 15 asset classes,\nreducing risk calculation latency from 8 hours to 12 minutes and supporting $2.3T trading volume\nImplemented horizontally-scalable data mesh for 30+ trading desks across equities, fixed income, and derivatives,\nenabling self-service BI access and reducing quant request queue by 84%\nPioneered low-latency Kafka + Flink infrastructure for market data processing, handling 40M tick events/second with\n<50ms end-to-end latency for algorithmic trading strategies\nDatabricks \u2014 Principal Solutions Architect, Data Platform Sep 2011 - Jul 2013\nArchitected Delta Lake adoption strategy for Fortune 100 companies spanning retail, insurance, and automotive;\ndrove 8 successful implementations on 500TB+ datasets resulting in 52% improvement in data freshness\nDelivered 40+ technical workshops and conference presentations on Apache Spark optimization, data governance,\nand lakehouse best practices, reaching 8,000+ engineers and establishing thought leadership\nAuthored open source framework for automated data lineage tracking across Spark jobs, now adopted by 30+\nenterprises and featured as recommended tool in Apache Spark ecosystem\nPROJECTS\nDataLineage (Open Source) \u2014 Python, Scala, Spark, Apache Atlas, GraphQL 2012 - 2014\nDesigned and open-sourced data lineage and impact analysis tool used by 2,000+ practitioners, achieving 800\nGitHub stars and 95+ production deployments at scale\nDemonstrated automated end-to-end column-level lineage tracking and data cost attribution across 40M+ objects,\nenabling $8M+ in infrastructure cost optimization for adopting enterprises\nEXTRACURRICULAR\nO'Reilly Media & Data Council \u2014 Conference Speaker & Session Chair 2015 - Present\nKeynoted Strata Data Conference 2018, 2019, 2021 on 'Scaling Real-Time Analytics to Billions of Events'\nOrganized and chaired Data Infrastructure & Engineering Summit sessions, featuring talks from 50+ engineers\nreaching 3,000+ attendees\nSwedish Data Engineering Society (SDES) \u2014 Board Member & Program Advisor 2017 - Present\nEstablished Nordic Data Engineering Working Group connecting 2,000+ practitioners across Nordics for knowledge\nsharing and best practice standardization\nMentored 12 emerging data engineering leaders and helped 3 transition into Principal roles at top-tier companies\nTECHNICAL SKILLS\nLanguages \u2013 Python, Scala, SQL, Java, Go, Bash\nTechnologies \u2013 Apache Spark, Kafka, Airflow, dbt, Snowflake, BigQuery, Delta Lake, Ray, Dataflow, Flink, Protobuf,\nAvro\nTools \u2013 Terraform, Docker, Kubernetes, Jenkins, Datadog, Monte Carlo Data, Great Expectations, Tableau, Looker",
+    "name": "Moa Lundh",
+    "email": "moa.lundh@gmail.com",
+    "phone": "+46702345678",
+    "links": {
+        "linkedin": [
+            "https://www.linkedin.com/in/moa-lundh"
+        ],
+        "github": []
+    },
+    "skills": [
+        "bash",
+        "docker",
+        "gcp",
+        "github",
+        "go",
+        "google cloud",
+        "graphql",
+        "java",
+        "jenkins",
+        "kafka",
+        "kubernetes",
+        "processing",
+        "python",
+        "scala",
+        "sql",
+        "terraform"
+    ],
+    "projects": [],
+    "extracurricular": [
+        {
+            "name": "reaching 3,000+ attendees",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "sharing and best practice standardization",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "architectural decision records adopted org-wide",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Spotify \u2014 Principal Data Engineer Jan 2021 - Present\nArchitected and led adoption of real-time analytics platform processing 2.8B events/day across 400M users, reducing\nquery latency by 64% and enabling 12 product teams to ship features 3x faster\nEstablished data quality framework using Monte Carlo Data and Great Expectations, reducing incidents by 82% and\nachieving 99.7% SLA compliance across 300+ critical pipelines\nMentored 8 senior data engineers and 3 staff engineers on advanced streaming architecture and contributed 15\narchitectural decision records adopted org-wide\nUber \u2014 Staff Data Engineer Jun 2018 - Dec 2020\nDesigned and shipped unified data lakehouse on Delta Lake handling 1.2PB of daily ingestion for 50+ teams,\nimproving ETL reliability to 99.95% and reducing infrastructure costs by $4.2M annually\nBuilt distributed feature store serving 800+ ML models with sub-100ms latency, enabling 40+ data scientists to\nreduce feature engineering time by 70% and accelerate model deployment cycles\nLed migration of 200+ legacy batch pipelines to Kafka + Spark Structured Streaming, eliminating 14-hour SLA\nwindow and enabling real-time decisioning for surge pricing and dispatch algorithms\nGoogle Cloud \u2014 Senior Data Engineer (Cloud Data Analytics) Feb 2016 - May 2018\nArchitected BigQuery optimization patterns adopted by 500+ enterprise customers, generating $15M incremental\nARR and published 3 technical papers on cost-efficient analytics at VLDB 2017\nDesigned Dataflow-based ETL framework processing 200TB+ daily across financial services, healthcare, and media\nverticals with 99.98% accuracy and enabling 2,000+ analysts to run ad-hoc queries sub-second\nEstablished data governance and lineage platform serving 100+ GCP projects, reducing compliance audit time by\n76% and enabling automated PII detection across 800+ datasets\nGoldman Sachs \u2014 Vice President, Data Engineering Aug 2013 - Jan 2016\nLed platform team of 6 engineers to build real-time risk data pipeline ingesting 50TB daily from 15 asset classes,\nreducing risk calculation latency from 8 hours to 12 minutes and supporting $2.3T trading volume\nImplemented horizontally-scalable data mesh for 30+ trading desks across equities, fixed income, and derivatives,\nenabling self-service BI access and reducing quant request queue by 84%\nPioneered low-latency Kafka + Flink infrastructure for market data processing, handling 40M tick events/second with\n<50ms end-to-end latency for algorithmic trading strategies\nDatabricks \u2014 Principal Solutions Architect, Data Platform Sep 2011 - Jul 2013\nArchitected Delta Lake adoption strategy for Fortune 100 companies spanning retail, insurance, and automotive;\ndrove 8 successful implementations on 500TB+ datasets resulting in 52% improvement in data freshness\nDelivered 40+ technical workshops and conference presentations on Apache Spark optimization, data governance,\nand lakehouse best practices, reaching 8,000+ engineers and establishing thought leadership\nAuthored open source framework for automated data lineage tracking across Spark jobs, now adopted by 30+\nenterprises and featured as recommended tool in Apache Spark ecosystem",
+    "education": [
+        {
+            "name": "Lund University \u2014 B.S. in Computer Science and",
+            "subtitle": "Mathematics",
+            "start_date": "2003",
+            "end_date": "2007",
+            "grade": null,
+            "summary": ""
+        }
+    ]
+}

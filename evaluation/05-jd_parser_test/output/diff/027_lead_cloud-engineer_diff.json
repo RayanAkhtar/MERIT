@@ -1,0 +1,37 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "azure",
+            "bash",
+            "docker",
+            "gcp",
+            "kubernetes",
+            "python",
+            "terraform"
+        ],
+        "Missed (False Negatives)": [
+            "ansible",
+            "linux"
+        ],
+        "Extra (False Positives/Noise)": [
+            "github",
+            "gitlab",
+            "go",
+            "jenkins",
+            "prometheus"
+        ]
+    },
+    "Details": {
+        "Title Match": false,
+        "Company Match": false,
+        "Extracted": {
+            "title": "Nimbus Data Systems // Lead Cloud Engineer",
+            "company": "Nimbus Data Systems is a Series B cloud infrastructure company founded in"
+        },
+        "Expected": {
+            "title": "Lead Cloud Engineer",
+            "company": "CloudNimbus"
+        }
+    }
+}

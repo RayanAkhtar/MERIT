@@ -1,0 +1,29 @@
+{
+    "name": "Arvid Sandberg",
+    "email": "arvid.sandberg@gmail.com",
+    "skills": [
+        "C++",
+        "Python",
+        "SQL",
+        "KDB+",
+        "Q",
+        "R",
+        "Pandas",
+        "NumPy",
+        "Linux",
+        "Git",
+        "Docker",
+        "clickhouse",
+        "github",
+        "jupyter",
+        "kubernetes",
+        "tensorflow"
+    ],
+    "experience": [
+        "Jane Street",
+        "Citadel"
+    ],
+    "education": [
+        "Stockholm School of Economics"
+    ]
+}

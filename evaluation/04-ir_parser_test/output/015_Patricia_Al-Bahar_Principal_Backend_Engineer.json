@@ -1,0 +1,270 @@
+{
+    "raw_cv_text": "Patricia Al-Bahar\n+44 7911 234567 | Email: patricia.albahar@outlook.com | LinkedIn: patricia-al-bahar | GitHub: PatriciaAl-Bahar |\nhttps://patricialbahar.dev\nEDUCATION\nUniversity of Cambridge | MSc Computer Science 2010-2012\nDesigned distributed systems thesis on Byzantine fault-tolerant consensus protocols, achieving 99.97% fault tolerance\nwith sub-50ms latency\nLed undergraduate CS mentorship program, coaching 15+ junior students in systems design and algorithms\nUniversity of Edinburgh | BSc Software Engineering (Hons) 2006-2010\nGraduated with distinction; received prize for best systems programming capstone project\nOrganized annual hackathon attracting 200+ computer science students and industry professionals\nEXPERIENCE\nStripe | Principal Backend Engineer 2021-Present\nArchitected and led development of payment processing platform handling $500B+ annual transaction volume with\n99.99% uptime SLA, serving 2M+ businesses globally\nReduced payment processing latency by 42% through implementation of adaptive connection pooling and optimized\ndatabase query patterns, improving customer satisfaction scores by 38%\nMentored 12 senior engineers across payments and infrastructure teams, promoting 3 to staff engineer levels within 18\nmonths\nPalantir Technologies | Senior Principal Engineer, Data Platforms 2018-2021\nBuilt core data pipeline framework processing 2TB+ daily across 50+ enterprise customers, reducing pipeline failure rates\nfrom 12% to <0.5% through improved orchestration\nDesigned event sourcing architecture supporting 5000+ concurrent data transformations with <2 second latency, enabling\nreal-time analytics for government agencies\nEstablished backend platform engineering excellence program across 60-person team, reducing deployment cycle time by\n67% and increasing system reliability from 95% to 99.8%\nCloudflare | Staff Backend Engineer, Infrastructure 2015-2018\nDesigned distributed DNS resolution system serving 500M+ daily queries with sub-5ms average response time,\nimproving global latency performance by 31%\nLed 8-engineer effort to refactor rate limiting middleware, handling 3x traffic growth while reducing memory footprint by\n56% and cutting infrastructure costs by $2.4M annually\nPioneered internal observability platform using custom metrics collection, reducing mean time to resolution (MTTR) for\nincidents by 52% and preventing 18+ potential P1 outages\nFigma | Principal Software Engineer 2019-2021\nArchitected backend services for real-time collaboration engine supporting concurrent editing by 100+ users with <100ms\nsynchronization latency across global datacenters\nOptimized database query performance for document persistence, reducing P99 query time by 73% and enabling support\nfor 10x larger design files\nImplemented comprehensive API gateway and authentication layer, improving security compliance score from 78% to\n97% and reducing unauthorized access incidents to zero\nWise (formerly TransferWise) | Senior Staff Engineer, Payments 2012-2015\nDeveloped settlement engine processing 40+ currency pairs and $30B+ in annual transfers with guaranteed delivery-vs-\npayment semantics across 190+ countries\nRefactored legacy monolith into microservices architecture, reducing deployment time from 6 hours to 12 minutes and\nincreasing feature velocity by 4x\nChampioned operational excellence initiatives including chaos engineering practices, reducing critical incidents by 64%\nand improving customer trust scores measurably\nPROJECTS\nAsyncRaft - Distributed Consensus Protocol | Rust, Protocol Buffers, gRPC, TiKV 2022-Present\nEngineered open-source Raft consensus implementation achieving 100K+ ops/second throughput with configurable\nconsistency guarantees, accumulated 2.8K GitHub stars\nReduced consensus latency from 250ms to 45ms through novel leader election optimization, published findings in 3 peer-\nreviewed systems conferences\nEventTrace - Distributed Tracing for Edge Computing | Go, Jaeger, ClickHouse, Kubernetes 2020-2022\nBuilt lightweight distributed tracing solution for edge infrastructure reducing observability overhead by 71% while\nmaintaining 99.9% accuracy in span correlation\nContributed as core maintainer with 1.2K GitHub stars; solution adopted by 8+ Fortune 500 companies processing 15B+\ntrace events monthly\nEXTRACURRICULAR\nDevOps & Systems Design Meetup - London | Co-Founder & Regular Speaker 2017-Present\nGrew community to 2,300+ members through monthly talks on distributed systems, infrastructure patterns, and scalability\nchallenges\nDelivered 8 keynote talks on designing fault-tolerant systems, accumulating 50K+ YouTube views and driving 40%\nincrease in technical hiring awareness\nTechCrunch Disrupt & Startup Community | Mentor, Backend Engineering Track 2018-Present\nMentored 25+ early-stage founder teams on backend architecture, scalability strategy, and technical due diligence, with 6\nmentees successfully raising Series A/B funding\nProvided architecture reviews and performance optimization consulting saving mentee companies estimated $400K+ in\ncloud infrastructure costs\nTECHNICAL SKILLS\nLanguages \u2013 Go, Rust, Python, Java, SQL, Bash, C++\nTechnologies \u2013 Kubernetes, Docker, gRPC, Protocol Buffers, Microservices, Event Sourcing, Distributed Systems, NoSQL\n(DynamoDB, Cassandra), PostgreSQL, Message Queues (Kafka, RabbitMQ), Stream Processing (Spark, Flink)\nTools \u2013 Git, Prometheus, Grafana, ELK Stack, Jaeger, DataDog, AWS (EC2, S3, RDS, Lambda), GCP, Terraform, Jenkins,\nArgoCD, Linux kernel tuning",
+    "name": "Patricia Al-Bahar",
+    "email": "patricia.albahar@outlook.com",
+    "phone": "+447911234567",
+    "links": {
+        "other": [
+            "https://patricialbahar.dev"
+        ],
+        "linkedin": [
+            "https://linkedin.com/in/patricia-al-bahar"
+        ],
+        "github": [
+            "https://github.com/PatriciaAl-Bahar"
+        ]
+    },
+    "skills": [
+        "aws",
+        "bash",
+        "c",
+        "c++",
+        "cassandra",
+        "clickhouse",
+        "docker",
+        "dynamodb",
+        "gcp",
+        "git",
+        "github",
+        "go",
+        "grafana",
+        "grpc",
+        "java",
+        "jenkins",
+        "kafka",
+        "kubernetes",
+        "nosql",
+        "postgresql",
+        "processing",
+        "prometheus",
+        "python",
+        "rust",
+        "sql",
+        "terraform"
+    ],
+    "projects": [
+        {
+            "name": "AsyncRaft - Distributed Consensus Protocol",
+            "subtitle": "Rust, Protocol Buffers, gRPC, TiKV",
+            "start_date": "2022",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "consistency guarantees, accumulated 2.8K GitHub stars",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "reviewed systems conferences",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "EventTrace - Distributed Tracing for Edge Computing",
+            "subtitle": "Go, Jaeger, ClickHouse, Kubernetes",
+            "start_date": "2020",
+            "end_date": "2022",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "maintaining 99.9% accuracy in span correlation",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "trace events monthly",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "DevOps & Systems Design Meetup - London",
+            "subtitle": "Co-Founder & Regular Speaker",
+            "start_date": "2017",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "challenges",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "increase in technical hiring awareness",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "TechCrunch Disrupt & Startup Community",
+            "subtitle": "Mentor, Backend Engineering Track",
+            "start_date": "2018",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "mentees successfully raising Series A/B funding",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "cloud infrastructure costs",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Stripe",
+            "subtitle": "Principal Backend Engineer",
+            "start_date": "2021",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "months",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Palantir Technologies",
+            "subtitle": "Senior Principal Engineer, Data Platforms",
+            "start_date": "2018",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "real-time analytics for government agencies",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Cloudflare",
+            "subtitle": "Staff Backend Engineer, Infrastructure",
+            "start_date": "2015",
+            "end_date": "2018",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "improving global latency performance by 31%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Figma",
+            "subtitle": "Principal Software Engineer",
+            "start_date": "2019",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "synchronization latency across global datacenters",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "for 10x larger design files",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Wise (formerly TransferWise)",
+            "subtitle": "Senior Staff Engineer, Payments",
+            "start_date": "2012",
+            "end_date": "2015",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "payment semantics across 190+ countries",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "increasing feature velocity by 4x",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "and improving customer trust scores measurably",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Stripe | Principal Backend Engineer 2021-Present\nArchitected and led development of payment processing platform handling $500B+ annual transaction volume with\n99.99% uptime SLA, serving 2M+ businesses globally\nReduced payment processing latency by 42% through implementation of adaptive connection pooling and optimized\ndatabase query patterns, improving customer satisfaction scores by 38%\nMentored 12 senior engineers across payments and infrastructure teams, promoting 3 to staff engineer levels within 18\nmonths\nPalantir Technologies | Senior Principal Engineer, Data Platforms 2018-2021\nBuilt core data pipeline framework processing 2TB+ daily across 50+ enterprise customers, reducing pipeline failure rates\nfrom 12% to <0.5% through improved orchestration\nDesigned event sourcing architecture supporting 5000+ concurrent data transformations with <2 second latency, enabling\nreal-time analytics for government agencies\nEstablished backend platform engineering excellence program across 60-person team, reducing deployment cycle time by\n67% and increasing system reliability from 95% to 99.8%\nCloudflare | Staff Backend Engineer, Infrastructure 2015-2018\nDesigned distributed DNS resolution system serving 500M+ daily queries with sub-5ms average response time,\nimproving global latency performance by 31%\nLed 8-engineer effort to refactor rate limiting middleware, handling 3x traffic growth while reducing memory footprint by\n56% and cutting infrastructure costs by $2.4M annually\nPioneered internal observability platform using custom metrics collection, reducing mean time to resolution (MTTR) for\nincidents by 52% and preventing 18+ potential P1 outages\nFigma | Principal Software Engineer 2019-2021\nArchitected backend services for real-time collaboration engine supporting concurrent editing by 100+ users with <100ms\nsynchronization latency across global datacenters\nOptimized database query performance for document persistence, reducing P99 query time by 73% and enabling support\nfor 10x larger design files\nImplemented comprehensive API gateway and authentication layer, improving security compliance score from 78% to\n97% and reducing unauthorized access incidents to zero\nWise (formerly TransferWise) | Senior Staff Engineer, Payments 2012-2015\nDeveloped settlement engine processing 40+ currency pairs and $30B+ in annual transfers with guaranteed delivery-vs-\npayment semantics across 190+ countries\nRefactored legacy monolith into microservices architecture, reducing deployment time from 6 hours to 12 minutes and\nincreasing feature velocity by 4x\nChampioned operational excellence initiatives including chaos engineering practices, reducing critical incidents by 64%\nand improving customer trust scores measurably",
+    "education": [
+        {
+            "name": "University of Cambridge",
+            "subtitle": "MSc Computer Science",
+            "start_date": "2010",
+            "end_date": "2012",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "University of Edinburgh",
+            "subtitle": "BSc Software Engineering (Hons)",
+            "start_date": "2006",
+            "end_date": "2010",
+            "grade": null,
+            "summary": ""
+        }
+    ]
+}

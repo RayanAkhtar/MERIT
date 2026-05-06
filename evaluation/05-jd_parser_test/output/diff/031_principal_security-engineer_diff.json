@@ -1,0 +1,33 @@
+{
+    "Skills": {
+        "Matched": [
+            "kubernetes",
+            "python"
+        ],
+        "Missed (False Negatives)": [
+            "aws security",
+            "docker",
+            "go",
+            "linux",
+            "siem",
+            "splunk",
+            "wireshark"
+        ],
+        "Extra (False Positives/Noise)": [
+            "aws",
+            "github"
+        ]
+    },
+    "Details": {
+        "Title Match": true,
+        "Company Match": false,
+        "Extracted": {
+            "title": "PRINCIPAL SECURITY ENGINEER",
+            "company": "Sentinel Stream Technologies is a rapidly growing cybersecurity"
+        },
+        "Expected": {
+            "title": "Principal Security Engineer",
+            "company": "SafeGuard Tech"
+        }
+    }
+}

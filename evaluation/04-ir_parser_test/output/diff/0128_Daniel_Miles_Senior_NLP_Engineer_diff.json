@@ -1,0 +1,68 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "bash",
+            "bert",
+            "docker",
+            "git",
+            "github",
+            "hugging face",
+            "jupyter",
+            "keras",
+            "kubernetes",
+            "nltk",
+            "python",
+            "pytorch",
+            "spacy",
+            "sql",
+            "tensorflow",
+            "transformers"
+        ],
+        "Missed (False Negatives)": [
+            "elasticsearch",
+            "fastapi"
+        ],
+        "Extra (False Positives/Noise)": [
+            "java",
+            "processing",
+            "r"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "openai"
+        ],
+        "Missed": [
+            "deepmind"
+        ],
+        "All Extracted Entities": [
+            "openai",
+            "$1.2m annually",
+            "anthropic",
+            "performance across 15+ benchmark datasets",
+            "models",
+            "through novel sampling strategies",
+            "scale ai",
+            "types, processing 8m+ documents annually",
+            "queries/month with <200ms p99 latency",
+            "based ner by 8%",
+            "databricks",
+            "through active learning strategies",
+            "for 500+ enterprise customers",
+            "fortune 500 companies"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": true,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Daniel Miles",
+            "email": "daniel.miles@gmail.com"
+        },
+        "Expected": {
+            "name": "Daniel Miles",
+            "email": "daniel.miles@gmail.com"
+        }
+    }
+}

@@ -156,8 +156,16 @@
     "xamarin",
     "xml",
     "yaml",
-    "zig",
-    "zsh"
+    "bash",
+    "zsh",
+    "git",
+    "github",
+    "gitlab",
+    "bitbucket",
+    "svn",
+    "mercurial",
+    "powershell",
+    "zig"
   ],
   "frameworks": [
     ".net",
@@ -478,6 +486,28 @@
     "yii",
     "yugabytedb",
     "zend",
-    "zustand"
+    "zustand",
+    "kafka",
+    "terraform",
+    "prometheus",
+    "grafana",
+    "gcp",
+    "google cloud",
+    "ansible",
+    "jenkins",
+    "circleci",
+    "istio",
+    "transformers",
+    "hugging face",
+    "bert",
+    "nltk",
+    "spacy",
+    "elasticsearch",
+    "unity",
+    "unreal engine",
+    "opengl",
+    "webxr",
+    "maya",
+    "blender"
   ]
 }

@@ -1,0 +1,41 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "docker",
+            "kubernetes",
+            "node.js",
+            "postgresql",
+            "react",
+            "terraform",
+            "typescript"
+        ],
+        "Missed (False Negatives)": [
+            "go",
+            "javascript",
+            "kafka",
+            "redis"
+        ],
+        "Extra (False Positives/Noise)": [
+            "c",
+            "gcp",
+            "github",
+            "graphql",
+            "js",
+            "prometheus",
+            "pulumi"
+        ]
+    },
+    "Details": {
+        "Title Match": true,
+        "Company Match": false,
+        "Extracted": {
+            "title": "Principal Full Stack Engineer",
+            "company": "CloudNative Labs"
+        },
+        "Expected": {
+            "title": "Principal Full Stack Engineer",
+            "company": "Nexus Solutions"
+        }
+    }
+}

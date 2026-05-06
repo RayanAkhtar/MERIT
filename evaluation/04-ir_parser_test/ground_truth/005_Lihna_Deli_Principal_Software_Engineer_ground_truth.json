@@ -1,0 +1,43 @@
+{
+    "name": "Lihna Deli",
+    "email": "lihna.deli@outlook.com",
+    "skills": [
+        "Java",
+        "C++",
+        "Python",
+        "Go",
+        "Rust",
+        "SQL",
+        "Distributed Systems",
+        "Kubernetes",
+        "Docker",
+        "Microservices",
+        "gRPC",
+        "Protocol Buffers",
+        "Kafka",
+        "Redis",
+        "PostgreSQL",
+        "Cassandra",
+        "DynamoDB",
+        "ClickHouse",
+        "Elasticsearch",
+        "Prometheus",
+        "Grafana",
+        "Git",
+        "Terraform",
+        "AWS",
+        "GCP",
+        "envoy",
+        "github"
+    ],
+    "experience": [
+        "Google",
+        "Meta",
+        "Netflix",
+        "Uber"
+    ],
+    "education": [
+        "Massachusetts Institute of Technology",
+        "Stanford University"
+    ]
+}

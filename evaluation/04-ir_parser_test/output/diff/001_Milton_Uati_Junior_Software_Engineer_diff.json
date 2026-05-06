@@ -1,0 +1,72 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "docker",
+            "fastapi",
+            "firebase",
+            "gcp",
+            "git",
+            "github",
+            "go",
+            "grafana",
+            "hugging face",
+            "influxdb",
+            "java",
+            "javascript",
+            "js",
+            "kubernetes",
+            "mongodb",
+            "next.js",
+            "node.js",
+            "postgresql",
+            "prometheus",
+            "pypi",
+            "python",
+            "react",
+            "redux",
+            "sql",
+            "tensorflow",
+            "typescript"
+        ],
+        "Missed (False Negatives)": [
+            "linux",
+            "react native"
+        ],
+        "Extra (False Positives/Noise)": [
+            "processing"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "stripe",
+            "datadog",
+            "techstartup labs"
+        ],
+        "Missed": [],
+        "All Extracted Entities": [
+            "stripe",
+            "50,000+ merchants",
+            "improvement)",
+            "datadog",
+            "enterprise customers",
+            "services",
+            "handling 500k requests/hour",
+            "techstartup labs",
+            "revenue",
+            "funding of $2.5m"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": true,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Milton Uati",
+            "email": "milton.uati@outlook.com"
+        },
+        "Expected": {
+            "name": "Milton Uati",
+            "email": "milton.uati@outlook.com"
+        }
+    }
+}

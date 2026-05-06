@@ -1,0 +1,30 @@
+{
+    "Skills": {
+        "Matched": [
+            "python",
+            "sql"
+        ],
+        "Missed (False Negatives)": [
+            "excel",
+            "figma",
+            "jira",
+            "mixpanel",
+            "tableau"
+        ],
+        "Extra (False Positives/Noise)": [
+            "c"
+        ]
+    },
+    "Details": {
+        "Title Match": true,
+        "Company Match": false,
+        "Extracted": {
+            "title": "Lead Product Manager",
+            "company": "Cortex Labs"
+        },
+        "Expected": {
+            "title": "Lead Product Manager",
+            "company": "GrowthLoop"
+        }
+    }
+}

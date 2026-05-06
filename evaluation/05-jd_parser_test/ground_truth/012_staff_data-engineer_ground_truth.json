@@ -1,0 +1,16 @@
+{
+    "job_title": "Staff Data Engineer",
+    "company": "DataStream",
+    "skills": [
+        "Python",
+        "Scala",
+        "Spark",
+        "Airflow",
+        "Snowflake",
+        "Kafka",
+        "AWS",
+        "Terraform",
+        "SQL",
+        "Docker"
+    ]
+}

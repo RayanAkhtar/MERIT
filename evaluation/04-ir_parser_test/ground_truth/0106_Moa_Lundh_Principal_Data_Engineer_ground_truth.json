@@ -1,0 +1,32 @@
+{
+    "name": "Moa Lundh",
+    "email": "moa.lundh@gmail.com",
+    "skills": [
+        "Python",
+        "Scala",
+        "Spark",
+        "Hadoop",
+        "Kafka",
+        "Airflow",
+        "Snowflake",
+        "SQL",
+        "dbt",
+        "AWS",
+        "Java",
+        "Docker",
+        "Kubernetes",
+        "Terraform",
+        "Git",
+        "bash",
+        "gcp",
+        "github"
+    ],
+    "experience": [
+        "Klarna",
+        "Ericsson",
+        "DataFlow Inc"
+    ],
+    "education": [
+        "KTH Royal Institute of Technology"
+    ]
+}

@@ -1,0 +1,25 @@
+{
+    "name": "Takahiro Hirano",
+    "email": "t.hirano@u-tokyo.ac.jp",
+    "skills": [
+        "Python",
+        "PyTorch",
+        "Scikit-Learn",
+        "NumPy",
+        "Pandas",
+        "SQL",
+        "Git",
+        "Docker",
+        "TensorFlow",
+        "Keras",
+        "github",
+        "hugging face",
+        "jupyter"
+    ],
+    "experience": [
+        "Sony Research"
+    ],
+    "education": [
+        "University of Tokyo"
+    ]
+}

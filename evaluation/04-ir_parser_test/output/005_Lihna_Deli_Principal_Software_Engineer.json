@@ -1,0 +1,325 @@
+{
+    "raw_cv_text": "Lihna Deli\u0107\n+44 20 7946 0958 | Email: lihna.delic@outlook.com | LinkedIn: lihna-deli\u0107 | GitHub: LihnaDeli\u0107 | https://lihnadelic.dev\nEDUCATION\nETH Zurich (Swiss Federal Institute of Technology) | M.S. Computer Science 2008-2010\nSpecialized in distributed systems and compilers, achieving top 5% in program ranking\nLed capstone project on parallel processing optimization that reduced computation time by 35%\nUniversity of Belgrade | B.S. Computer Science 2004-2008\nGraduated summa cum laude with focus on algorithms and data structures\nWon university programming competition and represented institution at Balkan Olympiad in Informatics\nEXPERIENCE\nPalantir Technologies | Principal Software Engineer, Data Infrastructure 2020-Present\nLed architecture redesign of core data pipeline serving 200+ enterprise clients, reducing query latency by 62% and\nimproving system throughput by 4.2x\nMentored team of 8 senior engineers across 3 continents, establishing best practices that reduced production incidents by\n78%\nDrove adoption of Kubernetes migration strategy for legacy systems, delivering $12M in annual infrastructure cost\nsavings\nStripe | Principal Engineer, Platform Services 2017-2020\nArchitected and deployed real-time event processing system handling 1.2M events per second with <100ms P99 latency,\nsupporting $50B+ annual transaction volume\nOwned platform reliability improvements that increased system uptime from 99.9% to 99.99%, preventing estimated\n$8.5M in customer revenue loss\nImplemented comprehensive observability framework reducing mean time to resolution (MTTR) for production incidents\nfrom 45 minutes to 8 minutes\nCloudflare | Senior Principal Engineer, Performance & Optimization 2014-2017\nDeveloped novel edge caching algorithm that improved cache hit rates by 41% across 180+ data centers globally, serving\n10M+ requests per second\nEngineered distributed consensus protocol for configuration management, reducing deployment time from 12 minutes to\n90 seconds across fleet\nEstablished engineering excellence program that increased code review coverage to 100% and reduced critical security\nfindings by 84%\nShopify | Principal Software Engineer, Payments Platform 2011-2014\nBuilt payment processing microservices handling 50K transactions per second with 99.99% uptime, processing $5B+\nannually\nDesigned resilient multi-region failover system that prevented 15 potential outages, maintaining zero payment processing\ndowntime\nCreated performance optimization framework that reduced API response times by 58%, improving merchant conversion\nrates by 3.2%\nDatadog | Senior Software Engineer, Agent & Core Infrastructure 2010-2011\nContributed to agent scalability improvements enabling monitoring of 500K+ hosts, growing product market adoption by\n340%\nImplemented efficient metrics compression algorithm reducing data transmission bandwidth by 53% without accuracy\nloss\nDeveloped distributed tracing framework adopted by 12,000+ enterprise customers worldwide\nPROJECTS\nVectorFlow - Distributed Vector Database | Rust, CUDA, gRPC, Arrow, Kubernetes 2021-Present\nBuilt high-performance vector similarity search engine achieving 100K queries per second with sub-5ms latency on\nbillion-scale datasets\nOpen-source project garnered 8,500+ GitHub stars and adopted by 200+ organizations for production ML inference\nworkloads\nQueryCompiler - SQL Optimization Engine | C++, LLVM, Python, PostgreSQL 2018-2020\nDesigned adaptive query optimization system improving complex SQL execution by up to 73% without application\nchanges\nPublished peer-reviewed paper with 520+ academic citations detailing novel cost-based optimization techniques\nEXTRACURRICULAR\nSystems & Distributed Computing Community (Open Source Foundation) | Core Contributor & 2015-Present\nTechnical Lead\nLed RFC process for major protocol standard adopted by 50+ companies, influencing architecture decisions for\ninfrastructure affecting 2B+ users\nMentored 25+ junior engineers transitioning to senior roles, with 18 advancing to leadership positions at FAANG\ncompanies\nConference Speaker - DistributedSystems Conference, QCon, Velocity | Technical Speaker & Session 2016-Present\nChair\nDelivered talks on large-scale infrastructure design reaching 12,000+ engineers across three continents with 94%\nsatisfaction rating\nPublished 8 technical articles generating 150K+ views on distributed systems, microservices, and performance\noptimization\nTECHNICAL SKILLS\nLanguages \u2013 Python, Go, Rust, C++, Java, TypeScript, SQL, Scala\nTechnologies \u2013 Kubernetes, Apache Kafka, PostgreSQL, Redis, gRPC, Apache Spark, Apache Arrow, CUDA, Protocol\nBuffers, GraphQL, Docker, Envoy Proxy\nTools \u2013 Git, CI/CD (Jenkins, GitHub Actions), Terraform, Prometheus, Grafana, Datadog, Jaeger, ELK Stack, ArgoCD, Helm",
+    "name": "Lihna Deli\u0107",
+    "email": "lihna.delic@outlook.com",
+    "phone": "+442079460958",
+    "links": {
+        "other": [
+            "https://lihnadelic.dev"
+        ],
+        "linkedin": [
+            "https://linkedin.com/in/lihna-deli\u0107"
+        ],
+        "github": [
+            "https://github.com/LihnaDeli\u0107"
+        ]
+    },
+    "skills": [
+        "c",
+        "c++",
+        "docker",
+        "envoy",
+        "foundation",
+        "git",
+        "github",
+        "go",
+        "grafana",
+        "graphql",
+        "grpc",
+        "java",
+        "jenkins",
+        "kafka",
+        "kubernetes",
+        "llvm",
+        "postgresql",
+        "processing",
+        "prometheus",
+        "python",
+        "rust",
+        "scala",
+        "sql",
+        "terraform",
+        "typescript"
+    ],
+    "projects": [
+        {
+            "name": "VectorFlow - Distributed Vector Database",
+            "subtitle": "Rust, CUDA, gRPC, Arrow, Kubernetes",
+            "start_date": "2021",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "billion-scale datasets",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "workloads",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "QueryCompiler - SQL Optimization Engine",
+            "subtitle": "C++, LLVM, Python, PostgreSQL",
+            "start_date": "2018",
+            "end_date": "2020",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "changes",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "Systems & Distributed Computing Community (Open Source Foundation)",
+            "subtitle": "Core Contributor &",
+            "start_date": "2015",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Technical Lead",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "infrastructure affecting 2B+ users",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "companies",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Conference Speaker - DistributedSystems Conference, QCon, Velocity",
+            "subtitle": "Technical Speaker & Session",
+            "start_date": "2016",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Chair",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "satisfaction rating",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "optimization",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Palantir Technologies",
+            "subtitle": "Principal Software Engineer, Data Infrastructure",
+            "start_date": "2020",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "improving system throughput by 4.2x",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "78%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "savings",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Stripe",
+            "subtitle": "Principal Engineer, Platform Services",
+            "start_date": "2017",
+            "end_date": "2020",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "supporting $50B+ annual transaction volume",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "$8.5M in customer revenue loss",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "from 45 minutes to 8 minutes",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Cloudflare",
+            "subtitle": "Senior Principal Engineer, Performance & Optimization",
+            "start_date": "2014",
+            "end_date": "2017",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "10M+ requests per second",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "90 seconds across fleet",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "findings by 84%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Shopify",
+            "subtitle": "Principal Software Engineer, Payments Platform",
+            "start_date": "2011",
+            "end_date": "2014",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "annually",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "downtime",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "rates by 3.2%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Datadog",
+            "subtitle": "Senior Software Engineer, Agent & Core Infrastructure",
+            "start_date": "2010",
+            "end_date": "2011",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "340%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "loss",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Palantir Technologies | Principal Software Engineer, Data Infrastructure 2020-Present\nLed architecture redesign of core data pipeline serving 200+ enterprise clients, reducing query latency by 62% and\nimproving system throughput by 4.2x\nMentored team of 8 senior engineers across 3 continents, establishing best practices that reduced production incidents by\n78%\nDrove adoption of Kubernetes migration strategy for legacy systems, delivering $12M in annual infrastructure cost\nsavings\nStripe | Principal Engineer, Platform Services 2017-2020\nArchitected and deployed real-time event processing system handling 1.2M events per second with <100ms P99 latency,\nsupporting $50B+ annual transaction volume\nOwned platform reliability improvements that increased system uptime from 99.9% to 99.99%, preventing estimated\n$8.5M in customer revenue loss\nImplemented comprehensive observability framework reducing mean time to resolution (MTTR) for production incidents\nfrom 45 minutes to 8 minutes\nCloudflare | Senior Principal Engineer, Performance & Optimization 2014-2017\nDeveloped novel edge caching algorithm that improved cache hit rates by 41% across 180+ data centers globally, serving\n10M+ requests per second\nEngineered distributed consensus protocol for configuration management, reducing deployment time from 12 minutes to\n90 seconds across fleet\nEstablished engineering excellence program that increased code review coverage to 100% and reduced critical security\nfindings by 84%\nShopify | Principal Software Engineer, Payments Platform 2011-2014\nBuilt payment processing microservices handling 50K transactions per second with 99.99% uptime, processing $5B+\nannually\nDesigned resilient multi-region failover system that prevented 15 potential outages, maintaining zero payment processing\ndowntime\nCreated performance optimization framework that reduced API response times by 58%, improving merchant conversion\nrates by 3.2%\nDatadog | Senior Software Engineer, Agent & Core Infrastructure 2010-2011\nContributed to agent scalability improvements enabling monitoring of 500K+ hosts, growing product market adoption by\n340%\nImplemented efficient metrics compression algorithm reducing data transmission bandwidth by 53% without accuracy\nloss\nDeveloped distributed tracing framework adopted by 12,000+ enterprise customers worldwide",
+    "education": [
+        {
+            "name": "Graduated summa cum laude with focus on algorithms and data structures",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Won university programming competition and represented institution at",
+            "subtitle": "Balkan Olympiad in Informatics",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ]
+}

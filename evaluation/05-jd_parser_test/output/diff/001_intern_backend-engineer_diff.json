@@ -1,0 +1,36 @@
+{
+    "Skills": {
+        "Matched": [
+            "docker",
+            "git",
+            "go",
+            "java",
+            "kubernetes",
+            "postgresql",
+            "python",
+            "sql"
+        ],
+        "Missed (False Negatives)": [
+            "linux",
+            "rabbitmq",
+            "redis"
+        ],
+        "Extra (False Positives/Noise)": [
+            "foundation",
+            "github",
+            "mysql"
+        ]
+    },
+    "Details": {
+        "Title Match": true,
+        "Company Match": true,
+        "Extracted": {
+            "title": "INTERN BACKEND ENGINEER",
+            "company": "CloudWeave Systems is a San Francisco"
+        },
+        "Expected": {
+            "title": "Intern Backend Engineer",
+            "company": "CloudWeave Systems"
+        }
+    }
+}

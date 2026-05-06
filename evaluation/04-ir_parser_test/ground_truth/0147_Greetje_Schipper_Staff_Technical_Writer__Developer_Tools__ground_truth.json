@@ -1,0 +1,27 @@
+{
+    "name": "Greetje Schipper",
+    "email": "greetje.schipper@gmail.com",
+    "skills": [
+        "Markdown",
+        "Docusaurus",
+        "MkDocs",
+        "Sphinx",
+        "Hugo",
+        "OpenAPI",
+        "Swagger",
+        "Git",
+        "GitHub",
+        "Python",
+        "Technical Writing",
+        "API Documentation",
+        "kubernetes"
+    ],
+    "experience": [
+        "Shopify",
+        "GitHub",
+        "Twilio"
+    ],
+    "education": [
+        "University of Amsterdam"
+    ]
+}

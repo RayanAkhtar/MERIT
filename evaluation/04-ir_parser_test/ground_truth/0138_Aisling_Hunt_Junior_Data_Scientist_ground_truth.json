@@ -1,0 +1,26 @@
+{
+    "name": "Aisling Hunt",
+    "email": "aisling.hunt@gmail.com",
+    "skills": [
+        "Python",
+        "R",
+        "SQL",
+        "Pandas",
+        "Matplotlib",
+        "Scikit-Learn",
+        "Tableau",
+        "Git",
+        "NumPy",
+        "aws",
+        "github",
+        "jupyter",
+        "tensorflow"
+    ],
+    "experience": [
+        "Intercom",
+        "Accenture"
+    ],
+    "education": [
+        "Trinity College Dublin"
+    ]
+}

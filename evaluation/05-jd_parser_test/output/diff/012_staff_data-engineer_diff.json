@@ -1,0 +1,33 @@
+{
+    "Skills": {
+        "Matched": [
+            "kafka",
+            "python",
+            "sql",
+            "terraform"
+        ],
+        "Missed (False Negatives)": [
+            "airflow",
+            "aws",
+            "docker",
+            "scala",
+            "snowflake",
+            "spark"
+        ],
+        "Extra (False Positives/Noise)": [
+            "github"
+        ]
+    },
+    "Details": {
+        "Title Match": true,
+        "Company Match": false,
+        "Extracted": {
+            "title": "Staff Data Engineer",
+            "company": "DataFlow Innovations"
+        },
+        "Expected": {
+            "title": "Staff Data Engineer",
+            "company": "DataStream"
+        }
+    }
+}

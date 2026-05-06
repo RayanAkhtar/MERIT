@@ -1,0 +1,38 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "docker",
+            "gcp",
+            "kubernetes",
+            "python",
+            "terraform"
+        ],
+        "Missed (False Negatives)": [
+            "kubeflow",
+            "mlflow",
+            "pytorch",
+            "tensorflow"
+        ],
+        "Extra (False Positives/Noise)": [
+            "azure",
+            "git",
+            "github",
+            "go",
+            "grafana",
+            "prometheus"
+        ]
+    },
+    "Details": {
+        "Title Match": false,
+        "Company Match": false,
+        "Extracted": {
+            "title": "Manager, MLOps Engineer",
+            "company": "VectorFlow AI"
+        },
+        "Expected": {
+            "title": "MLOps Engineering Manager",
+            "company": "AIFlow"
+        }
+    }
+}

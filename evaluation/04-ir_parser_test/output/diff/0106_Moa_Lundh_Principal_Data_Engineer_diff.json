@@ -1,0 +1,56 @@
+{
+    "Skills": {
+        "Matched": [
+            "bash",
+            "docker",
+            "gcp",
+            "github",
+            "java",
+            "kafka",
+            "kubernetes",
+            "python",
+            "scala",
+            "sql",
+            "terraform"
+        ],
+        "Missed (False Negatives)": [
+            "airflow",
+            "aws",
+            "dbt",
+            "git",
+            "hadoop",
+            "snowflake",
+            "spark"
+        ],
+        "Extra (False Positives/Noise)": [
+            "go",
+            "google cloud",
+            "graphql",
+            "jenkins",
+            "processing"
+        ]
+    },
+    "Experience": {
+        "Matched": [],
+        "Missed": [
+            "klarna",
+            "ericsson",
+            "dataflow inc"
+        ],
+        "All Extracted Entities": [
+            "architectural decision records adopted org-wide"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": true,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Moa Lundh",
+            "email": "moa.lundh@gmail.com"
+        },
+        "Expected": {
+            "name": "Moa Lundh",
+            "email": "moa.lundh@gmail.com"
+        }
+    }
+}

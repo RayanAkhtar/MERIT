@@ -1,0 +1,78 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "cypress",
+            "git",
+            "github",
+            "graphql",
+            "javascript",
+            "js",
+            "next.js",
+            "node.js",
+            "react",
+            "typescript",
+            "webassembly"
+        ],
+        "Missed (False Negatives)": [
+            "css",
+            "figma",
+            "jest",
+            "sass",
+            "vue.js",
+            "web performance"
+        ],
+        "Extra (False Positives/Noise)": [
+            "coffeescript",
+            "css3",
+            "docker",
+            "gitlab",
+            "html5",
+            "processing",
+            "python",
+            "redux",
+            "sql"
+        ]
+    },
+    "Experience": {
+        "Matched": [],
+        "Missed": [
+            "airbnb",
+            "slack",
+            "frontend pros"
+        ],
+        "All Extracted Entities": [
+            "stripe",
+            "monthly active users",
+            "review frameworks and testing protocols",
+            "months",
+            "figma",
+            "<200ms latency",
+            "by 58%",
+            "to interactive by 3.2 seconds",
+            "datadog",
+            "response times",
+            "delivery velocity by 180%",
+            "satisfaction scores by 42%",
+            "palantir technologies",
+            "petabytes of data",
+            "accessibility-dependent users",
+            "thoughtworks",
+            "within 8 months",
+            "coverage from 18% to 88%",
+            "deployments monthly"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": true,
+        "Email Correct": false,
+        "Extracted": {
+            "name": "Kevin Jawad",
+            "email": "kevin.jawad@outlook.com"
+        },
+        "Expected": {
+            "name": "Kevin Jawad",
+            "email": "kevin.jawad@gmail.com"
+        }
+    }
+}

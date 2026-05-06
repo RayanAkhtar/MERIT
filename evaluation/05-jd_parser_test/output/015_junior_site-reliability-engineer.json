@@ -1,0 +1,55 @@
+{
+    "raw_text": "CloudWeave Systems // Junior Site Reliability Engineer\n\nSan Francisco, CA (Remote-friendly) | Full-time | $85,000 - $110,000 USD annually\n\nReliable infrastructure that scales with your ambitions\n\n>> ABOUT\n\nCloudWeave Systems is a mid-stage SaaS infrastructure platform that helps engineering teams\nbuild, deploy, and operate resilient cloud applications. Founded in 2019, we focus on\n\nproviding developer-friendly tools for containerized workloads and observability at scale.\nOur mission is to reduce MTTR and improve system reliability for companies of all sizes.\n\n>> SUMMARY\n\nCloudWeave Systems is seeking a Junior Site Reliability Engineer to join our Platform\nReliability team. In this role, you'll work alongside experienced SREs to build and\n\nmaintain the infrastructure that powers our platform. You'll gain hands-on experience with\ncontainerization, monitoring, and incident response while contributing to the reliability\n\nof systems serving thousands of customers. This is an excellent opportunity for early-\ncareer engineers passionate about systems reliability and operational excellence.\n\n>> RESPONSIBILITIES\n\n- Assist in designing, implementing, and maintaining Kubernetes clusters that host our\ncore services\n\n- Contribute to monitoring and alerting setup using Prometheus and Grafana, including\ncreating meaningful dashboards and alerts based on SLOs/SLIs\n\n- Participate in on-call rotations (starting with shadowing shifts) and respond to\nproduction incidents with guidance from senior team members\n\n- Write automation scripts and operational tooling in Go or Python to reduce manual\noperational toil\n\n- Help implement distributed tracing using tools like Jaeger or Datadog to improve\nobservability and debugging capabilities\n\n- Document runbooks and operational procedures to improve team knowledge and incident\nresponse efficiency\n\n- Collaborate with platform and application teams to identify reliability improvements\nand optimize system performance\n\n- Learn SRE practices including SLO/SLI definition, error budgets, and blameless post-\nmortems through team mentorship\n\n>> MUST HAVE\n\n- Bachelor's degree in Computer Science, Engineering, or related field (or equivalent\nprofessional experience)\n\n- Strong foundational knowledge of Linux/Unix systems administration and networking\nconcepts\n\n- Familiarity with containerization concepts and Docker basics\n- Experience with or willingness to quickly learn at least one programming language (Go,\n\nPython, or similar)\n- Understanding of observability fundamentals: metrics, logs, and traces\n\n\f- Excellent problem-solving and troubleshooting mindset with attention to detail\n\n>> NICE TO HAVE\n\n- Hands-on experience with Kubernetes or container orchestration platforms\n- Prior experience with monitoring tools such as Prometheus, Grafana, or similar\n\n- Familiarity with cloud platforms (AWS, GCP, or Azure) and Infrastructure-as-Code tools\n- Understanding of CI/CD pipelines and deployment automation\n\n>> STACK\n\nKubernetes / Docker / Prometheus / Grafana / Go / Python / Jaeger (Distributed Tracing) /\n\nLinux/Unix / Git / Terraform\n\n>> BENEFITS\n\n- Competitive health, dental, and vision insurance with 90% company coverage\n- 401(k) matching program (up to 4% of salary)\n\n- Unlimited PTO with a minimum of 15 days encouraged per year\n- Professional development budget of $2,500 annually for conferences, courses, and\n\ncertifications\n- Mentorship from experienced SREs and access to internal tech talks and learning\n\nsessions\n- Flexible work arrangement with fully remote options after 90-day onboarding period\n\n- Free lunch stipend ($15/day) and wellness reimbursement ($100/month)\n- Collaborative team culture with regular team outings and community events\n\n>> APPLY\n\nSubmit your resume, a cover letter, and links to any relevant GitHub projects or portfolio\nwork to careers@cloudweave.io with the subject line 'Junior SRE Application'. We review\n\napplications on a rolling basis and will contact selected candidates within 5-7 business\ndays to schedule an initial screening call.\n\n\f",
+    "job_title": "CloudWeave Systems // Junior Site Reliability Engineer",
+    "company": "CloudWeave Systems is a mid",
+    "location": null,
+    "employment_type": "Internship",
+    "experience_level": "Senior",
+    "technical_skills": [
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "azure",
+        "gcp",
+        "grafana",
+        "prometheus",
+        "terraform"
+    ],
+    "education": [],
+    "nice_to_have": [
+        "Hands-on experience with Kubernetes or container orchestration platforms",
+        "Prior experience with monitoring tools such as Prometheus, Grafana, or similar",
+        "Familiarity with cloud platforms (AWS, GCP, or Azure) and Infrastructure-as-Code tools",
+        "Understanding of CI/CD pipelines and deployment automation",
+        ">> STACK",
+        "Kubernetes / Docker / Prometheus / Grafana / Go / Python / Jaeger (Distributed Tracing) /",
+        "Linux/Unix / Git / Terraform",
+        ">> BENEFITS",
+        "Competitive health, dental, and vision insurance with 90% company coverage",
+        "401(k) matching program (up to 4% of salary)",
+        "Unlimited PTO with a minimum of 15 days encouraged per year",
+        "Professional development budget of $2,500 annually for conferences, courses, and",
+        "certifications",
+        "Mentorship from experienced SREs and access to internal tech talks and learning",
+        "sessions",
+        "Flexible work arrangement with fully remote options after 90-day onboarding period",
+        "Free lunch stipend ($15/day) and wellness reimbursement ($100/month)",
+        "Collaborative team culture with regular team outings and community events",
+        ">> APPLY",
+        "Submit your resume, a cover letter, and links to any relevant GitHub projects or portfolio",
+        "work to careers@cloudweave.io with the subject line 'Junior SRE Application'. We review",
+        "applications on a rolling basis and will contact selected candidates within 5-7 business",
+        "days to schedule an initial screening call."
+    ],
+    "salary": "$85,000 - $110,000",
+    "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\evaluation\\05-jd_parser_test\\test_data/jds\\015_junior_site-reliability-engineer.pdf",
+    "languages": [
+        "Python",
+        "git",
+        "github",
+        "go"
+    ],
+    "education_required": [
+        "- Bachelor's degree in Computer Science, Engineering, or related field (or equivalent"
+    ]
+}

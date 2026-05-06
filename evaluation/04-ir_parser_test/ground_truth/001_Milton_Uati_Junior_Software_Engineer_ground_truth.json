@@ -1,0 +1,44 @@
+{
+    "name": "Milton Uati",
+    "email": "milton.uati@outlook.com",
+    "skills": [
+        "Python",
+        "JavaScript",
+        "TypeScript",
+        "Go",
+        "Java",
+        "SQL",
+        "React",
+        "Node.js",
+        "FastAPI",
+        "React Native",
+        "Firebase",
+        "PostgreSQL",
+        "MongoDB",
+        "Docker",
+        "Kubernetes",
+        "AWS",
+        "GCP",
+        "Git",
+        "GitHub",
+        "Prometheus",
+        "Grafana",
+        "Linux",
+        "Redux",
+        "TensorFlow",
+        "Next.js",
+        "InfluxDB",
+        "hugging face",
+        "js",
+        "pypi"
+    ],
+    "experience": [
+        "Stripe",
+        "Datadog",
+        "TechStartup Labs"
+    ],
+    "education": [
+        "University of Cambridge",
+        "Georgia Institute of Technology"
+    ]
+}
