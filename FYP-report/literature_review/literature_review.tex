@@ -1,0 +1,59 @@
+\chapter{Technical Foundations \& Related Work}
+
+Following the identification of systemic biases and cognitive limitations in the traditional technical recruitment process, this chapter explored the technical frameworks designed to automate and standardise candidate evaluation. 
+The analysis starts off with a review of the current state-of-the-art in Applicant Tracking Systems (ATS), categorising them based on their underlying logic. 
+By examining the limitations of these systems, specifically their lack of transparency, as well as reliance on a single source of data, this chapter establishes a technical requirement for multi-source explainable architectures. 
+This technical foundation justifies the multimodal, evidence-driven design of MERIT as an essential advancement in the field of automated technical recruitment.
+
+\input{background/subsections/automated_screening.tex}
+\\\\
+A wide range of research has explored methods for improving technical recruitment. 
+MERIT will focus on three representative strands of work that have helped to influence it's design.
+
+\section{Multi-Agent LLM Architectures for Explainable Screening}
+Zhang et al. \cite{zhang2025} proposes a novel approach to the automation of CV screening using large language models (LLMs), arranged in a modular, multi-agent architecture. 
+Their framework composes of four specialised agents: a resume-extractor, an evaluator, a summariser, and a score-formatter. 
+Each of these handle a distinct stage of the screening pipeline.
+\\\\
+To improve contextual relevance, the system integrates Retrieval-Augmented Generation (RAG) within the evaluator agent, enabling the use of external knowledgeable sources (such as certifications and university rankings) rather than relying solely on the content of the CV itself. 
+\\\\
+In their evaluation, the authors compare the AI-generated candidate scores with ratings by human HR professionals on a dataset of anonymised resumes. 
+The results demonstrate that the multi-agent RAG-LLM system achieved strong agreement with human judgements and outperform simpler baselines, indicating it's potential to replicate, and perhaps improve on, the traditional screening workflows at scale.
+\\\\
+However, a significant limitation remains: while the architecture is more flexible than rule-based ATS, the evaluation still relies on a predetermined set of scoring dimensions (skills, experience, education, background and summary), each of which have fixed weights. 
+The fixed dimensionality hinders the system's ability to accurately reflect role-specific priorities, unique project requirements, unconventional career paths, or evolving technical criteria that may fall outside of standard categories. 
+As a result, the framework struggles to fully capture the diversities and nuances inherent in real-world hiring.
+\\\\
+To conclude, while the paper demonstrates a significant advance that LLM-based modular screening is feasible and can approximate human performance, it is still challenged with balancing benchmarked consistency with adaptive, context-sensitive evaluation.
+
+\section{Technical Role Inference from Open-Source Contributions}
+Another line of research demonstrates the merits of public software repositories being use as indicators of a developer's technical expertise. 
+Vasilescu et al. \cite{vasilescu2013_roles} proposes a supervised machine learning approach to infer a developer's technical role based on GitHub activity, albeit at a higher level. 
+The system classifies users into categories such as backend, frontend, DevOps, or data science, utilising features extracted from repository metadata and programming languages as well. 
+The authors constructed a manually labelled dataset of roughly 2000 developers to train and evaluate several classification models.
+\\\\
+The methodology is proficient in predicting the role of GitHub users, however, it is severely limited by the static nature of its labels as well as the narrow scope of training data. 
+Ground truth labels reflect developer roles at a single point in time, failing to capture the fluidity of the real-world, where developers shift between specialisations, or occupy hybrid roles. 
+This rigid labelling constrains the model's ability to account for candidates who have multiple simultaneous roles, or perhaps have evolving career trajectories, limiting the generalisability of the models.
+\\\\
+Despite limitations, this work highlights the potentials in leveraging publicly available contribution data for candidate sourcing and skill inference. 
+They highlight the value of behavioural signals embedded in coding activity for technical recruitment while also emphasising the challenges of mapping complex professional profiles into simple categories. 
+This study highlights the need for adaptive models that integrate richer behavioural features and temporal dynamics, aligning closely with MERIT'S goal of multimodal, explainable and fair candidate assessment.
+
+\section{Semantic Embedding for Latent Skill Extraction}
+Research aimed at improving job-candidate matching has also moved beyond keyword-based methods. 
+Gugnani and Misra \cite{gugnani2020} propose a system that identifies both the explicit and implicit skills from job descriptions by combining traditional NLP techniques with large-scale document embeddings. 
+The authors trained a Doc2Vec model over one million job postings, enabling the retrieval of semantically similar descriptions for any given role and the inference of additional skills that may not be explicitly stated.
+\\\\
+While the approach can demonstrate the conceptual value of uncovering hidden, context-dependent competencies, the framework has limitations. 
+The candidate-job matching relies on a fixed set of weightings, consistently prioritising explicit skills and integrating similarity, frequency, and implicit-skill penalties according to predefined coefficients. The rigid scoring system limits it's adaptability across roles that vary in how skills are expressed, be it implicit, or explicit. 
+Also, the quality and reliability of inferred skills are tightly coupled to the representativeness of the training corpus, meaning that gaps and biases in the job posting can influence recommendations.
+\\\\
+Despite these constraints, the study effectively shows how document-level semantic models can complement manual and keyword-based extraction approaches, enhancing the detection of latent skills. It also highlights the challenges in designing scoring mechanisms that remain flexible across diverse occupations. 
+As automated job recommendation systems increasingly rely on inferred competencies, this shows the importance of developing adaptive, domain-sensitive models that are capable of capturing the variations in how industries emphasize or omit particular skills.
+
+\section*{Relevance to MERIT}
+MERIT builds on existing research in automated screening by addressing the key limitations in current systems. 
+Unlike conventional ATS or LLM-based frameworks, which often rely on fixed scoring, static role classifications, or single data sources, MERIT instead integrates multiple candidate data streams, including CVs, GitHub, LinkedIn and various other activity into a unified adaptive assessment. 
+By combining multimodal evidence with flexible scoring and explainable AI, MERIT provides a more accurate, fair and context-sensitive early-stage screening process. 
+This will allow organisations to better identify candidates whose skills, experiences and potential align with role-specific requirements while reducing bias and improving consistency across hiring decisions.

@@ -1,0 +1,59 @@
+\chapter{Project Plan}
+
+\section{Project Expectations}
+The main objective is to design and implement a multimodal screening system for recruiters, where this entails combining multiple data sources to see more details into a candidate and evaluate their technical proficiencies. 
+Extensibility will also be a core focus so that additional data sources can be added with minimal development.
+For the initial implementation, there will attempts to support CVs as well as LinkedIn and GitHub profiles.
+\\\\
+Customisability will also be an important factor of MERIT in order to demonstrate its adaptability to different organisational needs and priorities.
+MERIT will be able to infer evaluation metrics from the job description, and allowing users to add, remove, or edit these metrics before running the screening process.
+A table-based view will be necessary with basic screening and filtering options as well as togglable data sources to influence the scoring of the system (For example toggling off GitHub to see how users would be ranked according to CV and LinkedIn)
+Users will also be able to alter the weightings for each metric to enable the scoring process to adapt to different organisational priorities
+\\\\
+The final core requirement will be an integration of explainable AI principles, more specifically, the generation of concise reports to justify candidate scores, and finding the key factors that contribute to each metric. This will help improve transparency and address the “black-box” nature of most machine-learning systems
+
+\section{Optional Improvements}
+The following features are valuable extensions, however, they are not required for the system to be considered successful:
+
+\begin{itemize}
+  \item \textbf{Bias mitigation -} Anonymising data prone to bias, such as name, gender, ethnicity and religion
+  \item \textbf{Advanced Metric Inference -} Updating metric inference to also take the organisation into account (e.g. industry, size, culture)
+  \item \textbf{Additional Data Sources -} Platforms such as LeetCode, HackerRank and Stack Overflow
+  \item \textbf{Targeted Assessment Generation -} Recommending coding and interview questions to fill gaps in missing and incomplete candidate data. Users can provide a question set of their possible questions to best tailor what to ask candidates.
+  \item \textbf{Automated Flagging/Tagging -} Highlight potential issues such as large employment gaps or irregular career patterns. Also highlighting users that have desired traits common in desired individuals (e.g. fast at picking up languages, high career trajectory etc)
+  \item \textbf{Comparative visualisation -} Diagrammatic tools such as radar/web charts for candidate side-by-side comparisons, and bell-curves for aggregated comparisons
+  \item \textbf{Language similarity mapping -} Identify, and tag transferrable language skills (e.g. C\(\leftrightarrow\)C++/Rust).
+  \item \textbf{Skill Decay Modelling -} A model to decay candidate skill levels based on time of inexperience (to prevent overstated claims)
+  \item \textbf{CV standardisation -} Rewrite CVs into a standardised structure to minimise stylistic bias
+  \item \textbf{Industry relevance detection -} Checking how close a candidate's experience matches the hiring organisation's size and sector
+  \item \textbf{Domain-specific skill classification -} Distinguish between sub domains of the same technology (e.g. Python for ML vs Backend)
+  \item \textbf{Personality and Culture fit -} Inferring personality traits (such as the Big Five) to support culture-fit scoring
+  \item \textbf{Extended Explainable AI -} Provide detailed justifications and sub-score breakdowns including data-source-specific reasonings.
+\end{itemize}
+
+\section{Project Timeline Summary}
+
+\begin{tabularx}{\textwidth}{|l|X|X|}
+  \hline
+  \textbf{Timeline} & \textbf{Milestone} & \textbf{Description} \\
+  \hline
+  Now - Mid February & System architecture + core data ingestion & Finalise architecture, implement CV parsing. Also begin LinkedIn and GitHub parsing \\
+  \hline
+  Mid February - Mid March & Multimodal Ingestion complete + basic scoring engine & Finish LinkedIn and GitHub implementation and implement initial scoring logic with metric customisation \\
+  \hline
+  Mid March - Mid April & UI development + Data Display & Table-based UI with sorting, filtering, and togglable data sources \\
+  \hline
+  Mid April - Late April & Integration + explainability & Integrate the ingestion, scoring, and UI together if not done already, begin explainability section \\
+  \hline
+  Late April - Early May & Feature refinement + Optional Extensions & As mentioned \\
+  \hline
+  May → 12 June & Final Stabilisation + Testing & Fixing bugs, improving performance if needed \\
+  \hline
+\end{tabularx}
+
+\section{Fallback Positions}
+
+If the system architecture and core ingestion takes longer than expected, there will not be an integration of LinkedIn.
+For the multimodal ingestion and basic scoring, if time does not permit, there will be a fallback on a fixed scoring template rather than allowing for custom metrics.
+If the UI development encounters delays, there will be a fallback to a minimal, non-filterable table view.
+Extensions will also not be considered if time does not allow for it.

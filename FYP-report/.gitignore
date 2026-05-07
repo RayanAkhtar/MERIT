@@ -1,0 +1,19 @@
+# LaTeX output folder
+/out/
+
+# Temporary files
+*.aux
+*.log
+*.toc
+*.out
+*.bbl
+*.blg
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.lof
+*.lot
+*.pdf
+
+interim.synctex(busy)
+final-report.synctex(busy)

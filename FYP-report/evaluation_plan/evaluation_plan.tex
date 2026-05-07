@@ -1,0 +1,46 @@
+\chapter{Evaluation Plan}
+
+\section{Functionality Testing}
+
+To test data ingestion, we will assess the correctness in the parsing of CVs, LinkedIn profiles, and GitHub repositories. System output will be compared against a ground-truth dataset.
+For metric inference and scoring, the system will be tested on its ability to infer metrics from a sample job description and compute candidate scores. Test scenarios will be designed to emulate clearly good and bad candidates, both in skill level and role fit.
+To assess customisability, core configuration features will be manually tested to confirm expected behaviour.
+Finally, to evaluate explainable AI reports, we will manually evaluate them for clarity, correctness, and readability, occasionally reaching out to recruiters for feedback.
+\\\\
+Success for data ingestion will be defined by a $\geq 80\%$ accuracy in parsing key candidate information (per data source).
+For metric inference and scoring, success will be defined by the system correctly identifying at least 80\% of key metrics from job descriptions, and producing scores that align with expected rankings in at least 85\% of test cases.
+To measure the success for customisability, all customisation options function correctly.
+Success for explainable AI reports will be defined by outputs correctly reflecting underlying score calculations.
+It will also be considered successful if recruiters find the reports clear and useful.
+
+\section{Effectiveness Evaluation}
+
+MERIT will also be evaluated for its ability to improve early-stage candidate screening compared to conventional CV-only methods.
+A sample dataset of candidate profiles will be prepared, including CVs, LinkedIn profiles, and GitHub repositories.
+Then, a subset of candidates will be evaluated by HR experts to establish a “ground truth'' ranking.
+\\\\
+To provide metrics for rankings, we may use Spearman's rank correlation or Kendall's tau to measure the correlation between MERIT's rankings and expert judgments.
+To assess the detection of missions skills or weak areas, we will evaluate whether MERIT appropriately flags data gaps and weak competencies.
+For bias mitigation effectiveness, we will compare rankings with and without anonymisation to assess differences based on gender and ethnicity bias.
+\\\\
+For MERIT to be considered effective, the ranking score should correlate at $\geq 0.7$ with expert assessments.
+Atleast $80\%$ of relevant candidates should have their missing or weak skill areas correctly flagged.
+Finally, observable disparities in ranking based on demographic factors should be reduced after bias mitigation.
+
+\section{Usability and Qualitative Assessment}
+
+Ease of use will also be essential for MERIT's success.
+We will conduct user testing sessions with recruiters and HR professionals to gather qualitative feedback on the system's usability, interface design, and overall user experience.
+\\\\
+We will measure times taken to upload data and generate results.
+We will also track task completion rates for core actions such as adjusting weightings.
+Finally, subjective satisfaction will be measured through a questionnaire covering ease of use, clarity of reports, and overall satisfaction.
+Success will be achieved with high satisfaction scores (average $\geq 4$ out of 5) on usability questionnaires.
+Task completion rates should be $\geq 90\%$ for core actions, and end-to-end screening times should be under 10 minutes for typical candidate sets.
+
+\section{Extending the State of the Art}
+We are attempting to extend the state of the art in three key areas: multimodal data integration, customisable scoring, and also explainability and transparency.
+These are areas that are currently under-explored in automated technical recruitment systems.
+To measure success, MERIT must reliably provide these integrations within reason.
+As well as this, recruiters must be able to adjust scorings to match role-specific priorities with different weightings meaningfully affecting results.
+Recruiters must also understand the generated reports and understand how each score was produced.
