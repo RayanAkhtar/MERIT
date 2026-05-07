@@ -1,0 +1,139 @@
+{
+  "raw_cv_text": "Arvid Sandberg\n+1 (415) 823-7641 | arvid.sandberg@gmail.com | https://github.com/arvidsan/quant-trading\nEDUCATION\nUniversity of Waterloo | B.A.Sc. in Systems Design Engineering with specialization in September 2017 - May 2021\nFinancial Technology\nCompleted coursework in numerical methods, computational finance, and stochastic calculus; GPA 3.78/4.0 with Dean's\nList recognition in 6 of 8 semesters.\nEXPERIENCE\nCitadel Securities | Quantitative Developer June 2022 - Present\nEngineered real-time market microstructure analysis system processing 50M+ tick events daily, reducing latency from\n2.3ms to 340\u03bcs through vectorized NumPy operations and Numba JIT compilation.\nDeveloped Monte Carlo simulation framework for pricing exotic derivatives, achieving 15x speedup by implementing\nGPU-accelerated matrix operations with CuPy across 1,024 parallel paths.\nOptimized portfolio risk model by refactoring Cython modules and implementing adaptive grid refinement, cutting\ncomputation time from 45 minutes to 3.2 minutes for daily VaR calculations across 10,000+ positions.\nJane Street | Quantitative Developer (Mid-Level) August 2021 - May 2022\nBuilt statistical arbitrage backtesting engine in OCaml with 18-month historical dataset, identifying 22 new profitable\nstrategies with Sharpe ratios exceeding 1.8 across four asset classes.\nDebugged and optimized core price discovery algorithm, resolving race conditions in multiprocessing pipeline that\nimproved tick-to-order fill consistency by 12% under high-volume market conditions.\nCollaborated with traders to validate 6 machine learning models for regime detection, implementing feature engineering\npipeline that improved model accuracy from 68% to 81% on out-of-sample data.\nNumerai (Quantitative Research Division) | Junior Quantitative Developer January 2021 - July 2021\nConstructed ensemble meta-model combining 40+ individual predictors using LightGBM stacking, achieving 15th\npercentile ranking on Numerai tournament with monthly payout of $2,400 USD.\nImplemented automated data validation pipeline detecting missing values and outliers in 2.1M+ historical stock features,\nreducing downstream model training failures by 34%.\nAccelerated correlation matrix computations from 22 seconds to 1.8 seconds by migrating from pandas to polars and\nvectorizing covariance calculations for 8,000-stock universe.\nPROJECTS\nReinforcement Learning Market Maker | Python, TensorFlow, Ray, PostgreSQL October 2023 - March 2024\nDeveloped DQN-based market making agent using historical LOB data from 3 years of E-mini S&P 500 futures,\nachieving net P&L of $47,300 in live paper trading on 50-contract portfolio.\nEngineered feature extraction pipeline normalizing 18 microstructure indicators (spread, depth skew, order flow\nimbalance) across multiple asset classes with 99.2% data integrity validation.\nHigh-Frequency Volatility Surface Interpolator | C++, Eigen, HDF5, SciPy May 2023 - August 2023\nConstructed radial basis function (RBF) interpolation system for 2D equity option volatility surface supporting 12,000+\ndata points, reducing pricing errors to 1.3 basis points vs. 28bp with linear methods.\nOptimized sparse matrix operations reducing memory footprint from 2.8GB to 340MB, enabling real-time surface\nrecalibration every 2 seconds across 50+ underlyings.\nCross-Exchange Statistical Arbitrage Framework | Python, Pandas, Scikit-learn, Redis January 2023 - April 2023\nBuilt low-latency cointegration detection engine monitoring price deviations across 8 cryptocurrency exchanges,\nidentifying 14 profitable pairs with average holding period of 8 minutes and 62% win rate.\nImplemented vector autoregression model with rolling Kalman filter to dynamically adjust hedge ratios, improving P&L\nconsistency and reducing maximum drawdown from 18% to 9.2%.\nEXTRACURRICULAR\nGlobal Association of Risk Professionals (GARP) | FRM Charterholder March 2023 - Present\nCompleted Financial Risk Manager certification covering market, credit, and operational risk; scored in 88th percentile on\nPart II exam.\nMentoring 3 junior developers through FRM study materials, focusing on quantitative risk concepts and practical\napplications in derivatives pricing.\nQuantConnect Community | Algorithm Author & Technical Reviewer September 2022 - Present\nPublished 5 open-source trading algorithms achieving average 1,200+ views and 156 GitHub stars across community, with\n3 algorithms featured in QuantConnect Academy tutorials.\nReviewed 28+ peer submissions improving code quality, backtesting methodology, and documentation standards across\nC#, Python, and F# implementations.\nTECHNICAL SKILLS\nLanguages \u2013 English (fluent), Swedish (native), German (intermediate)\nTechnologies \u2013 Python (NumPy, Pandas, SciPy), C++, Cython, OCaml, TensorFlow, PyTorch, Numba, SQL (PostgreSQL,\nClickHouse), Redis\nTools \u2013 Git, Docker, Kubernetes, Jupyter, CMake, gdb, perf, Bloomberg Terminal, FactSet, Refinitiv",
+  "name": "Arvid Sandberg +1",
+  "email": "arvid.sandberg@gmail.com",
+  "phone": "+14158237641",
+  "links": {
+    "github": [
+      "https://github.com/arvidsan/quant-trading"
+    ],
+    "linkedin": []
+  },
+  "skills": [
+    "c",
+    "c#",
+    "c++",
+    "clickhouse",
+    "docker",
+    "f#",
+    "git",
+    "github",
+    "jupyter",
+    "kubernetes",
+    "numpy",
+    "ocaml",
+    "pandas",
+    "postgresql",
+    "processing",
+    "python",
+    "pytorch",
+    "scikit",
+    "scikit-learn",
+    "sql",
+    "tensorflow"
+  ],
+  "projects": [
+    {
+      "name": "Reinforcement Learning Market Maker",
+      "subtitle": "Python, TensorFlow, Ray, PostgreSQL",
+      "start_date": "October 2023",
+      "end_date": "March 2024",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "High-Frequency Volatility Surface Interpolator",
+      "subtitle": "C++, Eigen, HDF5, SciPy",
+      "start_date": "May 2023",
+      "end_date": "August 2023",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Cross-Exchange Statistical Arbitrage Framework",
+      "subtitle": "Python, Pandas, Scikit-learn, Redis",
+      "start_date": "January 2023",
+      "end_date": "April 2023",
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "extracurricular": [
+    {
+      "name": "Global Association of Risk Professionals (GARP)",
+      "subtitle": "FRM Charterholder",
+      "start_date": "March 2023",
+      "end_date": "Present",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Part II exam.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "applications in derivatives pricing.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "QuantConnect Community",
+      "subtitle": "Algorithm Author & Technical Reviewer",
+      "start_date": "September 2022",
+      "end_date": "Present",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "C#, Python, and F# implementations.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "cv_experience": [
+    {
+      "name": "Citadel Securities",
+      "subtitle": "Quantitative Developer",
+      "start_date": "June 2022",
+      "end_date": "Present",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Jane Street",
+      "subtitle": "Quantitative Developer (Mid-Level)",
+      "start_date": "August 2021",
+      "end_date": "May 2022",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Numerai (Quantitative Research Division)",
+      "subtitle": "Junior Quantitative Developer",
+      "start_date": "January 2021",
+      "end_date": "July 2021",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "vectorizing covariance calculations for 8,000-stock universe.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "experience": "Citadel Securities | Quantitative Developer June 2022 - Present\nEngineered real-time market microstructure analysis system processing 50M+ tick events daily, reducing latency from\n2.3ms to 340\u03bcs through vectorized NumPy operations and Numba JIT compilation.\nDeveloped Monte Carlo simulation framework for pricing exotic derivatives, achieving 15x speedup by implementing\nGPU-accelerated matrix operations with CuPy across 1,024 parallel paths.\nOptimized portfolio risk model by refactoring Cython modules and implementing adaptive grid refinement, cutting\ncomputation time from 45 minutes to 3.2 minutes for daily VaR calculations across 10,000+ positions.\nJane Street | Quantitative Developer (Mid-Level) August 2021 - May 2022\nBuilt statistical arbitrage backtesting engine in OCaml with 18-month historical dataset, identifying 22 new profitable\nstrategies with Sharpe ratios exceeding 1.8 across four asset classes.\nDebugged and optimized core price discovery algorithm, resolving race conditions in multiprocessing pipeline that\nimproved tick-to-order fill consistency by 12% under high-volume market conditions.\nCollaborated with traders to validate 6 machine learning models for regime detection, implementing feature engineering\npipeline that improved model accuracy from 68% to 81% on out-of-sample data.\nNumerai (Quantitative Research Division) | Junior Quantitative Developer January 2021 - July 2021\nConstructed ensemble meta-model combining 40+ individual predictors using LightGBM stacking, achieving 15th\npercentile ranking on Numerai tournament with monthly payout of $2,400 USD.\nImplemented automated data validation pipeline detecting missing values and outliers in 2.1M+ historical stock features,\nreducing downstream model training failures by 34%.\nAccelerated correlation matrix computations from 22 seconds to 1.8 seconds by migrating from pandas to polars and\nvectorizing covariance calculations for 8,000-stock universe.",
+  "education": []
+}

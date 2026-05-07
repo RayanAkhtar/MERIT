@@ -1,0 +1,61 @@
+{
+  "raw_cv_text": "Eva EDUCATION\nS\u00f6derberg Royal Institute of Technology (KTH) \u2014 M.Sc. in Computer Science, 2010 - 2013\nDistributed Systems\neva.soderberg@outlook.c Thesis: Fault-tolerant consensus protocols in asynchronous networks; published\nom findings in peer-reviewed systems workshop.\n+46 76 234 5891\nEXPERIENCE\ngithub.com/evasoderberg\nSpotify \u2014 Staff Backend Engineer March 2021 - Present\nSKILLS\nArchitected and led migration of real-time user analytics pipeline from Kafka 2.x to\nLanguages 3.x, reducing latency by 43% and supporting 2.8M concurrent events/sec across 12\nSwedish, English,\ndata centers.\nGerman\nMentored 7 backend engineers through quarterly system design reviews,\nTech\nestablishing standards for microservice decomposition that improved code review\nGo, Python, Rust, Java,\ncycle time by 35%.\nPostgreSQL, Redis,\nDrove cross-team initiative to establish gRPC-based service mesh for payment\nDynamoDB, Kafka,\ngRPC, Protocol Buffers processing, enabling 4 teams to eliminate REST polling and reduce p99 latency\nTools from 850ms to 120ms for 180M monthly transactions.\nKubernetes, Docker, Klarna \u2014 Senior Backend Engineer, Infrastructure June 2018 - February 2021\nTerraform, Prometheus,\nLed design and implementation of distributed transaction coordinator for payment\nGrafana, AWS (EC2,\nreconciliation service, eliminating 99.2% of manual audit cases across $2.1B in\nRDS, Lambda), GCP,\nannual transaction volume.\nDataDog\nOptimized PostgreSQL query patterns and connection pooling strategy for 6 critical\nACTIVITIES services, reducing database CPU utilization from 78% to 34% and enabling 5x\nthroughput increase without infrastructure scaling.\nNordic Backend\nEstablished incident response playbook and on-call rotation strategy for backend\nEngineering Meetup\nplatform team, achieving 99.98% availability SLA and reducing mean time to\nCo-organizer &\nrecovery from 28 minutes to 8 minutes.\nSpeaker\n2019 - Present IronSource \u2014 Lead Backend Engineer September 2015 - May 2018\nDesigned and deployed high-throughput ad attribution system in Go processing\n240K impressions/sec, reducing latency tail (p99) from 2.3s to 180ms and enabling\nreal-time bidding for 320+ advertising partners.\nChampioned adoption of event-driven architecture across 5 backend teams,\nrefactoring 18 legacy monolithic services into microservices and reducing\ndeployment cycle from 45 minutes to 4 minutes.\nManaged $1.2M annual infrastructure budget and negotiated multi-year AWS\nreserved instance commitments, achieving 42% cost reduction while maintaining\n99.95% SLA for global ad-tech platform.\nKing (Candy Crush developer) \u2014 Senior Backend EngineerJanuary 2014 - August 2015\nBuilt resilient player progression service supporting 8M concurrent users across 47\ncountries, implemented distributed cache layer that reduced backend queries by\n66% and enabled sub-200ms response times.\nRedesigned real-time matchmaking algorithm for multiplayer feature, optimizing\nplayer wait time from 4.2 minutes average to 1.1 minutes while improving match\nquality satisfaction scores by 28%.\nPioneered chaos engineering testing framework adopted across 12 backend teams,\nsimulating 1,200+ failure scenarios annually and preventing 97% of previously-\nunseen production incidents.\nPROJECTS\nEvent Streaming Platform Overhaul \u2014 Rust, Kafka, gRPC, Protocol 2020 - 2021\nBuffers, Kubernetes, PostgreSQL\nArchitected next-generation event streaming infrastructure in Rust handling 5B+\ndaily events with exactly-once semantics, reducing operational overhead by 52%\nand enabling 8 teams to deprecate legacy Java services.\nDesigned comprehensive disaster recovery strategy with multi-region failover\nachieving RPO of 30 seconds and RTO of 2 minutes, tested quarterly across prod-\nequivalent staging environments.",
+  "name": "Kafka",
+  "email": "eva.soderberg@outlook.c",
+  "phone": "+46762345891",
+  "links": {
+    "linkedin": [],
+    "github": []
+  },
+  "skills": [
+    "aws",
+    "c",
+    "docker",
+    "dynamodb",
+    "gcp",
+    "github",
+    "go",
+    "grafana",
+    "grpc",
+    "java",
+    "kafka",
+    "kubernetes",
+    "postgresql",
+    "processing",
+    "prometheus",
+    "python",
+    "rust",
+    "terraform"
+  ],
+  "projects": [
+    {
+      "name": "Buffers, Kubernetes, PostgreSQL",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "equivalent staging environments.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "extracurricular": [],
+  "cv_experience": [
+    {
+      "name": "github.com/evasoderberg",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "experience": "github.com/evasoderberg\nSpotify \u2014 Staff Backend Engineer March 2021 - Present",
+  "education": []
+}

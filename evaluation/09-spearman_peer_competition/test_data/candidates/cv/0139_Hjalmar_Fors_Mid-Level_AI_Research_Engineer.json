@@ -1,0 +1,185 @@
+{
+  "raw_cv_text": "Hjalmar Fors\n+1 (415) 739-8542 \u2022 hjalmar.fors@gmail.com \u2022 https://hjalmar-fors.dev/research\nEDUCATION\nCarnegie Mellon University \u2014 M.S. in Machine Learning 2019 - 2021\nThesis: 'Efficient Fine-tuning Strategies for Large Language Models in Low-Resource Domains' published at ACL 2021\nwith 287 citations.\nUniversity of Washington \u2014 B.S. in Computer Science 2015 - 2019\nCum laude, 3.87 GPA; published undergraduate research on neural architecture search achieving 89% ImageNet\naccuracy with 60% fewer FLOPs than baseline.\nEXPERIENCE\nAnthropic \u2014 Research Engineer - Foundation Models June 2023 - Present\nOptimized multi-head attention mechanisms reducing model inference latency by 18% while maintaining performance\nparity on MMLU and HumanEval benchmarks.\nImplemented constitutional AI feedback collection pipeline processing 2.3M preference-based training samples,\nimproving RLHF convergence time by 35%.\nLed experimental design and execution for 7 prompt engineering studies across 12 model variants, generating 3 internal\nresearch publications on in-context learning phenomena.\nDeepMind (Alphabet) \u2014 Machine Learning Engineer - AI Safety January 2022 - May 2023\nDeveloped interpretability analysis framework using sparse autoencoders to decompose 1024-dimensional activation\nspaces, identifying 156 distinct behavioral features in language models.\nDesigned and executed adversarial robustness evaluation suite for 8 model architectures, discovering critical failure\nmodes affecting 4.2% of safety-critical prompts.\nCollaborated with 4-person team to scale model mechanistic interpretability research from toy models to 7B parameter\ntransformers, improving intervention success rate from 23% to 68%.\nOpenAI \u2014 Junior AI Researcher August 2021 - December 2021\nImplemented and benchmarked 5 competing approaches to neural scaling law extrapolation, achieving 12% lower\nprediction error on held-out 40B model training curves.\nAccelerated data preprocessing pipeline for vision-language models by 6x through custom CUDA kernels, reducing per-\nepoch compute cost from 8 hours to 80 minutes on A100 clusters.\nContributed novel regularization technique increasing zero-shot transfer performance by 7.3 points on downstream CV\nbenchmarks across 3 model families.\nPROJECTS\nToken Prediction Efficiency Study \u2014 PyTorch, FSDP, Weights & Biases, NVIDIA A100s March 2024 - Present\nEngineering efficiency comparative analysis across 11 different token prediction methods on 13B model scale, targeting\n25% latency reduction for serving.\nImplemented dynamic batching scheduler improving GPU utilization from 67% to 92% under real-world request\ndistributions from 15 concurrent users.\nConstitutional AI Alignment Benchmark \u2014 JAX, Ray Tune, Custom evaluation September 2023 - February 2024\nharnesses\nCo-authored reproducible benchmark suite evaluating alignment of 8 open-source models against 42 constitutional\nprinciples, cited by 12 downstream papers.\nDesigned scoring rubric achieving 94% inter-annotator agreement across 5,200 evaluation instances, enabling reliable\ncomparative analysis of model behaviors.\nMechanistic Interpretability Toolkit \u2014 PyTorch, ONNX, FastAPI, Docker June 2022 - August 2023\nDeveloped open-source library enabling circuit analysis on transformer models, achieving 8.5K GitHub stars and\nadoption by 6 major AI safety research labs.\nOptimized computation graph for feature attribution extraction reducing 48-layer model analysis time from 47 minutes to\n6 minutes via vectorized operations.\nEXTRACURRICULAR\nNeurIPS Conference \u2014 Program Committee Member 2023 - Present\nReviewed and provided detailed feedback on 18 papers in foundation models and interpretability tracks, contributing to\nacceptance decisions for top 23% of 9,400 submissions.\nMentored 4 junior researchers in paper submission strategy and experimental rigor, resulting in 3 papers achieving\nposter presentations.\nBerkeley AI Research Lab (BAIR) \u2014 Guest Lecturer Fall 2023\nDelivered 6-lecture series on neural scaling laws and interpretability techniques to 140 graduate students, receiving\n4.7/5.0 teaching evaluation scores.\nDesigned hands-on PyTorch exercises adopted into curriculum for 3 subsequent semesters across 420+ enrolled\nstudents.\nTECHNICAL SKILLS\nLanguages \u2013 Python, C++, MATLAB, Bash\nTechnologies \u2013 PyTorch, TensorFlow, JAX, Hugging Face Transformers, ONNX, Weights & Biases, Ray Tune, Triton,\nCUDA\nTools \u2013 Git, Docker, Kubernetes, Slurm, Weights & Biases, Neptune, Jupyter, MLflow, Hydra",
+  "name": "Hjalmar Fors +1",
+  "email": "hjalmar.fors@gmail.com",
+  "phone": "+14157398542",
+  "links": {
+    "other": [
+      "https://hjalmar-fors.dev/research"
+    ],
+    "linkedin": [],
+    "github": []
+  },
+  "skills": [
+    "bash",
+    "c",
+    "c++",
+    "docker",
+    "fastapi",
+    "foundation",
+    "git",
+    "github",
+    "hugging face",
+    "jupyter",
+    "kubernetes",
+    "matlab",
+    "processing",
+    "python",
+    "pytorch",
+    "tensorflow",
+    "transformers"
+  ],
+  "projects": [
+    {
+      "name": "25% latency reduction for serving.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "distributions from 15 concurrent users.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "harnesses",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "principles, cited by 12 downstream papers.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "comparative analysis of model behaviors.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "6 minutes via vectorized operations.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "extracurricular": [
+    {
+      "name": "poster presentations.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "4.7/5.0 teaching evaluation scores.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "students.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "cv_experience": [
+    {
+      "name": "parity on MMLU and HumanEval benchmarks.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "improving RLHF convergence time by 35%.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "research publications on in-context learning phenomena.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "modes affecting 4.2% of safety-critical prompts.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "benchmarks across 3 model families.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "experience": "Anthropic \u2014 Research Engineer - Foundation Models June 2023 - Present\nOptimized multi-head attention mechanisms reducing model inference latency by 18% while maintaining performance\nparity on MMLU and HumanEval benchmarks.\nImplemented constitutional AI feedback collection pipeline processing 2.3M preference-based training samples,\nimproving RLHF convergence time by 35%.\nLed experimental design and execution for 7 prompt engineering studies across 12 model variants, generating 3 internal\nresearch publications on in-context learning phenomena.\nDeepMind (Alphabet) \u2014 Machine Learning Engineer - AI Safety January 2022 - May 2023\nDeveloped interpretability analysis framework using sparse autoencoders to decompose 1024-dimensional activation\nspaces, identifying 156 distinct behavioral features in language models.\nDesigned and executed adversarial robustness evaluation suite for 8 model architectures, discovering critical failure\nmodes affecting 4.2% of safety-critical prompts.\nCollaborated with 4-person team to scale model mechanistic interpretability research from toy models to 7B parameter\ntransformers, improving intervention success rate from 23% to 68%.\nOpenAI \u2014 Junior AI Researcher August 2021 - December 2021\nImplemented and benchmarked 5 competing approaches to neural scaling law extrapolation, achieving 12% lower\nprediction error on held-out 40B model training curves.\nAccelerated data preprocessing pipeline for vision-language models by 6x through custom CUDA kernels, reducing per-\nepoch compute cost from 8 hours to 80 minutes on A100 clusters.\nContributed novel regularization technique increasing zero-shot transfer performance by 7.3 points on downstream CV\nbenchmarks across 3 model families.",
+  "education": [
+    {
+      "name": "Carnegie Mellon University \u2014 M.S. in",
+      "subtitle": "Machine Learning",
+      "start_date": "2019",
+      "end_date": "2021",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Thesis",
+      "subtitle": "'Efficient Fine-tuning Strategies for Large Language Models in Low-Resource Domains' published at ACL",
+      "start_date": "2021",
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Cum laude",
+      "subtitle": "3.87 GPA; published undergraduate research on neural architecture search achieving 89% ImageNet",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "accuracy with 60% fewer FLOPs than",
+      "subtitle": "baseline.",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ]
+}

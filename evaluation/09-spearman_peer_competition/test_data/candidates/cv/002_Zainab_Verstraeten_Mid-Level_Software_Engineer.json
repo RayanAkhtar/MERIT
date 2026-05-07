@@ -1,0 +1,277 @@
+{
+  "raw_cv_text": "Zainab Verstraeten\n+44 7911 523847 | Email: zainab.verstraeten@gmail.com | LinkedIn: zainab-verstraeten | GitHub: ZainabVerstraeten | https://zainab-\nverstraeten.dev\nEDUCATION\nUniversity of Cambridge | MSc Computer Science 2019-2020\nAchieved Distinction in thesis project on distributed systems optimization, improving cache efficiency by 34%\nLed a team of 4 students in designing a containerized microservices architecture workshop attended by 120+ participants\nUniversity of Amsterdam | BSc Computer Science 2015-2019\nGraduated with Honors (GPA 3.8/4.0), specializing in systems programming and algorithms\nRanked top 5% in Data Structures course, mentored 8 junior students in advanced algorithm design\nEXPERIENCE\nCloudflare | Software Engineer II 2022-Present\nArchitected and deployed a real-time DNS query analytics pipeline processing 2.3 million requests/second, reducing\nquery latency by 28% for enterprise customers\nLed migration of legacy rate-limiting service from Python to Rust, decreasing memory footprint by 61% and improving\nthroughput by 4.2x\nMentored 3 junior engineers on edge computing best practices, resulting in 2 successful production deployments and\n100% code review approval rate\nNotion | Mid-Level Software Engineer 2021-2022\nOptimized database query performance for collaborative editing features, reducing P99 latency from 850ms to 120ms and\nimproving user retention by 15%\nImplemented real-time synchronization protocol for offline-first functionality, enabling 40,000+ concurrent users with\n<200ms sync latency\nRefactored permission system using Redis caching, cutting database load by 52% and saving $47,000 annually in\ninfrastructure costs\nShopify | Junior Software Engineer 2020-2021\nDeveloped payment reconciliation system processing $89M+ in transactions monthly with 99.98% accuracy, eliminating\n200+ manual reconciliation hours/month\nEnhanced checkout page performance by optimizing React components and implementing code splitting, increasing\nconversion rate by 8.3%\nBuilt comprehensive monitoring dashboard using Datadog and custom metrics, reducing incident detection time by 65%\nPROJECTS\nStreamSync | Rust, WebSocket, Redis, PostgreSQL 2023-Present\nEngineered a high-throughput streaming data synchronization library supporting 50,000+ messages/second with sub-\n100ms latency across distributed systems\nAchieved 94% test coverage with comprehensive benchmarking suite, resulting in 3 open-source contributions and\n1,200+ GitHub stars\nGraphQL Query Optimizer | TypeScript, Node.js, GraphQL, Jest 2022-2023\nDeveloped an intelligent query optimizer reducing API response times by 46% through automated batch request detection\nand N+1 query prevention\nCreated educational documentation attracting 8,000+ developers, with 350+ upvotes on Hacker News and featured in 5\ntech newsletters\nDecentralAuth | Go, Ethereum, Solidity, Docker 2021-2022\nBuilt decentralized authentication middleware using smart contracts, processing 15,000+ authentications weekly with zero\nsecurity incidents\nPublished peer-reviewed whitepaper and secured speaking slot at 2 blockchain conferences, reaching 5,000+ audience\nmembers\nCloudMonitor CLI | Python, AWS SDK, Click, PostgreSQL 2020-2021\nCreated open-source CLI tool for AWS resource monitoring, automating infrastructure audits for 2,000+ users and saving\n1,500+ engineering hours quarterly\nAchieved 12,000+ downloads on PyPI with 4.8/5.0 star rating and active community of 45+ contributors\nEXTRACURRICULAR\nEuropean Developer Conference (EuroDev) | Conference Speaker & Workshop Facilitator 2022-Present\nDelivered 2 keynote talks on 'Scaling Distributed Systems at Edge' reaching 3,200+ engineers from 45 countries\nFacilitated hands-on workshop on performance optimization techniques, achieving 9.2/10 participant satisfaction score\nwith 95% attendance rate\nOpen Source Collective (Apache Foundation Member) | Core Contributor & Maintainer 2021-Present\nMaintain 3 open-source projects with 18,000+ combined GitHub stars, reviewing 200+ pull requests annually and\ngrowing contributor base by 140%\nMentor 5 junior developers transitioning to open-source contributions, with 100% of mentees successfully maintaining\ntheir own projects\nTECHNICAL SKILLS\nLanguages \u2013 Rust, Go, TypeScript, Python, Java, SQL, Solidity\nTechnologies \u2013 PostgreSQL, Redis, Elasticsearch, GraphQL, React, Node.js, WebSocket, Apache Kafka, Docker,\nKubernetes, AWS, Datadog\nTools \u2013 Git, GitHub, GitLab, VS Code, IntelliJ IDEA, Jira, Figma, Jenkins, Terraform, Linux, macOS",
+  "name": "Zainab Verstraeten",
+  "email": "zainab.verstraeten@gmail.com",
+  "phone": null,
+  "links": {
+    "other": [
+      "https://zainab-"
+    ],
+    "linkedin": [
+      "https://linkedin.com/in/zainab-verstraeten"
+    ],
+    "github": [
+      "https://github.com/ZainabVerstraeten"
+    ]
+  },
+  "skills": [
+    "aws",
+    "docker",
+    "elasticsearch",
+    "foundation",
+    "git",
+    "github",
+    "gitlab",
+    "go",
+    "graphql",
+    "java",
+    "jenkins",
+    "js",
+    "kafka",
+    "kubernetes",
+    "node.js",
+    "postgresql",
+    "processing",
+    "pypi",
+    "python",
+    "react",
+    "rust",
+    "solidity",
+    "sql",
+    "terraform",
+    "typescript"
+  ],
+  "projects": [
+    {
+      "name": "StreamSync",
+      "subtitle": "Rust, WebSocket, Redis, PostgreSQL",
+      "start_date": "2023",
+      "end_date": "Present",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "100ms latency across distributed systems",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "1,200+ GitHub stars",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "GraphQL Query Optimizer",
+      "subtitle": "TypeScript, Node.js, GraphQL, Jest",
+      "start_date": "2022",
+      "end_date": "2023",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "and N+1 query prevention",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "tech newsletters",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "DecentralAuth",
+      "subtitle": "Go, Ethereum, Solidity, Docker",
+      "start_date": "2021",
+      "end_date": "2022",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "security incidents",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "members",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "CloudMonitor CLI",
+      "subtitle": "Python, AWS SDK, Click, PostgreSQL",
+      "start_date": "2020",
+      "end_date": "2021",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "1,500+ engineering hours quarterly",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "extracurricular": [
+    {
+      "name": "European Developer Conference (EuroDev)",
+      "subtitle": "Conference Speaker & Workshop Facilitator",
+      "start_date": "2022",
+      "end_date": "Present",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "with 95% attendance rate",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Open Source Collective (Apache Foundation Member)",
+      "subtitle": "Core Contributor & Maintainer",
+      "start_date": "2021",
+      "end_date": "Present",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "growing contributor base by 140%",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "their own projects",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "cv_experience": [
+    {
+      "name": "Cloudflare",
+      "subtitle": "Software Engineer II",
+      "start_date": "2022",
+      "end_date": "Present",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "throughput by 4.2x",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "100% code review approval rate",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Notion",
+      "subtitle": "Mid-Level Software Engineer",
+      "start_date": "2021",
+      "end_date": "2022",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "improving user retention by 15%",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "<200ms sync latency",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "infrastructure costs",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Shopify",
+      "subtitle": "Junior Software Engineer",
+      "start_date": "2020",
+      "end_date": "2021",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "200+ manual reconciliation hours/month",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "conversion rate by 8.3%",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "experience": "Cloudflare | Software Engineer II 2022-Present\nArchitected and deployed a real-time DNS query analytics pipeline processing 2.3 million requests/second, reducing\nquery latency by 28% for enterprise customers\nLed migration of legacy rate-limiting service from Python to Rust, decreasing memory footprint by 61% and improving\nthroughput by 4.2x\nMentored 3 junior engineers on edge computing best practices, resulting in 2 successful production deployments and\n100% code review approval rate\nNotion | Mid-Level Software Engineer 2021-2022\nOptimized database query performance for collaborative editing features, reducing P99 latency from 850ms to 120ms and\nimproving user retention by 15%\nImplemented real-time synchronization protocol for offline-first functionality, enabling 40,000+ concurrent users with\n<200ms sync latency\nRefactored permission system using Redis caching, cutting database load by 52% and saving $47,000 annually in\ninfrastructure costs\nShopify | Junior Software Engineer 2020-2021\nDeveloped payment reconciliation system processing $89M+ in transactions monthly with 99.98% accuracy, eliminating\n200+ manual reconciliation hours/month\nEnhanced checkout page performance by optimizing React components and implementing code splitting, increasing\nconversion rate by 8.3%\nBuilt comprehensive monitoring dashboard using Datadog and custom metrics, reducing incident detection time by 65%",
+  "education": [
+    {
+      "name": "University of Cambridge",
+      "subtitle": "MSc Computer Science",
+      "start_date": "2019",
+      "end_date": "2020",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "University of Amsterdam",
+      "subtitle": "BSc Computer Science",
+      "start_date": "2015",
+      "end_date": "2019",
+      "grade": null,
+      "summary": ""
+    }
+  ]
+}

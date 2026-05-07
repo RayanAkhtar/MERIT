@@ -42,6 +42,24 @@ def main():
     run_study(study_06, "run_study.py")
 
 
+    # spearman studies (07-10)
+    print("\n" + "-"*40)
+    print("Preparing Spearman Test Data...")
+    subprocess.run([sys.executable, os.path.join(root_dir, "prepare_spearman_data.py")], check=True)
+    subprocess.run([sys.executable, os.path.join(root_dir, "sabotage_study_10.py")], check=True)
+
+    spearman_studies = [
+        "07-spearman_high_discrimination",
+        "08-spearman_seniority_bias_audit",
+        "09-spearman_peer_competition",
+        "10-spearman_signal_dissonance_failure_case"
+    ]
+
+    for study_name in spearman_studies:
+        study_path = os.path.join(root_dir, study_name)
+        run_study(study_path, "run_study.py")
+
+
 
     print("\n" + "="*60)
     print("ALL EVALUATIONS COMPLETE")

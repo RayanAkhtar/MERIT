@@ -1,0 +1,34 @@
+{
+  "raw_text": "CloudWeave Systems\n\nBuilding scalable, distributed systems that power the modern data economy\n\nINTERN BACKEND ENGINEER\n\nSan Francisco, CA (Remote-friendly) \u00b7 Internship \u00b7 $28-$35/hour\n\nJoin CloudWeave Systems as a Backend Engineer Intern and get hands-on experience building and maintaining\nscalable microservices. You'll work alongside senior engineers to develop REST APIs, implement data persistence\n\nlayers, and contribute to our core platform services. This is an excellent opportunity to apply computer science\nfundamentals to real-world distributed systems while learning industry best practices in backend development.\n\nABOUT US\n\nCloudWeave Systems is a San Francisco-based infrastructure software company founded in 2019. We specialize in\ndeveloping cloud-native data platforms and microservices orchestration tools for enterprises. Our mission is to\nsimplify distributed systems architecture and enable organizations to build reliable, high-performance applications.\n\nWe serve Fortune 500 companies across finance, healthcare, and e-commerce sectors.\n\nWHAT YOU'LL DO\n\nDevelop and maintain REST APIs in Go and Python under the guidance of senior engineers\n\nImplement and optimize database queries using PostgreSQL and Redis for caching layers\n\nParticipate in code reviews and learn best practices for writing maintainable, testable backend code\n\nDebug and troubleshoot issues in microservices running in Docker containers and Kubernetes\n\nCollaborate with the team to design and implement new features for our core data pipeline\n\nWrite unit tests and integration tests to ensure code quality and reliability\n\nDocument API specifications and internal services to improve team knowledge sharing\n\nREQUIRED\n\nCurrently pursuing or recently completed a degree in Computer Science, Software Engineering, or related\nfield\n\nStrong foundation in at least one backend language: Python, Go, or Java\n\nUnderstanding of relational databases and SQL fundamentals\n\nFamiliarity with Git and version control workflows\n\nAbility to work collaboratively in a team environment and communicate technical concepts clearly\n\nNICE TO HAVE\n\n\fExperience with REST API design and HTTP fundamentals\n\nExposure to Docker or containerization concepts\n\nFamiliarity with microservices architecture or distributed systems concepts\n\nPrevious experience with PostgreSQL or MySQL\n\nTECH STACK\n\nGo   Python   PostgreSQL   Redis\n\n  Docker\n\n  Kubernetes\n\n  REST APIs\n\n  Git\n\n  RabbitMQ   Linux\n\nBENEFITS\n\nCompetitive hourly rate commensurate with experience\n\nFlexible work schedule with remote work options\n\nMentorship from experienced backend engineers\n\nFree access to professional development courses and certifications\n\nLunch and snacks provided in office (when on-site)\n\nOpportunity to work on real production systems impacting thousands of users\n\nHOW TO APPLY\n\nSubmit your resume, a cover letter describing your interest in backend engineering, and a GitHub profile or\nportfolio link (if available) to careers@cloudweave.io. Include any personal or academic projects that demonstrate\nyour backend development skills. Applications are reviewed on a rolling basis.\n\n\f",
+  "job_title": "INTERN BACKEND ENGINEER",
+  "company": "CloudWeave Systems is a San Francisco",
+  "location": null,
+  "employment_type": "Internship",
+  "experience_level": "Internship",
+  "technical_skills": [
+    "Docker",
+    "Kubernetes",
+    "foundation",
+    "mysql",
+    "postgresql"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Experience with REST API design and HTTP fundamentals"
+  ],
+  "salary": "$28-$35",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\evaluation\\08-spearman_seniority_bias_audit\\test_data/job_description/job_description.pdf",
+  "languages": [
+    "Java",
+    "MySQL",
+    "PostgreSQL",
+    "Python",
+    "SQL",
+    "git",
+    "github",
+    "go"
+  ],
+  "education_required": [
+    "Currently pursuing or recently completed a degree in Computer Science, Software Engineering, or related"
+  ]
+}

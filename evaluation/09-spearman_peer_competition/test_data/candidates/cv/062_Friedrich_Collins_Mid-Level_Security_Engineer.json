@@ -1,0 +1,272 @@
+{
+  "raw_cv_text": "Friedrich Collins\n+44 7911 523 847 | Email: friedrich.collins@outlook.com | LinkedIn: friedrich-collins | GitHub: FriedrichCollins |\nhttps://friedrichcollins.dev\nEDUCATION\nUniversity of Cambridge | MSc Computer Science (Specialization: Cybersecurity) 2019 - 2020\nCompleted dissertation on Zero-Trust Architecture implementation in distributed systems, achieving distinction grade\nwith 78% average\nLed weekly security research seminars for 30+ postgraduate students covering threat modeling and cryptographic\nprotocols\nGeorgia Institute of Technology | BS Computer Science (Minor in Information Security) 2015 - 2019\nGraduated summa cum laude with 3.88 GPA; recipient of Cybersecurity Excellence Award\nCo-founded Georgia Tech Ethical Hacking Club, growing membership to 150+ students within 18 months\nEXPERIENCE\nCloudflare | Security Engineer II Jun 2022 - Present\nArchitected and deployed a new API rate-limiting module that reduced DDoS attack surface by 34%, protecting 2M+\ncustomer domains\nDesigned automated vulnerability scanning pipeline integrating SAST/DAST tools, reducing security review time from 4\nhours to 18 minutes per release\nResponded to 47 critical security incidents, maintaining 99.2% MTTR (mean time to response) and preventing $2.3M in\npotential data exposure\nStripe | Senior Security Analyst Mar 2021 - May 2022\nLed penetration testing program across 8 microservices, identifying and remediating 156 vulnerabilities before\nproduction, representing 67% reduction in security debt\nImplemented OAuth 2.0 and JWT token validation framework processing 450K+ authentication requests daily with zero\ncompromise incidents\nMentored 3 junior security analysts, resulting in 2 promotions and 40% improvement in team incident resolution\nefficiency\nPalantir Technologies | Security Operations Analyst Aug 2020 - Feb 2021\nDeveloped Python-based log aggregation tool correlating events from 12 security tools, reducing SIEM query time from 8\nhours to 12 minutes\nConducted security compliance audits achieving SOC 2 Type II certification with 98.4% control effectiveness score\nConfigured and maintained intrusion detection system detecting 89 suspicious network patterns monthly with 92% true\npositive rate\nPROJECTS\nCryptVault - Zero-Trust Secret Management | Go, gRPC, HashiCorp Vault, Docker, Kubernetes Jan 2023 - Jun 2023\nBuilt distributed secret management platform using zero-trust principles, supporting 50K secrets with 99.99% availability\nand AES-256 encryption\nReduced secret rotation time from 45 minutes to 2 minutes, eliminating manual operational overhead for 200+ developers\nacross 15 teams\nThreatMapper - Continuous Vulnerability Intelligence | Python, FastAPI, PostgreSQL, Shodan Sep 2022 - Dec 2022\nAPI, Docker\nEngineered real-time threat intelligence aggregator scanning 45+ public vulnerability databases, generating 78%\nreduction in vulnerability discovery time\nDeployed alert system notifying 12 teams of critical CVE matches within 90 seconds, preventing 3 security incidents\nSecAudit - Automated Compliance Framework | Terraform, Python, AWS IAM, GitHub Actions, Apr 2022 - Aug 2022\nCloudFormation\nCreated Infrastructure-as-Code compliance checking tool validating 156 security policies across 40+ AWS accounts\nmonthly\nAutomated compliance reporting reducing manual audit work by 88%, saving 120 hours of manual labor quarterly\nEncryptedLog - SIEM Log Encryption Suite | Java, Spring Boot, ELK Stack, GPG, Kubernetes Nov 2021 - Mar 2022\nDeveloped end-to-end encrypted logging system processing 2.1M log events daily while maintaining 99.97% uptime\nReduced log analysis performance overhead by 12% through optimized encryption algorithms, enabling faster threat\ndetection\nEXTRACURRICULAR\nOWASP (Open Web Application Security Project) | Core Team Member & Chapter Lead 2021 - Present\nOrganized 24 security workshops reaching 680+ professionals, covering API security, threat modeling, and secure coding\npractices\nMaintained OWASP Top 10 educational resources repository with 4.2K GitHub stars and 89K monthly downloads\nDEF CON Security Conference | Speaker & Capture The Flag (CTF) Judge 2022 - 2023\nDelivered keynote on 'Zero-Trust Architecture in Cloud Environments' to 1,200+ security professionals at DEF CON 31\nDesigned and judged CTF challenges for 420 participants, with 94% participant satisfaction rating\nTECHNICAL SKILLS\nLanguages \u2013 Python, Go, Java, Bash, SQL, JavaScript\nTechnologies \u2013 Kubernetes, Docker, AWS (IAM, CloudTrail, Security Hub), Azure, GCP, Terraform, SIEM (Splunk, ELK),\nVault, OAuth 2.0, TLS/SSL, GPG\nTools \u2013 Burp Suite, Metasploit, Wireshark, Nessus, Snort, OWASP ZAP, Git, Jenkins, GitHub Actions, Terraform, Shodan",
+  "name": "Friedrich Collins",
+  "email": "friedrich.collins@outlook.com",
+  "phone": null,
+  "links": {
+    "other": [
+      "https://friedrichcollins.dev"
+    ],
+    "linkedin": [
+      "https://linkedin.com/in/friedrich-collins"
+    ],
+    "github": [
+      "https://github.com/FriedrichCollins"
+    ]
+  },
+  "skills": [
+    "aws",
+    "azure",
+    "bash",
+    "docker",
+    "fastapi",
+    "gcp",
+    "git",
+    "github",
+    "go",
+    "grpc",
+    "java",
+    "javascript",
+    "jenkins",
+    "kubernetes",
+    "postgresql",
+    "processing",
+    "python",
+    "spring",
+    "sql",
+    "terraform"
+  ],
+  "projects": [
+    {
+      "name": "CryptVault - Zero-Trust Secret Management",
+      "subtitle": "Go, gRPC, HashiCorp Vault, Docker, Kubernetes",
+      "start_date": "Jan 2023",
+      "end_date": "Jun 2023",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "and AES-256 encryption",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "across 15 teams",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "ThreatMapper - Continuous Vulnerability Intelligence",
+      "subtitle": "Python, FastAPI, PostgreSQL, Shodan",
+      "start_date": "Sep 2022",
+      "end_date": "Dec 2022",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "API, Docker",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "reduction in vulnerability discovery time",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "SecAudit - Automated Compliance Framework",
+      "subtitle": "Terraform, Python, AWS IAM, GitHub Actions",
+      "start_date": "Apr 2022",
+      "end_date": "Aug 2022",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "CloudFormation",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "monthly",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "EncryptedLog - SIEM Log Encryption Suite",
+      "subtitle": "Java, Spring Boot, ELK Stack, GPG, Kubernetes",
+      "start_date": "Nov 2021",
+      "end_date": "Mar 2022",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "detection",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "extracurricular": [
+    {
+      "name": "OWASP (Open Web Application Security Project)",
+      "subtitle": "Core Team Member & Chapter Lead",
+      "start_date": "2021",
+      "end_date": "Present",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "practices",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "DEF CON Security Conference",
+      "subtitle": "Speaker & Capture The Flag (CTF) Judge",
+      "start_date": "2022",
+      "end_date": "2023",
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "cv_experience": [
+    {
+      "name": "Cloudflare",
+      "subtitle": "Security Engineer II",
+      "start_date": "Jun 2022",
+      "end_date": "Present",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "customer domains",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "hours to 18 minutes per release",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "potential data exposure",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Stripe",
+      "subtitle": "Senior Security Analyst",
+      "start_date": "Mar 2021",
+      "end_date": "May 2022",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "compromise incidents",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "efficiency",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Palantir Technologies",
+      "subtitle": "Security Operations Analyst",
+      "start_date": "Aug 2020",
+      "end_date": "Feb 2021",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "hours to 12 minutes",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "positive rate",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "experience": "Cloudflare | Security Engineer II Jun 2022 - Present\nArchitected and deployed a new API rate-limiting module that reduced DDoS attack surface by 34%, protecting 2M+\ncustomer domains\nDesigned automated vulnerability scanning pipeline integrating SAST/DAST tools, reducing security review time from 4\nhours to 18 minutes per release\nResponded to 47 critical security incidents, maintaining 99.2% MTTR (mean time to response) and preventing $2.3M in\npotential data exposure\nStripe | Senior Security Analyst Mar 2021 - May 2022\nLed penetration testing program across 8 microservices, identifying and remediating 156 vulnerabilities before\nproduction, representing 67% reduction in security debt\nImplemented OAuth 2.0 and JWT token validation framework processing 450K+ authentication requests daily with zero\ncompromise incidents\nMentored 3 junior security analysts, resulting in 2 promotions and 40% improvement in team incident resolution\nefficiency\nPalantir Technologies | Security Operations Analyst Aug 2020 - Feb 2021\nDeveloped Python-based log aggregation tool correlating events from 12 security tools, reducing SIEM query time from 8\nhours to 12 minutes\nConducted security compliance audits achieving SOC 2 Type II certification with 98.4% control effectiveness score\nConfigured and maintained intrusion detection system detecting 89 suspicious network patterns monthly with 92% true\npositive rate",
+  "education": [
+    {
+      "name": "University of Cambridge",
+      "subtitle": "MSc Computer Science (Specialization: Cybersecurity)",
+      "start_date": "2019",
+      "end_date": "2020",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Led weekly security research seminars for 30+",
+      "subtitle": "postgraduate students covering threat modeling and cryptographic",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Georgia Institute of Technology",
+      "subtitle": "BS Computer Science (Minor in Information Security)",
+      "start_date": "2015",
+      "end_date": "2019",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Graduated summa cum laude with 3.88 GPA; recipient of Cybersecurity Excellence Award",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "raw_cv_text": "Arif Cheng EDUCATION\nUniversity of California, Berkeley \u2014 B.S. Computer Science 2017 - 2020\narif.cheng@gmail.com\nCompleted coursework in Distributed Systems, Database Systems, and Systems\n+1 (415) 237-8942\nPerformance Engineering; GPA 3.7/4.0 with honors in Computer Science.\nhttps://github.com/arifche\nng EXPERIENCE\nSKILLS Stripe \u2014 Backend Engineer II Mar 2023 - Present\nLanguages Architected and deployed a distributed transaction reconciliation service handling\nEnglish, Mandarin 2.5M+ daily payment records, reducing reconciliation time from 8 hours to 12\nChinese minutes using event-driven Kafka pipelines.\nTech Optimized PostgreSQL query performance for the payments ledger by implementing\nPython, Java, Go, materialized views and partitioning, decreasing p99 latency from 850ms to 120ms\nPostgreSQL, Redis,\nand supporting 40% increased throughput.\nApache Kafka, Docker,\nLed migration of legacy XML-based API endpoint to gRPC-based microservice,\nKubernetes, gRPC,\nreducing payload size by 65% and improving p95 latency by 200ms for 180M+\nGraphQL\nmonthly requests across payment processing systems.\nTools\nGit, AWS (EC2, RDS, DoorDash \u2014 Software Engineer, Backend Jul 2021 - Feb 2023\nLambda, SQS), GCP Developed and maintained order state machine service processing 500K+ orders\n(Cloud Run, Firestore), daily, implementing Redis-backed distributed caching that reduced database queries\nDatadog, PagerDuty,\nby 78% and improved API response time to sub-100ms.\nTerraform\nImplemented comprehensive monitoring and alerting system using Datadog and\nACTIVITIES PagerDuty for 12 critical microservices, achieving 99.94% uptime SLA and reducing\nMTTR by 35%.\nBerkeley Open\nDesigned async job processing system using Apache Kafka and worker pools for\nSource Club\nrestaurant onboarding, scaling from 5K to 50K+ restaurants and reducing\nCore Maintainer\nprocessing latency from 2 hours to 8 minutes.\n2019 - 2020\nFigma \u2014 Backend Software Engineer Jan 2021 - Jun 2021\nStripe Engineering\nBuilt real-time collaboration backend using WebSocket and Operational\nConference\nTransformation principles, supporting 100K+ concurrent editing sessions with sub-\nSpeaker\n50ms sync latency.\nNov 2023\nRefactored database schema for collaborative document storage, eliminating N+1\nquery patterns and reducing storage footprint by 42% while maintaining backward\ncompatibility across 2M+ documents.\nImplemented rate limiting and quota enforcement middleware in Go, protecting\ncritical APIs from abuse and reducing infrastructure costs by $180K annually\nthrough better resource utilization.\nPROJECTS\nHigh-Throughput Event Processing Pipeline \u2014 Go, Apache Apr 2023 - Jun 2023\nKafka, PostgreSQL, Prometheus\nEngineered fault-tolerant event aggregation system processing 1M+ events/second\nwith exactly-once semantics, utilizing consumer groups and offset management to\nmaintain data consistency under network partitions.\nImplemented distributed tracing using OpenTelemetry to identify bottlenecks,\nachieving 40% reduction in end-to-end latency and enabling real-time visibility into\nprocessing pipeline health.\nMulti-Region Database Failover Orchestrator \u2014 Python, Sep 2022 - Dec 2022\nTerraform, AWS RDS, etcd\nDeveloped automated failover system for PostgreSQL clusters across 3 AWS\nregions, reducing RTO from 45 minutes to 3 minutes and enabling zero-downtime\nmigrations for 12 critical services.\nCreated comprehensive health-check framework with consensus-based decision\nmaking, preventing split-brain scenarios and ensuring data consistency across\n500GB+ databases.\nGraphQL API Gateway \u2014 GraphQL, Java, Redis, Docker Feb 2021 - May 2021\nDeveloped unified GraphQL gateway aggregating 8 downstream microservices,\nreducing client-side API calls by 72% and enabling declarative data fetching for 15\nmobile and web clients.\nImplemented intelligent request batching and caching layer using Redis, decreasing\nmedian query resolution time from 580ms to 140ms and reducing backend service\nload by 55%.",
+  "name": "Arif Cheng",
+  "email": "arif.cheng@gmail.com",
+  "phone": "+14152378942",
+  "links": {
+    "github": [
+      "https://github.com/arifche"
+    ],
+    "linkedin": []
+  },
+  "skills": [
+    "aws",
+    "docker",
+    "gcp",
+    "git",
+    "github",
+    "go",
+    "graphql",
+    "grpc",
+    "java",
+    "kafka",
+    "kubernetes",
+    "postgresql",
+    "processing",
+    "prometheus",
+    "python",
+    "terraform",
+    "xml"
+  ],
+  "projects": [
+    {
+      "name": "Kafka, PostgreSQL, Prometheus",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "maintain data consistency under network partitions.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "processing pipeline health.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Terraform, AWS RDS, etcd",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "migrations for 12 critical services.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "500GB+ databases.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "mobile and web clients.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "load by 55%.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "extracurricular": [],
+  "cv_experience": [],
+  "experience": null,
+  "education": []
+}

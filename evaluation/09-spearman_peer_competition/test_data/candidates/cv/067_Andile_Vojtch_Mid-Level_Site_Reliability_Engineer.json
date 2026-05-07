@@ -1,0 +1,253 @@
+{
+  "raw_cv_text": "Andile Vojt\u011bch\n+44 20 7946 0958 | Email: andile.vojtech@outlook.com | LinkedIn: andile-vojt\u011bch | GitHub: AndileVojt\u011bch | https://andilev.dev\nEDUCATION\nETH Zurich (Swiss Federal Institute of Technology) | MSc Computer Science - Systems & Networks 2019 - 2021\nSpecialized in distributed systems and cloud infrastructure with focus on Kubernetes and container orchestration\nCompleted thesis on 'Optimizing Resource Allocation in Hybrid Cloud Environments' achieving distinction grade\nUniversity of Cape Town | BSc Computer Science 2015 - 2019\nGraduated with honors in systems programming and network architecture\nElected class representative for software engineering cohort demonstrating leadership and communication skills\nEXPERIENCE\nDatadog | Site Reliability Engineer II March 2023 - Present\nArchitected and deployed automated incident response system reducing mean time to resolution (MTTR) by 67% across\n12 production clusters\nImplemented distributed tracing pipeline processing 2.3M events/second, improving service debugging efficiency by 4.5x\nLed migration of legacy monolithic monitoring systems to microservices architecture, reducing infrastructure costs by\n$340K annually\nCloudflare | SRE (Site Reliability Engineer) July 2021 - February 2023\nDesigned and maintained service mesh infrastructure serving 45M+ requests daily with 99.99% uptime SLA achievement\nAutomated deployment pipeline using Terraform and GitOps reducing production deployment time from 2.5 hours to 12\nminutes (87.5% improvement)\nOptimized database connection pooling strategy decreasing latency p99 by 340ms and increasing throughput capacity by\n156%\nNotion Labs | Junior Site Reliability Engineer November 2020 - June 2021\nImplemented comprehensive observability framework with Prometheus and Grafana reducing incident detection time\nfrom 18 minutes to 3 minutes\nBuilt automated chaos engineering tests using LitmusChaos validating resilience of 28 critical microservices with 94%\nfault detection accuracy\nContributed to on-call runbook standardization effort reducing incident resolution variance by 52% across platform teams\nPROJECTS\nKubeWatcher | Go, Kubernetes API, Prometheus, gRPC 2022 - 2023\nDeveloped open-source Kubernetes observability tool with custom resource monitoring achieving 15K GitHub stars and\n340+ community contributions\nEngineered efficient state reconciliation algorithm reducing memory footprint by 72% enabling deployment on resource-\nconstrained edge clusters\nFailSafe | Python, Redis, Apache Kafka, Docker 2021 - 2022\nBuilt distributed circuit breaker and retry framework processing 8M+ transactions daily with 99.95% reliability\nImplemented intelligent backoff strategies reducing cascading failures by 83% in microservice architectures under high\nload conditions\nLogAggregator Pro | Rust, Elasticsearch, Fluentd, Bash 2020 - 2021\nCreated high-performance log aggregation tool handling 500K logs/second with 3.2GB/hour data ingestion rate\nOptimized indexing strategy reducing query response time by 78% and storage requirements by 64% using compression\ntechniques\nAlertOptimizer | Python, Machine Learning, Grafana, SQLite 2022\nDeveloped ML-based alert deduplication engine reducing false positive alerts by 71% and alert fatigue by 85%\nIntegrated with 12 major monitoring platforms generating actionable intelligence for 200+ enterprise customers\nEXTRACURRICULAR\nCloud Native Computing Foundation (CNCF) | Community Ambassador & Kubernetes Mentor 2022 - Present\nMentored 18 junior engineers on SRE best practices and Kubernetes administration resulting in 100% transition to mid-\nlevel roles\nOrganized monthly technical meetups with 200+ attendees on topics including observability, incident response, and\ninfrastructure automation\nDevOps Europe Conference | Speaker & Workshop Facilitator 2023\nDelivered keynote presentation 'Scaling Reliability at Global Scale' reaching 800+ live attendees and 12K+ video views\npost-publication\nFacilitated hands-on workshop on Kubernetes security and compliance best practices with 120 participants achieving 92%\nsatisfaction rating\nTECHNICAL SKILLS\nLanguages \u2013 Go, Python, Rust, Bash, SQL, YAML\nTechnologies \u2013 Kubernetes, Docker, Prometheus, Grafana, ELK Stack, Apache Kafka, Redis, PostgreSQL, Elasticsearch,\nTerraform, Ansible, ArgoCD\nTools \u2013 Git, Jenkins, GitLab CI/CD, GitHub Actions, PagerDuty, DataDog, Splunk, VictorOps, New Relic, AWS (EC2, RDS,\nLambda, EKS), GCP (GKE, Cloud Run), Linux/Unix",
+  "name": "Email",
+  "email": "andile.vojtech@outlook.com",
+  "phone": "+442079460958",
+  "links": {
+    "other": [
+      "https://andilev.dev"
+    ],
+    "linkedin": [
+      "https://linkedin.com/in/andile-vojt\u011bch"
+    ],
+    "github": [
+      "https://github.com/AndileVojt\u011bch"
+    ]
+  },
+  "skills": [
+    "ansible",
+    "aws",
+    "bash",
+    "docker",
+    "elasticsearch",
+    "foundation",
+    "gcp",
+    "git",
+    "github",
+    "gitlab",
+    "go",
+    "grafana",
+    "grpc",
+    "jenkins",
+    "kafka",
+    "kubernetes",
+    "postgresql",
+    "processing",
+    "prometheus",
+    "python",
+    "rust",
+    "sql",
+    "sqlite",
+    "terraform",
+    "yaml"
+  ],
+  "projects": [
+    {
+      "name": "KubeWatcher",
+      "subtitle": "Go, Kubernetes API, Prometheus, gRPC",
+      "start_date": "2022",
+      "end_date": "2023",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "340+ community contributions",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "constrained edge clusters",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "FailSafe",
+      "subtitle": "Python, Redis, Apache Kafka, Docker",
+      "start_date": "2021",
+      "end_date": "2022",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "load conditions",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "LogAggregator Pro",
+      "subtitle": "Rust, Elasticsearch, Fluentd, Bash",
+      "start_date": "2020",
+      "end_date": "2021",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "techniques",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "AlertOptimizer",
+      "subtitle": "Python, Machine Learning, Grafana, SQLite",
+      "start_date": "2022",
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "extracurricular": [
+    {
+      "name": "Cloud Native Computing Foundation (CNCF)",
+      "subtitle": "Community Ambassador & Kubernetes Mentor",
+      "start_date": "2022",
+      "end_date": "Present",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "level roles",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "infrastructure automation",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "DevOps Europe Conference",
+      "subtitle": "Speaker & Workshop Facilitator",
+      "start_date": "2023",
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "post-publication",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "satisfaction rating",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "cv_experience": [
+    {
+      "name": "Datadog",
+      "subtitle": "Site Reliability Engineer II",
+      "start_date": "March 2023",
+      "end_date": "Present",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "12 production clusters",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "$340K annually",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Cloudflare",
+      "subtitle": "SRE (Site Reliability Engineer)",
+      "start_date": "July 2021",
+      "end_date": "February 2023",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "minutes (87.5% improvement)",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "156%",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Notion Labs",
+      "subtitle": "Junior Site Reliability Engineer",
+      "start_date": "November 2020",
+      "end_date": "June 2021",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "from 18 minutes to 3 minutes",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "fault detection accuracy",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "experience": "Datadog | Site Reliability Engineer II March 2023 - Present\nArchitected and deployed automated incident response system reducing mean time to resolution (MTTR) by 67% across\n12 production clusters\nImplemented distributed tracing pipeline processing 2.3M events/second, improving service debugging efficiency by 4.5x\nLed migration of legacy monolithic monitoring systems to microservices architecture, reducing infrastructure costs by\n$340K annually\nCloudflare | SRE (Site Reliability Engineer) July 2021 - February 2023\nDesigned and maintained service mesh infrastructure serving 45M+ requests daily with 99.99% uptime SLA achievement\nAutomated deployment pipeline using Terraform and GitOps reducing production deployment time from 2.5 hours to 12\nminutes (87.5% improvement)\nOptimized database connection pooling strategy decreasing latency p99 by 340ms and increasing throughput capacity by\n156%\nNotion Labs | Junior Site Reliability Engineer November 2020 - June 2021\nImplemented comprehensive observability framework with Prometheus and Grafana reducing incident detection time\nfrom 18 minutes to 3 minutes\nBuilt automated chaos engineering tests using LitmusChaos validating resilience of 28 critical microservices with 94%\nfault detection accuracy\nContributed to on-call runbook standardization effort reducing incident resolution variance by 52% across platform teams",
+  "education": [
+    {
+      "name": "ETH Zurich (Swiss Federal Institute of Technology)",
+      "subtitle": "MSc Computer Science - Systems & Networks",
+      "start_date": "2019",
+      "end_date": "2021",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "University of Cape Town",
+      "subtitle": "BSc Computer Science",
+      "start_date": "2015",
+      "end_date": "2019",
+      "grade": null,
+      "summary": ""
+    }
+  ]
+}

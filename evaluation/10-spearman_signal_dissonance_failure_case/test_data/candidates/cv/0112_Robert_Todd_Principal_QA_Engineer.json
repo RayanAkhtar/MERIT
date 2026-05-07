@@ -1,0 +1,103 @@
+{
+  "raw_cv_text": "Robert Todd\nrobert.todd@gmail.com \u2022 (415) 763-2841 \u2022 https://roberttoddqa.io\nEDUCATION\nCarnegie Mellon University \u2014 M.S. Computer Science (Software Engineering) 2005 - 2007\nUniversity of Texas at Austin \u2014 B.S. Computer Science 2001 - 2005\nEXPERIENCE\nStripe \u2014 Principal Quality Assurance Engineer 2021 - Present\nArchitected and deployed enterprise-grade test automation platform reducing payment processing regression detection\ntime from 8 hours to 12 minutes across 15+ payment integrations affecting $500B+ annual transaction volume.\nLed organization-wide quality transformation initiative establishing QA best practices, test pyramid standards, and\nmetrics frameworks resulting in 67% reduction in production defects and $12M annual savings in incident response\ncosts.\nPioneered AI-powered visual regression testing system using machine learning models to detect UI anomalies across\n50+ supported locales, reducing manual review cycles by 85% and enabling real-time deployment to 400M+ users.\nMeta \u2014 Staff Quality Engineer - Ads Platform 2018 - 2021\nDesigned and implemented distributed load testing infrastructure leveraging Kubernetes clusters handling 50K+\nconcurrent requests, validating ad delivery system performance under peak load and preventing $200M+ daily revenue\nimpact from outages.\nEstablished chaos engineering practice across Ads Platform team, designing 300+ chaos experiments that identified\nand prevented 47 critical reliability issues before customer impact, improving system MTBF by 156%.\nPublished peer-reviewed paper 'Continuous Chaos: Scaling Resilience Testing in High-Frequency Trading Systems'\npresented at ICSE 2020, cited 340+ times, influencing QA practices at 8+ Fortune 500 companies.\nJane Street \u2014 Principal Engineer, Quantitative Testing & Validation 2015 - 2018\nArchitected statistical testing framework for high-frequency trading algorithms combining Monte Carlo simulations with\nhypothesis testing, validating mathematical models for 200+ trading strategies processing $40B+ daily market volume.\nReduced mean time to detection for market microstructure anomalies from 4.2 seconds to 340 milliseconds through\ncustom test harness and telemetry optimization, protecting proprietary strategies from adversarial detection.\nMentored 22 junior engineers on formal verification methods and probabilistic testing techniques; three mentees\npromoted to senior engineer roles within 18 months.\nUber \u2014 Senior Quality Architect 2012 - 2015\nDesigned end-to-end test orchestration platform automating 85,000+ test cases across mobile (iOS/Android), backend\nservices, and driver/consumer app stacks, reducing regression cycle time by 73% and enabling 8+ daily deployments.\nLed development of location-based testing framework simulating real-world GPS conditions and edge cases across 65+\ncountries, identifying critical navigation bugs affecting 4M+ daily active riders and preventing $50M+ customer\nacquisition loss.\nEstablished QA guild with representation from 12 engineering teams; drove adoption of contract testing for 150+\nmicroservices, eliminating 94% of cross-service integration failures and reducing incident response time by 58%.\nQualcomm \u2014 Distinguished Quality Engineer 2007 - 2012\nLed quality assurance for flagship 5G modem chipset validation involving 2000+ test cases across physical layer, MAC\nlayer, and system integration across 300+ device configurations, achieving 99.94% field reliability.\nPioneered industry-first regression test compression algorithm reducing modem validation cycle from 96 hours to 14\nhours while maintaining 99.8% defect detection sensitivity, accelerating time-to-market by 6 weeks for $3.2B product\nline.\nPresented keynote 'Scaling QA in the Era of Connected Devices' at QA Summit 2011 attended by 1200+ engineers;\ninsights adopted by 25+ semiconductor companies for hardware validation processes.\nEXTRACURRICULAR\nIEEE Software Testing Technical Council \u2014 Vice Chair 2019 - Present\nOversee technical roadmap and standards development for AI-assisted testing across 15,000+ members in 80+\ncountries.\nOrganized annual Software Testing Summit attracting 2500+ practitioners with keynotes from industry leaders at\nGoogle, Microsoft, and Amazon.\nACM SIGSOFT \u2014 Program Committee Member 2016 - Present\nReviewed 200+ research submissions on software testing, quality assurance, and formal verification for ICSE, FSE, and\nASE conferences.\nSelected as distinguished reviewer for top 5% of submissions with exceptional technical rigor and novelty.\nTECHNICAL SKILLS\nLanguages \u2013 Python, Java, JavaScript, SQL, Bash, Groovy\nTechnologies \u2013 Test Automation Frameworks (Selenium, Cypress, Playwright), API Testing (REST, gRPC), Load Testing\n(JMeter, Gatling), CI/CD Pipelines, Test Data Management, Defect Lifecycle Management\nTools \u2013 TestRail, Jira, Jenkins, Docker, Kubernetes, AWS (EC2, Lambda, RDS), GitLab CI/CD, ELK Stack, Grafana,\nDatadog",
+  "name": "Robert Todd robert.todd@gmail.com \u2022",
+  "email": "robert.todd@gmail.com",
+  "phone": null,
+  "links": {
+    "other": [
+      "https://roberttoddqa.io"
+    ],
+    "linkedin": [],
+    "github": []
+  },
+  "skills": [
+    "aws",
+    "bash",
+    "cypress",
+    "docker",
+    "gatling",
+    "gitlab",
+    "grafana",
+    "groovy",
+    "grpc",
+    "java",
+    "javascript",
+    "jenkins",
+    "kubernetes",
+    "playwright",
+    "processing",
+    "python",
+    "sql"
+  ],
+  "projects": [],
+  "extracurricular": [
+    {
+      "name": "countries.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Google, Microsoft, and Amazon.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "ASE conferences.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "cv_experience": [
+    {
+      "name": "costs.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "impact from outages.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Published peer-reviewed paper 'Continuous Chaos",
+      "subtitle": "Scaling Resilience Testing in High-Frequency Trading Systems'",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "acquisition loss.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "line.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "experience": "Stripe \u2014 Principal Quality Assurance Engineer 2021 - Present\nArchitected and deployed enterprise-grade test automation platform reducing payment processing regression detection\ntime from 8 hours to 12 minutes across 15+ payment integrations affecting $500B+ annual transaction volume.\nLed organization-wide quality transformation initiative establishing QA best practices, test pyramid standards, and\nmetrics frameworks resulting in 67% reduction in production defects and $12M annual savings in incident response\ncosts.\nPioneered AI-powered visual regression testing system using machine learning models to detect UI anomalies across\n50+ supported locales, reducing manual review cycles by 85% and enabling real-time deployment to 400M+ users.\nMeta \u2014 Staff Quality Engineer - Ads Platform 2018 - 2021\nDesigned and implemented distributed load testing infrastructure leveraging Kubernetes clusters handling 50K+\nconcurrent requests, validating ad delivery system performance under peak load and preventing $200M+ daily revenue\nimpact from outages.\nEstablished chaos engineering practice across Ads Platform team, designing 300+ chaos experiments that identified\nand prevented 47 critical reliability issues before customer impact, improving system MTBF by 156%.\nPublished peer-reviewed paper 'Continuous Chaos: Scaling Resilience Testing in High-Frequency Trading Systems'\npresented at ICSE 2020, cited 340+ times, influencing QA practices at 8+ Fortune 500 companies.\nJane Street \u2014 Principal Engineer, Quantitative Testing & Validation 2015 - 2018\nArchitected statistical testing framework for high-frequency trading algorithms combining Monte Carlo simulations with\nhypothesis testing, validating mathematical models for 200+ trading strategies processing $40B+ daily market volume.\nReduced mean time to detection for market microstructure anomalies from 4.2 seconds to 340 milliseconds through\ncustom test harness and telemetry optimization, protecting proprietary strategies from adversarial detection.\nMentored 22 junior engineers on formal verification methods and probabilistic testing techniques; three mentees\npromoted to senior engineer roles within 18 months.\nUber \u2014 Senior Quality Architect 2012 - 2015\nDesigned end-to-end test orchestration platform automating 85,000+ test cases across mobile (iOS/Android), backend\nservices, and driver/consumer app stacks, reducing regression cycle time by 73% and enabling 8+ daily deployments.\nLed development of location-based testing framework simulating real-world GPS conditions and edge cases across 65+\ncountries, identifying critical navigation bugs affecting 4M+ daily active riders and preventing $50M+ customer\nacquisition loss.\nEstablished QA guild with representation from 12 engineering teams; drove adoption of contract testing for 150+\nmicroservices, eliminating 94% of cross-service integration failures and reducing incident response time by 58%.\nQualcomm \u2014 Distinguished Quality Engineer 2007 - 2012\nLed quality assurance for flagship 5G modem chipset validation involving 2000+ test cases across physical layer, MAC\nlayer, and system integration across 300+ device configurations, achieving 99.94% field reliability.\nPioneered industry-first regression test compression algorithm reducing modem validation cycle from 96 hours to 14\nhours while maintaining 99.8% defect detection sensitivity, accelerating time-to-market by 6 weeks for $3.2B product\nline.\nPresented keynote 'Scaling QA in the Era of Connected Devices' at QA Summit 2011 attended by 1200+ engineers;\ninsights adopted by 25+ semiconductor companies for hardware validation processes.",
+  "education": []
+}

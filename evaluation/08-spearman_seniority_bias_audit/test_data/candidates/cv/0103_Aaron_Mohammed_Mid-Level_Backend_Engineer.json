@@ -1,0 +1,113 @@
+{
+  "raw_cv_text": "Aaron EDUCATION\nMohammed University of California, Berkeley \u2014 B.S. in Computer Science 2017 - 2021\nCompleted coursework in Distributed Systems, Database Systems, and Advanced\naaron.mohammed@gmai Algorithms with focus on large-scale system design patterns\nl.com\nEXPERIENCE\n(415) 782-3491\nhttps://github.com/aaronm Stripe \u2014 Backend Engineer II Mar 2023 - Present\nohammed Architected and deployed a distributed transaction reconciliation service in Go,\nreducing payment settlement discrepancies by 98.7% and recovering $2.3M in\nSKILLS\ndisputed charges annually\nLanguages Optimized database queries for the billing pipeline by implementing strategic\nPython, Go, Java, SQL,\nindexing and query caching, reducing P99 latency from 840ms to 120ms and\nBash\nhandling 4.2x throughput\nTech\nLed migration of critical payment routing microservice from monolithic Node.js to\nPython, Go, Java,\ncontainerized Go service on Kubernetes, improving deployment velocity by 65% and\nPostgreSQL, Redis,\nMongoDB, GraphQL, reducing memory consumption by 52%\nREST APIs Notion \u2014 Backend Engineer Jul 2021 - Feb 2023\nTools Built and maintained 8 core APIs serving 15+ million monthly active users, achieving\nDocker, Kubernetes, 99.94% uptime SLA and handling peak throughput of 85,000 requests per second\nAWS (EC2, RDS,\nDesigned real-time collaboration backend using event sourcing and CRDT\nLambda, S3), Git,\nprinciples, enabling simultaneous multi-user editing with <200ms sync latency\nTerraform, CircleCI,\nacross 3 geographic regions\nDataDog\nImplemented comprehensive rate limiting and quota management system using\nACTIVITIES Redis, protecting infrastructure from abuse and reducing DDoS impact by 73%\nByteScale Figma \u2014 Junior Backend Engineer Jan 2021 - Jun 2021\nCommunity Developed asynchronous file processing pipeline using Python and Celery,\nTechnical Lead decreasing average export time from 8.4 seconds to 2.1 seconds for 50,000+ daily\n2022 - Present export operations\nOpen Source Implemented caching layer using Redis for frequently accessed design component\nContributions metadata, improving API response times by 61% and reducing database load by\nActive Contributor 44%\n2021 - Present Contributed to PostgreSQL schema optimization and implemented data partitioning\nstrategy for analytics tables, improving query performance by 3.8x for historical\nreports\nPROJECTS\nDistributed Trace Aggregation System \u2014 Go, Kafka, Aug 2023 - Oct 2023\nOpenTelemetry, Protocol Buffers, BigQuery\nEngineered high-throughput trace ingestion service processing 2.4 billion spans\ndaily with <500ms end-to-end latency, enabling real-time performance monitoring\nacross 120+ microservices\nImplemented intelligent trace sampling algorithm reducing storage costs by 42%\nwhile maintaining statistical accuracy for anomaly detection and SLA tracking\nDatabase Connection Pool Manager \u2014 Java, PostgreSQL, Nov 2022 - Dec 2022\nSpring Boot, Micrometer\nCreated adaptive connection pooling library with predictive scaling, reducing\nconnection exhaustion incidents by 89% and improving peak throughput from\n12,500 to 18,700 queries per second\nImplemented comprehensive observability with detailed connection lifecycle metrics,\nreducing MTTR for database issues by 56%\nEvent Sourcing Framework \u2014 Python, PostgreSQL, Apache Mar 2022 - May 2022\nKafka, Pydantic\nDeveloped open-source event sourcing framework adopted by 340+ developers,\nsimplifying event-driven architecture implementation with automatic event versioning\nand replay capabilities\nReduced implementation time for event-driven systems from 3 weeks to 4 days for\nnew backend engineers at Notion",
+  "name": "Aaron",
+  "email": null,
+  "phone": null,
+  "links": {
+    "github": [
+      "https://github.com/aaronm"
+    ],
+    "linkedin": []
+  },
+  "skills": [
+    "aws",
+    "bash",
+    "circleci",
+    "docker",
+    "git",
+    "github",
+    "go",
+    "graphql",
+    "java",
+    "js",
+    "kafka",
+    "kubernetes",
+    "mongodb",
+    "node.js",
+    "postgresql",
+    "processing",
+    "python",
+    "spring",
+    "sql",
+    "terraform"
+  ],
+  "projects": [
+    {
+      "name": "OpenTelemetry, Protocol Buffers, BigQuery",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "across 120+ microservices",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Spring Boot, Micrometer",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "12,500 to 18,700 queries per second",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Kafka, Pydantic",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "and replay capabilities",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "new backend engineers at Notion",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "extracurricular": [],
+  "cv_experience": [
+    {
+      "name": "(415) 782-3491",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "https",
+      "subtitle": "//github.com/aaronm Stripe \u2014 Backend Engineer II",
+      "start_date": "Mar 2023",
+      "end_date": "Present",
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "experience": "(415) 782-3491\nhttps://github.com/aaronm Stripe \u2014 Backend Engineer II Mar 2023 - Present\nohammed Architected and deployed a distributed transaction reconciliation service in Go,\nreducing payment settlement discrepancies by 98.7% and recovering $2.3M in",
+  "education": []
+}

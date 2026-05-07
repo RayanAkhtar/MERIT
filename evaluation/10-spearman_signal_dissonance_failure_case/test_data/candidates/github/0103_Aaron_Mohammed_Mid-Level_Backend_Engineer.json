@@ -1,0 +1,39 @@
+{
+  "total_stars": 20,
+  "total_forks": 1,
+  "repo_count": 4,
+  "featured_projects": [
+    {
+      "name": "production-service-core",
+      "stars": 12,
+      "forks": 0,
+      "languages_distribution": {
+        "Kotlin": 2886,
+        "Java": 1000
+      },
+      "lines": 50000
+    }
+  ],
+  "language_history": [
+    {
+      "year": "2024",
+      "Java": 1717
+    },
+    {
+      "year": "2025",
+      "Kotlin": 2886,
+      "Java": 1000
+    },
+    {
+      "year": "2026",
+      "Kotlin": 0,
+      "Java": 0
+    }
+  ],
+  "top_languages": [
+    "Swift",
+    "Objective-C"
+  ],
+  "repositories": [],
+  "login": "random_user_123"
+}

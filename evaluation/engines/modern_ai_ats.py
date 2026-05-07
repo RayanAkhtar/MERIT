@@ -1,5 +1,6 @@
 import sys
 import os
+import re
 from typing import List, Dict, Any
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../backend')))
@@ -14,10 +15,20 @@ class SemanticATSModel:
     def __init__(self, job_description: Dict[str, Any]):
         self.jd = job_description
         self.target_skills = []
-        metrics = job_description.get("metrics", {})
-        for cat in ["Technologies", "Languages"]:
-            if cat in metrics:
-                self.target_skills.extend([str(k).lower() for k in metrics[cat].get("value", [])])
+        
+        # check both top-level JD keys and nested metrics for skill lists
+        sources = [job_description, job_description.get("metrics", {})]
+        skill_keys = ["Technologies", "Languages", "Technical Skills", "technical_skills", "languages"]
+        
+        for source in sources:
+            for cat in skill_keys:
+                val = source.get(cat, {})
+                if isinstance(val, dict):
+                    self.target_skills.extend([str(k).lower() for k in val.get("value", [])])
+                elif isinstance(val, list):
+                    self.target_skills.extend([str(k).lower() for k in val])
+        
+        self.target_skills = list(set(self.target_skills))
                 
     def score_candidate(self, candidate_data: Dict[str, Any]) -> Dict[str, Any]:
         cv_text = candidate_data.get("raw_cv_text") or candidate_data.get("full_cv_text") or ""
@@ -44,6 +55,13 @@ class SemanticATSModel:
             for exp in exp_data:
                 if isinstance(exp, dict):
                     total_years += exp.get("years", 0)
+        elif isinstance(exp_data, str):
+            date_matches = re.findall(r'\b(20\d{2})\b', exp_data)
+            if date_matches:
+                years = [int(y) for y in date_matches]
+                total_years = max(0, max(years) - min(years))
+            else:
+                total_years = len(exp_data) / 500.0
             
         jd_min_years = self.jd.get("metrics", {}).get("Experience", {}).get("min_years", 5)
         normalised_years = min(1.0, total_years / jd_min_years) if jd_min_years > 0 else 1.0

@@ -1,0 +1,159 @@
+{
+  "raw_cv_text": "EINAV SEGAL\n+1 (415) 762-3891 | einav.segal@gmail.com | https://github.com/einav-segal\nEDUCATION\nUniversity of California, Berkeley \u2014 B.S. Computer Science Aug 2020 - May 2024\n\u2013 Completed coursework in Distributed Systems, Operating Systems, and Computer Networking with focus on\ninfrastructure and reliability patterns.\n\u2013 GPA: 3.72; Dean's List 4 semesters\nEXPERIENCE\nDatadog \u2014 Site Reliability Engineering Intern Jun 2024 - Aug 2024\n\u2013 Implemented automated incident response workflows that reduced mean time to resolution (MTTR) by 23% for\n50+ critical alerts across production infrastructure.\n\u2013 Developed Python-based monitoring dashboards for Kubernetes cluster health, tracking 15+ metrics in real-time\nfor 3 microservices environments.\n\u2013 Collaborated with platform team to optimize CI/CD pipeline, decreasing deployment duration from 8 minutes to 3\nminutes and increasing daily deployment frequency by 40%.\nCloudFlare \u2014 Junior SRE Sep 2024 - Present\n\u2013 Maintain and troubleshoot load balancing infrastructure serving 200M+ daily requests, achieving 99.97% uptime\nSLA across 5 geographic regions.\n\u2013 Authored 12+ runbooks and playbooks for on-call rotation, reducing incident investigation time by 35% and\nimproving team response consistency.\n\u2013 Designed and deployed Prometheus alerting rules for 8 critical services, catching 18 production issues before\ncustomer impact.\nPROJECTS\nDistributed Log Aggregator \u2014 Go, Elasticsearch, Docker, Docker Compose Jan 2024 - Apr 2024\n\u2013 Built end-to-end log aggregation system processing 50,000 events/second across 20 simulated nodes with sub-\n100ms latency.\n\u2013 Implemented log filtering and parsing logic reducing storage overhead by 34% through compression and\ndeduplication.\nKubernetes Auto-Scaler Optimization (Open Source Contribution) \u2014 Go, Kubernetes API, Mar 2024 - Jun 2024\nPrometheus\n\u2013 Contributed 3 PRs to kubernetes/autoscaler project improving horizontal pod autoscaler prediction accuracy by\n18% using historical metrics.\n\u2013 Code reviewed by maintainers and merged into main branch, benefiting 5,000+ cluster operators.\nMulti-Region Failover Simulator \u2014 Python, AWS, Terraform, Locust Oct 2023 - Dec 2023\n\u2013 Created chaos engineering framework simulating 12 failure scenarios (network latency, zone outages, service\ncrashes) across 3 AWS regions.\n\u2013 Validated failover procedures completed within 8 seconds RTO for 95% of test runs, identifying 2 critical\nconfiguration issues.\nCustom SLA Dashboard & Alerting Bot \u2014 Python, Prometheus, Grafana, Slack API Jul 2023 - Sep 2023\n\u2013 Developed Python tool ingesting Prometheus metrics to calculate rolling SLA metrics (availability, latency\npercentiles) with 99.5% accuracy vs manual calculation.\n\u2013 Integrated Slack bot delivering daily SLA reports to 15 team members, reducing manual status check time by 12\nhours/week.\nEXTRACURRICULAR\nUC Berkeley DevOps & Infrastructure Club \u2014 Co-Organizer Jan 2023 - May 2024\n\u2013 Organized bi-weekly workshops and guest speaker sessions on Kubernetes, observability, and incident\nmanagement, attracting 60+ attendees per event.\n\u2013 Mentored 8 junior members through hands-on Terraform and Docker projects, 3 of whom secured SRE\ninternships.\nDistributed Systems Reading Group \u2014 Active Participant & Technical Lead Sep 2022 - May 2024\n\u2013 Led discussion sessions on 6 foundational papers including Raft consensus and Bigtable architecture, synthesizing\nconcepts into 2 technical blog posts viewed 2,400+ times.\n\u2013 Implemented Raft consensus algorithm in Go as group project, validating leader election and log replication across\n5-node cluster.\nTECHNICAL SKILLS\nLanguages \u2013 Python, Go, Bash, SQL\nTechnologies \u2013 Kubernetes, Docker, Linux, AWS (EC2, ECS, Lambda, RDS), GCP (Compute Engine, Cloud SQL),\nPrometheus, Grafana, ELK Stack, Terraform\nTools \u2013 Git, Jenkins, GitLab CI/CD, Pagerduty, Slack API, Datadog APM, New Relic",
+  "name": "Computer Networking",
+  "email": "einav.segal@gmail.com",
+  "phone": "+14157623891",
+  "links": {
+    "github": [
+      "https://github.com/einav-segal"
+    ],
+    "linkedin": []
+  },
+  "skills": [
+    "aws",
+    "bash",
+    "docker",
+    "elasticsearch",
+    "gcp",
+    "git",
+    "github",
+    "gitlab",
+    "go",
+    "grafana",
+    "jenkins",
+    "kubernetes",
+    "processing",
+    "prometheus",
+    "python",
+    "sql",
+    "terraform"
+  ],
+  "projects": [
+    {
+      "name": "100ms latency.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "deduplication.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Prometheus",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "18% using historical metrics.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "crashes) across 3 AWS regions.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "configuration issues.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "hours/week.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "extracurricular": [
+    {
+      "name": "management, attracting 60+ attendees per event.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "internships.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "5-node cluster.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "cv_experience": [
+    {
+      "name": "50+ critical alerts across production infrastructure.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "for 3 microservices environments.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "SLA across 5 geographic regions.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "improving team response consistency.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "customer impact.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "experience": "Datadog \u2014 Site Reliability Engineering Intern Jun 2024 - Aug 2024\n\u2013 Implemented automated incident response workflows that reduced mean time to resolution (MTTR) by 23% for\n50+ critical alerts across production infrastructure.\n\u2013 Developed Python-based monitoring dashboards for Kubernetes cluster health, tracking 15+ metrics in real-time\nfor 3 microservices environments.\n\u2013 Collaborated with platform team to optimize CI/CD pipeline, decreasing deployment duration from 8 minutes to 3\nminutes and increasing daily deployment frequency by 40%.\nCloudFlare \u2014 Junior SRE Sep 2024 - Present\n\u2013 Maintain and troubleshoot load balancing infrastructure serving 200M+ daily requests, achieving 99.97% uptime\nSLA across 5 geographic regions.\n\u2013 Authored 12+ runbooks and playbooks for on-call rotation, reducing incident investigation time by 35% and\nimproving team response consistency.\n\u2013 Designed and deployed Prometheus alerting rules for 8 critical services, catching 18 production issues before\ncustomer impact.",
+  "education": []
+}

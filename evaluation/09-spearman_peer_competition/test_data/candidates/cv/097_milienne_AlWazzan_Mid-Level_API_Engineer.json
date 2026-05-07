@@ -1,0 +1,225 @@
+{
+  "raw_cv_text": "\u00c9milienne Al Wazzan\n+44 20 7946 0958 | Email: emilienne.wazzan@outlook.com | LinkedIn: \u00e9milienne-al wazzan | GitHub: \u00c9milienneAl Wazzan |\nhttps://emilienne-wazzan.dev\nEDUCATION\nUniversity of Cambridge | MEng Computer Science 2019-2023\nDeveloped distributed systems capstone project handling 50K+ concurrent requests with 99.9% uptime using gRPC and\nKubernetes\nLed systems programming society with 120+ members, organizing 8 technical workshops on API design patterns\nImperial College London | BSc Computer Science (Exchange Year) 2021-2022\nCompleted advanced algorithms and cloud computing specialization with distinction\nContributed to 3 peer-reviewed papers on microservices architecture optimization\nEXPERIENCE\nStripe | Senior API Engineer 2023-Present\nArchitected and deployed billing API v3 handling $2.8B in monthly transaction volume across 180+ countries, reducing\nlatency by 38% through query optimization and caching strategies\nLed cross-functional team of 4 engineers to implement rate limiting system that decreased API abuse incidents by 92%\nwhile maintaining 99.95% availability for legitimate requests\nRefactored legacy webhook delivery system, increasing reliability from 97.2% to 99.98% and reducing failure\nnotifications by 65% through exponential backoff and circuit breaker patterns\nCloudflare | API Engineer II 2021-2023\nBuilt RESTful API gateway processing 45TB of DNS and security logs daily, optimizing database queries to reduce\nresponse times by 44% and server costs by $220K annually\nDesigned comprehensive API documentation and SDK generation framework adopted by 150+ enterprise customers,\nreducing integration time by 73% and support tickets by 58%\nImplemented distributed tracing and monitoring for 12 microservices using OpenTelemetry, enabling 21% faster incident\nresolution and 84% reduction in API error rates\nHashiCorp | API Engineer 2020-2021\nDeveloped gRPC-based configuration API supporting 40+ enterprise clients with 99.99% SLA, enabling infrastructure-as-\ncode workflows for 500+ daily active users\nImplemented automated API versioning and backward compatibility framework reducing schema migration issues by\n91% and enabling 2-week release cycles instead of monthly\nCreated comprehensive integration test suite covering 280+ API endpoints, increasing code coverage from 52% to 87%\nand catching 34 critical bugs before production\nPROJECTS\nAsyncIO Event Router | Python, FastAPI, Redis, PostgreSQL, Docker 2023-Present\nOpen-source event streaming router handling 100K events/second with <50ms latency, achieving 2.3K GitHub stars and\nadopted by 18 production companies\nReduced memory footprint by 56% through intelligent batching and implemented persistent retry logic decreasing\nmessage loss from 0.3% to 0.001%\nGraphQL-to-REST API Transpiler | TypeScript, Node.js, GraphQL, Jest, AWS Lambda 2022-2023\nBuilt open-source tool enabling automatic conversion of GraphQL queries to optimized REST endpoints, reducing API\ncalls by 67% for 25+ enterprise adopters\nPublished 3 technical articles reaching 12K developers, establishing thought leadership and driving 340+ GitHub\ncontributions from community\nRate Limiter as a Service | Go, Redis Cluster, Protocol Buffers, gRPC, Prometheus 2021-2022\nEngineered distributed rate limiting microservice with <1ms p99 latency across multi-region deployments, handling 2.1M\nrequests/second with zero data loss\nReduced infrastructure costs by 48% through token bucket optimization and increased customer adoption by 156%\nthrough simplified SDK interface\nAPI Gateway Performance Analyzer | Rust, Tokio, InfluxDB, Grafana, WASM 2020-2021\nDeveloped real-time API performance profiler analyzing 500K+ requests daily, identifying bottlenecks and\nrecommending optimizations saving customers 31% in latency\nAchieved 89% adoption rate among Stripe partners through automated insights and reduced customer support burden by\n42 weekly hours\nEXTRACURRICULAR\nAPI Design Conference (APIDays) | Conference Speaker & Workshop Facilitator 2022-Present\nDelivered keynote on 'Scaling APIs to Billions of Requests' reaching 2,300+ attendees and generating 145K video views,\nestablishing expertise in high-throughput systems\nFacilitated 6 workshops on gRPC, REST best practices, and API security with 18% attendee satisfaction rating and\nsponsorship partnerships worth \u20ac85K\nLondon DevOps & Cloud Native Community | Technical Lead & Open Source Mentor 2020-Present\nMentored 12 junior engineers contributing to distributed systems projects, resulting in 8 promotions and 3 successful\nopen-source project launches\nOrganized monthly meetups attracting 200+ engineers, curated technical content on microservices and Kubernetes,\nincreasing community membership by 340%\nTECHNICAL SKILLS\nLanguages \u2013 Python, Go, TypeScript/Node.js, Java, Rust, SQL, Bash\nTechnologies \u2013 REST APIs, gRPC, GraphQL, Kafka, Redis, PostgreSQL, MongoDB, Elasticsearch, Protocol Buffers, OAuth\n2.0, JWT, Docker, Kubernetes, AWS (Lambda, RDS, EC2), GCP, Microservices Architecture\nTools \u2013 Git, GitHub, GitLab, JIRA, Datadog, New Relic, Prometheus, Grafana, OpenTelemetry, Postman, Kong,\nSwagger/OpenAPI, Apache Airflow, Jenkins, GitHub Actions",
+  "name": "\u00c9milienne Al Wazzan",
+  "email": "emilienne.wazzan@outlook.com",
+  "phone": "+442079460958",
+  "links": {
+    "other": [
+      "https://emilienne-wazzan.dev"
+    ],
+    "linkedin": [
+      "https://linkedin.com/in/\u00e9milienne-al"
+    ],
+    "github": [
+      "https://github.com/\u00c9milienneAl"
+    ]
+  },
+  "skills": [
+    "aws",
+    "bash",
+    "docker",
+    "elasticsearch",
+    "fastapi",
+    "gcp",
+    "git",
+    "github",
+    "gitlab",
+    "go",
+    "grafana",
+    "graphql",
+    "grpc",
+    "influxdb",
+    "java",
+    "jenkins",
+    "js",
+    "kafka",
+    "kubernetes",
+    "mongodb",
+    "node.js",
+    "postgresql",
+    "processing",
+    "prometheus",
+    "python",
+    "rust",
+    "sql",
+    "typescript",
+    "wasm"
+  ],
+  "projects": [
+    {
+      "name": "AsyncIO Event Router",
+      "subtitle": "Python, FastAPI, Redis, PostgreSQL, Docker",
+      "start_date": "2023",
+      "end_date": "Present",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "adopted by 18 production companies",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "message loss from 0.3% to 0.001%",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "GraphQL-to-REST API Transpiler",
+      "subtitle": "TypeScript, Node.js, GraphQL, Jest, AWS Lambda",
+      "start_date": "2022",
+      "end_date": "2023",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "contributions from community",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Rate Limiter as a Service",
+      "subtitle": "Go, Redis Cluster, Protocol Buffers, gRPC, Prometheus",
+      "start_date": "2021",
+      "end_date": "2022",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "requests/second with zero data loss",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "through simplified SDK interface",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "API Gateway Performance Analyzer",
+      "subtitle": "Rust, Tokio, InfluxDB, Grafana, WASM",
+      "start_date": "2020",
+      "end_date": "2021",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "42 weekly hours",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "extracurricular": [
+    {
+      "name": "API Design Conference (APIDays)",
+      "subtitle": "Conference Speaker & Workshop Facilitator",
+      "start_date": "2022",
+      "end_date": "Present",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "establishing expertise in high-throughput systems",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "sponsorship partnerships worth \u20ac85K",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "London DevOps & Cloud Native Community",
+      "subtitle": "Technical Lead & Open Source Mentor",
+      "start_date": "2020",
+      "end_date": "Present",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "open-source project launches",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "increasing community membership by 340%",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "cv_experience": [
+    {
+      "name": "Stripe",
+      "subtitle": "Senior API Engineer",
+      "start_date": "2023",
+      "end_date": "Present",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Cloudflare",
+      "subtitle": "API Engineer II",
+      "start_date": "2021",
+      "end_date": "2023",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "HashiCorp",
+      "subtitle": "API Engineer",
+      "start_date": "2020",
+      "end_date": "2021",
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "experience": "Stripe | Senior API Engineer 2023-Present\nArchitected and deployed billing API v3 handling $2.8B in monthly transaction volume across 180+ countries, reducing\nlatency by 38% through query optimization and caching strategies\nLed cross-functional team of 4 engineers to implement rate limiting system that decreased API abuse incidents by 92%\nwhile maintaining 99.95% availability for legitimate requests\nRefactored legacy webhook delivery system, increasing reliability from 97.2% to 99.98% and reducing failure\nnotifications by 65% through exponential backoff and circuit breaker patterns\nCloudflare | API Engineer II 2021-2023\nBuilt RESTful API gateway processing 45TB of DNS and security logs daily, optimizing database queries to reduce\nresponse times by 44% and server costs by $220K annually\nDesigned comprehensive API documentation and SDK generation framework adopted by 150+ enterprise customers,\nreducing integration time by 73% and support tickets by 58%\nImplemented distributed tracing and monitoring for 12 microservices using OpenTelemetry, enabling 21% faster incident\nresolution and 84% reduction in API error rates\nHashiCorp | API Engineer 2020-2021\nDeveloped gRPC-based configuration API supporting 40+ enterprise clients with 99.99% SLA, enabling infrastructure-as-\ncode workflows for 500+ daily active users\nImplemented automated API versioning and backward compatibility framework reducing schema migration issues by\n91% and enabling 2-week release cycles instead of monthly\nCreated comprehensive integration test suite covering 280+ API endpoints, increasing code coverage from 52% to 87%\nand catching 34 critical bugs before production",
+  "education": [
+    {
+      "name": "University of Cambridge",
+      "subtitle": "MEng Computer Science",
+      "start_date": "2019",
+      "end_date": "2023",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Imperial College London",
+      "subtitle": "BSc Computer Science (Exchange Year)",
+      "start_date": "2021",
+      "end_date": "2022",
+      "grade": null,
+      "summary": ""
+    }
+  ]
+}

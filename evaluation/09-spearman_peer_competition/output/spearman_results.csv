@@ -1,0 +1,5 @@
+Engine,Spearman Rho,P-Value,Candidate Count
+Traditional ATS,0.7939,0.0061,10
+Modern AI ATS,0.697,0.0251,10
+MERIT (CV Only),0.0909,0.8028,10
+MERIT (Full),0.7818,0.0075,10

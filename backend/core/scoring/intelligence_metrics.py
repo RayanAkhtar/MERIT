@@ -645,7 +645,11 @@ class GithubAlignmentMetric(BaseMetric):
             if not gh_langs:
                 # fallback to language_history if top-level is empty
                 gh_hist = candidate_data.get("github_enriched", {}).get("language_history") or []
-                gh_langs = {str(l.get("language") or "").lower() for l in gh_hist}
+                gh_langs = set()
+                for entry in gh_hist:
+                    for k in entry.keys():
+                        if k != "year":
+                            gh_langs.add(str(k).lower())
 
             if gh_langs and combined_skills:
                 overlap = gh_langs.intersection(combined_skills)
