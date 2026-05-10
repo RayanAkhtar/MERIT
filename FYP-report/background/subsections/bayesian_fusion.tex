@@ -1,0 +1,39 @@
+\section{Bayesian Evidence Fusion}
+
+A key challenge in developing MERIT will be to address the uncertaity in conflicting signals that arise from handling multi-source candidate data.
+MERIT employs a probabilistic framework based on Bayesian Evidence Fusion to address this challenge.
+This is in contrast to traditional-rule based systems that rely on single sources of information.
+By leveraging multiple sources, MERIT is able to provide a thorough "Glass-Box" assessment to separate the estimated ability from the certainty of that estimate.
+
+\subsection*{The Beta Distribution Model}
+We use a Beta distribution denoted as $Beta(\alpha, \beta)$ to model the "probability of competence" for a specific skill.
+This distribution is well-suited for the task since it's distribution can be updated incrementally as new evidence arrives.
+This is key to providing an extensible, modular architecture that allows for the integration of new evidence sources beyond those that will be implemented in this project.
+
+When we calculate the beta distribution for a metric, we can expect the following:
+\begin{enumerate}
+    \item \textbf{The Match Score:} The expected value (mean) of the distribution, providing the most likely estimate of a candidate's skill level.
+    \item \textbf{The Confidence Level:} The spread (variance) of the distribution; a narrow distribution (low variance) signifies high confidence in the data, while a wide distribution (high variance) indicates a lack of evidence or conflicting signals.
+\end{enumerate}
+
+The parameters of the distribution are updated based on the type of evidence discovered:
+\begin{itemize}
+    \item \textbf{Alpha ($\alpha$):} Represents "success" signals or positive evidence (e.g., a verified GitHub contribution, a high-impact project on a CV).
+    \item \textbf{Beta ($\beta$):} Represents "failure" signals, noise, or uncertainty (e.g., skill decay over time, lack of evidence for a self-reported claim).
+\end{itemize}
+
+The fused score (Match Score) is calculated as the mean of the distribution \cite{gelman2013bayesian}:
+\begin{equation}
+    E[X] = \frac{\alpha}{\alpha + \beta}
+\end{equation}
+
+The confidence level is calculated as the variance of the distribution:
+\begin{equation}
+    Var[X] = \frac{\alpha \beta}{(\alpha + \beta)^2 (\alpha + \beta + 1)}
+\end{equation}
+
+\subsection*{Modelling Uncertainty}
+A key advantage of this framework is the ability to quantify \textit{uncertainty} through the variance of the distribution. 
+As more evidence is gathered, the distribution narrows, increasing the confidence in the assessment. 
+This allows MERIT to flag candidates with "High Confidence" vs. "Low Confidence" labels, providing the recruiter with a measure of how much to trust the automated ranking. 
+By utilising the conjugate prior properties of the Beta distribution, MERIT can efficiently update its beliefs as new data sources are ingested.

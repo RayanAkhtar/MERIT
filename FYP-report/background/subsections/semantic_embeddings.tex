@@ -1,0 +1,23 @@
+\section{Semantic Intelligence and Vector Embeddings}
+
+MERIT leverages the transition from traditional lexical analysis to semantic intelligence to evaluate the technical expertise of a candidate.
+Earlier generations of ATS relied on "keyword matching", however, MERIT will leverage Large Language Models (LLMs) and vector embeddings to build relationships between programming langauges and technical frameworks.
+
+\subsection*{Lexical vs. Semantic Analysis}
+Traditional lexical methods operate on the principle of exact character matching. 
+These methods are often efficient for identifying rare terms, such as a unique framework.
+However, they are vulnerable to the "vocabulary mismatch" problem, where a candidate may not use the exact same terminology as the job description.
+Failing to match a candidate due to a mismatch in terminology is a significant issue that can lead to qualified candidates being overlooked simply because they didnt use the same keywords as the job description.
+
+Semantic models, on the other hand, represent technical skills as vectors in a high-dimensional latent space. 
+By mapping technologies to coordinates, MERIT can measure the proximity of skills rather than the frequency of words. 
+This allows the system to understand that these terms are conceptually related, enabling "soft" matching for candidates who possess highly transferable technical skills.
+
+\subsection*{Vector Similarity Measures}
+The similarity between a candidate's technical profile ($\mathbf{C}$) and the job requirements ($\mathbf{J}$) is calculated using measures such as Cosine Similarity:
+\begin{equation}
+    \text{similarity} = \cos(\theta) = \frac{\mathbf{C} \cdot \mathbf{J}}{\|\mathbf{C}\| \|\mathbf{J}\|}
+\end{equation}
+
+This mathematical foundation enables MERIT to identify related competencies and technical potential that would be missed by rigid rule-based systems. 
+By utilising transformer-based architectures such as Sentence-BERT \cite{reimers2019sentence}, the system can generate dense vector representations that capture the subtle linguistic nuances of technical expertise and framework relationships.

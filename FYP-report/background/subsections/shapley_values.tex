@@ -1,0 +1,27 @@
+\section{Explainable AI via Shapley Values}
+
+For MERIT to be considered as a "Glass-box" system, source-level attribution must be provided to provide a fair assessment to a recruiter as to how a candidate was scored.
+Part of that required the system being able to capture the contribution of each data source to the final match score.
+To achieve this, we focus on Shapley Values, a concept from Cooperative Game Theory that is used to attribute the winnings of a group of players to the contribution of each player.
+
+
+\subsection*{Cooperative Game Theory in Recruitment}
+To relate this concept to MERIT, we consider the final match score as "winnings", while the different data sources are considered the "players".
+The main objective is to determine how each player contributed to the winnings.
+
+The Shapley value for a data source $i$ is defined as the average marginal contribution of that source across all possible combinations (coalitions) of sources:
+\begin{equation}
+    \phi_i(v) = \sum_{S \subseteq N \setminus \{i\}} \frac{|S|! (n - |S| - 1)!}{n!} [v(S \cup \{i\}) - v(S)]
+\end{equation}
+Where:
+\begin{itemize}
+    \item $n$ is the total number of data sources.
+    \item $S$ is a subset of sources that does not include source $i$.
+    \item $v(S)$ is the score generated using only the sources in subset $S$.
+\end{itemize}
+
+\subsection*{Source Attribution and Fairness}
+By calculating these values, MERIT can explicitly state the contribution of each data source to the final match score.
+In other words, it is possible to determine whether a candidate got a high score due to self-reported claims on their CV, or from evidence-based metrics from a souorce, such as GitHub. 
+This level of transparency is critical for mitigating algorithmic bias and providing defensible hiring decisions. 
+By building on the SHAP (Shapley Additive Explanations) framework \cite{lundberg2017unified}, MERIT ensures that its source-level attribution remains mathematically consistent and locally accurate.
