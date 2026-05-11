@@ -1,0 +1,47 @@
+\section{Summary of Gaps and Relevance to MERIT}
+Based on the review of current state-of-the-art research and implementation of 
+automated technical screening systems, three fundamental gaps can be identified. 
+These limitations are the direct motivators for the design and implementation of MERIT.
+
+
+\subsection*{The Extensibility Gap}
+Existing platforms often operate on static, hardcoded role classifications and fixed scoring dimensions. 
+As noted by Gugnani and Misra \cite{gugnani2020}, rigid scoring systems hinder the 
+ability to adapt to the nuanced requirements of diverse engineering roles. 
+Current systems are unable to adapt to the ever evolving needs of the tech industry.
+The relevance of a given langauge or framework can change drastically from year to year, and often, these
+systems are unable to adapt based on the changing perception of the recruiter market. 
+As a result, there is a need for a system that is able to dynamically adapt its evaluation criteria based 
+on, not only the job description, but also the fluctuating trends in the technical recruitment industry.
+
+
+\subsection*{The Multi-Source Verification Gap}
+The majority of ATS, even those build upon modern LLMs remain dependant on the self-reported claims within a CV.
+This "single-source dependency" presents information asymmetry, embellishment and other forms of bias that make 
+recruitment processes unreliable \cite{highhouse2013}. Currently, selecting the right candidate for a role is often a case of 
+candidates exaggerating their skills and experiences on their CV, as well as tailoring it to match the keywords
+in the job description to pass through ATS filters. While there is research on the potential of using external signals
+from sources such as GitHub \cite{vasilescu2013_roles}, the usage of this data is currently limited to being able to find out
+the role of a candidate, rather than actual evidence of their skillset. Due to this, there is a need for a system that can
+cross-reference CV claims against observable evidence from external data sources that are harder to forge and embellish.
+This system must be able to resolve conflicts between these sources to establish a verifiable "ground truth" for a given 
+candidate's competence.
+
+
+\subsection*{The Transparency and Interpretability Gap}
+Innovations in NLP have allowed for greater accuracy in candidate screening systems, however, this 
+often comes at the cost of transparency and interpretability. This has introduces a "transparancy deficit" \cite{guszcza2018}, 
+where recruiters are presented with scores that lack granular justirication, making it difficult to interpret why 
+a candidate was given a particular score. The lack of auditability complicates compliance with fair-hiring regulations \cite{holstein2019}.
+To address this, we will require a shift towards explainable architectures that can provide an audit trail for decisions, allowing
+recruiters to understand the reasoning behind a candidate's score.
+
+
+\subsection*{The MERIT Approach}
+MERIT aims to tackle these limitations through three core innovations. Firstly, it introduces a 
+flexible role classification system that can be easily adapted to the evolving needs of the technical
+recruitment industry. Secondly, it incorporates data from multiple sources, including CV, GitHub, 
+and LinkedIn, to provide a comprehensive view of a candidate's skills and experiences. Thirdly, it 
+provides explainable outputs that allow recruiters to understand the reasoning behind a candidate's 
+score. By doing so, MERIT introduces a new standard for verifiable, transparent and context-sensitive
+candidate screening, and the implementation of which, will be disclosed in the following chapter.
