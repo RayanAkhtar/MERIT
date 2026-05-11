@@ -1,0 +1,42 @@
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[
+        node distance=1.2cm and 1.5cm,
+        arch_source/.style={rectangle, draw=CoolGrey, fill=LightBlue!20, text width=2.4cm, align=center, minimum height=0.8cm, font=\footnotesize\sffamily, drop shadow},
+        arch_logic/.style={rectangle, draw=ImperialBlue, fill=white, text width=2.8cm, align=center, minimum height=1cm, rounded corners, thick, font=\footnotesize\sffamily, drop shadow},
+        arch_ir/.style={cylinder, draw=ImperialBlue, fill=LightBlue!40, text width=1.8cm, align=center, minimum height=1.4cm, shape border rotate=90, font=\footnotesize\sffamily, drop shadow},
+        field/.style={font=\footnotesize\sffamily, black},
+        arrow/.style={-{Stealth[scale=1.0]}, thick, draw=ImperialBlue}
+    ]
+        % Column 1: Sources (CV/Github/LinkedIn)
+        \node [arch_source] (cv) {\textbf{CV (PDF/DOCX)}\\Unstructured Text};
+        \node [arch_source, below=1.8cm of cv] (api) {\textbf{GitHub/LinkedIn}\\Structured API};
+
+        % Column 2: Specific Engines (The parts on the right of the sources)
+        \node [arch_logic, right=of cv] (nlp) {Heuristic NLP Engine\\{\footnotesize pdfplumber + regex}};
+        \node [arch_logic, right=of api] (agg) {API Aggregator\\{\footnotesize REST / GraphQL}};
+
+        % Column 3: Normaliser (The combination block)
+        \node [arch_logic, right=1cm of nlp, yshift=-1.4cm, text width=2.5cm, fill=LightBlue!10] (norm) {Normalisation\\Engine\\{\footnotesize (Logic Layer)}};
+        
+        % Column 4: The Database
+        \node [arch_ir, right=of norm] (output) {Unified\\Candidate Store\\{\footnotesize Postgres / Supabase}};
+
+        % Labels
+        \node [field, above=0.1cm of nlp] {Extracts Work, Skills, Education};
+        \node [field, below=0.1cm of agg] {Extracts Commits, Stars, Badges, Languages (Python, Java, etc.)};
+
+        % Connections
+        \draw [arrow] (cv) -- (nlp);
+        \draw [arrow] (api) -- (agg);
+        
+        % Orthogonal arrows to normalizer
+        \draw [arrow] (nlp.east) -- ++(0.5,0) |- (norm.west);
+        \draw [arrow] (agg.east) -- ++(0.5,0) |- (norm.west);
+        \draw [arrow] (norm) -- (output);
+
+    \end{tikzpicture}
+    \caption{The Extraction Layer: Decomposing unstructured documents and structured 
+    API signals into a unified, queryable schema.}
+    \label{fig:extraction_flow}
+\end{figure}

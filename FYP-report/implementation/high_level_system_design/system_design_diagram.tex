@@ -1,0 +1,57 @@
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[
+        node distance=1.2cm and 1.8cm,
+        arch_domain/.style={draw=ImperialBlue, fill=LightBlue!30, dashed, rounded corners, thick, inner sep=15pt},
+        arch_logic/.style={rectangle, draw=ImperialBlue, fill=white, text width=2.8cm, align=center, minimum height=1.1cm, rounded corners, thick, font=\footnotesize\sffamily, drop shadow},
+        arch_user/.style={ellipse, draw=ImperialBlue, fill=ImperialBlue!10, minimum width=1.8cm, minimum height=0.8cm, font=\small\bfseries\sffamily, thick},
+        arrow/.style={-{Stealth[scale=1.0]}, thick, draw=ImperialBlue},
+        domain_label/.style={font=\footnotesize\bfseries\sffamily, ImperialBlue, anchor=center}
+    ]
+        % I. Extraction
+        \node [arch_logic] (db1) {Supabase\\Unified Store};
+        \node [arch_logic, above=0.8cm of db1] (ext) {Multi-source\\Parsing Engine};
+        
+        % II. Configuration (Moved lower to align with audit)
+        \node [arch_logic, right=2.2cm of db1] (fusion) {Weighted Metric\\Fusion Engine};
+        
+        % III. Execution
+        \node [arch_logic, right=2.2cm of fusion, yshift=1.6cm] (run) {Semantic\\Scoring Pipeline};
+        \node [arch_logic, below=0.5cm of run] (audit) {Explainability \&\\Audit Trail};
+
+        % Containers (Using FIT to ensure boxes are inside)
+        \begin{scope}[on background layer]
+            \node [arch_domain, fit=(ext) (db1)] (area1) {};
+            \node [arch_domain, fit=(fusion)] (area2) {};
+            \node [arch_domain, fit=(run) (audit)] (area3) {};
+        \end{scope}
+
+        % User (Recruiter) - Increased height for absolute clearance
+        \node [arch_user, above=5.5cm of area2] (u2) {Recruiter};
+        
+        % Flows (Segmented for precise label control)
+        % To Extraction
+        \draw [arrow] (u2.west) -- (u2.west -| area1.center) node[midway, above, font=\footnotesize\sffamily, black, fill=white, inner sep=1pt] {Ingest Documents} -- (ext.north);
+        
+        % To Configuration
+        \draw [arrow] (u2.south) -- (fusion.north) node[pos=0.3, left, font=\footnotesize\sffamily, black] {Set Weights};
+        
+        % Internal Flows
+        \draw [arrow] (ext) -- (db1);
+        \draw [arrow] (db1.east) -- (fusion.west);
+        \draw [arrow] (fusion.east) -- (run.west);
+        \draw [arrow] (run) -- (audit);
+        
+        % Feedback Loop (Mirrored Symmetry)
+        \draw [arrow] (audit.east) -- ++(1.5,0) |- (u2.east) node[pos=0.75, above, font=\footnotesize\sffamily, black, fill=white, inner sep=1pt] {Explainable Insights};
+
+        % Domain Headers (Drawn last with white background to create "gap" in arrows)
+        \node [domain_label, fill=white, inner sep=2pt] at (area1.north) {I. EXTRACTION};
+        \node [domain_label, fill=white, inner sep=2pt] at (area2.north) {II. CONFIGURATION};
+        \node [domain_label, fill=white, inner sep=2pt] at (area3.north) {III. EXECUTION};
+
+    \end{tikzpicture}
+    \caption{High-Level System Design: Multi-source Extraction, Job Configuration, 
+    and Job Execution.}
+    \label{fig:high_level_arch}
+\end{figure}

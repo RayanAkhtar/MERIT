@@ -1,0 +1,88 @@
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[
+        node distance=1.5cm and 2.5cm,
+        arch_table/.style={rectangle, draw=CoolGrey, fill=white, text width=3.2cm, align=left, font=\footnotesize\sffamily, rounded corners=1pt, drop shadow, minimum height=1.6cm},
+        arch_source/.style={ellipse, draw=ImperialBlue, fill=LightBlue!40, font=\footnotesize\bfseries\sffamily, minimum width=2.0cm, align=center},
+        arch_group/.style={draw=ImperialBlue, fill=LightBlue!10, dashed, rounded corners, inner sep=10pt},
+        pk/.style={font=\footnotesize\bfseries\sffamily, ImperialBlue},
+        fk/.style={font=\footnotesize\itshape\color{ProcessBlue}},
+        arrow/.style={-{Stealth[scale=1.0]}, thick, draw=ImperialBlue}
+    ]
+        % Candidate Schema Part: Sources in a column on the left
+        \node [arch_table] (t_gh) {
+            \textbf{github\_profiles}\\
+            {\color{ImperialBlue}\bfseries id}\\
+            username, total\_commits\\
+            total\_stars, languages
+        };
+
+        \node [arch_table, below=0.6cm of t_gh] (t_li) {
+            \textbf{linkedin\_profiles}\\
+            {\color{ImperialBlue}\bfseries id}\\
+            full\_name, headline\\
+            location, about
+        };
+
+        \node [arch_table, below=0.6cm of t_li] (t_edu) {
+            \textbf{candidate\_education}\\
+            {\color{ImperialBlue}\bfseries id}\\
+            {\itshape\color{ProcessBlue} candidate\_id}\\
+            school\_name, degree, grade
+        };
+
+        % Central Identity Table (Closer to sources)
+        \node [arch_table, right=1.6cm of t_li] (t_cand) {
+            \textbf{candidate\_data}\\
+            {\color{ImperialBlue}\bfseries id}\\
+            name, email, skills\\
+            {\itshape\color{ProcessBlue} github\_profile\_id}\\
+            {\itshape\color{ProcessBlue} linkedin\_profile\_id}
+        };
+
+        % Configuration Schema Part: Anchored further right to avoid collision
+        \node [arch_table, right=6cm of t_gh] (t_jd) {
+            \textbf{job\_requirements}\\
+            {\color{ImperialBlue}\bfseries id}\\
+            title, description\\
+            metrics (JSONB)
+        };
+
+        \node [arch_table, below=0.6cm of t_jd] (t_conf) {
+            \textbf{matching\_configs}\\
+            {\color{ImperialBlue}\bfseries id}\\
+            {\itshape\color{ProcessBlue} job\_id}, {\itshape\color{ProcessBlue} batch\_id}\\
+            weights, active\_metrics
+        };
+
+        % Results
+        \node [arch_table, below=0.6cm of t_conf] (t_res) {
+            \textbf{past\_results}\\
+            {\color{ImperialBlue}\bfseries id}\\
+            {\itshape\color{ProcessBlue} config\_id}\\
+            results\_payload (JSONB)
+        };
+
+        % Groupings
+        \begin{scope}[on background layer]
+            \node [arch_group, fit=(t_gh) (t_li) (t_edu) (t_cand), label={[font=\footnotesize\bfseries\sffamily, ImperialBlue]above:CANDIDATE PERSISTENCE}] (db_cand) {};
+            \node [arch_group, fit=(t_jd) (t_conf) (t_res), label={[font=\footnotesize\bfseries\sffamily, ImperialBlue]above:CONFIG \& RESULTS}] (db_conf) {};
+        \end{scope}
+
+        % Flows
+        \draw [arrow] (t_jd) -- (t_conf);
+        \draw [arrow] (t_conf) -- (t_res);
+        
+        % Internal Relationships
+        \draw [arrow] (t_gh.east) -- ++(0.4,0) |- (t_cand.west);
+        \draw [arrow] (t_li.east) -- (t_cand.west);
+        \draw [arrow] (t_edu.east) -- ++(0.4,0) |- (t_cand.west);
+
+        % Flow to Matching (Clear crossing between groups)
+        \draw [arrow] (t_cand.east) -- (t_conf.west);
+
+    \end{tikzpicture}
+    \caption{Relational Schema: Integration of candidate signals, recruiter criteria, 
+    and auditable matching results.}
+    \label{fig:schema_overview}
+\end{figure}

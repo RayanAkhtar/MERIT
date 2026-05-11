@@ -1,12 +1,69 @@
-\section{High-Level System Architecture}
+\definecolor{ImperialBlue}{RGB}{0, 0, 255}    % Imperial Blue
+\definecolor{ProcessBlue}{RGB}{0, 145, 212}   % Process Blue for contrast
+\definecolor{LightBlue}{RGB}{235, 245, 255}   % Adjusted background blue
+\definecolor{CoolGrey}{RGB}{158, 161, 162}    % Neutral Grey
 
-TODO: Provide an introductory overview of the entire MERIT lifecycle, setting the stage for the algorithmic deep dives.
+\section{Implementation \& Architecture}
+
+
+\subsection{High-Level System Design}
+MERIT is partitioned into three distinct functional domains: 
+\textbf{Extraction}, \textbf{Configuration}, and \textbf{Execution}. 
+Figure \ref{fig:high_level_arch} illustrates the orchestration between these layers.
+
+% Figure 4.1: High-Level System Design
+\input{implementation/high_level_system_design/system_design_diagram.tex}
+
+\subsubsection{Architectural Rationale}
+MERIT employs a decoupled microservice architecture to separate the 
+concerns of data ingestion, job configuration, and the presentation of configuration results.
+Flask (Python) was selected as a backend, providing a robust foundation for data 
+ingestion and fusion. Next.js was selected for the frontend to enable a high-performance, 
+interactive interface for "Glass-Box" visualisations.
+
+A relational PostgreSQL store was selected to enforce data integrity, ensuring that every 
+ranked result is linked via foreign keys to a specific, immutable recruiter configuration, 
+allowing for a complete audit trail from "Source-to-Score." We opted for Supabase to 
+streamline development and to avoid the overhead of setting up and maintaining our own database.
+The relational nature of databases facilitates the merging of disparate data sources
+into a single, queryable identity hub. This allows the scoring engine to resolve conflicting 
+evidence while maintaining a historical record of all data sources.
 
 \subsection{The Extraction Layer}
-TODO: High-level overview of the parsers handling Candidate data (CV, GitHub, LinkedIn) and Job Description (JD) ingestion.
+The Extraction Layer (Figure \ref{fig:extraction_flow}) is responsible for both the ingestion and 
+normalisation of heterogeneous data. Rather than a monolithic service, normalisation is 
+implemented as a logical pipeline that performs canonical skill mapping and enforces a unified schema. 
+This design decision was made to allow for easy extension of the system to support new 
+data sources, allowing MERIT to stay updated with the latest tools and platforms.
 
-\subsection{The Configuration \& Execution Engine}
-TODO: How recruiters interact with the configuration setup to define metrics, and the backend engine that manages the scoring jobs.
+% Figure 4.2: The Extraction Layer
+\input{implementation/high_level_system_design/extraction_layer_diagram.tex}
+
+MERIT is designed to be able to ingest both structured and unstructured data sources.
+For unstructured data sources, such as CVs and JDs, we employ \textit{pdfplumber} as well
+as a custom heuristic NLP engine to extract key entities such as work experience, education 
+history, and technical skills.
+
+For structured data sources, such as GitHub and LinkedIn, we leverage APIs to extract
+meta-data such as commit frequencies, repository stars, and programming language 
+distributions. By unifying these disparate signals into a single schema, MERIT is able to provide
+comprehensive views of a candidate's technical profile, with verifiability and transparency at its core
+
+
+\subsection{The Configuration and Execution Layer}
+% Figure 4.3: The relational Schema
+\input{implementation/high_level_system_design/relational_schema_diagram.tex}
+The core of MERIT's "Glass-Box" transparency lies in its relational 
+data model (Figure \ref{fig:schema_overview}). This model bridges the 
+\textbf{Configuration} and \textbf{Execution} layers by ensuring every extracted 
+signal is persisted in a way that remains queryable by the scoring engine.
+
 
 \subsection{The Presentation Layer}
-TODO: The frontend architecture for displaying dynamic candidate rankings, snapshot dashboards, and explainable AI reports.
+The Presentation Layer is the user interface of MERIT, providing an interactive 
+and seamless experience for recruiters to evaluate candidates. It is built 
+using Next.js, which enables high-performance, dynamic web applications. 
+We fetch data from the previously mentioned Flask API, and reflect it
+in a dynamic, interactive dashboard. We provide explainability through audit trails
+that trace the results back to the specific recruiter configurations. This makes 
+the decision-making process auditable and verifiable.
