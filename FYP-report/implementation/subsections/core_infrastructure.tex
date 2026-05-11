@@ -1,12 +1,18 @@
-\section{Core Infrastructure \& Optimisations}
+\section{Technical Foundations}
+MERIT has undergone several optimisations to ensure its reliability and scalability.
 
-TODO: Detail the foundational engineering choices that ensure the system's performance and reliability.
+A significant scalability challenge for MERIT was the \textbf{N+1 query bottleneck}.
+When retrieving $N$ candidates, the backend was making $N$ subsequent database calls.
+This inefficiency was noticeable when processing large candidate pools.
+In order to resolve this, we leveraged PostgreSQL's capability for relational embeddings
+via the Supabase client. This resulted in the backend transitioning from $O(N)$ to $O(1)$
+query complexity, ensuring that our dashboard remains responsive, even under
+heavy load.
 
-\subsection{Database Architecture \& Query Optimisation}
-TODO: Discussion of resolving N+1 queries using Supabase relational embedding and the move from standard sequential fetching.
-
-\subsection{Global Error Handling}
-TODO: Implementation of centralised error management middleware and defensive programming practices across the backend API.
-
-\subsection{Asynchronous Processing}
-TODO: Details on background task queues for scraping GitHub and LinkedIn to prevent blocking operations, vs. the initial synchronous pipeline.
+Another key issue, this time regarding reliability, was present in the extraction layer,
+where we deal with the inherent noise in unstructured data. MERIT leverages a global Flask
+middleware to intercept exceptions across the extraction and scoring pipelines. Here,
+errors are categorised as either recoverable or critical errors. This is supplemented
+by strict JSON schema validation at the data ingestion boundary, in order to ensure that
+only verified signals enter the semantic fusion engine, thereby maintaining an explainable
+audit trail.
