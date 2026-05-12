@@ -1,14 +1,14 @@
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}[
-        node distance=1.5cm and 2.5cm,
-        arch_table/.style={rectangle, draw=CoolGrey, fill=white, text width=3.2cm, align=left, font=\footnotesize\sffamily, rounded corners=1pt, drop shadow, minimum height=1.6cm},
-        arch_source/.style={ellipse, draw=ImperialBlue, fill=LightBlue!40, font=\footnotesize\bfseries\sffamily, minimum width=2.0cm, align=center},
-        arch_group/.style={draw=ImperialBlue, fill=LightBlue!10, dashed, rounded corners, inner sep=10pt},
-        pk/.style={font=\footnotesize\bfseries\sffamily, ImperialBlue},
-        fk/.style={font=\footnotesize\itshape\color{ProcessBlue}},
-        arrow/.style={-{Stealth[scale=1.0]}, thick, draw=ImperialBlue}
-    ]
+            node distance=1.5cm and 2.5cm,
+            arch_table/.style={rectangle, draw=CoolGrey, fill=white, text width=3.0cm, align=left, font=\footnotesize\sffamily, rounded corners=1pt, drop shadow, minimum height=1.6cm},
+            arch_source/.style={ellipse, draw=ImperialBlue, fill=LightBlue!40, font=\footnotesize\bfseries\sffamily, minimum width=2.0cm, align=center},
+            arch_group/.style={draw=ImperialBlue, fill=LightBlue!10, dashed, rounded corners, inner sep=10pt},
+            pk/.style={font=\footnotesize\bfseries\sffamily, ImperialBlue},
+            fk/.style={font=\footnotesize\itshape\color{ProcessBlue}},
+            arrow/.style={-{Stealth[scale=1.0]}, thick, draw=ImperialBlue}
+        ]
         % Candidate Schema Part: Sources in a column on the left
         \node [arch_table] (t_gh) {
             \textbf{github\_profiles}\\
@@ -31,8 +31,8 @@
             school\_name, degree, grade
         };
 
-        % Central Identity Table (Closer to sources)
-        \node [arch_table, right=1.6cm of t_li] (t_cand) {
+        % Central Identity Table
+        \node [arch_table, right=0.8cm of t_li] (t_cand) {
             \textbf{candidate\_data}\\
             {\color{ImperialBlue}\bfseries id}\\
             name, email, skills\\
@@ -40,15 +40,23 @@
             {\itshape\color{ProcessBlue} linkedin\_profile\_id}
         };
 
-        % Configuration Schema Part: Anchored further right to avoid collision
-        \node [arch_table, right=6cm of t_gh] (t_jd) {
+        % Configuration Schema Part (Convergence Row)
+        \node [arch_table, right=6.0cm of t_gh] (t_batch) {
+            \textbf{batch\_data}\\
+            {\color{ImperialBlue}\bfseries id}\\
+            batch\_name\\
+            candidate\_ids (ARR)
+        };
+
+        \node [arch_table, right=0.8cm of t_batch] (t_jd) {
             \textbf{job\_requirements}\\
             {\color{ImperialBlue}\bfseries id}\\
             title, description\\
             metrics (JSONB)
         };
 
-        \node [arch_table, below=0.6cm of t_jd] (t_conf) {
+        % Converged Config Node
+        \node [arch_table, below=1.5cm of t_batch, xshift=2.0cm] (t_conf) {
             \textbf{matching\_configs}\\
             {\color{ImperialBlue}\bfseries id}\\
             {\itshape\color{ProcessBlue} job\_id}, {\itshape\color{ProcessBlue} batch\_id}\\
@@ -56,7 +64,7 @@
         };
 
         % Results
-        \node [arch_table, below=0.6cm of t_conf] (t_res) {
+        \node [arch_table, below=1.0cm of t_conf] (t_res) {
             \textbf{past\_results}\\
             {\color{ImperialBlue}\bfseries id}\\
             {\itshape\color{ProcessBlue} config\_id}\\
@@ -66,23 +74,42 @@
         % Groupings
         \begin{scope}[on background layer]
             \node [arch_group, fit=(t_gh) (t_li) (t_edu) (t_cand), label={[font=\footnotesize\bfseries\sffamily, ImperialBlue]above:CANDIDATE PERSISTENCE}] (db_cand) {};
-            \node [arch_group, fit=(t_jd) (t_conf) (t_res), label={[font=\footnotesize\bfseries\sffamily, ImperialBlue]above:CONFIG \& RESULTS}] (db_conf) {};
+            \node [arch_group, fit=(t_jd) (t_batch) (t_conf) (t_res), label={[font=\footnotesize\bfseries\sffamily, ImperialBlue]above:RECRUITER CONFIGURATION \& RESULTS}] (db_conf) {};
         \end{scope}
 
-        % Flows
-        \draw [arrow] (t_jd) -- (t_conf);
-        \draw [arrow] (t_conf) -- (t_res);
-        
-        % Internal Relationships
-        \draw [arrow] (t_gh.east) -- ++(0.4,0) |- (t_cand.west);
-        \draw [arrow] (t_li.east) -- (t_cand.west);
-        \draw [arrow] (t_edu.east) -- ++(0.4,0) |- (t_cand.west);
+        % Flows: Convergence into Config
+        \draw [arrow] (t_jd.south) -- ++(0,-0.4) -| (t_conf.north)
+        node[pos=0.05, right, font=\tiny\bfseries] {1}
+        node[pos=0.95, right, font=\tiny\bfseries, xshift=1.2cm, yshift=0.1cm] {N};
 
-        % Flow to Matching (Clear crossing between groups)
-        \draw [arrow] (t_cand.east) -- (t_conf.west);
+        \draw [arrow] (t_batch.south) -- ++(0,-0.4) -| (t_conf.north)
+        node[pos=0.05, left, font=\tiny\bfseries] {1}
+        node[pos=0.95, left, font=\tiny\bfseries, xshift=-1.2cm, yshift=0.1cm] {N};
+
+        \draw [arrow] (t_conf) -- (t_res)
+        node[pos=0.1, left, font=\tiny\bfseries] {1}
+        node[pos=0.9, left, font=\tiny\bfseries] {1};
+
+        % Input Flow: Candidate into Batch
+        \draw [arrow] (t_cand.north) |- (t_batch.west)
+        node[pos=0.1, left, font=\tiny\bfseries] {N}
+        node[pos=0.9, above, font=\tiny\bfseries] {1};
+
+        % Internal Identity Relationships
+        \draw [arrow] (t_gh.east) -- ++(0.4,0) |- (t_cand.west)
+        node[pos=0.1, above, font=\tiny\bfseries] {1}
+        node[pos=0.9, above, font=\tiny\bfseries] {1};
+
+        \draw [arrow] (t_li.east) -- (t_cand.west)
+        node[pos=0.1, above, font=\tiny\bfseries] {1}
+        node[pos=0.9, above, font=\tiny\bfseries] {1};
+
+        \draw [arrow] (t_edu.east) -- ++(0.4,0) |- (t_cand.west)
+        node[pos=0.1, above, font=\tiny\bfseries] {N}
+        node[pos=0.9, above, font=\tiny\bfseries] {1};
 
     \end{tikzpicture}
-    \caption{Relational Schema: Integration of candidate signals, recruiter criteria, 
-    and auditable matching results.}
+    \caption{Relational Schema: Integration of candidate signals, recruiter criteria,
+        and auditable matching results.}
     \label{fig:schema_overview}
 \end{figure}

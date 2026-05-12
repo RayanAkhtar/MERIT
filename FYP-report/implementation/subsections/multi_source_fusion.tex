@@ -1,6 +1,10 @@
-\section{Pipeline Stage 2: Multi-Source Fusion \& Heuristics}
+\section{Stage 2: Multi-Source Evidence Fusion \& Scoring}
+The core of MERIT's "Glass-Box" process lies in the Evidence Fusion stage. 
+Using the relational data model (Figure \ref{fig:schema_overview}) as a backbone, 
+this stage bridges the gap between raw data and final rankings by ensuring every 
+extracted signal is fused into a single candidate profile. 
 
-TODO: Detail the second stage where multiple data streams are fused using sophisticated mathematical models.
+\input{implementation/high_level_system_design/relational_schema_diagram.tex}
 
 \subsection{Knowledge Graph Skill Inference}
 TODO: Utilising Directed Acyclic Graphs (DAG) and Spreading Activation algorithms to infer latent parent skills.

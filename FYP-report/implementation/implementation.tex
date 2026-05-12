@@ -1,19 +1,17 @@
 \chapter{Implementation \& Architecture}
 
-This chapter outlines the implementation and architecture of MERIT. This involves
+This chapter covers the implementation and architecture of MERIT. This involves
 the transition from theoretical frameworks establishes in chapter 2, to a functional,
 full-stack implementation of a multi-source, extensible and green-box candidate screening
 system tailored to technical recruitment.
-For our implementation, we built a decoupled microservice pattern, leveraging Next.js for
-the frontend due to its ease of use and speed of development. For similar reasons, we 
-also opted for a Flask backend, noting its key advantage of large data processing capabilities 
-and its rich ecosystem of NLP libraries. 
-The implementation involves three key layers: an extraction layer, a configuration layer,
-and an execution layer. We will cover specific technologies, design choices and the mathematical
-models that MERIT leverages.
+For MERIT, we built a decoupled microservice pattern. Next.js was selected for
+the frontend due to its ease of use and speed of development. For similar reasons, we
+also opted for a Flask backend, also noting its advantages in large data processing capabilities
+and its rich ecosystem of NLP libraries.
+We will now cover the specific design choices and mathematical models that 
+MERIT leverages across these phases.
 
-\input{implementation/subsections/high_level_architecture.tex}
-\input{implementation/subsections/core_infrastructure.tex}
+\input{implementation/subsections/architectural_foundations.tex}
 \input{implementation/subsections/extensible_skill_extraction.tex}
 \input{implementation/subsections/multi_source_fusion.tex}
 \input{implementation/subsections/explainable_output.tex}

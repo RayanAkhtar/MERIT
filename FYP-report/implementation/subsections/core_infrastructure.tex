@@ -9,10 +9,10 @@ via the Supabase client. This resulted in the backend transitioning from $O(N)$ 
 query complexity, ensuring that our dashboard remains responsive, even under
 heavy load.
 
-Another key issue, this time regarding reliability, was present in the extraction layer,
-where we deal with the inherent noise in unstructured data. MERIT leverages a global Flask
-middleware to intercept exceptions across the extraction and scoring pipelines. Here,
-errors are categorised as either recoverable or critical errors. This is supplemented
-by strict JSON schema validation at the data ingestion boundary, in order to ensure that
-only verified signals enter the semantic fusion engine, thereby maintaining an explainable
-audit trail.
+Another key issue, this time regarding reliability, was present in the
+\textit{Data Extraction and Job Configuration} stage, where we deal with the inherent noise in
+unstructured data. MERIT leverages a global Flask middleware to intercept exceptions across the
+configuration and fusion pipelines. Here, errors are categorised as either recoverable or
+critical errors. This is supplemented by strict JSON schema validation at the data ingestion
+boundary, in order to ensure that only verified signals enter the \textit{Multi-Source Fusion}
+engine, thereby maintaining an explainable audit trail.

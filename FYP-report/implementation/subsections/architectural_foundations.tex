@@ -1,0 +1,47 @@
+\definecolor{ImperialBlue}{RGB}{0, 0, 255}    % Imperial Blue
+\definecolor{ProcessBlue}{RGB}{0, 145, 212}   % Process Blue for contrast
+\definecolor{LightBlue}{RGB}{235, 245, 255}   % Adjusted background blue
+\definecolor{CoolGrey}{RGB}{158, 161, 162}    % Neutral Grey
+
+\section{Architectural Overview \& Foundations}
+The architecture of MERIT is designed to address the "Black-Box" nature of traditional
+recruitment systems. It is partitioned into three core pipeline stages:
+\textbf{Data Extraction and Job Configuration}, \textbf{Multi-Source Evidence Fusion}, and
+\textbf{Explainable Interpretation}. Figure \ref{fig:high_level_arch} illustrates how
+the recruiter interacts with the three stages of MERIT.
+
+% Figure 4.1: High-Level System Design
+\input{implementation/high_level_system_design/system_design_diagram.tex}
+
+\subsection{Architectural Rationale}
+MERIT employs a decoupled microservice architecture to separate the
+concerns of data ingestion, job configuration, and the presentation of results.
+We used Flask (Python) as a backend for data ingestion and fusion due to its rich ecosystem
+of python libraries such as NLTK, Spacy, and Scikit-learn.
+Next.js was selected for the frontend to enable a high-performance, interactive interface
+for "Glass-Box" visualisations.
+
+A relational PostgreSQL store (via Supabase) was selected to enforce data integrity,
+ensuring that every ranked result is linked via foreign keys to a specific,
+immutable recruiter configuration.
+
+\subsection{Technical Foundations: Reliability \& Scalability}
+During the development of MERIT, we encountered scalability and reliability challenges.
+We will now discuss the solutions we implemented to address these obstacles.
+
+\subsubsection{The N+1 Query Bottleneck}
+A significant scalability challenge was the \textbf{N+1 query bottleneck}. When
+retrieving $N$ candidates, the backend was previously making $N$ subsequent database
+calls to fetch associated skills and scores. By leveraging PostgreSQL's relational
+embedding capabilities via the Supabase client, we transitioned query complexity from
+$O(N)$ to $O(1)$. The benefits of this runtime optimisation are significant when considering
+a large candidate pool, which will be almost always the case in real-world
+applications.
+
+\subsubsection{Global Error Handling and Validation}
+A similar challenge that persisted throughout the development of
+MERIT was reliability. This issue often stemmed from unstructured data sources, more specifically
+CVs and JDs. To address this reliability challenge, we introduced global Flask middleware in order
+to intercept exceptions across MERIT's pipeline. We follow this up with strict JSON schema validation
+at the data ingestion boundary. This approach ensures that only verified signals enter the
+multi-source fusion engine, maintaining the integrity of the explainable audit trail.

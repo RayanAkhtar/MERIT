@@ -1,9 +1,92 @@
-\section{Pipeline Stage 1: Extensible Skill Extraction}
+\section{Stage 1: Data Extraction and Job Configuration}
+The first stage of the MERIT pipeline focuses on \textit{Data Extraction} and \textit{Job Configuration}.
+Here, we translate unstructured job requirements into a structured, weighted mathematically-backed profile.
+This stage is critical for establishing the system's "Integrity Signal". Rather than requiring
+recruiters to manually define every skill and priority, MERIT leverages automated extraction
+and market-aware weighting to pre-fill the job's configuration.
+This process, illustrated in Figure \ref{fig:skill_extraction_pipeline}, ensures that the system remains
+extensible to any technical domain while significantly reducing the manual overhead of
+job setup.
 
-TODO: Explain the first stage of the scoring pipeline, focusing on how MERIT adapts to different technical domains.
+
+\input{implementation/high_level_system_design/skill_extraction_diagram.tex}
+
+\subsection{Data Ingestion \& Normalisation}
+The first step in this stage is the ingestion and normalisation of heterogeneous data sources.
+As illustrated in Figure \ref{fig:extraction_flow}, MERIT handles both unstructured documents
+(CVs and JDs) and structured API signals (GitHub and LinkedIn). This layer performs
+canonical skill mapping to ensure that signals from different sources can be compared
+within a unified schema.
+
+\input{implementation/high_level_system_design/extraction_layer_diagram.tex}
+
+\subsection{Entity Extraction \& Preprocessing}
+Before we perform semantic analysis, we first need to extract the relevant technical
+skills from the job descriptions and CVs. For MERIT, we have implemented a heuristic
+entity extraction method that utilises a curated dictionary of over 500 technical
+languages and frameworks (stored in \texttt{skills\_data.json}). This system identifies
+raw mentions of these terms within the text. This helps us isolate technical signals from general
+prose, to ensure that the semantic matcher only focuses on relevant skills. Another purpose of this
+preprocessing step is to resolve common variations of the same skill. For example, the term
+"JS" is often used interchangeably with "JavaScript" in job descriptions. By identifying and
+normalising these variations, we prevent the inclusion of unnecessary noise during the vector similarity calculation.
 
 \subsection{Semantic Skill Matching}
-TODO: Transitioning from rigid string matching to Latent Space Mathematics using SentenceTransformers and Cosine Similarity.
+After we have performed a relatively rigid entity extraction, we move onto the
+semantic matching stage. Here, we address the limitations of traditional Applicant
+Tracking Systems (ATS) that rely on exact string matching. We are able to achieve this through
+the use of Latent Space Mathematics. Rather than following traditional ATS systems that rely on
+exact string matching, we instead rely on vector-based similarity analysis.
+
+We use the \textit{SentenceTransformers} library, and the \textit{all-MiniLM-L6-v2} model for this process.
+This model was selected for its balance between efficiency and accuracy for technical terminology.
+We encode terms into a 384-dimensional dense vector space, capturing the underlying semantic relationships
+between technologies. This is achieved through the application of the \textbf{cosine similarity}
+formula as demonstrated below.
+
+\begin{equation}
+    \text{similarity} = \cos(\theta) = \frac{\mathbf{A} \cdot \mathbf{B}}{\|\mathbf{A}\| \|\mathbf{B}\|}
+\end{equation}
+
+For MERIT, we set the threshold to $0.50$, this was determined through iterative testing and
+comparison with the results of the heuristic entity extraction method. This threshold is
+significant enough to determine that "SQL" and "PostgreSQL" are similar skills, while not being
+too strict as to reject semantically similar terms such as "React" and "React.js"
+
 
 \subsection{Dynamic Weighting via TF-IDF}
-TODO: Leveraging Information Retrieval mathematics to automatically infer and weigh required skills directly from any given job description.
+Another key innovation towards the extensibility of MERIT lies in the inference of skill importance
+when setting weights during the configuration stage. This is achieved through the application of a
+modified Term Frequency-Inverse Document Frequency (TF-IDF) approach. This aligns with the
+"Information-theoretic Analysis of Skill Importance" \cite{zhang2019skill}, which suggests that
+skills with high Inverse Document Frequency (IDF) are significantly more "informative" for
+classifying a job role than common terms.
+
+We calculate the TF-IDF scores based on both the job description, as well as the market corpus.
+The \textbf{Term Frequency (TF)}, or "Job Intensity," reflects the employer's subjective
+emphasis \cite{kou2020mcdm} and is calculated as:
+
+\begin{equation}
+    TF(s, J) = \frac{f_{s, J}}{\sum_{k \in J} w_k}
+\end{equation}
+
+Where $f_{s, J}$ is the number of times skill $s$ is mentioned in the job description
+$J$, and $\sum w_k$ is the total word count of the document. Simultaneously, the \textbf{Inverse Document Frequency (IDF)},
+or "Market Scarcity," is calculated as:
+
+\begin{equation}
+    IDF(s, D) = \log\left(\frac{N}{1 + df(s)}\right) + 1
+\end{equation}
+
+Where $N$ is the total number of job descriptions in our market corpus $D$, and $df(s)$ is the
+number of documents containing skill $s$ \cite{bastian2014linkedin}. The final significance score
+$W_s$ for each skill is the product of these two components:
+
+\begin{equation}
+    W_s = TF(s, J) \times IDF(s, D)
+\end{equation}
+
+The resulting significance score is linearly mapped to a $1$ to $5$ priority scale.
+This ensures that if a recruiter asks for a common skill like "Python" and a more niche skill
+like "Jupyter Notebook" the system prioritises the rarer skill unless the JD explicitly
+emphasises "Python" through high repetition density.
