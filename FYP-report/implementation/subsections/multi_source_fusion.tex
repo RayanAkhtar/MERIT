@@ -1,16 +1,225 @@
 \section{Stage 2: Multi-Source Evidence Fusion \& Scoring}
-The core of MERIT's "Glass-Box" process lies in the Evidence Fusion stage. 
-Using the relational data model (Figure \ref{fig:schema_overview}) as a backbone, 
-this stage bridges the gap between raw data and final rankings by ensuring every 
-extracted signal is fused into a single candidate profile. 
+Once candidate data and a job description have been extracted and combined in a configuration, we can then proceed to
+the execution stage. In this stage, we compute signals for each metric. This can be done in two different ways
+depending on whether the metric is baseline or extensible. Both metrics may take into account multiple data sources,
+computing up to one signal per data source per metric. If this is the case, we perform bayesian fusion to compute a single
+score. Once each metric has been reduced to a single value, we then undergo a weighted average of all the metrics
+to compute the final (match) score. Figure \ref{fig:schema_overview} shows how we can use a candidate's
+profile alongside a job description to produce a final score.
+
 
 \input{implementation/high_level_system_design/relational_schema_diagram.tex}
 
-\subsection{Knowledge Graph Skill Inference}
-TODO: Utilising Directed Acyclic Graphs (DAG) and Spreading Activation algorithms to infer latent parent skills.
+\subsection{Metric Metrics: Baseline vs. Extensible}
+When executing a job configuration, the syste, categorises evaluation criteria against two different kinds of metrics.
+\textbf{Baseline Metrics} are pre-defined metrics that are common to all configurations, and typically follow the industry-standard
+heuristics. For example, a candidate's education level is a universal factor in technical recruitment that can be assessed
+independently of the specific job requirements. \textbf{Extensible Metrics}, on the other hand, are job-specific metrics, in other words,
+they are directly inferred from the Job Description. An example of an extensible metric for a typical "Machine Learning Engineer"
+may be "Python", which would ideally measure the candidate's skill level, or usage of the programming language. By combining these
+two classes of metrics, we are able to produce a holistic, yet highly targeted evaluation of a candidate.
 
-\subsection{Skill Decay Modelling}
-TODO: Implementation of the exponential decay formula based on the recency of skill usage as observed in professional history.
+For both classes of metrics, the system may take into account multiple data sources. Some of these sources may self-reported
+(such as CV and LinkedIn) while other sources may be evidence-driven (such as GitHub). After reducing these signals to a single score,
+we perform a weighted average of all the metrics to compute the final (match) score.
+
+
+\subsection{Adversarial Mitigation \& Anti-Stuffing Heuristics}
+A common flaw in legacy ATS platforms lies in their vulnerability to adversarial attacks. One such attack is keyword-stuffing,
+a tactic where candidates artificially inflate their scores for individual metrics by repeatedly embedding target keywords
+within their CV, either explicity as black text, or implicitly, using either white-text, or other similar methods. To combat
+this specifical adversarial attack, we follow the industry-standard of applying penalties for repeated stuffing of keywords
+within a CV.
+
+For other data sources beyond the CV, such as LinkedIn and GitHub, we cannot follow these standards as current ATS platforms
+do not yet support these data sources. For this reason, we have developed out own methods of adversarial mitigation to
+anticipate the unique vulnerabilities of these data sources.
+
+\subsubsection{Account Squatting Defense}
+Account Squatting, is the name we have given to the tactic of a candidate attempting to impersonate another user, by passing off
+their profile as their own. To provide a realistic example, if a user applies for a job as a "Machine Learning Engineer" but their
+GitHub profile currently shows a proficiency in the area of "Full-Stack Development", a candidate may be likely to game the system
+by providing a different GitHub URL that highlights another user's experience, thereby "Squatting" another user's profile.
+
+To combat this, we perform an identity consistency audit. This method attempts to cross-reference
+provided data sources, such as LinkedIn and GitHub by performing a fuzzy match on the full name for the associated profile.
+If the similarity ratio between a given data source's name and the name of a candidate is below a certain threshold
+(in our case $0.70$), we will apply a flat $20\%$ penalty to the overall profile score. This threshold is weak enough to account
+for differences in middle names, or seniority titles (e.g. "Dr."), but strict enough to catch adversarial actors attempting to game
+the system by providing different data sources based on the role or job title. It is important to note that the penalty is noted
+on the candidate's profile so that recruiters are aware of potential adversarial activity and can investigate whether or not this
+is the case.
+
+\subsubsection{Temporal Skill Decay Modelling}
+Skill Decay, first coined by Hermann Ebbinghaus in 1885, refers to the study of the rate at which a skill or
+knowledge is lost over time due to a lack of practice or usage. When it comes to the context of technical recruitment, it is
+clear that recency of experience matters. A candidate who used a certain programming language 5 years ago does not carry
+the same weight as a candidate who used that same programming language a few months ago. A current limitation of traditional
+ATS platforms is their failure to account for this.
+
+To address this concern, MERIT implements an Exponential Decay Model for technical skills, inspired by classical models of memory
+retention \cite{ebbinghaus1885memory}. For every skill signal extracted, its base value is penalised based on the time elapsed
+since it was last utilised. The decayed signal strength, $\mathcal{S}_{\text{decay}}$, is calculated as:
+
+\begin{equation}
+  \mathcal{S}_{\text{decay}} = \mathcal{S}_{\text{base}} \cdot e^{-\lambda \Delta t}
+\end{equation}
+
+Where:
+\begin{itemize}
+  \item $\mathcal{S}_{\text{base}}$ is the initial magnitude of the extracted skill signal.
+  \item $\Delta t$ is the time elapsed (in years) since the end date of the relevant
+        experience or repository commit.
+  \item $\lambda$ is the decay constant, determining the rate of skill degradation.
+\end{itemize}
+
+The system is configured with a default exponential decay constant of $\lambda = 0.25$,
+translating to an approximate half-life of $2.8$ years for technical skills. This temporal
+adjustment ensures that recent, relevant experience naturally outranks historical, potentially
+obsolete capabilities.
+
+\input{implementation/high_level_system_design/skill_decay_graph.tex}
+
+
+\subsection{Source-Aware Signal Aggregation}
+When it comes to evaluating a candidate, there are two forms of evidence that we can use to evaluate them.
+The first form of evidence is \textbf{Claimed Evidence}, where the candidate explicitly declares to possess
+a certain skill or experience. This form of evidence is commonly found in CVs and LinkedIn profiles, and is often
+the only form of evidence available to traditional ATS platforms. A major limitation to this form of evidence lies in
+the potential for self-embellishment, as candidates may be incentivised to overstate their abilities to
+secure a position.
+
+To account for this, we turn to the second form of evidence, \textbf{Demonstrated Evidence}. This form of evidence is
+derived from auditable, historical actions, specifically GitHub repositories. To provide an example, a candidate may
+claim on their CV that they possess expertise in Python. However, this claim can then be challenged by the
+presence of their GitHub repositories, specifically looking at the candidate's general language distribution throughout their
+GitHub profile. Demonstrated evidence is significantly harder to game, as it requires a candidate to
+possess actual experience in a skill to demonstrate it.
+
+This formal separation of evidence is key to MERIT's "Evidence-based evaluation" ethos, and will play a key role in Bayesian Fusion.
 
 \subsection{Bayesian Evidence Fusion}
-TODO: The mathematical model (Beta Distribution updates) for resolving conflicting multi-source data to establish a single source of truth.
+The most significant innovation in MERIT's Multi-Source Fusion module lies in the adoption of \textbf{Bayesian Evidence Fusion}.
+Initial iterations of MERIT attempted to combine skill signals using static weighted averages. However, this approach often dilutes
+the importance of demonstrated evidence (GitHub) with claimed evidence (CV and LinkedIn). This approach also failed to account for the
+confidence of a measurement. For example, a single line in a CV stating "Python" does not carry the same weight as a GitHub profile
+that demonstrates extensive Python experience.
+
+Another key issue is the lack of flexibility it provides, as we would now need separate definitions to account for candidates who may not
+have all three data sources. Several considered approaches failed to provide a fair solution whilst adhering to the static weighted average
+approach. Alongside this, there was also the issue of extensibility, as we need to provide $N!$ distinct definitions for $N$ data sources if
+we wish to avoid penalising candidates for missing data sources.
+
+The presence of these dilemmas led to the adoption of \textbf{Bayesian Evidence Fusion}. The current iteration of MERIT now treats each
+data source as independent evidence updating a Beta Distribution. We parameterise this with the use of a sparse prior
+($\alpha_{prior} = 0.1, \beta_{prior} = 0.1$) to ensure high sensitivity to initial evidence signals while maintaining a baseline for uncertainty.
+
+The contribution of each source $s$ to the final score of that metric is given by its raw signal $\sigma_s \in [0, 1]$ and its reliability weight $w_s$.
+Evidence-based data sources are often assigned a higher weight due to MERIT's emphasis on evidence-based screening. To encourage candidates to
+use evidence-based sources while avoiding harsh penalisation, we enforce a "Signal Cap" for sources that provide claimed evidence.
+We then map these signals to the evidence parameters as follows:
+\begin{equation}
+  \alpha_s = w_s \sigma_s + \epsilon_s, \quad \beta_s = w_s (1 - \sigma_s) + \epsilon_s
+\end{equation}
+where $\epsilon_s = 0.01(1 - w_s)$ represents a symmetric uncertainty term. The reason for the inclusion of $\epsilon_s$ is to emulate inject noise for
+low-confidence sources to produce wider, more uncertain distributions. This stops the distribution from becoming narrow unless this candidate has the
+evidence to support their claims (since high-confidence sources provice more concerntrated signals.)
+
+We select the Beta distribution since it is the conjugate prior for Bernoulli-distributed evidence. This means that the resulting posterior
+update still remains a Beta distribution. This allos for additive evidence integration, which is, not only computationally more efficient,
+but also extensible for an arbitrary set of data sources $S$. This aligns with the "Extensibility" goal of MERIT. The updates to the Beta
+distribution are given by:
+\begin{equation}
+  \alpha_{total} = \alpha_{prior} + \sum_{s \in S} \alpha_s, \quad \beta_{total} = \beta_{prior} + \sum_{s \in S} \beta_s
+\end{equation}
+
+The final posterior distribution is:
+\begin{equation}
+  P(\theta \mid \text{Evidence}) \sim \text{Beta}(\alpha_{total}, \beta_{total})
+\end{equation}
+
+This probabilistic approach provides a robust framework for modeling uncertainty and resolving conflicts between
+different evidence sources. For a verified signal, if a candidate has claimed evidence on a CV (low weight) and also
+possesses the demonstrated evidence to back it up, such as on GitHub (high weight), then the resulting distribution will
+skew towards a high probability of the candidate possessing the skill, with low variance. On the other hand, if a skill is listed
+heavily on their CV, but absent from their GitHub, the $\alpha$ parameter will only increase slightly. The baseline $\beta$ parameter
+will then prevent the score from artificially inflating, mathematically mitigating "keyword stuffing" even further.
+
+Once we have computed the posterior distribution for a metric, we can then split it into it's expected value and it's variance. Effectively
+this measures what the candidate's proficiency in a certain skill is, and the confidence that we have in that claim. For a random variable
+$\theta \sim \text{Beta}(\alpha, \beta)$, we define it's expected value $E[\theta]$ and variance $\text{Var}(\theta)$ as:
+\begin{equation}
+  E[\theta] = \frac{\alpha}{\alpha + \beta}, \quad \text{Var}(\theta) = \frac{\alpha\beta}{(\alpha + \beta)^2(\alpha + \beta + 1)}
+\end{equation}
+
+To conclude, the expected value of this distribution is the candidate's final fused score for the metric in question.
+The ranking system, as a result, aims to prioritise candidates with verified evidence across multiple sources over sources
+which only provide claimed evidence. However, this is not strict enough to entirely rule out candidates with claimed evidence
+who may not have evidence to back it up.
+
+
+
+
+
+\subsection{Result Payload Architecture: The Glass-Box Proof}
+The majority of modern ATS platforms receive criticism for being black-box in nature. It is often unclear to recruiters exactly
+how a candidate was ranked, nor can it delve into the specific metrics that contributed to a candidate's final score. MERIT aims to
+challenge this paradigm by returning a comprehensive JSON payload (\texttt{results\_payload}) that serves
+as a mathematical audit trail. This captures the lineage of a recruitment decision, from the raw data being extracted,
+to bayesian fusion. This includes any penalties incurred during the scoring process.
+We also store a lightweight \texttt{summary\_data} object\footnote{The \texttt{summary\_data} field is a lightweight UI-optimisation
+  feature designed to populate recruiter dashboards without the network latency of fetching the complete, multi-megabyte
+  \texttt{results\_payload}.}, which contains high-level
+metadata (such as the top candidate and score) for rapid batch retrieval without
+re-processing the full evaluation payload.
+
+As illustrated in Figure \ref{fig:schema_overview}, this payload is the terminal product
+of the execution stage. Its hierarchical structure ensures that every high-level score
+is supported by granular evidence chunks. We categorise this schema into three functional layers.
+
+The first layer is the aggregation layer, which contains the overall score and the
+calculation summary, providing a high-level overview and the global weighted
+formula used. The second layer is the metric layer. This contains the specific evaluation criteria
+(e.g., \textit{Experience}, \textit{req\_Python}). Each entry contains its independent
+Bayesian parameters ($\alpha, \beta$) and its fused score. The third layer is the evidence layer,
+which is the most granular level, found within\texttt{source\_details}. This contains the specific
+string derivations, source confidence coefficients, and temporal decay penalties applied to individual signals.
+
+
+Listing \ref{lst:payload_schema} demonstrates a truncated representation of this
+architecture. By exposing this data through the system's "Insight" panel in the
+frontend, MERIT transforms a binary hiring decision into a defensible, auditable
+decision that recruiters are able to challenge and interrogate.
+
+\begin{moderncode}[title={Listing \ref{lst:payload_schema}: Truncated Result Payload Schema}]
+  \begin{lstlisting}[language=json, label={lst:payload_schema}]
+{
+  "overall_score": 0.82,
+  "calculation_summary": {
+    "formula": "SUM(MetricScore * Weight) / SUM(Weights)",
+    "logic": "High-confidence match driven by verified GitHub activity."
+  },
+  "metrics": {
+    "req_python": {
+      "score": 0.91,
+      "breakdown": [{
+        "item": "Python Proficiency",
+        "notes": "Consensus achieved across multiple sources.",
+        "source_details": [
+          {
+            "source": "GitHub",
+            "explanation": "Verified in 4 repositories.",
+            "trust": 0.9
+          },
+          {
+            "source": "CV",
+            "explanation": "Found in skills list.",
+            "trust": 0.5
+          }
+        ]
+      }]
+    }
+  }
+}
+\end{lstlisting}
+\end{moderncode}

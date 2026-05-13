@@ -1,0 +1,37 @@
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[
+            font=\sffamily,
+            xscale=1.8, yscale=4.0
+        ]
+        % Grid lines
+        \foreach \x in {1,2,3,4,5,6} {
+                \draw[gray!30, dashed] (\x,0) -- (\x,1);
+                \node[below, font=\scriptsize] at (\x,0) {\x};
+            }
+        \foreach \y in {0.2, 0.4, 0.6, 0.8, 1.0} {
+                \draw[gray!30, dashed] (0,\y) -- (6,\y);
+                \node[left, font=\scriptsize] at (0,\y) {\y};
+            }
+
+        % Axes
+        \draw[thick, -{Stealth[scale=1.0]}, ImperialBlue] (0,0) -- (6.5,0) node[right, font=\footnotesize\bfseries] {Years Inactive ($\Delta t$)};
+        \draw[thick, -{Stealth[scale=1.0]}, ImperialBlue] (0,0) -- (0,1.15) node[above, font=\footnotesize\bfseries] {Signal Strength ($\mathcal{S}_{\text{decay}}$)};
+
+        % Decay Curve: y = e^(-0.25 * x)
+        \draw[ultra thick, ImperialBlue, domain=0:6, samples=100]
+        plot (\x, {exp(-0.25 * \x)});
+
+        % Half-life annotation
+        \draw[dashed, thick, ProcessBlue] (2.77,0) -- (2.77,0.5) -- (0,0.5);
+        \fill[ProcessBlue] (2.77,0.5) circle (1.5pt);
+        \node[above right, font=\footnotesize\bfseries, ProcessBlue] at (2.77,0.5) {Half-Life Point (2.8 Years)};
+
+        % Start point
+        \fill[ImperialBlue] (0,1.0) circle (1.5pt);
+
+    \end{tikzpicture}
+    \caption{Temporal Skill Decay: The decay of a technical skill over time, modelled with
+        factor $\lambda = 0.25$, with a 2.8 year half-life.}
+    \label{fig:skill_decay_graph}
+\end{figure}

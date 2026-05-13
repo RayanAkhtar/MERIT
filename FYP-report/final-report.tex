@@ -19,6 +19,62 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta, positioning, shapes.geometric, shadows, bending, fit, backgrounds}
 \setlength{\parindent}{0pt}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+% Modern Code Palette
+\definecolor{codebackground}{RGB}{248, 249, 250}
+\definecolor{codeframe}{RGB}{220, 225, 230}
+\definecolor{json_key}{RGB}{131, 37, 131}       % Purple
+\definecolor{json_string}{RGB}{15, 128, 25}     % Green
+\definecolor{json_number}{RGB}{0, 92, 197}      % Blue
+\definecolor{json_punct}{RGB}{106, 115, 125}    % Grey
+
+\lstdefinelanguage{json}{
+    basicstyle=\small\ttfamily\color{black},
+    numbers=left,
+    numberstyle=\tiny\color{json_punct},
+    stepnumber=1,
+    numbersep=10pt,
+    showstringspaces=false,
+    breaklines=true,
+    stringstyle=\color{json_string},
+    literate=
+     *{0}{{{\color{json_number}0}}}{1}
+      {1}{{{\color{json_number}1}}}{1}
+      {2}{{{\color{json_number}2}}}{1}
+      {3}{{{\color{json_number}3}}}{1}
+      {4}{{{\color{json_number}4}}}{1}
+      {5}{{{\color{json_number}5}}}{1}
+      {6}{{{\color{json_number}6}}}{1}
+      {7}{{{\color{json_number}7}}}{1}
+      {8}{{{\color{json_number}8}}}{1}
+      {9}{{{\color{json_number}9}}}{1}
+      {:}{{{\color{json_punct}{:}}}}{1}
+      {,}{{{\color{json_punct}{,}}}}{1}
+      {\{}{{{\color{json_punct}{\{}}}}{1}
+      {\}}{{{\color{json_punct}{\}}}}}{1}
+      {[}{{{\color{json_punct}{[}}}}{1}
+      {]}{{{\color{json_punct}{]}}}}{1},
+}
+
+% Modern container for listings
+\newtcolorbox{moderncode}[1][]{
+    colback=codebackground,
+    colframe=codeframe,
+    coltitle=black,
+    fonttitle=\bfseries\sffamily\small,
+    boxrule=0.5pt,
+    arc=4pt,
+    left=15pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt,
+    before skip=10pt,
+    after skip=10pt,
+    #1
+}
 
 \title{M.E.R.I.T: Multi-source Employment Ranking \& Insight Tool}
 \author{Rayan Akhtar}

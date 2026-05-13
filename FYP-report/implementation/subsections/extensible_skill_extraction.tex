@@ -57,14 +57,14 @@ too strict as to reject semantically similar terms such as "React" and "React.js
 \subsection{Dynamic Weighting via TF-IDF}
 Another key innovation towards the extensibility of MERIT lies in the inference of skill importance
 when setting weights during the configuration stage. This is achieved through the application of a
-modified Term Frequency-Inverse Document Frequency (TF-IDF) approach. This aligns with the
-"Information-theoretic Analysis of Skill Importance" \cite{zhang2019skill}, which suggests that
-skills with high Inverse Document Frequency (IDF) are significantly more "informative" for
-classifying a job role than common terms.
+modified Term Frequency-Inverse Document Frequency (TF-IDF) approach. This aligns with foundational
+Information Retrieval theory \cite{sparckjones1972idf}, which establishes that skills with a high
+Inverse Document Frequency (IDF) are significantly more "informative" for distinguishing specific
+job roles than universally common terms.
 
 We calculate the TF-IDF scores based on both the job description, as well as the market corpus.
-The \textbf{Term Frequency (TF)}, or "Job Intensity," reflects the employer's subjective
-emphasis \cite{kou2020mcdm} and is calculated as:
+The \textbf{Term Frequency (TF)}, or "Job Intensity," reflects the employer's subjective emphasis
+and is calculated as:
 
 \begin{equation}
     TF(s, J) = \frac{f_{s, J}}{\sum_{k \in J} w_k}
@@ -90,3 +90,15 @@ The resulting significance score is linearly mapped to a $1$ to $5$ priority sca
 This ensures that if a recruiter asks for a common skill like "Python" and a more niche skill
 like "Jupyter Notebook" the system prioritises the rarer skill unless the JD explicitly
 emphasises "Python" through high repetition density.
+
+\subsection{Psychometric Scaling \& Target Weights}
+The nature of recruitment is subjective, and because of this, it is necessary for recruiters to have
+control over the weighting of skills, especially if they do not agree with the TF-IDF scores. To address this,
+MERIT provides a user-friendly interface for manual weight adjustments, following a 5-point Likert scale. This
+design choice is informed by pyschometric research on optimal rating scales \cite{lozano2008effect, coelho2007choice}.
+
+To further support this reasoning, we turn to Miller's Law regarding the limits of human information processing
+($7 \pm 2$ chunks) \cite{miller1956magical}. Users often struggle to make consistent distinctions on wider scales
+(such as 10 or 100 points), which introduces "noise" into the scoring. By providing a 5-point scale, MERIT improves inter-rater
+reliability, and reduces the cognitive load for metric configuration. Currently, these weightings, from 1-5, are linearly mapped 
+to a 0-1 scale to be used in the fusion engine as the Target Weight.
