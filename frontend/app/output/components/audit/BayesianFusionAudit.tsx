@@ -2,9 +2,10 @@ import { AuditItem } from '@/types/audit';
 
 interface BayesianFusionAuditProps {
   item: AuditItem;
+  isBlindMode?: boolean;
 }
 
-const BayesianFusionAudit: React.FC<BayesianFusionAuditProps> = ({ item }) => {
+const BayesianFusionAudit: React.FC<BayesianFusionAuditProps> = ({ item, isBlindMode }) => {
   if (item.alpha === undefined) return null;
 
   return (

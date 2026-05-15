@@ -283,7 +283,9 @@ export default function DetailedReportModal({
                               </div>
                             </div>
                             <div className="text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-3 leading-relaxed">
-                              {item.notes}
+                              {isBlindMode && (item.item === 'Institutional Prestige' || item.component === 'Institutional Prestige') 
+                                ? "Primary institution: Institutional Identity Redacted (Tier information hidden to prevent prestige bias)." 
+                                : item.notes}
                               {item.notes?.includes('Beta') && (
                                 <span className="ml-1.5 inline-flex items-center group relative cursor-help align-middle">
                                   <svg className="w-3.5 h-3.5 text-indigo-500/70 hover:text-indigo-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -304,7 +306,7 @@ export default function DetailedReportModal({
                             {(item.source_details || []).length > 0 && (
                               <div className="grid grid-cols-1 gap-2">
                                 {(item.source_details || []).map((sd: any, j: number) => (
-                                  <AuditSourceCard key={j} sd={sd} j={j} />
+                                  <AuditSourceCard key={j} sd={sd} j={j} isBlindMode={isBlindMode} />
                                 ))}
                               </div>
                             )}
@@ -345,7 +347,7 @@ export default function DetailedReportModal({
                                       exit={{ height: 0, opacity: 0 }}
                                       className="mt-4 pt-4 border-t border-slate-800 space-y-4"
                                     >
-                                      <TemporalDecayAudit item={item} />
+                                      <TemporalDecayAudit item={item} isBlindMode={isBlindMode} />
 
                                       {/* Phase 1: Source Normalisation */}
                                       <div className="space-y-3">
@@ -361,7 +363,9 @@ export default function DetailedReportModal({
                                               </span>
                                             </div>
                                             <div className="text-[11px] font-mono text-zinc-400/90 pl-3 border-l-2 border-indigo-500/30 leading-relaxed italic">
-                                              {sd.derivation}
+                                              {isBlindMode && (sd.source === 'University Anchor' || (item.item === 'Institutional Prestige' || item.component === 'Institutional Prestige'))
+                                                ? "Tier Mapping: Redacted (Institutional Prestige Hidden)"
+                                                : sd.derivation}
                                             </div>
                                             {(sd.source === 'CV' || sd.source === 'LinkedIn') && (
                                               <div className="mt-1 pl-3 text-[9px] font-bold text-amber-500/70 uppercase tracking-tight flex items-center gap-1.5">
@@ -375,7 +379,7 @@ export default function DetailedReportModal({
                                         ))}
                                       </div>
 
-                                      <BayesianFusionAudit item={item} />
+                                      <BayesianFusionAudit item={item} isBlindMode={isBlindMode} />
                                     </motion.div>
                                   )}
                                 </AnimatePresence>
@@ -498,7 +502,9 @@ export default function DetailedReportModal({
                                   {(candidateDetail.cv_experience || []).map((exp: any, i: number) => (
                                     <div key={i} className="relative group/exp">
                                       <div className="flex justify-between items-baseline mb-2">
-                                        <h4 className="text-lg font-black text-zinc-900 dark:text-zinc-50 tracking-tight group-hover/exp:text-indigo-600 transition-colors">{exp.name}</h4>
+                                        <h4 className="text-lg font-black text-zinc-900 dark:text-zinc-50 tracking-tight group-hover/exp:text-indigo-600 transition-colors">
+                                          {isBlindMode ? "Professional Institution Redacted" : exp.name}
+                                        </h4>
                                         <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">{exp.start_date} — {exp.end_date}</span>
                                       </div>
                                       <p className="text-sm font-bold text-zinc-500 mb-4 italic leading-relaxed">{exp.subtitle}</p>
@@ -756,7 +762,7 @@ export default function DetailedReportModal({
                             <div className="flex justify-between items-start mb-4">
                               <div>
                                 <h4 className="font-bold text-zinc-900 dark:text-zinc-50">{exp.position}</h4>
-                                <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400">{exp.company_name}</span>
+                                <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400">{isBlindMode ? "Institution Redacted" : exp.company_name}</span>
                               </div>
                               <span className="text-[10px] font-mono text-zinc-400">{formatDate(exp.start_date)} — {formatDate(exp.end_date) || 'Present'}</span>
                             </div>
@@ -806,7 +812,7 @@ export default function DetailedReportModal({
                             <div key={i} className="p-4 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm flex justify-between items-center">
                               <div>
                                 <h5 className="text-xs font-bold text-zinc-900 dark:text-zinc-50">{vol.position}</h5>
-                                <p className="text-[10px] text-zinc-500 mt-0.5">{vol.organization || 'Community Program'}</p>
+                                <p className="text-[10px] text-zinc-500 mt-0.5">{isBlindMode ? "Organization Redacted" : (vol.organization || 'Community Program')}</p>
                               </div>
                               <span className="text-[10px] font-mono text-zinc-400">{formatDate(vol.start_date)} — {formatDate(vol.end_date) || 'Present'}</span>
                             </div>
@@ -820,7 +826,7 @@ export default function DetailedReportModal({
                           {(candidateDetail.cv_education || []).map((edu: any, i: number) => (
                             <div key={i} className="p-5 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm group/edu hover:border-indigo-500/50 transition-all">
                               <h5 className="font-bold text-sm text-zinc-900 dark:text-zinc-100 group-hover/edu:text-indigo-600 transition-colors">
-                                {isBlindMode ? "Academic Institution" : edu.school_name}
+                                {isBlindMode ? "Institution Redacted (Bias Mitigation Active)" : edu.school_name}
                               </h5>
                               <p className="text-xs text-indigo-600 dark:text-indigo-400 mt-1 font-bold">{edu.degree}</p>
                               <div className="mt-3 pt-3 border-t border-zinc-100 dark:border-zinc-800 flex justify-between items-center">

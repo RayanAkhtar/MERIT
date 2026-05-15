@@ -2,9 +2,10 @@ import { AuditItem } from '@/types/audit';
 
 interface TemporalDecayAuditProps {
   item: AuditItem;
+  isBlindMode?: boolean;
 }
 
-const TemporalDecayAudit: React.FC<TemporalDecayAuditProps> = ({ item }) => {
+const TemporalDecayAudit: React.FC<TemporalDecayAuditProps> = ({ item, isBlindMode }) => {
   if (!item.temporal_formula) return null;
 
   return (

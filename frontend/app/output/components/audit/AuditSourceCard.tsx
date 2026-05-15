@@ -3,9 +3,10 @@ import { SourceDetail } from '@/types/audit';
 interface AuditSourceCardProps {
   sd: SourceDetail;
   j: number;
+  isBlindMode?: boolean;
 }
 
-const AuditSourceCard: React.FC<AuditSourceCardProps> = ({ sd, j }) => {
+const AuditSourceCard: React.FC<AuditSourceCardProps> = ({ sd, j, isBlindMode }) => {
   const isPenalty = (sd.score || 0) < 0;
   const isBridge = sd.is_semantic_bridge;
   
@@ -49,7 +50,9 @@ const AuditSourceCard: React.FC<AuditSourceCardProps> = ({ sd, j }) => {
         )}
         {label}
       </span>
-      <p className={`text-xs leading-tight italic ${isPenalty ? (sd.source?.includes('INTEGRITY') ? 'text-amber-700 dark:text-amber-400 font-bold' : 'text-rose-700 dark:text-rose-400 font-bold') : (isBridge ? 'text-fuchsia-800 dark:text-fuchsia-400' : 'text-zinc-800 dark:text-zinc-200')}`}>"{sd.explanation}"</p>
+      <p className={`text-xs leading-tight italic ${isPenalty ? (sd.source?.includes('INTEGRITY') ? 'text-amber-700 dark:text-amber-400 font-bold' : 'text-rose-700 dark:text-rose-400 font-bold') : (isBridge ? 'text-fuchsia-800 dark:text-fuchsia-400' : 'text-zinc-800 dark:text-zinc-200')}`}>
+        "{isBlindMode && sd.source === 'University Anchor' ? "Institutional Rank & Prestige Redacted" : sd.explanation}"
+      </p>
       {isPenalty && (
         <div className="mt-1 flex items-center gap-1.5">
           <span className={`text-[9px] font-black ${sd.source?.includes('INTEGRITY') ? 'text-amber-500 bg-amber-500/10 border-amber-500/20' : 'text-rose-500 bg-rose-500/10 border-rose-500/20'} px-1.5 py-0.5 rounded border uppercase tracking-tighter`}>
