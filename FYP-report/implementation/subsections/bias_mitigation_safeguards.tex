@@ -1,9 +1,85 @@
 \section{Bias Mitigation \& Safeguards}
 
-TODO: Detail the cross-cutting features designed to protect the integrity of the recruitment process.
+To ensure accurate candidate evaluation while ensuring the integrity of the screening process,
+MERIT incorporates a range of safeguards. These mechanisms are designed to mitigate
+both algorithmic gaming (e.g. keyword stuffing) and also human unconscious bias
+(e.g. institutional or educational prestige).
 
-\subsection{Algorithmic Safeguards}
-TODO: Implementation of the anti-keyword stuffing penalty heuristics and dynamic university tiering.
+\subsection{Algorithmic Safeguards: The Integrity Engine}
+MERIT's backend includes an Integrity Engine, the purpose of which is to audit candidate data for both
+consistency as well as authenticity, flagging any inconsistencies or anomalies that impact the final
+score.
+
+\subsubsection{Anti-Keyword Stuffing Heuristics}
+Keyword stuffing is a common thread in automated CV screenings, where candidates often attempt to inflate their
+scores by repeating job related buzzwords. To counter this on the CV level, MERIT implements an algorithm to
+penalise repeated keywords with a linear point deduction for each instance beyond a certain threshold.
+Refer to Listing \ref{lst:stuffing_logic} for the implementation details.
+\begin{moderncode}[title={Listing \ref{lst:stuffing_logic}: Keyword Stuffing Penalty Logic}]
+    \begin{lstlisting}[language=json, label={lst:stuffing_logic}]
+"ANTI_STUFFING": {
+    "OCCURRENCE_LIMIT": 4,          // Repetitions allowed per CV
+    "PENALTY_PER_OCCURRENCE": 0.08, // 8% reduction per excess
+    "MAX_TOTAL_PENALTY": 0.60       // Penalty cap
+}
+\end{lstlisting}
+\end{moderncode}
+
+
+If a keyword appears more than four times in a CV, the system flags the specific metric (such as Python) and
+applies a linear penalty. This encourages candidates to provide meaningful context rather than lexical repetition.
+In practice the threshold would be higher, and the penalty would be lower to avoid excessive penalisation, however
+this demonstrates the logical implementation.
+
+
+\subsubsection{Identity Consistency Audit (The Squatter Defense)}
+When candidates apply for roles, they often have multiple copies of their own CV, tailored to specific roles. While
+it is ideal to increase the reach of a candidate, candidates often apply for roles that they are not qualified for,
+embellishing claims to appear as a good fit. It is reasonable to assume that candidates may also consider "identity squatting"
+using someone else's portfolio, and passing it off as their own.
+
+To prevent "identity squatting" or the use of fraudulent social profiles, the system performs a fuzzy name-match between the
+CV and the provided GitHub/LinkedIn profiles. We perform a fuzzy match to account for middle names, initials, and other minor variations.
+Any discrepancies are surfaced in the UI, allowing the recruiter to exercise human judgment for edge cases (e.g. legal name changes).
+
+In terms of implementation, we rely on the \textit{difflib} library, more specifically its \texttt{SequenceMatcher} class to calculate a
+similarity ratio between the candidate's name on their CV, and their name on the other data sources. If this ratio falls below 0.7, a
+flat \textbf{20\% Integrity Tax} is applied to the final score. This mechanism attempts to combat the potential for account squatting due to the
+multi-source nature of MERIT.
+
+\subsubsection{Source Trust Anchoring: Claimed vs. Demonstrated Evidence}
+To counter "Self-Report Bias", we leverage our Bayesian Evidence Fusion mechanism. For example, when it comes to extensible metrics,
+we place a higher degree of trust in GitHub (0.9 weight) compared to CV (0.7 weight) or LinkedIn (0.2 weight). This ensures that
+candidates who possess demonstrated evidence are favoured in scoring, as opposed to candidates who may claim skills on their CV without
+the evidence to back it up. This weight selection also possesses a secondary benefit of combating keyword stuffing.
 
 \subsection{Blind Screening Mode \& Anonymisation}
-TODO: Technical implementation of redacting sensitive bias-inducing markers before UI presentation.
+While the backend focuses on technical integrity, the frontend addresses human-centric risks through a toggleable \textbf{Blind Mode} (Figure \ref{fig:blind_mode_ui}).
+
+\subsubsection{PII Redaction \& Identity Masking}
+Personally Identifiable Information (PII) refers to information that can be used to identify an individual, with common examples including names and
+email addresses. As explored in the background section, such markers can lead to unconscious biases regarding a candidate's race, gender, or religion.
+When active, MERIT redacts all PII alongside proxy variables for protected characteristics, such as profile pictures and institutional names. 
+
+This is performed through a custom React component \texttt{renderRedactedText} which wraps sensitive strings. More specifically, our system anonymises:
+\begin{itemize}
+    \item \textbf{Full Names \& Emails:} Replaced with generic identifiers (e.g., "Candidate \#1").
+    \item \textbf{Institutional Data:} School and university names are redacted to prevent "prestige bias" from
+          influencing the recruiter's perception. Note that the tier ranking (e.g. "Tier 1") is preserved
+    \item \textbf{Avatars:} GitHub and LinkedIn profile photos are replaced with generic placeholders.
+\end{itemize}
+
+\subsubsection{Visual De-biasing of Original Documents}
+In the overlay for a candidate's report, it is possible for the recruiter to access and view the original CV. This is often necessary in the event of
+data not being extracted properly. As shown in the background section, recruiters may also hold biases towards specific styles and structures of CVs.
+To mitigate this bias, under blind mode, the original CV is not displayed. Instead, the recruiter is presented with the extracted data in a
+neutral format that is consistent across all candidates. This forces the recruiter to rely on the objective, skill-based evidence, rather than visual
+layouts or potentially biased markers within the text document (such as keywords being bolded).
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.95\textwidth]{implementation/screenshots/blind_mode_ui.png}
+    \caption{The MERIT Intelligence Report in Blind Mode. Note the redacted names and institutional identifiers,
+        ensuring that the initial screening stage is focused purely on verified skills and technical merit.}
+    \label{fig:blind_mode_ui}
+\end{figure}

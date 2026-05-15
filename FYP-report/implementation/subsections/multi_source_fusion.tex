@@ -24,31 +24,15 @@ For both classes of metrics, the system may take into account multiple data sour
 we perform a weighted average of all the metrics to compute the final (match) score.
 
 
-\subsection{Adversarial Mitigation \& Anti-Stuffing Heuristics}
-A common flaw in legacy ATS platforms lies in their vulnerability to adversarial attacks. One such attack is keyword-stuffing,
-a tactic where candidates artificially inflate their scores for individual metrics by repeatedly embedding target keywords
-within their CV, either explicity as black text, or implicitly, using either white-text, or other similar methods. To combat
-this specifical adversarial attack, we follow the industry-standard of applying penalties for repeated stuffing of keywords
-within a CV.
-
-For other data sources beyond the CV, such as LinkedIn and GitHub, we cannot follow these standards as current ATS platforms
-do not yet support these data sources. For this reason, we have developed out own methods of adversarial mitigation to
-anticipate the unique vulnerabilities of these data sources.
-
-\subsubsection{Account Squatting Defense}
-Account Squatting, is the name we have given to the tactic of a candidate attempting to impersonate another user, by passing off
-their profile as their own. To provide a realistic example, if a user applies for a job as a "Machine Learning Engineer" but their
-GitHub profile currently shows a proficiency in the area of "Full-Stack Development", a candidate may be likely to game the system
-by providing a different GitHub URL that highlights another user's experience, thereby "Squatting" another user's profile.
-
-To combat this, we perform an identity consistency audit. This method attempts to cross-reference
-provided data sources, such as LinkedIn and GitHub by performing a fuzzy match on the full name for the associated profile.
-If the similarity ratio between a given data source's name and the name of a candidate is below a certain threshold
-(in our case $0.70$), we will apply a flat $20\%$ penalty to the overall profile score. This threshold is weak enough to account
-for differences in middle names, or seniority titles (e.g. "Dr."), but strict enough to catch adversarial actors attempting to game
-the system by providing different data sources based on the role or job title. It is important to note that the penalty is noted
-on the candidate's profile so that recruiters are aware of potential adversarial activity and can investigate whether or not this
-is the case.
+\subsection{Adversarial Mitigation \& Integrity Layer}
+A common flaw in legacy ATS platforms lies in their vulnerability to adversarial attacks, such as 
+keyword-stuffing or identity squatting. To combat these, MERIT incorporates an Integrity Layer
+that executes concurrently with the signal extraction process. While the detailed heuristics for 
+these safeguards are discussed in Section 4.5, it is important to note that these penalties are applied 
+directly to the raw evidence signals before they enter the Bayesian fusion pipeline. This ensures that 
+poisoned data (in other words, data that warrants a penalty) carries less significance in the final probabilistic 
+model if other signals are still robust. For example, a candidate who gets penalised for keyword stuffing in their CV may 
+still rank highly if they have strong evidence from other sources for that metric.
 
 \subsubsection{Temporal Skill Decay Modelling}
 Skill Decay, first coined by Hermann Ebbinghaus in 1885, refers to the study of the rate at which a skill or

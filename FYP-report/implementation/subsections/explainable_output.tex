@@ -61,29 +61,33 @@ to a data source, and inform the recruiter whether a candidate's score was drive
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.95\textwidth]{implementation/screenshots/shapley_source_breakdown.png}
-    \caption{The Source Influence Breakdown panel from the candidate profile. This figure uses 
-    Shapley Values to demonstrate source influence on the candidate's overall score, ensuring 
-    recruiters understand the basis of the candidate's evidence (claimed evidence or demonstrated evidence).}
+    \caption{The Source Influence Breakdown panel from the candidate profile. This figure uses
+        Shapley Values to demonstrate source influence on the candidate's overall score, ensuring
+        recruiters understand the basis of the candidate's evidence (claimed evidence or demonstrated evidence).}
     \label{fig:shapley_attribution}
 \end{figure}
 
 
-\subsection{Audit Trail Generation}
+\subsection{Audit Trail Generation \& Algorithmic Contestability}
 ATS platforms are often criticised for their lack of transparency and auditability. When a candidate is given a low score,
 or rejected from an ATS, both candidates, as well as the recruiters have no insight as to why that was the case. Due to this,
-neither party can learn from this interaction, challenge the claims that the system makes. It is for this reason that we
-provide a comprehensive audit trail for every candidate that is evaluated by MERIT. This way, we can not only provide rankings
-(like all other ATS systems), but explain why that is the case.
+neither party can learn from this interaction, or challenge the claims that the system makes.
 
-During stage 2 of MERIT (the execution phase), our backend contructs a \texttt{calculation\_summary} along with detailed
-metric breakdowns to populate the \texttt{results\_payload}. Fior each evaluated skill or heuristic, we provide a full
+It is for this reason that MERIT implements the principle of \textit{contestability}. Recruiters are not presented with
+a "black-box" score, instead, they are given the specific evidence signals used to derive that score through a comprehensive
+audit trail. This way, we can not only provide rankings (like all other ATS systems), but explain the quantitative
+reasoning behind them. This end-to-end transparency allows a human-in-the-loop to identify and override potential
+algorithmic edge cases, ensuring that the final decision remains human-centric and auditable.
+
+During stage 2 of MERIT (the execution phase), our backend constructs a \texttt{calculation\_summary} along with detailed
+metric breakdowns to populate the \texttt{results\_payload}. For each evaluated skill or heuristic, we provide a full
 breakdown of the score, from the extracted signals, to the Bayesian Evidence Fusion process. The system explicitly documents
-this logic. For a complete, step-by-step visual breakdown of the Verification Audit for a specific metric 
-(including temporal decay and Bayesian fusion), please refer to Appendix \ref{appendix:math_trail}. This explicitly demonstrates 
+this logic. For a complete, step-by-step visual breakdown of the Verification Audit for a specific metric
+(including temporal decay and Bayesian fusion), please refer to Appendix \ref{appendix:math_trail}. This explicitly demonstrates
 how the level of confidence is derived, along with the Shapley Values for each data source.
 
-This end-to-end transparency aims to bridge the gap between probabilistic mathematics with practical recruitment workflows.
-By providing this, we attempt to fully realise MERIT's goal of becoming a "Glass-Box" ATS.
+This "Glass-Box" approach attempts to bridge the gap between complex probabilistic mathematics and practical recruitment
+workflows, transforming a binary hiring decision into a defensible and interrogate-able process.
 
 
 \subsection{Dynamic Cohort Normalisation}
@@ -121,17 +125,17 @@ ensuring full transparency.
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.95\textwidth]{implementation/screenshots/candidate_rankings_dashboard.png}
-    \caption{The main Intelligence Report dashboard displaying the candidate rankings. Recruiters can view scores 
-    across all configured metrics alongside confidence badges. Warnings are illustrated by the amber traffic light icons,
-    flagging penalties such as keyword-stuffing.}  
+    \caption{The main Intelligence Report dashboard displaying the candidate rankings. Recruiters can view scores
+        across all configured metrics alongside confidence badges. Warnings are illustrated by the amber traffic light icons,
+        flagging penalties such as keyword-stuffing.}
     \label{fig:candidate_rankings}
 \end{figure}
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.95\textwidth]{implementation/screenshots/metric_insights_panel.png}
-    \caption{The expanded Insights panel for a specific metric (Python). This view presents the traffic-light 
-    confidence badge, the human-readable logic string, the aggregated signals, and actionable advice on how the 
-    score could be improved.}
+    \caption{The expanded Insights panel for a specific metric (Python). This view presents the traffic-light
+        confidence badge, the human-readable logic string, the aggregated signals, and actionable advice on how the
+        score could be improved.}
     \label{fig:insights_dashboard}
 \end{figure}
