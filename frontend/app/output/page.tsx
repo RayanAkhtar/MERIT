@@ -218,14 +218,14 @@ function RankingReport() {
           ? Math.min(1.0, metricTotalPoints / validBreakdown.length) 
           : (isAllSourcesActive ? (originalMetric.score || 0) : 0);
 
-        // APPLY INTEGRITY PENALTY (if applicable)
-        // This ensures that even if sources are toggled, the keyword stuffing penalty
-        // persists as long as the CV source is active (since stuffing is CV-based).
-        if (originalMetric.integrity_penalty_applied && activeSources.includes('CV')) {
-            const pVal = originalMetric.integrity_penalty_value || 0;
-            newMetricScore = Math.max(0, newMetricScore - pVal);
+        // PRESERVE INTEGRITY FLAG
+        // The penalty is already applied to the CV signal strength in the backend,
+        // so we don't subtract it again here (to avoid double-counting).
+        // We just ensure the flag is passed through for UI styling.
+        if (originalMetric.integrity_penalty_applied) {
             newMetric.integrity_penalty_applied = true;
-            newMetric.integrity_penalty_value = pVal;
+            newMetric.integrity_penalty_value = originalMetric.integrity_penalty_value;
+            newMetric.integrity_audit_details = originalMetric.integrity_audit_details;
         }
 
         newMetric.score = newMetricScore;
@@ -255,7 +255,15 @@ function RankingReport() {
         dynamicTotalWeight += newMetric.weight;
       });
 
-      const finalDynamicScore = dynamicTotalWeight > 0 ? (dynamicWeightedSum / dynamicTotalWeight) : 0;
+      let finalDynamicScore = dynamicTotalWeight > 0 ? (dynamicWeightedSum / dynamicTotalWeight) : 0;
+      
+      // APPLY GLOBAL IDENTITY VETO TO DYNAMIC SCORE
+      // If the identity penalty exists and we are currently viewing the sources that triggered it (CV + GitHub)
+      const identityPenalty = c.calculation_summary?.identity_penalty || 0;
+      if (identityPenalty > 0 && activeSources.includes('CV') && activeSources.includes('GitHub')) {
+          finalDynamicScore = Math.max(0, finalDynamicScore - identityPenalty);
+      }
+
       const dynamicComputedScores: Record<string, number> = {};
       Object.entries(dynamicMetrics).forEach(([key, m]: [string, any]) => {
          dynamicComputedScores[key] = Math.round(m.score * 100);
@@ -600,14 +608,22 @@ function RankingReport() {
                       </td>
                       <td className="px-5 py-4 bg-indigo-50/30 dark:bg-indigo-900/5 border-x border-zinc-100 dark:border-zinc-800/60">
                          <div className="flex items-center gap-2">
-                            <span className={`text-base font-black ${cand.calculation_summary?.integrity_penalty > 0 ? 'text-amber-600 dark:text-amber-500' : 'text-indigo-600 dark:text-indigo-400'}`}>
-                              {cand.overallScore}%
-                            </span>
-                            {cand.calculation_summary?.integrity_penalty > 0 && (
-                               <svg className="w-3.5 h-3.5 text-amber-500 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                               </svg>
-                            )}
+                             <span className={`text-base font-black ${
+                                (cand.calculation_summary?.identity_penalty || 0) > 0 
+                                  ? 'text-rose-600 dark:text-rose-500' 
+                                  : (cand.calculation_summary?.integrity_penalty || 0) > 0 
+                                    ? 'text-amber-600 dark:text-amber-500' 
+                                    : 'text-indigo-600 dark:text-indigo-400'
+                             }`}>
+                               {cand.overallScore}%
+                             </span>
+                             {((cand.calculation_summary?.integrity_penalty || 0) > 0 || (cand.calculation_summary?.identity_penalty || 0) > 0) && (
+                                <svg className={`w-4 h-4 animate-pulse ${
+                                  (cand.calculation_summary?.identity_penalty || 0) > 0 ? 'text-rose-500' : 'text-amber-500'
+                                }`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                             )}
                          </div>
                       </td>
                        {visibleMetrics.map(m => {
@@ -620,20 +636,20 @@ function RankingReport() {
                            <td key={m.key} className="px-4 py-4 font-mono text-sm border-r border-zinc-100 dark:border-zinc-800/30 last:border-0">
                               <div className="flex items-center gap-2">
                                  <span className={
-                                   hasPenalty ? "text-rose-500 font-bold" : 
+                                   hasPenalty ? "text-amber-600 dark:text-amber-500 font-bold" : 
                                    hasWarning ? "text-amber-600 dark:text-amber-500 font-bold" :
                                    (metricData?.has_semantic_bridge ? "text-fuchsia-600 dark:text-fuchsia-400 font-bold" : (score > 70 ? "text-green-500" : "text-zinc-600 dark:text-zinc-400"))
                                  }>
                                     {score}%
                                  </span>
                                  {hasPenalty && (
-                                    <svg className="w-3 h-3 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                    <svg className="w-3 h-3 text-amber-500 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                  )}
                                  {hasWarning && !hasPenalty && (
                                     <svg className="w-3 h-3 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                  )}
                                  {metricData?.has_semantic_bridge && !hasPenalty && !hasWarning && (

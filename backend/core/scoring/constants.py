@@ -46,6 +46,10 @@ SCORING_CONSTANTS = {
         "PENALTY_PER_OCCURRENCE": 0.08,    # Score reduction for each occurrence over limit
         "MAX_TOTAL_PENALTY": 0.60          # Cap the penalty at 60% of score for that metric
     },
+    "INTEGRITY": {
+        "SQUATTER_PENALTY": 0.20,      # Penalty for name mismatches (dock 20%)
+        "SCORE_CAP": 1.0                   # Ensure no metric exceeds 100%
+    },
     "FUSION": {
         "SOURCE_CONFIDENCE": {
             "TECHNICAL_SKILLS": {

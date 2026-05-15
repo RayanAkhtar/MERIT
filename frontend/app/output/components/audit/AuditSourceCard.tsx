@@ -14,8 +14,9 @@ const AuditSourceCard: React.FC<AuditSourceCardProps> = ({ sd, j }) => {
   let label = `${sd.source} Signal`;
 
   if (isPenalty) {
-    cardStyles = 'bg-rose-500/5 border-rose-500/20';
-    textStyles = 'text-rose-500 flex items-center gap-1.5';
+    const isIntegrity = sd.source?.includes('INTEGRITY');
+    cardStyles = isIntegrity ? 'bg-amber-500/5 border-amber-500/20' : 'bg-rose-500/5 border-rose-500/20';
+    textStyles = `${isIntegrity ? 'text-amber-500' : 'text-rose-500'} flex items-center gap-1.5`;
     label = `Penalty: ${sd.source}`;
   } else if (isBridge) {
     cardStyles = 'bg-fuchsia-500/5 border-fuchsia-500/20';
@@ -28,7 +29,7 @@ const AuditSourceCard: React.FC<AuditSourceCardProps> = ({ sd, j }) => {
       <span className={`text-[10px] font-black uppercase tracking-widest ${textStyles}`}>
         {isPenalty && (
           <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         )}
         {isBridge && (
@@ -48,10 +49,10 @@ const AuditSourceCard: React.FC<AuditSourceCardProps> = ({ sd, j }) => {
         )}
         {label}
       </span>
-      <p className={`text-xs leading-tight italic ${isPenalty ? 'text-rose-700 dark:text-rose-400 font-bold' : (isBridge ? 'text-fuchsia-800 dark:text-fuchsia-400' : 'text-zinc-800 dark:text-zinc-200')}`}>"{sd.explanation}"</p>
+      <p className={`text-xs leading-tight italic ${isPenalty ? (sd.source?.includes('INTEGRITY') ? 'text-amber-700 dark:text-amber-400 font-bold' : 'text-rose-700 dark:text-rose-400 font-bold') : (isBridge ? 'text-fuchsia-800 dark:text-fuchsia-400' : 'text-zinc-800 dark:text-zinc-200')}`}>"{sd.explanation}"</p>
       {isPenalty && (
         <div className="mt-1 flex items-center gap-1.5">
-          <span className="text-[9px] font-black text-rose-500 bg-rose-500/10 px-1.5 py-0.5 rounded border border-rose-500/20 uppercase tracking-tighter">
+          <span className={`text-[9px] font-black ${sd.source?.includes('INTEGRITY') ? 'text-amber-500 bg-amber-500/10 border-amber-500/20' : 'text-rose-500 bg-rose-500/10 border-rose-500/20'} px-1.5 py-0.5 rounded border uppercase tracking-tighter`}>
             Reduction: {((sd.score || 0) * 100).toFixed(0)}%
           </span>
         </div>

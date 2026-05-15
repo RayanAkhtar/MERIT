@@ -113,31 +113,42 @@ class ScoringRegistry:
                 }
             }
 
+        from .constants import SCORING_CONSTANTS
+        integrity_cfg = SCORING_CONSTANTS.get("INTEGRITY", {"SQUATTER_PENALTY": 0.2, "SCORE_CAP": 1.0})
+
+        # Pre-calculate integrity audit to pass to individual metrics
+        target_keywords = []
+        jd_metrics = job_requirements.get("metrics", {})
+        for category in ["Languages", "Technologies"]:
+            vals = jd_metrics.get(category, {}).get("value", [])
+            for v in vals:
+                if isinstance(v, dict):
+                    target_keywords.append(v.get("value"))
+                else:
+                    target_keywords.append(v)
+        
+        candidate_cv = candidate_data.get("raw_cv_text") or candidate_data.get("full_cv_text") or ""
+        stuffing_audit = self.stuffing_detector.analyze(candidate_cv, target_keywords)
+
         for key in keys_to_run:
             metric = self._get_metric_for_key(key, job_requirements)
             if not metric:
-                # If no handler, skip or provide a zero score
                 continue
                 
-            # figure out which bits are active for this metric
             active_items = None
             if key.startswith("req_"):
-                # pass the specific item to the metric
                 clean_name = key.replace("req_", "").replace("_", " ")
                 active_items = [clean_name]
 
-            # scoring
-            # pass the specific key as context if needed
-            res = metric.calculate(candidate_data, job_requirements, active_items=active_items) or {}
-            
-            # apply the weight from the config
+            res = metric.calculate(candidate_data, job_requirements, active_items=active_items, stuffing_audit=stuffing_audit) or {}
             raw_weight = weights.get(key, 0.0) if (weights and weights.get(key) is not None) else 0.0
             
-            metric_score = float(res.get("score") or 0.0)
+            # CRITICAL FIX: Cap individual metric scores at 1.0 to prevent total > 100%
+            metric_score = min(integrity_cfg.get("SCORE_CAP", 1.0), float(res.get("score") or 0.0))
+            
             total_weighted_score += metric_score * raw_weight
             total_weight += raw_weight
             
-            # merge the results into the final dict for the frontend
             merged_res = {**res}
             merged_res.update({
                 "name": active_items[0] if (active_items and len(active_items) > 0) else (metric.name if metric else "Unknown Metric"),
@@ -152,9 +163,10 @@ class ScoringRegistry:
             })
             results[key] = merged_res
 
+        # Recalculate baseline overall score
         overall_score = total_weighted_score / total_weight if total_weight > 0 else 0.0
 
-        # penalty for keyword stuffing so people can't game the system
+        # integrity audit
         target_keywords = []
         jd_metrics = job_requirements.get("metrics", {})
         for category in ["Languages", "Technologies"]:
@@ -165,25 +177,16 @@ class ScoringRegistry:
                 else:
                     target_keywords.append(str(v))
 
-        
-        # check specific requirements from the active keys
         for key in keys_to_run:
             if key.startswith("req_"):
                 target_keywords.append(key.replace("req_", "").replace("_", " "))
         
-        # Deduplicate and filter out empty strings to prevent the '200% density' bug
         target_keywords = list(set([k for k in target_keywords if k and str(k).strip()]))
-
-
-        # use the raw cv text for the most accurate count
         cv_text = candidate_data.get("raw_cv_text") or candidate_data.get("full_cv_text") or ""
         stuffing_audit = self.stuffing_detector.analyze(cv_text, target_keywords)
 
-        # 1. Identity Consistency Audit (The Squatter Defense)
-        # 2. Identity Lock: Cross-reference CV name with Social Profile
-        # We use fuzzy matching to allow for middle names, initials, or minor typos
+        # Identity Consistency Audit
         import difflib
-        
         cv_name = str(candidate_data.get("name", "")).lower().strip()
         gh_profile = candidate_data.get("github_enriched") or candidate_data.get("github_profile") or {}
         gh_name = str(gh_profile.get("name", "")).lower().strip()
@@ -191,91 +194,78 @@ class ScoringRegistry:
         identity_penalty = 0.0
         similarity = 1.0
         
-        if gh_name and cv_name:
-            # Calculate similarity ratio (0.0 to 1.0)
-            similarity = difflib.SequenceMatcher(None, cv_name, gh_name).ratio()
-            
-            # Threshold Check: If similarity < 70%, it's likely a different person
-            # We also check for name inclusion (e.g., "Rayan Akhtar" in "Rayan S. Akhtar")
-            if similarity < 0.7 and cv_name not in gh_name and gh_name not in cv_name:
-                # Identity Hijack detected: Apply a flat 20% integrity tax
-                identity_penalty = 0.20
-                # print(f"DEBUG [Registry]: Identity Mismatch! {cv_name} vs {gh_name} (Sim: {similarity:.2f})")
-            # print(f"DEBUG [Registry]: IDENTITY MISMATCH! CV({cv_name}) vs GH({gh_name})")
-
-        penalty = stuffing_audit["penalty"] + identity_penalty
-        final_adjusted_score = max(0.0, overall_score - penalty)
+        # Only apply squatter penalty if we actually found a name on the profile
+        # to avoid penalising missing data as a mismatch.
+        valid_gh_name = gh_name and gh_name != "none" and len(gh_name) > 2
         
-        # wrap up the metrics and shove the penalties in so recruiters can see why
-        flagged_keys = []
+        if valid_gh_name and cv_name:
+            similarity = difflib.SequenceMatcher(None, cv_name, gh_name).ratio()
+            # If similarity < 70% and no substring match, apply the Veto
+            if similarity < 0.7 and cv_name not in gh_name and gh_name not in cv_name:
+                identity_penalty = integrity_cfg.get("SQUATTER_PENALTY", 0.20)
+
+        # Flag stuffing penalties in the individual metrics for UI transparency
+        # The actual score deduction is handled natively by the metric templates 
+        # (e.g. LanguageExpertiseMetric) at the signal level.
         for term_audit in stuffing_audit["flagged_terms"]:
             term = term_audit["term"].lower().replace(" ", "_")
             req_key = f"req_{term}"
+            p_val = term_audit["penalty_contribution"]
+            audit_data = {
+                "term": term_audit["term"],
+                "count": term_audit["count"],
+                "density": term_audit["density"],
+                "limit": integrity_cfg.get("OCCURRENCE_LIMIT", 4),
+                "penalty_per": integrity_cfg.get("PENALTY_PER_OCCURRENCE", 0.08)
+            }
+
+            # Flag the specific requirement (e.g. req_python)
             if req_key in results:
                 m = results[req_key]
-                p_val = term_audit["penalty_contribution"]
-                
-                # update score (penalise once)
-                old_score = m["score"]
-                m["score"] = max(0.0, old_score - p_val)
-                
-                # update left-hand signals
-                m["breakdown"].append({
-                    "item": "Authenticity & Integrity Audit",
-                    "notes": f"INTEGRITY ENGINE: Detected {term_audit['count']} occurrences of '{term_audit['term']}', which exceeds the natural repetition limit ({self.stuffing_detector.cfg['OCCURRENCE_LIMIT']}). A penalty of 2% per excess occurrence was applied to ensure the match remains authentic and not gamed via keyword stuffing.",
-                    "source_details": [
-                        {
-                            "source": "INTEGRITY AUDIT",
-                            "explanation": f"Excessive keyword repetition detected for '{term_audit['term']}'. Frequency: {term_audit['count']}x | Density: {term_audit['density']}.",
-                            "score": -p_val
-                        }
-                    ]
-                })
-                
-                # add metadata for frontend highlighting
                 m["integrity_penalty_applied"] = True
                 m["integrity_penalty_value"] = p_val
-                m["integrity_audit_details"] = {
-                    "count": term_audit['count'],
-                    "limit": self.stuffing_detector.cfg['OCCURRENCE_LIMIT'],
-                    "penalty_per": self.stuffing_detector.cfg['PENALTY_PER_OCCURRENCE'],
-                    "term": term_audit['term']
-                }
-                
-                # update right-hand formula
-                if m.get("technical_formula"):
-                    m["technical_formula"] = f"({m['technical_formula']}) - {p_val:.2f} [Integrity Penalty] = {m['score']:.2f}"
-                else:
-                    m["technical_formula"] = f"{old_score:.2f} - {p_val:.2f} [Integrity Penalty] = {m['score']:.2f}"
-                
-                flagged_keys.append(req_key)
+                m["integrity_audit_details"] = audit_data
 
-        # recalculate overall score based on the finalised (potentially penalised) metrics
-        new_total_weighted_score = sum((m.get("score") or 0.0) * (m.get("weight") or 0.0) for m in results.values())
-        final_adjusted_score = new_total_weighted_score / total_weight if total_weight > 0 else 0.0
+            # Flag the parent category metric if applicable
+            jd_metrics = job_requirements.get("metrics", {})
+            for cat_id, cat_name in [("languages", "Languages"), ("technologies", "Technologies")]:
+                if cat_id in results:
+                    cat_vals = [v.get("value") if isinstance(v, dict) else v for v in jd_metrics.get(cat_name, {}).get("value", [])]
+                    if any(str(v).lower() == term_audit["term"].lower() for v in cat_vals):
+                        results[cat_id]["integrity_penalty_applied"] = True
+                        # If multiple terms are stuffed, we show the highest penalty audit
+                        if p_val > results[cat_id].get("integrity_penalty_value", 0):
+                            results[cat_id]["integrity_penalty_value"] = p_val
+                            results[cat_id]["integrity_audit_details"] = audit_data
+
+        # Recalculate finalized overall score after stuffing penalties
+        weighted_sum = sum((m.get("score") or 0.0) * (m.get("weight") or 0.0) for m in results.values())
+        raw_average = weighted_sum / total_weight if total_weight > 0 else 0.0
         
-        # APPLY GLOBAL IDENTITY PENALTY (VETO)
-        if identity_penalty > 0:
-            final_adjusted_score = max(0.0, final_adjusted_score - identity_penalty)
-            # print(f"DEBUG [Registry]: Final Adjusted Score after Identity Tax: {final_adjusted_score}")
+        # apply global identity veto (deduct from the average)
+        final_adjusted_score = max(0.0, raw_average - identity_penalty)
 
         stuffing_notes = ""
         if identity_penalty > 0:
-            stuffing_notes = "IDENTITY MISMATCH PENALTY APPLIED: CV Name does not match Social Profile. "
-        
+            stuffing_notes = f"SQUATTER PENALTY: dock of {int(identity_penalty*100)}% applied. "
         if stuffing_audit["is_stuffed"]:
-            terms = ", ".join([f"{t['term']} ({t['count']}x)" for t in stuffing_audit["flagged_terms"][:3]])
-            stuffing_notes += f"INTEGRITY PENALTY APPLIED: Multiple metrics flagged for keyword repetition: {terms}"
+            stuffing_notes += "INTEGRITY PENALTY: Keyword stuffing detected."
 
+        # final logic string showing the actual deduction
+        logic_formula = f"({weighted_sum:.2f} pts / {total_weight:.1f} max)"
+        if identity_penalty > 0:
+            logic_formula = f"[{logic_formula} - {identity_penalty:.2f} Veto]"
+            
         return {
-            "overall_score": final_adjusted_score,
-            "integrity_penalty": penalty, 
+            "overall_score": round(final_adjusted_score, 3),
+            "integrity_penalty": stuffing_audit["penalty"] + identity_penalty, 
             "calculation_summary": {
                 "formula": "SUM(PenalisedMetricScore * Weight) / SUM(Weights) - IdentityPenalty",
-                "weighted_sum": new_total_weighted_score,
+                "weighted_sum": weighted_sum,
                 "total_weight": total_weight,
                 "base_score": overall_score,
-                "integrity_penalty": penalty,
+                "raw_average": raw_average,
+                "integrity_penalty": stuffing_audit["penalty"] + identity_penalty,
                 "identity_penalty": identity_penalty,
                 "identity_audit_details": {
                     "cv_name": cv_name.title(),
@@ -284,7 +274,7 @@ class ScoringRegistry:
                     "status": "MISMATCH" if identity_penalty > 0 else "VERIFIED"
                 } if gh_name else None,
                 "stuffing_audit": stuffing_audit["flagged_terms"],
-                "logic": f"Final Match % [CONSISTENCY_SYNC_ACTIVE] = ({new_total_weighted_score:.2f} pts) / ({total_weight:.1f} max). {stuffing_notes}"
+                "logic": f"Final Match % [CONSISTENCY_SYNC_ACTIVE] = {logic_formula} = {final_adjusted_score:.3f}. {stuffing_notes}"
             },
             "metrics": results
         }

@@ -27,7 +27,7 @@ class ExperienceMetric(BaseMetric):
     def description(self) -> str:
         return "Evaluates career trajectory, role progression, and years of applicable experience across CV and LinkedIn."
         
-    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: List[str] = None) -> Dict[str, Any]:
+    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: List[str] = None, **kwargs) -> Dict[str, Any]:
         from datetime import datetime
         import re
 
@@ -216,7 +216,7 @@ class ProjectsMetric(BaseMetric):
     def description(self) -> str:
         return "Assesses the scale, impact, and relevance of public and documented technical projects."
         
-    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: List[str] = None) -> Dict[str, Any]:
+    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: List[str] = None, **kwargs) -> Dict[str, Any]:
         from difflib import SequenceMatcher
         import math
         
@@ -351,7 +351,7 @@ class TechSkillsMetric(BaseMetric):
     def description(self) -> str:
         return "Evaluates the breadth and practical depth of the candidate's engineering toolbelt."
         
-    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: List[str] = None) -> Dict[str, Any]:
+    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: List[str] = None, **kwargs) -> Dict[str, Any]:
         # Aggregate all unique skills from the candidate's profile
         raw_skills = candidate_data.get('skills', []) or []
         candidate_skills = sorted(list(set([s.lower() for s in raw_skills])))
@@ -444,7 +444,7 @@ class GithubComplexityMetric(BaseMetric):
     def description(self) -> str:
         return "Analyses the architectural complexity and lines of code of open source contributions."
         
-    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: List[str] = None) -> Dict[str, Any]:
+    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: List[str] = None, **kwargs) -> Dict[str, Any]:
         gh_data = candidate_data.get('github_enriched', {})
         # use the full repo list for the depth analysis
         projects = gh_data.get('repositories', []) or gh_data.get('featured_projects', [])
@@ -539,7 +539,7 @@ class GithubAlignmentMetric(BaseMetric):
     def description(self) -> str:
         return "Measures how well the candidate's GitHub language ecosystem aligns with the job requirements."
         
-    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: List[str] = None) -> Dict[str, Any]:
+    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: List[str] = None, **kwargs) -> Dict[str, Any]:
         gh_data = candidate_data.get('github_enriched', {})
         # DEBUG: See what the scoring engine actually sees
         # print(f"DEBUG: Scoring Candidate: {candidate_data.get('name')} | GH Data Keys: {list(gh_data.keys()) if gh_data else 'None'}")
@@ -773,7 +773,7 @@ class GithubImpactMetric(BaseMetric):
     def description(self) -> str:
         return "Evaluates open-source community traction through stars, forks, and external PRs."
         
-    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: List[str] = None) -> Dict[str, Any]:
+    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: List[str] = None, **kwargs) -> Dict[str, Any]:
         gh_data = candidate_data.get('github_enriched', {})
         if not gh_data: return {"score": 0.0, "breakdown": [], "sources_used": ["GitHub"], "formula": "none", "technical_formula": "none", "glossary": [], "improvements": [{"text": "No GitHub data available", "gain": 0.0}]}
         
@@ -838,7 +838,7 @@ class LinkedinExtracurricularMetric(BaseMetric):
     def description(self) -> str:
         return "Assesses hackathons, publications, and professional volunteering presence."
         
-    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: List[str] = None) -> Dict[str, Any]:
+    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: List[str] = None, **kwargs) -> Dict[str, Any]:
         extra = candidate_data.get('extracurricular', []) or []
         li_data = candidate_data.get('linkedin_enriched', {})
         
@@ -878,7 +878,7 @@ class LinkedinNetworkMetric(BaseMetric):
     def description(self) -> str:
         return "Evaluates the breadth of the candidate's professional network."
         
-    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: List[str] = None) -> Dict[str, Any]:
+    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: List[str] = None, **kwargs) -> Dict[str, Any]:
         li_data = candidate_data.get('linkedin_enriched', {})
         if not li_data: return {"score": 0.3, "breakdown": [], "sources_used": ["LinkedIn"], "formula": "none", "technical_formula": "none", "glossary": [], "improvements": ["No LinkedIn data available"]}
         

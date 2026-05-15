@@ -15,7 +15,7 @@ class EducationMetric(BaseMetric):
     def description(self) -> str:
         return "Evaluates degree level and school prestige by cross-referencing CV data with LinkedIn education records."
 
-    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: Optional[List[str]] = None) -> Dict[str, Any]:
+    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: Optional[List[str]] = None, **kwargs) -> Dict[str, Any]:
         breakdown = []
         sources_used = ["CV"]
         

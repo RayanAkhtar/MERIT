@@ -3,9 +3,10 @@ import { MetricAudit, StuffingAudit } from '@/types/audit';
 interface ScoringAuditProps {
   candidate: any;
   onMetricClick?: (key: string) => void;
+  isBlindMode?: boolean;
 }
 
-export default function ScoringAudit({ candidate, onMetricClick }: ScoringAuditProps) {
+export default function ScoringAudit({ candidate, onMetricClick, isBlindMode }: ScoringAuditProps) {
   console.log("DEBUG [ScoringAudit]: calculation_summary ->", candidate.calculation_summary);
   const sortedMetrics = (Object.entries(candidate.fullMetrics || {}) as [string, MetricAudit][])
     .sort(([, a], [, b]) => {
@@ -40,7 +41,7 @@ export default function ScoringAudit({ candidate, onMetricClick }: ScoringAuditP
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <h4 className={`text-[10px] font-black uppercase tracking-[0.2em] ${candidate.calculation_summary.identity_penalty > 0 ? 'text-indigo-500' : 'text-emerald-500'}`}>
-                    Identity Integrity Audit: {candidate.calculation_summary.identity_penalty > 0 ? 'Mismatch Detected' : 'Verified'}
+                    Squatter Integrity Audit: {candidate.calculation_summary.identity_penalty > 0 ? 'Mismatch Detected' : 'Verified'}
                   </h4>
                   {candidate.calculation_summary.identity_penalty > 0 && (
                     <span className="px-1.5 py-0.5 bg-rose-500 text-white text-[8px] font-black rounded uppercase tracking-widest animate-pulse">Critical Flag</span>
@@ -54,23 +55,27 @@ export default function ScoringAudit({ candidate, onMetricClick }: ScoringAuditP
               {candidate.calculation_summary.identity_penalty > 0 ? (
                 <>
                   <p className="text-sm font-bold text-zinc-900 dark:text-zinc-100 mb-6 leading-relaxed">
-                    The identity audit found a significant mismatch (Confidence: {candidate.calculation_summary.identity_audit_details.similarity}%). 
-                    A penalty of <span className="text-indigo-500 font-black">{(candidate.calculation_summary.identity_penalty * 100).toFixed(0)}%</span> has been applied.
+                    The squatter audit found a significant mismatch (Confidence: {candidate.calculation_summary.identity_audit_details.similarity}%). 
+                    A "Squatter Penalty" of <span className="text-indigo-500 font-black">{(candidate.calculation_summary.identity_penalty * 100).toFixed(0)}%</span> has been applied.
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="p-4 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
                       <p className="text-[9px] font-black text-zinc-400 uppercase tracking-widest mb-1">Name on CV</p>
-                      <p className="text-sm font-black text-zinc-800 dark:text-zinc-200">{candidate.calculation_summary.identity_audit_details?.cv_name}</p>
+                      <p className="text-sm font-black text-zinc-800 dark:text-zinc-200">
+                        {isBlindMode ? "Redacted (Identity Mask Active)" : (candidate.calculation_summary.identity_audit_details?.cv_name || "---")}
+                      </p>
                     </div>
                     <div className="p-4 bg-indigo-500/5 rounded-xl border border-indigo-500/20 shadow-sm">
                       <p className="text-[9px] font-black text-indigo-400 uppercase tracking-widest mb-1">Social Profile Owner</p>
-                      <p className="text-sm font-black text-indigo-600 dark:text-indigo-400">{candidate.calculation_summary.identity_audit_details?.profile_name}</p>
+                      <p className="text-sm font-black text-indigo-600 dark:text-indigo-400">
+                        {isBlindMode ? "Redacted (Identity Mask Active)" : (candidate.calculation_summary.identity_audit_details?.profile_name || "---")}
+                      </p>
                     </div>
                   </div>
                 </>
               ) : (
                 <p className="text-xs font-bold text-zinc-500 dark:text-zinc-400">
-                  Identity consistency confirmed. Signal from <span className="text-emerald-500 uppercase tracking-tight font-black">{candidate.calculation_summary.identity_audit_details.profile_name}</span> has been successfully linked to <span className="text-emerald-500 uppercase tracking-tight font-black">{candidate.name}</span>.
+                  Identity consistency confirmed. Signal from <span className="text-emerald-500 uppercase tracking-tight font-black">{isBlindMode ? "Verified Source" : candidate.calculation_summary.identity_audit_details.profile_name}</span> has been successfully linked to <span className="text-emerald-500 uppercase tracking-tight font-black">{isBlindMode ? "Candidate" : candidate.name}</span>.
                 </p>
               )}
             </div>
@@ -80,25 +85,25 @@ export default function ScoringAudit({ candidate, onMetricClick }: ScoringAuditP
 
       {/* Integrity Audit: Keyword Stuffing */}
       {(candidate.integrity_penalty > 0 || candidate.calculation_summary?.integrity_penalty > 0) && (candidate.calculation_summary?.stuffing_audit?.length > 0) && (
-        <div className="p-8 bg-rose-500/5 rounded-2xl border-2 border-rose-500/20 shadow-xl relative overflow-hidden group/penalty animate-in zoom-in-95 duration-500">
-          <div className="absolute -top-12 -right-12 w-32 h-32 bg-rose-500/10 rounded-full blur-3xl group-hover/penalty:bg-rose-500/20 transition-all duration-700" />
+        <div className="p-8 bg-amber-500/5 rounded-2xl border-2 border-amber-500/20 shadow-xl relative overflow-hidden group/penalty animate-in zoom-in-95 duration-500">
+          <div className="absolute -top-12 -right-12 w-32 h-32 bg-amber-500/10 rounded-full blur-3xl group-hover/penalty:bg-amber-500/20 transition-all duration-700" />
           <div className="flex items-start gap-4">
-            <div className="p-3 bg-rose-500/20 rounded-xl border border-rose-500/30">
-              <svg className="w-6 h-6 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            <div className="p-3 bg-amber-500/20 rounded-xl border border-amber-500/30">
+              <svg className="w-6 h-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
             <div>
-              <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-rose-500 mb-2">Integrity Audit: Keyword Stuffing Detected</h4>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-amber-500 mb-2">Integrity Audit: Keyword Stuffing Detected</h4>
               <p className="text-sm font-bold text-zinc-900 dark:text-zinc-100 mb-4">
                 The scoring engine detected unnatural repetition of buzzwords in the CV. 
-                An integrity penalty of <span className="text-rose-500">{(candidate.calculation_summary.integrity_penalty * 100).toFixed(0)}%</span> was subtracted from the final score.
+                An integrity penalty of <span className="text-amber-500">{(candidate.calculation_summary.integrity_penalty * 100).toFixed(0)}%</span> was subtracted from the final score.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {(candidate.calculation_summary.stuffing_audit || []).map((audit: StuffingAudit, i: number) => (
-                  <div key={i} className="p-2.5 bg-rose-500/5 rounded-lg border border-rose-500/10 flex justify-between items-center text-xs">
-                    <span className="font-bold text-rose-600 dark:text-rose-400">{audit.term}</span>
-                    <span className="text-[10px] font-black text-rose-400/80 uppercase tracking-widest">{audit.count}x / {audit.density} density</span>
+                  <div key={i} className="p-2.5 bg-amber-500/5 rounded-lg border border-amber-500/10 flex justify-between items-center text-xs">
+                    <span className="font-bold text-amber-600 dark:text-amber-500">{audit.term}</span>
+                    <span className="text-[10px] font-black text-amber-500/80 uppercase tracking-widest">{audit.count}x / {audit.density} density</span>
                   </div>
                 ))}
               </div>
@@ -172,12 +177,12 @@ export default function ScoringAudit({ candidate, onMetricClick }: ScoringAuditP
           >
             <div className="flex justify-between items-start mb-4">
               <div className="flex flex-col gap-1">
-                <h5 className="font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2 group-hover/formula:text-indigo-600 transition-colors">
+                <h5 className={`font-bold flex items-center gap-2 transition-colors ${m.integrity_penalty_applied ? 'text-amber-600 dark:text-amber-500' : 'text-zinc-900 dark:text-zinc-100 group-hover/formula:text-indigo-600'}`}>
                   {m.name}
                   {m.integrity_penalty_applied && (
-                    <span className="flex items-center gap-1 text-[9px] font-black text-rose-500 bg-rose-500/10 px-1.5 py-0.5 rounded border border-rose-500/20 uppercase tracking-widest animate-pulse">
+                    <span className="flex items-center gap-1 text-[9px] font-black text-amber-500 bg-amber-500/10 px-1.5 py-0.5 rounded border border-amber-500/20 uppercase tracking-widest animate-pulse">
                       <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                       Audit Flag
                     </span>
@@ -185,7 +190,7 @@ export default function ScoringAudit({ candidate, onMetricClick }: ScoringAuditP
                 </h5>
               </div>
               <div className="flex items-center gap-3 text-xs font-black">
-                <span className={`px-2 py-1 rounded flex items-center gap-2 ${m.integrity_penalty_applied ? 'text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-900/30 border border-rose-500/20' : 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30'}`}>
+                <span className={`px-2 py-1 rounded flex items-center gap-2 ${m.integrity_penalty_applied ? 'text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/30 border border-amber-500/20' : 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30'}`}>
                   Score: {(m.score * 100).toFixed(0)}%
                 </span>
                 <span className="text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">Weight: {(m.weight || 0).toFixed(2)}</span>
@@ -223,19 +228,19 @@ export default function ScoringAudit({ candidate, onMetricClick }: ScoringAuditP
               )}
               
               {m.integrity_penalty_applied && (
-                <div className="p-4 bg-rose-500/5 rounded-xl border border-rose-500/20 animate-in slide-in-from-top-2 duration-500">
+                <div className="p-4 bg-amber-500/5 rounded-xl border border-amber-500/20 animate-in slide-in-from-top-2 duration-500">
                   <div className="flex items-center gap-2 mb-2">
-                    <div className="p-1.5 bg-rose-500/20 rounded-md">
-                      <svg className="w-3.5 h-3.5 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div className="p-1.5 bg-amber-500/20 rounded-md">
+                      <svg className="w-3.5 h-3.5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                       </svg>
                     </div>
-                    <span className="text-[10px] font-black uppercase tracking-widest text-rose-500">Anti-Gamer Penalty Applied</span>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-amber-500">Anti-Gamer Penalty Applied</span>
                   </div>
-                  <p className="text-xs text-rose-600 dark:text-rose-400 font-medium leading-relaxed">
-                    This score was reduced by <span className="font-black">{((m.integrity_penalty_value || 0) * 100).toFixed(0)}%</span> because the system detected keyword stuffing tactics. 
+                  <p className="text-xs text-amber-600 dark:text-amber-400 font-medium leading-relaxed">
+                    The <span className="font-black underline decoration-amber-500/30 italic">CV Signal Strength</span> for this metric was reduced by <span className="font-black">{((m.integrity_penalty_value || 0) * 100).toFixed(0)}%</span> because the system detected keyword stuffing tactics. 
                     The natural repetition limit for <span className="font-bold">'{m.integrity_audit_details?.term}'</span> is <span className="font-bold">{m.integrity_audit_details?.limit}x</span>, 
-                    but <span className="font-bold text-rose-700 dark:text-rose-300 underline decoration-rose-500/30">{m.integrity_audit_details?.count}x</span> occurrences were found in the CV. 
+                    but <span className="font-bold text-amber-700 dark:text-amber-300 underline decoration-amber-500/30">{m.integrity_audit_details?.count}x</span> occurrences were found in the CV. 
                     A penalty scale of <span className="font-bold">{((m.integrity_audit_details?.penalty_per || 0) * 100).toFixed(0)}%</span> per excess occurrence was applied to ensure the match remains authentic and not gamed.
                   </p>
                 </div>

@@ -17,7 +17,7 @@ class SoftSkillsMetric(BaseMetric):
         # It's a bit limited but gives a good hint of personality.
         return "Analyses interpersonal and behavioural indicators from the CV profile summary and LinkedIn 'About' sections."
 
-    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: Optional[List[str]] = None) -> Dict[str, Any]:
+    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: Optional[List[str]] = None, **kwargs) -> Dict[str, Any]:
         breakdown = []
         sources_used = ["CV"]
         

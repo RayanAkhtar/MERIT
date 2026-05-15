@@ -1,4 +1,4 @@
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 from .base import BaseMetric
 
 class TechnicalDepthMetric(BaseMetric):
@@ -14,7 +14,7 @@ class TechnicalDepthMetric(BaseMetric):
     def description(self) -> str:
         return "Evaluates the depth of technical expertise by cross-referencing CV claims with verifiable GitHub activity and project impact."
 
-    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any]) -> Dict[str, Any]:
+    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: Optional[List[str]] = None, **kwargs) -> Dict[str, Any]:
         """Calculates technical depth by looking at skill overlap, 
         verifiable github activity, and general project impact."""
         breakdown = []

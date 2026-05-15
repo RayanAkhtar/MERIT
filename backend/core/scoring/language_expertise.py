@@ -86,13 +86,15 @@ class LanguageExpertiseMetric(BaseMetric):
         pattern = rf"\b{re.escape(lang_lower)}\b"
         return len(re.findall(pattern, cv_text.lower()))
         
-    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: Optional[List[str]] = None) -> Dict[str, Any]:
+    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: Optional[List[str]] = None, **kwargs) -> Dict[str, Any]:
         import datetime
         current_year = datetime.datetime.now().year
         breakdown = []
         sources_used = ["CV"]
         cfg = SCORING_CONSTANTS["LANGUAGES"]
         
+        stuffing_audit = kwargs.get("stuffing_audit", {})
+
         # get languages from JD
         jd_metrics = job_requirements.get("metrics", {})
         languages_config = jd_metrics.get("Languages", {}).get("value", [])
@@ -155,6 +157,15 @@ class LanguageExpertiseMetric(BaseMetric):
             best_semantic = {}
             source_details = []
             
+            # Apply keyword stuffing penalty check
+            stuffing_penalty = 0.0
+            penalty_details = None
+            for flag in stuffing_audit.get("flagged_terms", []):
+                if flag["term"].lower() == lang_lower:
+                    stuffing_penalty = flag["penalty_contribution"]
+                    penalty_details = flag
+                    break
+
             # github signal (code volume + temporal weighting)
             gh_pct = gh_languages.get(lang_lower, 0)
             
@@ -198,6 +209,10 @@ class LanguageExpertiseMetric(BaseMetric):
                     cv_score = min(0.60, semantic_mentions * 0.15)
                     mentions = semantic_mentions # store for explanation block
             
+            # APPLY PENALTY to cv_score
+            if stuffing_penalty > 0:
+                cv_score = max(0.0, cv_score - stuffing_penalty)
+            
             recency_mult, recency_note = self._calculate_recency_multiplier(lang_val, candidate_data)
 
             
@@ -223,13 +238,18 @@ class LanguageExpertiseMetric(BaseMetric):
                 item_sources.append("CV")
                 evidence.append(Evidence(source="CV", confidence=conf["CV"], strength=cv_score))
                 explanation = f"{mentions} mentions" if not best_semantic.get("match") else f"Semantic Match: {best_semantic['match']} x{mentions}"
+                
+                cv_derivation = f"min({0.8 if not best_semantic.get('match') else 0.6}, {mentions} mentions * {0.2 if not best_semantic.get('match') else 0.15})"
+                if stuffing_penalty > 0:
+                    cv_derivation += f" - {int(stuffing_penalty*100)}% Integrity Penalty"
+
                 source_details.append({
                     "source": "CV",
                     "score": cv_score,
                     "trust": conf["CV"],
-                    "derivation": f"min({0.8 if not best_semantic.get('match') else 0.6}, {mentions} mentions * {0.2 if not best_semantic.get('match') else 0.15})",
+                    "derivation": cv_derivation,
                     "is_semantic_bridge": bool(best_semantic.get("match")),
-                    "explanation": f"{explanation} (Normalised: {cv_score:.2f})",
+                    "explanation": f"{explanation} (Normalised: {cv_score:.2f})" + (f" [STUFFING PENALTY APPLIED]" if stuffing_penalty > 0 else ""),
                     "weighting": f"Self-reported (Conf: {conf['CV']:.1f})"
                 })
 
@@ -299,7 +319,11 @@ class LanguageExpertiseMetric(BaseMetric):
                 "beta": fusion_result["beta"],
                 "confidence_interval": fusion_result["confidence_interval"],
                 "is_semantic_bridge": bool(best_semantic.get("match")),
+                "integrity_penalty_applied": stuffing_penalty > 0,
+                "integrity_penalty_value": stuffing_penalty,
+                "integrity_audit_details": penalty_details,
                 "source_details": source_details,
+                "integrity_penalty_applied": stuffing_penalty > 0,
                 "temporal_formula": "S_{decay} = S_{base} \cdot e^{-\lambda \Delta t}",
                 "temporal_params": {
                     "lambda": cfg["RECENCY"]["DECAY_LAMBDA"], 
@@ -374,6 +398,8 @@ class LanguageExpertiseMetric(BaseMetric):
             "score": round(final_score, 2),
             "name": self.name,
             "id": self.id,
+            "integrity_penalty_applied": any(b.get("integrity_penalty_applied") for b in breakdown),
+            "integrity_penalty_value": sum(b.get("integrity_penalty_value", 0) for b in breakdown),
             "calculation_formula": "Bayesian_Fusion(GH_Density, CV_Mentions, LinkedIn_Record, Temporal_Prior)",
             "technical_formula": tech_formula,
             "breakdown": breakdown,

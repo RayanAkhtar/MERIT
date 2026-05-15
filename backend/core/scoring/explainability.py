@@ -15,29 +15,51 @@ class ShapleyExplainer:
     def _mask_candidate_data(self, candidate_data: Dict[str, Any], active_sources: List[str]) -> Dict[str, Any]:
         """
         Returns a copy of candidate_data with only the active sources' data remaining.
+        Ensures that even enriched/cached metadata is wiped if the source is inactive.
         """
         masked = copy.deepcopy(candidate_data)
         
-        # mapping of sources to their data keys in the candidate object
+        # mapping of sources to their data keys and enriched metadata prefixes
         source_mapping = {
-            "CV": [
-                "skills", "cv_experience", "projects_history", "extracurricular", 
-                "experience_summary", "raw_cv_text", "full_cv_text", "cv_education"
-            ],
-            "GitHub": ["github_profile", "github_enriched", "github_projects"],
-            "LinkedIn": ["linkedin_profile", "linkedin_enriched", "linkedin_experience", "linkedin_education"]
+            "CV": {
+                "keys": ["skills", "cv_experience", "projects_history", "extracurricular", 
+                         "experience_summary", "raw_cv_text", "full_cv_text", "cv_education"],
+                "prefixes": ["raw_cv_"]
+            },
+            "GitHub": {
+                "keys": ["github_profile", "github_enriched", "github_projects"],
+                "prefixes": ["raw_gh_"]
+            },
+            "LinkedIn": {
+                "keys": ["linkedin_profile", "linkedin_enriched", "linkedin_experience", "linkedin_education"],
+                "prefixes": ["raw_li_"]
+            }
         }
         
-        for source, keys in source_mapping.items():
+        # also mask generic raw counts that might be derived from multiple sources
+        generic_raw_keys = ["raw_tenure_months", "raw_skill_count", "raw_impact_points", "raw_repo_count", "raw_star_count", "raw_fork_count", "raw_connections"]
+        
+        for source, config in source_mapping.items():
             if source not in active_sources:
-                for key in keys:
+                # wipe raw keys
+                for key in config["keys"]:
                     if key in masked:
-                        if isinstance(masked[key], list):
-                            masked[key] = []
-                        elif isinstance(masked[key], dict):
-                            masked[key] = {}
-                        else:
-                            masked[key] = None
+                        masked[key] = [] if isinstance(masked[key], list) else ({} if isinstance(masked[key], dict) else None)
+                
+                # wipe prefixed metadata (e.g. raw_gh_complexity)
+                for key in list(masked.keys()):
+                    if any(key.startswith(p) for p in config["prefixes"]):
+                        masked[key] = 0
+        
+        # if NO sources are active, wipe everything else that's derived
+        if not active_sources:
+            for key in generic_raw_keys:
+                if key in masked:
+                    masked[key] = 0
+            # Also clear batch context to be safe
+            for key in list(masked.keys()):
+                if key.startswith("batch_"):
+                    masked[key] = 0
                             
         return masked
 

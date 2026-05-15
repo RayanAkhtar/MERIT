@@ -76,11 +76,11 @@ class TechnologyStackMetric(BaseMetric):
         pattern = rf"\b{re.escape(tech_lower)}\b"
         return len(re.findall(pattern, cv_text.lower()))
 
-    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: Optional[List[str]] = None) -> Dict[str, Any]:
+    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: Optional[List[str]] = None, **kwargs) -> Dict[str, Any]:
         breakdown = []
         sources_used = ["CV"]
         cfg = SCORING_CONSTANTS["TECH_STACK"]
-        
+        stuffing_audit = kwargs.get("stuffing_audit", {})
         jd_metrics = job_requirements.get("metrics", {})
         tech_config = jd_metrics.get("Technologies", {}).get("value", [])
         
@@ -139,16 +139,34 @@ class TechnologyStackMetric(BaseMetric):
             evidence = []
             conf = SCORING_CONSTANTS["FUSION"]["SOURCE_CONFIDENCE"]["TECHNICAL_SKILLS"]
             
+            # apply keyword stuffing penalty check
+            stuffing_penalty = 0.0
+            penalty_details = None
+            for flag in stuffing_audit.get("flagged_terms", []):
+                if flag["term"].lower() == tech_lower:
+                    stuffing_penalty = flag["penalty_contribution"]
+                    penalty_details = flag
+                    break
+
             # CV signal
             if has_cv:
                 item_sources.append("CV")
-                evidence.append(Evidence(source="CV", confidence=conf["CV"], strength=0.8))
+                cv_score = 0.8
+                if stuffing_penalty > 0:
+                    cv_score = max(0.0, cv_score - stuffing_penalty)
+
+                evidence.append(Evidence(source="CV", confidence=conf["CV"], strength=cv_score))
+                
+                cv_derivation = f"Binary Presence (Mentions: {mentions} >= 1)"
+                if stuffing_penalty > 0:
+                    cv_derivation += f" - {int(stuffing_penalty*100)}% Integrity Penalty"
+
                 source_details.append({
                     "source": "CV",
-                    "score": 0.8,
+                    "score": cv_score,
                     "trust": conf["CV"],
-                    "derivation": f"Binary Presence (Mentions: {mentions} >= 1)",
-                    "explanation": f"Found {mentions} occurrences in document. (Capped at 0.8)",
+                    "derivation": cv_derivation,
+                    "explanation": f"Found {mentions} occurrences in document. (Capped at 0.8)" + (f" [STUFFING PENALTY APPLIED]" if stuffing_penalty > 0 else ""),
                     "weighting": f"Self-reported (Conf: {conf['CV']:.1f})"
                 })
             
@@ -238,6 +256,9 @@ class TechnologyStackMetric(BaseMetric):
                 "alpha": fusion_result["alpha"],
                 "beta": fusion_result["beta"],
                 "confidence_interval": fusion_result["confidence_interval"],
+                "integrity_penalty_applied": stuffing_penalty > 0,
+                "integrity_penalty_value": stuffing_penalty,
+                "integrity_audit_details": penalty_details,
                 "source_details": source_details,
                 "notes": f"{human_note} (Bayesian Audit: {fusion_result['logic']})",
                 "sources": list(set(item_sources))
@@ -297,11 +318,13 @@ class TechnologyStackMetric(BaseMetric):
             "score": round(final_score, 2),
             "name": self.name,
             "id": self.id,
-            "calculation_formula": "Bayesian_Fusion(CV_Presence, LI_Endorsement, GH_Project_Affinity)",
+            "integrity_penalty_applied": any(b.get("integrity_penalty_applied") for b in breakdown),
+            "integrity_penalty_value": sum(b.get("integrity_penalty_value", 0) for b in breakdown),
+            "calculation_formula": "Bayesian_Fusion(GH_Evidence, CV_Evidence, LinkedIn_Record, Temporal_Prior)",
             "technical_formula": tech_formula,
             "breakdown": breakdown,
             "has_semantic_bridge": any(b.get("is_semantic_bridge") for b in breakdown),
-            "sources_used": list(set([src for b in breakdown for src in b["sources"]])),
+            "sources_used": list(set([src for b in breakdown for src in b.get("sources", [])])),
             "glossary": [
                 {"term": "Alpha (α)", "definition": "Strength of supporting evidence across all sources."},
                 {"term": "Beta (β)", "definition": "Level of contradictory or missing signals causing uncertainty."}

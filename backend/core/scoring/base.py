@@ -26,7 +26,7 @@ class BaseMetric(ABC):
         pass
 
     @abstractmethod
-    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: Optional[List[str]] = None) -> Dict[str, Any]:
+    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: Optional[List[str]] = None, **kwargs) -> Dict[str, Any]:
         """
         Does the actual scoring. Returns a dict with the score (0-1), 
         a breakdown of how it was reached, and some improvement tips.

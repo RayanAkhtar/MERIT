@@ -19,6 +19,7 @@ export interface TemporalParams {
 }
 
 export interface AuditItem {
+  integrity_penalty_applied: any;
   sources: string[];
   item?: string;
   component?: string;

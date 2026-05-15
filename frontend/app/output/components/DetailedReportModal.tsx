@@ -188,15 +188,15 @@ export default function DetailedReportModal({
                       onMouseLeave={() => setHoveredItem(null)}
                       onClick={() => handleMetricClick(key)}
                     >
-                      <h4 className={`font-bold transition-colors flex items-center gap-2 ${m.integrity_penalty_applied ? 'text-rose-500' : (isSectionHovered ? 'text-indigo-600 dark:text-indigo-400' : 'text-zinc-900 dark:text-zinc-50')}`}>
+                      <h4 className={`font-bold transition-colors flex items-center gap-2 ${m.integrity_penalty_applied ? 'text-amber-600 dark:text-amber-500' : (isSectionHovered ? 'text-indigo-600 dark:text-indigo-400' : 'text-zinc-900 dark:text-zinc-50')}`}>
                         {m.name}
                         {m.integrity_penalty_applied ? (
-                          <span className="text-[10px] px-1.5 py-0.5 rounded border border-rose-200 dark:border-rose-800 text-rose-600 bg-rose-50 dark:bg-rose-900/20">W:{priority}</span>
+                          <span className="text-[10px] px-1.5 py-0.5 rounded border border-amber-200 dark:border-amber-800 text-amber-600 bg-amber-50 dark:bg-amber-900/20">W:{priority}</span>
                         ) : (
                           <span className="text-[10px] px-1.5 py-0.5 rounded border border-indigo-200 dark:border-indigo-800 text-indigo-600 bg-indigo-50 dark:bg-indigo-900/20">W:{priority}</span>
                         )}
                       </h4>
-                      <div className={`text-lg font-black transition-colors ${m.integrity_penalty_applied ? 'text-rose-600 dark:text-rose-500' : (isSectionHovered ? 'text-indigo-600 dark:text-indigo-400' : 'text-zinc-900 dark:text-zinc-100')}`}>{Math.round(m.score * 100)}%</div>
+                      <div className={`text-lg font-black transition-colors ${m.integrity_penalty_applied ? 'text-amber-600 dark:text-amber-500' : (isSectionHovered ? 'text-indigo-600 dark:text-indigo-400' : 'text-zinc-900 dark:text-zinc-100')}`}>{Math.round(m.score * 100)}%</div>
                     </div>
                     
                     {/* Ecosystem Parent Audit Trail */}
@@ -232,30 +232,48 @@ export default function DetailedReportModal({
                             <div className="flex items-center justify-between mb-2">
                               <div className="flex items-center gap-2">
                                 <div className="flex flex-col">
-                                  <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100">{item.item || item.component}</span>
+                                  <div className="flex items-center gap-2">
+                                    <span className={`text-sm font-bold ${item.integrity_penalty_applied ? 'text-amber-600 dark:text-amber-400' : 'text-zinc-900 dark:text-zinc-100'}`}>
+                                      {item.item || item.component}
+                                    </span>
+                                    {item.weight !== undefined && (
+                                      <span className={`text-[10px] px-1.5 py-0.5 rounded border font-black ${
+                                        item.integrity_penalty_applied 
+                                          ? 'border-amber-200 dark:border-amber-800 text-amber-600 bg-amber-50 dark:bg-amber-900/20' 
+                                          : 'border-indigo-200 dark:border-indigo-800 text-indigo-600 bg-indigo-50 dark:bg-indigo-900/20'
+                                      }`}>
+                                        W:{Math.round((1.2 - (item.weight || 1.0)) / 0.2)}
+                                      </span>
+                                    )}
+                                  </div>
                                   {item.score !== undefined && (
-                                    <span className="text-[10px] font-black text-indigo-500/70 uppercase tracking-tighter">
+                                    <span className={`text-[10px] font-black uppercase tracking-tighter ${item.integrity_penalty_applied ? 'text-amber-500/70' : 'text-indigo-500/70'}`}>
                                       Component Score: {Math.round(item.score * 100)}%
                                     </span>
                                   )}
                                 </div>
                                 {item.confidence_label && (
                                   <div className="flex items-center gap-1.5">
-                                    <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-md uppercase tracking-widest ${
-                                      item.confidence_label === 'High Confidence' 
-                                        ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20'
-                                        : item.confidence_label === 'Medium Confidence'
-                                          ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20'
-                                          : 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20'
-                                    }`}>
-                                      {item.confidence_label}
-                                    </span>
+                                    <div className="flex flex-col items-end gap-1">
+                                      <div className={`text-xl font-black ${item.integrity_penalty_applied ? 'text-amber-600 dark:text-amber-400' : 'text-zinc-900 dark:text-zinc-100'}`}>
+                                        {Math.round(item.score * 100)}%
+                                      </div>
+                                      <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-md uppercase tracking-widest ${
+                                        item.confidence_label === 'High Confidence' 
+                                          ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20'
+                                          : item.confidence_label === 'Medium Confidence'
+                                            ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20'
+                                            : 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20'
+                                      }`}>
+                                        {item.confidence_label}
+                                      </span>
+                                    </div>
                                     
                                     {/* Unverified Tag - Shown if no GitHub source is present in the signals */}
                                     {!((item.source_details || []).some((sd: any) => sd.source === 'GitHub') || (item.sources || []).includes('GitHub')) && (
                                       <span className="text-[9px] font-black px-1.5 py-0.5 rounded-md uppercase tracking-widest bg-zinc-500/10 text-zinc-500 border border-zinc-500/20 flex items-center gap-1">
                                         <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
                                         Unverified
                                       </span>
@@ -296,11 +314,11 @@ export default function DetailedReportModal({
                               <div className="mt-4 p-4 rounded-xl border border-indigo-500/30 bg-slate-900/50 relative overflow-hidden group">
                                 <div className="flex items-center justify-between cursor-pointer" onClick={() => setExpandedAudit(expandedAudit === `${m.name}-${i}` ? null : `${m.name}-${i}`)}>
                                   <div className="flex items-center gap-3">
-                                    <div className="p-2 rounded-lg bg-indigo-500/20">
-                                      <BsCalculator className="w-4 h-4 text-indigo-400" />
+                                    <div className={`p-2 rounded-lg ${item.integrity_penalty_applied ? 'bg-amber-500/20' : 'bg-indigo-500/20'}`}>
+                                      <BsCalculator className={`w-4 h-4 ${item.integrity_penalty_applied ? 'text-amber-400' : 'text-indigo-400'}`} />
                                     </div>
                                     <div>
-                                      <p className="text-[10px] uppercase tracking-widest text-indigo-400 font-bold mb-0.5">{(item.item || item.component)} Verification Audit</p>
+                                      <p className={`text-[10px] uppercase tracking-widest font-bold mb-0.5 ${item.integrity_penalty_applied ? 'text-amber-400' : 'text-indigo-400'}`}>{(item.item || item.component)} Verification Audit</p>
                                       <p className="text-sm font-mono text-slate-300">
                                         Result: {(item.score * 100).toFixed(0)}% 
                                         {item.influence !== undefined && (
@@ -348,7 +366,7 @@ export default function DetailedReportModal({
                                             {(sd.source === 'CV' || sd.source === 'LinkedIn') && (
                                               <div className="mt-1 pl-3 text-[9px] font-bold text-amber-500/70 uppercase tracking-tight flex items-center gap-1.5">
                                                 <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                 </svg>
                                                 Source Trust Anchor: Self-reported data capped at 0.8
                                               </div>
@@ -829,6 +847,7 @@ export default function DetailedReportModal({
                     <ScoringAudit 
                       candidate={candidate} 
                       onMetricClick={handleSidebarScroll}
+                      isBlindMode={isBlindMode}
                     />
                   )}
                 </>

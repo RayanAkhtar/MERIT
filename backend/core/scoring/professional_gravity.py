@@ -15,7 +15,7 @@ class ProfessionalGravityMetric(BaseMetric):
     def description(self) -> str:
         return "Evaluates career trajectory, tenure stability, and professional seniority by blending CV history with LinkedIn profile data."
 
-    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: Optional[List[str]] = None) -> Dict[str, Any]:
+    def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: Optional[List[str]] = None, **kwargs) -> Dict[str, Any]:
         """Calculates professional gravity by looking at tenure stability, 
         seniority alignment, and experience verification."""
         breakdown = []
