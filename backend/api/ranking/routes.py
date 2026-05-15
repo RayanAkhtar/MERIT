@@ -168,9 +168,8 @@ def rank_candidates(config_id):
             candidate["batch_max_connections"] = max_connections
             candidate["batch_max_skill_count"] = max_skills
             
-            # shove in full metric data and weights from the first pass
-            candidate["skill_metrics"] = r["raw_scored_data"]["metrics"]
-            candidate["skill_scores"] = {k: (v.get("score") or 0.0) for k, v in r["raw_scored_data"]["metrics"].items()}
+            # as they lack the correct batch-wide scaling. run_all will re-calculate
+            # them correctly using the batch_max context provided above.
             candidate["skill_weights"] = weights
             candidate["active_keys"] = [k for k, v in active_metrics.items() if v is True] if isinstance(active_metrics, dict) else active_metrics
             
@@ -179,7 +178,8 @@ def rank_candidates(config_id):
             # calculate explainable AI (XAI) metrics via Shapley Values
             from core.scoring.explainability import ShapleyExplainer
             explainer = ShapleyExplainer(scoring_registry)
-            shapley_results = explainer.calculate_contributions(candidate, job_reqs, active_metrics, weights)
+            shapley_results = explainer.calculate_contributions(candidate, job_reqs, active_metrics, weights)         
+            sync_total_score = shapley_results["full_match_score"]
             
             # inject "per metric" Shapley values into the metrics breakdown for the UI
             for m_key, m_val in scored_data["metrics"].items():
@@ -191,7 +191,7 @@ def rank_candidates(config_id):
                 "candidate_id": candidate["id"],
                 "name": candidate["name"],
                 "email": candidate["email"],
-                "total_score": scored_data["overall_score"],
+                "total_score": sync_total_score,
                 "integrity_penalty": scored_data.get("integrity_penalty", 0.0),
                 "metrics": scored_data["metrics"],
                 "shapley_values": shapley_results["overall"],

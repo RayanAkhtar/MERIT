@@ -49,7 +49,7 @@ class ProfessionalGravityMetric(BaseMetric):
             if isinstance(li_exp, str): li_exp = []
         
         all_exp = cv_exp + li_exp
-        tenure_score = 0.5 # Default middle ground
+        tenure_score = 0.0 # Default to zero if no data
         
         if all_exp:
             total_tenure_months = 0
@@ -73,12 +73,12 @@ class ProfessionalGravityMetric(BaseMetric):
         else:
             breakdown.append({
                 "component": "Tenure Stability",
-                "score": 0.5,
+                "score": 0.0,
                 "notes": "Insufficient granular experience data to calculate stability."
             })
 
         # seniority check
-        seniority_score = 0.5
+        seniority_score = 0.0
         # also check CV experience titles if headline is missing
         if not headline and cv_exp:
             headline = " ".join([str(e.get("title", "")) for e in cv_exp]).lower()

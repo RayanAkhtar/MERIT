@@ -22,7 +22,7 @@ class ShapleyExplainer:
         # mapping of sources to their data keys and enriched metadata prefixes
         source_mapping = {
             "CV": {
-                "keys": ["skills", "cv_experience", "projects_history", "extracurricular", 
+                "keys": ["name", "skills", "cv_experience", "experience", "projects_history", "projects", "extracurricular", 
                          "experience_summary", "raw_cv_text", "full_cv_text", "cv_education"],
                 "prefixes": ["raw_cv_"]
             },
@@ -31,7 +31,7 @@ class ShapleyExplainer:
                 "prefixes": ["raw_gh_"]
             },
             "LinkedIn": {
-                "keys": ["linkedin_profile", "linkedin_enriched", "linkedin_experience", "linkedin_education"],
+                "keys": ["linkedin_profile", "linkedin_enriched", "linkedin_history", "linkedin_experience", "linkedin_education", "linkedin_scrapingdog_backup"],
                 "prefixes": ["raw_li_"]
             }
         }
@@ -51,24 +51,35 @@ class ShapleyExplainer:
                     if any(key.startswith(p) for p in config["prefixes"]):
                         masked[key] = 0
         
+        # ALWAYS wipe pre-calculated caches to force re-evaluation from raw data
+        for key in ["skill_metrics", "skill_scores", "results_payload", "batch_context", "integrity_audit", "stuffing_audit"]:
+            if key in masked:
+                masked[key] = {} if isinstance(masked[key], dict) else []
+        
+        # Aggressive wipe of any other derivative keys
+        for key in list(masked.keys()):
+            if any(term in key.lower() for term in ["metrics", "scores", "weighted", "audit"]):
+                if key not in ["job_requirements", "active_sources"]: # Safety whitelist
+                    masked[key] = {} if isinstance(masked.get(key), dict) else None
+                
         # if NO sources are active, wipe everything else that's derived
         if not active_sources:
             for key in generic_raw_keys:
                 if key in masked:
                     masked[key] = 0
-            # Also clear batch context to be safe
+            # Also clear batch context and other derivatives to be safe
             for key in list(masked.keys()):
-                if key.startswith("batch_"):
+                if any(key.startswith(p) for p in ["batch_", "derived_", "raw_"]):
                     masked[key] = 0
                             
         return masked
 
     def calculate_contributions(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], 
-                               active_metrics: Dict[str, bool], weights: Dict[str, float]) -> Dict[str, float]:
+                               active_metrics: Dict[str, bool], weights: Dict[str, float]) -> Dict[str, Any]:
         """
         Calculates Shapley values for each source.
-        Returns a dict: { "CV": val, "GitHub": val, "LinkedIn": val }
         """
+        candidate_name = candidate_data.get("name", "Unknown")
         # define all 2^3 = 8 permutations (coalitions of sources)
         coalitions = [
             [],
@@ -89,13 +100,24 @@ class ShapleyExplainer:
             subset_key = tuple(sorted(coalition))
             masked_data = self._mask_candidate_data(candidate_data, coalition)
             
-            res = self.registry.run_all(masked_data, job_requirements, active_metrics, weights)
-            v_overall[subset_key] = res["overall_score"]
-            
-            for m_key, m_val in res["metrics"].items():
-                if m_key not in v_metrics:
-                    v_metrics[m_key] = {}
-                v_metrics[m_key][subset_key] = m_val.get("score", 0.0)
+            if not coalition:
+                # mathematically force empty coalition to 0.0
+                score = 0.0
+                # initialize v_metrics with zeros for the empty state
+                for m_key in active_metrics:
+                    if m_key not in v_metrics:
+                        v_metrics[m_key] = {}
+                    v_metrics[m_key][subset_key] = 0.0
+            else:
+                res = self.registry.run_all(masked_data, job_requirements, active_metrics, weights)
+                score = res["overall_score"]
+                
+                for m_key, m_val in res["metrics"].items():
+                    if m_key not in v_metrics:
+                        v_metrics[m_key] = {}
+                    v_metrics[m_key][subset_key] = m_val.get("score", 0.0)
+
+            v_overall[subset_key] = score
 
         n = 3
         def compute_shapley(values_dict):
@@ -123,12 +145,15 @@ class ShapleyExplainer:
         # calculate for overall score
         overall_shapley = compute_shapley(v_overall)
         
-        # calculate for each metric
+        full_score = v_overall.get(tuple(sorted(self.sources)), 0.0)
+        
+        # calculate for individual metrics
         metrics_shapley = {}
         for m_key, m_values in v_metrics.items():
             metrics_shapley[m_key] = compute_shapley(m_values)
-
+            
         return {
             "overall": overall_shapley,
-            "metrics": metrics_shapley
+            "metrics": metrics_shapley,
+            "full_match_score": full_score
         }

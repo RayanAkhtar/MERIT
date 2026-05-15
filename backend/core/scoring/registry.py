@@ -162,6 +162,13 @@ class ScoringRegistry:
                 "improvements": res.get("improvements", [])
             })
             results[key] = merged_res
+            
+            # Dynamically update the candidate's skill_metrics cache so that
+            # aggregate metrics (like alignment) can consume scaled results.
+            if "skill_metrics" not in candidate_data: candidate_data["skill_metrics"] = {}
+            if "skill_scores" not in candidate_data: candidate_data["skill_scores"] = {}
+            candidate_data["skill_metrics"][key] = merged_res
+            candidate_data["skill_scores"][key] = metric_score
 
         # Recalculate baseline overall score
         overall_score = total_weighted_score / total_weight if total_weight > 0 else 0.0

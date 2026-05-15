@@ -77,18 +77,21 @@ class EducationMetric(BaseMetric):
         except: pass
 
         grade_cfg = cfg["GRADE_MULTIPLIER"]
-        grade_multiplier = grade_cfg["DEFAULT"]
-        grade_label = "2:1 (Assumed)"
-        all_grades = [str(edu.get("grade") or "").lower() for edu in all_edu]
-        for g in all_grades:
-            if "1st" in g or "first" in g or "70" in g or "4.0" in g:
-                grade_multiplier, grade_label = grade_cfg["FIRST_CLASS"], "1st Class / 1:1"
-                break
-            elif "2:1" in g or "upper" in g or "60" in g or "3.5" in g:
-                grade_multiplier, grade_label = grade_cfg["UPPER_SECOND"], "Upper Second (2:1)"
-            elif "2:2" in g or "lower" in g or "50" in g:
-                grade_multiplier = max(grade_multiplier, grade_cfg["LOWER_SECOND"])
-                if grade_multiplier == grade_cfg["LOWER_SECOND"]: grade_label = "Lower Second (2:2)"
+        grade_multiplier = 0.0
+        grade_label = "No Grade Data"
+        if all_edu:
+            grade_multiplier = grade_cfg["DEFAULT"]
+            grade_label = "2:1 (Assumed)"
+            all_grades = [str(edu.get("grade") or "").lower() for edu in all_edu]
+            for g in all_grades:
+                if "1st" in g or "first" in g or "70" in g or "4.0" in g:
+                    grade_multiplier, grade_label = grade_cfg["FIRST_CLASS"], "1st Class / 1:1"
+                    break
+                elif "2:1" in g or "upper" in g or "60" in g or "3.5" in g:
+                    grade_multiplier, grade_label = grade_cfg["UPPER_SECOND"], "Upper Second (2:1)"
+                elif "2:2" in g or "lower" in g or "50" in g:
+                    grade_multiplier = max(grade_multiplier, grade_cfg["LOWER_SECOND"])
+                    if grade_multiplier == grade_cfg["LOWER_SECOND"]: grade_label = "Lower Second (2:2)"
 
         # check if they meet the JD's minimum
         target_level = 1 # Default to Bachelors
@@ -113,7 +116,10 @@ class EducationMetric(BaseMetric):
         
         # Weights: Degree Level (40%), Academic Performance (40%), Prestige (20%)
         # normalise prestige for the breakdown display
-        prestige_component_score = 1.0 if prestige_bonus >= 0.2 else (0.5 if prestige_bonus > 0 else 0.2)
+        if not all_edu:
+            prestige_component_score = 0.0
+        else:
+            prestige_component_score = 1.0 if prestige_bonus >= 0.2 else (0.5 if prestige_bonus > 0 else 0.2)
         
         # Breakdown
         breakdown.append({

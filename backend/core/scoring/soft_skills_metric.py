@@ -73,7 +73,11 @@ class SoftSkillsMetric(BaseMetric):
                     "weighting": "Self-reported narrative"
                 })
             
-            base_score = 0.60 if "LinkedIn" in item_sources else (0.40 if "CV" in item_sources else 0.15)
+            base_score = 0.0
+            if "LinkedIn" in item_sources:
+                base_score = 0.60
+            elif "CV" in item_sources:
+                base_score = 0.40
             item_score = self._calculate_multi_source_bonus(item_sources, base_score)
             total_item_score += item_score
             
@@ -85,8 +89,8 @@ class SoftSkillsMetric(BaseMetric):
                 "sources": list(set(item_sources)) if item_sources else ["CV"]
             })
 
-        # If there are no reqs, just give a baseline of 0.5 so they don't get 0
-        final_score = total_item_score / len(soft_reqs) if soft_reqs else 0.5
+        # If there are no reqs, just return 0
+        final_score = total_item_score / len(soft_reqs) if soft_reqs else 0.0
         
         improvements = []
         if final_score < 1.0:
@@ -105,6 +109,11 @@ class SoftSkillsMetric(BaseMetric):
                 improvements.append({"text": "Ensure your soft skills perfectly align with the job description requirements.", "gain": remaining, "variables": []})
         else:
             improvements.append({"text": "Maximum behavioural score achieved.", "gain": 0.0, "variables": []})
+
+    def _calculate_multi_source_bonus(self, sources: List[str], base_score: float) -> float:
+        if len(sources) > 1:
+            return min(1.0, base_score * 1.25) # 25% bonus for multi-source verification
+        return base_score
 
         return {
             "score": self._normalise_score(final_score),

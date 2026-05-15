@@ -577,7 +577,7 @@ class GithubAlignmentMetric(BaseMetric):
         
         if not any(k.startswith("req_") for k in active_keys):
             return {
-                "score": 0.5,
+                "score": 0.0,
                 "breakdown": [],
                 "sources_used": ["GitHub"],
                 "calculation_formula": "Default",
@@ -854,7 +854,7 @@ class LinkedinExtracurricularMetric(BaseMetric):
                     "score": round(score, 2),
                     "source_details": [
                         {"source": "CV", "score": round(min(1.0, len(extra)/3.0), 2), "explanation": f"Detected {len(extra)} extra-curricular activities in CV."},
-                        {"source": "LinkedIn", "score": 0.5 if li_data else 0.0, "explanation": "Found community activity signals on LinkedIn." if li_data else "No specific LinkedIn extracurriculars detected."}
+                        {"source": "LinkedIn", "score": 0.0, "explanation": "No specific LinkedIn extracurriculars detected."}
                     ]
                 }
             ],
@@ -880,7 +880,7 @@ class LinkedinNetworkMetric(BaseMetric):
         
     def calculate(self, candidate_data: Dict[str, Any], job_requirements: Dict[str, Any], active_items: List[str] = None, **kwargs) -> Dict[str, Any]:
         li_data = candidate_data.get('linkedin_enriched', {})
-        if not li_data: return {"score": 0.3, "breakdown": [], "sources_used": ["LinkedIn"], "formula": "none", "technical_formula": "none", "glossary": [], "improvements": ["No LinkedIn data available"]}
+        if not li_data: return {"score": 0.0, "breakdown": [], "sources_used": ["LinkedIn"], "formula": "none", "technical_formula": "none", "glossary": [], "improvements": ["No LinkedIn data available"]}
         
         connections = (li_data.get('connections') or 0)
         if connections == 0:
