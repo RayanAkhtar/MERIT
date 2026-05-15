@@ -40,3 +40,7 @@ plan_evaluation.txt
 plan.txt
 timeline.txt
 todo_report.txt
+
+# Using AI models to try to "destroy" my report, storing their criticims
+# to see if they are valid. Then I can fix them later
+complaints/

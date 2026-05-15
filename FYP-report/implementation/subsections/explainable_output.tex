@@ -91,7 +91,7 @@ workflows, transforming a binary hiring decision into a defensible and interroga
 
 
 \subsection{Dynamic Cohort Normalisation}
-Another common flaw with algorithmic scoring is the absense of relative context. A candidate with a year of experience may seem
+Another common flaw with algorithmic scoring is the absence of relative context. A candidate with a year of experience may seem
 weak on paper, but would be considered exceptional if the majority of the applicant pool had little to no experience. However, due
 to this, the candidate would likely be undervalued if the system does not correctly highlight the difference in experience between
 the candidate and the rest of the pool. To address this, MERIT also implements a dynamic cohort normalisation mechanic for the majority of
@@ -104,8 +104,8 @@ the batch maximums. This approach, while not runtime efficient for extremely lar
 to the competitive landscape, rather than an arbitrary baseline.
 
 \subsection{Interactive Visualisation}
-Understandably, presenting the raw JSOB \textit{results\_payload} is unreasonable due to it being inherently unscalable and poor UX.
-We will briedly go over the main features of our Next.js frontend to create an intuitive, visual "Glass-Box" dashboard.
+Understandably, presenting the raw JSON \textit{results\_payload} is unreasonable due to it being inherently unscalable and poor UX.
+We will briefly go over the main features of our Next.js frontend to create an intuitive, visual "Glass-Box" dashboard.
 
 The first feature is probabilistic confidence labels, derived from the standard deviation $\sigma$ of the Beta distribution mentioned
 in the previous chapter. We map $\sigma$ to a traffic-light badge system (Green for High, Amber for Medium, Red for Low),

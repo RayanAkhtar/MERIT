@@ -10,8 +10,8 @@ profile alongside a job description to produce a final score.
 
 \input{implementation/high_level_system_design/relational_schema_diagram.tex}
 
-\subsection{Metric Metrics: Baseline vs. Extensible}
-When executing a job configuration, the syste, categorises evaluation criteria against two different kinds of metrics.
+\subsection{Metric Types: Baseline vs. Extensible}
+When executing a job configuration, the system, categorises evaluation criteria against two different kinds of metrics.
 \textbf{Baseline Metrics} are pre-defined metrics that are common to all configurations, and typically follow the industry-standard
 heuristics. For example, a candidate's education level is a universal factor in technical recruitment that can be assessed
 independently of the specific job requirements. \textbf{Extensible Metrics}, on the other hand, are job-specific metrics, in other words,
@@ -25,13 +25,13 @@ we perform a weighted average of all the metrics to compute the final (match) sc
 
 
 \subsection{Adversarial Mitigation \& Integrity Layer}
-A common flaw in legacy ATS platforms lies in their vulnerability to adversarial attacks, such as 
+A common flaw in legacy ATS platforms lies in their vulnerability to adversarial attacks, such as
 keyword-stuffing or identity squatting. To combat these, MERIT incorporates an Integrity Layer
-that executes concurrently with the signal extraction process. While the detailed heuristics for 
-these safeguards are discussed in Section 4.5, it is important to note that these penalties are applied 
-directly to the raw evidence signals before they enter the Bayesian fusion pipeline. This ensures that 
-poisoned data (in other words, data that warrants a penalty) carries less significance in the final probabilistic 
-model if other signals are still robust. For example, a candidate who gets penalised for keyword stuffing in their CV may 
+that executes concurrently with the signal extraction process. While the detailed heuristics for
+these safeguards are discussed in Section 4.5, it is important to note that these penalties are applied
+directly to the raw evidence signals before they enter the Bayesian fusion pipeline. This ensures that
+poisoned data (in other words, data that warrants a penalty) carries less significance in the final probabilistic
+model if other signals are still robust. For example, a candidate who gets penalised for keyword stuffing in their CV may
 still rank highly if they have strong evidence from other sources for that metric.
 
 \subsubsection{Temporal Skill Decay Modelling}
@@ -107,10 +107,10 @@ We then map these signals to the evidence parameters as follows:
 \end{equation}
 where $\epsilon_s = 0.01(1 - w_s)$ represents a symmetric uncertainty term. The reason for the inclusion of $\epsilon_s$ is to emulate inject noise for
 low-confidence sources to produce wider, more uncertain distributions. This stops the distribution from becoming narrow unless this candidate has the
-evidence to support their claims (since high-confidence sources provice more concerntrated signals.)
+evidence to support their claims (since high-confidence sources provide more concentrated signals.)
 
 We select the Beta distribution since it is the conjugate prior for Bernoulli-distributed evidence. This means that the resulting posterior
-update still remains a Beta distribution. This allos for additive evidence integration, which is, not only computationally more efficient,
+update still remains a Beta distribution. This allows for additive evidence integration, which is, not only computationally more efficient,
 but also extensible for an arbitrary set of data sources $S$. This aligns with the "Extensibility" goal of MERIT. The updates to the Beta
 distribution are given by:
 \begin{equation}
@@ -129,9 +129,9 @@ skew towards a high probability of the candidate possessing the skill, with low 
 heavily on their CV, but absent from their GitHub, the $\alpha$ parameter will only increase slightly. The baseline $\beta$ parameter
 will then prevent the score from artificially inflating, mathematically mitigating "keyword stuffing" even further.
 
-Once we have computed the posterior distribution for a metric, we can then split it into it's expected value and it's variance. Effectively
+Once we have computed the posterior distribution for a metric, we can then split it into its expected value and its variance. Effectively
 this measures what the candidate's proficiency in a certain skill is, and the confidence that we have in that claim. For a random variable
-$\theta \sim \text{Beta}(\alpha, \beta)$, we define it's expected value $E[\theta]$ and variance $\text{Var}(\theta)$ as:
+$\theta \sim \text{Beta}(\alpha, \beta)$, we define its expected value $E[\theta]$ and variance $\text{Var}(\theta)$ as:
 \begin{equation}
   E[\theta] = \frac{\alpha}{\alpha + \beta}, \quad \text{Var}(\theta) = \frac{\alpha\beta}{(\alpha + \beta)^2(\alpha + \beta + 1)}
 \end{equation}
