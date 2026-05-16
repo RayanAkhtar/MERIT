@@ -7,22 +7,19 @@
             "node.js",
             "postgresql",
             "react",
-            "terraform",
             "typescript"
         ],
         "Missed (False Negatives)": [
             "go",
             "javascript",
             "kafka",
-            "redis"
+            "redis",
+            "terraform"
         ],
         "Extra (False Positives/Noise)": [
             "c",
-            "gcp",
-            "github",
             "graphql",
             "js",
-            "prometheus",
             "pulumi"
         ]
     },

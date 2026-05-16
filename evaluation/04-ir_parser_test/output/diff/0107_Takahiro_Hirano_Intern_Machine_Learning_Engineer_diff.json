@@ -2,9 +2,6 @@
     "Skills": {
         "Matched": [
             "docker",
-            "git",
-            "github",
-            "hugging face",
             "jupyter",
             "keras",
             "numpy",
@@ -15,9 +12,12 @@
             "sql",
             "tensorflow"
         ],
-        "Missed (False Negatives)": [],
+        "Missed (False Negatives)": [
+            "git",
+            "github",
+            "hugging face"
+        ],
         "Extra (False Positives/Noise)": [
-            "bert",
             "matplotlib",
             "scikit"
         ]

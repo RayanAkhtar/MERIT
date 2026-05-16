@@ -11,11 +11,8 @@
         "Kubernetes",
         "Node.js",
         "React",
-        "gcp",
         "postgresql",
-        "prometheus",
-        "pulumi",
-        "terraform"
+        "pulumi"
     ],
     "education": [],
     "nice_to_have": [
@@ -35,7 +32,6 @@
         "PostgreSQL",
         "TypeScript",
         "c",
-        "github",
         "graphql"
     ],
     "education_required": []

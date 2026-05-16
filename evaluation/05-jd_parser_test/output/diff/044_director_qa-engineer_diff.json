@@ -2,13 +2,13 @@
     "Skills": {
         "Matched": [
             "cypress",
-            "jenkins",
             "python"
         ],
         "Missed (False Negatives)": [
             "appium",
             "git",
             "java",
+            "jenkins",
             "junit",
             "selenium"
         ],
@@ -16,8 +16,6 @@
             "aws",
             "azure",
             "docker",
-            "gcp",
-            "github",
             "javascript",
             "playwright"
         ]

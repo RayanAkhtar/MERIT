@@ -1,32 +1,30 @@
 {
     "Skills": {
         "Matched": [
-            "bash",
             "docker",
-            "gcp",
-            "github",
             "java",
-            "kafka",
             "kubernetes",
             "python",
             "scala",
-            "sql",
-            "terraform"
+            "sql"
         ],
         "Missed (False Negatives)": [
             "airflow",
             "aws",
+            "bash",
             "dbt",
+            "gcp",
             "git",
+            "github",
             "hadoop",
+            "kafka",
             "snowflake",
-            "spark"
+            "spark",
+            "terraform"
         ],
         "Extra (False Positives/Noise)": [
             "go",
-            "google cloud",
             "graphql",
-            "jenkins",
             "processing"
         ]
     },

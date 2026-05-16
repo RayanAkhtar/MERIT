@@ -17,23 +17,17 @@
   "skills": [
     "docker",
     "foundation",
-    "github",
     "go",
-    "grafana",
     "graphql",
     "grpc",
     "java",
-    "jenkins",
     "js",
-    "kafka",
     "kubernetes",
     "node.js",
     "postgresql",
     "processing",
-    "prometheus",
     "python",
     "rust",
-    "terraform",
     "typescript"
   ],
   "projects": [

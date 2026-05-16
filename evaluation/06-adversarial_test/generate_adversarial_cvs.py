@@ -49,10 +49,12 @@ def generate_adversaries():
     if "repositories" in ghost_gh: del ghost_gh["repositories"]
     ghost_li = anonymize_record(raw_li, "The Ghost")
 
-    # 3. FRAUD
+    # 3. FRAUD (Skill Inflation)
     fraud_cv = anonymize_record(raw_cv, "The Fraud")
     fraud_cv["skills"].extend(["typescript", "python", "react", "postgresql"])
+    fraud_cv["raw_cv_text"] += " Expert in TypeScript, Python, React and PostgreSQL."
     fraud_gh = anonymize_record(raw_gh, "The Fraud")
+    # GitHub only shows 0.1% TypeScript, contradicting CV claims
     fraud_gh["languages"] = [{"label": "HTML", "pct": 99.8}, {"label": "TypeScript", "pct": 0.1}]
     fraud_gh["language_history"] = [{"year": "2026", "HTML": 10000, "TypeScript": 1}]
     if "repositories" in fraud_gh: del fraud_gh["repositories"]
@@ -80,11 +82,11 @@ def generate_adversaries():
     if "repositories" in gamer_gh: del gamer_gh["repositories"]
     gamer_li = anonymize_record(raw_li, "The Time Traveler")
 
-    # 6. SQUATTER
-    squatter_cv = anonymize_record(raw_cv, "Squatter Candidate")
+    # 6. SQUATTER (Identity Fraud)
+    squatter_cv = anonymize_record(raw_cv, "Vince Vault")
     squatter_gh = copy.deepcopy(raw_gh)
-    squatter_gh["name"] = "Rayan Akhtar" 
-    squatter_li = anonymize_record(raw_li, "Squatter Candidate")
+    squatter_gh["name"] = "Alice Smith" # CLEAR MISMATCH
+    squatter_li = anonymize_record(raw_li, "Vince Vault")
 
     # 7. SHADOW
     shadow_cv = anonymize_record(raw_cv, "The Shadow")

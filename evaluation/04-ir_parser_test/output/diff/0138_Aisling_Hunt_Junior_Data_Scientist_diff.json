@@ -2,8 +2,6 @@
     "Skills": {
         "Matched": [
             "aws",
-            "git",
-            "github",
             "jupyter",
             "matplotlib",
             "numpy",
@@ -15,15 +13,15 @@
             "tensorflow"
         ],
         "Missed (False Negatives)": [
+            "git",
+            "github",
             "tableau"
         ],
         "Extra (False Positives/Noise)": [
             "dbeaver",
             "docker",
-            "nltk",
             "postgresql",
-            "scikit",
-            "spacy"
+            "scikit"
         ]
     },
     "Experience": {

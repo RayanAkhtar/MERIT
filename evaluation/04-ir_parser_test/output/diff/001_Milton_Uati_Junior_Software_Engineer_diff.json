@@ -5,12 +5,7 @@
             "docker",
             "fastapi",
             "firebase",
-            "gcp",
-            "git",
-            "github",
             "go",
-            "grafana",
-            "hugging face",
             "influxdb",
             "java",
             "javascript",
@@ -20,7 +15,6 @@
             "next.js",
             "node.js",
             "postgresql",
-            "prometheus",
             "pypi",
             "python",
             "react",
@@ -30,7 +24,13 @@
             "typescript"
         ],
         "Missed (False Negatives)": [
+            "gcp",
+            "git",
+            "github",
+            "grafana",
+            "hugging face",
             "linux",
+            "prometheus",
             "react native"
         ],
         "Extra (False Positives/Noise)": [

@@ -59,6 +59,14 @@ def main():
         study_path = os.path.join(root_dir, study_name)
         run_study(study_path, "run_study.py")
 
+    # study 11: shapley verification
+    study_11 = os.path.join(root_dir, "11-shapley_verification")
+    run_study(study_11, "run_study.py")
+
+    # study 12: conflict resolution
+    study_12 = os.path.join(root_dir, "12-conflict_resolution")
+    run_study(study_12, "run_study.py")
+
 
 
     print("\n" + "="*60)

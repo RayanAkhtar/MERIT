@@ -1,0 +1,7 @@
+{
+  "name": "Ghost Gary",
+  "email": "gary.ghost@example.com",
+  "raw_cv_text": "Experienced Developer in Java, Spring, React and AWS. 10 years experience.",
+  "experience": [{"company": "Undisclosed", "years": 10, "title": "Lead Developer"}],
+  "skills": ["Java", "Spring", "React", "AWS"]
+}

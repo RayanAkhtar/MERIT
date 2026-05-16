@@ -1,0 +1,7 @@
+{
+  "name": "Carl Corp",
+  "email": "carl.corp@example.com",
+  "raw_cv_text": "Software Engineer at Google and Facebook. 10 years experience in Java and distributed systems.",
+  "experience": [{"company": "Google", "years": 5, "title": "L5 Engineer"}, {"company": "Facebook", "years": 5, "title": "E5 Engineer"}],
+  "skills": ["Java", "Distributed Systems", "Scaling"]
+}

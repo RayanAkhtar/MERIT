@@ -1,0 +1,11 @@
+{
+  "total_stars": 50,
+  "total_forks": 10,
+  "repo_count": 5,
+  "featured_projects": [
+    {"name": "complex-state-management-lib", "stars": 40, "forks": 5, "languages_distribution": {"TypeScript": 12000}, "lines": 12000}
+  ],
+  "language_history": [
+    {"language": "TypeScript", "count": 60, "last_active": "2024-05-01"}
+  ]
+}

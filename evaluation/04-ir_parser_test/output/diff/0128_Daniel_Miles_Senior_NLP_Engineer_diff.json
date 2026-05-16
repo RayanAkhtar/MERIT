@@ -2,26 +2,26 @@
     "Skills": {
         "Matched": [
             "aws",
-            "bash",
-            "bert",
             "docker",
-            "git",
-            "github",
-            "hugging face",
             "jupyter",
             "keras",
             "kubernetes",
-            "nltk",
             "python",
             "pytorch",
-            "spacy",
             "sql",
-            "tensorflow",
-            "transformers"
+            "tensorflow"
         ],
         "Missed (False Negatives)": [
+            "bash",
+            "bert",
             "elasticsearch",
-            "fastapi"
+            "fastapi",
+            "git",
+            "github",
+            "hugging face",
+            "nltk",
+            "spacy",
+            "transformers"
         ],
         "Extra (False Positives/Noise)": [
             "java",

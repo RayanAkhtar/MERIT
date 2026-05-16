@@ -9,11 +9,7 @@
         "AWS",
         "Kubernetes",
         "azure",
-        "gcp",
-        "grafana",
-        "postgresql",
-        "prometheus",
-        "terraform"
+        "postgresql"
     ],
     "education": [],
     "nice_to_have": [
@@ -43,7 +39,6 @@
     "languages": [
         "PostgreSQL",
         "Python",
-        "github",
         "go"
     ],
     "education_required": []

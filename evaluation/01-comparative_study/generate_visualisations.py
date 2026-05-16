@@ -55,7 +55,7 @@ def plot_rank_displacement_chart(title, focus_candidates, filename, baseline, ai
         'Carl Corp': {'colour': '#5D295F', 'label': 'The Corporate Giant'},
         'Ghost Gary': {'colour': '#4A4A4A', 'label': 'The Unverified Ghost'},
         'Felix Vance': {'colour': '#FF0000', 'label': 'The Identity Mismatch'},
-        'Nadia Nomad': {'colour': '#FFD700', 'label': 'The Breadth-Only Generalist'},
+        'Vince Vault': {'colour': '#9C27B0', 'label': 'The Squatter'},
         'Fiona Frost': {'colour': '#800000', 'label': 'The Evidence of Absence'},
         'Kim Junior': {'colour': '#8BC34A', 'label': 'The High-Potential Junior'}
     }
@@ -151,7 +151,7 @@ def generate_evaluation_visualisations():
     plot_rank_displacement_chart("Holistic Results: Systemic Rank Displacement", all_names, "rank_displacement_holistic.png", baseline, ai, cv_only, merit_full)
     
     # highlighting candidates where multi-source fusion worked best
-    success_highlights = ["Alex Rivers", "Jordan Smith", "Buzz Ward", "Sam Old", "Nadia Nomad"]
+    success_highlights = ["Alex Rivers", "Jordan Smith", "Buzz Ward", "Sam Old", "Vince Vault"]
     plot_rank_displacement_chart("Systemic Successes: Discovery & Noise Filtering", success_highlights, "rank_displacement_successes.png", baseline, ai, cv_only, merit_full)
     
     # highlighting the proprietary data gap

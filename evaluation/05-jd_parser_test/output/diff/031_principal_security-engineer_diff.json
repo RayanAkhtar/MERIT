@@ -14,8 +14,7 @@
             "wireshark"
         ],
         "Extra (False Positives/Noise)": [
-            "aws",
-            "github"
+            "aws"
         ]
     },
     "Details": {

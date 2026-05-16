@@ -12,20 +12,14 @@
     "c",
     "docker",
     "dynamodb",
-    "gcp",
-    "github",
     "go",
-    "grafana",
     "grpc",
     "java",
-    "kafka",
     "kubernetes",
     "postgresql",
     "processing",
-    "prometheus",
     "python",
-    "rust",
-    "terraform"
+    "rust"
   ],
   "projects": [
     {

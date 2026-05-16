@@ -12,20 +12,14 @@
   "skills": [
     "aws",
     "docker",
-    "gcp",
-    "git",
-    "github",
     "go",
     "graphql",
     "grpc",
     "java",
-    "kafka",
     "kubernetes",
     "postgresql",
     "processing",
-    "prometheus",
     "python",
-    "terraform",
     "xml"
   ],
   "projects": [

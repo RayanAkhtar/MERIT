@@ -1,8 +1,6 @@
 {
     "Skills": {
         "Matched": [
-            "git",
-            "github",
             "hugo",
             "kubernetes",
             "markdown",
@@ -11,6 +9,8 @@
         "Missed (False Negatives)": [
             "api documentation",
             "docusaurus",
+            "git",
+            "github",
             "mkdocs",
             "openapi",
             "sphinx",

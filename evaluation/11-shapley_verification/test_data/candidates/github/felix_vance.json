@@ -1,0 +1,16 @@
+{
+  "total_stars": 150,
+  "total_forks": 40,
+  "repo_count": 25,
+  "featured_projects": [
+    {
+      "name": "python-data-viz",
+      "stars": 120,
+      "language": "Python",
+      "complexity_score": 85
+    }
+  ],
+  "language_history": [
+    {"language": "Python", "percentage": 100}
+  ]
+}

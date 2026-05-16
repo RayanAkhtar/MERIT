@@ -10,22 +10,15 @@
         "github": []
     },
     "skills": [
-        "bash",
         "docker",
-        "gcp",
-        "github",
         "go",
-        "google cloud",
         "graphql",
         "java",
-        "jenkins",
-        "kafka",
         "kubernetes",
         "processing",
         "python",
         "scala",
-        "sql",
-        "terraform"
+        "sql"
     ],
     "projects": [],
     "extracurricular": [

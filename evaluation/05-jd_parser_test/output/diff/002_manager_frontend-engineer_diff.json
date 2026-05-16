@@ -16,7 +16,6 @@
         ],
         "Extra (False Positives/Noise)": [
             "c",
-            "github",
             "js",
             "playwright",
             "r",

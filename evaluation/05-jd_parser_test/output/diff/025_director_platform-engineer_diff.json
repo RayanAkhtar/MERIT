@@ -4,22 +4,18 @@
             "aws",
             "go",
             "kubernetes",
-            "python",
-            "terraform"
+            "python"
         ],
         "Missed (False Negatives)": [
             "ansible",
             "docker",
             "jenkins",
-            "linux"
+            "linux",
+            "terraform"
         ],
         "Extra (False Positives/Noise)": [
             "azure",
-            "gcp",
-            "github",
-            "grafana",
-            "postgresql",
-            "prometheus"
+            "postgresql"
         ]
     },
     "Details": {

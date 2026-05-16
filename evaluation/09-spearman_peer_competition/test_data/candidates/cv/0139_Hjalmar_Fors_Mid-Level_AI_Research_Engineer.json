@@ -11,23 +11,18 @@
     "github": []
   },
   "skills": [
-    "bash",
     "c",
     "c++",
     "docker",
     "fastapi",
     "foundation",
-    "git",
-    "github",
-    "hugging face",
     "jupyter",
     "kubernetes",
     "matlab",
     "processing",
     "python",
     "pytorch",
-    "tensorflow",
-    "transformers"
+    "tensorflow"
   ],
   "projects": [
     {

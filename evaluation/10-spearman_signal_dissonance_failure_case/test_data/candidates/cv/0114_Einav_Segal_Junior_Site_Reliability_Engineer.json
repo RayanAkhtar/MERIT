@@ -11,22 +11,12 @@
   },
   "skills": [
     "aws",
-    "bash",
     "docker",
-    "elasticsearch",
-    "gcp",
-    "git",
-    "github",
-    "gitlab",
     "go",
-    "grafana",
-    "jenkins",
     "kubernetes",
     "processing",
-    "prometheus",
     "python",
-    "sql",
-    "terraform"
+    "sql"
   ],
   "projects": [
     {

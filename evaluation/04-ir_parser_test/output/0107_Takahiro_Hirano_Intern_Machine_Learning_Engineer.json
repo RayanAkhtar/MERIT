@@ -10,11 +10,7 @@
         "linkedin": []
     },
     "skills": [
-        "bert",
         "docker",
-        "git",
-        "github",
-        "hugging face",
         "jupyter",
         "keras",
         "matplotlib",

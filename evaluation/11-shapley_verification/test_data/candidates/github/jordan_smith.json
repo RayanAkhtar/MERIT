@@ -1,0 +1,13 @@
+{
+  "total_stars": 850,
+  "total_forks": 300,
+  "repo_count": 40,
+  "featured_projects": [
+    {"name": "high-perf-java-backend", "stars": 500, "forks": 150, "languages_distribution": {"Java": 40000}, "lines": 40000},
+    {"name": "react-native-ui-lib", "stars": 300, "forks": 120, "languages_distribution": {"TypeScript": 15000}, "lines": 15000}
+  ],
+  "language_history": [
+    {"language": "Java", "count": 100, "last_active": "2024-05-04"},
+    {"language": "TypeScript", "count": 80, "last_active": "2024-05-01"}
+  ]
+}

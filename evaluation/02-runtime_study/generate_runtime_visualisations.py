@@ -24,17 +24,25 @@ def generate_runtime_plots():
 
     df = pd.read_csv(data_path)
     
+    # Unified color and marker mapping for consistency across plots
+    system_styles = {
+        'Traditional ATS (s)': {'color': '#888888', 'marker': 'o', 'ls': '--', 'label': 'Traditional ATS'},
+        'Modern AI ATS (s)': {'color': ICL_ORANGE, 'marker': 's', 'ls': '-', 'label': 'Modern AI ATS'},
+        'MERIT CV-Only (s)': {'color': ICL_GREEN, 'marker': '^', 'ls': '-', 'label': 'MERIT CV-Only'},
+        'MERIT Full (s)': {'color': ICL_NAVY, 'marker': 'D', 'ls': '-', 'label': 'MERIT Full'},
+        'MERIT Explainable (s)': {'color': ICL_RED, 'marker': '*', 'ls': '-', 'label': 'MERIT Explainable'}
+    }
+    
     # --- Plot 1: Overall Latency Scaling ---
     plt.style.use('default')
     fig, ax = plt.subplots(figsize=(10, 6), dpi=300)
     
     x = df['Candidates']
     
-    ax.plot(x, df['Traditional ATS (s)'], marker='o', label='Traditional ATS', color='#888888', linestyle='--', linewidth=2)
-    ax.plot(x, df['Modern AI ATS (s)'], marker='s', label='Modern AI ATS (Semantic)', color=ICL_ORANGE, linewidth=2.5)
-    ax.plot(x, df['MERIT CV-Only (s)'], marker='^', label='MERIT (CV-Only Ablation)', color=ICL_GREEN, linewidth=2.5)
-    ax.plot(x, df['MERIT Full (s)'], marker='D', label='MERIT (Full Multi-Source)', color=ICL_NAVY, linewidth=3)
-    ax.plot(x, df['MERIT Explainable (s)'], marker='*', label='MERIT (Full + Shapley XAI)', color=ICL_RED, linewidth=3)
+    for col, style in system_styles.items():
+        if col in df.columns:
+            ax.plot(x, df[col], marker=style['marker'], label=style['label'], 
+                    color=style['color'], linestyle=style['ls'], linewidth=2.5 if 'MERIT' in style['label'] else 2)
 
     ax.set_title('Runtime Complexity: Ranking Latency vs Candidate Volume', fontsize=14, fontweight='bold', pad=20)
     ax.set_xlabel('Number of Candidates ($N$)', fontsize=12)
@@ -43,21 +51,19 @@ def generate_runtime_plots():
     ax.grid(True, linestyle=':', alpha=0.6)
     ax.legend(frameon=True, loc='upper left', fontsize=10)
     
-    # Adding a zoom-in callout for the lower N values if necessary
-    # (Leaving it standard for now to show the full trend)
-    
     plt.tight_layout()
     output_plot = os.path.join(current_dir, "output/runtime_complexity_plot.png")
     plt.savefig(output_plot)
-    plt.close(fig) # Prevent duplicate display in notebooks
-    print(f"[SUCCESS] Runtime plot saved to {output_plot}")
+    plt.close(fig) 
 
     # --- Plot 2: Per-Candidate Efficiency (Normalised) ---
     fig2, ax2 = plt.subplots(figsize=(10, 6), dpi=300)
     
     # Latency per candidate
-    for col in df.columns[1:]:
-        ax2.plot(x, df[col] / x * 1000, marker='o', label=col.replace(' (s)', ''), linewidth=2)
+    for col, style in system_styles.items():
+        if col in df.columns:
+            ax2.plot(x, df[col] / x * 1000, marker=style['marker'], label=style['label'], 
+                     color=style['color'], linestyle=style['ls'], linewidth=2)
 
     ax2.set_title('Algorithmic Efficiency: Latency per 1000 Candidates', fontsize=14, fontweight='bold', pad=20)
     ax2.set_xlabel('Batch Size ($N$)', fontsize=12)

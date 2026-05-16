@@ -1,0 +1,13 @@
+{
+  "total_stars": 450,
+  "total_forks": 120,
+  "repo_count": 15,
+  "featured_projects": [
+    {"name": "react-query-master", "stars": 300, "forks": 80, "languages_distribution": {"TypeScript": 10000}, "lines": 10000},
+    {"name": "spring-boot-starter-auth", "stars": 150, "forks": 40, "languages_distribution": {"Java": 8000}, "lines": 8000}
+  ],
+  "language_history": [
+    {"language": "TypeScript", "count": 50, "last_active": "2024-05-01"},
+    {"language": "Java", "count": 30, "last_active": "2024-04-15"}
+  ]
+}

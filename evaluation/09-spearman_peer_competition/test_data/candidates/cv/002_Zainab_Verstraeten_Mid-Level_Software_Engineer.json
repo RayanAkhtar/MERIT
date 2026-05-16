@@ -17,17 +17,11 @@
   "skills": [
     "aws",
     "docker",
-    "elasticsearch",
     "foundation",
-    "git",
-    "github",
-    "gitlab",
     "go",
     "graphql",
     "java",
-    "jenkins",
     "js",
-    "kafka",
     "kubernetes",
     "node.js",
     "postgresql",
@@ -38,7 +32,6 @@
     "rust",
     "solidity",
     "sql",
-    "terraform",
     "typescript"
   ],
   "projects": [

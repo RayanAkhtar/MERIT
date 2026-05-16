@@ -5,10 +5,7 @@
     "location": null,
     "employment_type": "Internship",
     "experience_level": "Senior",
-    "technical_skills": [
-        "kafka",
-        "terraform"
-    ],
+    "technical_skills": [],
     "education": [],
     "nice_to_have": [
         "Experience with dbt (data build tool) and modern ELT/dbt best",
@@ -27,8 +24,7 @@
     "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\evaluation\\05-jd_parser_test\\test_data/jds\\012_staff_data-engineer.pdf",
     "languages": [
         "Python",
-        "SQL",
-        "github"
+        "SQL"
     ],
     "education_required": []
 }

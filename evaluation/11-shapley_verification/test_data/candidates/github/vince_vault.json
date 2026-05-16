@@ -1,0 +1,19 @@
+{
+  "name": "Alice Smith",
+  "total_stars": 1500,
+  "total_forks": 300,
+  "repo_count": 45,
+  "featured_projects": [
+    {
+      "name": "ultimate-viz-library",
+      "stars": 1200,
+      "language": "Python",
+      "complexity_score": 95
+    }
+  ],
+  "language_history": [
+    {"language": "Python", "percentage": 90},
+    {"language": "JavaScript", "percentage": 10}
+  ],
+  "updated_at": "2026-01-15T10:00:00Z"
+}

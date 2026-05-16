@@ -1,32 +1,30 @@
 {
     "Skills": {
         "Matched": [
-            "ansible",
             "aws",
             "azure",
-            "bash",
             "docker",
-            "gcp",
-            "github",
             "go",
-            "grafana",
-            "istio",
-            "jenkins",
             "kubernetes",
-            "prometheus",
-            "python",
-            "terraform"
+            "python"
         ],
         "Missed (False Negatives)": [
+            "ansible",
+            "bash",
             "circleci",
+            "gcp",
             "git",
+            "github",
+            "grafana",
             "helm",
-            "shell"
+            "istio",
+            "jenkins",
+            "prometheus",
+            "shell",
+            "terraform"
         ],
         "Extra (False Positives/Noise)": [
             "foundation",
-            "gitlab",
-            "kafka",
             "processing",
             "sql",
             "yaml"

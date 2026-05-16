@@ -1,0 +1,8 @@
+{
+  "name": "Kim Junior",
+  "email": "kim.jr@example.com",
+  "raw_cv_text": "Recent Graduate. Interned at small startup. Passionate about React.",
+  "experience": [{"company": "Startup", "years": 0.5, "title": "Intern"}],
+  "skills": ["React", "JavaScript"],
+  "cv_education": [{"school_name": "Uni", "degree": "BSc"}]
+}

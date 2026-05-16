@@ -2,7 +2,6 @@
     "Skills": {
         "Matched": [
             "docker",
-            "git",
             "go",
             "java",
             "kubernetes",
@@ -11,13 +10,13 @@
             "sql"
         ],
         "Missed (False Negatives)": [
+            "git",
             "linux",
             "rabbitmq",
             "redis"
         ],
         "Extra (False Positives/Noise)": [
             "foundation",
-            "github",
             "mysql"
         ]
     },

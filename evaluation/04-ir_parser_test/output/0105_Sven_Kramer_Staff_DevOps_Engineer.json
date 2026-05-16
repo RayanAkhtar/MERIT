@@ -10,26 +10,15 @@
         "linkedin": []
     },
     "skills": [
-        "ansible",
         "aws",
         "azure",
-        "bash",
         "docker",
         "foundation",
-        "gcp",
-        "github",
-        "gitlab",
         "go",
-        "grafana",
-        "istio",
-        "jenkins",
-        "kafka",
         "kubernetes",
         "processing",
-        "prometheus",
         "python",
         "sql",
-        "terraform",
         "yaml"
     ],
     "projects": [

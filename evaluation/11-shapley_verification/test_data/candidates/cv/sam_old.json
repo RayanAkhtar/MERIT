@@ -1,0 +1,8 @@
+{
+  "name": "Sam Old",
+  "email": "sam.old@example.com",
+  "raw_cv_text": "Experienced Developer with 15 years in Java and Spring. Managed large teams and enterprise architectures.",
+  "experience": [{"company": "Legacy Systems", "years": 15, "title": "Architect"}],
+  "skills": ["Java", "Spring", "Oracle"],
+  "cv_education": [{"school_name": "Uni", "degree": "BSc"}]
+}

@@ -10,7 +10,6 @@
         "Docker",
         "Scikit-learn",
         "azure",
-        "google cloud",
         "numpy",
         "pandas",
         "processing",
@@ -28,8 +27,6 @@
     "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\evaluation\\05-jd_parser_test\\test_data/jds\\003_intern_ml-engineer.pdf",
     "languages": [
         "Python",
-        "git",
-        "github",
         "jupyter",
         "pytorch"
     ],

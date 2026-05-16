@@ -2,31 +2,32 @@
     "Skills": {
         "Matched": [
             "aws",
-            "bash",
             "c++",
             "cassandra",
             "clickhouse",
             "docker",
             "dynamodb",
-            "gcp",
-            "git",
-            "github",
             "go",
-            "grafana",
             "grpc",
             "java",
-            "jenkins",
-            "kafka",
             "kubernetes",
             "nosql",
             "postgresql",
-            "prometheus",
             "python",
             "rust",
-            "sql",
+            "sql"
+        ],
+        "Missed (False Negatives)": [
+            "bash",
+            "gcp",
+            "git",
+            "github",
+            "grafana",
+            "jenkins",
+            "kafka",
+            "prometheus",
             "terraform"
         ],
-        "Missed (False Negatives)": [],
         "Extra (False Positives/Noise)": [
             "c",
             "processing"

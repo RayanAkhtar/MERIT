@@ -2,22 +2,22 @@
     "Skills": {
         "Matched": [
             "aws",
-            "blender",
             "c#",
             "c++",
             "docker",
-            "git",
             "js",
             "kubernetes",
             "python",
-            "tensorflow",
+            "tensorflow"
+        ],
+        "Missed (False Negatives)": [
+            "blender",
+            "git",
+            "maya",
+            "opengl",
             "unity",
             "unreal engine",
             "webxr"
-        ],
-        "Missed (False Negatives)": [
-            "maya",
-            "opengl"
         ],
         "Extra (False Positives/Noise)": [
             "azure",

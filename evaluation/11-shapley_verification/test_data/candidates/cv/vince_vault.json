@@ -1,0 +1,15 @@
+{
+  "name": "Vince Vault",
+  "email": "vince.vault@example.com",
+  "summary": "Expert Java Backend Engineer specialized in Spring Boot microservices and AWS cloud architecture.",
+  "raw_cv_text": "Expert Java Backend Engineer with 10 years of experience. Specialist in Spring Boot, React, and AWS. Built scalable microservices at global scale. Extensive experience with SQL and Docker.",
+  "experience": [
+    {
+      "company": "Enterprise Java Solutions",
+      "role": "Lead Architect",
+      "years": 10,
+      "description": "Architected high-throughput Java systems using Spring Boot and AWS."
+    }
+  ],
+  "skills": ["Java", "Spring Boot", "React", "AWS", "SQL", "Docker"]
+}

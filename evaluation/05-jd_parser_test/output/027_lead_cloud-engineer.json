@@ -9,11 +9,7 @@
         "AWS",
         "Docker",
         "Kubernetes",
-        "azure",
-        "gcp",
-        "jenkins",
-        "prometheus",
-        "terraform"
+        "azure"
     ],
     "education": [],
     "nice_to_have": [
@@ -50,9 +46,6 @@
     "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\evaluation\\05-jd_parser_test\\test_data/jds\\027_lead_cloud-engineer.pdf",
     "languages": [
         "Python",
-        "bash",
-        "github",
-        "gitlab",
         "go"
     ],
     "education_required": []

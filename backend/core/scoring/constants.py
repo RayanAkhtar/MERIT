@@ -42,9 +42,9 @@ SCORING_CONSTANTS = {
         "CONSENSUS_MULTIPLIER": 1.15,
     },
     "ANTI_STUFFING": {
-        "OCCURRENCE_LIMIT": 4,             # max times a keyword can appear (in the cv) before penalty to avoid keyword stuffing
-        "PENALTY_PER_OCCURRENCE": 0.08,    # Score reduction for each occurrence over limit
-        "MAX_TOTAL_PENALTY": 0.60          # Cap the penalty at 60% of score for that metric
+        "OCCURRENCE_LIMIT": 5,             # reasonable limit to allow natural repetition
+        "PENALTY_PER_OCCURRENCE": 0.05,    # high enough so that 17+ mentions hits the cap (Completely unreasonable to mention any one language that many times on a CV)
+        "MAX_TOTAL_PENALTY": 0.60          # 60% max penalty
     },
     "INTEGRITY": {
         "SQUATTER_PENALTY": 0.20,      # Penalty for name mismatches (dock 20%)

@@ -1,8 +1,6 @@
 {
     "Skills": {
         "Matched": [
-            "git",
-            "github",
             "graphql",
             "javascript",
             "js",
@@ -14,6 +12,8 @@
         ],
         "Missed (False Negatives)": [
             "figma",
+            "git",
+            "github",
             "jest",
             "sass",
             "tailwind css"

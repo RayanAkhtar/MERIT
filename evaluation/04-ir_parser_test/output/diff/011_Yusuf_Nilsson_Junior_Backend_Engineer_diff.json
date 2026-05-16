@@ -3,8 +3,6 @@
         "Matched": [
             "docker",
             "fastapi",
-            "git",
-            "github",
             "go",
             "js",
             "kubernetes",
@@ -15,20 +13,18 @@
         "Missed (False Negatives)": [
             "aws",
             "django",
+            "git",
+            "github",
             "jenkins",
             "pytest",
             "redis"
         ],
         "Extra (False Positives/Noise)": [
-            "elasticsearch",
-            "grafana",
             "graphql",
             "grpc",
             "java",
-            "kafka",
             "node.js",
             "processing",
-            "prometheus",
             "rust",
             "spring",
             "typescript"

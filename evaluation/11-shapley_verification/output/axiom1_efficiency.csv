@@ -1,0 +1,11 @@
+candidate,phi_cv,phi_github,phi_linkedin,phi_sum,full_match_score,delta,status
+Alex Rivers,0.443167,0.295167,0.008667,0.747,0.747,0.0,PASS
+Buzz Ward,0.4845,0.0,0.0075,0.492,0.492,0.0,PASS
+Carl Corp,0.1635,0.0,0.0155,0.179,0.179,0.0,PASS
+Felix Vance,0.4805,0.066,0.0075,0.554,0.554,0.0,PASS
+Fiona Frost,0.266,0.066,0.008,0.34,0.34,0.0,PASS
+Ghost Gary,0.401,0.0,0.0,0.401,0.401,0.0,PASS
+Jordan Smith,0.103,0.4095,0.0115,0.524,0.524,0.0,PASS
+Kim Junior,0.188,0.049,0.0,0.237,0.237,0.0,PASS
+Sam Old,0.164833,0.187833,0.015333,0.368,0.368,0.0,PASS
+Vince Vault,0.425667,-0.070833,0.011167,0.366,0.366,0.0,PASS

@@ -17,24 +17,18 @@
   "skills": [
     "aws",
     "azure",
-    "bash",
     "docker",
     "fastapi",
-    "gcp",
-    "git",
-    "github",
     "go",
     "grpc",
     "java",
     "javascript",
-    "jenkins",
     "kubernetes",
     "postgresql",
     "processing",
     "python",
     "spring",
-    "sql",
-    "terraform"
+    "sql"
   ],
   "projects": [
     {

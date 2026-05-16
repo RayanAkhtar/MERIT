@@ -1,22 +1,20 @@
 {
     "Skills": {
         "Matched": [
-            "kafka",
             "python",
-            "sql",
-            "terraform"
+            "sql"
         ],
         "Missed (False Negatives)": [
             "airflow",
             "aws",
             "docker",
+            "kafka",
             "scala",
             "snowflake",
-            "spark"
+            "spark",
+            "terraform"
         ],
-        "Extra (False Positives/Noise)": [
-            "github"
-        ]
+        "Extra (False Positives/Noise)": []
     },
     "Details": {
         "Title Match": true,

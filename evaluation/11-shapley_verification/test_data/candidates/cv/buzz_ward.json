@@ -1,0 +1,7 @@
+{
+  "name": "Buzz Ward",
+  "email": "buzz.word@example.com",
+  "raw_cv_text": "Java Java Java Java Java Java Java Java Java Java Spring Boot Spring Boot Spring Boot Spring Boot Spring Boot React React React React React React React React AWS AWS AWS AWS AWS AWS AWS AWS. I am an expert in Java Spring Boot React AWS Java Spring Boot React AWS.",
+  "experience": [{"company": "Freelance", "years": 8, "title": "Developer"}],
+  "skills": ["Java", "Spring Boot", "React", "AWS"]
+}

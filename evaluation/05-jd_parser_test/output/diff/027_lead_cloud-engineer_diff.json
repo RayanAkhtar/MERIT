@@ -3,23 +3,19 @@
         "Matched": [
             "aws",
             "azure",
-            "bash",
             "docker",
-            "gcp",
             "kubernetes",
-            "python",
-            "terraform"
+            "python"
         ],
         "Missed (False Negatives)": [
             "ansible",
-            "linux"
+            "bash",
+            "gcp",
+            "linux",
+            "terraform"
         ],
         "Extra (False Positives/Noise)": [
-            "github",
-            "gitlab",
-            "go",
-            "jenkins",
-            "prometheus"
+            "go"
         ]
     },
     "Details": {

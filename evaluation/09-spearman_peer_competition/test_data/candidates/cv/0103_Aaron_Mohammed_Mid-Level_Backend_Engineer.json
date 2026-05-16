@@ -11,16 +11,11 @@
   },
   "skills": [
     "aws",
-    "bash",
-    "circleci",
     "docker",
-    "git",
-    "github",
     "go",
     "graphql",
     "java",
     "js",
-    "kafka",
     "kubernetes",
     "mongodb",
     "node.js",
@@ -28,8 +23,7 @@
     "processing",
     "python",
     "spring",
-    "sql",
-    "terraform"
+    "sql"
   ],
   "projects": [
     {

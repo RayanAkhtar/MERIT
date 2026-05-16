@@ -16,31 +16,22 @@
   },
   "skills": [
     "aws",
-    "bash",
     "c",
     "c++",
     "cassandra",
     "clickhouse",
     "docker",
     "dynamodb",
-    "gcp",
-    "git",
-    "github",
     "go",
-    "grafana",
     "grpc",
     "java",
-    "jenkins",
-    "kafka",
     "kubernetes",
     "nosql",
     "postgresql",
     "processing",
-    "prometheus",
     "python",
     "rust",
-    "sql",
-    "terraform"
+    "sql"
   ],
   "projects": [
     {

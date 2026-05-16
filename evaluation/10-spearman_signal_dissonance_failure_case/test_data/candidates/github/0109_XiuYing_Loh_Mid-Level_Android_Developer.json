@@ -1,18 +1,18 @@
 {
-  "total_stars": 1031,
-  "total_forks": 226,
-  "repo_count": 16,
+  "total_stars": 353,
+  "total_forks": 212,
+  "repo_count": 30,
   "featured_projects": [
     {
       "name": "production-service-core",
-      "stars": 618,
-      "forks": 113,
+      "stars": 211,
+      "forks": 106,
       "languages_distribution": {
-        "TypeScript": 20853,
-        "Java": 11675,
-        "Python": 6147,
-        "Shell": 237,
-        "Dockerfile": 139
+        "TypeScript": 22304,
+        "Java": 13237,
+        "Python": 6412,
+        "Shell": 457,
+        "Dockerfile": 58
       },
       "lines": 50000
     }
@@ -20,17 +20,17 @@
   "language_history": [
     {
       "year": "2024",
-      "TypeScript": 14723,
-      "Java": 9742,
-      "HTML": 2047
+      "TypeScript": 12711,
+      "Java": 8525,
+      "HTML": 3941
     },
     {
       "year": "2025",
-      "TypeScript": 20853,
-      "Java": 11675,
-      "Python": 6147,
-      "Shell": 237,
-      "Dockerfile": 139
+      "TypeScript": 22304,
+      "Java": 13237,
+      "Python": 6412,
+      "Shell": 457,
+      "Dockerfile": 58
     },
     {
       "year": "2026",

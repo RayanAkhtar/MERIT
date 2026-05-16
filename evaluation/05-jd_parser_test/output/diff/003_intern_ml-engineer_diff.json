@@ -2,7 +2,6 @@
     "Skills": {
         "Matched": [
             "docker",
-            "git",
             "numpy",
             "pandas",
             "python",
@@ -12,13 +11,12 @@
         ],
         "Missed (False Negatives)": [
             "gcp",
+            "git",
             "sql"
         ],
         "Extra (False Positives/Noise)": [
             "aws",
             "azure",
-            "github",
-            "google cloud",
             "jupyter",
             "processing"
         ]

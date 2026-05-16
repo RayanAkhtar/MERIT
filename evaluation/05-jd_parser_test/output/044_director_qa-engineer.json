@@ -10,8 +10,6 @@
         "Cypress",
         "Docker",
         "azure",
-        "gcp",
-        "jenkins",
         "playwright"
     ],
     "education": [],
@@ -22,8 +20,7 @@
     "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\evaluation\\05-jd_parser_test\\test_data/jds\\044_director_qa-engineer.pdf",
     "languages": [
         "JavaScript",
-        "Python",
-        "github"
+        "Python"
     ],
     "education_required": []
 }

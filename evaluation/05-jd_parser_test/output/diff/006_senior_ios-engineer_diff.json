@@ -11,9 +11,7 @@
             "objective-c",
             "swiftui"
         ],
-        "Extra (False Positives/Noise)": [
-            "github"
-        ]
+        "Extra (False Positives/Noise)": []
     },
     "Details": {
         "Title Match": true,

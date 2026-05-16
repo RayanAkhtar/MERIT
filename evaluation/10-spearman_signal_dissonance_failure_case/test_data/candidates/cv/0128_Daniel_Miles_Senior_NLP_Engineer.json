@@ -11,25 +11,17 @@
   },
   "skills": [
     "aws",
-    "bash",
-    "bert",
     "docker",
-    "git",
-    "github",
-    "hugging face",
     "java",
     "jupyter",
     "keras",
     "kubernetes",
-    "nltk",
     "processing",
     "python",
     "pytorch",
     "r",
-    "spacy",
     "sql",
-    "tensorflow",
-    "transformers"
+    "tensorflow"
   ],
   "projects": [
     {

@@ -3,8 +3,6 @@
         "Matched": [
             "aws",
             "cypress",
-            "git",
-            "github",
             "graphql",
             "javascript",
             "js",
@@ -17,6 +15,8 @@
         "Missed (False Negatives)": [
             "css",
             "figma",
+            "git",
+            "github",
             "jest",
             "sass",
             "vue.js",
@@ -26,7 +26,6 @@
             "coffeescript",
             "css3",
             "docker",
-            "gitlab",
             "html5",
             "processing",
             "python",

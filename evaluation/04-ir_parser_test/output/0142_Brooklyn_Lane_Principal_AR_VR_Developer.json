@@ -13,12 +13,10 @@
     "skills": [
         "aws",
         "azure",
-        "blender",
         "c",
         "c#",
         "c++",
         "docker",
-        "git",
         "go",
         "java",
         "javascript",
@@ -30,10 +28,7 @@
         "pytorch",
         "r",
         "tensorflow",
-        "unity",
-        "unreal engine",
-        "vulkan",
-        "webxr"
+        "vulkan"
     ],
     "projects": [],
     "extracurricular": [
