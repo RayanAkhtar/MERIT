@@ -18,15 +18,15 @@ Refer to Listing \ref{lst:stuffing_logic} for the implementation details.
 \begin{moderncode}[title={Listing \ref{lst:stuffing_logic}: Keyword Stuffing Penalty Logic}]
     \begin{lstlisting}[language=json, label={lst:stuffing_logic}]
 "ANTI_STUFFING": {
-    "OCCURRENCE_LIMIT": 4,          // Repetitions allowed per CV
-    "PENALTY_PER_OCCURRENCE": 0.08, // 8% reduction per excess
+    "OCCURRENCE_LIMIT": 5,          // Repetitions allowed per CV
+    "PENALTY_PER_OCCURRENCE": 0.05, // 5% reduction per excess
     "MAX_TOTAL_PENALTY": 0.60       // Penalty cap
 }
 \end{lstlisting}
 \end{moderncode}
 
 
-If a keyword appears more than four times in a CV, the system flags the specific metric (such as Python) and
+If a keyword appears more than five times in a CV, the system flags the specific metric (such as Python) and
 applies a linear penalty. This encourages candidates to provide meaningful context rather than lexical repetition.
 In practice the threshold would be higher, and the penalty would be lower to avoid excessive penalisation, however
 this demonstrates the logical implementation.
@@ -49,7 +49,7 @@ multi-source nature of MERIT.
 
 \subsubsection{Source Trust Anchoring: Claimed vs. Demonstrated Evidence}
 To counter "Self-Report Bias", we leverage our Bayesian Evidence Fusion mechanism. For example, when it comes to extensible metrics,
-we place a higher degree of trust in GitHub (0.9 weight) compared to CV (0.7 weight) or LinkedIn (0.2 weight). This ensures that
+we place a higher degree of trust in GitHub (0.9 weight) compared to CV (0.5 weight) or LinkedIn (0.2 weight). This ensures that
 candidates who possess demonstrated evidence are favoured in scoring, as opposed to candidates who may claim skills on their CV without
 the evidence to back it up. This weight selection also possesses a secondary benefit of combating keyword stuffing.
 
