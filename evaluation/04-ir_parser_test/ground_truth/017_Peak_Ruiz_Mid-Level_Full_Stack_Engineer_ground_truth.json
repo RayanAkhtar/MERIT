@@ -1,0 +1,18 @@
+{
+    "name": "Peak Ruiz",
+    "email": "peak.ruiz@gmail.com",
+    "skills": [
+        "JavaScript", "TypeScript", "Python", "Go", "SQL", "HTML/CSS",
+        "React", "Next.js", "Node.js", "Express", "FastAPI", "PostgreSQL", "MongoDB", "Redis", "GraphQL", "REST APIs", "WebSockets", "Microservices", "Docker", "Kubernetes",
+        "Git", "AWS", "Google Cloud Platform", "GitHub", "GitLab", "Jira", "VS Code", "Postman", "DataDog", "New Relic"
+    ],
+    "experience": [
+        "Stripe",
+        "Figma",
+        "Datadog"
+    ],
+    "education": [
+        "University of Michigan",
+        "Coursera & Udacity"
+    ]
+}

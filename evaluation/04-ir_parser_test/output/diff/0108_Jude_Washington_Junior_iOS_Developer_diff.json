@@ -1,0 +1,61 @@
+{
+    "Skills": {
+        "Matched": [
+            "firebase",
+            "sql",
+            "swift"
+        ],
+        "Missed (False Negatives)": [
+            "avfoundation",
+            "cocoapods",
+            "combine",
+            "core data",
+            "figma",
+            "git",
+            "github",
+            "healthkit",
+            "jira",
+            "mapkit",
+            "objective-c",
+            "spm",
+            "swiftui",
+            "testflight",
+            "uikit",
+            "vision framework",
+            "xcode"
+        ],
+        "Extra (False Positives/Noise)": [
+            "c",
+            "processing",
+            "realm"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "techflow systems",
+            "momentum design studio"
+        ],
+        "Missed": [],
+        "All Extracted Entities": [
+            "techflow systems",
+            "analytics data",
+            "3.8 to 4.3 stars",
+            "momentum design studio",
+            "apps by 3 weeks",
+            "user dataset",
+            "by 34%"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": true,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Jude Washington",
+            "email": "jude.washington@gmail.com"
+        },
+        "Expected": {
+            "name": "Jude Washington",
+            "email": "jude.washington@gmail.com"
+        }
+    }
+}

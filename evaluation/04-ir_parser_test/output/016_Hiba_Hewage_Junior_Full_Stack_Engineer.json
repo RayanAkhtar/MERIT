@@ -1,0 +1,284 @@
+{
+    "raw_cv_text": "Hiba Hewage\n+44 (0)20 7946 8123 | Email: hiba.hewage@outlook.com | LinkedIn: hiba-hewage | GitHub: HibaHewage | https://hibahewage.dev\nEDUCATION\nUniversity of Cambridge | BA in Computer Science 2021 - 2024\nAchieved First-Class honors with distinction in full-stack web development coursework, ranking top 8% in cohort\nLed 12-person capstone project team building a distributed task scheduling system, delivering 3 weeks ahead of deadline\nUniversity of Melbourne | Graduate Diploma in Information Technology 2020 - 2021\nCompleted accelerated program with 92% average, specializing in cloud architecture and microservices\nPresented research paper on containerization optimization at tech symposium, attracting 150+ attendees\nEXPERIENCE\nShopify | Junior Full Stack Engineer June 2024 - Present\nBuilt and deployed 4 customer-facing REST APIs using Node.js and PostgreSQL, processing 500K+ daily transactions\nwith 99.7% uptime\nReduced critical bug resolution time by 65% through implementing automated regression test suite covering 87% of\ncodebase\nCollaborated with product and design teams to ship 3 major feature releases, each reaching 40K+ active users within first\nmonth\nDatadog | Software Engineer Intern - Full Stack January 2024 - May 2024\nDeveloped React dashboard component library with 22 reusable components, reducing frontend development time by\n48% across 8 teams\nOptimized MongoDB query performance by refactoring 15 aggregation pipelines, decreasing average latency from 850ms\nto 180ms (79% improvement)\nMentored 2 new interns on full-stack best practices, resulting in 3 merged pull requests and production deployment of\ntheir features\nFigma (Creator Fund) | Full Stack Contractor September 2023 - December 2023\nEngineered plugin API wrapper library in TypeScript, enabling 25+ third-party developers to integrate with Figma\nplatform\nImplemented real-time collaboration features using WebSockets and Redis, reducing state sync latency by 71%\nAchieved 94% code coverage on critical authentication modules through comprehensive unit and integration testing\nstrategy\nPROJECTS\nByteFlow - Real-time Code Collaboration Platform | React, Node.js, WebSocket, MongoDB, April 2024 - June 2024\nDocker, AWS EC2\nBuilt end-to-end collaborative code editor supporting 50+ concurrent users with sub-200ms latency using operational\ntransformation algorithm\nImplemented syntax highlighting for 15+ programming languages and achieved 92% test coverage across 3,200+ lines of\ncritical code\nDataViz Analytics - Open Source Data Dashboard | Vue.js, Python Flask, PostgreSQL, August 2023 - December 2023\nD3.js, GitHub Actions\nCreated modular analytics dashboard with 18 unique chart types, accumulating 2.8K GitHub stars and 340+ contributors\nOptimized data rendering pipeline, reducing dashboard load time by 56% and enabling visualization of 1M+ data points\nCloudSync - Smart File Synchronization Service | Go, gRPC, Kubernetes, PostgreSQL, January 2024 - March 2024\nReact, S3\nEngineered distributed file sync engine handling 10K+ files/minute across 5 cloud providers with 99.5% consistency\nguarantee\nReduced infrastructure costs by 42% through intelligent sharding and edge caching strategies\nAuthShield - Enterprise Authentication Library | TypeScript, Express.js, JWT, OAuth2, June 2023 - September 2023\nRedis\nDeveloped enterprise-grade authentication library with multi-factor authentication, supporting 8 identity providers and\n150K+ monthly users\nPublished on npm registry with 18K+ weekly downloads and maintained 95% documentation coverage\nTaskMaster API - High-Performance Task Queue | Rust, Tokio, RabbitMQ, PostgreSQL, November 2023 - January 2024\nPrometheus\nBuilt ultra-fast task processing system handling 100K+ jobs/hour with 99.99% delivery guarantee\nAchieved 3.2x performance improvement over Node.js baseline, processing tasks in <5ms average latency\nEXTRACURRICULAR\nJavaScript Community UK - London Chapter | Co-organizer & Speaker March 2023 - Present\nOrganized 8 monthly meetups attracting 180+ JavaScript developers, growing community membership by 340%\nDelivered talk on 'Building Scalable Node.js Architectures' to 120+ attendees, generating 8.5/10 average feedback score\nOpen Source Contributions | Active Maintainer January 2023 - Present\nContributed 47 pull requests to major open-source projects (React, Express.js, Playwright), achieving 89% merge rate\nMaintained personal open-source library with 1.2K GitHub stars, resolving 94% of issues within 48 hours\nTECHNICAL SKILLS\nLanguages \u2013 JavaScript, TypeScript, Python, Go, SQL, HTML5, CSS3\nTechnologies \u2013 React, Node.js, Vue.js, Express.js, PostgreSQL, MongoDB, Redis, Docker, Kubernetes, AWS (EC2, S3,\nLambda), GraphQL, REST APIs, WebSocket\nTools \u2013 Git, GitHub, GitLab, VS Code, Docker, Postman, Jest, Vitest, webpack, npm, yarn, CI/CD (GitHub Actions, GitLab\nCI), Linux, Vercel, Heroku",
+    "name": null,
+    "email": "hiba.hewage@outlook.com",
+    "phone": "+442079468123",
+    "links": {
+        "other": [
+            "https://hibahewage.dev"
+        ],
+        "linkedin": [
+            "https://linkedin.com/in/hiba-hewage"
+        ],
+        "github": [
+            "https://github.com/HibaHewage"
+        ]
+    },
+    "skills": [
+        "aws",
+        "css3",
+        "docker",
+        "express",
+        "flask",
+        "go",
+        "graphql",
+        "grpc",
+        "heroku",
+        "html5",
+        "javascript",
+        "js",
+        "kubernetes",
+        "mongodb",
+        "node.js",
+        "playwright",
+        "postgresql",
+        "processing",
+        "python",
+        "react",
+        "rust",
+        "sql",
+        "typescript",
+        "vitest"
+    ],
+    "projects": [
+        {
+            "name": "ByteFlow - Real-time Code Collaboration Platform",
+            "subtitle": "React, Node.js, WebSocket, MongoDB",
+            "start_date": "April 2024",
+            "end_date": "June 2024",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Docker, AWS EC2",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "transformation algorithm",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "critical code",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "DataViz Analytics - Open Source Data Dashboard",
+            "subtitle": "Vue.js, Python Flask, PostgreSQL",
+            "start_date": "August 2023",
+            "end_date": "December 2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "D3.js, GitHub Actions",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "CloudSync - Smart File Synchronization Service",
+            "subtitle": "Go, gRPC, Kubernetes, PostgreSQL",
+            "start_date": "January 2024",
+            "end_date": "March 2024",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "React, S3",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "guarantee",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "AuthShield - Enterprise Authentication Library",
+            "subtitle": "TypeScript, Express.js, JWT, OAuth2",
+            "start_date": "June 2023",
+            "end_date": "September 2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Redis",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "150K+ monthly users",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "TaskMaster API - High-Performance Task Queue",
+            "subtitle": "Rust, Tokio, RabbitMQ, PostgreSQL",
+            "start_date": "November 2023",
+            "end_date": "January 2024",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Prometheus",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "JavaScript Community UK - London Chapter",
+            "subtitle": "Co-organizer & Speaker",
+            "start_date": "March 2023",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Open Source Contributions",
+            "subtitle": "Active Maintainer",
+            "start_date": "January 2023",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Shopify",
+            "subtitle": "Junior Full Stack Engineer",
+            "start_date": "June 2024",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "with 99.7% uptime",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "codebase",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "month",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Datadog",
+            "subtitle": "Software Engineer Intern - Full Stack",
+            "start_date": "January 2024",
+            "end_date": "May 2024",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "48% across 8 teams",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "to 180ms (79% improvement)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "their features",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Figma (Creator Fund)",
+            "subtitle": "Full Stack Contractor",
+            "start_date": "September 2023",
+            "end_date": "December 2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "platform",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "strategy",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Shopify | Junior Full Stack Engineer June 2024 - Present\nBuilt and deployed 4 customer-facing REST APIs using Node.js and PostgreSQL, processing 500K+ daily transactions\nwith 99.7% uptime\nReduced critical bug resolution time by 65% through implementing automated regression test suite covering 87% of\ncodebase\nCollaborated with product and design teams to ship 3 major feature releases, each reaching 40K+ active users within first\nmonth\nDatadog | Software Engineer Intern - Full Stack January 2024 - May 2024\nDeveloped React dashboard component library with 22 reusable components, reducing frontend development time by\n48% across 8 teams\nOptimized MongoDB query performance by refactoring 15 aggregation pipelines, decreasing average latency from 850ms\nto 180ms (79% improvement)\nMentored 2 new interns on full-stack best practices, resulting in 3 merged pull requests and production deployment of\ntheir features\nFigma (Creator Fund) | Full Stack Contractor September 2023 - December 2023\nEngineered plugin API wrapper library in TypeScript, enabling 25+ third-party developers to integrate with Figma\nplatform\nImplemented real-time collaboration features using WebSockets and Redis, reducing state sync latency by 71%\nAchieved 94% code coverage on critical authentication modules through comprehensive unit and integration testing\nstrategy",
+    "education": [
+        {
+            "name": "University of Cambridge",
+            "subtitle": "BA in Computer Science",
+            "start_date": "2021",
+            "end_date": "2024",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "University of Melbourne",
+            "subtitle": "Graduate Diploma in Information Technology",
+            "start_date": "2020",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        }
+    ]
+}

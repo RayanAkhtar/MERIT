@@ -1,0 +1,72 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "docker",
+            "go",
+            "graphql",
+            "java",
+            "kubernetes",
+            "node.js",
+            "postgresql",
+            "python",
+            "react",
+            "rust",
+            "solidity",
+            "sql",
+            "typescript"
+        ],
+        "Missed (False Negatives)": [
+            "apache kafka",
+            "datadog",
+            "elasticsearch",
+            "figma",
+            "git",
+            "github",
+            "gitlab",
+            "jenkins",
+            "linux",
+            "redis",
+            "terraform",
+            "websocket"
+        ],
+        "Extra (False Positives/Noise)": [
+            "foundation",
+            "js",
+            "processing",
+            "pypi"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "cloudflare",
+            "notion",
+            "shopify"
+        ],
+        "Missed": [],
+        "All Extracted Entities": [
+            "cloudflare",
+            "throughput by 4.2x",
+            "100% code review approval rate",
+            "notion",
+            "improving user retention by 15%",
+            "<200ms sync latency",
+            "infrastructure costs",
+            "shopify",
+            "200+ manual reconciliation hours/month",
+            "conversion rate by 8.3%"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": true,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Zainab Verstraeten",
+            "email": "zainab.verstraeten@gmail.com"
+        },
+        "Expected": {
+            "name": "Zainab Verstraeten",
+            "email": "zainab.verstraeten@gmail.com"
+        }
+    }
+}

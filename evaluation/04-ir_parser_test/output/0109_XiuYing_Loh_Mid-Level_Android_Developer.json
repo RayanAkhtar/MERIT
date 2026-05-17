@@ -1,0 +1,110 @@
+{
+    "raw_cv_text": "Xiu Ying Loh\n+65 9287 4531 \u2022 xiu.ying.loh@gmail.com \u2022 https://github.com/xiuyingloh\nEDUCATION\nNanyang Technological University (NTU) \u2014 Bachelor of Engineering in Computer Science 2017 - 2021\nGraduated with honors (Cum Laude); completed capstone project on efficient Android memory management using\ncustom GC algorithms, published findings in university tech journal.\nEXPERIENCE\nGrab \u2014 Android Developer Mar 2022 - Present\nArchitected and implemented a modular payment gateway abstraction layer using repository pattern, reducing\ntransaction processing latency by 34% and enabling seamless integration of 4 new payment providers.\nDesigned Kotlin Coroutines-based background synchronization system for offline-first ride history, decreasing API calls\nby 52% and improving app launch time from 2.8s to 1.9s for users in low-connectivity regions.\nLed code review initiatives across 8-person Android team, maintaining 98% test coverage and reducing critical bugs in\nproduction by 41% quarter-over-quarter.\nByteDance (TikTok) \u2014 Mid-Level Android Engineer Jul 2021 - Feb 2022\nOptimized video rendering pipeline using ExoPlayer 2 and hardware acceleration, reducing jank frames by 67% and\nachieving 60fps playback stability across 89% of Android 8+ devices.\nRefactored legacy SharedPreferences usage to encrypted DataStore, securing sensitive user data and reducing app\ncrashes related to ANR violations by 28% within Q3.\nCollaborated with ML team to integrate on-device TensorFlow Lite model for video recommendation ranking, processing\n15,000+ recommendations daily with <200ms inference latency.\nShopee \u2014 Junior Android Developer Jan 2021 - Jun 2021\nDeveloped real-time inventory sync feature using Firebase Realtime Database and WorkManager, handling 10,000+\nconcurrent product updates with 99.4% data consistency.\nImplemented custom view hierarchy for dynamic checkout UI using Jetpack Compose (pilot phase), reducing layout\ninflation time by 43% compared to XML-based approach.\nFixed 127 high-priority bugs in payment flow module, improving transaction success rate from 94.2% to 98.1% across\nSoutheast Asian markets.\nPROJECTS\nLocalMate - Community Task Marketplace \u2014 Kotlin, Jetpack Compose, Firebase, Room Database, Aug 2022 - Dec 2022\nGoogle Maps SDK\nBuilt end-to-end Android app enabling users to post and accept local tasks with real-time location tracking, attracting\n8,000+ active users in Singapore and Malaysia.\nEngineered encrypted peer-to-peer messaging system using Firebase Cloud Messaging and RSA encryption,\nprocessing 45,000+ messages daily with zero data breaches.\nStockNotify - Real-time Market Alert Application \u2014 Kotlin, MVVM, Retrofit, RxJava, SQLite, Feb 2022 - May 2022\nWebSocket\nDeveloped market data streaming module using WebSocket integration with Finnhub API, delivering price alerts to\n12,000+ users with <100ms latency.\nImplemented sophisticated filtering and notification scheduling logic reducing battery drain by 38% through intelligent\nbackground worker optimization.\nEXTRACURRICULAR\nAndroid Developer Community Singapore \u2014 Technical Mentor Jan 2022 - Present\nMentored 6 junior Android developers on modern architecture patterns (MVVM, MVI) and Jetpack libraries, with 5\nsuccessfully transitioning to mid-level roles within 12 months.\nOrganized quarterly technical workshops covering Compose migration and performance optimization, attracting 200+\nattendees across Southeast Asia.\nProduct Hunt \u2014 Launch Contributor Jun 2022 - Present\nShipped 2 indie Android apps (LocalMate, StockNotify) achieving #3 and #8 rankings respectively on launch day with\ncombined 18,000+ upvotes.\nTECHNICAL SKILLS\nLanguages \u2013 English (Fluent), Mandarin Chinese (Native), Malay (Conversational)\nTechnologies \u2013 Kotlin, Java, XML, Jetpack (Compose, Navigation, ViewModel, LiveData, Room, WorkManager,\nDataStore), Firebase (Realtime DB, Cloud Messaging, Analytics), Retrofit, RxJava, ExoPlayer, TensorFlow Lite\nTools \u2013 Android Studio, Git, GitHub, Jira, Gradle, Firebase Console, Charles Proxy, Android Profiler, Figma",
+    "name": "Xiu Ying Loh",
+    "email": "xiu.ying.loh@gmail.com",
+    "phone": "+6592874531",
+    "links": {
+        "github": [
+            "https://github.com/xiuyingloh"
+        ],
+        "linkedin": []
+    },
+    "skills": [
+        "firebase",
+        "java",
+        "kotlin",
+        "processing",
+        "sqlite",
+        "tensorflow",
+        "xml"
+    ],
+    "projects": [
+        {
+            "name": "Google Maps SDK",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "WebSocket",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "12,000+ users with <100ms latency.",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "background worker optimization.",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "attendees across Southeast Asia.",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "combined 18,000+ upvotes.",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "production by 41% quarter-over-quarter.",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Southeast Asian markets.",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Grab \u2014 Android Developer Mar 2022 - Present\nArchitected and implemented a modular payment gateway abstraction layer using repository pattern, reducing\ntransaction processing latency by 34% and enabling seamless integration of 4 new payment providers.\nDesigned Kotlin Coroutines-based background synchronization system for offline-first ride history, decreasing API calls\nby 52% and improving app launch time from 2.8s to 1.9s for users in low-connectivity regions.\nLed code review initiatives across 8-person Android team, maintaining 98% test coverage and reducing critical bugs in\nproduction by 41% quarter-over-quarter.\nByteDance (TikTok) \u2014 Mid-Level Android Engineer Jul 2021 - Feb 2022\nOptimized video rendering pipeline using ExoPlayer 2 and hardware acceleration, reducing jank frames by 67% and\nachieving 60fps playback stability across 89% of Android 8+ devices.\nRefactored legacy SharedPreferences usage to encrypted DataStore, securing sensitive user data and reducing app\ncrashes related to ANR violations by 28% within Q3.\nCollaborated with ML team to integrate on-device TensorFlow Lite model for video recommendation ranking, processing\n15,000+ recommendations daily with <200ms inference latency.\nShopee \u2014 Junior Android Developer Jan 2021 - Jun 2021\nDeveloped real-time inventory sync feature using Firebase Realtime Database and WorkManager, handling 10,000+\nconcurrent product updates with 99.4% data consistency.\nImplemented custom view hierarchy for dynamic checkout UI using Jetpack Compose (pilot phase), reducing layout\ninflation time by 43% compared to XML-based approach.\nFixed 127 high-priority bugs in payment flow module, improving transaction success rate from 94.2% to 98.1% across\nSoutheast Asian markets.",
+    "education": [
+        {
+            "name": "Nanyang Technological University (NTU) \u2014",
+            "subtitle": "Bachelor of Engineering in Computer Science",
+            "start_date": "2017",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Graduated with honors (Cum Laude); completed capstone project on efficient Android memory",
+            "subtitle": "management using",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ]
+}

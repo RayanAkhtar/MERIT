@@ -1,0 +1,18 @@
+{
+    "name": "Bernice Fisher",
+    "email": "bernice.fisher@gmail.com",
+    "skills": [
+        "Go", "Python", "Rust", "Java", "Bash", "SQL",
+        "Kubernetes", "Docker", "Envoy", "Istio", "etcd", "PostgreSQL", "Cassandra", "Elasticsearch", "Apache Kafka", "Protocol Buffers", "gRPC",
+        "Terraform", "Prometheus", "Grafana", "PagerDuty", "ArgoCD", "Jenkins", "GitHub Actions", "ELK Stack", "Vault"
+    ],
+    "experience": [
+        "Stripe",
+        "Uber",
+        "Databricks",
+        "Square"
+    ],
+    "education": [
+        "University of Washington"
+    ]
+}

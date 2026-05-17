@@ -1,0 +1,267 @@
+{
+    "raw_cv_text": "Moinecha Ramos-Horta\n+44 20 7946 0958 | Email: moinecha.ramos@outlook.com | LinkedIn: moinecha-ramos-horta | GitHub: MoinechaRamos-Horta |\nhttps://github.com/moinecharamos/portfolio\nEDUCATION\nUniversity of Waterloo | Bachelor of Computer Science, Honours Co-op 2018 - 2022\nAchieved Dean's List distinction for 3 consecutive years with GPA 3.8/4.0 in core computer science courses\nLed open-source contributions with 50+ pull requests to Apache Kafka, focusing on performance optimization\nGeorgia Institute of Technology | Master of Science in Computer Science (Specialization: Distributed 2022 - 2023\nSystems)\nGraduated with distinction; thesis on distributed cache invalidation strategies published at ACM symposium with 1,200+\ncitations\nCompleted 3 graduate research assistantships building scalable microservices handling 50K+ requests/sec\nEXPERIENCE\nStripe | Backend Engineer II Jan 2024 - Present\nArchitected payment reconciliation microservice processing 2.5M+ daily transactions, reducing payment settlement\nlatency by 35% and saving $1.2M annually in fraud losses\nOptimized database query performance for transaction ledger service, decreasing p99 query response time from 850ms to\n120ms and improving throughput by 280%\nLed migration of legacy payment gateway from monolith to event-driven architecture using Kafka, enabling 40+ new\npayment methods with zero downtime\nDatadog | Senior Software Engineer, Infrastructure Aug 2022 - Dec 2023\nDesigned and deployed distributed log aggregation pipeline processing 500B+ events daily, handling 45% higher volume\nthan previous system with only 12% additional resources\nImplemented automatic index retention policies reducing storage costs by $800K/year while maintaining 99.95% query\nSLA\nMentored 5 junior engineers and reviewed 200+ pull requests, establishing coding standards that reduced production\nincidents by 28%\nNotion | Backend Engineer Jun 2021 - Jul 2022\nBuilt real-time collaborative editing backend serving 2.5K+ concurrent users per instance with <50ms latency, utilizing\nWebSocket connection pooling and Redis pub/sub\nEngineered block versioning system reducing database storage footprint by 66% through incremental delta compression,\nallowing 10x larger workspace support\nContributed 12 production features across payments, workspace management, and API teams; code approved with 0 post-\ndeployment rollbacks\nPROJECTS\nQueryVault | Go, PostgreSQL, Redis, gRPC, Docker Mar 2023 - Sep 2023\nEngineered distributed query caching proxy supporting 50K+ concurrent connections with automatic cache invalidation,\nreducing downstream database load by 72%\nImplemented intelligent query routing and connection pooling that improved application query latency by 240% under\nhigh concurrency\nChronoStream | Rust, Apache Kafka, Prometheus, Kubernetes Oct 2022 - Feb 2023\nDeveloped time-series event streaming framework processing 1M+ events/sec with exactly-once semantics, achieving\n99.99% uptime in production deployment\nReduced memory footprint by 45% through ring buffer optimization and achieved 3x faster throughput compared to\nexisting solutions\nAuthFlow | Node.js, TypeScript, PostgreSQL, OAuth 2.0 Nov 2021 - Mar 2022\nBuilt OAuth 2.0 and SAML authentication service supporting 20+ identity providers, securing access for 100K+ users\nacross 150+ organizations\nImplemented token rotation and session management reducing unauthorized access incidents by 95%\nMetricsCollector | Python, InfluxDB, Grafana, AWS Lambda Jan 2021 - Jun 2021\nCreated serverless metrics aggregation platform collecting 500M+ data points daily with 0.8s average latency, scaling\nfrom 10 to 500+ monitoring endpoints\nOptimized ingestion pipeline reducing costs by 52% through batching and compression techniques\nEXTRACURRICULAR\nSystems Design & Distributed Computing Community | Co-Organizer & Mentor 2023 - Present\nMentored 15+ junior backend engineers through monthly architecture deep-dive sessions covering consensus algorithms,\nsharding patterns, and failure recovery\nOrganized quarterly distributed systems hackathons attracting 200+ participants with live judging of microservices\ndesigns\nCloudflare Workers Open Source Initiative | Active Contributor & Technical Speaker 2022 - Present\nContributed 8 production-grade edge computing examples with 2,500+ GitHub stars, focused on real-time data processing\nat network edge\nDelivered talk on 'Serverless Backend Patterns' at London Backend Developers Conference 2024 to 350+ attendees\nTECHNICAL SKILLS\nLanguages \u2013 Go, Python, TypeScript/JavaScript, Rust, SQL, Java\nTechnologies \u2013 Apache Kafka, PostgreSQL, Redis, MongoDB, gRPC, REST APIs, WebSockets, Microservices Architecture,\nDocker, Kubernetes, Event-Driven Systems, Distributed Systems, GraphQL\nTools \u2013 Git, GitHub, AWS (EC2, S3, Lambda, RDS), Google Cloud Platform, Prometheus, Grafana, DataDog, ElasticSearch,\nCI/CD (GitHub Actions, Jenkins), Linux, Postman",
+    "name": "Moinecha Ramos-Horta",
+    "email": "moinecha.ramos@outlook.com",
+    "phone": "+442079460958",
+    "links": {
+        "github": [
+            "https://github.com/moinecharamos/portfolio"
+        ],
+        "linkedin": [
+            "https://linkedin.com/in/moinecha-ramos-horta"
+        ]
+    },
+    "skills": [
+        "aws",
+        "docker",
+        "go",
+        "graphql",
+        "grpc",
+        "influxdb",
+        "java",
+        "javascript",
+        "js",
+        "kubernetes",
+        "mongodb",
+        "node.js",
+        "postgresql",
+        "processing",
+        "python",
+        "rust",
+        "sql",
+        "typescript"
+    ],
+    "projects": [
+        {
+            "name": "QueryVault",
+            "subtitle": "Go, PostgreSQL, Redis, gRPC, Docker",
+            "start_date": "Mar 2023",
+            "end_date": "Sep 2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "reducing downstream database load by 72%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "high concurrency",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "ChronoStream",
+            "subtitle": "Rust, Apache Kafka, Prometheus, Kubernetes",
+            "start_date": "Oct 2022",
+            "end_date": "Feb 2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "99.99% uptime in production deployment",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "existing solutions",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "AuthFlow",
+            "subtitle": "Node.js, TypeScript, PostgreSQL, OAuth 2.0",
+            "start_date": "Nov 2021",
+            "end_date": "Mar 2022",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "across 150+ organizations",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "MetricsCollector",
+            "subtitle": "Python, InfluxDB, Grafana, AWS Lambda",
+            "start_date": "Jan 2021",
+            "end_date": "Jun 2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "from 10 to 500+ monitoring endpoints",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "Systems Design & Distributed Computing Community",
+            "subtitle": "Co-Organizer & Mentor",
+            "start_date": "2023",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "sharding patterns, and failure recovery",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "designs",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Cloudflare Workers Open Source Initiative",
+            "subtitle": "Active Contributor & Technical Speaker",
+            "start_date": "2022",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "at network edge",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Stripe",
+            "subtitle": "Backend Engineer II",
+            "start_date": "Jan 2024",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "120ms and improving throughput by 280%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "payment methods with zero downtime",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Datadog",
+            "subtitle": "Senior Software Engineer, Infrastructure",
+            "start_date": "Aug 2022",
+            "end_date": "Dec 2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "SLA",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "incidents by 28%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Notion",
+            "subtitle": "Backend Engineer",
+            "start_date": "Jun 2021",
+            "end_date": "Jul 2022",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "WebSocket connection pooling and Redis pub/sub",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "allowing 10x larger workspace support",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "deployment rollbacks",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Stripe | Backend Engineer II Jan 2024 - Present\nArchitected payment reconciliation microservice processing 2.5M+ daily transactions, reducing payment settlement\nlatency by 35% and saving $1.2M annually in fraud losses\nOptimized database query performance for transaction ledger service, decreasing p99 query response time from 850ms to\n120ms and improving throughput by 280%\nLed migration of legacy payment gateway from monolith to event-driven architecture using Kafka, enabling 40+ new\npayment methods with zero downtime\nDatadog | Senior Software Engineer, Infrastructure Aug 2022 - Dec 2023\nDesigned and deployed distributed log aggregation pipeline processing 500B+ events daily, handling 45% higher volume\nthan previous system with only 12% additional resources\nImplemented automatic index retention policies reducing storage costs by $800K/year while maintaining 99.95% query\nSLA\nMentored 5 junior engineers and reviewed 200+ pull requests, establishing coding standards that reduced production\nincidents by 28%\nNotion | Backend Engineer Jun 2021 - Jul 2022\nBuilt real-time collaborative editing backend serving 2.5K+ concurrent users per instance with <50ms latency, utilizing\nWebSocket connection pooling and Redis pub/sub\nEngineered block versioning system reducing database storage footprint by 66% through incremental delta compression,\nallowing 10x larger workspace support\nContributed 12 production features across payments, workspace management, and API teams; code approved with 0 post-\ndeployment rollbacks",
+    "education": [
+        {
+            "name": "University of Waterloo",
+            "subtitle": "Bachelor of Computer Science, Honours Co-op",
+            "start_date": "2018",
+            "end_date": "2022",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Led open-source contributions with 50+ pull requests to Apache Kafka",
+            "subtitle": "focusing on performance optimization",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Georgia Institute of Technology",
+            "subtitle": "Master of Science in Computer Science (Specialization: Distributed",
+            "start_date": "2022",
+            "end_date": "2023",
+            "grade": null,
+            "summary": ""
+        }
+    ]
+}

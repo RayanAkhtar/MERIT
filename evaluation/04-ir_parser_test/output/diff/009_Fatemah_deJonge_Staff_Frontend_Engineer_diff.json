@@ -1,0 +1,82 @@
+{
+    "Skills": {
+        "Matched": [
+            "css3",
+            "cypress",
+            "docker",
+            "graphql",
+            "html5",
+            "javascript",
+            "next.js",
+            "playwright",
+            "react",
+            "redux",
+            "sql",
+            "typescript"
+        ],
+        "Missed (False Negatives)": [
+            "canvas api",
+            "chrome devtools",
+            "datadog",
+            "figma",
+            "git",
+            "github",
+            "jest",
+            "jira",
+            "lighthouse",
+            "linear",
+            "mobx",
+            "new relic",
+            "notion",
+            "vite",
+            "vue.js",
+            "webgl",
+            "webpack",
+            "webpagetest",
+            "websockets"
+        ],
+        "Extra (False Positives/Noise)": [
+            "js",
+            "node.js",
+            "postgresql",
+            "processing",
+            "tailwindcss"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "figma",
+            "stripe",
+            "datadog",
+            "shopify"
+        ],
+        "Missed": [],
+        "All Extracted Entities": [
+            "figma",
+            "product teams",
+            "escape rate by 41%",
+            "stripe",
+            "rate by 8.3%",
+            "reducing production incidents by 56%",
+            "datadog",
+            "supporting + enterprise customers",
+            "improving developer productivity by 38%",
+            "shopify",
+            "annual gmv",
+            "lazy loading and cdn edge optimization",
+            "across 12 product teams"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": false,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Email",
+            "email": "fatemah.dejonge@outlook.com"
+        },
+        "Expected": {
+            "name": "Fatemah de Jonge",
+            "email": "fatemah.dejonge@outlook.com"
+        }
+    }
+}

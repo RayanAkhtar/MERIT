@@ -1,0 +1,78 @@
+{
+    "Skills": {
+        "Matched": [
+            "cypress",
+            "docker",
+            "electron",
+            "express",
+            "graphql",
+            "javascript",
+            "next.js",
+            "node.js",
+            "python",
+            "react",
+            "redux",
+            "rxjs",
+            "sql",
+            "typescript"
+        ],
+        "Missed (False Negatives)": [
+            "aws cloudfront",
+            "canvas api",
+            "chrome devtools",
+            "datadog apm",
+            "figma",
+            "git",
+            "jest",
+            "lighthouse",
+            "vite",
+            "vue.js",
+            "webgl",
+            "webpack",
+            "webrtc"
+        ],
+        "Extra (False Positives/Noise)": [
+            "aws",
+            "js",
+            "processing"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "figma",
+            "stripe",
+            "cloudflare",
+            "notion"
+        ],
+        "Missed": [],
+        "All Extracted Entities": [
+            "figma",
+            "lighthouse scores from 78 to 94",
+            "within 18 months",
+            "stripe",
+            "additional annual payment volume",
+            "across 50k+ merchant partners",
+            "41%",
+            "cloudflare",
+            "enterprise customers",
+            "worker caching strategies",
+            "user base by 18%",
+            "notion",
+            "loss",
+            "by 23%",
+            "40%"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": true,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Nil Nelson",
+            "email": "nil.nelson@outlook.com"
+        },
+        "Expected": {
+            "name": "Nil Nelson",
+            "email": "nil.nelson@outlook.com"
+        }
+    }
+}

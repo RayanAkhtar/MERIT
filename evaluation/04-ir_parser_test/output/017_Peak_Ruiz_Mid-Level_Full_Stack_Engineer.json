@@ -1,0 +1,280 @@
+{
+    "raw_cv_text": "Peak Ruiz\n+1 (415) 287-3641 | Email: peak.ruiz@gmail.com | LinkedIn: peak-ruiz | GitHub: PeakRuiz | https://peakruiz.dev\nEDUCATION\nUniversity of Michigan | B.S. in Computer Science 2018 - 2022\nLed capstone project on real-time data pipeline optimization, achieving 40% latency reduction across systems\nActive member of Michigan Hackers and competed in HackMichigan 2021, winning Best Full Stack Application award\nCoursera & Udacity | Deep Learning Specialization & Full Stack Nanodegree 2022 - 2023\nCompleted advanced courses in cloud architecture and microservices design on AWS and Google Cloud\nEarned credentials in React, Node.js, and PostgreSQL with distinction\nEXPERIENCE\nStripe | Full Stack Engineer January 2023 - Present\nArchitected and shipped a new payment reconciliation dashboard reducing manual reconciliation time by 65%, saving\nOperations team 120 hours monthly\nOptimized critical database queries using PostgreSQL indexing strategies and caching, improving API response times by\n48% for 50M+ monthly transactions\nLed migration of legacy REST endpoints to GraphQL, enabling 12 client teams to reduce network requests by 35% and\nimprove user experience\nFigma | Senior Software Engineer (Full Stack) June 2022 - December 2022\nDeveloped collaborative real-time editing features using WebSockets and Operational Transformation, serving 500K+\nconcurrent users with 99.97% uptime\nRefactored React component library, reducing bundle size by 42% and improving time-to-interactive metric from 3.2s to\n1.8s\nImplemented comprehensive monitoring and alerting system that reduced incident detection time from 45 minutes to 5\nminutes\nDatadog | Software Engineer August 2021 - May 2022\nBuilt distributed trace analysis service handling 2 billion traces daily, enabling 150+ enterprise customers to debug\nproduction issues 3x faster\nDeveloped internal CLI tool in Go that automated deployment workflows, reducing release cycle time by 58% across 8\nengineering teams\nDesigned and implemented event streaming pipeline using Kafka and Node.js microservices, processing 500K events per\nsecond with zero data loss\nPROJECTS\nStreamSync Analytics | React, Node.js, PostgreSQL, Redis, AWS Lambda March 2023 - July 2023\nBuilt real-time analytics dashboard for monitoring SaaS metrics, processing 100K+ events/second with sub-100ms\nlatency using Redis caching\nAchieved 94% test coverage with Jest and Cypress, reducing production bugs by 72% compared to previous\nimplementations\nDebugFlow - Open Source DevTools | TypeScript, React, Electron, Node.js, Chrome October 2022 - February 2023\nDevTools Protocol\nDesigned debugging tool for full-stack JavaScript applications with 2.8K GitHub stars, attracting 150+ monthly active\ncontributors\nOptimized DevTools extension to reduce memory overhead by 64%, enabling inspection of applications with 5GB+ of\nstate\nAsyncFlow Job Queue | Python, FastAPI, RabbitMQ, SQLAlchemy, Docker May 2022 - September 2022\nPublished distributed job queue library enabling asynchronous task processing with automatic retry logic, reducing failed\njob rates by 89%\nDocumented API with 200+ code examples and tutorials, achieving 15K+ monthly downloads on PyPI\nCloudVault - Encrypted Cloud Storage | Next.js, TypeScript, Prisma, PostgreSQL, AWS S3, December 2021 - April 2022\nTweetNaCl\nEngineered end-to-end encrypted cloud storage application supporting 1GB+ files with client-side encryption, achieving\nzero-knowledge architecture\nImplemented efficient chunked upload system reducing upload time by 76% for large files through parallel processing\nEXTRACURRICULAR\nTech Community - Full Stack Mentorship Program | Technical Mentor & Speaker 2022 - Present\nMentored 12 junior developers transitioning into full-stack roles, with 100% of mentees securing engineering positions\nwithin 6 months\nDelivered 5 technical talks at major conferences (React Conf, NodeConf, PyCon US) on distributed systems and\nperformance optimization, reaching 8,000+ engineers\nOpen Source Contributors Circle | Core Contributor & Maintainer 2021 - Present\nContributed 340+ commits to popular open-source projects including Next.js, tRPC, and Prisma with 28 accepted PRs\nimproving codebase quality\nOrganized monthly virtual hackathons for junior engineers, growing community from 200 to 2,800+ active participants\nTECHNICAL SKILLS\nLanguages \u2013 JavaScript, TypeScript, Python, Go, SQL, HTML/CSS\nTechnologies \u2013 React, Next.js, Node.js, Express, FastAPI, PostgreSQL, MongoDB, Redis, GraphQL, REST APIs,\nWebSockets, Microservices, Docker, Kubernetes\nTools \u2013 Git, Docker, Kubernetes, AWS (EC2, RDS, Lambda, S3), Google Cloud Platform, GitHub, GitLab, Jira, VS Code,\nPostman, DataDog, New Relic",
+    "name": "Email",
+    "email": "peak.ruiz@gmail.com",
+    "phone": "+14152873641",
+    "links": {
+        "other": [
+            "https://peakruiz.dev"
+        ],
+        "linkedin": [
+            "https://linkedin.com/in/peak-ruiz"
+        ],
+        "github": [
+            "https://github.com/PeakRuiz"
+        ]
+    },
+    "skills": [
+        "aws",
+        "cypress",
+        "docker",
+        "electron",
+        "express",
+        "fastapi",
+        "go",
+        "graphql",
+        "javascript",
+        "js",
+        "kubernetes",
+        "mongodb",
+        "next.js",
+        "node.js",
+        "postgresql",
+        "processing",
+        "pypi",
+        "python",
+        "react",
+        "sql",
+        "typescript"
+    ],
+    "projects": [
+        {
+            "name": "StreamSync Analytics",
+            "subtitle": "React, Node.js, PostgreSQL, Redis, AWS Lambda",
+            "start_date": "March 2023",
+            "end_date": "July 2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "latency using Redis caching",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "implementations",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "DebugFlow - Open Source DevTools",
+            "subtitle": "TypeScript, React, Electron, Node.js, Chrome",
+            "start_date": "October 2022",
+            "end_date": "February 2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "DevTools Protocol",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "contributors",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "state",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "AsyncFlow Job Queue",
+            "subtitle": "Python, FastAPI, RabbitMQ, SQLAlchemy, Docker",
+            "start_date": "May 2022",
+            "end_date": "September 2022",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "job rates by 89%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "CloudVault - Encrypted Cloud Storage",
+            "subtitle": "Next.js, TypeScript, Prisma, PostgreSQL, AWS S3",
+            "start_date": "December 2021",
+            "end_date": "April 2022",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "TweetNaCl",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "zero-knowledge architecture",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "Tech Community - Full Stack Mentorship Program",
+            "subtitle": "Technical Mentor & Speaker",
+            "start_date": "2022",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "within 6 months",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "performance optimization, reaching 8,000+ engineers",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Open Source Contributors Circle",
+            "subtitle": "Core Contributor & Maintainer",
+            "start_date": "2021",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "improving codebase quality",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Stripe",
+            "subtitle": "Full Stack Engineer",
+            "start_date": "January 2023",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Operations team 120 hours monthly",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "48% for 50M+ monthly transactions",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "improve user experience",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Figma",
+            "subtitle": "Senior Software Engineer (Full Stack)",
+            "start_date": "June 2022",
+            "end_date": "December 2022",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "concurrent users with 99.97% uptime",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "1.8s",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "minutes",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Datadog",
+            "subtitle": "Software Engineer",
+            "start_date": "August 2021",
+            "end_date": "May 2022",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "production issues 3x faster",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "engineering teams",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "second with zero data loss",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Stripe | Full Stack Engineer January 2023 - Present\nArchitected and shipped a new payment reconciliation dashboard reducing manual reconciliation time by 65%, saving\nOperations team 120 hours monthly\nOptimized critical database queries using PostgreSQL indexing strategies and caching, improving API response times by\n48% for 50M+ monthly transactions\nLed migration of legacy REST endpoints to GraphQL, enabling 12 client teams to reduce network requests by 35% and\nimprove user experience\nFigma | Senior Software Engineer (Full Stack) June 2022 - December 2022\nDeveloped collaborative real-time editing features using WebSockets and Operational Transformation, serving 500K+\nconcurrent users with 99.97% uptime\nRefactored React component library, reducing bundle size by 42% and improving time-to-interactive metric from 3.2s to\n1.8s\nImplemented comprehensive monitoring and alerting system that reduced incident detection time from 45 minutes to 5\nminutes\nDatadog | Software Engineer August 2021 - May 2022\nBuilt distributed trace analysis service handling 2 billion traces daily, enabling 150+ enterprise customers to debug\nproduction issues 3x faster\nDeveloped internal CLI tool in Go that automated deployment workflows, reducing release cycle time by 58% across 8\nengineering teams\nDesigned and implemented event streaming pipeline using Kafka and Node.js microservices, processing 500K events per\nsecond with zero data loss",
+    "education": []
+}

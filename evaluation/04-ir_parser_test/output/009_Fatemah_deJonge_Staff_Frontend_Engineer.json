@@ -1,0 +1,253 @@
+{
+    "raw_cv_text": "Fatemah de Jonge\n+44 20 7946 0958 | Email: fatemah.dejonge@outlook.com | LinkedIn: fatemah-de jonge | GitHub: Fatemahde Jonge | https://fatemah-\nfrontend.dev\nEDUCATION\nUniversity of Cambridge | MSc Computer Science (Specialisation in Human-Computer Interaction) 2014 - 2015\nAchieved Distinction grade in thesis on responsive UI patterns, resulting in 2 published papers in HCI conferences\nLed departmental web development initiative, improving lab website accessibility scores from 42 to 94 WCAG\ncompliance\nETH Zurich | BSc Computer Science 2010 - 2013\nGraduated with honors (top 12% of cohort) with focus on web technologies and interactive systems\nCo-founded ETH Web Collective, growing the community to 450+ active members across 3 years\nEXPERIENCE\nFigma | Staff Frontend Engineer 2021 - Present\nArchitected and shipped responsive design system component library reducing implementation time by 62% across 40+\nproduct teams\nLed migration of legacy Vue.js rendering engine to React with WebGL optimization, improving canvas performance by\n3.2x and increasing collaboration features adoption by 47%\nMentored 6 junior engineers and led weekly frontend architecture reviews, establishing coding standards that reduced bug\nescape rate by 41%\nStripe | Senior Frontend Engineer 2018 - 2021\nDesigned and implemented payment forms abstraction layer in TypeScript/React, reducing PCI compliance\nimplementation time from 8 weeks to 2 weeks for 120+ merchants\nOptimized critical checkout flow reducing bundle size by 45% and First Contentful Paint by 2.1s, increasing conversion\nrate by 8.3%\nEstablished frontend testing infrastructure and metrics dashboard, achieving 94% code coverage across codebase and\nreducing production incidents by 56%\nDatadog | Senior Frontend Engineer 2015 - 2018\nBuilt real-time dashboard visualization engine handling 50K+ metrics updates/second using Vue.js and WebSockets,\nsupporting 2000+ enterprise customers\nImplemented advanced filtering and query syntax UI (similar to SQL), improving customer query construction time by\n68% and reducing support tickets by 34%\nDrove adoption of TypeScript across 25 frontend services (500K+ lines of code), reducing runtime errors by 72% and\nimproving developer productivity by 38%\nShopify | Frontend Engineer 2013 - 2015\nDeveloped responsive admin dashboard v2 in React and SCSS, shipped to 800K+ merchants and processing $80B+ in\nannual GMV\nOptimized image uploads pipeline reducing average upload time from 12s to 1.8s (86% improvement) by implementing\nlazy loading and CDN edge optimization\nCollaborated with design team to build Polaris design system MVP with 45 reusable components, standardizing UX\nacross 12 product teams\nPROJECTS\nChromaFlow - Advanced Color Palette Generator | React 18, TypeScript, Three.js, TailwindCSS, Node.js 2022 - 2023\nBuilt AI-powered color harmony generator with 3D color space visualization, achieving 250K+ downloads and 4.8/5 star\nrating on ProductHunt\nOptimized WebGL rendering achieving 60fps on mid-range devices by implementing instance rendering and shader\noptimization, reducing GPU memory usage by 52%\nAccessViz - Accessibility Audit Dashboard | Next.js, TypeScript, PostgreSQL, Playwright, D3.js 2020 - 2021\nCreated open-source WCAG compliance monitoring tool with 2.1K GitHub stars, used by 50+ organizations for\nautomated accessibility testing\nEngineered scanning engine to audit 5000+ pages daily by implementing headless browser pooling, reducing scan time by\n71% and server costs by $4K/month\nEXTRACURRICULAR\nReact Europe Conference | Technical Speaker & Program Committee Member 2019 - Present\nDelivered 4 keynote talks on advanced React patterns and performance optimization to 3000+ attendees across multiple\nyears\nCurated technical agenda for 2023 conference, selecting 35 talks from 180+ submissions resulting in 92% attendee\nsatisfaction score\nFrontend Masters Community | Core Maintainer & Mentor 2017 - Present\nContributed 120+ hours of mentoring to junior frontend engineers through 1-on-1 sessions and code reviews, 8 mentees\nprogressed to senior roles\nMaintained open-source UI component library with 15K GitHub stars, triaging 200+ issues annually and merging 60+\ncommunity contributions\nTECHNICAL SKILLS\nLanguages \u2013 JavaScript (ES6+), TypeScript, HTML5, CSS3/SCSS, GraphQL, SQL\nTechnologies \u2013 React, Next.js, Vue.js, Webpack, Vite, Redux, MobX, Jest, Cypress, Playwright, WebGL, Canvas API,\nWebSockets, Service Workers\nTools \u2013 Git, Docker, GitHub, Figma, Chrome DevTools, Lighthouse, WebPageTest, Datadog, New Relic, Linear, Jira, Notion",
+    "name": "Email",
+    "email": "fatemah.dejonge@outlook.com",
+    "phone": "+442079460958",
+    "links": {
+        "other": [
+            "https://fatemah-"
+        ],
+        "linkedin": [
+            "https://linkedin.com/in/fatemah-de"
+        ],
+        "github": [
+            "https://github.com/Fatemahde"
+        ]
+    },
+    "skills": [
+        "css3",
+        "cypress",
+        "docker",
+        "graphql",
+        "html5",
+        "javascript",
+        "js",
+        "next.js",
+        "node.js",
+        "playwright",
+        "postgresql",
+        "processing",
+        "react",
+        "redux",
+        "sql",
+        "tailwindcss",
+        "typescript"
+    ],
+    "projects": [
+        {
+            "name": "ChromaFlow - Advanced Color Palette Generator",
+            "subtitle": "React 18, TypeScript, Three.js, TailwindCSS, Node.js",
+            "start_date": "2022",
+            "end_date": "2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "rating on ProductHunt",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "AccessViz - Accessibility Audit Dashboard",
+            "subtitle": "Next.js, TypeScript, PostgreSQL, Playwright, D3.js",
+            "start_date": "2020",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "automated accessibility testing",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "71% and server costs by $4K/month",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "React Europe Conference",
+            "subtitle": "Technical Speaker & Program Committee Member",
+            "start_date": "2019",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "years",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "satisfaction score",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Frontend Masters Community",
+            "subtitle": "Core Maintainer & Mentor",
+            "start_date": "2017",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "progressed to senior roles",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "community contributions",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Figma",
+            "subtitle": "Staff Frontend Engineer",
+            "start_date": "2021",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "product teams",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "escape rate by 41%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Stripe",
+            "subtitle": "Senior Frontend Engineer",
+            "start_date": "2018",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "rate by 8.3%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "reducing production incidents by 56%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Datadog",
+            "subtitle": "Senior Frontend Engineer",
+            "start_date": "2015",
+            "end_date": "2018",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "supporting + enterprise customers",
+            "subtitle": "",
+            "start_date": "2000",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "improving developer productivity by 38%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Shopify",
+            "subtitle": "Frontend Engineer",
+            "start_date": "2013",
+            "end_date": "2015",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "annual GMV",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "lazy loading and CDN edge optimization",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "across 12 product teams",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Figma | Staff Frontend Engineer 2021 - Present\nArchitected and shipped responsive design system component library reducing implementation time by 62% across 40+\nproduct teams\nLed migration of legacy Vue.js rendering engine to React with WebGL optimization, improving canvas performance by\n3.2x and increasing collaboration features adoption by 47%\nMentored 6 junior engineers and led weekly frontend architecture reviews, establishing coding standards that reduced bug\nescape rate by 41%\nStripe | Senior Frontend Engineer 2018 - 2021\nDesigned and implemented payment forms abstraction layer in TypeScript/React, reducing PCI compliance\nimplementation time from 8 weeks to 2 weeks for 120+ merchants\nOptimized critical checkout flow reducing bundle size by 45% and First Contentful Paint by 2.1s, increasing conversion\nrate by 8.3%\nEstablished frontend testing infrastructure and metrics dashboard, achieving 94% code coverage across codebase and\nreducing production incidents by 56%\nDatadog | Senior Frontend Engineer 2015 - 2018\nBuilt real-time dashboard visualization engine handling 50K+ metrics updates/second using Vue.js and WebSockets,\nsupporting 2000+ enterprise customers\nImplemented advanced filtering and query syntax UI (similar to SQL), improving customer query construction time by\n68% and reducing support tickets by 34%\nDrove adoption of TypeScript across 25 frontend services (500K+ lines of code), reducing runtime errors by 72% and\nimproving developer productivity by 38%\nShopify | Frontend Engineer 2013 - 2015\nDeveloped responsive admin dashboard v2 in React and SCSS, shipped to 800K+ merchants and processing $80B+ in\nannual GMV\nOptimized image uploads pipeline reducing average upload time from 12s to 1.8s (86% improvement) by implementing\nlazy loading and CDN edge optimization\nCollaborated with design team to build Polaris design system MVP with 45 reusable components, standardizing UX\nacross 12 product teams",
+    "education": [
+        {
+            "name": "University of Cambridge",
+            "subtitle": "MSc Computer Science (Specialisation in Human-Computer Interaction)",
+            "start_date": "2014",
+            "end_date": "2015",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "ETH Zurich",
+            "subtitle": "BSc Computer Science",
+            "start_date": "2010",
+            "end_date": "2013",
+            "grade": null,
+            "summary": ""
+        }
+    ]
+}

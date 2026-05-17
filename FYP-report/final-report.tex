@@ -6,10 +6,11 @@
 \usepackage[T1]{fontenc}
 
 %% Sets page size and margins
-\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage[a4paper,margin=2.5cm,marginparwidth=1.75cm]{geometry}
 
 %% Useful packages
 \usepackage{amsmath}
+\usepackage{amssymb,amsfonts}
 \usepackage{graphicx}
 \setlength{\marginparwidth}{2cm}
 \usepackage[colorinlistoftodos]{todonotes}
@@ -22,6 +23,19 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{titlesec}
+
+% Global List Spacing Optimisations
+\setlist[itemize]{noitemsep, topsep=3pt, parsep=0pt, partopsep=0pt, itemsep=2pt}
+\setlist[enumerate]{noitemsep, topsep=3pt, parsep=0pt, partopsep=0pt, itemsep=2pt}
+
+% Compact Heading Spacing (titlesec)
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}{\chaptername\ \thechapter}{10pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-25pt}{15pt}
+\titlespacing*{\section}{0pt}{12pt}{6pt}
+\titlespacing*{\subsection}{0pt}{10pt}{5pt}
 
 % Modern Code Palette
 \definecolor{codebackground}{RGB}{248, 249, 250}

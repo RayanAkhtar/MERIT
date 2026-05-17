@@ -1,0 +1,226 @@
+{
+    "raw_cv_text": "Riko Al Tayer\n+44 20 7946 0958 | Email: riko.altayer@outlook.com | LinkedIn: riko-al tayer | GitHub: RikoAl Tayer | https://rikoaltayer.dev\nEDUCATION\nUniversity of Cambridge | M.S. Computer Science 2015 - 2017\nSpecialized in distributed systems and concurrent programming, thesis on lock-free data structures improving throughput\nby 34%\nLed computer science society with 200+ members and organized weekly technical seminars on microservices architecture\nImperial College London | B.S. Mathematics with Computer Science 2011 - 2015\nGraduated with First Class Honours; awarded Best Algorithm Design Project for optimizing search queries by 67%\nPresident of Coding Society, organized annual programming competition attracting 300+ participants\nEXPERIENCE\nStripe | Senior Backend Engineer, Payments Infrastructure 2021 - Present\nArchitected distributed payment processing pipeline using Kafka and gRPC, reducing latency by 42% and enabling\n500K+ transactions per second\nLed migration of legacy monolith to microservices for fraud detection system, decreasing detection time from 8s to\n280ms and improving accuracy by 28%\nMentored 4 junior engineers on system design and Go best practices, resulting in 3 internal promotions\nCloudflare | Senior Software Engineer, Edge Computing 2019 - 2021\nDesigned and implemented edge caching layer handling 12 billion daily requests, reducing origin load by 78% and saving\n$2.1M annually\nOptimized PostgreSQL queries and implemented Redis caching strategy, improving API response times from 450ms to\n89ms (80% improvement)\nReduced oncall incident response time by 55% by building automated debugging and self-healing systems using\nPrometheus metrics\nDatadog | Backend Engineer, Data Pipeline Infrastructure 2017 - 2019\nDeveloped real-time log aggregation service in Python handling 2TB+ daily, reducing data processing cost per event by\n64%\nImplemented automatic scaling mechanism for Kubernetes clusters, decreasing resource waste by 41% while maintaining\nSLA of 99.95%\nCollaborated with data science team to build anomaly detection pipeline, reducing mean-time-to-detection for system\nfailures from 15m to 3m\nPROJECTS\nAsyncFlow | Rust, Tokio, PostgreSQL, Docker 2022 - Present\nBuilt distributed async task queue framework achieving 2.5M tasks/hour throughput with <100ms latency on commodity\nhardware\nOpen-source project with 8,200+ GitHub stars, 240 contributors, used by 500+ companies processing billions of tasks\nmonthly\nVectorCache | Go, Redis, SIMD, gRPC 2020 - 2021\nCreated in-memory vector database for ML inference applications, achieving 95th percentile latency of 2.3ms on 100M+\nvectors\nPublished performance benchmarks demonstrating 8.5x speedup over competitor solutions through SIMD optimization\nDistributedLedger | TypeScript, Node.js, Consensus Algorithms, Docker Compose 2018 - 2019\nImplemented Byzantine Fault Tolerant consensus mechanism supporting 10K TPS, achieving 99.9% uptime across 50+\nnode test network\nReduced validator node sync time by 73% through snapshot mechanism, enabling 15-minute node onboarding\nEXTRACURRICULAR\nBackend Engineering Conference Series | Speaker & Organizing Committee Member 2021 - Present\nDelivered 5 talks on distributed systems and microservices scaling, reaching 3,500+ engineers globally with 4.8/5.0\naverage rating\nOrganized speaker program attracting industry leaders; conference grew from 200 to 1,200+ attendees in 2 years\nCloud Native Computing Foundation (CNCF) | Kubernetes Working Group Contributor 2020 - Present\nContributed 12 merged pull requests improving performance monitoring for distributed storage, used by 400K+\ndeployments\nMentored 8 open-source contributors from underrepresented communities in backend systems design\nTECHNICAL SKILLS\nLanguages \u2013 Go, Python, TypeScript, Java, Rust\nTechnologies \u2013 PostgreSQL, Redis, Kafka, gRPC, GraphQL, Docker, Kubernetes, Event-driven Architecture\nTools \u2013 Prometheus, Grafana, DataDog, GitHub, Jenkins, ArgoCD, Terraform",
+    "name": "Riko Al Tayer",
+    "email": "riko.altayer@outlook.com",
+    "phone": "+442079460958",
+    "links": {
+        "other": [
+            "https://rikoaltayer.dev"
+        ],
+        "linkedin": [
+            "https://linkedin.com/in/riko-al"
+        ],
+        "github": [
+            "https://github.com/RikoAl"
+        ]
+    },
+    "skills": [
+        "docker",
+        "foundation",
+        "go",
+        "graphql",
+        "grpc",
+        "java",
+        "js",
+        "kubernetes",
+        "node.js",
+        "postgresql",
+        "processing",
+        "python",
+        "rust",
+        "typescript"
+    ],
+    "projects": [
+        {
+            "name": "AsyncFlow",
+            "subtitle": "Rust, Tokio, PostgreSQL, Docker",
+            "start_date": "2022",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "hardware",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "monthly",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "VectorCache",
+            "subtitle": "Go, Redis, SIMD, gRPC",
+            "start_date": "2020",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "vectors",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "DistributedLedger",
+            "subtitle": "TypeScript, Node.js, Consensus Algorithms, Docker Compose",
+            "start_date": "2018",
+            "end_date": "2019",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "node test network",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "Backend Engineering Conference Series",
+            "subtitle": "Speaker & Organizing Committee Member",
+            "start_date": "2021",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "average rating",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Cloud Native Computing Foundation (CNCF)",
+            "subtitle": "Kubernetes Working Group Contributor",
+            "start_date": "2020",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "deployments",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Stripe",
+            "subtitle": "Senior Backend Engineer, Payments Infrastructure",
+            "start_date": "2021",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "500K+ transactions per second",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "280ms and improving accuracy by 28%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Cloudflare",
+            "subtitle": "Senior Software Engineer, Edge Computing",
+            "start_date": "2019",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "$2.1M annually",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "89ms (80% improvement)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Prometheus metrics",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Datadog",
+            "subtitle": "Backend Engineer, Data Pipeline Infrastructure",
+            "start_date": "2017",
+            "end_date": "2019",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "64%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "SLA of 99.95%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "failures from 15m to 3m",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Stripe | Senior Backend Engineer, Payments Infrastructure 2021 - Present\nArchitected distributed payment processing pipeline using Kafka and gRPC, reducing latency by 42% and enabling\n500K+ transactions per second\nLed migration of legacy monolith to microservices for fraud detection system, decreasing detection time from 8s to\n280ms and improving accuracy by 28%\nMentored 4 junior engineers on system design and Go best practices, resulting in 3 internal promotions\nCloudflare | Senior Software Engineer, Edge Computing 2019 - 2021\nDesigned and implemented edge caching layer handling 12 billion daily requests, reducing origin load by 78% and saving\n$2.1M annually\nOptimized PostgreSQL queries and implemented Redis caching strategy, improving API response times from 450ms to\n89ms (80% improvement)\nReduced oncall incident response time by 55% by building automated debugging and self-healing systems using\nPrometheus metrics\nDatadog | Backend Engineer, Data Pipeline Infrastructure 2017 - 2019\nDeveloped real-time log aggregation service in Python handling 2TB+ daily, reducing data processing cost per event by\n64%\nImplemented automatic scaling mechanism for Kubernetes clusters, decreasing resource waste by 41% while maintaining\nSLA of 99.95%\nCollaborated with data science team to build anomaly detection pipeline, reducing mean-time-to-detection for system\nfailures from 15m to 3m",
+    "education": [
+        {
+            "name": "Imperial College London",
+            "subtitle": "B.S. Mathematics with Computer Science",
+            "start_date": "2011",
+            "end_date": "2015",
+            "grade": null,
+            "summary": ""
+        }
+    ]
+}

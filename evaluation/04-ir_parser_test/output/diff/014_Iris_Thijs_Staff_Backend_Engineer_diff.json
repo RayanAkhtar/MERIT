@@ -1,0 +1,74 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "docker",
+            "go",
+            "graphql",
+            "grpc",
+            "java",
+            "kubernetes",
+            "mongodb",
+            "postgresql",
+            "python",
+            "rust",
+            "sql",
+            "typescript"
+        ],
+        "Missed (False Negatives)": [
+            "apache spark",
+            "datadog",
+            "elasticsearch",
+            "elk stack",
+            "gcp",
+            "git",
+            "github",
+            "kafka",
+            "prometheus",
+            "protocol buffers",
+            "redis",
+            "terraform"
+        ],
+        "Extra (False Positives/Noise)": [
+            "lua",
+            "processing"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "stripe",
+            "datadog",
+            "cloudflare",
+            "shopify"
+        ],
+        "Missed": [],
+        "All Extracted Entities": [
+            "stripe",
+            "financial discrepancies by 87%",
+            "code review turnaround by 42%",
+            "datadog",
+            "utilization by 56% saving $3.8m annually",
+            "to resolution by 63%",
+            "github stars",
+            "cloudflare",
+            "across 200+ data centers globally",
+            "customer outages",
+            "collectively improving throughput by 2.9x",
+            "shopify",
+            "load by 71%",
+            "conversion by 18%"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": true,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Iris Thijs",
+            "email": "iris.thijs@outlook.com"
+        },
+        "Expected": {
+            "name": "Iris Thijs",
+            "email": "iris.thijs@outlook.com"
+        }
+    }
+}

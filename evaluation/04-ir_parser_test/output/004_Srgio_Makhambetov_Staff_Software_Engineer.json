@@ -1,0 +1,220 @@
+{
+    "raw_cv_text": "S\u00e9rgio Makhambetov\n+44 20 7946 0958 | Email: sergio.makhambetov@outlook.com | LinkedIn: s\u00e9rgio-makhambetov | GitHub: S\u00e9rgioMakhambetov |\nhttps://makhambetov.dev\nEDUCATION\nETH Zurich (Swiss Federal Institute of Technology) | M.S. Computer Science 2013 - 2015\nCompleted thesis on distributed consensus algorithms, achieving 92% optimization in Byzantine fault tolerance\nsimulation\nLed computer science student association with 300+ active members, organizing 8 technical workshops annually\nUniversity of Waterloo | B.A.Sc. Software Engineering 2009 - 2013\nGraduated with distinction; maintained 3.8/4.0 GPA in core CS courses\nCo-founded university's competitive programming club, growing participation from 15 to 120 members over 3 years\nEXPERIENCE\nStripe | Staff Software Engineer, Payments Platform 2021 - Present\nArchitected distributed payment processing system handling 50M+ transactions daily across 135+ countries, reducing\nlatency by 35% and saving $2.3M annually in infrastructure costs\nLed team of 6 senior engineers to rebuild core settlement engine, decreasing reconciliation errors by 99.7% and\npreventing $18M in customer disputes\nMentored 12 junior and mid-level engineers, with 8 promoted to senior roles within 18 months; established quarterly\ntechnical leadership program\nCloudflare | Senior Staff Engineer, Edge Network Infrastructure 2018 - 2021\nDesigned and deployed next-generation edge caching layer processing 1.5 trillion requests monthly, improving cache hit\nratio from 68% to 91% and reducing customer latency by 42%\nSpearheaded migration of 500+ critical services to new networking stack, eliminating 15 years of technical debt and\nreducing operational incidents by 78%\nDrove adoption of structured logging across 200 microservices using custom distributed tracing platform, improving\nMTTR for production issues from 45 minutes to 8 minutes\nNotion | Staff Software Engineer, Real-Time Collaboration 2016 - 2018\nBuilt conflict-free replicated data type (CRDT) engine supporting collaborative editing for 2M+ concurrent users,\nachieving sub-100ms sync latency\nOptimized WebSocket message protocol, reducing bandwidth consumption by 67% and supporting 40% more concurrent\nconnections on same infrastructure\nDesigned and implemented observability stack processing 200M events daily, enabling oncall engineers to diagnose 95%\nof critical issues within first 5 minutes\nPalantir Technologies | Senior Software Engineer, Data Integration Platform 2014 - 2016\nLed architectural redesign of ETL pipeline to support petabyte-scale data ingestion, improving throughput by 560% and\nreducing processing time from weeks to hours\nBuilt query optimization engine leveraging cost-based planning, accelerating customer analytic queries by average of 3.2x\nacross 50+ enterprise deployments\nMentored 4 new engineers in distributed systems concepts; improved code review standards, reducing production bugs by\n53%\nPROJECTS\nMeridian - Distributed Query Engine | Rust, C++, gRPC, Protocol Buffers, Arrow 2019 - Present (Open Source)\nOpen-source columnar query engine achieving 4.8x performance improvement over Apache Spark for analytical\nworkloads, with 3,200+ GitHub stars and 45+ active contributors\nImplemented adaptive query planning with ML-based cost estimation, improving query time prediction accuracy from\n61% to 94%\nCryptoWatch - Blockchain Event Monitor | Go, PostgreSQL, Redis, Kafka, GraphQL 2017 - 2019\nEngineered real-time blockchain transaction monitoring system processing 450K events/second with 99.99% uptime\nacross 15 global nodes\nReduced false-positive alerts by 89% through implementation of machine learning anomaly detection model trained on 2\nyears of historical data\nEXTRACURRICULAR\nSystems Research and Engineering Community (SREC) | Founding Organizer & Speaker 2019 - Present\nFounded and grew distributed systems meetup to 1,200+ active members across 3 cities, hosting 18+ technical talks\nannually from industry leaders\nDelivered 5 keynote presentations on distributed consensus and fault tolerance to audiences of 200+ engineers\nOpen Source Contributions & Mentorship | Core Contributor & Mentor 2015 - Present\nContributed 340+ commits to high-profile open source projects (LLVM, Kubernetes, Protocol Buffers) with focus on\nperformance optimization\nMentored 8 junior developers entering tech industry, with 100% placement rate at tier-1 companies; designed curriculum\nfor distributed systems fundamentals\nTECHNICAL SKILLS\nLanguages \u2013 Rust, Go, C++, Java, Python, TypeScript, SQL\nTechnologies \u2013 Distributed Systems, Microservices Architecture, CRDT/Real-time Collaboration, gRPC, Kafka,\nElasticsearch, PostgreSQL, Redis, GraphQL, Machine Learning Systems, Stream Processing\nTools \u2013 Kubernetes, Docker, Prometheus, Grafana, Protocol Buffers, Apache Arrow, Git, CI/CD Pipelines (GitHub Actions,\nJenkins), AWS (EC2, S3, RDS), GCP (BigQuery, Bigtable)",
+    "name": "Email",
+    "email": "sergio.makhambetov@outlook.com",
+    "phone": "+442079460958",
+    "links": {
+        "other": [
+            "https://makhambetov.dev"
+        ],
+        "linkedin": [
+            "https://linkedin.com/in/s\u00e9rgio-makhambetov"
+        ],
+        "github": [
+            "https://github.com/S\u00e9rgioMakhambetov"
+        ]
+    },
+    "skills": [
+        "aws",
+        "c",
+        "c++",
+        "docker",
+        "go",
+        "graphql",
+        "grpc",
+        "java",
+        "kubernetes",
+        "llvm",
+        "postgresql",
+        "processing",
+        "python",
+        "rust",
+        "sql",
+        "typescript"
+    ],
+    "projects": [
+        {
+            "name": "Meridian - Distributed Query Engine",
+            "subtitle": "Rust, C++, gRPC, Protocol Buffers, Arrow  (Open Source)",
+            "start_date": "2019",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "61% to 94%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "CryptoWatch - Blockchain Event Monitor",
+            "subtitle": "Go, PostgreSQL, Redis, Kafka, GraphQL",
+            "start_date": "2017",
+            "end_date": "2019",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "across 15 global nodes",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "years of historical data",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "Systems Research and Engineering Community (SREC)",
+            "subtitle": "Founding Organizer & Speaker",
+            "start_date": "2019",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "annually from industry leaders",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Open Source Contributions & Mentorship",
+            "subtitle": "Core Contributor & Mentor",
+            "start_date": "2015",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "performance optimization",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "for distributed systems fundamentals",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Stripe",
+            "subtitle": "Staff Software Engineer, Payments Platform",
+            "start_date": "2021",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "preventing $18M in customer disputes",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "technical leadership program",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Cloudflare",
+            "subtitle": "Senior Staff Engineer, Edge Network Infrastructure",
+            "start_date": "2018",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "reducing operational incidents by 78%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Notion",
+            "subtitle": "Staff Software Engineer, Real-Time Collaboration",
+            "start_date": "2016",
+            "end_date": "2018",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "achieving sub-100ms sync latency",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "connections on same infrastructure",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Palantir Technologies",
+            "subtitle": "Senior Software Engineer, Data Integration Platform",
+            "start_date": "2014",
+            "end_date": "2016",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "across 50+ enterprise deployments",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "53%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Stripe | Staff Software Engineer, Payments Platform 2021 - Present\nArchitected distributed payment processing system handling 50M+ transactions daily across 135+ countries, reducing\nlatency by 35% and saving $2.3M annually in infrastructure costs\nLed team of 6 senior engineers to rebuild core settlement engine, decreasing reconciliation errors by 99.7% and\npreventing $18M in customer disputes\nMentored 12 junior and mid-level engineers, with 8 promoted to senior roles within 18 months; established quarterly\ntechnical leadership program\nCloudflare | Senior Staff Engineer, Edge Network Infrastructure 2018 - 2021\nDesigned and deployed next-generation edge caching layer processing 1.5 trillion requests monthly, improving cache hit\nratio from 68% to 91% and reducing customer latency by 42%\nSpearheaded migration of 500+ critical services to new networking stack, eliminating 15 years of technical debt and\nreducing operational incidents by 78%\nDrove adoption of structured logging across 200 microservices using custom distributed tracing platform, improving\nMTTR for production issues from 45 minutes to 8 minutes\nNotion | Staff Software Engineer, Real-Time Collaboration 2016 - 2018\nBuilt conflict-free replicated data type (CRDT) engine supporting collaborative editing for 2M+ concurrent users,\nachieving sub-100ms sync latency\nOptimized WebSocket message protocol, reducing bandwidth consumption by 67% and supporting 40% more concurrent\nconnections on same infrastructure\nDesigned and implemented observability stack processing 200M events daily, enabling oncall engineers to diagnose 95%\nof critical issues within first 5 minutes\nPalantir Technologies | Senior Software Engineer, Data Integration Platform 2014 - 2016\nLed architectural redesign of ETL pipeline to support petabyte-scale data ingestion, improving throughput by 560% and\nreducing processing time from weeks to hours\nBuilt query optimization engine leveraging cost-based planning, accelerating customer analytic queries by average of 3.2x\nacross 50+ enterprise deployments\nMentored 4 new engineers in distributed systems concepts; improved code review standards, reducing production bugs by\n53%",
+    "education": [
+        {
+            "name": "Graduated with ;",
+            "subtitle": "maintained 3.8/4.0 GPA in core CS courses",
+            "start_date": null,
+            "end_date": null,
+            "grade": "distinction",
+            "summary": ""
+        }
+    ]
+}

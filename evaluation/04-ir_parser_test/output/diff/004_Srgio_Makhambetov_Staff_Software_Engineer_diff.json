@@ -1,0 +1,68 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "c++",
+            "docker",
+            "go",
+            "graphql",
+            "grpc",
+            "java",
+            "kubernetes",
+            "postgresql",
+            "python",
+            "rust",
+            "sql",
+            "typescript"
+        ],
+        "Missed (False Negatives)": [
+            "arrow",
+            "elasticsearch",
+            "gcp",
+            "git",
+            "grafana",
+            "kafka",
+            "prometheus",
+            "redis"
+        ],
+        "Extra (False Positives/Noise)": [
+            "c",
+            "llvm",
+            "processing"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "stripe",
+            "cloudflare",
+            "notion",
+            "palantir technologies"
+        ],
+        "Missed": [],
+        "All Extracted Entities": [
+            "stripe",
+            "preventing $18m in customer disputes",
+            "technical leadership program",
+            "cloudflare",
+            "reducing operational incidents by 78%",
+            "notion",
+            "achieving sub-100ms sync latency",
+            "connections on same infrastructure",
+            "palantir technologies",
+            "across 50+ enterprise deployments",
+            "53%"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": false,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Email",
+            "email": "sergio.makhambetov@outlook.com"
+        },
+        "Expected": {
+            "name": "S\u00e9rgio Makhambetov",
+            "email": "sergio.makhambetov@outlook.com"
+        }
+    }
+}

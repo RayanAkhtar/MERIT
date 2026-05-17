@@ -1,0 +1,71 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "css3",
+            "docker",
+            "graphql",
+            "html5",
+            "javascript",
+            "next.js",
+            "react",
+            "redux",
+            "storybook",
+            "tailwindcss",
+            "typescript"
+        ],
+        "Missed (False Negatives)": [
+            "babel",
+            "figma",
+            "git",
+            "github",
+            "jest",
+            "sentry",
+            "vs code",
+            "vue.js",
+            "webpack",
+            "websocket"
+        ],
+        "Extra (False Positives/Noise)": [
+            "angular",
+            "chart.js",
+            "firebase",
+            "js",
+            "node.js",
+            "postgresql",
+            "processing"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "figma",
+            "stripe",
+            "notion"
+        ],
+        "Missed": [],
+        "All Extracted Entities": [
+            "figma",
+            "seconds for 2m+ users",
+            "15+ simultaneous collaborators",
+            "stripe",
+            "users",
+            "by 45%",
+            "quarter-over-quarter",
+            "notion",
+            "users",
+            "accessibility audit score by 41%"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": false,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Santi Lin +1",
+            "email": "santi.lin@gmail.com"
+        },
+        "Expected": {
+            "name": "Santi Lin",
+            "email": "santi.lin@gmail.com"
+        }
+    }
+}

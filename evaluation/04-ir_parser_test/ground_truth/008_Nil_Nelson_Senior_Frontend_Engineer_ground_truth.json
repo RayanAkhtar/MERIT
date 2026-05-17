@@ -1,0 +1,19 @@
+{
+    "name": "Nil Nelson",
+    "email": "nil.nelson@outlook.com",
+    "skills": [
+        "JavaScript", "TypeScript", "Python", "GraphQL", "SQL",
+        "React", "Vue.js", "Next.js", "Electron", "WebRTC", "Canvas API", "WebGL", "Redux", "RxJS", "Node.js", "Express",
+        "Webpack", "Vite", "Jest", "Cypress", "Figma", "Chrome DevTools", "Lighthouse", "Docker", "Git", "AWS CloudFront", "DataDog APM"
+    ],
+    "experience": [
+        "Figma",
+        "Stripe",
+        "Cloudflare",
+        "Notion"
+    ],
+    "education": [
+        "University of Cambridge",
+        "ETH Zurich"
+    ]
+}

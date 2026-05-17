@@ -1,11 +1,26 @@
 \chapter{Evaluation}
 
-This chapter presents the results of the rigorous mathematical, computational, and human trials conducted to validate the MERIT architecture. 
-The evaluation suite is designed to strictly prove the system's accuracy and validate its three core pillars: Multi-Source Fusion, Explainability, and Extensibility.
+This chapter presents the results of the rigorous mathematical, computational, and human trials conducted
+to validate the MERIT architecture. The evaluation suite is designed to strictly prove the system's accuracy
+and validate its three core pillars: Extensibility, Multi-Source Fusion, and Explainability.
+
+\subsection*{Codebase Traceability \& Evaluation Mapping}
+To ensure transparency and auditability, our evaluation structure maintains a one-to-one mapping with the
+active implementation files and subdirectories. This is located within the github repository's \textit{/evaluation/}
+directory. In this chapter, we will refer to a distinct study with a numerical prefix. This prefix correlates directly
+to the prefix of the study within the evaluation directory. For example, Study 04 (Information Retrieval
+Parser Accuracy) corresponds to the \texttt{04-ir\_parser\_test/} directory.
+
+Rather than presenting the studies in numerical order, we will instead present them in the logical order of the
+MERIT pipeline. This allows us to build up the results section in a logical, bottom-up manner. We will first test MERIT's
+extensibility, followed by its ability to fuse information from multiple sources. Finally, we will test MERIT's
+presentability through case studies. We will then conclude with an evaluation of fairness and computational rigour.
+This pattern of evaluation follows the same structure as the previous chapter. This ensures that the reader
+can follow the evaluation in a logical order, building up a comprehensive understanding of the system.
 
 \input{evaluation/subsections/foundational_accuracy.tex}
+\input{evaluation/subsections/evaluating_extensibility.tex}
 \input{evaluation/subsections/evaluating_multi_source_fusion.tex}
 \input{evaluation/subsections/evaluating_explainability.tex}
-\input{evaluation/subsections/evaluating_extensibility.tex}
 \input{evaluation/subsections/fairness_computational_rigour.tex}
 \input{evaluation/subsections/threats_to_validity.tex}

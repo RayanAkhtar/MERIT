@@ -1,0 +1,293 @@
+{
+    "raw_cv_text": "Nil Nelson\n+44 20 7946 0958 | Email: nil.nelson@outlook.com | LinkedIn: nil-nelson | GitHub: NilNelson | https://nilnelson.dev\nEDUCATION\nUniversity of Cambridge | Bachelor of Arts in Computer Science 2015 - 2018\nAchieved First-Class Honours with distinction in systems programming and distributed computing\nLed university coding competition team to regional finals, mentoring 12 junior developers\nETH Zurich | Master of Science in Computer Science 2018 - 2020\nSpecialized in Human-Computer Interaction and Frontend Architecture with 4.0 GPA\nPublished research paper on accessibility patterns in modern web applications with 200+ citations\nEXPERIENCE\nFigma | Senior Frontend Engineer 2022 - Present\nArchitected and deployed new collaborative canvas rendering engine, improving performance by 45% and reducing\nlatency from 250ms to 120ms for 2M+ daily active users\nLed frontend refactoring initiative across 8 feature teams, reducing bundle size by 32% (1.2MB saved) and improving\nLighthouse scores from 78 to 94\nMentored 4 junior engineers on React best practices and performance optimization, contributing to 100% promotion rate\nwithin 18 months\nStripe | Staff Frontend Engineer 2020 - 2022\nRedesigned payment forms component library, increasing form completion rates by 28% and generating $2.1M in\nadditional annual payment volume\nImplemented real-time validation system using WebSockets and RxJS, reducing transaction processing errors by 67%\nacross 50K+ merchant partners\nEstablished comprehensive frontend testing standards achieving 89% code coverage and reducing production bugs by\n41%\nCloudflare | Senior Frontend Engineer 2018 - 2020\nBuilt real-time analytics dashboard processing 100B+ requests daily using Vue.js and Canvas APIs, adopted by 95% of\nenterprise customers\nOptimized critical rendering path reducing initial page load time by 56% (3.2s to 1.4s) through code splitting and service\nworker caching strategies\nSpearheaded accessibility initiative, achieving WCAG 2.1 AA compliance across 40 products and increasing accessible\nuser base by 18%\nNotion | Frontend Engineer 2016 - 2018\nDeveloped real-time collaborative editing components in TypeScript, supporting 500K concurrent users with zero data\nloss\nReduced app initialization time by 62% through lazy loading and progressive enhancement, improving mobile conversion\nby 23%\nImplemented comprehensive design system with 150+ reusable components, reducing development time across teams by\n40%\nPROJECTS\nFlowSync | React, TypeScript, WebRTC, Redis, Node.js 2023 - Present\nBuilt real-time collaborative whiteboarding SaaS with WebRTC peer connections supporting 1000+ simultaneous\ncollaborators with 99.7% uptime\nImplemented differential synchronization algorithm reducing bandwidth usage by 74% while maintaining sub-100ms\nlatency across 50 countries\nPixelPerfect | Vue.js, Canvas API, WebGL, Electron 2021 - 2022\nCreated cross-platform image editing desktop app acquiring 50K+ downloads with 4.8-star rating and 95% retention rate\nOptimized WebGL rendering pipeline achieving 60fps performance on mid-range devices, expanding addressable market\nby 320%\na11y-Scout | React, Puppeteer, Axe DevTools, Node.js, GraphQL 2022\nDeveloped open-source accessibility auditing tool with 800+ GitHub stars used by 2K+ organizations for automated\nWCAG compliance testing\nEngineered headless browser testing pipeline detecting 95% of accessibility violations automatically, reducing manual\naudit time by 70%\nEXTRACURRICULAR\nReact Advanced Patterns Conference | Speaker & Workshop Facilitator 2022 - Present\nDelivered annual talks on frontend performance optimization reaching 1200+ developers with average 4.7/5 satisfaction\nrating\nConducted hands-on workshops teaching concurrent rendering and Suspense patterns to 300+ engineers across FAANG\ncompanies\nOpen Source Mentorship Program | Senior Mentor 2020 - Present\nGuided 8 early-career developers in contributing to high-impact open-source projects with cumulative 12K+ GitHub stars\nFacilitated code reviews and architecture discussions resulting in 15+ merged pull requests and mentee placement in\nsenior roles\nTECHNICAL SKILLS\nLanguages \u2013 JavaScript, TypeScript, Python, GraphQL, SQL\nTechnologies \u2013 React, Vue.js, Next.js, Electron, WebRTC, Canvas API, WebGL, Redux, RxJS, Node.js, Express\nTools \u2013 Webpack, Vite, Jest, Cypress, Figma, Chrome DevTools, Lighthouse, Docker, Git, AWS CloudFront, DataDog APM",
+    "name": "Nil Nelson",
+    "email": "nil.nelson@outlook.com",
+    "phone": "+442079460958",
+    "links": {
+        "other": [
+            "https://nilnelson.dev"
+        ],
+        "linkedin": [
+            "https://linkedin.com/in/nil-nelson"
+        ],
+        "github": [
+            "https://github.com/NilNelson"
+        ]
+    },
+    "skills": [
+        "aws",
+        "cypress",
+        "docker",
+        "electron",
+        "express",
+        "graphql",
+        "javascript",
+        "js",
+        "next.js",
+        "node.js",
+        "processing",
+        "python",
+        "react",
+        "redux",
+        "rxjs",
+        "sql",
+        "typescript"
+    ],
+    "projects": [
+        {
+            "name": "FlowSync",
+            "subtitle": "React, TypeScript, WebRTC, Redis, Node.js",
+            "start_date": "2023",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "collaborators with 99.7% uptime",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "latency across 50 countries",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "PixelPerfect",
+            "subtitle": "Vue.js, Canvas API, WebGL, Electron",
+            "start_date": "2021",
+            "end_date": "2022",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "by 320%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "a11y-Scout",
+            "subtitle": "React, Puppeteer, Axe DevTools, Node.js, GraphQL",
+            "start_date": "2022",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "WCAG compliance testing",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "audit time by 70%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "React Advanced Patterns Conference",
+            "subtitle": "Speaker & Workshop Facilitator",
+            "start_date": "2022",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "rating",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "companies",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Open Source Mentorship Program",
+            "subtitle": "Senior Mentor",
+            "start_date": "2020",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "senior roles",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Figma",
+            "subtitle": "Senior Frontend Engineer",
+            "start_date": "2022",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Lighthouse scores from 78 to 94",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "within 18 months",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Stripe",
+            "subtitle": "Staff Frontend Engineer",
+            "start_date": "2020",
+            "end_date": "2022",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "additional annual payment volume",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "across 50K+ merchant partners",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "41%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Cloudflare",
+            "subtitle": "Senior Frontend Engineer",
+            "start_date": "2018",
+            "end_date": "2020",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "enterprise customers",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "worker caching strategies",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "user base by 18%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Notion",
+            "subtitle": "Frontend Engineer",
+            "start_date": "2016",
+            "end_date": "2018",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "loss",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "by 23%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "40%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Figma | Senior Frontend Engineer 2022 - Present\nArchitected and deployed new collaborative canvas rendering engine, improving performance by 45% and reducing\nlatency from 250ms to 120ms for 2M+ daily active users\nLed frontend refactoring initiative across 8 feature teams, reducing bundle size by 32% (1.2MB saved) and improving\nLighthouse scores from 78 to 94\nMentored 4 junior engineers on React best practices and performance optimization, contributing to 100% promotion rate\nwithin 18 months\nStripe | Staff Frontend Engineer 2020 - 2022\nRedesigned payment forms component library, increasing form completion rates by 28% and generating $2.1M in\nadditional annual payment volume\nImplemented real-time validation system using WebSockets and RxJS, reducing transaction processing errors by 67%\nacross 50K+ merchant partners\nEstablished comprehensive frontend testing standards achieving 89% code coverage and reducing production bugs by\n41%\nCloudflare | Senior Frontend Engineer 2018 - 2020\nBuilt real-time analytics dashboard processing 100B+ requests daily using Vue.js and Canvas APIs, adopted by 95% of\nenterprise customers\nOptimized critical rendering path reducing initial page load time by 56% (3.2s to 1.4s) through code splitting and service\nworker caching strategies\nSpearheaded accessibility initiative, achieving WCAG 2.1 AA compliance across 40 products and increasing accessible\nuser base by 18%\nNotion | Frontend Engineer 2016 - 2018\nDeveloped real-time collaborative editing components in TypeScript, supporting 500K concurrent users with zero data\nloss\nReduced app initialization time by 62% through lazy loading and progressive enhancement, improving mobile conversion\nby 23%\nImplemented comprehensive design system with 150+ reusable components, reducing development time across teams by\n40%",
+    "education": [
+        {
+            "name": "University of Cambridge",
+            "subtitle": "Bachelor of Arts in Computer Science",
+            "start_date": "2015",
+            "end_date": "2018",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "ETH Zurich",
+            "subtitle": "Master of Science in Computer Science",
+            "start_date": "2018",
+            "end_date": "2020",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Specialized in Human-Computer Interaction and Frontend Architecture with 4.0 GPA",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ]
+}

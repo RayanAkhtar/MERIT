@@ -1,0 +1,173 @@
+{
+    "raw_cv_text": "Jude Washington\njude.washington@gmail.com \u00b7 (415) 287-3649 \u00b7 https://github.com/judeiosdev\nEDUCATION\nUniversity of California, Berkeley | B.S. in Computer Science May 2024\nRelevant coursework: Mobile Development, Software Engineering, Human-Computer Interaction\nGPA: 3.72, Dean's List 2023-2024\nEXPERIENCE\nTechFlow Systems | Junior iOS Developer June 2024 - Present\nDeveloped and shipped 3 customer-facing features in SwiftUI, reducing user onboarding friction by 28% per\nanalytics data\nOptimized app launch time from 3.2s to 1.8s through lazy loading and Core Data caching, improving ratings from\n3.8 to 4.3 stars\nCollaborated with UX team to resolve 12 crash logs and memory leaks, cutting app instability incidents by 45%\nMomentum Design Studio | iOS Development Intern January 2024 - May 2024\nBuilt reusable SwiftUI component library with 15+ UI elements, accelerating feature development across 2 internal\napps by 3 weeks\nIntegrated RESTful API endpoints and managed JSON decoding using Codable, enabling real-time sync for 5,000+\nuser dataset\nFixed and documented 8 UIKit legacy code issues during modernization sprint, improving code maintainability score\nby 34%\nPROJECTS\nFitTrack Pro | SwiftUI, HealthKit, Core Data, Combine September 2023 - April 2024\nEngineered full-stack iOS fitness tracking app with HealthKit integration, achieving 2,400+ downloads on TestFlight\nImplemented local-first architecture with Core Data sync, enabling offline access for 100% of features\nOpen Source: PopupKitSwiftUI | Swift, SPM, GitHub Actions July 2023 - Present\nMaintained open-source library for customizable popup dialogs, garnering 180+ GitHub stars and 8 pull request\ncontributions from community\nPublished to CocoaPods with 500+ weekly downloads, reducing adoption friction across iOS ecosystem\nWeatherMind | UIKit, Weather API, URLSession, Realm November 2023 - December 2023\nDeveloped weather forecasting app with 10-day predictions and location persistence, completing academic\ncapstone in 6 weeks\nAchieved 94% code coverage with XCTest unit tests and UI automation testing across 3 device simulators\nNutriLog (University Project) | SwiftUI, Firebase, AVFoundation February 2023 - May 2023\nBuilt nutrition tracking app with barcode scanner using Vision framework, processing 50+ food items per session\nDesigned Firebase backend architecture supporting 25 concurrent users in group study testing\nEXTRACURRICULAR\nUC Berkeley iOS Developers Club | Vice President August 2023 - May 2024\nOrganized monthly hands-on workshops for 60+ members covering SwiftUI, networking, and App Store best\npractices\nMentored 8 junior developers on iOS fundamentals and portfolio projects, resulting in 6 securing internships\nApple Developer Academy (Partner Program) | Participant June 2023 - August 2023\nCompleted intensive 8-week bootcamp focused on SwiftUI best practices, accessibility, and performance\noptimization\nShipped prototype app with accessibility audit achieving WCAG AA compliance across all 15 screens\nTECHNICAL SKILLS\nLanguages \u2013 Swift, Objective-C, SQL\nTechnologies \u2013 SwiftUI, UIKit, Combine, HealthKit, Core Data, Vision Framework, AVFoundation, MapKit, Firebase,\nREST APIs\nTools \u2013 Xcode, Git, GitHub, TestFlight, CocoaPods, SPM, Figma, Jira",
+    "name": "Jude Washington",
+    "email": "jude.washington@gmail.com",
+    "phone": null,
+    "links": {
+        "github": [
+            "https://github.com/judeiosdev"
+        ],
+        "linkedin": []
+    },
+    "skills": [
+        "c",
+        "firebase",
+        "processing",
+        "realm",
+        "sql",
+        "swift"
+    ],
+    "projects": [
+        {
+            "name": "FitTrack Pro",
+            "subtitle": "SwiftUI, HealthKit, Core Data, Combine",
+            "start_date": "September 2023",
+            "end_date": "April 2024",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Open Source: PopupKitSwiftUI",
+            "subtitle": "Swift, SPM, GitHub Actions",
+            "start_date": "July 2023",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "contributions from community",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "WeatherMind",
+            "subtitle": "UIKit, Weather API, URLSession, Realm",
+            "start_date": "November 2023",
+            "end_date": "December 2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "capstone in 6 weeks",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "NutriLog (University Project)",
+            "subtitle": "SwiftUI, Firebase, AVFoundation",
+            "start_date": "February 2023",
+            "end_date": "May 2023",
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "UC Berkeley iOS Developers Club",
+            "subtitle": "Vice President",
+            "start_date": "August 2023",
+            "end_date": "May 2024",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "practices",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Apple Developer Academy (Partner Program)",
+            "subtitle": "Participant",
+            "start_date": "June 2023",
+            "end_date": "August 2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "optimization",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "TechFlow Systems",
+            "subtitle": "Junior iOS Developer",
+            "start_date": "June 2024",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "analytics data",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "3.8 to 4.3 stars",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Momentum Design Studio",
+            "subtitle": "iOS Development Intern",
+            "start_date": "January 2024",
+            "end_date": "May 2024",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "apps by 3 weeks",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "user dataset",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "by 34%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "TechFlow Systems | Junior iOS Developer June 2024 - Present\nDeveloped and shipped 3 customer-facing features in SwiftUI, reducing user onboarding friction by 28% per\nanalytics data\nOptimized app launch time from 3.2s to 1.8s through lazy loading and Core Data caching, improving ratings from\n3.8 to 4.3 stars\nCollaborated with UX team to resolve 12 crash logs and memory leaks, cutting app instability incidents by 45%\nMomentum Design Studio | iOS Development Intern January 2024 - May 2024\nBuilt reusable SwiftUI component library with 15+ UI elements, accelerating feature development across 2 internal\napps by 3 weeks\nIntegrated RESTful API endpoints and managed JSON decoding using Codable, enabling real-time sync for 5,000+\nuser dataset\nFixed and documented 8 UIKit legacy code issues during modernization sprint, improving code maintainability score\nby 34%",
+    "education": [
+        {
+            "name": "Relevant coursework: Mobile Development",
+            "subtitle": "Software Engineering, Human-Computer Interaction",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ]
+}

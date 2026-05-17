@@ -1,0 +1,65 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "docker",
+            "go",
+            "java",
+            "kubernetes",
+            "python",
+            "sql",
+            "yaml"
+        ],
+        "Missed (False Negatives)": [
+            "ansible",
+            "apache spark",
+            "argocd",
+            "bash",
+            "cloudformation",
+            "datadog",
+            "gcp",
+            "git",
+            "gitlab ci/cd",
+            "grafana",
+            "helm",
+            "jenkins",
+            "pagerduty",
+            "prometheus",
+            "splunk",
+            "terraform",
+            "vault"
+        ],
+        "Extra (False Positives/Noise)": [
+            "foundation",
+            "processing"
+        ]
+    },
+    "Experience": {
+        "Matched": [],
+        "Missed": [
+            "stripe",
+            "databricks",
+            "lyft",
+            "twilio"
+        ],
+        "All Extracted Entities": [
+            "eliminating $2.1m annual infrastructure costs",
+            "faster deployment cycles across platform services",
+            "while maintaining 98.5% cluster availability",
+            "26%, adopted by 50k+ daily users",
+            "backups across 8 regions"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": true,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Tansy Burns",
+            "email": "tansy.burns@gmail.com"
+        },
+        "Expected": {
+            "name": "Tansy Burns",
+            "email": "tansy.burns@gmail.com"
+        }
+    }
+}

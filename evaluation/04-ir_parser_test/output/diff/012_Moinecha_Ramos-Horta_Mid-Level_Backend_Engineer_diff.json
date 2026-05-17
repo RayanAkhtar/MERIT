@@ -1,0 +1,74 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "docker",
+            "go",
+            "graphql",
+            "grpc",
+            "java",
+            "javascript",
+            "kubernetes",
+            "mongodb",
+            "postgresql",
+            "python",
+            "rust",
+            "sql",
+            "typescript"
+        ],
+        "Missed (False Negatives)": [
+            "apache kafka",
+            "datadog",
+            "distributed systems",
+            "elasticsearch",
+            "git",
+            "github",
+            "google cloud platform",
+            "grafana",
+            "linux",
+            "microservices architecture",
+            "prometheus",
+            "redis",
+            "rest apis",
+            "websockets"
+        ],
+        "Extra (False Positives/Noise)": [
+            "influxdb",
+            "js",
+            "node.js",
+            "processing"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "stripe",
+            "datadog",
+            "notion"
+        ],
+        "Missed": [],
+        "All Extracted Entities": [
+            "stripe",
+            "120ms and improving throughput by 280%",
+            "payment methods with zero downtime",
+            "datadog",
+            "sla",
+            "incidents by 28%",
+            "notion",
+            "websocket connection pooling and redis pub/sub",
+            "allowing 10x larger workspace support",
+            "deployment rollbacks"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": true,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Moinecha Ramos-Horta",
+            "email": "moinecha.ramos@outlook.com"
+        },
+        "Expected": {
+            "name": "Moinecha Ramos-Horta",
+            "email": "moinecha.ramos@outlook.com"
+        }
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "name": "Zainab Verstraeten",
+    "email": "zainab.verstraeten@gmail.com",
+    "skills": [
+        "Rust", "Go", "TypeScript", "Python", "Java", "SQL", "Solidity",
+        "PostgreSQL", "Redis", "Elasticsearch", "GraphQL", "React", "Node.js", 
+        "WebSocket", "Apache Kafka", "Docker", "Kubernetes", "AWS", "Datadog",
+        "Git", "GitHub", "GitLab", "Figma", "Jenkins", "Terraform", "Linux"
+    ],
+    "experience": [
+        "Cloudflare",
+        "Notion",
+        "Shopify"
+    ],
+    "education": [
+        "University of Cambridge",
+        "University of Amsterdam"
+    ]
+}

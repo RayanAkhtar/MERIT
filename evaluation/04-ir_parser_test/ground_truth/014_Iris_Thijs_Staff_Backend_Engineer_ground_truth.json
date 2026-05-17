@@ -1,0 +1,19 @@
+{
+    "name": "Iris Thijs",
+    "email": "iris.thijs@outlook.com",
+    "skills": [
+        "Go", "Python", "Rust", "Java", "TypeScript", "SQL",
+        "gRPC", "GraphQL", "Kafka", "Redis", "PostgreSQL", "MongoDB", "Elasticsearch", "Kubernetes", "Docker", "Apache Spark", "Protocol Buffers",
+        "Git", "GitHub", "DataDog", "Prometheus", "ELK Stack", "Terraform", "AWS", "GCP"
+    ],
+    "experience": [
+        "Stripe",
+        "Datadog",
+        "Cloudflare",
+        "Shopify"
+    ],
+    "education": [
+        "University of Cambridge",
+        "ETH Zurich"
+    ]
+}
