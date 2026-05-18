@@ -13,14 +13,15 @@ Parser Accuracy) corresponds to the \texttt{04-ir\_parser\_test/} directory.
 
 Rather than presenting the studies in numerical order, we will instead present them in the logical order of the
 MERIT pipeline. This allows us to build up the results section in a logical, bottom-up manner. We will first test MERIT's
-extensibility, followed by its ability to fuse information from multiple sources. Finally, we will test MERIT's
-presentability through case studies. We will then conclude with an evaluation of fairness and computational rigour.
-This pattern of evaluation follows the same structure as the previous chapter. This ensures that the reader
-can follow the evaluation in a logical order, building up a comprehensive understanding of the system.
+ingestion, extensibility, and dynamic metric extraction foundation, followed by its core scoring and multi-source fusion
+engine (comprising temporal decay, source and algorithmic ablations, and conflict resolution). Finally, we test the
+explainability layer through game-theoretic checks and recruiter trials. We then evaluate human-machine expert alignment
+through Spearman's correlation, conclude with fairness and computational rigour, and discuss threats to validity. This ensures
+that the reader can follow the evaluation in a logical order, building up a comprehensive understanding of the system.
 
 \input{evaluation/subsections/foundational_accuracy.tex}
-\input{evaluation/subsections/evaluating_extensibility.tex}
 \input{evaluation/subsections/evaluating_multi_source_fusion.tex}
 \input{evaluation/subsections/evaluating_explainability.tex}
+\input{evaluation/subsections/human_machine_alignment.tex}
 \input{evaluation/subsections/fairness_computational_rigour.tex}
 \input{evaluation/subsections/threats_to_validity.tex}

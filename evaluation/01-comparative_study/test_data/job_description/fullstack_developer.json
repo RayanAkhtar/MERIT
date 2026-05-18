@@ -4,10 +4,10 @@
   "metrics": {
     "Technologies": {
       "value": ["Spring Boot", "React", "AWS"],
-      "weight": 0.8
+      "weight": 0.4
     },
     "Languages": {
-      "value": ["Java"],
+      "value": ["Java", "TypeScript"],
       "weight": 1.2
     },
     "Experience": {

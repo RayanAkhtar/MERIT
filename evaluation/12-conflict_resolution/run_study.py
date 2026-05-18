@@ -3,7 +3,6 @@ import sys
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Add project root and backend to path
 current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(current_dir, "..", ".."))
 backend_path = os.path.join(project_root, "backend")
@@ -17,6 +16,8 @@ if not os.path.exists(os.path.join(backend_path, "core")):
     backend_path = os.path.join(project_root, "backend")
     sys.path.insert(0, backend_path)
 
+# pyrefly: ignore [missing-import]
+from core.scoring.constants import SCORING_CONSTANTS
 # pyrefly: ignore [missing-import]
 from core.fusion.bayesian import BayesianEvidenceFusion, Evidence
 
@@ -50,12 +51,20 @@ def run_conflict_resolution_study():
     # LinkedIn: check certifications
     li_strength = 0.8 if any(target_skill in c for l in [li_data.get("certifications", [])] for c in l) else 0.0
 
+
+    tech_conf = SCORING_CONSTANTS["FUSION"]["SOURCE_CONFIDENCE"]["TECHNICAL_SKILLS"]
+    cv_conf = tech_conf["CV"]
+    gh_conf = tech_conf["GITHUB"]
+    li_conf = tech_conf["LINKEDIN"]
+    
+    print(f"[INFO] Using backend source confidences: CV={cv_conf}, GitHub={gh_conf}, LinkedIn={li_conf}")
+
     # create evidence objects
     evidence_steps = [
         Evidence(source="Prior", confidence=1.0, strength=0.0), # Starting point
-        Evidence(source="CV (Self-Report)", confidence=0.6, strength=cv_strength),
-        Evidence(source="GitHub (Evidence)", confidence=0.9, strength=gh_strength),
-        Evidence(source="LinkedIn (Endorse)", confidence=0.7, strength=li_strength)
+        Evidence(source="CV (Self-Report)", confidence=cv_conf, strength=cv_strength),
+        Evidence(source="GitHub (Evidence)", confidence=gh_conf, strength=gh_strength),
+        Evidence(source="LinkedIn (Endorse)", confidence=li_conf, strength=li_strength)
     ]
     
     # 0.1, 0.1 prior - very sensitive to new data (currently what we're using on the frontend)

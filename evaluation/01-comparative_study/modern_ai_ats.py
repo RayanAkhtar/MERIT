@@ -21,7 +21,7 @@ def run_ai_study():
         raw_res = engine.score_candidate(cand)
         results.append({
             "Candidate Name": raw_res["name"],
-            "Modern AI Score": raw_res["score"]
+            "Modern AI Score": round(raw_res["score"] * 20, 1)
         })
     
     # Sort by score

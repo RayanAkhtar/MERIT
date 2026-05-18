@@ -151,15 +151,15 @@ def generate_evaluation_visualisations():
     plot_rank_displacement_chart("Holistic Results: Systemic Rank Displacement", all_names, "rank_displacement_holistic.png", baseline, ai, cv_only, merit_full)
     
     # highlighting candidates where multi-source fusion worked best
-    success_highlights = ["Alex Rivers", "Jordan Smith", "Buzz Ward", "Sam Old", "Vince Vault"]
-    plot_rank_displacement_chart("Systemic Successes: Discovery & Noise Filtering", success_highlights, "rank_displacement_successes.png", baseline, ai, cv_only, merit_full)
+    success_highlights = ["Alex Rivers", "Jordan Smith", "Buzz Ward", "Sam Old", "Ghost Gary", "Carl Corp"]
+    plot_rank_displacement_chart("Selected Trajectories: Successes & Limitations", success_highlights, "rank_displacement_successes.png", baseline, ai, cv_only, merit_full)
     
     # highlighting the proprietary data gap
-    limitation_highlights = ["Carl Corp", "Alex Rivers", "Sam Old"]
+    limitation_highlights = ["Carl Corp"]
     plot_rank_displacement_chart("Systemic Limitations: Proprietary Data Gaps", limitation_highlights, "rank_displacement_limitations.png", baseline, ai, cv_only, merit_full)
     
     # focusing on identity and attribution audits
-    edge_case_highlights = ["Felix Vance", "Fiona Frost", "Ghost Gary", "Alex Rivers"]
+    edge_case_highlights = ["Felix Vance", "Fiona Frost", "Kim Junior", "Vince Vault"]
     plot_rank_displacement_chart("Verification Edge Cases: Identity & Attribution", edge_case_highlights, "rank_displacement_edge_cases.png", baseline, ai, cv_only, merit_full)
 
 if __name__ == "__main__":

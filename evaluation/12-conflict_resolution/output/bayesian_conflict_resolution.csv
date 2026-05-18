@@ -1,5 +1,5 @@
 Step,Alpha (Success),Beta (Conflict),Mean Score,Uncertainty (StdDev)
 Prior,0.100,0.100,0.500,0.456
-CV (Self-Report),0.704,0.104,0.871,0.249
-GitHub (Evidence),0.705,1.005,0.412,0.299
-LinkedIn (Endorse),1.268,1.148,0.525,0.270
+CV (Self-Report),0.605,0.105,0.852,0.271
+GitHub (Evidence),0.606,1.006,0.376,0.300
+LinkedIn (Endorse),0.774,1.054,0.423,0.294

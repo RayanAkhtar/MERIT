@@ -1,9 +1,10 @@
-\section{Evaluating Pillar 3: Explainability \& HCI}
+\section{Evaluating Pillar 3: Glass-Box Explainability \& HCI}
+\label{sec:evaluating-explainability}
 
-TODO: Analyze the effectiveness and accuracy of the Explainable AI components.
+This section evaluates the mathematical correctness, deterministic behavior, and practical utility of MERIT's explainable AI (XAI) engine. We verify that attribution reports align with game-theoretic axioms under extreme conditions, and conduct human-computer interaction (HCI) trials to measure how the explainability layer influences recruiter behavior.
 
-\subsection{Shapley Value Mathematical Verification}
-TODO: Ensure deterministic output through edge-case testing.
+\subsection{Study 11: Shapley Value Mathematical Verification}
+TODO: Verify that the calculated Shapley values strictly satisfy the core game-theoretic axioms (Efficiency, Symmetry, Dummy Player, and Additivity) with strict zero-baselining and zero-leakage, using skewed candidate profiles (e.g., score supported by a single GitHub repo). (Reference Study 11)
 
-\subsection{Decision Reversal Study}
-TODO: Measure the reversal rate of human evaluators after being shown the XAI audit trail.
+\subsection{TODO: HCI Trial: Decision Reversal and Trust Study}
+TODO: Detail the human trials measuring the "Decision Reversal Rate" of recruiters when shown the high-level match score (e.g., 60%) in Stage 1 vs when shown the detailed, interactive Glass-Box XAI audit trail in Stage 2. (Reference Study / HCI Trial)

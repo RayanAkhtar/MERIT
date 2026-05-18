@@ -1,12 +1,282 @@
-\section{Evaluating Pillar 2: Multi-Source Fusion}
+\section{Evaluating Pillar 2: Multi-Source Evidence Fusion}
+\label{sec:evaluating-multi-source-fusion}
 
-TODO: Analyze the impact of multi-source data on candidate rankings.
+% Helper macros for evaluation tables (defined at top to prevent duplicate definition/undefined command errors)
+\newcommand{\splithead}[2]{\begin{tabular}[c]{@{}c@{}}\textbf{#1} \\ \textbf{#2}\end{tabular}}
+\newcommand{\splitcand}[2]{\begin{tabular}[c]{@{}l@{}}#1 \\ #2\end{tabular}}
+\newcommand{\splitdesc}[2]{\begin{tabular}[c]{@{}l@{}}#1 \\ #2\end{tabular}}
+\newcommand{\splitcell}[2]{\begin{tabular}[c]{@{}c@{}}\##1 \\ (#2)\end{tabular}}
 
-\subsection{Multi-Source Ablation Study}
-TODO: Compare rankings with single-source (CV-only) vs. multi-source fusion to prove the core thesis. (Reference Study 01)
+This section evaluates both the mathematical and empirical validity of MERIT's multi-source model.
+To ensure a rigorous evaluation, we will proceed, once again, with a bottom-up evaluation. We will start with a study on the
+algorithmic sensitivity with skill decay. From there, we will move on to evaluate Bayesian fusion, and how the model deals
+with conflicting signals for a specific metric in a configuration. Then, we will proceed to an algorithmic ablation study;
+here, we will run four models for ATS systems against the same candidate pool and JD. The models will be a traditional ATS,
+a Modern AI enhanced ATS, MERIT with only CV signals, and then finally MERIT with all sources. When referring to "all" sources,
+we specifically refer to the integration of GitHub and LinkedIn signals. With the same ATS setup and candidate pool, we will
+then proceed with a data ablation study, where we will point out the success and failure cases of the model.
 
-\subsection{Ablation of Algorithms}
-TODO: Systematically prove accuracy gains by layering Keyword -> Semantic -> Bayesian algorithms and measuring Spearman's Rho. (Reference Study 01)
 
-\subsection{Conflict Resolution Verification}
-TODO: Provide mathematical verification of Bayesian fusion correctly resolving contradictory data.
+\subsection{Study 08: Algorithmic Sensitivity and Skill Decay}
+\label{subsec:study-08-skill-decay}
+
+All humans are prone to skill degradation over time. For a technical role, if you are not frequently working with a
+specific technology, your expertise will naturally get "rusty" the longer you are removed from it. For candidates, we
+consider the technical skill of a candidate $S(t)$ to be a function of time $t$ (in years) since the skill was
+last actively practised.
+\begin{equation}
+    S(t) = S_0 \cdot e^{-\lambda t}
+\end{equation}
+where $S_0$ is the initial unweighted skill score extracted by the ingestion engine, and $\lambda$ is the
+skill decay constant. In this implementation, $\lambda$ is set to $\approx 0.25$, corresponding
+to a skill half-life of exactly $t_{1/2} = 2.77$ years.
+
+To evaluate two candidates to compare the effects of this model, both candidates have the exact same CV history,
+with the only differing factor being the active time of usage for these skills (evaluated against a study baseline year of 2024):
+\begin{itemize}
+    \item \textbf{Candidate A (Active Pro):} Demonstrates active, continuous Go and Kubernetes usage from
+          2022 to 2024 ($t = 0$).
+    \item \textbf{Candidate B (Stale Pro):} Possesses identical technical depth in Go and Kubernetes,
+          but has not actively worked with either technology since their last recorded project in 2018 ($t = 6$ years).
+\end{itemize}
+
+Applying the temporal decay formula to Candidate B's Go skill will yield the following:
+\begin{equation}
+    S(6) = S_0 \cdot e^{-0.25 \times 6} = S_0 \cdot e^{-1.5} \approx 0.223 \cdot S_0
+\end{equation}
+
+This means that Candidate B's Go skill score is only 22.3\% of what it would be if they were actively working with Go.
+It is likely that within 6 years, the candidate has forgotten some syntax of the language,
+but also the common libraries and frameworks used within it. If this candidate were to be selected for the role,
+they would likely require some upskilling in order to get up to speed with the current best practices for
+Go, and would experience a ramp-up period in the initial months.
+
+
+
+
+
+\subsection{Study 12: Bayesian Conflict Resolution Verification}
+\label{subsec:study-12-bayesian-conflict-resolution}
+
+In the previous section, we demonstrated that MERIT employs a Bayesian evidence fusion model with Beta
+distribution conjugate priors \cite{gelman2013bayesian} to resolve conflicting signals across unstructured and structured data channels
+without resorting to ad-hoc heuristics. Here, we will evaluate the empirical correctness of this model.
+
+We initialise our model with the following priors:
+\begin{equation}
+    \alpha_0 = 0.1, \quad \beta_0 = 0.1
+\end{equation}
+
+To verify the correctness of this model, we shall run a step-by-step mathematical walkthrough for a candidate
+\textbf{Felix Vance} for the extensible requirement of Java, as defined in Table~\ref{tab:bayesian-walkthrough}.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Bayesian Parameter Shifts for Felix Vance. The convergence of these parameter updates are visualised in
+        Figure~\ref{fig:bayesian-fusion-convergence}.}
+    \label{tab:bayesian-walkthrough}
+    \vspace{1.5ex}
+    \begin{tabular}{l|c|c|c|c|c|c}
+        \hline
+        \splithead{Evidence Step}{($i$)} & \splithead{Strength}{($s_i$)} & \splithead{Confidence}{($c_i$)} & \splithead{Alpha}{($\alpha$)} & \splithead{Beta}{($\beta$)} & \splithead{Fused}{Score} & \splithead{Uncertainty}{($\sigma$)} \\[1.5ex] \hline
+        0. Prior                         & ---                           & ---                             & 0.100                         & 0.100                       & 0.500                    & 0.456                               \\[1.5ex]
+        1. CV (Self-Report)              & 1.000                         & 0.500                           & 0.605                         & 0.105                       & 0.852                    & 0.271                               \\[1.5ex]
+        2. GitHub (Conflict)             & 0.000                         & 0.900                           & 0.606                         & 1.006                       & 0.376                    & 0.300                               \\[1.5ex]
+        3. LinkedIn (Endorse)            & 0.800                         & 0.200                           & 0.774                         & 1.054                       & 0.423                    & 0.294                               \\[1.5ex]
+        \hline
+    \end{tabular}
+\end{table}
+
+This walkthrough demonstrates three core behaviours of the model.
+
+\subsubsection{Strong Signal Handling (CV Assertion)}
+Felix's CV explicitly states proficiencies in Java, earning a strong positive signal of ($s_1 = 1.0$) for the CV signal.
+This signal has a moderate reliability of ($c_1 = 0.5$) as it is self-reported, and has not been verified by any other source.
+In this first step, we observe that the model correctly interprets the strong positive signal of $1.0$ from the CV,
+increasing the $\alpha$ parameter from $0.1$ to $0.605$, while $\beta$ updates to $0.105$.
+As a result, the match score, once merged with the CV signal, jumps from $0.5$ to $0.852$, highlighting that a strong signal
+is rewarded accordingly. It is also vital to note that the uncertainty also decreases from $0.456$ to $0.271$, due to the
+inclusion of some, albeit weak, evidence.
+
+\subsubsection{Conflicting Signal Handling (GitHub)}
+This is where the beauty of the Bayesian evidence model comes into play. Felix's GitHub language history features no
+evidence of them ever working with Java; however, there is a strong indication of them working with C++ (a language that is not on the Job Description). Here, there is
+a strong contradictory signal between the CV and the GitHub profile. Felix has a ($s_2 = 0.0$) for Java, for a data source
+with a strong reliability of ($c_2 = 0.9$). Felix has provided a signal that strongly disagrees with his claims on his CV.
+Due to this, the model updates the $\beta$ parameter from $0.1$ to $1.006$, while $\alpha$ remains at $0.606$.
+This leads to the match score decreasing from $0.852$ to $0.376$, highlighting that the model correctly penalises a
+contradictory signal. Another key observation is that the uncertainty also increases from $0.271$ to $0.300$,
+analysing that the model correctly captures the increased uncertainty in the presence of contradictory evidence.
+
+It is important to note here that the penalisation applied due to Bayesian conflict resolution is not intended to be
+significant, since it may be the case that Felix may not have publicly available evidence of their skills due to the
+nature of their work. It could be likely that Felix is a software engineer, and the projects he has worked on are proprietary,
+and therefore not publicly available.
+
+\subsubsection{LinkedIn Signal Confirmation}
+
+In step 3, Felix has a relatively strong signal from LinkedIn ($s_3 = 0.8$) with a relatively low confidence ($c_3 = 0.2$).
+This step is less important than the previous steps, however, we will provide it to show the robustness of the model.
+Here, the parameters update to $\alpha = 0.774, \beta = 1.054$, leading to a fused score of $0.423$ with an
+uncertainty of $0.294$ due to there being more claim-based evidence of potential understanding of Java.
+
+We provide a low confidence here because LinkedIn is considered a social media platform, where candidates may often
+inflate their skills in order to appear more attractive to potential employers. Also, unlike the one-page restriction applied
+to a CV, there are no restrictions applied to the number of skills a candidate can list on their LinkedIn profile.
+
+This worked example mathematically demonstrates that MERIT's Bayesian evidence fusion model does not just apply a simple
+weighted average, or ignore conflicts. Instead, it captures, tracks and scales the uncertainty in the presence of
+highly contradictory signals from sources of high confidence.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.95\textwidth]{../evaluation/12-conflict_resolution/output/fusion_convergence_detailed.png}
+    \caption{Bayesian Fusion Convergence and Conflict Resolution. The top panel traces the expected
+        value (mean fused score) alongside the mathematical uncertainty range ($1\sigma$ standard deviation band),
+        illustrating the "dissonance flare" at the conflict step. The bottom panel explicitly compares standard
+        deviation levels ($\sigma$) at each incremental fusion stage.}
+    \label{fig:bayesian-fusion-convergence}
+\end{figure}
+
+\subsection{Study 01A: Algorithmic Ablation Study}
+\label{subsec:study-01a-algorithmic-ablation}
+
+To evaluate the benefits and drawbacks of MERIT's multi-source fusion model, we will compare it against three other ATS models.
+The first model is a \textbf{Traditional ATS} model, representing the legacy industry-standard keyword-matching approach \cite{vanesch2019}. This baseline scores candidates solely on the count of matching keywords in their CV. The next model is a \textbf{Modern AI ATS}, a single-source ATS that computes cosine
+similarities between CV embeddings and Job Description (JD) embeddings using a Sentence-BERT (SBERT) model \cite{reimers2019sentence}. For the purposes of this study, we also consider
+MERIT as a baseline to compare against; for this baseline, we only consider CV data, to replicate how MERIT would perform
+when only considering this single-source data. Finally, we have the full MERIT model, which considers all sources of
+evidence.
+
+The complete ranking outcomes, as well as the normalised candidate scores across these four models are detailed in
+Table~\ref{tab:algorithmic-ablation}.
+
+
+
+
+\begin{table}[htbp]
+    \centering
+    \caption{Algorithmic Benchmark and Candidate Rankings across Scoring Configurations
+        (Corresponding highlighted rank shifts are visualised in Figure~\ref{fig:rank-displacement-successes}; the complete macro trajectory plot is detailed in Appendix~\ref{appendix:rank_displacement}). To enable a direct
+        comparison between the four scoring configurations, each configuration's scoring results have been normalised
+        and scaled to a uniform percentage-based scale (0--100\%).}
+    \label{tab:algorithmic-ablation}
+    \vspace{1.5ex}
+    \small
+    \setlength{\tabcolsep}{2.5pt}
+    \begin{tabularx}{\textwidth}{l|l|c|c|c|c|c}
+        \hline
+        \textbf{Candidate}        & \textbf{Profile Characterisation}           & \splithead{Trad. ATS}{{(\%)}} & \splithead{Modern AI}{{(\%)}} & \splithead{CV-Only}{{(\%)}} & \splithead{Full MERIT}{{(\%)}} & \splithead{Fusion Shift}{{($\Delta$\%)}} \\[2.5ex] \hline
+        \splitcand{Alex}{Rivers}  & \splitdesc{Verifiable Elite}{Developer}     & \splitcell{5}{55.0}           & \splitcell{1}{86.4}           & \splitcell{1}{40.3}         & \splitcell{1}{78.0}            & +37.7                                    \\[3.5ex]
+        \splitcand{Felix}{Vance}  & \splitdesc{Identity Mismatch}{(Java/C++)}   & \splitcell{3}{60.0}           & \splitcell{6}{60.0}           & \splitcell{2}{37.4}         & \splitcell{3}{44.7}            & +7.3                                     \\[3.5ex]
+        \splitcand{Jordan}{Smith} & \splitdesc{Hidden Gem}{(1-Year Experience)} & \splitcell{10}{3.0}           & \splitcell{9}{20.0}           & \splitcell{10}{10.5}        & \splitcell{2}{64.3}            & \textbf{+53.8}                           \\[3.5ex]
+        \splitcand{Buzz}{Ward}    & \splitdesc{Adversarial}{Keyword Stuffer}    & \splitcell{2}{64.0}           & \splitcell{5}{60.0}           & \splitcell{3}{35.5}         & \splitcell{6}{36.2}            & +0.7                                     \\[3.5ex]
+        \splitcand{Ghost}{Gary}   & \splitdesc{Unverified}{Assertions Only}     & \splitcell{4}{60.0}           & \splitcell{7}{60.0}           & \splitcell{5}{29.4}         & \splitcell{8}{29.4}            & 0.0                                      \\[3.5ex]
+        \splitcand{Sam}{Old}      & \splitdesc{Stale Professional}{(Inactive)}  & \splitcell{6}{55.0}           & \splitcell{8}{60.0}           & \splitcell{7}{23.0}         & \splitcell{5}{36.8}            & +13.8                                    \\[3.5ex]
+        \splitcand{Vince}{Vault}  & \splitdesc{High-Tenure}{Core Developer}     & \splitcell{1}{70.0}           & \splitcell{4}{68.4}           & \splitcell{4}{33.2}         & \splitcell{9}{20.6}            & \textbf{-12.6}                           \\[3.5ex]
+        \splitcand{Fiona}{Frost}  & \splitdesc{Evidence of Absence}{(React)}    & \splitcell{8}{40.0}           & \splitcell{3}{68.4}           & \splitcell{6}{26.6}         & \splitcell{7}{34.0}            & +7.4                                     \\[3.5ex]
+        \splitcand{Kim}{Junior}   & \splitdesc{Entry-Level}{High Potential}     & \splitcell{9}{11.5}           & \splitcell{10}{19.2}          & \splitcell{9}{13.4}         & \splitcell{4}{38.9}            & +25.5                                    \\[3.5ex]
+        \splitcand{Carl}{Corp}    & \splitdesc{Closed-Source}{Corporate Giant}  & \splitcell{7}{40.0}           & \splitcell{2}{69.0}           & \splitcell{8}{17.1}         & \splitcell{10}{17.9}           & +0.8                                     \\[3.5ex]
+        \hline
+    \end{tabularx}
+\end{table}
+
+The results demonstrate how the layering of scoring configurations systematically neutralises adversarial manipulation
+and corrects for temporal or formatting biases. In the Traditional ATS engine (which relies entirely on raw CV keyword
+frequency), rankings are dominated by high-tenure profiles and adversarial profiles such as Buzz Ward (\#2), who
+successfully exploits keyword-density screening. Under the semantic Modern AI ATS, cosine similarity correctly
+evaluates conceptual alignment (elevating Alex Rivers to \#1 and deprioritising Buzz Ward to \#5), yet remains highly
+vulnerable to unverified assertions (incorrectly elevating Carl Corp to \#2 despite a total lack of verifiable
+professional footprint).
+
+For the CV-Only baseline, the introduction of the keyword-stuffing audit penalises Buzz Ward's stuffed CV, but also
+highlights a critical structural limitation: without secondary evidence, screening models struggle to differentiate
+between genuine high-density expertise and adversarial optimization, occasionally penalising valid CVs. By transitioning
+to the Full MERIT engine, the introduction of Bayesian Evidence Factors (BEFs) resolves this tension—allowing the
+system to verify assertions against empirical external signals and insulate candidates from parsing noise.
+
+Crucially, while analysing ordinal rank displacements highlights the recruiter's sorting experience, evaluating the
+cardinal score adjustments ($\Delta$) between the CV-Only baseline and the Full MERIT multi-source configuration reveals
+the true mechanistic sensitivity of the Bayesian fusion engine. Ordinal rankings can obscure the magnitude and conviction
+of the engine's adjustments. For instance, Sam Old's rank shift is modest (+2 rank displacement, moving from \#7 to \#5),
+yet his cardinal score rises by $+13.8\%$, representing a high-conviction verification of his inactive competencies that was
+previously penalised by single-source temporal decay. Similarly, Jordan Smith's transition shows an extraordinary cardinal
+leap of $+53.8\%$ (from $10.5\%$ to $64.3\%$), mathematically capturing the breakthrough potential of a junior candidate whose
+sparse resume is validated by elite open-source contributions.
+
+Conversely, the fusion engine successfully limits or penalises unverified or adversarial claims: Buzz Ward's stuffed CV
+receives a negligible cardinal shift of $+0.7\%$, while Vince Vault experiences a negative cardinal shift of $-12.6\%$
+($33.2\% \to 20.6\%$), representing the heavy evidence conflict penalty applied under validation failures. The specific
+data-source mechanics driving these individual shifts are detailed in Section~\ref{subsec:study-01b-data-source-ablation}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.95\textwidth]{../evaluation/01-comparative_study/output/rank_displacement_successes.png}
+    \caption{Selected Case Trajectories: Successes and Systemic Limitations. Tracing highlighted candidate ranks
+        from Traditional ATS keyword matching, through Modern AI ATS and MERIT (CV-Only), to the Full MERIT multi-source
+        Bayesian engine. This focuses on key success cases (e.g., Jordan Smith, Alex Rivers, Sam Old) and systemic limitations
+        (Carl Corp) discussed in this section; the complete cohort's macro trajectories are detailed in
+        Appendix~\ref{appendix:rank_displacement}.}
+    \label{fig:rank-displacement-successes}
+\end{figure}
+
+
+\subsection{Study 01B: Multi-Source Data Ablation Study}
+\label{subsec:study-01b-data-source-ablation}
+
+This study will cover the critical trade-offs present in a system that doesnt just follow claimed evidence but also takes
+into account demonstrated evidence. MERIT aims to increase the amount of information to take into account for candidate evaluation
+by considering LinkedIn and Github alongside CVs.
+
+\subsubsection{Systemic Success: The Discovery of Jordan Smith}
+
+The most significant success of multi-source integration lies in Jordan Smith, a junior developer with only 1 year of
+formal experience, whose sparse resume is automatically discarded by both traditional and modern semantic ATS (ranking
+\#10 and \#9 respectively) due to low tenure.
+What is not mentioned on Jordan's CV, however, is his extensive work that is publicly available on his GitHub account, demonstrating
+significant technical expertise in both Java and TypeScript, two key technologies in the JD for this study.
+
+Once we consider this candidate with MERIT's full capabilities, namely GitHub, Jordan jumps from \textbf{Rank \#10} to \textbf{Rank \#2}.
+The job description that prioritises the use of both Java and TypeScript now takes into account, and values, the evidence that a candidate
+has to show for themself, and in this case, Jordan has the most demonstrated evidence among the candidate batch. By shifting the
+evaluation paradigm from unverified skills towards verified demonstratable evidence, we see that MERIT is able to prevent valid
+candidates from being lost in the traditional "Resume Black Hole."
+
+\subsubsection{Systemic Limitation: The "Proprietary Data Gap" for Carl Corp}
+However, the introduction of multi-source evaluation does come with its own set of trade-offs.
+The achilles heel of this approach is that merit is \textbf{heavily dependent} on the accessibility of a candidate's data.
+In this case, we point out Carl Corp, a candidate who's data on GitHub is essentially empty, since most of his commits are towards
+private repositories. As a result, he scores low for GitHub signals, and is unable to demonstrate his expertise in the programming languages
+required by the JD. This results in a fall from Rank \#2 to Rank \#10 between the Modern AI ATS and Full MERIT evaluations.
+This "Propriety Data Gap" is a critical limitation of MERIT that will signifiantly, and unfairly hinder candidates that are not able
+to share their evidence of code, and will unfairly advantage candidates who have less experience but are able to share their code.
+This represents a key trade-off in the design of MERIT. While we are now able to avoid some forms of bias due to the multi-source nature
+of the system, we are now introducing a new form of bias based on the accessibility of a candidate's data. This raises the question of
+whether the benefits of multi-source evaluation outweigh the costs of introducing this new form of bias.
+
+
+\subsubsection{Integrity Resolution}
+\label{subsubsec:identity-mismatch-resolution}
+
+Now that MERIT considers multiple sources of data, it opens up the possibility of candidates trying to game the system
+by including false sources of evidence. This will be referred to as \textbf{Identity Squatting}. We will evaluate the effectiveness
+of MERIT's integrity resolution mechanisms in detecting and penalising such candidates.
+
+Vince Vault is a candidate who claims a strong 10 years of experience as a Lead Software Architect on his CV, and presents himself as a
+Java expert. This will provide an interesting case study into the effectiveness of MERIT's integrity resolution mechanisms.
+Here, Vince boasts excessive skills, scoring exceptionally well in a Traditional ATS (\textbf{Rank \#1}) and Modern AI ATS
+(\textbf{Rank \#4}). However, it could be the case that Vince is actually experienced in C\#, and upon hearing about Java and C\# being
+similar programming languages, he decides to try and game the system by applying to this role as a "Java expert."
+
+To prevent GitHub from identifying his proficiencies in C\# and not Java, Vince instead looks for an opportunity to find a candidate who
+demonstrates proficiencies in Java, and instead provides a link to someone else's GitHub profile. This is a serious case of identity
+squatting and will be used to test the robustness of MERIT's integrity resolution mechanisms. Due to the severe nature of this act of
+fraud, MERIT's Integrity Layer applies a flat veto penalty, deducting exactly 20 percentage points ($0.20$ absolute score reduction) from
+his score, regardless of the evidence presented by the other sources. The result of this absolute penalisation is highly significant:
+Vince's CV-Only score is $33.2\%$, and although the squatted GitHub profile temporarily inflates his raw average to $40.6\%$, the application
+of the $20\%$ veto drags his final score to $20.6\%$, dropping his rank from Rank \#4 to Rank \#9. This ensures that, on the backend side,
+MERIT is successfully able to identify and penalise candidates who try to game the system.
+
+It is important to note that this is a rare edge case, it is not very common for candidates to engage in this type of fraud.
+However, it is important to consider this edge case in the design of MERIT, as it is a potential threat to the integrity
+of the system.

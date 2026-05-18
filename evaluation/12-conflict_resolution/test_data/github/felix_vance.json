@@ -4,13 +4,13 @@
   "repo_count": 25,
   "featured_projects": [
     {
-      "name": "python-data-viz",
+      "name": "cpp-graphics-engine",
       "stars": 120,
-      "language": "Python",
+      "language": "C++",
       "complexity_score": 85
     }
   ],
   "language_history": [
-    {"language": "Python", "percentage": 100}
+    {"language": "C++", "percentage": 100}
   ]
 }

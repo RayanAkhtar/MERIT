@@ -20,7 +20,7 @@ def run_baseline_study():
         raw_res = ats.score_candidate(cand)
         results.append({
             "Candidate Name": raw_res["name"],
-            "Score": raw_res["score"]
+            "Score": round(raw_res["score"] * 10, 1)
         })
             
     results.sort(key=lambda x: x["Score"], reverse=True)

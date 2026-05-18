@@ -1,5 +1,5 @@
-\section{Foundational Accuracy \& Information Retrieval}
-\label{sec:foundational-accuracy}
+\section{Foundational Ingestion \& Evaluating Pillar 1: Extensibility}
+\label{sec:foundational-ingestion-extensibility}
 
 In real-world applications, the performance of MERIT is heavily dependent on the accuracy of its information
 retrieval (IR) layer, also referred to as the ingestion and extraction pipeline. This layer is responsible
@@ -211,7 +211,7 @@ the parser is forced to rely on the unstructured "About Us" section. Consequentl
 name is omitted from this section, or referred to via generic pronouns (e.g., "we", "our company"), the
 metadata extraction fails entirely. In the context of the broader MERIT architecture, however, this
 extraction bottleneck is non-critical, as identifying the employer name from the JD is a convenience
-feature rather than a core functional requirement. This metric will have no impact on the overall 
+feature rather than a core functional requirement. This metric will have no impact on the overall
 ranking of candidates.
 
 \subsection{Downstream Mitigation and Architectural Rationale}
@@ -220,7 +220,7 @@ ranking of candidates.
 These quantitative findings empirically justify two of the three core architectural pillars of the MERIT system.
 
 \subsubsection{Multi-Source Fusion (Pillar 2)}
-As shown from the CV parser's evaluation, unstructured data extraction is often noisy, leading to 
+As shown from the CV parser's evaluation, unstructured data extraction is often noisy, leading to
 incomplete skill extraction. Through providing structured data sources (such as LinkedIn and GitHub data),
 high-skill candidates can still be successfully considered within MERIT, even if their CVs are poorly formatted.
 
@@ -231,3 +231,6 @@ that operate as black boxes. By displaying detailed, interactive candidate repor
 where every matching skill was extracted and how it was verified, MERIT equips recruiters to immediately
 audit, correct, and override parsing discrepancies. This transparency ensures highly valid hiring
 decisions despite the persistent limitations of automated document parsing.
+
+\subsection{TODO: Study 13: Dynamic Metric Extraction and Recruiter Validation}
+TODO: Detail the human validation study evaluating the TF-IDF dynamic weighting and metric prediction engine. Recruiters are provided with a reference document corpus and verify whether the automatically predicted metric importances and skill weightings align with their expected domain-specific requirements. (Reference Study 13)
