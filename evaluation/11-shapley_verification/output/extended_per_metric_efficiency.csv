@@ -3,6 +3,7 @@ Alex Rivers,req_spring_boot,0.71,0.71,0.0,PASS
 Alex Rivers,req_react,0.87,0.87,0.0,PASS
 Alex Rivers,req_aws,0.71,0.71,0.0,PASS
 Alex Rivers,req_java,0.69,0.69,0.0,PASS
+Alex Rivers,req_typescript,0.91,0.91,0.0,PASS
 Alex Rivers,experience,0.8,0.8,0.0,PASS
 Alex Rivers,projects,0.7,0.7,0.0,PASS
 Alex Rivers,professional_gravity,0.466667,0.466667,0.0,PASS
@@ -11,6 +12,7 @@ Buzz Ward,req_spring_boot,0.64,0.64,0.0,PASS
 Buzz Ward,req_react,0.54,0.54,0.0,PASS
 Buzz Ward,req_aws,0.54,0.54,0.0,PASS
 Buzz Ward,req_java,0.46,0.46,0.0,PASS
+Buzz Ward,req_typescript,0.0,0.0,0.0,PASS
 Buzz Ward,experience,0.8,0.8,0.0,PASS
 Buzz Ward,projects,0.0,0.0,0.0,PASS
 Buzz Ward,professional_gravity,1.0,1.0,0.0,PASS
@@ -19,6 +21,7 @@ Carl Corp,req_spring_boot,0.0,0.0,0.0,PASS
 Carl Corp,req_react,0.0,0.0,0.0,PASS
 Carl Corp,req_aws,0.0,0.0,0.0,PASS
 Carl Corp,req_java,0.29,0.29,0.0,PASS
+Carl Corp,req_typescript,0.0,0.0,0.0,PASS
 Carl Corp,experience,0.8,0.8,0.0,PASS
 Carl Corp,projects,0.0,0.0,0.0,PASS
 Carl Corp,professional_gravity,0.6,0.6,0.0,PASS
@@ -27,6 +30,7 @@ Felix Vance,req_spring_boot,0.71,0.71,0.0,PASS
 Felix Vance,req_react,0.0,0.0,0.0,PASS
 Felix Vance,req_aws,0.71,0.71,0.0,PASS
 Felix Vance,req_java,0.71,0.71,0.0,PASS
+Felix Vance,req_typescript,0.0,0.0,0.0,PASS
 Felix Vance,experience,0.8,0.8,0.0,PASS
 Felix Vance,projects,0.7,0.7,0.0,PASS
 Felix Vance,professional_gravity,0.6,0.6,0.0,PASS
@@ -35,6 +39,7 @@ Fiona Frost,req_spring_boot,0.0,0.0,0.0,PASS
 Fiona Frost,req_react,0.0,0.0,0.0,PASS
 Fiona Frost,req_aws,0.0,0.0,0.0,PASS
 Fiona Frost,req_java,0.71,0.71,0.0,PASS
+Fiona Frost,req_typescript,0.0,0.0,0.0,PASS
 Fiona Frost,experience,0.8,0.8,0.0,PASS
 Fiona Frost,projects,0.7,0.7,0.0,PASS
 Fiona Frost,professional_gravity,0.6,0.6,0.0,PASS
@@ -43,6 +48,7 @@ Ghost Gary,req_spring_boot,0.0,0.0,0.0,PASS
 Ghost Gary,req_react,0.71,0.71,0.0,PASS
 Ghost Gary,req_aws,0.71,0.71,0.0,PASS
 Ghost Gary,req_java,0.29,0.29,0.0,PASS
+Ghost Gary,req_typescript,0.0,0.0,0.0,PASS
 Ghost Gary,experience,0.8,0.8,0.0,PASS
 Ghost Gary,projects,0.0,0.0,0.0,PASS
 Ghost Gary,professional_gravity,0.8,0.8,0.0,PASS
@@ -51,6 +57,7 @@ Jordan Smith,req_spring_boot,0.0,0.0,0.0,PASS
 Jordan Smith,req_react,0.91,0.91,0.0,PASS
 Jordan Smith,req_aws,0.0,0.0,0.0,PASS
 Jordan Smith,req_java,0.91,0.91,0.0,PASS
+Jordan Smith,req_typescript,0.83,0.83,0.0,PASS
 Jordan Smith,experience,0.25,0.25,0.0,PASS
 Jordan Smith,projects,0.7,0.7,0.0,PASS
 Jordan Smith,professional_gravity,0.72,0.72,0.0,PASS
@@ -59,6 +66,7 @@ Kim Junior,req_spring_boot,0.0,0.0,0.0,PASS
 Kim Junior,req_react,0.71,0.71,0.0,PASS
 Kim Junior,req_aws,0.0,0.0,0.0,PASS
 Kim Junior,req_java,0.0,0.0,0.0,PASS
+Kim Junior,req_typescript,0.91,0.91,0.0,PASS
 Kim Junior,experience,0.18,0.18,0.0,PASS
 Kim Junior,projects,0.52,0.52,0.0,PASS
 Kim Junior,professional_gravity,0.04,0.04,0.0,PASS
@@ -67,6 +75,7 @@ Sam Old,req_spring_boot,0.0,0.0,0.0,PASS
 Sam Old,req_react,0.0,0.0,0.0,PASS
 Sam Old,req_aws,0.0,0.0,0.0,PASS
 Sam Old,req_java,0.69,0.69,0.0,PASS
+Sam Old,req_typescript,0.0,0.0,0.0,PASS
 Sam Old,experience,0.8,0.8,0.0,PASS
 Sam Old,projects,0.42,0.42,0.0,PASS
 Sam Old,professional_gravity,0.6,0.6,0.0,PASS
@@ -75,6 +84,7 @@ Vince Vault,req_spring_boot,0.71,0.71,0.0,PASS
 Vince Vault,req_react,0.71,0.71,0.0,PASS
 Vince Vault,req_aws,0.71,0.71,0.0,PASS
 Vince Vault,req_java,0.29,0.29,0.0,PASS
+Vince Vault,req_typescript,0.0,0.0,0.0,PASS
 Vince Vault,experience,0.8,0.8,0.0,PASS
 Vince Vault,projects,0.7,0.7,0.0,PASS
 Vince Vault,professional_gravity,0.6,0.6,0.0,PASS

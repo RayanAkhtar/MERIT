@@ -1,0 +1,124 @@
+{
+    "source": "linkedin",
+    "full_name": "Robert Todd",
+    "first_name": "Robert",
+    "last_name": "Todd",
+    "headline": "Principal Quality Assurance Engineer at Stripe | Ex-Meta, Jane Street, Uber, Qualcomm",
+    "location": {
+        "linkedinText": "San Francisco Bay Area, United States",
+        "countryCode": "US",
+        "parsed": {
+            "text": "San Francisco Bay Area, United States",
+            "countryCode": "US",
+            "regionCode": null,
+            "country": "US",
+            "countryFull": "United States",
+            "state": "California"
+        }
+    },
+    "followers": 3400,
+    "connections": 500,
+    "about": "Over 15 years of industry experience architecting testing platforms, load testing distributed systems, and developing chaos engineering frameworks for global scale operations.",
+    "profile_photo": null,
+    "background_image": null,
+    "experience": [
+        {
+            "company_name": "Stripe",
+            "company_image": null,
+            "position": "Principal Quality Assurance Engineer",
+            "start_date": {
+                "month": "Jan",
+                "year": 2021,
+                "text": "2021"
+            },
+            "end_date": {
+                "text": "Present"
+            },
+            "description": "Architected and deployed payment processing test automation reducing regression verification time from 8 hours to 12 minutes.\nLed organisation-wide quality transformation initiative establishing best practices, reducing production defects by 67%.\nPioneered AI-powered visual regression testing system using machine learning models to detect UI anomalies.",
+            "skills": ["Test Automation", "CI/CD Pipelines", "Chaos Engineering", "Python", "Kubernetes"]
+        },
+        {
+            "company_name": "Meta",
+            "company_image": null,
+            "position": "Staff Quality Engineer - Ads Platform",
+            "start_date": {
+                "month": "Jan",
+                "year": 2018,
+                "text": "2018"
+            },
+            "end_date": {
+                "month": "Dec",
+                "year": 2021,
+                "text": "2021"
+            },
+            "description": "Designed and implemented distributed load testing infrastructure handling 50K+ concurrent requests.\nEstablished chaos engineering practice across Ads Platform team, designing 300+ chaos experiments.",
+            "skills": ["Load Testing", "Gatling", "JMeter", "Docker", "Kubernetes"]
+        },
+        {
+            "company_name": "Jane Street",
+            "company_image": null,
+            "position": "Principal Engineer, Quantitative Testing & Validation",
+            "start_date": {
+                "month": "Jan",
+                "year": 2015,
+                "text": "2015"
+            },
+            "end_date": {
+                "month": "Dec",
+                "year": 2018,
+                "text": "2018"
+            },
+            "description": "Architected statistical testing framework for high-frequency trading algorithms combining Monte Carlo simulations with hypothesis testing.\nReduced mean time to detection for market anomalies to 340 milliseconds through custom test harness optimization.",
+            "skills": ["Formal Verification", "Quantitative Finance", "Python", "Bash"]
+        },
+        {
+            "company_name": "Uber",
+            "company_image": null,
+            "position": "Senior Quality Architect",
+            "start_date": {
+                "month": "Jan",
+                "year": 2012,
+                "text": "2012"
+            },
+            "end_date": {
+                "month": "Dec",
+                "year": 2015,
+                "text": "2015"
+            },
+            "description": "Designed end-to-end test orchestration platform automating 85,000+ test cases across mobile and backend stacks.\nLed development of location-based testing framework simulating real-world GPS conditions across 65+ countries.",
+            "skills": ["Quality Architecture", "Playwright", "Cypress", "Selenium", "API Testing"]
+        }
+    ],
+    "education": [
+        {
+            "school_name": "Carnegie Mellon University",
+            "degree": "Master of Science - MS",
+            "start_date": {
+                "year": 2005,
+                "text": "2005"
+            },
+            "end_date": {
+                "year": 2007,
+                "text": "2007"
+            },
+            "field_of_study": "Computer Science (Software Engineering)"
+        },
+        {
+            "school_name": "University of Texas at Austin",
+            "degree": "Bachelor of Science - BS",
+            "start_date": {
+                "year": 2001,
+                "text": "2001"
+            },
+            "end_date": {
+                "year": 2005,
+                "text": "2005"
+            },
+            "field_of_study": "Computer Science"
+        }
+    ],
+    "volunteering": [],
+    "projects": [],
+    "certifications": [],
+    "cached": true
+}

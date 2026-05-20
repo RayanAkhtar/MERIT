@@ -1,71 +1,129 @@
 \chapter{Introduction}
 
-This project presents the development of \textbf{M.E.R.I.T} (Multi-source Employment Ranking \& Insight Tool), a customisable screening system designed to modernise technical recruitment by moving beyond a single-source dependency.
-While current hiring processes rely almost exclusively on the Curriculum Vitae (CV), MERIT integrates observable evidence from multiple data streams to provide a more thorough evaluation of a candidate’s technical competencies.
-By supplementing the CV with external sources such as GitHub and LinkedIn, the tool aims to capture a candidate’s true technical proficiency, rather than relying solely on the self-reported skills present in the CV (which may be referred to as a resume in other regions).
-\\\\
-Over the past few years, there has been a rapid increase in the number of technical roles globally, leading to intensified competition among candidates and increasing the volume of applicants that hiring managers must screen.
-Organisations often attempt to streamline early-stage screening by requiring concise CV formats.
-While the one-page resume is standard in the US as well as entry-level roles, UK standards often allow for two pages, particularly in more experienced, technical roles.
-Regardless of the length requirement imposed, decades of research in personnel selection highlights that CV-based screening is cognitively demanding for these recruiters, and also highly vulnerable to bias \cite{moore2023}.
-Since CV reviews require rapid judgments under relatively tight time constraints with limited information, evaluators often rely on heuristics rather than a systemic assessment of actual job-relevant qualifications \cite{tversky1974}.
-\\\\
-Rapid manual screening often amplifies cognitive biases, such as contrast effects, where a candidate's evaluation depends on the relative quality of preceding candidates \cite{palmer2014}.
-These biases are significantly worse in technical recruitment, where skills are harder to assess, leaving evaluators to rely on superficial cues.
-CV information itself is also unreliable: candidates may exaggerate responsibilities, or omit weaker experiences \cite{birkeland2006_applicant_faking_behavior}, tend to overestimate competencies, particularly in programming \cite{dunning2004}, and technical skills may decay overtime if left unused \cite{arthur1998}.
-Collectively, these factors reduce the reliability of manual CV assessments.
-\\\\
-To address these challenges, many organisations adopt automated or semi-automated screening systems, which usually rank candidates based on keywords, education and work experience to generate a pass/fail score.
-These systems reduce workload and speeds up the hiring process, however, it does introduce limitations.
-They often ignore “new talent signals”, such as project portfolios, open-source contributions, or other verifiable demonstrations of ability, which can provide a better assessment of technical skills \cite{chamorro2016}.
-By overlooking “new talent signals” and relying on rigid scoring frameworks, automated systems underestimate qualified candidates and reinforces a narrow, one-size-fits-all approach.
-There is also a lack of transparency for screening systems, leaving recruiters with limited insight into why candidates pass or fail the process.
-This `black-box' nature reduces trust and makes it difficult for hiring managers to verify the fairness of the automated decision \cite{raghavan2020}.
-\\\\
-Automated systems are also shown to inherit biases present in past hiring data.
-Gender, ethnicity, and institutional prestige can influence a model's output, reproducing the discrimination present in manual screening processes \cite{raghavan2020,bogen2018}.
-Also, relying solely on CV data prevents the verification of self-reported skills and fails account for skill decay, which is especially important in technical domains where competencies evolve rapidly \cite{arthur1998}.
-As well as that, most tools lack flexibility, applying identical scoring frameworks to all candidates and limiting recruiters' ability to prioritise role-specific competencies \cite{chamorro2016}.
-\\\\
-These gaps highlight the need for adaptable, explainable, and multimodal approaches that are capable of assessing both the technical and behavioural skills while mitigating bias.
-High-validity selection methods are shown to improve an employee’s performance and productivity, leading to measurable economic and organisational benefits \cite{schmidt1998}.
-An accurate early-stage screening process is therefore critical to reduce the likelihood of a bad hire.
-\\\\
-MERIT addresses these issues through the combination of traditional CV data with verified behavioural and proficiency-based evidence from multiple sources, such as GitHub and LinkedIn.
-By focusing on observable performance and providing transparent, explainable justifications for its rankings, MERIT aims to reduce bias, improve reliability, and aid evidence-based decision-making in technical recruitment.
+This report presents the design, architecture, and evaluation of \textbf{M.E.R.I.T} (Multi-source Employment Ranking \& Insight Tool),
+a customisable candidate screening system designed to modernise technical recruitment by moving beyond a single-source dependency.
+Traditional technical recruitment is almost always dependent on the curriculum vitae (CV), which is a self-reported document, submitted by a 
+candidate in a job application, in which they provide information about their education, work experience, skills, and other relevant information.
+Reliance on a single source of information, especially one as unstructured and unreliable as the CV, is a major limitation of traditional
+recruitment processes. MERIT aims to address this obstacle through the integration of demonstrated evidence as well as structured data 
+to provide a more accurate and fair assessment of a candidate's skill and experience.
+
+Over the past few years, there has been a rapid increase in the number of technical roles globally, leading to intensified competition
+among candidates and increasing the volume of applicants that hiring managers must screen. Organisations often attempt to streamline
+early-stage screening by requiring concise CV formats. While the one-page resume is standard in the US and for entry-level roles,
+UK standards often allow for two pages, particularly in more experienced, technical roles. Regardless of the length requirement imposed 
+in the UK and US, research often shows that CV-based screening is still demanding, even if recruiters are only given a single page. 
+Due to the cognitive demands of screening, recruiters will often lean on heuristics rather than an accurate assessment, and are 
+thus prone to biases \cite{moore2023, tversky1974}.
+
+The rapid nature of manual screening often introduces decision fatigue, which leads to the amplification of the cognitive biases already
+present in screening. One example of this that we can turn to is the contrast effect, in which candidate evaluation can be influenced
+by the relative quality of preceding candidates \cite{palmer2014}. In the domain of technical recruitment, skills are significantly
+harder to assess, and as such, these effects are further exacerbated.
+
+Another downside of the current state of recruitment lies in the nature of the CV, particularly due to its reliability. Candidates
+may inflate their responsibilities or omit weaknesses in order to present themselves as more favourable to recruiters
+\cite{birkeland2006_applicant_faking_behavior}. In addition to this, there is pressure on candidates to overestimate their 
+technical competencies, which is particularly suggested in programming \cite{dunning2004}. In addition to overestimations, there is 
+also a lack of accountability in the natural decay of their skills over time \cite{arthur1998}, further reducing the reliability
+of a manual CV-based screening process.
+
+
+To address these challenges, many organisations adopt automated or semi-automated screening systems, which rank candidates based
+on keywords, education, and work experience, or generate binary pass/fail outcomes. While these systems reduce recruiter workload
+and accelerate the hiring process, they introduce severe limitations. They frequently ignore ``new talent signals'', such as project
+portfolios, open-source contributions, or other verifiable demonstrations of ability that provide a superior assessment of technical
+skills \cite{chamorro2016}. By overlooking these signals and relying on rigid scoring frameworks, automated systems systematically
+underestimate qualified candidates and reinforce a narrow, one-size-fits-all approach. Another core issue is the lack of transparency 
+in most systems, leaving recruiters with little or no insight into why a candidate may pass or fail. This 
+black-box nature reduces trust, and also makes it hard for hiring managers to audit the fairness of automated hiring 
+decisions \cite{raghavan2020}.
+
+
+Automated screening platforms have been shown to inherit and propagate biases present in historical hiring data. Gender,
+ethnicity, and institutional prestige can heavily influence a model's output, reproducing or even worsening the systemic discrimination present
+in manual processes \cite{raghavan2020, bogen2018}. Most commercial tools also lack flexibility, applying identical scoring
+frameworks to all candidates, limiting a recruiter's ability to prioritise role-specific competencies \cite{chamorro2016}.
+
+Beyond algorithmic bias, automated screening is severely hindered by the technical fragility of the document parsing layer.
+Most commercial screening systems rely on coordinate-based spatial PDF parsing libraries, such as PDFMiner \cite{pdfminer}, to
+ingest unstructured CV text. These parsers frequently fail when processing modern two-column or multi-column layouts, horizontally
+interleaving adjacent columns into single, corrupted strings and causing critical experience and skill details to be entirely
+missed \cite{emnlp2025resumebench}. Consequently, highly qualified candidates are systematically penalised unless their CV formats 
+are explicitly restricted to simple, linear designs. This layout-driven technical fragility introduces a profound, non-meritocratic 
+selection bias, directly justifying the need to supplement traditional CVs with structured, verified external data sources.
+
+
+The vulnerabilities to single-source evaluation, the presence of bias, and the threat of self-embellishment all point towards
+the need for a multi-source, adaptable and explainable system that can assess technical skills while mitigating bias. High-validity 
+selection methods have been shown to improve employee performance and productivity, leading to measurable economic and organisational 
+benefits \cite{schmidt1998}. An accurate, rigorous early-stage screening process is therefore critical to reduce the likelihood of a bad hire.
+
+MERIT addresses these issues through the combination of traditional CV data with verified behavioural and proficiency-based
+evidence from multiple sources, such as GitHub and LinkedIn. By focusing on observable performance and providing transparent,
+explainable justifications for its rankings, MERIT aims to reduce bias, improve reliability, and aid evidence-based
+decision-making in technical recruitment.
 
 
 \section{Contributions}
-MERIT takes inspiration from most existing implementations of screening systems commonly found both in academia, as well as in the industry, notably systems that take CV information along with a job description to decide on whether to progress a candidate to the next stage.
-However, this paper introduces the following novel contributions:
+MERIT takes inspiration from existing screening systems commonly found in both academia and industry, notably those that map
+CV information against a job description to determine candidate progression. However, rather than relying on a rigid,
+single-source automated architecture or presenting a disjointed set of feature enhancements, the contribution of this work is
+structured around three core architectural pillars (or processing stages). These pillars directly address the critical limitations of
+contemporary automated hiring. More specifically, we address layout-driven parsing failures, single-source dependency, rigid metrics
+and the lack of trust in automated rankings:
 
-\subsubsection{Multimodal Data Integration}
-By integrating data from various data sources (such as GitHub, LinkedIn and CVs), the system aims to get a better understanding of a candidate's abilities, beyond the single-page CV submitted.
-This addresses the issue of limited CV information, allowing for a better evaluation of technical and non-technical skills.
+\subsubsection{Pillar 1: Extensibility \& Customisable Evaluation}
+The first pillar aims to establish a dynamic, recruitment-aligned foundation by inferring screening metrics as well as target skills
+directly from the job descriptions. Rather than applying a simple one-size-fits-all template, MERIT instead allows recruiters to 
+rely on insights suggested by the model based on current recruitment data, however it is up to the recruiter to accept these metrics,
+or to choose their own. This customisable metric extraction layer ensures flexibility within the technical hiring domain, while still
+ensuring that MERIT is specific enough to capture the metrics that would be necessary for most technical professions, providing a 
+highly flexible baseline for candidate ranking.
 
-\subsubsection{Inferred and Customisable candidate evaluation}
-This system will have the ability to optionally anonymise a candidate's data, and standardise CV formats to remove biases on gender, ethnicity and visual presentation.
-This will tackle the issue of biases with regards to the format of a CV and company names to ensure a fairer recruitment process.
+\subsubsection{Pillar 2: Multi-Source Evidence Fusion}
+The second pillar of MERIT aims to address the majority of the aforementioned issues. Firstly, it attempts to overcome the 
+unreliability of candidate data through the creation of a screening system that allows evidence from multiple data sources.
+By integrating evidence-driven sources such as GitHub, we can evaluate candidates on demonstrated evidence, as opposed to claimed
+evidence on their CV.
 
-\subsubsection{Extensible and Customisable Candidate Evaluation}
-Candidate evaluation metrics are to be automatically inferred from the job description, whilst also allowing recruiters to customise these for more precise assessments.
-Recruiters will also be able to adjust the strength for ranking metrics to address the rigid one-size-fits-all approach present in most automated screening systems.
-This allows recruiters to prioritise the factors that matter most for their role and organisation.
+The next issue this pillar will attempt to address is the vulnerabilities of unstructured data parsing. Often, ATS systems
+involve the parsing of CVs, however, to this day, there are significant issues with CV parsing \cite{emnlp2025resumebench}. Through the 
+integration of a structured data source such as LinkedIn, we can provide supplementary data to aid a candidate's application in the 
+event of malformed CV parsing.
 
-\subsubsection{Explainablility}
-TODOOOO
+By taking both of these factors into consideration, as well as the application of temporal skill decay and multi-source conflict
+resolution, MERIT mitigates the impact of resume exaggerations as well as missing information, to help capture a more holistic
+view of a candidate and their technical proficiency.
 
-\subsubsection{Bias Mitigation}
-Clear explanations will be expected for candidate scoring, and there will be both short summaries, as well as detailed reports to ensure transparency in the evaluation process.
-This will allow recruiters to understand the rankings behind a candidate, to better inform them in these data-driven hiring decisions.
-Reporting will also need to clarify the data source for which this evidence was derived from to ensure fairness and transparency once again.
-A candidate's key strengths and weaknesses will also be highlighted on their profile, and comparisons will be made against other candidates who also possess these metrics.
+\subsubsection{Pillar 3: Glass-Box Explainability}
+The final pillar revolves around trust, auditability and transparency, to combat the limitations of black-box screening systems.
+MERIT abandons unexplained, arbitrary numerical grading that lacks significance in order to ensure that recruiters can truly
+understand why a candidate was given a certain rank by MERIT. We adopt game-theoretic scoring (e.g.\ Shapley values) to help create this glass-box, 
+pairing it with interactive recruiter dashboards, clear visualisations as well as candidate anonymisation. These additions to 
+the current state of screening systems help to directly mitigate systemic bias, ensure auditability and also help to 
+develop and support fair, data-driven hiring decisions
 
-By combining these contributions together, MERIT can:
+By combining these three pillars, MERIT is able to provide a more fair and accurate assessment of a candidate's abilities
+by shifting away from self-reported skill inflation and CV formatting biases. MERIT also aims to mitigate both cognitive
+and discriminatory biases through candidate anonymisation with standardised formatting of CV data. These pillars will also
+assist in providing complete transparency on automated screening through interactive, source-traceable recruiter reports.
+
+
+\section{Report Outline}
+The remainder of this report is presented as follows:
 \begin{itemize}
-  \item Provide a fairer and more accurate assessment of the candidate's abilities, reducing the ability for candidates to overestimate their abilities.
-
-  \item Eliminate discrimination and contrast-related biases from hiring managers.
-
-  \item Provide transparency on automated screening through detailed reporting, rather than numerical scores, or surface level reasoning.
+  \item \textbf{Chapter 2: Background} outlines the standard procedures, cognitive demands, and systemic biases 
+  inherent in manual recruitment.
+  \item \textbf{Chapter 3: Technical Foundations \& Related Work} examines both traditional and AI-assisted automated 
+  screening systems, the risks of automated.
+  bias propagation, and existing work in the field of technical recruitment that applies to MERIT.
+  \item \textbf{Chapter 4: Implementation} details the architecture of MERIT, including the parsing pipeline, scoring 
+  algorithms, and the dynamic metric extraction engine.
+  \item \textbf{Chapter 5: Evaluation} presents the quantitative and qualitative findings validating the three core 
+  architectural pillars of the system to evaluate the tradeoffs present in following MERIT's architecture.
+  \item \textbf{Chapter 6: Ethics} discusses key societal, legal, and operational considerations surrounding algorithmic hiring.
+  \item \textbf{Chapter 7: Reflection} provides a critical retrospective on the project's engineering process, trade-offs, 
+  and methodology.
+  \item \textbf{Chapter 8: Conclusion} summarises the key findings of this work and outlines directions for future research.
 \end{itemize}

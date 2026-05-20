@@ -1,0 +1,94 @@
+{
+    "source": "linkedin",
+    "full_name": "Aaron Mohammed",
+    "first_name": "Aaron",
+    "last_name": "Mohammed",
+    "headline": "Backend Engineer II at Stripe | Ex-Notion, Figma | UC Berkeley Alum",
+    "location": {
+        "linkedinText": "San Francisco Bay Area, United States",
+        "countryCode": "US",
+        "parsed": {
+            "text": "San Francisco Bay Area, United States",
+            "countryCode": "US",
+            "regionCode": null,
+            "country": "US",
+            "countryFull": "United States",
+            "state": "California"
+        }
+    },
+    "followers": 920,
+    "connections": 480,
+    "about": "Backend Engineer specialized in designing and building high-throughput APIs, distributed transaction pipelines, and real-time collaboration backends using event sourcing and CRDT principles.",
+    "profile_photo": null,
+    "background_image": null,
+    "experience": [
+        {
+            "company_name": "Stripe",
+            "company_image": null,
+            "position": "Backend Engineer II",
+            "start_date": {
+                "month": "Mar",
+                "year": 2023,
+                "text": "Mar 2023"
+            },
+            "end_date": {
+                "text": "Present"
+            },
+            "description": "Architected and deployed a distributed transaction reconciliation service in Go, reducing settlement discrepancies by 98.7%.\nOptimized ledger database queries implementing strategic query caching, reducing P99 latency to 120ms.\nLed migration of billing pipeline routing microservice to containerized Go service on Kubernetes.",
+            "skills": ["Go", "Kubernetes", "PostgreSQL", "gRPC", "Distributed Systems"]
+        },
+        {
+            "company_name": "Notion",
+            "company_image": null,
+            "position": "Backend Engineer",
+            "start_date": {
+                "month": "Jul",
+                "year": 2021,
+                "text": "Jul 2021"
+            },
+            "end_date": {
+                "month": "Feb",
+                "year": 2023,
+                "text": "Feb 2023"
+            },
+            "description": "Built and maintained 8 core APIs serving 15M+ monthly active users with 99.94% uptime SLA.\nDesigned real-time collaborative editing backend using event sourcing and CRDT principles enabling simultaneous edits with <200ms sync latency.\nImplemented Redis-based rate limiting system protecting critical workspace APIs from abuse.",
+            "skills": ["Python", "Redis", "Event Sourcing", "CRDTs", "WebSockets"]
+        },
+        {
+            "company_name": "Figma",
+            "company_image": null,
+            "position": "Junior Backend Engineer",
+            "start_date": {
+                "month": "Jan",
+                "year": 2021,
+                "text": "Jan 2021"
+            },
+            "end_date": {
+                "month": "Jun",
+                "year": 2021,
+                "text": "Jun 2021"
+            },
+            "description": "Developed asynchronous file processing pipeline using Python and Celery, decreasing average export times to 2.1 seconds.\nImplemented Redis-based design component metadata cache layer improving response times by 61%.\nContributed to PostgreSQL database schema indexing optimization.",
+            "skills": ["Python", "Celery", "Redis", "PostgreSQL", "SQL Tuning"]
+        }
+    ],
+    "education": [
+        {
+            "school_name": "University of California, Berkeley",
+            "degree": "Bachelor of Science - BS",
+            "start_date": {
+                "year": 2017,
+                "text": "2017"
+            },
+            "end_date": {
+                "year": 2021,
+                "text": "2021"
+            },
+            "field_of_study": "Computer Science"
+        }
+    ],
+    "volunteering": [],
+    "projects": [],
+    "certifications": [],
+    "cached": true
+}

@@ -1,0 +1,107 @@
+{
+    "source": "linkedin",
+    "full_name": "Moinecha Ramos-Horta",
+    "first_name": "Moinecha",
+    "last_name": "Ramos-Horta",
+    "headline": "Backend Engineer II at Stripe | Ex-Datadog, Notion | Waterloo & GaTech Alum",
+    "location": {
+        "linkedinText": "London Area, United Kingdom",
+        "countryCode": "GB",
+        "parsed": {
+            "text": "London Area, United Kingdom",
+            "countryCode": "GB",
+            "regionCode": null,
+            "country": "UK",
+            "countryFull": "United Kingdom",
+            "state": "England"
+        }
+    },
+    "followers": 884,
+    "connections": 737,
+    "about": "Backend and infrastructure engineer with deep expertise in distributed systems, high-concurrency databases, and real-time event streaming pipelines. Passionate about building robust systems in Go and Rust.",
+    "profile_photo": null,
+    "background_image": null,
+    "experience": [
+        {
+            "company_name": "Stripe",
+            "company_image": null,
+            "position": "Backend Engineer II",
+            "start_date": {
+                "month": "Jan",
+                "year": 2024,
+                "text": "Jan 2024"
+            },
+            "end_date": {
+                "text": "Present"
+            },
+            "description": "Architected payment reconciliation microservice processing 2.5M+ daily transactions, reducing payment settlement latency by 35%.\nOptimized database query performance for transaction ledger service, decreasing p99 latency to 120ms.\nLed migration of legacy payment gateway to event-driven Kafka architecture, enabling zero-downtime rollouts.",
+            "skills": ["Go", "Kafka", "PostgreSQL", "System Architecture", "Distributed Systems"]
+        },
+        {
+            "company_name": "Datadog",
+            "company_image": null,
+            "position": "Senior Software Engineer, Infrastructure",
+            "start_date": {
+                "month": "Aug",
+                "year": 2022,
+                "text": "Aug 2022"
+            },
+            "end_date": {
+                "month": "Dec",
+                "year": 2023,
+                "text": "Dec 2023"
+            },
+            "description": "Designed and deployed distributed log aggregation pipeline processing 500B+ events daily.\nImplemented automatic index retention policies reducing storage costs by $800K/year while maintaining 99.95% SLA.\nMentored 5 junior engineers and established new quality coding standards.",
+            "skills": ["Go", "Distributed Systems", "Kubernetes", "Prometheus", "DataDog"]
+        },
+        {
+            "company_name": "Notion",
+            "company_image": null,
+            "position": "Backend Engineer",
+            "start_date": {
+                "month": "Jun",
+                "year": 2021,
+                "text": "Jun 2021"
+            },
+            "end_date": {
+                "month": "Jul",
+                "year": 2022,
+                "text": "Jul 2022"
+            },
+            "description": "Built collaborative editing backend serving 2.5K+ concurrent users with <50ms latency using WebSocket pooling.\nEngineered block versioning system reducing database storage footprint by 66% through incremental compression.",
+            "skills": ["Node.js", "TypeScript", "Redis", "WebSockets", "PostgreSQL"]
+        }
+    ],
+    "education": [
+        {
+            "school_name": "Georgia Institute of Technology",
+            "degree": "Master of Science - MS",
+            "start_date": {
+                "year": 2022,
+                "text": "2022"
+            },
+            "end_date": {
+                "year": 2023,
+                "text": "2023"
+            },
+            "field_of_study": "Computer Science (Distributed Systems)"
+        },
+        {
+            "school_name": "University of Waterloo",
+            "degree": "Bachelor of Computer Science - BCS",
+            "start_date": {
+                "year": 2018,
+                "text": "2018"
+            },
+            "end_date": {
+                "year": 2022,
+                "text": "2022"
+            },
+            "field_of_study": "Computer Science (Honours Co-op)"
+        }
+    ],
+    "volunteering": [],
+    "projects": [],
+    "certifications": [],
+    "cached": true
+}

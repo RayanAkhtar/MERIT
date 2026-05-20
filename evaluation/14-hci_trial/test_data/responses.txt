@@ -1,0 +1,110 @@
+hci trial raw notes - may 12
+facilitator: rayan
+5 subjects, 4 candidates (moinecha, yusuf, robert, aaron)
+s1 = blackbox cv + score, s2 = glassbox interactive scorecard
+notation: + = shortlist, - = reject, cX = confidence rating (1-5)
+
+========================
+
+e1 - recruiter 1 (3 yoe)
+sus: 4,2,4,1,4,2,4,2,4,2
+
+moinecha:
+s1: + (c4) strong CV for go/k8s. solid profile.
+s2: + (c5) shapley values back it up, cv/github match.
+
+yusuf:
+s1: - (c4) junior tenure, filter reject.
+s2: + (c4) elite public repos (TS/java). git score is huge, gem profile.
+
+robert:
+s1: + (c4) senior go/k8s keywords.
+s2: - (c5) keyword stuffing flag + skill decay warnings. cv weight reduced.
+
+aaron:
+s1: + (c3) lead arch claims, match looks ok on paper.
+s2: - (c5) negative git shapley. identity mismatch veto flag.
+
+========================
+
+e2 - recruiter 2 (5 yoe)
+sus: 5,2,4,1,5,2,4,1,4,3
+
+moinecha:
+s1: + (c4) deep containers.
+s2: + (c5) validation reinforces cv. clean public code matches.
+
+yusuf:
+s1: - (c5) entry level tenure, reject senior role.
+s2: - (c5) tech is elite on github, but client visa strictly wants 3+ yrs. cannot shortlist.
+
+robert:
+s1: + (c3) lot of keywords.
+s2: - (c4) stuffing warning + heavy skill decay. clear pass.
+
+aaron:
+s1: + (c3) 10 yrs java architect.
+s2: - (c5) github squatter veto triggered! fraudulent claim. reject.
+
+========================
+
+e3 - peer 1 (icl meng)
+sus: 5,2,4,1,5,2,5,2,4,2
+
+moinecha:
+s1: + (c3) solid tech keywords.
+s2: + (c4) github source attribution confirms Go expertise.
+
+yusuf:
+s1: - (c4) sparse cv, only internship projects.
+s2: + (c5) github profile is insane, better than senior dev. gem.
+
+robert:
+s1: + (c4) senior go/k8s keywords.
+s2: - (c5) keyword stuffing warning on audit.
+
+aaron:
+s1: + (c4) lead arch.
+s2: - (c5) identity conflict veto, profile is fake. reject.
+
+========================
+
+e4 - peer 2 (icl meng)
+sus: 5,2,4,2,4,2,4,2,4,2
+
+moinecha:
+s1: + (c4) senior go/k8s.
+s2: + (c4) logs confirm cv/github timeline overlap.
+
+yusuf:
+s1: - (c4) junior tenure on cv.
+s2: + (c5) git repos look very deep.
+
+robert:
+s1: - (c3) keyword heavy, a bit sus.
+s2: - (c5) stuffing confirmed.
+
+aaron:
+s1: - (c3) lead arch looks inflated.
+s2: - (c4) identity mismatch veto, reject.
+
+========================
+
+e5 - peer 3 (icl meng)
+sus: 5,2,4,1,5,2,4,1,4,2
+
+moinecha:
+s1: + (c4) fits jd perfectly, senior.
+s2: + (c5) score backed by shapley attributions.
+
+yusuf:
+s1: - (c4) too short experience for senior jd.
+s2: + (c5) github verification confirms actual skill.
+
+robert:
+s1: + (c4) senior fit keywords.
+s2: + (c3) stuffing warning but keep shortlisted for 10m phone screen.
+
+aaron:
+s1: - (c3) lack of clear timeline.
+s2: - (c5) veto match. reject.

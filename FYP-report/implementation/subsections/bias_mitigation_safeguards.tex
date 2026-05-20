@@ -15,8 +15,9 @@ Keyword stuffing is a common threat in automated CV screenings, where candidates
 scores by repeating job related buzzwords. To counter this on the CV level, MERIT implements an algorithm to
 penalise repeated keywords with a linear point deduction for each instance beyond a certain threshold.
 Refer to Listing \ref{lst:stuffing_logic} for the implementation details.
-\begin{moderncode}[title={Listing \ref{lst:stuffing_logic}: Keyword Stuffing Penalty Logic}]
-    \begin{lstlisting}[language=json, label={lst:stuffing_logic}]
+\begin{moderncode}[title={Keyword Stuffing Penalty Logic}]
+    \label{lst:stuffing_logic}
+    \begin{lstlisting}[language=json]
 "ANTI_STUFFING": {
     "OCCURRENCE_LIMIT": 5,          // Repetitions allowed per CV
     "PENALTY_PER_OCCURRENCE": 0.05, // 5% reduction per excess

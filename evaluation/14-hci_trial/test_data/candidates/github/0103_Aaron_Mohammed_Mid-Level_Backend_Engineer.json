@@ -1,0 +1,131 @@
+{
+    "source": "github",
+    "username": "aaronm",
+    "name": "Alex Miller",
+    "bio": "Distributed Systems Engineer. Creator of trace-aggregator. Passionate about Go, Kafka, and high-performance databases.",
+    "company": "Stripe",
+    "location": "San Francisco, CA",
+    "email": "alex.miller@stripe.com",
+    "avatar_url": "https://avatars.githubusercontent.com/u/234567?v=4",
+    "profile_url": "https://github.com/aaronm",
+    "created_at": "2017-03-22T14:00:00Z",
+    "followers": 1450,
+    "following": 45,
+    "public_repos": 12,
+    "repositories": [
+        {
+            "name": "trace-aggregator",
+            "description": "High-throughput trace ingestion service processing 2.4 billion spans daily, Go, Kafka, OpenTelemetry, Protocol Buffers, BigQuery",
+            "language": "Go",
+            "topics": ["go", "kafka", "opentelemetry", "distributed-systems", "performance"],
+            "stars": 1540,
+            "forks": 98,
+            "license": "MIT License",
+            "is_fork": false,
+            "lines": 34500,
+            "updated_at": "2026-05-01T10:00:00Z",
+            "url": "https://github.com/aaronm/trace-aggregator"
+        },
+        {
+            "name": "db-pool-manager",
+            "description": "Adaptive connection pooling library with predictive scaling, Java, PostgreSQL, Spring Boot, Micrometer",
+            "language": "Java",
+            "topics": ["java", "postgresql", "spring-boot", "database", "connection-pool"],
+            "stars": 890,
+            "forks": 45,
+            "license": "Apache-2.0 License",
+            "is_fork": false,
+            "lines": 18200,
+            "updated_at": "2026-04-15T12:00:00Z",
+            "url": "https://github.com/aaronm/db-pool-manager"
+        },
+        {
+            "name": "event-sourcing-py",
+            "description": "Open-source event sourcing framework with automatic versioning and replay capabilities, Python, PostgreSQL, Kafka, Pydantic",
+            "language": "Python",
+            "topics": ["python", "kafka", "event-sourcing", "pydantic"],
+            "stars": 620,
+            "forks": 31,
+            "license": "MIT License",
+            "is_fork": false,
+            "lines": 9200,
+            "updated_at": "2026-05-12T14:00:00Z",
+            "url": "https://github.com/aaronm/event-sourcing-py"
+        }
+    ],
+    "total_prs": 412,
+    "total_commits": 3840,
+    "oss_prs": 145,
+    "external_repos": 12,
+    "repo_count": 12,
+    "total_lines": 61900,
+    "total_stars": 3050,
+    "total_forks": 174,
+    "languages": [
+        {
+            "label": "Go",
+            "pct": 55.0
+        },
+        {
+            "label": "Java",
+            "pct": 30.0
+        },
+        {
+            "label": "Python",
+            "pct": 15.0
+        }
+    ],
+    "featured_projects": [
+        {
+            "name": "trace-aggregator",
+            "type": "Original Project",
+            "stars": 1540,
+            "forks": 98,
+            "description": "High-throughput trace ingestion service processing 2.4 billion spans daily, Go, Kafka, OpenTelemetry, Protocol Buffers, BigQuery",
+            "url": "https://github.com/aaronm/trace-aggregator",
+            "top_languages": ["Go"],
+            "languages_distribution": {
+                "Go": 100.0
+            },
+            "lines": 34500,
+            "commits": 145,
+            "is_fork": false
+        },
+        {
+            "name": "db-pool-manager",
+            "type": "Original Project",
+            "stars": 890,
+            "forks": 45,
+            "description": "Adaptive connection pooling library with predictive scaling, Java, PostgreSQL, Spring Boot, Micrometer",
+            "url": "https://github.com/aaronm/db-pool-manager",
+            "top_languages": ["Java"],
+            "languages_distribution": {
+                "Java": 100.0
+            },
+            "lines": 18200,
+            "commits": 289,
+            "is_fork": false
+        }
+    ],
+    "language_history": [
+        {
+            "year": "2024",
+            "Go": 12000,
+            "Java": 8200,
+            "Python": 4200
+        },
+        {
+            "year": "2025",
+            "Go": 15000,
+            "Java": 6000,
+            "Python": 3000
+        },
+        {
+            "year": "2026",
+            "Go": 7500,
+            "Java": 4000,
+            "Python": 2000
+        }
+    ],
+    "cached": true
+}

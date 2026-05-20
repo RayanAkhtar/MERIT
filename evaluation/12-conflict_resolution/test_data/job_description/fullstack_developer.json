@@ -3,11 +3,18 @@
   "description": "We are seeking a talented Mid-Level Fullstack Developer to join our core engineering team. You will work on scalable microservices in Java/Spring Boot and build responsive interfaces in React. We value technical mastery and verifiable code quality.",
   "metrics": {
     "Technologies": {
-      "value": ["Spring Boot", "React", "AWS"],
-      "weight": 0.05
+      "value": [
+        "Spring Boot",
+        "React",
+        "AWS"
+      ],
+      "weight": 0.4
     },
     "Languages": {
-      "value": ["Java"],
+      "value": [
+        "Java",
+        "TypeScript"
+      ],
       "weight": 1.2
     },
     "Experience": {

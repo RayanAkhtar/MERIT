@@ -67,7 +67,9 @@ def main():
     study_12 = os.path.join(root_dir, "12-conflict_resolution")
     run_study(study_12, "run_study.py")
 
-
+    # study 14: hci trial (usability and decision calibration)
+    study_14 = os.path.join(root_dir, "14-hci_trial")
+    run_study(study_14, "run_study.py")
 
     print("\n" + "="*60)
     print("ALL EVALUATIONS COMPLETE")

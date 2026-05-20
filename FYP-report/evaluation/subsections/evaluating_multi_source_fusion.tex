@@ -16,6 +16,11 @@ a Modern AI enhanced ATS, MERIT with only CV signals, and then finally MERIT wit
 we specifically refer to the integration of GitHub and LinkedIn signals. With the same ATS setup and candidate pool, we will
 then proceed with a data ablation study, where we will point out the success and failure cases of the model.
 
+These studies assumes that candidate CVs were successfully extracted without error. These evaluations run on emulated, 
+synthetic candidate JSON profiles created to systematically test specific edge cases, bypassing the PDF extraction layer 
+of MERIT (Stage 1). This allows us to isolate the multi-source Bayesian fusion and other scoring engines from any parsing noise.
+By assuming perfect extraction, we establish a clean mathematical baseline so we can verify that the scoring logic, temporal decay
+and conflict resolution can be demonstrated and evaluated as intended, rather than being subject to the varied errors of PDF parsing.
 
 \subsection{Study 08: Algorithmic Sensitivity and Skill Decay}
 \label{subsec:study-08-skill-decay}

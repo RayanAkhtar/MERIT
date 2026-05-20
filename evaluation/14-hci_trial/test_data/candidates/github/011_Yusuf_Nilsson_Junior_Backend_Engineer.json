@@ -1,0 +1,199 @@
+{
+    "source": "github",
+    "username": "YusufNilsson",
+    "name": "Yusuf Nilsson",
+    "bio": "Waterloo CS Co-op | Creator of go-fastcache | Building high-performance systems and databases",
+    "company": "University of Waterloo",
+    "location": "Waterloo, ON",
+    "email": "yusuf.nilsson@outlook.com",
+    "avatar_url": "https://avatars.githubusercontent.com/u/87654321?v=4",
+    "profile_url": "https://github.com/YusufNilsson",
+    "created_at": "2021-09-01T10:00:00Z",
+    "followers": 310,
+    "following": 45,
+    "public_repos": 15,
+    "repositories": [
+        {
+            "name": "go-fastcache",
+            "description": "Highly efficient, concurrent in-memory caching library in Go",
+            "language": "Go",
+            "topics": ["go", "caching", "performance", "high-concurrency", "in-memory"],
+            "stars": 2423,
+            "forks": 180,
+            "license": "MIT License",
+            "is_fork": false,
+            "lines": 12450,
+            "updated_at": "2026-05-10T14:30:00Z",
+            "url": "https://github.com/YusufNilsson/go-fastcache"
+        },
+        {
+            "name": "PulseDB",
+            "description": "Columnar time-series database engine in Rust with compressed storage, Tokio, Kafka",
+            "language": "Rust",
+            "topics": ["rust", "database-engine", "time-series", "tokio", "kafka"],
+            "stars": 340,
+            "forks": 22,
+            "license": "Apache-2.0 License",
+            "is_fork": false,
+            "lines": 18420,
+            "updated_at": "2026-01-15T16:20:00Z",
+            "url": "https://github.com/YusufNilsson/PulseDB"
+        },
+        {
+            "name": "AsyncCache",
+            "description": "Distributed caching service supporting 50K+ concurrent connections with automatic invalidation, Go, Redis, gRPC, Docker",
+            "language": "Go",
+            "topics": ["go", "redis", "grpc", "docker", "caching"],
+            "stars": 124,
+            "forks": 15,
+            "license": "MIT License",
+            "is_fork": false,
+            "lines": 6840,
+            "updated_at": "2026-04-05T12:00:00Z",
+            "url": "https://github.com/YusufNilsson/AsyncCache"
+        },
+        {
+            "name": "ShardFlow",
+            "description": "Database sharding middleware that horizontally scales read operations, Python, FastAPI, consistent hashing",
+            "language": "Python",
+            "topics": ["python", "fastapi", "sharding", "database"],
+            "stars": 65,
+            "forks": 4,
+            "license": null,
+            "is_fork": false,
+            "lines": 3200,
+            "updated_at": "2025-09-02T10:10:00Z",
+            "url": "https://github.com/YusufNilsson/ShardFlow"
+        },
+        {
+            "name": "MicroTrace",
+            "description": "Distributed tracing library for microservices using OpenTelemetry standards",
+            "language": "TypeScript",
+            "topics": ["typescript", "opentelemetry", "tracing", "microservices"],
+            "stars": 42,
+            "forks": 2,
+            "license": "MIT License",
+            "is_fork": false,
+            "lines": 1950,
+            "updated_at": "2025-06-18T15:40:00Z",
+            "url": "https://github.com/YusufNilsson/MicroTrace"
+        },
+        {
+            "name": "EventStorm",
+            "description": "Event sourcing framework in Java, Spring Boot, Elasticsearch",
+            "language": "Java",
+            "topics": ["java", "spring-boot", "event-sourcing", "kafka"],
+            "stars": 55,
+            "forks": 5,
+            "license": null,
+            "is_fork": false,
+            "lines": 4120,
+            "updated_at": "2025-02-12T09:30:00Z",
+            "url": "https://github.com/YusufNilsson/EventStorm"
+        }
+    ],
+    "total_prs": 85,
+    "total_commits": 920,
+    "oss_prs": 12,
+    "external_repos": 2,
+    "repo_count": 15,
+    "total_lines": 94100,
+    "total_stars": 2980,
+    "total_forks": 220,
+    "languages": [
+        {
+            "label": "Go",
+            "pct": 60.0
+        },
+        {
+            "label": "Rust",
+            "pct": 25.0
+        },
+        {
+            "label": "TypeScript",
+            "pct": 8.0
+        },
+        {
+            "label": "Python",
+            "pct": 4.0
+        },
+        {
+            "label": "Java",
+            "pct": 3.0
+        }
+    ],
+    "featured_projects": [
+        {
+            "name": "go-fastcache",
+            "type": "Original Project",
+            "stars": 2423,
+            "forks": 180,
+            "description": "Highly efficient, concurrent in-memory caching library in Go",
+            "url": "https://github.com/YusufNilsson/go-fastcache",
+            "top_languages": ["Go"],
+            "languages_distribution": {
+                "Go": 100.0
+            },
+            "lines": 12450,
+            "commits": 340,
+            "is_fork": false
+        },
+        {
+            "name": "PulseDB",
+            "type": "Original Project",
+            "stars": 340,
+            "forks": 22,
+            "description": "Columnar time-series database engine in Rust with compressed storage, Tokio, Kafka",
+            "url": "https://github.com/YusufNilsson/PulseDB",
+            "top_languages": ["Rust"],
+            "languages_distribution": {
+                "Rust": 100.0
+            },
+            "lines": 18420,
+            "commits": 185,
+            "is_fork": false
+        },
+        {
+            "name": "AsyncCache",
+            "type": "Original Project",
+            "stars": 124,
+            "forks": 15,
+            "description": "Distributed caching service supporting 50K+ concurrent connections with automatic invalidation, Go, Redis, gRPC, Docker",
+            "url": "https://github.com/YusufNilsson/AsyncCache",
+            "top_languages": ["Go"],
+            "languages_distribution": {
+                "Go": 100.0
+            },
+            "lines": 6840,
+            "commits": 78,
+            "is_fork": false
+        }
+    ],
+    "language_history": [
+        {
+            "year": "2024",
+            "Go": 12450,
+            "Rust": 18420,
+            "TypeScript": 1950,
+            "Python": 3200,
+            "Java": 4120
+        },
+        {
+            "year": "2025",
+            "Go": 32000,
+            "Rust": 12000,
+            "TypeScript": 0,
+            "Python": 0,
+            "Java": 0
+        },
+        {
+            "year": "2026",
+            "Go": 18500,
+            "Rust": 4000,
+            "TypeScript": 0,
+            "Python": 0,
+            "Java": 0
+        }
+    ],
+    "cached": true
+}

@@ -1,0 +1,96 @@
+{
+    "source": "linkedin",
+    "full_name": "Yusuf Nilsson",
+    "first_name": "Yusuf",
+    "last_name": "Nilsson",
+    "headline": "Waterloo CS Co-op | Creator of go-fastcache | Building high-performance systems and databases",
+    "location": {
+        "linkedinText": "Waterloo Area, Ontario, Canada",
+        "countryCode": "CA",
+        "parsed": {
+            "text": "Waterloo Area, Ontario, Canada",
+            "countryCode": "CA",
+            "regionCode": null,
+            "country": "Canada",
+            "countryFull": "Canada",
+            "state": "Ontario"
+        }
+    },
+    "followers": 310,
+    "connections": 152,
+    "about": "Undergraduate Computer Science student at the University of Waterloo (Honours Co-op). Passionate about building and optimizing databases, caching proxy services, and distributed systems in Go and Rust.",
+    "profile_photo": null,
+    "background_image": null,
+    "experience": [
+        {
+            "company_name": "Stripe",
+            "company_image": null,
+            "position": "Backend Engineering Intern",
+            "start_date": {
+                "month": "Jan",
+                "year": 2024,
+                "text": "Jan 2024"
+            },
+            "end_date": {
+                "month": "Apr",
+                "year": 2024,
+                "text": "Apr 2024"
+            },
+            "description": "Optimized payment reconciliation pipeline to reduce processing latency by 38%.\nDesigned and deployed 3 new REST API endpoints for subscription management, handling 5M+ daily requests.\nReduced database query execution time by 42% through strategic indexing and query optimization on PostgreSQL.",
+            "skills": ["Go", "PostgreSQL", "REST APIs", "SQL Query Optimization"]
+        },
+        {
+            "company_name": "Notion",
+            "company_image": null,
+            "position": "Junior Backend Developer",
+            "start_date": {
+                "month": "May",
+                "year": 2023,
+                "text": "May 2023"
+            },
+            "end_date": {
+                "month": "Aug",
+                "year": 2023,
+                "text": "Aug 2023"
+            },
+            "description": "Built real-time synchronization service using WebSockets and event streaming, decreasing sync latency to 120ms.\nImplemented Redis caching layer for frequently accessed database queries, reducing backend CPU usage by 31%.",
+            "skills": ["TypeScript", "WebSockets", "Redis", "Node.js"]
+        },
+        {
+            "company_name": "Datadog",
+            "company_image": null,
+            "position": "Software Engineering Co-op",
+            "start_date": {
+                "month": "Sep",
+                "year": 2022,
+                "text": "Sep 2022"
+            },
+            "end_date": {
+                "month": "Dec",
+                "year": 2022,
+                "text": "Dec 2022"
+            },
+            "description": "Engineered high-throughput log ingestion service in Go that processed 120M+ events daily with sub-100ms p99 latency.\nDebugged and fixed 12 production incidents related to metric aggregation, improving data consistency by 26%.\nDeveloped comprehensive integration tests that increased code coverage to 84%.",
+            "skills": ["Go", "Distributed Systems", "DataDog", "Integration Testing"]
+        }
+    ],
+    "education": [
+        {
+            "school_name": "University of Waterloo",
+            "degree": "Bachelor of Computer Science - BCS",
+            "start_date": {
+                "year": 2021,
+                "text": "2021"
+            },
+            "end_date": {
+                "year": 2025,
+                "text": "2025"
+            },
+            "field_of_study": "Computer Science (Honours Co-op)"
+        }
+    ],
+    "volunteering": [],
+    "projects": [],
+    "certifications": [],
+    "cached": true
+}

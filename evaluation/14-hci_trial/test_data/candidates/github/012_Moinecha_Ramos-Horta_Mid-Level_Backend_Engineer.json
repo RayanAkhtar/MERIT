@@ -1,0 +1,206 @@
+{
+    "source": "github",
+    "username": "moinecharamos",
+    "name": "Moinecha Ramos-Horta",
+    "bio": "Distributed Systems & Infrastructure Engineer | Go, Rust, Java, K8s, Kafka",
+    "company": "Stripe",
+    "location": "London, UK",
+    "email": "moinecha.ramos@outlook.com",
+    "avatar_url": "https://avatars.githubusercontent.com/u/5012345?v=4",
+    "profile_url": "https://github.com/moinecharamos",
+    "created_at": "2018-05-15T12:00:00Z",
+    "followers": 142,
+    "following": 89,
+    "public_repos": 36,
+    "repositories": [
+        {
+            "name": "QueryVault",
+            "description": "Distributed query caching proxy supporting 50K+ concurrent connections, Go, PostgreSQL, Redis, gRPC, Docker",
+            "language": "Go",
+            "topics": ["go", "grpc", "caching", "redis", "postgresql", "docker"],
+            "stars": 382,
+            "forks": 24,
+            "license": "MIT License",
+            "is_fork": false,
+            "lines": 14850,
+            "updated_at": "2026-04-12T14:32:00Z",
+            "url": "https://github.com/moinecharamos/QueryVault"
+        },
+        {
+            "name": "ChronoStream",
+            "description": "Time-series event streaming framework in Rust with exactly-once semantics, Apache Kafka, Prometheus, Kubernetes",
+            "language": "Rust",
+            "topics": ["rust", "kafka", "event-streaming", "kubernetes", "prometheus"],
+            "stars": 450,
+            "forks": 31,
+            "license": "Apache-2.0 License",
+            "is_fork": false,
+            "lines": 32410,
+            "updated_at": "2026-03-20T10:15:00Z",
+            "url": "https://github.com/moinecharamos/ChronoStream"
+        },
+        {
+            "name": "AuthFlow",
+            "description": "OAuth 2.0 and SAML authentication service supporting 20+ identity providers, Node.js/TypeScript, PostgreSQL",
+            "language": "TypeScript",
+            "topics": ["typescript", "oauth2", "saml", "security", "node"],
+            "stars": 128,
+            "forks": 12,
+            "license": "MIT License",
+            "is_fork": false,
+            "lines": 8920,
+            "updated_at": "2025-11-05T16:45:00Z",
+            "url": "https://github.com/moinecharamos/AuthFlow"
+        },
+        {
+            "name": "MetricsCollector",
+            "description": "Serverless metrics aggregation platform collecting 500M+ data points daily, Python, InfluxDB, Grafana, AWS Lambda",
+            "language": "Python",
+            "topics": ["python", "influxdb", "grafana", "aws-lambda", "serverless"],
+            "stars": 95,
+            "forks": 8,
+            "license": null,
+            "is_fork": false,
+            "lines": 4320,
+            "updated_at": "2024-09-18T09:12:00Z",
+            "url": "https://github.com/moinecharamos/MetricsCollector"
+        },
+        {
+            "name": "cloudflare-workers-examples",
+            "description": "Edgy serverless backend patterns and real-time edge computing",
+            "language": "TypeScript",
+            "topics": ["edge-computing", "cloudflare-workers", "serverless"],
+            "stars": 2500,
+            "forks": 180,
+            "license": "MIT License",
+            "is_fork": false,
+            "lines": 18900,
+            "updated_at": "2026-05-01T18:00:00Z",
+            "url": "https://github.com/moinecharamos/cloudflare-workers-examples"
+        },
+        {
+            "name": "kafka",
+            "description": "Mirror of Apache Kafka",
+            "language": "Java",
+            "topics": [],
+            "stars": 25000,
+            "forks": 12000,
+            "license": "Apache-2.0 License",
+            "is_fork": true,
+            "lines": 65280,
+            "updated_at": "2024-08-01T12:00:00Z",
+            "url": "https://github.com/moinecharamos/kafka"
+        }
+    ],
+    "total_prs": 120,
+    "total_commits": 1540,
+    "oss_prs": 52,
+    "external_repos": 4,
+    "repo_count": 36,
+    "total_lines": 144680,
+    "total_stars": 3550,
+    "total_forks": 180,
+    "languages": [
+        {
+            "label": "Go",
+            "pct": 45.0
+        },
+        {
+            "label": "Rust",
+            "pct": 30.0
+        },
+        {
+            "label": "TypeScript",
+            "pct": 15.0
+        },
+        {
+            "label": "Python",
+            "pct": 5.0
+        },
+        {
+            "label": "Java",
+            "pct": 3.0
+        },
+        {
+            "label": "SQL",
+            "pct": 2.0
+        }
+    ],
+    "featured_projects": [
+        {
+            "name": "QueryVault",
+            "type": "Original Project",
+            "stars": 382,
+            "forks": 24,
+            "description": "Distributed query caching proxy supporting 50K+ concurrent connections, Go, PostgreSQL, Redis, gRPC, Docker",
+            "url": "https://github.com/moinecharamos/QueryVault",
+            "top_languages": ["Go"],
+            "languages_distribution": {
+                "Go": 100.0
+            },
+            "lines": 14850,
+            "commits": 245,
+            "is_fork": false
+        },
+        {
+            "name": "ChronoStream",
+            "type": "Original Project",
+            "stars": 450,
+            "forks": 31,
+            "description": "Time-series event streaming framework in Rust with exactly-once semantics, Apache Kafka, Prometheus, Kubernetes",
+            "url": "https://github.com/moinecharamos/ChronoStream",
+            "top_languages": ["Rust"],
+            "languages_distribution": {
+                "Rust": 100.0
+            },
+            "lines": 32410,
+            "commits": 312,
+            "is_fork": false
+        },
+        {
+            "name": "cloudflare-workers-examples",
+            "type": "Original Project",
+            "stars": 2500,
+            "forks": 180,
+            "description": "Edgy serverless backend patterns and real-time edge computing",
+            "url": "https://github.com/moinecharamos/cloudflare-workers-examples",
+            "top_languages": ["TypeScript"],
+            "languages_distribution": {
+                "TypeScript": 100.0
+            },
+            "lines": 18900,
+            "commits": 84,
+            "is_fork": false
+        }
+    ],
+    "language_history": [
+        {
+            "year": "2024",
+            "Go": 32000,
+            "Java": 12971,
+            "TypeScript": 8900,
+            "Python": 4320,
+            "Rust": 0,
+            "SQL": 0
+        },
+        {
+            "year": "2025",
+            "Go": 48500,
+            "Java": 0,
+            "TypeScript": 10000,
+            "Python": 0,
+            "Rust": 32410,
+            "SQL": 2890
+        },
+        {
+            "year": "2026",
+            "Go": 14850,
+            "Java": 0,
+            "TypeScript": 18900,
+            "Python": 0,
+            "Rust": 0,
+            "SQL": 0
+        }
+    ],
+    "cached": true
+}

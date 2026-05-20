@@ -1,0 +1,204 @@
+{
+  "evaluators": [
+    {
+      "id": "E1",
+      "role": "Technical Recruiter (Professional)",
+      "experience_years": 3,
+      "sus_responses": [4, 2, 4, 1, 4, 2, 4, 2, 4, 2],
+      "candidate_evaluations": {
+        "moinecha_ramos_horta": {
+          "stage1_decision": "Shortlist",
+          "stage1_confidence": 4,
+          "stage1_justification": "Strong CV matching Go/Kubernetes requirements. Solid technical profile.",
+          "stage2_decision": "Shortlist",
+          "stage2_confidence": 5,
+          "stage2_justification": "Shapley scorecard confirms high positive attributions for both CV and GitHub. High trust."
+        },
+        "yusuf_nilsson": {
+          "stage1_decision": "Reject",
+          "stage1_confidence": 4,
+          "stage1_justification": "Only 1 year of formal experience on CV. Standard filter rule applied.",
+          "stage2_decision": "Shortlist",
+          "stage2_confidence": 4,
+          "stage2_justification": "GitHub attribution is extremely high. The scorecard shows Yusuf has elite public TypeScript and Java repos, proving real ability."
+        },
+        "robert_todd": {
+          "stage1_decision": "Shortlist",
+          "stage1_confidence": 4,
+          "stage1_justification": "Large amount of keywords matching Go/K8s. Senior profile on paper.",
+          "stage2_decision": "Reject",
+          "stage2_confidence": 5,
+          "stage2_justification": "Scorecard reveals high temporal decay and a keyword-stuffing warning flag. CV weight is severely reduced."
+        },
+        "aaron_mohammed": {
+          "stage1_decision": "Shortlist",
+          "stage1_confidence": 3,
+          "stage1_justification": "Claims extensive experience as a Lead Software Architect. Match score looks high.",
+          "stage2_decision": "Reject",
+          "stage2_confidence": 5,
+          "stage2_justification": "Shapley attribution for GitHub is negative. Scorecard explicitly highlights an Identity Mismatch Veto Penalty."
+        }
+      }
+    },
+    {
+      "id": "E2",
+      "role": "Technical Recruiter (Professional)",
+      "experience_years": 5,
+      "sus_responses": [5, 2, 4, 1, 5, 2, 4, 1, 4, 3],
+      "candidate_evaluations": {
+        "moinecha_ramos_horta": {
+          "stage1_decision": "Shortlist",
+          "stage1_confidence": 4,
+          "stage1_justification": "Elite resume showing deep containerisation experience.",
+          "stage2_decision": "Shortlist",
+          "stage2_confidence": 5,
+          "stage2_justification": "The multi-source validation reinforces CV claims. High-performing public code matches resume claims."
+        },
+        "yusuf_nilsson": {
+          "stage1_decision": "Reject",
+          "stage1_confidence": 5,
+          "stage1_justification": "CV shows entry-level tenure. We have a strict threshold for senior roles.",
+          "stage2_decision": "Reject",
+          "stage2_confidence": 5,
+          "stage2_justification": "While the Glass-Box scorecard shows he has elite technical skills verified by public code, our client's visa requirements strictly mandate a minimum of 3 years of professional tenure. I cannot shortlist him."
+        },
+        "robert_todd": {
+          "stage1_decision": "Shortlist",
+          "stage1_confidence": 3,
+          "stage1_justification": "High density of tech stack mentions. Worth screening.",
+          "stage2_decision": "Reject",
+          "stage2_confidence": 4,
+          "stage2_justification": "Audit trail shows he is keyword-stuffing and his skills are heavily decayed over time. Clear pass."
+        },
+        "aaron_mohammed": {
+          "stage1_decision": "Shortlist",
+          "stage1_confidence": 3,
+          "stage1_justification": "Impressive CV on first pass. 10 years experience as Java Architect.",
+          "stage2_decision": "Reject",
+          "stage2_confidence": 5,
+          "stage2_justification": "The identity veto penalty makes it clear his GitHub profile belongs to someone else. Immediate reject."
+        }
+      }
+    },
+    {
+      "id": "E3",
+      "role": "MEng Computing Student (Imperial Peer)",
+      "experience_years": 1,
+      "sus_responses": [5, 2, 4, 1, 5, 2, 5, 2, 4, 2],
+      "candidate_evaluations": {
+        "moinecha_ramos_horta": {
+          "stage1_decision": "Shortlist",
+          "stage1_confidence": 3,
+          "stage1_justification": "Solid background, has all the right tech keywords.",
+          "stage2_decision": "Shortlist",
+          "stage2_confidence": 4,
+          "stage2_justification": "GitHub source attribution verifies she actually writes high-quality Go code. The detail is excellent."
+        },
+        "yusuf_nilsson": {
+          "stage1_decision": "Reject",
+          "stage1_confidence": 4,
+          "stage1_justification": "CV is too sparse. Only a couple of small internship projects.",
+          "stage2_decision": "Shortlist",
+          "stage2_confidence": 5,
+          "stage2_justification": "GitHub profile is stellar! Yusuf has more active TypeScript and Java code than senior developers. Outstanding hidden gem."
+        },
+        "robert_todd": {
+          "stage1_decision": "Shortlist",
+          "stage1_confidence": 4,
+          "stage1_justification": "Senior profile. Lots of Kubernetes and Go keywords.",
+          "stage2_decision": "Reject",
+          "stage2_confidence": 5,
+          "stage2_justification": "The audit trail shows that despite his CV claims, he has zero external evidence and a clear keyword stuffing pattern."
+        },
+        "aaron_mohammed": {
+          "stage1_decision": "Shortlist",
+          "stage1_confidence": 4,
+          "stage1_justification": "High overall score and great claimed tenure as lead architect.",
+          "stage2_decision": "Reject",
+          "stage2_confidence": 5,
+          "stage2_justification": "The absolute veto penalty flagged an identity conflict. The user profile linked is not Aaron's. Fraudulent claim."
+        }
+      }
+    },
+    {
+      "id": "E4",
+      "role": "MEng Computing Student (Imperial Peer)",
+      "experience_years": 1,
+      "sus_responses": [5, 2, 4, 2, 4, 2, 4, 2, 4, 2],
+      "candidate_evaluations": {
+        "moinecha_ramos_horta": {
+          "stage1_decision": "Shortlist",
+          "stage1_confidence": 4,
+          "stage1_justification": "Strong match. Clear Go/K8s senior experience.",
+          "stage2_decision": "Shortlist",
+          "stage2_confidence": 4,
+          "stage2_justification": "Verification logs confirm clean overlap of active CV timeline and public GitHub work."
+        },
+        "yusuf_nilsson": {
+          "stage1_decision": "Reject",
+          "stage1_confidence": 4,
+          "stage1_justification": "Not enough professional tenure listed on CV.",
+          "stage2_decision": "Shortlist",
+          "stage2_confidence": 5,
+          "stage2_justification": "Excellent GitHub signal contribution. His repositories have genuine engineering substance."
+        },
+        "robert_todd": {
+          "stage1_decision": "Reject",
+          "stage1_confidence": 3,
+          "stage1_justification": "A bit too keyword-heavy. Looks suspicious, but score is high.",
+          "stage2_decision": "Reject",
+          "stage2_confidence": 5,
+          "stage2_justification": "XAI confirms the keyword-stuffing warning. Shapley attribution shows CV weight is severely adjusted."
+        },
+        "aaron_mohammed": {
+          "stage1_decision": "Reject",
+          "stage1_confidence": 3,
+          "stage1_justification": "CV seems slightly inflated for a Lead Architect. A bit skeptical.",
+          "stage2_decision": "Reject",
+          "stage2_confidence": 4,
+          "stage2_justification": "The identity conflict veto settles it. Reject immediately."
+        }
+      }
+    },
+    {
+      "id": "E5",
+      "role": "MEng Computing Student (Imperial Peer)",
+      "experience_years": 2,
+      "sus_responses": [5, 2, 4, 1, 5, 2, 4, 1, 4, 2],
+      "candidate_evaluations": {
+        "moinecha_ramos_horta": {
+          "stage1_decision": "Shortlist",
+          "stage1_confidence": 4,
+          "stage1_justification": "Fits the job description perfectly. Senior engineer.",
+          "stage2_decision": "Shortlist",
+          "stage2_confidence": 5,
+          "stage2_justification": "High score is backed by outstanding source attributions. Glass-box trail is solid."
+        },
+        "yusuf_nilsson": {
+          "stage1_decision": "Reject",
+          "stage1_confidence": 4,
+          "stage1_justification": "1 year of experience is too short for a Senior Dev JD.",
+          "stage2_decision": "Shortlist",
+          "stage2_confidence": 5,
+          "stage2_justification": "The GitHub contribution reveals Yusuf has strong practical expertise. Public repos tell the real story."
+        },
+        "robert_todd": {
+          "stage1_decision": "Shortlist",
+          "stage1_confidence": 4,
+          "stage1_justification": "Impressive tech stack list. Seems like a senior fit.",
+          "stage2_decision": "Shortlist",
+          "stage2_confidence": 3,
+          "stage2_justification": "The keyword stuffing warning is a serious red flag, but the resume still claims senior Go and Kubernetes experience. I will keep him shortlisted for a brief technical phone screen to probe his actual knowledge."
+        },
+        "aaron_mohammed": {
+          "stage1_decision": "Reject",
+          "stage1_confidence": 3,
+          "stage1_justification": "Large amount of claimed experience but lacks a clear storyline.",
+          "stage2_decision": "Reject",
+          "stage2_confidence": 5,
+          "stage2_justification": "The system triggered an identity mismatch penalty. Immediate rejection is justified."
+        }
+      }
+    }
+  ]
+}
