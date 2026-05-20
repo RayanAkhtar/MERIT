@@ -1,0 +1,41 @@
+\chapter{Spearman alignment bar charts (Studies 07--10)}
+\label{appendix:spearman-charts}
+
+This appendix collects the \texttt{spearman\_chart.png} bar plots produced by the evaluation harness for Studies~07--10 
+(Section~\ref{sec:human-machine-alignment}). Spearman coefficients, $p$-values, 
+and discussion appear in the main evaluation chapter. The charts are provided here for reference, and to minimise 
+the clutter of the main text.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.92\textwidth]{../evaluation/07-spearman_high_discrimination/output/spearman_chart.png}
+    \caption{Spearman $\rho$ by engine for Study~07 (high discrimination). MERIT (Full) attains the highest bar, with baseline 
+    ATS models exhibiting weaker alignment.}
+    \label{fig:spearman-study-07}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.92\textwidth]{../evaluation/08-spearman_seniority_bias_audit/output/spearman_chart.png}
+    \caption{Spearman $\rho$ by engine for Study~08 (seniority-bias audit). Baseline engines are significantly anti-aligned 
+    with the expert consensus. MERIT variants remain negatively correlated but materially less extreme than the modern semantic baseline
+    due to the multi-source pillar relying less on seniority-based signals, and instead relying on the quality of the evidence provided.}
+    \label{fig:spearman-study-08}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.92\textwidth]{../evaluation/09-spearman_peer_competition/output/spearman_chart.png}
+    \caption{Spearman $\rho$ by engine for Study~09 (peer competition). 
+    The traditional ATS is most correlated with this particular expert ordering, 
+    while MERIT (Full) is able to achieve a strong alignment with the expert consensus.}
+    \label{fig:spearman-study-09}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.92\textwidth]{../evaluation/10-spearman_signal_dissonance_failure_case/output/spearman_chart.png}
+    \caption{Spearman $\rho$ by engine for Study~10 (signal dissonance). The MERIT (Full) bar collapses toward zero, visualising 
+    the failure of MERIT (Full) to correctly rank the candidates when the data sources are contradictory.}
+    \label{fig:spearman-study-10}
+\end{figure}
