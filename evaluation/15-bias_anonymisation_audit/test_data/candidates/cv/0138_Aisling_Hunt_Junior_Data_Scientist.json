@@ -1,0 +1,203 @@
+{
+  "raw_cv_text": "Aisling Hunt\naisling.hunt@gmail.com \u00b7 (415) 287-5642 \u00b7 github.com/aislinghunt/portfolio\nEDUCATION\nUC Berkeley | B.S. Statistics & Computer Science May 2023\nCompleted coursework in Machine Learning, Statistical Inference, and Distributed Systems; GPA: 3.7\nCapstone: Built recommendation engine analyzing 2.1M user interactions across e-commerce platform using\ncollaborative filtering\nEXPERIENCE\nStripe | Data Science Intern June 2023 - August 2023\nDeveloped a fraud detection model using LightGBM that reduced false positives by 22% while maintaining 98% true\npositive rate, impacting 50K+ daily transactions\nBuilt automated ETL pipeline in Airflow to ingest and validate payment data from 3 disparate sources, reducing\nmanual data preparation time by 35 hours/week\nCollaborated with cross-functional teams to deliver A/B testing framework that analyzed 12 product experiments and\ninformed roadmap prioritization\nDataRobot | Junior Data Scientist September 2023 - Present\nEngineered 18 novel features for enterprise customer churn prediction model, achieving 0.84 AUC and enabling 8%\nimprovement in model accuracy\nAutomated weekly reporting dashboard using Python and Tableau that tracks 25+ KPIs across 15 client segments,\nreducing manual report generation by 12 hours\nDeployed 3 production ML models using Docker and AWS SageMaker, implementing real-time monitoring that\nflagged 6 data drift incidents before impacting predictions\nPROJECTS\nCustomer Lifetime Value Prediction | Python, scikit-learn, Pandas, PostgreSQL January 2023 - March 2023\nConstructed regression model predicting customer CLV within \u00b1$50 range for 100K subscription customers using 15\nengineered behavioral features\nImplemented hyperparameter tuning with GridSearch and cross-validation, improving RMSE by 28% from baseline\nmodel\nCOVID-19 Sentiment Analysis (Open Source Contribution) | Python, NLTK, spaCy, August 2022 - October 2022\nMatplotlib, GitHub\nContributed NLP preprocessing module to open-source project analyzing 50K+ Twitter posts about pandemic,\nmerged 2 pull requests\nOptimized text tokenization pipeline to process 1M documents in <4 minutes (3x faster than original implementation)\nTime Series Forecasting: Stock Market Analysis | Python, ARIMA, Prophet, TensorFlow April 2023 - May 2023\nLSTM, Matplotlib\nTrained ensemble model combining ARIMA, Prophet, and LSTM networks to forecast S&P 500 closing prices with\n92% directional accuracy\nGenerated comprehensive analysis report with 8 visualizations and backtested strategy achieving 14% annual\nreturn\nExploratory Data Analysis: Kaggle Housing Competition | Python, Pandas, Seaborn, February 2023 - March 2023\nscikit-learn, Kaggle\nAnalyzed 1,460 housing records and engineered 12 features addressing multicollinearity, ranked in top 18% of\ncompetition (2,400+ participants)\nCreated 15 publication-quality visualizations revealing 5 key price drivers, achieving final RMSE of 0.125\nEXTRACURRICULAR\nBerkeley Data Science Student Association | Member & Workshop Volunteer 2021 - 2023\nLed 3 hands-on workshops teaching 60+ students practical ML workflows with real datasets\nMentored 5 first-year students transitioning into data science career path\nWomen in Data Science (WiDS) | Community Participant & Hackathon Winner 2022 - Present\nPlaced 2nd in 2023 WiDS Datathon (300+ teams globally) building classification model for healthcare equity\nActively networked with 100+ professionals through monthly meetups and mentorship events\nTECHNICAL SKILLS\nLanguages \u2013 Python (Advanced), SQL (Advanced), R (Intermediate)\nTechnologies \u2013 Python, SQL, scikit-learn, TensorFlow, XGBoost, Pandas, NumPy\nTools \u2013 Jupyter, Git, AWS (EC2, S3, SageMaker), Docker, Airflow, Tableau, DBeaver",
+  "name": "Aisling Hunt",
+  "email": "aisling.hunt@gmail.com",
+  "phone": null,
+  "links": {
+    "linkedin": [],
+    "github": []
+  },
+  "skills": [
+    "aws",
+    "dbeaver",
+    "docker",
+    "jupyter",
+    "matplotlib",
+    "numpy",
+    "pandas",
+    "postgresql",
+    "python",
+    "r",
+    "scikit",
+    "scikit-learn",
+    "sql",
+    "tensorflow"
+  ],
+  "projects": [
+    {
+      "name": "Customer Lifetime Value Prediction",
+      "subtitle": "Python, scikit-learn, Pandas, PostgreSQL",
+      "start_date": "January 2023",
+      "end_date": "March 2023",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "engineered behavioral features",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "model",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "COVID-19 Sentiment Analysis (Open Source Contribution)",
+      "subtitle": "Python, NLTK, spaCy",
+      "start_date": "August 2022",
+      "end_date": "October 2022",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Matplotlib, GitHub",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "merged 2 pull requests",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Time Series Forecasting: Stock Market Analysis",
+      "subtitle": "Python, ARIMA, Prophet, TensorFlow",
+      "start_date": "April 2023",
+      "end_date": "May 2023",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "LSTM, Matplotlib",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "92% directional accuracy",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "return",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Exploratory Data Analysis: Kaggle Housing Competition",
+      "subtitle": "Python, Pandas, Seaborn",
+      "start_date": "February 2023",
+      "end_date": "March 2023",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "scikit-learn, Kaggle",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "competition (2,400+ participants)",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "extracurricular": [
+    {
+      "name": "Berkeley Data Science Student Association",
+      "subtitle": "Member & Workshop Volunteer",
+      "start_date": "2021",
+      "end_date": "2023",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Women in Data Science (WiDS)",
+      "subtitle": "Community Participant & Hackathon Winner",
+      "start_date": "2022",
+      "end_date": "Present",
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "cv_experience": [
+    {
+      "name": "Stripe",
+      "subtitle": "Data Science Intern",
+      "start_date": "June 2023",
+      "end_date": "August 2023",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "positive rate, impacting 50K+ daily transactions",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "informed roadmap prioritization",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "DataRobot",
+      "subtitle": "Junior Data Scientist",
+      "start_date": "September 2023",
+      "end_date": "Present",
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "improvement in model accuracy",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "experience": "Stripe | Data Science Intern June 2023 - August 2023\nDeveloped a fraud detection model using LightGBM that reduced false positives by 22% while maintaining 98% true\npositive rate, impacting 50K+ daily transactions\nBuilt automated ETL pipeline in Airflow to ingest and validate payment data from 3 disparate sources, reducing\nmanual data preparation time by 35 hours/week\nCollaborated with cross-functional teams to deliver A/B testing framework that analyzed 12 product experiments and\ninformed roadmap prioritization\nDataRobot | Junior Data Scientist September 2023 - Present\nEngineered 18 novel features for enterprise customer churn prediction model, achieving 0.84 AUC and enabling 8%\nimprovement in model accuracy\nAutomated weekly reporting dashboard using Python and Tableau that tracks 25+ KPIs across 15 client segments,\nreducing manual report generation by 12 hours\nDeployed 3 production ML models using Docker and AWS SageMaker, implementing real-time monitoring that\nflagged 6 data drift incidents before impacting predictions",
+  "education": [
+    {
+      "name": "Completed coursework in Machine Learning",
+      "subtitle": "Statistical Inference, and Distributed Systems; GPA: 3.7",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+Metric,Visible,Blind
+Evaluators per condition,"4 (2 recruiters, 2 peers)","4 (2 recruiters, 2 peers)"
+Spearman rho (MERIT rank vs human shortlist rank),0.8,0.0
+Mean shortlist rate — prestige-high group (%),62.5,75.0
+Mean shortlist rate — prestige-mid/low group (%),12.5,62.5
+"Prestige gap (high minus mid/low, pp)",50.0,12.5

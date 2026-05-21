@@ -2,20 +2,44 @@ import subprocess
 import os
 import sys
 
+# Studies that stream stdout (long runs / many subprocesses — progress is useful).
+_STREAM_STUDIES = {
+    ("03-spacetime_study", "run_spacetime.py"): (
+        "Study 03 uses one fresh Python process per engine and per (engine, N) pair "
+        "(~35 subprocesses). Expect ~10–15 minutes."
+    ),
+}
+
+
 def run_study(study_path: str, script_name: str):
-    print(f"\n>>> Starting {script_name} in {os.path.basename(study_path)}...")
+    study_name = os.path.basename(study_path)
+    note = _STREAM_STUDIES.get((study_name, script_name))
+    stream = note is not None
+
+    print(f"\n>>> Starting {script_name} in {study_name}...")
+    if note:
+        print(f"    {note}")
+
     try:
-        result = subprocess.run(
-            [sys.executable, script_name], 
-            cwd=study_path,
-            capture_output=True, 
-            text=True, 
-            check=True
-        )
-        print(result.stdout)
+        cmd = [sys.executable, script_name]
+        if stream:
+            subprocess.run(cmd, cwd=study_path, check=True)
+        else:
+            result = subprocess.run(
+                cmd,
+                cwd=study_path,
+                capture_output=True,
+                text=True,
+                check=True,
+            )
+            if result.stdout:
+                print(result.stdout)
     except subprocess.CalledProcessError as e:
         print(f"Error running {script_name}:")
-        print(e.stderr)
+        if stream:
+            print(f"Exit code: {e.returncode}")
+        elif e.stderr:
+            print(e.stderr)
 
 def main():
     root_dir = os.path.dirname(os.path.abspath(__file__))
@@ -67,9 +91,14 @@ def main():
     study_12 = os.path.join(root_dir, "12-conflict_resolution")
     run_study(study_12, "run_study.py")
 
-    # study 14: hci trial (usability and decision calibration)
+    # studies 14–15: HCI trial and bias / anonymisation audit
+    print("\n" + "-" * 40)
+    print("HCI & fairness audits (Studies 14–15)...")
     study_14 = os.path.join(root_dir, "14-hci_trial")
     run_study(study_14, "run_study.py")
+
+    study_15 = os.path.join(root_dir, "15-bias_anonymisation_audit")
+    run_study(study_15, "run_study.py")
 
     print("\n" + "="*60)
     print("ALL EVALUATIONS COMPLETE")

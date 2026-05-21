@@ -1,0 +1,79 @@
+{
+  "raw_cv_text": "Vincent EDUCATION\nGermain McGill University \u2014 Bachelor of Science in Computer Science 2022 - 2026\nRelevant Coursework: Database Systems, Software Engineering, Algorithms & Data\nvincent.germain@gmail.c Structures\nom GPA: 3.7/4.0\n(514) 287-3945\nEXPERIENCE\ngithub.com/vgermain-dev\nShopify \u2014 Backend Engineering Intern June 2024 - August 2024\nSKILLS\nDeveloped 2 REST API endpoints using Node.js and Express that processed 50K+\nLanguages daily requests for order fulfillment queries, reducing average response time by 18%.\nPython, JavaScript, SQL\nOptimized PostgreSQL database queries for customer transaction history retrieval,\nTech\nachieving 32% faster query execution across 2M+ records.\nNode.js, PostgreSQL,\nCollaborated with 4 senior engineers to implement Docker containerization for 3\nREST APIs, Docker\nmicroservices, reducing deployment time from 25 minutes to 8 minutes.\nTools\nGit, Postman, Docker PROJECTS\nCompose, Linux\nDistributed Task Queue System \u2014 Python, Redis, January 2024 - March 2024\nACTIVITIES\nPostgreSQL, Docker\nMcGill Developers Built a task queue system that processed 1000+ asynchronous jobs per minute with\nClub failure retry logic, reducing failed job rate from 8% to 1.2%.\nBackend Track Implemented worker pool architecture supporting 6 concurrent workers using\nMentor Python threading, increasing throughput by 40% compared to single-worker\nSeptember 2023 - prototype.\nPresent REST API Hackathon Project - PriceTracker \u2014 Node.js, Express, October 2023\nHackMcGill 2024 MongoDB, Heroku\nParticipant & Top 10 Designed backend API for price monitoring SaaS that tracked 500+ product listings\nFinalist across 3 e-commerce platforms with 95% uptime.\nFebruary 2024 Implemented JWT-based authentication and rate limiting, handling 2000+\nauthenticated requests daily during hackathon demo.\nSchool Course Registration System \u2014 JavaScript, November 2023 - December 2023\nNode.js, SQLite\nEngineered backend API for course enrollment that managed concurrent\nregistrations for 800+ students across 40 courses using transaction-based locking.\nReduced double-booking incidents by 100% through row-level database locks,\nhandling peak registration with zero data inconsistencies.",
+  "name": "Vincent EDUCATION Germain",
+  "email": "vincent.germain@gmail.c",
+  "phone": null,
+  "links": {
+    "linkedin": [],
+    "github": []
+  },
+  "skills": [
+    "c",
+    "docker",
+    "express",
+    "heroku",
+    "javascript",
+    "js",
+    "mongodb",
+    "node.js",
+    "postgresql",
+    "python",
+    "sql",
+    "sqlite"
+  ],
+  "projects": [],
+  "extracurricular": [
+    {
+      "name": "PostgreSQL, Docker",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "- prototype.",
+      "subtitle": "",
+      "start_date": "September 2023",
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "HackMcGill  MongoDB, Heroku",
+      "subtitle": "",
+      "start_date": "2024",
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "authenticated requests daily during hackathon demo.",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    },
+    {
+      "name": "Node.js, SQLite",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "cv_experience": [
+    {
+      "name": "github.com/vgermain-dev",
+      "subtitle": "",
+      "start_date": null,
+      "end_date": null,
+      "grade": null,
+      "summary": ""
+    }
+  ],
+  "experience": "github.com/vgermain-dev\nShopify \u2014 Backend Engineering Intern June 2024 - August 2024",
+  "education": []
+}

@@ -1,14 +1,14 @@
 {
-  "total_stars": 16,
-  "total_forks": 1,
-  "repo_count": 2,
+  "total_stars": 38,
+  "total_forks": 7,
+  "repo_count": 6,
   "featured_projects": [
     {
       "name": "production-service-core",
-      "stars": 9,
-      "forks": 0,
+      "stars": 22,
+      "forks": 3,
       "languages_distribution": {
-        "Swift": 4341,
+        "Swift": 4274,
         "Objective-C": 500
       },
       "lines": 50000
@@ -17,11 +17,11 @@
   "language_history": [
     {
       "year": "2024",
-      "Swift": 1842
+      "Swift": 1950
     },
     {
       "year": "2025",
-      "Swift": 4341,
+      "Swift": 4274,
       "Objective-C": 500
     },
     {

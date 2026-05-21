@@ -1,0 +1,33 @@
+Evaluator,Role,UI Condition,Candidate,Decision,Confidence,MERIT Score
+R1,Technical Recruiter (Professional),visible,aisling_hunt,Reject,3,36.7
+R1,Technical Recruiter (Professional),visible,vincent_germain,Reject,4,31.1
+R1,Technical Recruiter (Professional),visible,riko_altayer,Shortlist,5,60.9
+R1,Technical Recruiter (Professional),visible,jude_washington,Reject,3,39.9
+R2,Technical Recruiter (Professional),visible,aisling_hunt,Reject,4,36.7
+R2,Technical Recruiter (Professional),visible,vincent_germain,Reject,5,31.1
+R2,Technical Recruiter (Professional),visible,riko_altayer,Shortlist,5,60.9
+R2,Technical Recruiter (Professional),visible,jude_washington,Reject,4,39.9
+P1,MEng Computing Student (Peer),visible,aisling_hunt,Shortlist,3,36.7
+P1,MEng Computing Student (Peer),visible,vincent_germain,Reject,3,31.1
+P1,MEng Computing Student (Peer),visible,riko_altayer,Shortlist,4,60.9
+P1,MEng Computing Student (Peer),visible,jude_washington,Reject,2,39.9
+P2,MEng Computing Student (Peer),visible,aisling_hunt,Reject,3,36.7
+P2,MEng Computing Student (Peer),visible,vincent_germain,Reject,3,31.1
+P2,MEng Computing Student (Peer),visible,riko_altayer,Shortlist,5,60.9
+P2,MEng Computing Student (Peer),visible,jude_washington,Shortlist,2,39.9
+R3,Technical Recruiter (Professional),blind,aisling_hunt,Shortlist,4,36.7
+R3,Technical Recruiter (Professional),blind,vincent_germain,Shortlist,4,31.1
+R3,Technical Recruiter (Professional),blind,riko_altayer,Reject,4,60.9
+R3,Technical Recruiter (Professional),blind,jude_washington,Shortlist,3,39.9
+R4,Technical Recruiter (Professional),blind,aisling_hunt,Reject,3,36.7
+R4,Technical Recruiter (Professional),blind,vincent_germain,Shortlist,4,31.1
+R4,Technical Recruiter (Professional),blind,riko_altayer,Shortlist,4,60.9
+R4,Technical Recruiter (Professional),blind,jude_washington,Reject,3,39.9
+P3,MEng Computing Student (Peer),blind,aisling_hunt,Shortlist,4,36.7
+P3,MEng Computing Student (Peer),blind,vincent_germain,Shortlist,4,31.1
+P3,MEng Computing Student (Peer),blind,riko_altayer,Shortlist,4,60.9
+P3,MEng Computing Student (Peer),blind,jude_washington,Shortlist,3,39.9
+P4,MEng Computing Student (Peer),blind,aisling_hunt,Shortlist,4,36.7
+P4,MEng Computing Student (Peer),blind,vincent_germain,Reject,3,31.1
+P4,MEng Computing Student (Peer),blind,riko_altayer,Shortlist,4,60.9
+P4,MEng Computing Student (Peer),blind,jude_washington,Reject,3,39.9

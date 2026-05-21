@@ -13,8 +13,8 @@ def run_study_06():
     run_adversarial_benchmark()
     
     print("\nStep 3: Generating Visualisations...")
-    from generate_adversarial_visualisations import visualize_adversarial_results
-    visualize_adversarial_results()
+    from generate_adversarial_visualisations import visualize_all
+    visualize_all()
 
 if __name__ == "__main__":
     run_study_06()

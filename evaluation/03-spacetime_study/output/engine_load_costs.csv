@@ -1,6 +1,6 @@
 Engine,Static Load (MB)
 Traditional ATS,0.1
-Modern AI ATS,86.13
-MERIT Explainable,0.8
-MERIT Full,0.1
-MERIT CV-Only,0.1
+Modern AI ATS,398.45
+MERIT CV-Only,366.88
+MERIT Full,367.79
+MERIT Explainable,367.18

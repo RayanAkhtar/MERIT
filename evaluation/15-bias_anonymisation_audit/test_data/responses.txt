@@ -1,0 +1,61 @@
+8 subjects: r1-r4 recruiters (NOT study 14), p1-p4 meng peers
+  visible arm n=4: r1,r2 + p1,p2  -> popup only, blind OFF (names, schools, titles)
+  blind arm n=4:   r3,r4 + p3,p4  -> popup only, blind ON default (candidate #, tier only)
+IMPORTANT: cohort overlay (4 candidates ranked) NEVER shown - closing popup would reveal it
+each profile: facilitator opens popup -> THAT candidate's merit % + glass-box breakdown ALWAYS shown (merit has no way to hide scores)
+blind arm still shows score/breakdown; only PII + layout redacted
+each profile: shortlist/reject after popup
+4 candidates: aisling, vincent, riko, jude (studies 07/08; not study 14 hci set)
+notation: + = shortlist, - = reject, cX = confidence (1-5)
+
+======================== VISIBLE ARM (n=4) ========================
+
+r1 - recruiter visible (4 yoe)
+aisling: - (c3) DS not intern BE
+vincent: - (c4) intern title + bad pdf parse
+riko: + (c5) top merit + pedigree
+jude: - (c3) ios / unknown brands
+
+r2 - recruiter visible (6 yoe)
+aisling: - (c4) wids + DS track
+vincent: - (c5) shopify intern, client 2yr rule
+riko: + (c5) fast track
+jude: - (c4) mobile title
+
+p1 - peer visible
+aisling: + (c3) strong proj, token diversity worry
+vincent: - (c3) sloppy pdf parse
+riko: + (c4) elite + #1 merit
+jude: - (c2) off-role scan
+
+p2 - peer visible
+aisling: - (c3) ml tilt
+vincent: - (c3) intern keyword
+riko: + (c5) imperial+cambridge
+jude: + (c2) gut yes [bias flagged]
+
+======================== BLIND ARM (n=4) ========================
+
+r3 - recruiter blind (5 yoe)
+aisling: + (c4) python/sql/docker ok on card #2
+vincent: + (c4) node/pg shopify without intern label
+riko: - (c4) OVERQUALIFIED for intern jd (study 08 style)
+jude: + (c3) api lines surfaced, borderline
+
+r4 - recruiter blind (7 yoe)
+aisling: - (c3) still ML-heavy blind
+vincent: + (c4) credible pg/docker redacted
+riko: + (c4) keep for HM check - deep systems
+jude: - (c3) still swift-heavy
+
+p3 - peer blind
+aisling: + (c4) fairer compare w/o gendered clubs
+vincent: + (c4) skill block > merit score
+riko: + (c4) best systems
+jude: + (c3) api bullets clearer blind
+
+p4 - peer blind
+aisling: + (c4) even skill layout
+vincent: - (c3) still bottom of batch
+riko: + (c4) strong merit+skills
+jude: - (c3) mostly swiftui

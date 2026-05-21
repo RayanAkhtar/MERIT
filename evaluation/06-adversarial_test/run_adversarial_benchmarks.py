@@ -54,17 +54,21 @@ def run_adversarial_benchmark():
         res_full = engine_full.score_candidate(candidate)
 
         results.append({
-            "Scenario": sc.capitalize(),
+            "Scenario": label,
             "Candidate": cv["name"],
-            "ATS Score (CV Only)": res_cv["score"],
-            "MERIT Score (Multi-Source)": res_full["score"],
-            "Delta": res_full["score"] - res_cv["score"]
+            "ATS Score (CV Only)": round(res_cv["score"], 1),
+            "MERIT Score (Multi-Source)": round(res_full["score"], 1),
+            "Delta Fusion": round(res_full["score"] - res_cv["score"], 1),
         })
 
     df = pd.DataFrame(results)
+    honest_full = df.loc[df["Scenario"] == "Honest", "MERIT Score (Multi-Source)"].iloc[0]
+    honest_cv = df.loc[df["Scenario"] == "Honest", "ATS Score (CV Only)"].iloc[0]
+    df["Delta vs Honest (Full)"] = (df["MERIT Score (Multi-Source)"] - honest_full).round(1)
+    df["Delta vs Honest (CV Only)"] = (df["ATS Score (CV Only)"] - honest_cv).round(1)
     output_path = os.path.join(current_dir, "output/multi_source_adversarial_matrix.csv")
     df.to_csv(output_path, index=False)
-    
+
     print("\n--- Adversarial Benchmark Results ---")
     print(df.to_string(index=False))
     print(f"\nResults saved to {output_path}")

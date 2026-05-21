@@ -1,13 +1,374 @@
 \section{Fairness, Security \& Computational Rigour}
 \label{sec:fairness-computational-rigour}
 
-This section evaluates the system's ethical safeguards, robustness against fraudulent or manipulative inputs, and its performance and scalability under heavy production workloads.
+The previous sections covered the accuracy of MERIT, its fusion logic, explainability and also it's alignment with human experts.
+We now move on to the last stage of our evaluation by testing the fairness, security against adversarial inputs and computational 
+scalability of MERIT. Refer to Appendix~\ref{appendix:fairness-scalability-charts} for 
+and \ref{appendix:bias-anonymisation-charts} for the charts associated with this section.
 
-\subsection{TODO: Bias Mitigation \& Anonymisation Efficacy}
-TODO: Provide quantitative and qualitative proof that pre-scoring anonymisation in ``Blind Screening Mode'' successfully eliminates demographic bias and demographic correlation.
+\subsection{Study 15: Bias Mitigation \& Anonymisation Efficacy}
+\label{subsec:bias-mitigation-efficacy}
+
+The previous sections established that MERIT is able to accurately rank candidates based on their CV and public-repository evidence.
+It is also able to explain its decisions, and align with human experts. We now move on to the fairness of MERIT, by testing 
+it's ability to mitigate bias and anonymise candidate data. In this study (\texttt{15-bias\_anonymisation\_audit/}), we will be testing 
+the efficacy of Blind Mode, a UI feature which redacts PII and other sensitive information from the candidate's data. Blind Mode
+also standardises the layout of the candidate's data, including the CV to ensure a fair comparison between candidates, devoid
+of any visual bias.
+
+The aim of this study is to test whether Blind Mode on MERIT's per-candidate Intelligence Report popup reduces the reliance
+on visible proxy markers, compared to the default presentation that exposes the candidate's CV and PII. Evaluators did
+not see the four-candidate ranking overlay (closing the popup would have revealed it). They did still see each candidate's match score and 
+Glass-Box breakdown in the popup. We use a between-subjects design so each evaluator only sees one UI condition and is not affected by 
+an earlier visible review of the same people. Two hypotheses guide the pilot:
+
+\begin{itemize}
+    \item \textbf{H1 (Proxy-gap compression):} The shortlist-rate gap between prestige-high and prestige-mid/low proxy groups 
+    will be smaller in the Blind arm than in the Visible arm.
+    \item \textbf{H2 (Title and layout debiasing):} Candidates penalised by intern titles, noisy parsing, or role-skewed visible 
+    layout (e.g. Vincent) will have higher shortlist rates in the Blind arm, with MERIT scores held constant.
+\end{itemize}
+
+
+\subsubsection{Experimental protocol}
+In our experiment, we have four recruiters ($r1$, $r2$, $r3$, $r4$) and four peer evaluators ($p1$, $p2$, $p3$, $p4$). 
+The participants in this study were in a different panel from Study~14, so they have no prior participation, or interaction with
+MERIT. Evaluators were assigned in balanced blocks to ensure a fair comparison (2 recruiters and 2 peers per block).
+
+\begin{itemize}
+    \item \textbf{Block 1: Visible arm} ($n = 4$, B1 $\in$ \{\textbf{R1, R2, P1, P2}\}): Intelligence Report popup with Blind Mode 
+    \textbf{off} (names, employers, institutions, titles, standard layout).
+    \item \textbf{Block 2: Blind arm} ($n = 4$, B2 $\in$ \{\textbf{R3, R4, P3, P4}\}): same popup with Blind Mode \textbf{on by default} 
+    (candidate identifiers, redacted institutions with tier retained, neutralised skill layout. 
+    Section~\ref{sec:bias-mitigation-safeguards}).
+\end{itemize}
+
+For fairness, all participants reviewed the same four profiles in a fixed order against the Intern Backend Engineer JD from 
+Study~07. We only present recruiters with the per-candidate Intelligence Report popup, ensuring that the ranking overlay 
+is not visible to them. Within the popup, however, each candidate's MERIT match score and Glass-Box skill breakdown remained 
+visible in both arms. This is a constraint of the product, rather than an intentional protocol choice. After viewing this popup, 
+evaluators were prompted to record their decision (Shortlist/Reject), confidence (1--5), and a brief justification.
+No multi-source evidence was presented to the participants, and the scores were identical across arms, in other words, the engine
+was never changed. No evaluator saw both Visible and Blind UI on the same candidates.
+
+\paragraph{Design rationale.}
+This protocol aims to test the blind redaction on singly-profile reviews, disallowing them from seeing that 
+candidate's rank in the batch. Post-hoc analysis does compare the human shortlist rates against the MERIT ranks, 
+but those ranks were not displayed during the session. We would not allow the evaluators to view the 
+cohort rankings to avoid potential bias or memory effects. The between-subjects design removes the effect of 
+visible-then-blind memory on the same evaluator. We have that $n = 4$ per arm due to the limited number of participants,
+this increases the variance of the results, but we are still able to draw relatively reliable conclusions. Results are directional only.
+
+\subsubsection{Cohort design}
+Synthetic candidates were selected from Studies~07 and~08, with no overlap with the Study~14 set 
+(Moinecha Ramos-Horta, Yusuf Nilsson, Robert Todd, Aaron Mohammed):
+\begin{itemize}
+    \item \textbf{Aisling Hunt} (Study~07) --- junior data scientist, UC Berkeley, feminine name and gendered 
+    extracurricular signals on the visible CV.
+    \item \textbf{Vincent Germain} (Study~08) --- intern backend engineer, human rank~1 in Study~08 but intern title 
+    and corrupted PDF header on the visible view.
+    \item \textbf{Riko Al-Tayer} (Study~08) --- senior engineer, Cambridge/Imperial/Stripe pedigree (prestige-halo 
+    risk, overqualified for an intern JD).
+    \item \textbf{Jude Washington} (Study~07) --- junior iOS developer, Berkeley education but unknown employers 
+    (TechFlow, Momentum), and a mobile-first visible layout.
+\end{itemize}
+
+As expected, MERIT Full scores are unchanged by Blind Mode (UI-only redaction): Riko (60.9\%) $>$ Jude (39.9\%) $>$ Aisling (36.7\%) $>$ Vincent (31.1\%).
+
+\subsubsection{Quantitative results}
+Table~\ref{tab:bias-audit-summary} reports how often each candidate was shortlisted in each arm ($n = 4$ evaluators per arm). 
+Figure~\ref{fig:bias-shortlist-rates} and Figure~\ref{fig:bias-blind-uplift} (Appendix~\ref{appendix:bias-anonymisation-charts}) 
+plot the same data. Table~\ref{tab:bias-disparity-metrics} summarises the prestige proxy gap used for H1.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Blind Mode audit summary (Study~15, between-subjects: $n = 4$ per UI arm, 4 candidates). Rates are the 
+    fraction of evaluators in that arm who shortlisted the profile.}
+    \label{tab:bias-audit-summary}
+    \vspace{1.5ex}
+    \small
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{l|c|c|c|c}
+            \hline
+            \textbf{Candidate} & \textbf{MERIT (\%)} & \textbf{Visible arm (\%)} & \textbf{Blind arm (\%)} & \textbf{$\Delta$ (pp)} \\ \hline
+            Riko Al-Tayer      & 60.9 & 100.0 & 75.0 & $-$25.0 \\
+            Aisling Hunt       & 36.7 & 25.0  & 75.0 & +50.0 \\
+            Vincent Germain    & 31.1 & 0.0   & 75.0 & +75.0 \\
+            Jude Washington    & 39.9 & 25.0  & 50.0 & +25.0 \\ \hline
+        \end{tabular}%
+    }
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Aggregate disparity metrics (Study~15, between-subjects). Prestige-high: Riko and Aisling; prestige-mid/low: Vincent and Jude.}
+    \label{tab:bias-disparity-metrics}
+    \vspace{1.5ex}
+    \small
+    \begin{tabular}{l|c|c}
+        \hline
+        \textbf{Metric} & \textbf{Visible arm} & \textbf{Blind arm} \\ \hline
+        Evaluators (recruiters / peers) & 2 / 2 & 2 / 2 \\
+        Mean shortlist rate --- prestige-high group (\%) & 62.5 & 75.0 \\
+        Mean shortlist rate --- prestige-mid/low group (\%) & 12.5 & 62.5 \\
+        Prestige gap (high minus mid/low, pp) & 50.0 & 12.5 \\ \hline
+    \end{tabular}
+\end{table}
+
+\paragraph{Visible arm ($n = 4$).}
+Riko was shortlisted by all four evaluators (100\%). Vincent received no shortlists (0\%): recruiters cited his intern title, 
+short tenure, and a corrupted PDF header on the visible CV. Aisling and Jude each received one shortlist (25\%). In this arm, 
+decisions clearly followed visible prestige cues (university names, employer logos) and job titles more than backend-intern fit.
+
+\paragraph{Blind arm ($n = 4$).}
+\textbf{H1} is supported in direction: the prestige gap fell from 50~pp to 12.5~pp (Table~\ref{tab:bias-disparity-metrics}), 
+mainly because Vincent (0\% $\rightarrow$ 75\%) and Aisling (25\% $\rightarrow$ 75\%) were shortlisted far more often. 
+\textbf{H2} is strongest for Vincent and Aisling---the profiles most penalised by visible layout and titles. Riko dropped to 
+75\% (3/4): one recruiter rejected him as overqualified for an intern role even though he had the highest MERIT score. Jude 
+rose to 50\% (2/4) once employers were hidden and skill bullets were easier to read. Blind Mode did not make everyone agree 
+with MERIT's ordering; it changed \emph{who} got a fair first look when names and schools were removed.
+
+\subsubsection{Qualitative themes}
+Facilitator notes (\texttt{responses.txt}) match the table. In the visible arm, evaluators mentioned firm logos, school names, and 
+``intern'' labels. In the blind arm, they referred to skill lists and whether the person fit the intern JD. Match scores and 
+breakdowns were always shown in the popup, so recruiters could still lean on MERIT's number. We cannot claim they reviewed 
+in isolation from the engine. The four-candidate ranking overlay was never shown.
+
+\subsubsection{Limitations}
+Due to the small sample size, we cannot draw any statistical conclusions from the data. We can only observe the trends and 
+direction of the results. We also cannot rule out the possibility that the evaluators were influenced by the visible scores and 
+breakdowns, which would bias the results. Shortlist rates can only move in steps of 25\% because each arm only had four voters,
+and MERIT scores were always visible in the popup and could act as an underlying anchor.
+
+\subsubsection{Study 15 takeaway}
+Blind Mode is useful as a first-pass safeguard, it reduces obvious proxy bias in this pilot and helps profiles like 
+Vincent get considered when titles and formatting had put them at a disadvantage. It does not replace Study~14's Glass-Box 
+checks, and it is not proof of demographic fairness.
 
 \subsection{Study 06: Adversarial Stress Testing}
-TODO: Detail the system's resilience against White-Text CV exploits, ChatGPT keyword-stuffing embellishments, and contradictory signal edge cases (e.g., silent enterprise developers). (Reference Study 06)
+\label{subsec:study-06-adversarial}
+
+This study provides a small-scale evaluation of MERIT's reaction to a base candide that has been duplicated with 
+different pertubations to simulate different real-world scenarios and adversarial attacks. All candidates in this test are 
+a copy of the same base candidate, \textbf{Honest Candidate}, and the pertubated candidate's name is often derived from
+the scenario or attack they represent. \textbf{Honest Candidate} is a junior software engineer with a strong CV and a fair 
+match percentage of 49.8\%. We have the following scenarios:
+\begin{itemize}
+    \item \textbf{Ghost}: A candidate that has keyword stuffed their public-repository to appear more skilled than they are.
+    \item \textbf{Fraud}: A candidate that has inflated their skills to appear more skilled than they are.
+    \item \textbf{Stale}: A candidate that has updated their CV to appear more skilled than they are, but their public-repository evidence is still outdated.
+    \item \textbf{Gamer}: A candidate that has manipulated their CV and public-repository to appear more actively engaged in particular metrics.
+    \item \textbf{Squatter}: A candidate that has squat the name of another candidate to appear more skilled than they are. 
+    In this case, the candidate was caught by MERIT's Integrity Layer.
+    \item \textbf{Smart Squatter}: A candidate that has injected the name of another candidate to appear more skilled than they are.
+    In this case, the candidate was able to bypass the Integrity Layer by finding an appropriate name that would pass the identity audit,
+    bypassing the fuzzy name-match. Note that this is a rare scenario in the real-world.
+    \item \textbf{Shadow}: A candidate that has no public-repository evidence to support their claims (as opposed to Ghost,
+    who mainly has contradictory evidence, but still has some evidence).
+    \item \textbf{Inflater}: A candidate that has inflated their repository metrics to appear more skilled than they are.
+\end{itemize}
+
+Each scenario is scored by both the CV-only and Full MERIT engines. 
+Results are exported to \texttt{output/multi\_source\_adversarial\_matrix.csv}. 
+Table~\ref{tab:adversarial-matrix} summarises the scores. 
+Figures~\ref{fig:adversarial-cv-vs-full} and~\ref{fig:adversarial-robustness} 
+(Appendix~\ref{appendix:fairness-scalability-charts}) compare CV-only versus 
+Full MERIT per scenario and report deviation from the honest baseline.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Adversarial robustness matrix (Study~06). All personas share the same \textbf{Honest Candidate} baseline (CV-only 29.6\%, Full 49.8\%). 
+    $\Delta_{\mathrm{honest\_cv}}$ is each scenario's CV-only score minus the honest CV-only score (29.6\%). 
+    $\Delta_{\mathrm{fusion}}$ is Full MERIT minus CV-only on the same row. 
+    $\Delta_{\mathrm{honest\_fusion}}$ is each scenario's Full MERIT score minus the honest Full score (49.8\%). 
+    Figure~\ref{fig:adversarial-robustness} visualises $\Delta_{\mathrm{honest\_fusion}}$ with attack-level annotations.}
+    \label{tab:adversarial-matrix}
+    \vspace{1.5ex}
+    \footnotesize
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{l|l|c|c|c|c|c}
+            \hline
+            \textbf{Scenario} & \textbf{Persona} & \textbf{CV (\%)} & \textbf{$\Delta_{\mathrm{honest\_cv}}$} & \textbf{Full (\%)} & \textbf{$\Delta_{\mathrm{fusion}}$} & \textbf{$\Delta_{\mathrm{honest\_fusion}}$} \\ \hline
+            Honest            & Honest Candidate   & 29.6 & 0.0   & 49.8 & +20.2 & 0.0   \\
+            Ghost             & The Ghost          & 26.7 & $-$2.9  & 34.8 & +8.1  & $-$15.0 \\
+            Fraud             & The Fraud          & 44.3 & +14.7 & 47.4 & +3.1  & $-$2.4  \\
+            Stale             & Stale Candidate    & 35.0 & +5.4  & 37.9 & +2.9  & $-$11.9 \\
+            Gamer             & The Time Traveler  & 35.0 & +5.4  & 58.1 & +23.1 & +8.3  \\
+            Squatter          & Vince Vault        & 29.6 & 0.0   & 29.8 & +0.2  & $-$20.0 \\
+            Smart Squatter    & Rayan Akhtar Smith & 29.6 & 0.0   & 49.8 & +20.2 & 0.0   \\
+            Shadow            & The Shadow         & 29.6 & 0.0   & 30.4 & +0.8  & $-$19.4 \\
+            Inflater          & The Inflater       & 29.6 & 0.0   & 46.1 & +16.5 & $-$3.7  \\ \hline
+        \end{tabular}%
+    }
+\end{table}
+
+
+
+
+
+\textbf{Successful Behaviours.}
+The \textbf{Squatter} scenario is the key highlight of the study, showing that the Integrity Engine can successfully detect and penalise most
+forms of identity squatting. As shown, CV-only is unchanged, and fusion only adds an insignificant uplift of $+0.2$. As shown through ($\Delta_{\mathrm{honest\_fusion}}$),
+There is a $20$ point difference between two identical candidates, highlighting that a candidate's score can be significantly impacted by MERIT if they attempt to game 
+the system. Since both candidates have the same CV-only score, the difference is solely due to the Integrity Engine.
+
+Another successful response to a  scenario is the \textbf{Stale} scenario, in which a candidate attempts to game the system by updating their CV to appear more 
+skilled than they are, but their public-repository evidence is still outdated. As shown, CV-only is unchanged, and fusion only adds an insignificant uplift of $+2.9$. 
+Relative to the honest candidate, the score is reduced by $-11.9$ points, highlighting that outdated skills are not fully rewarded once GitHub is included.
+In this case, it is important to note that they are not penalised, but rather that the effects of Bayesian Fusion update the Beta Distribution to reflect the lower
+signal strength from GitHub.
+
+\textbf{Ghost} is also another response that we believe to be successful, in which a candidate attempts to game the system by keyword stuffing their CV 
+while also providing a public-repository that contradicts their claims. As shown, CV-only partialy penalised due to the keyword-stuffing. What is more important
+lies in the $\Delta_{\mathrm{honest\_fusion}}$ score, which is $-15.0$. This is due to the Bayesian Fusion updating the Beta Distribution to reflect the lower
+signal strength from GitHub as they are unable to provide evidence of their skills.
+
+\textbf{Partial mitigations.}
+An example of a partially successful instance is the \textbf{Fraud} scenario, in which a candidate successfully inflates their CV-only score through false claims,
+while providing repository ecidence that contradicts this. Unlike \textbf{Ghost}, the candidate overhauls their CV to appear more skilled than they are, rather than
+simply keyword stuffing their CV. As shown, CV-only is increased by $+14.7$ points. When it comes to the Bayesian Fusion, the score is increased by $+3.1$ points.
+This is due to the Bayesian Fusion updating the Beta Distribution to reflect the low signal strength from the candidate's GitHub profile.
+
+\textbf{Documented failure modes.}
+The bigget failure with the Integrity Engine, namely, the \textbf{Smart Squatter} scenario. In this case, the candidate was able to bypass the integrity engine by
+finding a GitHub portfolio that matches the candidate's name, is able to pass the fuzzy name-match, and is able to score a high score when evaluated against that
+specific JD. This is a rare scenario in the real-world, but it is important to note that it is possible.
+
+Another impractical failure scenario is the \textbf{Gamer} scenario, in which a candidate attempts to game the system through the manipulation of public-repository metrics.
+In this scenario, the candidate successfully achieves a high GitHub score ($\Delta_{\mathrm{fusion}} = +23.1$). In this case, the candidate was able to successfully trick 
+the system into thinking that they were recently active in particular metrics required for the role. This highlights a critical flaw in the way we calcualte the year to 
+project temporal skill decay.
+
+
+\subsubsection{Study 06 takeaway}
+The integrity engine is able to detect and penalise most forms of realistic adversarial attacks, such as keyword stuffing, identity squatting, and repository gaming.
+Note that the majority of failure modes are edge-cases that take significant effort to achieve, and are not expected to be a major concern in the real-world.
+For example, lets consider the \textbf{Smart Squatter} scenario. For a single role, lets assume the malicious candidate wishes to squat a GitHub portfolio. First,
+they would need to find portfolios that would likely score high on MERIT, which is a relatively trivial task, but is still considered a significant effort.
+From here, the actor would need to find a name that is close enough to bypass the fuzzy name-match, this is likely not a guaranteed success due to the rarity of
+full names that match. This effort would technically work, but in the real-world, where a candidate applies to a vast array of jobs with different metrics, 
+this would be impractical. In our example, we consider GitHub portfolios, but this identity squatting can be applied to other data sources, such as LinkedIn as well.
 
 \subsection{Studies 02 \& 03: Computational Scalability \& Performance Benchmarks}
-TODO: Present the Big-O complexity analysis and latency/memory graphs for processing candidate batches ranging from 1 to 50 concurrent profiles. (Reference Studies 02 and 03)
+\label{subsec:studies-02-03-scalability}
+The next two studies (Study~02 and Study~03) focus on the performance of MERIT, in terms of both runtime and spacetime complexities for a batch of 
+$N \in \{10, 50, 100, 200, 500\}$ candidates. We will benchmark these against Traditional ATS, Modern AI ATS, and MERIT. To truly measure the differences
+in runtime and spacetime, we separate MERIT into three configurations: CV-Only, Full multi-source, and Full with Shapley explainability. Study~02
+initialises each engine once, and records the wall-clock latency for an entire batch. Study~03 on the other hand, measures memory in a fresh subprocess per
+engine (static load) and per (engine, $N$) batch size. This ensures that RSS is never affected by other engines resident in the same process, at the cost 
+of a longer benchmark run. Static figures are RSS growth from engine initialisation through one warmup score.
+
+Benchmarks were executed in a single run on Windows~11 (AMD Ryzen~7 7800X3D, AMD Radeon RX~7900~XT, Python~3.11.9). Scoring is CPU-bound and does not use 
+GPU acceleration. Results measure the scoring engine only. It does not account for PDF ingestion or network I/O.
+
+
+\subsubsection{Time complexity and latency (Study 02)}
+All engines run in $O(N)$ time complexity, with each additional candidate adding roughly the same amount of work, however, with different constant factors.
+Table~\ref{tab:runtime-results} and Figure~\ref{fig:runtime-complexity} summarise these results. For graphical
+representations of the data, please refer to Appendix~\ref{appendix:fairness-scalability-charts}.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Batch ranking latency (Study~02). Wall-clock seconds to score an entire cohort.}
+    \label{tab:runtime-results}
+    \vspace{1.5ex}
+    \small
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{r|c|c|c|c|c}
+            \hline
+            \textbf{$N$} & \textbf{Traditional ATS (s)} & \textbf{Modern AI ATS (s)} & \textbf{MERIT CV-Only (s)} & \textbf{MERIT Full (s)} & \textbf{MERIT Explainable (s)} \\ \hline
+            10  & 0.0035  & 4.50   & 0.095 & 0.107 & 0.528 \\
+            50  & 0.0127  & 21.86  & 0.471 & 0.486 & 2.678 \\
+            100 & 0.0231  & 43.70  & 0.916 & 0.983 & 5.521 \\
+            200 & 0.0489  & 88.05  & 1.797 & 1.976 & 10.92 \\
+            500 & 0.1059  & 219.29 & 4.579 & 4.808 & 26.79 \\ \hline
+        \end{tabular}%
+    }
+\end{table}
+
+At the largest batch size ($N = 500$), we can observe that Modern AI ATS requires $\approx$219.3 seconds to score the batch,
+meanwhile MERIT Full with Shapley explainability requires $\approx$26.8 seconds to score the batch. This means that MERIT, even 
+with the explainability layer, runs $\approx 8.18$ times faster than Modern AI ATS at this scale. It is important to note the overhead
+of the explainability layer too, which is $\approx 5.57$ times slower than MERIT Full (with no explainability). This result is to be expected
+due to the overhead of the shapley value computations. Currently with $3$ sources, we need to compute $2^3 = 8$ coalitions, which is a relatively small number.
+However, as we add more sources, it is important to note that this approximate slowdown will increase. More specifically, for $N$ sources, we need to compute $2^N$ coalitions, 
+which is a factorial increase in the number of computations. This is a critical limitation of the current implementation, and is a topic for future work.
+Another key observation is the difference in runtime between MERIT CV-Only and MERIT Full. With a batch of 500, we only see a $0.229$ second difference, making
+the effects of multi-source fusion relatively minimal.
+
+
+\subsubsection{Space complexity and memory footprint (Study 03)}
+Study~03 separates \textbf{static engine footprint} (model and interpreter load at initialisation) from 
+\textbf{operational batch overhead} (incremental RSS growth while scoring a batch, after garbage collection). 
+Table~\ref{tab:engine-load} and Table~\ref{tab:spacetime-batch} summarise \texttt{output/engine\_load\_costs.csv} and 
+\texttt{output/spacetime\_results.csv}; Figure~\ref{fig:spacetime-composite} (Appendix~\ref{appendix:fairness-scalability-charts}) visualises both.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Static engine memory footprint (Study~03). Per-engine RSS 
+    delta from initialisation through one warmup score, each measured in a 
+    fresh subprocess (MB).}
+    \label{tab:engine-load}
+    \vspace{1.5ex}
+    \small
+    \begin{tabular}{l|c}
+        \hline
+        \textbf{Engine} & \textbf{Static Load (MB)} \\ \hline
+        Traditional ATS   & 0.10 \\
+        Modern AI ATS     & 396.2 \\
+        MERIT CV-Only     & 366.3 \\
+        MERIT Full        & 367.1 \\
+        MERIT Explainable & 367.2 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Incremental batch memory overhead (Study~03). Per-(engine, $N$) RSS growth during batch 
+    scoring in a fresh subprocess, measured after \texttt{gc.collect()} with the engine already 
+    loaded (MB). Same engine ordering as Table~\ref{tab:runtime-results}.}
+    \label{tab:spacetime-batch}
+    \vspace{1.5ex}
+    \small
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{r|c|c|c|c|c}
+            \hline
+            \textbf{$N$} & \textbf{Traditional ATS (MB)} & \textbf{Modern AI ATS (MB)} & \textbf{MERIT CV-Only (MB)} & \textbf{MERIT Full (MB)} & \textbf{MERIT Explainable (MB)} \\ \hline
+            10  & 0.01 & 114.3 & 54.4 & 54.5 & 53.5 \\
+            50  & 0.02 & 115.8 & 56.6 & 56.8 & 56.5 \\
+            100 & 0.03 & 116.6 & 58.7 & 58.8 & 59.3 \\
+            200 & 0.04 & 120.1 & 64.1 & 64.1 & 64.5 \\
+            500 & 0.10 & 120.6 & 73.5 & 74.9 & 76.2 \\ \hline
+        \end{tabular}%
+    }
+\end{table}
+
+Under isolated subprocess measurement, static load is negligible for Traditional ATS (\textbf{0.1~MB}) but dominated 
+by transformer-backed stacks for Modern AI ATS (\textbf{396.2~MB}) and MERIT (\textbf{366--367~MB}), reflecting SBERT 
+and backend registry materialisation on the warmup score---still modest in absolute terms for a desktop deployment. 
+At batch scale, Traditional ATS remains near zero; Modern AI ATS holds a near-flat incremental footprint 
+($\approx$\textbf{114--121~MB}) from embedding workspaces. MERIT configurations scale roughly linearly with cohort size 
+(\textbf{54~MB} at $N = 10$ to \textbf{76~MB} at $N = 500$) because the harness retains per-candidate audit payloads; 
+Explainable is highest at large $N$. Multi-source fusion adds little RSS over CV-Only, however, the explainability layer is the 
+main memory premium within MERIT.
+
+
+\subsubsection{Studies 02 \& 03 takeaway}
+Batch latency can be observed to scale linearly with $N$ for all engines, where $N$ refers to the number of candidates in a batch.
+MERIT Full scores the largest measured batch size ($N = 500$) in under $5$ seconds, whereas Modern AI ATS requires $\approx$219 seconds to score the same batch.
+Introducing Shapley values introduces a $\approx 5.6 \times$ runtime increase with three sources ($2^3 = 8$ coalitions), this is due to the overhead of the
+shapley value computations. The exponential cost is in the number of evidence sources, not the cohort size. The biggest risk to merit is if many data sources
+are introduced. In a real-world context, this isn't a significant concern, but it is important to note that this could become a potential risk if the recruitment
+process decides to introduce more data sources to the screening process. The memory overhead of MERIT is shown to be quite negligable after accounting for this, 
+as through the difference in RSS growth between MERIT Explainable between $N = 10$ and $N = 500$ is only $22.7MB$. This is a relatively small amount of memory, 
+and is likely to be negligible in the context of a production system.
+
+\medskip
+\noindent
+The purpose of this section is not to re-validate the mechanisms of MERIT, but to instead understand whether the system is mature enough to be deployed in 
+a profuction environment, under proxy biases, manipulation and scale. Study~15 helped to show that MERIT is able to mitigate bias and anonymise candidate data,
+Study~06 later showed that we can block most forms of naive attempts to game both previously existing ATS systems, as well as MERIT itself with documented
+residual gaming risks. Studies~02 and ~03 both highlighted that MERIT is both spacetime and runtime efficient, with explainability being the main memory premium,
+and Shapley values being the main runtime premium. MERIT is best positioned as an auditable screening assistant that is fast enough for batch triage,
+but also transparent enough for recruiter override. It is also anonymisable enough to reduce some first-pass proxy noise, serving as a fair and responsible system.
+MERIT should not be considered as a fully autonomous or fairness-certified hiring authority, but rather as a tool to aid the recruitment process. 

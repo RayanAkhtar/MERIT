@@ -1,4 +1,5 @@
 \section{Bias Mitigation \& Safeguards}
+\label{sec:bias-mitigation-safeguards}
 
 To ensure accurate candidate evaluation while ensuring the integrity of the screening process,
 MERIT incorporates a range of safeguards. These mechanisms are designed to mitigate
@@ -61,6 +62,7 @@ While the backend focuses on technical integrity, the frontend addresses human-c
 Personally Identifiable Information (PII) refers to information that can be used to identify an individual, with common examples including names and
 email addresses. As explored in the background section, such markers can lead to unconscious biases regarding a candidate's race, gender, or religion.
 When active, MERIT redacts all PII alongside proxy variables for protected characteristics, such as profile pictures and institutional names. 
+The per-candidate \textbf{match score and Glass-Box skill breakdown remain visible}: Blind Mode does not suppress algorithmic outputs, so recruiters always see MERIT's quantitative guidance during popup review (Study~15, Section~\ref{subsec:bias-mitigation-efficacy}).
 
 This is performed through a custom React component \texttt{renderRedactedText} which wraps sensitive strings. More specifically, our system anonymises:
 \begin{itemize}

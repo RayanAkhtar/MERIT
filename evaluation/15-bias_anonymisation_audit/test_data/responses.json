@@ -1,0 +1,259 @@
+{
+  "study": "15-bias_anonymisation_audit",
+  "design": "Between-subjects on MERIT Intelligence Report popup only (cohort ranking overlay NOT shown). Per-candidate MERIT score + skill breakdown always visible in popup (no scoreless mode). Visible vs Blind default. N=8 (4 recruiters, 4 peers); 4 per condition. Same four profiles, Intern Backend JD (Study 07). Recruiters distinct from Study 14.",
+  "facilitator_notes_file": "test_data/responses.txt",
+  "session_date": "2026-05-18",
+  "evaluators": [
+    {
+      "id": "R1",
+      "role": "Technical Recruiter (Professional)",
+      "ui_condition": "visible",
+      "experience_years": 4,
+      "candidate_evaluations": {
+        "aisling_hunt": {
+          "decision": "Reject",
+          "confidence": 3,
+          "justification": "Junior DS lane vs intern backend JD; Berkeley/Stripe strong but wrong track on visible popup."
+        },
+        "vincent_germain": {
+          "decision": "Reject",
+          "confidence": 4,
+          "justification": "Intern title and mangled PDF header; filtered before deep read despite mid MERIT score."
+        },
+        "riko_altayer": {
+          "decision": "Shortlist",
+          "confidence": 5,
+          "justification": "Top MERIT score on popup plus Cambridge/Imperial/Stripe—fast-track on visible report."
+        },
+        "jude_washington": {
+          "decision": "Reject",
+          "confidence": 3,
+          "justification": "iOS-first profile and unknown employers; ranked above Vincent on MERIT but not intern-backend fit."
+        }
+      }
+    },
+    {
+      "id": "R2",
+      "role": "Technical Recruiter (Professional)",
+      "ui_condition": "visible",
+      "experience_years": 6,
+      "candidate_evaluations": {
+        "aisling_hunt": {
+          "decision": "Reject",
+          "confidence": 4,
+          "justification": "WiDS extracurricular and DS stack; would not submit to HM for this req."
+        },
+        "vincent_germain": {
+          "decision": "Reject",
+          "confidence": 5,
+          "justification": "Shopify intern—client needs 2+ years FTE; lowest MERIT score on popup confirms deprioritise."
+        },
+        "riko_altayer": {
+          "decision": "Shortlist",
+          "confidence": 5,
+          "justification": "Pedigree and senior systems depth; obvious shortlist on visible Intelligence Report popup."
+        },
+        "jude_washington": {
+          "decision": "Reject",
+          "confidence": 4,
+          "justification": "Mobile title and weak logo recognition on visible CV panel."
+        }
+      }
+    },
+    {
+      "id": "P1",
+      "role": "MEng Computing Student (Peer)",
+      "ui_condition": "visible",
+      "candidate_evaluations": {
+        "aisling_hunt": {
+          "decision": "Shortlist",
+          "confidence": 3,
+          "justification": "Strong projects on visible view; worried WiDS line looks like token shortlist."
+        },
+        "vincent_germain": {
+          "decision": "Reject",
+          "confidence": 3,
+          "justification": "Broken PDF name parse looked sloppy; lowest MERIT score on popup."
+        },
+        "riko_altayer": {
+          "decision": "Shortlist",
+          "confidence": 4,
+          "justification": "Elite CV and highest MERIT score on popup—clear shortlist."
+        },
+        "jude_washington": {
+          "decision": "Reject",
+          "confidence": 2,
+          "justification": "Quick scan: junior and off-role for backend intern posting."
+        }
+      }
+    },
+    {
+      "id": "P2",
+      "role": "MEng Computing Student (Peer)",
+      "ui_condition": "visible",
+      "candidate_evaluations": {
+        "aisling_hunt": {
+          "decision": "Reject",
+          "confidence": 3,
+          "justification": "Stats/ML tilt visible on CV; misaligned with Go/PostgreSQL intern JD."
+        },
+        "vincent_germain": {
+          "decision": "Reject",
+          "confidence": 3,
+          "justification": "Intern keyword plus lowest MERIT score on popup—auto filter."
+        },
+        "riko_altayer": {
+          "decision": "Shortlist",
+          "confidence": 5,
+          "justification": "Imperial + Cambridge impossible to ignore with MERIT at top."
+        },
+        "jude_washington": {
+          "decision": "Shortlist",
+          "confidence": 2,
+          "justification": "Gut shortlist on name pattern—flagged possible bias to facilitator."
+        }
+      }
+    },
+    {
+      "id": "R3",
+      "role": "Technical Recruiter (Professional)",
+      "ui_condition": "blind",
+      "experience_years": 5,
+      "candidate_evaluations": {
+        "aisling_hunt": {
+          "decision": "Shortlist",
+          "confidence": 4,
+          "justification": "Candidate #2: Python/SQL/Docker/Airflow read as transferable; mid MERIT score on popup but skills fit intern data/backend work."
+        },
+        "vincent_germain": {
+          "decision": "Shortlist",
+          "confidence": 4,
+          "justification": "Without intern label, Node/PostgreSQL/Shopify projects meet bar; MERIT underranks vs skills block."
+        },
+        "riko_altayer": {
+          "decision": "Reject",
+          "confidence": 4,
+          "justification": "Blind review: staff-level scope for INTERN req—overqualified despite highest MERIT score (Study 08 tension)."
+        },
+        "jude_washington": {
+          "decision": "Shortlist",
+          "confidence": 3,
+          "justification": "Neutral layout surfaces API coursework; shortlist for comparison though still borderline."
+        }
+      }
+    },
+    {
+      "id": "R4",
+      "role": "Technical Recruiter (Professional)",
+      "ui_condition": "blind",
+      "experience_years": 7,
+      "candidate_evaluations": {
+        "aisling_hunt": {
+          "decision": "Reject",
+          "confidence": 3,
+          "justification": "Blind extract still ML-heavy; would not advance for intern backend req."
+        },
+        "vincent_germain": {
+          "decision": "Shortlist",
+          "confidence": 4,
+          "justification": "Redacted Shopify/pg/docker credible; tenure still intern-appropriate once title hidden."
+        },
+        "riko_altayer": {
+          "decision": "Shortlist",
+          "confidence": 4,
+          "justification": "Still strongest systems depth on skills alone; keep for HM sanity-check even if overqualified."
+        },
+        "jude_washington": {
+          "decision": "Reject",
+          "confidence": 3,
+          "justification": "Blind popup still Swift-heavy; weakest backend evidence among four profiles."
+        }
+      }
+    },
+    {
+      "id": "P3",
+      "role": "MEng Computing Student (Peer)",
+      "ui_condition": "blind",
+      "candidate_evaluations": {
+        "aisling_hunt": {
+          "decision": "Shortlist",
+          "confidence": 4,
+          "justification": "Blind comparison easier without gendered extracurricular cues."
+        },
+        "vincent_germain": {
+          "decision": "Shortlist",
+          "confidence": 4,
+          "justification": "Structured blind skill block shows real intern backend work; MERIT score felt too low."
+        },
+        "riko_altayer": {
+          "decision": "Shortlist",
+          "confidence": 4,
+          "justification": "Still best raw systems fit on neutral cards."
+        },
+        "jude_washington": {
+          "decision": "Shortlist",
+          "confidence": 3,
+          "justification": "REST/API bullets clearer in blind MERIT view than on visible iOS layout."
+        }
+      }
+    },
+    {
+      "id": "P4",
+      "role": "MEng Computing Student (Peer)",
+      "ui_condition": "blind",
+      "candidate_evaluations": {
+        "aisling_hunt": {
+          "decision": "Shortlist",
+          "confidence": 4,
+          "justification": "Neutral layout—Python/SQL/docker stand out evenly."
+        },
+        "vincent_germain": {
+          "decision": "Reject",
+          "confidence": 3,
+          "justification": "Skills improved on paper but still lowest MERIT score among the four popups."
+        },
+        "riko_altayer": {
+          "decision": "Shortlist",
+          "confidence": 4,
+          "justification": "High MERIT and depth; less logo-driven but clearly strong."
+        },
+        "jude_washington": {
+          "decision": "Reject",
+          "confidence": 3,
+          "justification": "Forced bullet reread—still mostly SwiftUI, not enough BE."
+        }
+      }
+    }
+  ],
+  "candidate_metadata": {
+    "aisling_hunt": {
+      "display_name": "Aisling Hunt",
+      "source_study": "07-spearman_high_discrimination",
+      "proxy_seniority": "junior",
+      "proxy_prestige": "high",
+      "proxy_gender_marker": "feminine_name"
+    },
+    "vincent_germain": {
+      "display_name": "Vincent Germain",
+      "source_study": "08-spearman_seniority_bias_audit",
+      "proxy_seniority": "intern",
+      "proxy_prestige": "mid",
+      "proxy_gender_marker": "masculine_name"
+    },
+    "riko_altayer": {
+      "display_name": "Riko Al-Tayer",
+      "source_study": "08-spearman_seniority_bias_audit",
+      "proxy_seniority": "senior",
+      "proxy_prestige": "elite",
+      "proxy_gender_marker": "masculine_name"
+    },
+    "jude_washington": {
+      "display_name": "Jude Washington",
+      "source_study": "07-spearman_high_discrimination",
+      "proxy_seniority": "junior",
+      "proxy_prestige": "low",
+      "proxy_employer_brand": "unknown",
+      "proxy_gender_marker": "masculine_name"
+    }
+  }
+}
