@@ -1,3 +1,64 @@
 \section{Societal Impact}
+\label{sec:societal-impact}
 
-TODO: How tools like MERIT impact meritocracy, labor market dynamics, and the "Open-Source Bias" in professional evaluations.
+MERIT changes the perception of ``good evidence'', and it's namesake, MERIT, was an intentional reference to the concept of meritocracy.
+While this may be considered a positive outcome in some cases, it is important to note that it is a trade-off that is inherent in the design of MERIT.
+
+Relying less on CV polish and ATS-friendly formatting can help prevent candidates from being penalised for not having a perfect CV.
+However, it may also lead to a shift from keyword stuffing cvs, instead towards gaming an online portfolio. Candidates could introduce
+commit streaks, bloat repositories, and purposely bloating their activity metrics to appear more active. Alongside this, candidates who
+work primarily in private repositories (such as enterprise, finance and defence) can score lower than juniors with active public GitHub profiles,
+despite a clear difference in tenure. This is a trade-off that is inherent in the design of MERIT.
+
+MERIT does not `fix hiring' on its own. Fair outcomes depend on the employers keeping the human veto, they must not force GitHub portfolios
+as part of an application process. They must also monitor who gets rejected, and offer fair options for candidates without public work in 
+order to ensure that the system is fair.
+Table~\ref{tab:ethics-deployment-summary} summarises the main risks, what MERIT does about them, and what problems remain.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Deployment risks, MERIT mitigations, and what problems
+        remain.}
+    \label{tab:ethics-deployment-summary}
+    \small
+    \renewcommand{\arraystretch}{1.15}
+    \begin{tabularx}{\textwidth}{@{}%
+        >{\raggedright\arraybackslash\hsize=0.95\hsize}X
+        >{\raggedright\arraybackslash\hsize=1.15\hsize}X
+        >{\raggedright\arraybackslash\hsize=0.9\hsize}X @{}}
+        \hline
+        \textbf{Risk} & \textbf{What MERIT does} &
+            \textbf{What remains} \\
+        \hline
+        Rejecting people with no human review (Art.~22) &
+        Scores support recruiters, shortlist needs a person
+            (Sec.~\ref{sec:fairness-computational-rigour}) &
+        Illegal if fully automated \\
+        \hline
+        Bias from names, schools, titles &
+        Blind Mode, smaller prestige gap in Study~15 &
+        Scores still shown, tier labels kept \\
+        \hline
+        Users do not trust the system &
+        Glass-Box scores and Shapley breakdown &
+        Over-trusting scores, detail unused \\
+        \hline
+        Keyword stuffing on CVs &
+        Anti-stuffing, multiple data sources &
+        Gaming GitHub activity (Study~06) \\
+        \hline
+        Fake profiles / stolen GitHub &
+        Integrity checks, Study~14 caught fraud &
+        Rare smart squatting, name mismatches \\
+        \hline
+        Penalising private-sector work &
+        GitHub optional, CV still used &
+        ``Proprietary gap'' (Carl Corp) \\
+        \hline
+        LinkedIn scraping (prototype only) &
+        Apify, $\leq$50 consenting contacts
+            (Sec.~\ref{sec:data-privacy-gdpr}) &
+        Need licensed API in production \\
+        \hline
+    \end{tabularx}
+\end{table}
