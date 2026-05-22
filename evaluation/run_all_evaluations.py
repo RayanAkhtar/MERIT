@@ -1,17 +1,49 @@
-import subprocess
+"""
+Run all fifteen MERIT evaluation studies (01--15) in numerical order.
+
+Study 01 runs four comparative engines via run_all_studies.py.
+Studies 07--10 share prepare_spearman_data.py and sabotage_study_10.py prep steps.
+Study 13 expects corpus/ and hold-out JSON; build scripts run if the corpus is missing.
+"""
+from __future__ import annotations
+
 import os
+import subprocess
 import sys
 
-# Studies that stream stdout (long runs / many subprocesses — progress is useful).
-_STREAM_STUDIES = {
+# (folder_name, entry_script) — one entry per numbered study in the FYP report.
+STUDIES: list[tuple[str, str]] = [
+    ("01-comparative_study", "run_all_studies.py"),
+    ("02-runtime_study", "run_runtime.py"),
+    ("03-spacetime_study", "run_spacetime.py"),
+    ("04-ir_parser_test", "run_study.py"),
+    ("05-jd_parser_test", "run_study.py"),
+    ("06-adversarial_test", "run_study.py"),
+    ("07-spearman_high_discrimination", "run_study.py"),
+    ("08-spearman_seniority_bias_audit", "run_study.py"),
+    ("09-spearman_peer_competition", "run_study.py"),
+    ("10-spearman_signal_dissonance_failure_case", "run_study.py"),
+    ("11-shapley_verification", "run_study.py"),
+    ("12-conflict_resolution", "run_study.py"),
+    ("13-dynamic_tf_idf_recruiter_validation", "run_study.py"),
+    ("14-hci_trial", "run_study.py"),
+    ("15-bias_anonymisation_audit", "run_study.py"),
+]
+
+# Studies that stream stdout (long runs — progress is useful).
+_STREAM_STUDIES: dict[tuple[str, str], str] = {
     ("03-spacetime_study", "run_spacetime.py"): (
         "Study 03 uses one fresh Python process per engine and per (engine, N) pair "
         "(~35 subprocesses). Expect ~10–15 minutes."
     ),
 }
 
+SPEARMAN_PREP = ("prepare_spearman_data.py", "sabotage_study_10.py")
+STUDY_13_CORPUS = os.path.join("corpus", "corpus_descriptions.json")
+STUDY_13_BUILD = ("build_market_corpus.py", "build_test_dataset.py")
 
-def run_study(study_path: str, script_name: str):
+
+def run_script(study_path: str, script_name: str) -> None:
     study_name = os.path.basename(study_path)
     note = _STREAM_STUDIES.get((study_name, script_name))
     stream = note is not None
@@ -20,8 +52,8 @@ def run_study(study_path: str, script_name: str):
     if note:
         print(f"    {note}")
 
+    cmd = [sys.executable, script_name]
     try:
-        cmd = [sys.executable, script_name]
         if stream:
             subprocess.run(cmd, cwd=study_path, check=True)
         else:
@@ -35,77 +67,55 @@ def run_study(study_path: str, script_name: str):
             if result.stdout:
                 print(result.stdout)
     except subprocess.CalledProcessError as e:
-        print(f"Error running {script_name}:")
+        print(f"Error running {script_name} in {study_name}:")
         if stream:
             print(f"Exit code: {e.returncode}")
         elif e.stderr:
             print(e.stderr)
-
-def main():
-    root_dir = os.path.dirname(os.path.abspath(__file__))
-    
+        raise
 
 
-    study_01 = os.path.join(root_dir, "01-comparative_study")
-    run_study(study_01, "run_all_studies.py")
-    
-    study_02 = os.path.join(root_dir, "02-runtime_study")
-    run_study(study_02, "run_runtime.py")
-    
-
-    study_03 = os.path.join(root_dir, "03-spacetime_study")
-    run_study(study_03, "run_spacetime.py")
-
-    study_04 = os.path.join(root_dir, "04-ir_parser_test")
-    run_study(study_04, "run_study.py")
-
-    study_05 = os.path.join(root_dir, "05-jd_parser_test")
-    run_study(study_05, "run_study.py")
-
-    study_06 = os.path.join(root_dir, "06-adversarial_test")
-    run_study(study_06, "run_study.py")
+def _ensure_study_13_assets(study_path: str) -> None:
+    corpus_file = os.path.join(study_path, STUDY_13_CORPUS)
+    if os.path.isfile(corpus_file):
+        return
+    print("\n>>> Study 13: corpus missing — running build_market_corpus.py ...")
+    for script in STUDY_13_BUILD:
+        run_script(study_path, script)
 
 
-    # spearman studies (07-10)
-    print("\n" + "-"*40)
-    print("Preparing Spearman Test Data...")
-    subprocess.run([sys.executable, os.path.join(root_dir, "prepare_spearman_data.py")], check=True)
-    subprocess.run([sys.executable, os.path.join(root_dir, "sabotage_study_10.py")], check=True)
-
-    spearman_studies = [
-        "07-spearman_high_discrimination",
-        "08-spearman_seniority_bias_audit",
-        "09-spearman_peer_competition",
-        "10-spearman_signal_dissonance_failure_case"
-    ]
-
-    for study_name in spearman_studies:
-        study_path = os.path.join(root_dir, study_name)
-        run_study(study_path, "run_study.py")
-
-    # study 11: shapley verification
-    study_11 = os.path.join(root_dir, "11-shapley_verification")
-    run_study(study_11, "run_study.py")
-
-    # study 12: conflict resolution
-    study_12 = os.path.join(root_dir, "12-conflict_resolution")
-    run_study(study_12, "run_study.py")
-
-    # studies 14–15: HCI trial and bias / anonymisation audit
+def _run_spearman_prep(root_dir: str) -> None:
     print("\n" + "-" * 40)
-    print("HCI & fairness audits (Studies 14–15)...")
-    study_14 = os.path.join(root_dir, "14-hci_trial")
-    run_study(study_14, "run_study.py")
+    print("Preparing Spearman test data (Studies 07--10)...")
+    for script in SPEARMAN_PREP:
+        subprocess.run([sys.executable, os.path.join(root_dir, script)], check=True)
 
-    study_15 = os.path.join(root_dir, "15-bias_anonymisation_audit")
-    run_study(study_15, "run_study.py")
 
-    study_13 = os.path.join(root_dir, "13-dynamic_tf_idf_recruiter_validation")
-    run_study(study_13, "run_study.py")
+def main() -> None:
+    root_dir = os.path.dirname(os.path.abspath(__file__))
+    print("=" * 60)
+    print("MERIT evaluation suite — Studies 01--15")
+    print("=" * 60)
 
-    print("\n" + "="*60)
-    print("ALL EVALUATIONS COMPLETE")
-    print("="*60)
+    for folder, script in STUDIES:
+        study_path = os.path.join(root_dir, folder)
+        if not os.path.isdir(study_path):
+            raise FileNotFoundError(f"Missing study directory: {study_path}")
+        if not os.path.isfile(os.path.join(study_path, script)):
+            raise FileNotFoundError(f"Missing entry script {script} in {study_path}")
+
+        if folder == "07-spearman_high_discrimination":
+            _run_spearman_prep(root_dir)
+
+        if folder == "13-dynamic_tf_idf_recruiter_validation":
+            _ensure_study_13_assets(study_path)
+
+        run_script(study_path, script)
+
+    print("\n" + "=" * 60)
+    print("ALL EVALUATIONS COMPLETE (Studies 01--15)")
+    print("=" * 60)
+
 
 if __name__ == "__main__":
     main()
