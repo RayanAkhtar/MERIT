@@ -1,0 +1,49 @@
+{
+  "raw_text": "Prism Analytics\n\nStaff Data Engineer\n\nLOCATION\n\nSan Francisco, CA (Hybrid)\n\nTYPE\n\nFull-time\n\nCOMPENSATION\n\n$220,000 - $300,000 per year\n\nTECH STACK\n\nApache Spark\n\nApache Airflow\n\ndbt (data build tool)\n\nSnowflake\n\nPython\n\nSQL\n\nApache Kafka\n\nScala\n\nDocker & Kubernetes\n\nGit & CI/CD\n\nAbout Prism Analytics: Prism Analytics is a fast-growing data\ninfrastructure company that helps enterprises unlock the value of their\ndata through modern, scalable analytics platforms. Founded in 2018, we\nserve Fortune 500 companies across finance, healthcare, and e-\ncommerce, enabling data-driven decision-making at scale. Our platform\nprocesses petabytes of data daily and serves thousands of analysts and\ndata scientists globally.\n\nWe are seeking an exceptionally talented Staff Data Engineer with 8-\n12+ years of experience and a proven track record of technical\nleadership to join our Data Infrastructure team. In this role, you will\narchitect and lead the design of large-scale data systems supporting\nthousands of concurrent users, mentor a team of 4-6 engineers, and set\ntechnical standards across our data platform. You'll work on mission-\ncritical systems including our real-time streaming pipelines, data\nwarehouse optimization, and orchestration frameworks. This is an\nopportunity to influence data engineering practices organization-wide\nand directly impact how enterprises make data-driven decisions.\n\nRESPONSIBILITIES\n\nDesign, architect, and lead the implementation of enterprise-scale\ndata systems processing 50+ TB daily, making critical technical\ndecisions that impact the entire data infrastructure organization\n\nMentor and provide technical guidance to 4-6 data engineers,\nconducting code reviews, establishing best practices, and fostering a\nculture of technical excellence and innovation\n\nOwn the technical roadmap for the data orchestration layer (Airflow),\nleading cross-functional initiatives with analytics, platform, and\ninfrastructure teams to improve reliability, performance, and\ndeveloper experience\n\nArchitect and optimize our Snowflake data warehouse strategy,\nincluding schema design, partitioning strategies, and cost\noptimization initiatives resulting in 30%+ efficiency gains\n\nLead the design and implementation of real-time streaming solutions\nusing Apache Kafka and Spark Structured Streaming, handling high-\nvelocity data ingestion with sub-second latency requirements\n\nEstablish data quality frameworks and dbt best practices across the\norganization, including promotion of modular transformations,\ntesting strategies, and documentation standards\n\nTransform complex data into actionableinsights for enterprise intelligence\fConduct technical interviews and participate in hiring for the data\nengineering team, helping identify and attract top talent aligned with\nour technical vision\n\nDrive initiatives to improve system reliability, scalability, and\nobservability; own SLAs for critical data pipelines and drive post-\nincident analysis and prevention\n\nRepresent the data engineering team in architectural discussions,\nproviding thought leadership on emerging technologies and\n\nrecommending adoption of new tools (e.g., advanced SQL\noptimization, data governance)\n\nREQUIREMENTS\n\n8-12+ years of professional data engineering experience with\ndemonstrated progression to senior/lead roles involving significant\ntechnical responsibility and cross-team collaboration\n\nExpert-level proficiency in SQL and Python, with ability to optimize\ncomplex queries and write clean, maintainable production code\n\nDeep hands-on experience building and maintaining large-scale data\npipelines using Apache Spark, Apache Airflow, and modern data\nwarehousing solutions (Snowflake, BigQuery, or Redshift)\n\nProven experience with real-time data systems including Kafka,\nmessage queues, and stream processing frameworks\n\nStrong background in data modeling, dimensional design, and\noptimization of analytical databases; experience with dbt or similar\ntransformation frameworks\n\nDemonstrated technical leadership: mentoring engineers, setting\narchitectural standards, and driving adoption of best practices across\nteams\n\nExperience working on distributed systems at scale; strong\nunderstanding of data consistency, fault tolerance, and system design\ntrade-offs\n\nBONUS POINTS\n\nExperience with data governance, metadata management, and data\nlineage tools\n\nBackground in cloud infrastructure (AWS, GCP, or Azure) and\ninfrastructure-as-code practices\n\nTrack record of leading technical projects from conception through\nproduction deployment\n\nKnowledge of advanced analytics and machine learning data\npipelines\n\n\fContributions to open-source data engineering projects (Airflow, dbt,\nSpark, etc.)\n\nBENEFITS\n\nHighly competitive compensation package with generous equity\ngrants and bonus structure (15-20% annual bonus)\n\nComprehensive health, dental, and vision insurance with 100%\npremium coverage for employees\n\nUnlimited PTO policy with a minimum of 4 weeks encouraged\nannually, plus 10 company holidays\n\nProfessional development budget of $5,000 per year for conferences,\ncourses, and certifications\n\nRemote-first culture with option for 2-3 days per week in office for\ncollaboration and team building\n\nParental leave policy: 16 weeks for primary caregivers, 10 weeks for\nsecondary caregivers\n\nMental health and wellness programs including subsidized gym\nmembership and meditation app access\n\nCommuter benefits and annual laptop upgrade for all engineers\n\nAPPLY\n\nTo apply, please submit your resume, a cover letter highlighting your\nexperience with large-scale data systems and technical leadership, and a\n\nportfolio or GitHub link demonstrating your work. Apply directly\nthrough our careers page at prism-analytics.com/careers or email\ncareers@prism-analytics.com with the subject line 'Staff Data Engineer\nApplication'. We review applications on a rolling basis.\n\n\f",
+  "job_title": "Staff Data Engineer",
+  "company": "Prism Analytics",
+  "location": null,
+  "employment_type": "Full-time",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "AWS",
+    "Docker",
+    "Kubernetes",
+    "azure",
+    "processing"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Experience with data governance, metadata management, and data",
+    "lineage tools",
+    "Background in cloud infrastructure (AWS, GCP, or Azure) and",
+    "infrastructure-as-code practices",
+    "Track record of leading technical projects from conception through",
+    "production deployment",
+    "Knowledge of advanced analytics and machine learning data",
+    "pipelines",
+    "Contributions to open-source data engineering projects (Airflow, dbt,",
+    "Spark, etc.)",
+    "Comprehensive health, dental, and vision insurance with 100%",
+    "premium coverage for employees",
+    "Unlimited PTO policy with a minimum of 4 weeks encouraged",
+    "annually, plus 10 company holidays",
+    "Professional development budget of $5,000 per year for conferences,",
+    "courses, and certifications",
+    "Remote-first culture with option for 2-3 days per week in office for",
+    "collaboration and team building",
+    "Parental leave policy: 16 weeks for primary caregivers, 10 weeks for",
+    "secondary caregivers",
+    "Mental health and wellness programs including subsidized gym",
+    "membership and meditation app access",
+    "Commuter benefits and annual laptop upgrade for all engineers"
+  ],
+  "salary": "$220,000 - $300,000 per year",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\056_staff_data-engineer.pdf",
+  "languages": [
+    "Python",
+    "SQL",
+    "scala"
+  ],
+  "education_required": []
+}

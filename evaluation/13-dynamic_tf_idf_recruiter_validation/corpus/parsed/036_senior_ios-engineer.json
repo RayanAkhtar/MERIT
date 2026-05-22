@@ -1,0 +1,28 @@
+{
+  "raw_text": "Prism Labs\n\nLOCATION\n\nSan Francisco, CA\n\nTYPE\n\nFull-time\n\nCOMPENSATION\n\n$165,000 - $215,000 USD\n\nTECH STACK\n\nSwift\n\nSwiftUI\n\nUIKit\n\nXcode\n\nCombine\n\nCore Data\n\nXCTest\n\nInstruments\n\nApp Store Connect\n\nGitHub\n\nSenior iOS Engineer\n\nAbout Prism Labs: Prism Labs is a mobile-first technology\ncompany focused on building adaptive iOS applications that\nleverage machine learning and real-time data processing.\nFounded in 2019, we serve over 2 million users across health,\nproductivity, and lifestyle categories. Our engineering teams are\n\ndistributed across San Francisco, Austin, and Toronto, and we're\ncommitted to shipping high-quality, performant iOS apps that\ndelight users.\n\nWe're seeking an experienced Senior iOS Engineer to lead the\ndevelopment of our flagship health and wellness app. You'll\n\narchitect complex features, mentor junior developers, and\ncollaborate closely with product and design teams to deliver\nexceptional user experiences. This is an excellent opportunity to\nown significant portions of our codebase while influencing the\ntechnical direction of our iOS platform.\n\nRESPONSIBILITIES\n\nDesign and implement sophisticated iOS features using Swift\nand SwiftUI, ensuring optimal performance and user\nexperience across multiple device sizes and iOS versions\n\nLead technical architecture decisions for new features and\nsystems, establishing best practices and design patterns that\njunior engineers follow\n\nConduct thorough code reviews, mentoring junior and mid-\nlevel iOS engineers on Swift idioms, architecture patterns, and\nperformance optimization techniques\n\nManage complex data synchronization and offline-first\n\ncapabilities using Core Data and custom networking layers,\nensuring data consistency and integrity\n\nOptimize app performance using Xcode Instruments,\naddressing memory leaks, battery drain, and startup time\nissues to maintain < 50MB memory footprint\n\nCollaborate with backend engineers to design efficient APIs\nand implement Combine-based reactive data flows for real-\ntime updates\n\nContribute to App Store submission processes, manage app\nversioning, and coordinate release cycles with 90+ day support\nwindows\n\nIntelligent mobile experiences thatadapt to you\fParticipate in technical hiring and onboarding of iOS engineers,\nconducting interviews and contributing to team growth\ninitiatives\n\nREQUIREMENTS\n\n5-8 years of professional iOS development experience with a\nportfolio of shipped applications on the App Store\n\nExpert-level proficiency in Swift and deep understanding of\nobject-oriented and functional programming paradigms\n\nProven experience architecting large-scale iOS applications\nwith complex state management using Combine and reactive\nframeworks\n\nStrong knowledge of UIKit and SwiftUI, including experience\nmigrating legacy UIKit code to SwiftUI\n\nDemonstrated expertise with Core Data for complex data\n\nmodeling, migrations, and performance optimization\n\nExperience with Xcode debugging tools, profiling with\nInstruments, and optimizing for various iOS devices and\nnetwork conditions\n\nBONUS POINTS\n\nExperience with CI/CD pipelines and automated testing\nframeworks (XCTest, Snapshot Testing)\n\nFamiliarity with accessibility standards (WCAG) and VoiceOver\nimplementation\n\nOpen source contributions to iOS libraries or frameworks\n\nExperience with GraphQL or REST API integration patterns in\nproduction environments\n\nBENEFITS\n\nCompetitive health, dental, and vision insurance (100%\nemployer-paid for employee)\n\n401(k) matching up to 6% with immediate vesting\n\nFlexible work-from-home policy (2-3 days in office per week)\n\nProfessional development budget ($3,000 annually for\nconferences, courses, training)\n\nPaid time off: 20 days vacation + 10 sick days + 5 company\nholidays\n\nStock options package with 4-year vesting schedule\n\nQuarterly team offsites and engineering retreats\n\nMental health support and wellness programs (gym stipend,\nmeditation app)\n\n\fAPPLY\n\nApply directly through our careers page at prism-labs.io/careers\nor send your resume, GitHub profile link, and a brief cover letter\ndescribing your most impactful iOS project to careers@prism-\nlabs.io. We review applications on a rolling basis.\n\n\f",
+  "job_title": "USD\n\nTECH STACK\n\nSwift\n\nSwiftUI\n\nUIKit\n\nXcode\n\nCombine\n\nCore Data\n\nXCTest\n\nInstruments\n\nApp Store Connect\n\nGitHub\n\nSenior iOS Engineer",
+  "company": "Prism Labs",
+  "location": null,
+  "employment_type": "Full-time",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "processing"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Experience with CI/CD pipelines and automated testing",
+    "frameworks (XCTest, Snapshot Testing)",
+    "Familiarity with accessibility standards (WCAG) and VoiceOver",
+    "implementation",
+    "Open source contributions to iOS libraries or frameworks",
+    "Experience with GraphQL or REST API integration patterns in",
+    "production environments"
+  ],
+  "salary": "$165,000 - $215,000",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\036_senior_ios-engineer.pdf",
+  "languages": [
+    "graphql",
+    "swift"
+  ],
+  "education_required": []
+}

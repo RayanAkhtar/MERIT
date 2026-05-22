@@ -1,0 +1,41 @@
+{
+  "raw_text": "CloudTest Dynamics\n\nDirector, QA Engineering\n\nLOCATION\n\nSan Francisco, CA (Hybrid - 3\ndays/week onsite)\n\nTYPE\n\nFull-time\n\nCOMPENSATION\n\n$320,000 - $420,000 USD\n\nTECH STACK\n\nPlaywright\n\nSelenium\n\nCypress\n\nPostman\n\nPython\n\nJavaScript/Node.js\n\nGitHub Actions / CI test\npipelines\n\nJenkins\n\nDocker\n\nAWS/GCP\n\nAbout CloudTest Dynamics: CloudTest Dynamics is a rapidly\ngrowing QA and testing automation platform provider serving\nFortune 500 enterprises. We build comprehensive testing\ninfrastructure and quality assurance solutions that help teams\ndeliver reliable cloud-native applications at scale. Founded in\n\n2018, our platform enables thousands of developers and QA\nengineers across multiple industries to automate testing,\nensure compliance, and maintain the highest standards of\nsoftware quality.\n\nWe are seeking an experienced Director of QA Engineering to\n\nlead our growing Quality Assurance organization. In this\nstrategic leadership role, you will oversee multiple QA teams,\nestablish quality standards and testing strategies, drive\ncontinuous improvement initiatives, and partner with\nengineering leadership to ensure enterprise-grade reliability\nacross our platform. You'll manage people leaders, mentor\nsenior QA engineers, and directly influence our product\nroadmap and quality culture. This is a hands-on director role\nwhere you'll balance strategic oversight with deep technical\nexpertise in test automation, CI/CD integration, and modern\ntesting frameworks.\n\nRESPONSIBILITIES\n\nLead and manage a team of 15-20 QA professionals\nincluding QA managers, senior engineers, and automation\nspecialists, driving performance, growth, and career\ndevelopment\n\nDefine and implement comprehensive QA strategies aligned\nwith company objectives, including test coverage targets,\nautomation roadmaps, and quality metrics dashboards\n\nArchitect and oversee enterprise-scale test automation\nframeworks using Playwright, Selenium, and Cypress for\ncross-browser and API testing across cloud infrastructure\n\nEstablish CI/CD test pipeline standards and best practices,\nensuring integration with GitHub Actions, Jenkins, and\nrelated platforms for continuous quality validation\n\nPartner with VP of Engineering and Product leadership to\nincorporate quality requirements into sprint planning,\n\nrelease cycles, and feature prioritization\n\nDrive adoption of Python and JavaScript automation scripts\nacross teams, establishing coding standards and code\nreview processes for test automation\n\nIntelligent Quality Assurance forEnterprise Cloud Solutions\fChampion advanced testing practices including\nperformance testing with Postman, security testing, and\nload testing strategies for cloud-based applications\n\nMentor QA managers and senior automation engineers in\ntechnical leadership, people management, and strategic\nthinking; build a high-performing quality culture\n\nOversee budget allocation, hiring, vendor management, and\ntool selection for QA infrastructure; drive ROI on testing\n\ntools and platforms\n\nREQUIREMENTS\n\n10+ years of QA and testing experience with at least 5+\nyears in leadership/management roles overseeing QA\nteams and managers\n\nDeep hands-on expertise with modern test automation\n\nframeworks: Playwright, Selenium, Cypress, or equivalent;\nproficiency in JavaScript and/or Python for test script\ndevelopment\n\nProven experience designing and scaling CI/CD test\npipelines, integrating automated testing with deployment\nworkflows in cloud environments (AWS/GCP/Azure)\n\nStrong experience with API testing tools like Postman and\nunderstanding of REST/GraphQL testing methodologies for\nmicroservices architectures\n\nDemonstrated success building and mentoring high-\nperforming QA teams, managing multiple managers, and\nestablishing quality culture at scale\n\nStrategic mindset with ability to develop multi-year QA\nroadmaps, drive metrics-driven quality initiatives, and\ninfluence product development processes\n\nBONUS POINTS\n\nExperience with advanced testing frameworks such as\nTestNG, pytest, or similar in enterprise environments\n\nFamiliarity with performance testing tools (JMeter,\nLoadRunner, or cloud-based alternatives) and security\ntesting practices\n\nBackground in Agile/Scrum environments and experience\nimplementing quality gates in DevOps workflows\n\nKnowledge of containerized testing environments (Docker,\nKubernetes) and test infrastructure automation\n\nBENEFITS\n\nHighly competitive salary and equity package with annual\nbonus structure (15-20% target)\n\n\fComprehensive health benefits including medical, dental,\nand vision with 90% employer premium coverage\n\nUnlimited PTO policy plus 10 company holidays\n\nProfessional development budget of $5,000 annually for\ncertifications, conferences, and training\n\n$500/month remote work stipend for home office setup and\ninternet\n\nParental leave (16 weeks paid for primary caregivers, 8\n\nweeks for secondary) and fertility benefits\n\n401(k) plan with 4% company match, financial planning\nservices, and wellness programs\n\nAPPLY\n\nApply directly via our careers portal at\ncareers.cloudtestdynamics.com or send your resume and\ncover letter to hiring@cloudtestdynamics.com. Please include\nexamples of QA strategies you've implemented at scale and\n\nyour approach to building high-performing teams. We review\napplications on a rolling basis and move quickly for qualified\ncandidates.\n\n\f",
+  "job_title": "Director, QA Engineering",
+  "company": "CloudTest Dynamics",
+  "location": null,
+  "employment_type": "Internship",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "AWS",
+    "Cypress",
+    "Docker",
+    "Kubernetes",
+    "Node.js",
+    "azure",
+    "playwright",
+    "pytest"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Comprehensive health benefits including medical, dental,",
+    "and vision with 90% employer premium coverage",
+    "Unlimited PTO policy plus 10 company holidays",
+    "Professional development budget of $5,000 annually for",
+    "certifications, conferences, and training",
+    "$500/month remote work stipend for home office setup and",
+    "internet",
+    "Parental leave (16 weeks paid for primary caregivers, 8",
+    "weeks for secondary) and fertility benefits",
+    "401(k) plan with 4% company match, financial planning",
+    "services, and wellness programs"
+  ],
+  "salary": "$320,000 - $420,000",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\067_director_qa-engineer.pdf",
+  "languages": [
+    "JS",
+    "JavaScript",
+    "Python",
+    "graphql"
+  ],
+  "education_required": []
+}

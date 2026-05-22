@@ -1,0 +1,28 @@
+holdout_id,skill,recruiter_weight,tfidf_continuous,tfidf_likert,exact_match,abs_error
+holdout_01_junior_frontend_react,JavaScript,2,2.4,4,False,2
+holdout_01_junior_frontend_react,TypeScript,2,2.2,4,False,2
+holdout_01_junior_frontend_react,HTML,4,2.4,4,True,0
+holdout_01_junior_frontend_react,CSS,4,2.1,4,True,0
+holdout_01_junior_frontend_react,React,1,5.0,1,True,0
+holdout_01_junior_frontend_react,Jest,4,2.6,3,False,1
+holdout_01_junior_frontend_react,Git,5,1.0,5,True,0
+holdout_01_junior_frontend_react,REST,4,1.4,5,False,1
+holdout_01_junior_frontend_react,BSc Computer Science or equivalent,4,3.4,3,False,1
+holdout_02_senior_ml_research,Python,1,1.0,5,False,4
+holdout_02_senior_ml_research,SQL,4,1.5,4,True,0
+holdout_02_senior_ml_research,PyTorch,1,3.3,3,False,2
+holdout_02_senior_ml_research,Kubernetes,4,1.2,5,False,1
+holdout_02_senior_ml_research,MLflow,4,2.8,3,False,1
+holdout_02_senior_ml_research,CUDA,4,5.0,1,False,3
+holdout_02_senior_ml_research,PostgreSQL,4,2.2,4,True,0
+holdout_02_senior_ml_research,"PhD or MSc in Machine Learning, Statistics, or Computer Science",5,5.0,1,False,4
+holdout_04_lead_devops_platform,Python,4,3.0,3,False,1
+holdout_04_lead_devops_platform,Go,4,2.9,3,False,1
+holdout_04_lead_devops_platform,SQL,4,3.7,2,False,2
+holdout_04_lead_devops_platform,Docker,1,3.4,3,False,2
+holdout_04_lead_devops_platform,Kubernetes,1,3.2,3,False,2
+holdout_04_lead_devops_platform,Terraform,1,3.9,2,False,1
+holdout_04_lead_devops_platform,Prometheus,3,4.0,2,False,1
+holdout_04_lead_devops_platform,Grafana,4,4.4,2,False,2
+holdout_04_lead_devops_platform,Linux,1,5.0,1,True,0
+holdout_04_lead_devops_platform,Degree in Computer Science or related field,5,1.0,5,True,0

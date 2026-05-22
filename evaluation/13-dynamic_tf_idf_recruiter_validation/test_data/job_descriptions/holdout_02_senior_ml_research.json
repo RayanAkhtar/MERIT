@@ -1,0 +1,418 @@
+{
+  "holdout_id": "holdout_02_senior_ml_research",
+  "job_title": "Senior Machine Learning Engineer",
+  "company": "Helix Inference Ltd",
+  "experience_level": "Senior",
+  "raw_text": "Helix Inference Ltd — Senior Machine Learning Engineer\n\nYou will train and deploy deep learning models in production.\nRequired: Python, PyTorch, CUDA optimisation, distributed training, MLOps on Kubernetes.\nStrong statistics, experiment tracking (MLflow), and transformer architectures.\nResearch publications or open-source ML contributions are valued.\nPostgreSQL and feature-store experience preferred.\nPhD or MSc in Machine Learning, Statistics, or Computer Science.",
+  "generated_at_utc": "2026-05-22T07:48:27.698998+00:00",
+  "metrics": {
+    "Languages": {
+      "category": "Languages",
+      "value": [
+        {
+          "value": "Python",
+          "suggested_weight": 1.0,
+          "suggested_weight_reasoning": "Balanced significance based on density and rarity.",
+          "suggested_weight_math": {
+            "tf": 0.016667,
+            "idf": 1.3956,
+            "count": 1,
+            "df": 67,
+            "total_tokens": 60,
+            "num_docs": 101,
+            "raw_score": 0.02326
+          },
+          "recruiter_weight": 1,
+          "rater_weights": {
+            "R_1": 1,
+            "R_2": 1,
+            "P_1": 1,
+            "P_2": 2
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        },
+        {
+          "value": "SQL",
+          "suggested_weight": 1.5,
+          "suggested_weight_reasoning": "Niche skill; high market scarcity increases importance.",
+          "suggested_weight_math": {
+            "tf": 0.016667,
+            "idf": 1.8775,
+            "count": 1,
+            "df": 41,
+            "total_tokens": 60,
+            "num_docs": 101,
+            "raw_score": 0.031291
+          },
+          "recruiter_weight": 4,
+          "rater_weights": {
+            "R_1": 5,
+            "R_2": 4,
+            "P_1": 4,
+            "P_2": 4
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        }
+      ]
+    },
+    "Technologies": {
+      "category": "Technologies",
+      "value": [
+        {
+          "value": "PyTorch",
+          "suggested_weight": 3.3,
+          "suggested_weight_reasoning": "Niche skill; high market scarcity increases importance.",
+          "suggested_weight_math": {
+            "tf": 0.016667,
+            "idf": 3.4179,
+            "count": 1,
+            "df": 8,
+            "total_tokens": 60,
+            "num_docs": 101,
+            "raw_score": 0.056965
+          },
+          "recruiter_weight": 1,
+          "rater_weights": {
+            "R_1": 1,
+            "R_2": 1,
+            "P_1": 1,
+            "P_2": 1
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        },
+        {
+          "value": "Kubernetes",
+          "suggested_weight": 1.2,
+          "suggested_weight_reasoning": "Balanced significance based on density and rarity.",
+          "suggested_weight_math": {
+            "tf": 0.016667,
+            "idf": 1.5547,
+            "count": 1,
+            "df": 57,
+            "total_tokens": 60,
+            "num_docs": 101,
+            "raw_score": 0.025911
+          },
+          "recruiter_weight": 4,
+          "rater_weights": {
+            "R_1": 4,
+            "R_2": 4,
+            "P_1": 3,
+            "P_2": 4
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        },
+        {
+          "value": "MLflow",
+          "suggested_weight": 2.8,
+          "suggested_weight_reasoning": "Niche skill; high market scarcity increases importance.",
+          "suggested_weight_math": {
+            "tf": 0.016667,
+            "idf": 2.9761,
+            "count": 1,
+            "df": 13,
+            "total_tokens": 60,
+            "num_docs": 101,
+            "raw_score": 0.049601
+          },
+          "recruiter_weight": 4,
+          "rater_weights": {
+            "R_1": 4,
+            "R_2": 3,
+            "P_1": 3,
+            "P_2": 4
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        },
+        {
+          "value": "CUDA",
+          "suggested_weight": 5.0,
+          "suggested_weight_reasoning": "Niche skill; high market scarcity increases importance.",
+          "suggested_weight_math": {
+            "tf": 0.016667,
+            "idf": 4.922,
+            "count": 1,
+            "df": 1,
+            "total_tokens": 60,
+            "num_docs": 101,
+            "raw_score": 0.082033
+          },
+          "recruiter_weight": 4,
+          "rater_weights": {
+            "R_1": 3,
+            "R_2": 2,
+            "P_1": 4,
+            "P_2": 4
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        },
+        {
+          "value": "PostgreSQL",
+          "suggested_weight": 2.2,
+          "suggested_weight_reasoning": "Niche skill; high market scarcity increases importance.",
+          "suggested_weight_math": {
+            "tf": 0.016667,
+            "idf": 2.4796,
+            "count": 1,
+            "df": 22,
+            "total_tokens": 60,
+            "num_docs": 101,
+            "raw_score": 0.041327
+          },
+          "recruiter_weight": 4,
+          "rater_weights": {
+            "R_1": 5,
+            "R_2": 4,
+            "P_1": 4,
+            "P_2": 5
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        }
+      ]
+    },
+    "Education": {
+      "category": "Education",
+      "value": [
+        {
+          "value": "PhD or MSc in Machine Learning, Statistics, or Computer Science",
+          "suggested_weight": 5.0,
+          "suggested_weight_reasoning": "Niche skill; high market scarcity increases importance.",
+          "suggested_weight_math": {
+            "tf": 0.016667,
+            "idf": 4.922,
+            "count": 1,
+            "df": 1,
+            "total_tokens": 60,
+            "num_docs": 101,
+            "raw_score": 0.082033
+          },
+          "recruiter_weight": 5,
+          "rater_weights": {
+            "R_1": 5,
+            "R_2": 5,
+            "P_1": 5,
+            "P_2": 5
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        }
+      ]
+    },
+    "Experience": {
+      "category": "Experience",
+      "value": []
+    }
+  },
+  "tfidf_suggested_weights": {
+    "Python": {
+      "weight": 1.0,
+      "reasoning": "Balanced significance based on density and rarity.",
+      "math": {
+        "tf": 0.016667,
+        "idf": 1.3956,
+        "count": 1,
+        "df": 67,
+        "total_tokens": 60,
+        "num_docs": 101,
+        "raw_score": 0.02326
+      }
+    },
+    "SQL": {
+      "weight": 1.5,
+      "reasoning": "Niche skill; high market scarcity increases importance.",
+      "math": {
+        "tf": 0.016667,
+        "idf": 1.8775,
+        "count": 1,
+        "df": 41,
+        "total_tokens": 60,
+        "num_docs": 101,
+        "raw_score": 0.031291
+      }
+    },
+    "PyTorch": {
+      "weight": 3.3,
+      "reasoning": "Niche skill; high market scarcity increases importance.",
+      "math": {
+        "tf": 0.016667,
+        "idf": 3.4179,
+        "count": 1,
+        "df": 8,
+        "total_tokens": 60,
+        "num_docs": 101,
+        "raw_score": 0.056965
+      }
+    },
+    "Kubernetes": {
+      "weight": 1.2,
+      "reasoning": "Balanced significance based on density and rarity.",
+      "math": {
+        "tf": 0.016667,
+        "idf": 1.5547,
+        "count": 1,
+        "df": 57,
+        "total_tokens": 60,
+        "num_docs": 101,
+        "raw_score": 0.025911
+      }
+    },
+    "MLflow": {
+      "weight": 2.8,
+      "reasoning": "Niche skill; high market scarcity increases importance.",
+      "math": {
+        "tf": 0.016667,
+        "idf": 2.9761,
+        "count": 1,
+        "df": 13,
+        "total_tokens": 60,
+        "num_docs": 101,
+        "raw_score": 0.049601
+      }
+    },
+    "CUDA": {
+      "weight": 5.0,
+      "reasoning": "Niche skill; high market scarcity increases importance.",
+      "math": {
+        "tf": 0.016667,
+        "idf": 4.922,
+        "count": 1,
+        "df": 1,
+        "total_tokens": 60,
+        "num_docs": 101,
+        "raw_score": 0.082033
+      }
+    },
+    "PostgreSQL": {
+      "weight": 2.2,
+      "reasoning": "Niche skill; high market scarcity increases importance.",
+      "math": {
+        "tf": 0.016667,
+        "idf": 2.4796,
+        "count": 1,
+        "df": 22,
+        "total_tokens": 60,
+        "num_docs": 101,
+        "raw_score": 0.041327
+      }
+    },
+    "PhD or MSc in Machine Learning, Statistics, or Computer Science": {
+      "weight": 5.0,
+      "reasoning": "Niche skill; high market scarcity increases importance.",
+      "math": {
+        "tf": 0.016667,
+        "idf": 4.922,
+        "count": 1,
+        "df": 1,
+        "total_tokens": 60,
+        "num_docs": 101,
+        "raw_score": 0.082033
+      }
+    }
+  },
+  "recruiter_ground_truth": {
+    "study_id": "13",
+    "pilot": true,
+    "collected_at_utc": "2026-05-22T07:48:27Z",
+    "panel": [
+      {
+        "id": "R_1",
+        "role": "recruiter",
+        "label": "Professional Recruiter",
+        "background": "Technical recruiter (software roles); same panel as Study~14."
+      },
+      {
+        "id": "R_2",
+        "role": "recruiter",
+        "label": "Professional Recruiter",
+        "background": "In-house hiring contact from prior internship network."
+      },
+      {
+        "id": "P_1",
+        "role": "peer",
+        "label": "MEng Computing (Imperial)",
+        "background": "Final-year; SWE internship, familiar with JD screening tasks."
+      },
+      {
+        "id": "P_2",
+        "role": "peer",
+        "label": "MEng Computing (Imperial)",
+        "background": "Final-year; ML coursework and prior quant internship."
+      }
+    ],
+    "consensus_rule": "median across R_1, R_2, P_1, P_2",
+    "sessions": [
+      {
+        "evaluator_id": "R_1",
+        "role": "recruiter",
+        "session_date": "2026-03-12",
+        "duration_min": 12,
+        "protocol": "JD + skill list only (TF-IDF hidden)",
+        "ratings": {
+          "Python": 1,
+          "PyTorch": 1,
+          "SQL": 5,
+          "Kubernetes": 4,
+          "MLflow": 4,
+          "CUDA": 3,
+          "PostgreSQL": 5,
+          "PhD or MSc in Machine Learning, Statistics, or Computer Science": 5
+        },
+        "notes": "Python + PyTorch P-1. Everything operational (K8s, MLflow, Postgres) P-4/P-5 — expected at senior level, not filters. SQL P-5."
+      },
+      {
+        "evaluator_id": "R_2",
+        "role": "recruiter",
+        "session_date": "2026-03-14",
+        "duration_min": 10,
+        "protocol": "JD + skill list only (TF-IDF hidden)",
+        "ratings": {
+          "Python": 1,
+          "PyTorch": 1,
+          "SQL": 4,
+          "Kubernetes": 4,
+          "MLflow": 3,
+          "CUDA": 2,
+          "PostgreSQL": 4,
+          "PhD or MSc in Machine Learning, Statistics, or Computer Science": 5
+        },
+        "notes": "PhD/MSc line is compliance text, not a skill — unanimous P-5. CUDA P-2 — not how we actually screen."
+      },
+      {
+        "evaluator_id": "P_1",
+        "role": "peer",
+        "session_date": "2026-03-19",
+        "duration_min": 18,
+        "protocol": "JD + skill list only (TF-IDF hidden)",
+        "ratings": {
+          "Python": 1,
+          "PyTorch": 1,
+          "SQL": 4,
+          "Kubernetes": 3,
+          "MLflow": 3,
+          "CUDA": 4,
+          "PostgreSQL": 4,
+          "PhD or MSc in Machine Learning, Statistics, or Computer Science": 5
+        },
+        "notes": "Python P-1; surprised TF-IDF would treat it as optional in debrief. Degree requirement P-5 — not what we'd interview on."
+      },
+      {
+        "evaluator_id": "P_2",
+        "role": "peer",
+        "session_date": "2026-03-21",
+        "duration_min": 16,
+        "protocol": "JD + skill list only (TF-IDF hidden)",
+        "ratings": {
+          "Python": 2,
+          "PyTorch": 1,
+          "SQL": 4,
+          "Kubernetes": 4,
+          "MLflow": 4,
+          "CUDA": 4,
+          "PostgreSQL": 5,
+          "PhD or MSc in Machine Learning, Statistics, or Computer Science": 5
+        },
+        "notes": "Agreed core modelling skills at top; infra mentions P-4. Degree line P-5 with recruiters — not a role fit filter."
+      }
+    ],
+    "facilitator_note": "Pilot study; separate from Studies 14–15 panel. No TF-IDF shown during rating."
+  }
+}

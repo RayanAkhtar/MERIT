@@ -1,0 +1,32 @@
+{
+  "raw_text": "Vertex Analytics\n\nMid-Level Data Scientist\n\nLOCATION\n\nSan Francisco, CA (Remote-\n\nFriendly)\n\nTYPE\n\nFull-Time\n\nCOMPENSATION\n\n$120,000 - $160,000 per year\n\nTECH STACK\n\nPython (Pandas, NumPy,\nscikit-learn)\n\nSQL\n\nXGBoost\n\nJupyter Notebooks\n\nStatistics & Experimental\nDesign\n\nA/B Testing & Causal\nInference\n\nGit / Version Control\n\nMatplotlib / Seaborn (Data\nVisualization)\n\nSnowflake or BigQuery\n\nscikit-learn & model\nevaluation\n\nAbout Vertex Analytics: Vertex Analytics is a fast-growing\ndata analytics and AI consulting firm that helps mid-market to\nenterprise clients unlock actionable insights from their data.\nFounded in 2019, we specialize in designing and implementing\nend-to-end data science solutions, from exploratory analysis to\n\nproduction machine learning systems. Our mission is to\ndemocratize advanced analytics and empower organizations\nto make smarter, faster decisions.\n\nWe are seeking a talented Mid-Level Data Scientist to join our\ngrowing analytics team. You'll work on diverse client projects\n\nspanning predictive modeling, A/B testing frameworks, and\nstatistical experimentation. In this role, you'll own end-to-end\ndata science workflows—from SQL-based data extraction to\nmodel development and evaluation. You should have solid\nfundamentals in statistics, machine learning, and\nprogramming, with the ability to communicate findings to both\ntechnical and non-technical stakeholders.\n\nRESPONSIBILITIES\n\nDesign and implement machine learning pipelines using\nPython (scikit-learn, XGBoost) to solve real-world business\nproblems across multiple client engagements\n\nExtract, transform, and analyze large datasets using SQL\nand Python (Pandas, NumPy) to identify patterns and drive\nactionable recommendations\n\nDevelop and execute A/B testing frameworks and statistical\nexperiments; analyze results and present findings to clients\nwith clear business implications\n\nBuild and validate predictive models, performing feature\nengineering, hyperparameter tuning, and cross-validation to\noptimize model performance\n\nCollaborate with data engineers and analytics engineers to\ncreate reproducible, production-ready code and\ndocumentation for client handoff\n\nMentor junior data analysts and interns on statistical best\npractices, coding standards, and analytical methodologies\n\nCommunicate complex analytical findings and modeling\nresults to clients through presentations, dashboards, and\nwritten reports\n\nREQUIREMENTS\n\nTransforming Business IntelligenceThrough Data-Driven Insights andAdvanced Analytics\f2–5 years of professional experience in data science,\nanalytics, or machine learning roles\n\nStrong proficiency in Python for data manipulation, analysis,\n\nand modeling (Pandas, NumPy, scikit-learn)\n\nSolid understanding of statistics, hypothesis testing, and\nexperimental design; hands-on experience with A/B testing\n\nCompetency with SQL for data extraction, transformation,\nand exploratory data analysis on structured databases\n\nExperience building and evaluating machine learning\nmodels (regression, classification, clustering) with\ndemonstrated knowledge of model validation techniques\n\nBONUS POINTS\n\nFamiliarity with advanced ML libraries such as XGBoost,\nLightGBM, or ensemble methods\n\nExperience with statistical software or packages (e.g., R,\nSciPy, statsmodels)\n\nExposure to cloud data warehouses or analytics platforms\n(Snowflake, BigQuery, Redshift, Databricks)\n\nBENEFITS\n\nCompetitive health, dental, and vision insurance (100%\ncoverage for employee; 80% for dependents)\n\n401(k) matching up to 4% of salary\n\n$5,000 annual professional development budget for\ncourses, conferences, or certifications\n\nFlexible work arrangement with option to work remote or\nfrom our SF office\n\nUnlimited paid time off (with a minimum of 20 days\nencouraged)\n\nCollaborative, flat organizational structure with opportunities\nto lead high-impact projects\n\nAPPLY\n\nInterested candidates should submit a resume, a brief cover\n\nletter, and a GitHub profile or portfolio link showcasing recent\ndata science projects to careers@vertexanalytics.com. Please\ninclude 'Mid Data Scientist' in the email subject line. We review\napplications on a rolling basis and will contact qualified\ncandidates within 5 business days.\n\n\f",
+  "job_title": "Mid-Level Data Scientist",
+  "company": "Vertex Analytics",
+  "location": null,
+  "employment_type": "Internship",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "Scikit-learn",
+    "matplotlib",
+    "numpy",
+    "pandas"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Familiarity with advanced ML libraries such as XGBoost,",
+    "LightGBM, or ensemble methods",
+    "Experience with statistical software or packages (e.g., R,",
+    "SciPy, statsmodels)",
+    "Exposure to cloud data warehouses or analytics platforms",
+    "(Snowflake, BigQuery, Redshift, Databricks)"
+  ],
+  "salary": "$120,000 - $160,000 per year",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\099_mid_data-scientist.pdf",
+  "languages": [
+    "Python",
+    "SQL",
+    "jupyter",
+    "r"
+  ],
+  "education_required": []
+}

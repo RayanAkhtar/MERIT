@@ -1,0 +1,30 @@
+{
+  "raw_text": "Nexus Labs // Director of QA Engineering\n\nSan Francisco, CA (Remote-Friendly) | Full-Time | $280,000 - $420,000 per year\n\nIntelligent Testing Infrastructure for Modern Software\n\n>> ABOUT\n\nNexus Labs is a rapidly growing SaaS platform specializing in automated testing\norchestration and quality assurance infrastructure. Founded in 2018, we empower\n\nengineering teams across Fortune 500 companies and fast-growing startups to ship reliable\nsoftware at scale. Our platform processes millions of test executions monthly and helps\n\norganizations reduce bug escape rates by up to 85%. We're building the future of\ncontinuous quality assurance.\n\n>> SUMMARY\n\nWe are seeking an experienced Director of QA Engineering to lead and scale our quality\nassurance organization. This strategic leadership role oversees a team of 15-20+ QA\n\nengineers and managers, driving testing innovation, establishing QA standards across the\ncompany, and ensuring product reliability at enterprise scale. You will report directly\n\nto the VP of Engineering and partner with product, platform, and infrastructure\nleadership to define QA strategy and drive organizational excellence.\n\n>> RESPONSIBILITIES\n\n- Lead and manage a distributed team of 15-20 QA engineers and 2-3 QA engineering\nmanagers, including hiring, performance management, career development, and retention\n\n- Define and execute the company's QA strategy, establishing testing frameworks,\nautomation standards, and quality metrics across all product lines\n\n- Design and oversee implementation of CI/CD test pipeline architecture using modern\ntools like Playwright, Cypress, Selenium, and Python/JavaScript automation frameworks\n\n- Establish QA best practices, testing governance, and quality gates using industry\nstandards and company-specific requirements\n\n- Collaborate with VP of Engineering and technical leadership to implement Postman-\nbased API testing strategies and shift-left testing initiatives\n\n- Mentor and develop QA managers and staff-level engineers, fostering a culture of\ntechnical excellence and continuous improvement\n\n- Drive adoption of advanced testing techniques including performance testing,\nsecurity testing, and cross-browser compatibility validation\n\n- Present quarterly QA metrics, quality trends, and risk assessments to executive\nleadership to inform product roadmap and release decisions\n\n- Build and maintain relationships with cross-functional partners including DevOps,\nInfrastructure, and Product Management to optimize test infrastructure and reduce\n\ntime-to-market\n\n>> MUST HAVE\n\n- 10+ years of QA engineering experience with at least 5+ years in leadership or\n\nmanagement roles overseeing QA teams\n- Demonstrated expertise with multiple automation frameworks including Playwright,\n\nCypress, or Selenium\n- Strong proficiency in Python or JavaScript for writing scalable test automation and\n\ntooling\n\n\f- Deep knowledge of API testing, CI/CD pipeline architecture, and test automation best\n\npractices\n- Experience with Postman or similar API testing platforms for building comprehensive\n\nAPI test suites\n- Proven track record building and scaling QA organizations, establishing processes,\n\nand improving quality metrics\n- Strong communication and stakeholder management skills; ability to influence at C-\n\nlevel and across engineering organizations\n\n>> NICE TO HAVE\n\n- Experience with advanced testing frameworks such as Robot Framework or Katalon\n\nStudio\n- Knowledge of performance testing tools and load testing methodologies\n\n- Background in infrastructure automation, containerization (Docker), or Kubernetes\norchestration\n\n- Familiarity with security testing, OWASP standards, or compliance-related QA\nrequirements\n\n- Experience scaling QA teams in high-growth SaaS environments (Series B/C funding\nstage or beyond)\n\n>> STACK\n\nPlaywright / Cypress / Selenium / Python (pytest, unittest) / JavaScript/Node.js / Postman /\n\nCI/CD Pipelines (Jenkins, GitHub Actions, GitLab CI) / Docker & Kubernetes / AWS/Cloud Testing\n\nInfrastructure / TestRail/Test Management Platforms\n\n>> BENEFITS\n\n- Competitive salary and equity (0.25-0.5% depending on background)\n- Comprehensive health, dental, and vision coverage with 90% company contribution\n\n- Unlimited PTO policy plus 12 company holidays\n- $10,000 annual professional development and conference budget\n\n- Flexible work arrangements (fully remote or hybrid at our SF headquarters)\n- Parental leave (16 weeks paid for all parents) and family planning support\n\n- 401(k) matching up to 4% with immediate vesting\n\n>> APPLY\n\nSubmit your resume, a cover letter describing your approach to building and scaling QA\n\norganizations, and links to any relevant public work (GitHub, blog posts, or tech talks)\nto careers@nexuslabs.io. Include a brief description of your biggest QA team scaling\n\nchallenge and how you solved it. Application review begins immediately and positions fill\non a rolling basis.\n\n\f",
+  "job_title": "Nexus Labs // Director of QA Engineering",
+  "company": "Nexus Labs is a rapidly growing SaaS platform specializing in automated testing",
+  "location": null,
+  "employment_type": "Full-time",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "AWS",
+    "Cypress",
+    "Docker",
+    "Kubernetes",
+    "Node.js",
+    "playwright",
+    "pytest"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Experience with advanced testing frameworks such as Robot Framework or Katalon"
+  ],
+  "salary": "$280,000 - $420,000 per year",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\076_director_qa-engineer.pdf",
+  "languages": [
+    "JS",
+    "JavaScript",
+    "Python",
+    "c"
+  ],
+  "education_required": []
+}

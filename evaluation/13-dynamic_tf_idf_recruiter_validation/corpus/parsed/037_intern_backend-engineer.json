@@ -1,0 +1,59 @@
+{
+  "raw_text": "Vertex Data Systems\n\nIntern Backend Engineer\n\nLOCATION\n\nSan Francisco, CA (Remote-\nfriendly)\n\nTYPE\n\nInternship\n\nCOMPENSATION\n\n$25-28/hour\n\nTECH STACK\n\nPython\n\nGo\n\nPostgreSQL\n\nRedis\n\nDocker\n\nKubernetes\n\nRabbitMQ\n\nREST APIs\n\nGit\n\ngRPC\n\nAbout Vertex Data Systems: Vertex Data Systems is a growth-\nstage startup building scalable, cloud-native backend\ninfrastructure for enterprises. Founded in 2021, we help\ncompanies process and manage massive data streams with sub-\nmillisecond latency. Our platform is trusted by financial services\n\nfirms, e-commerce platforms, and SaaS companies to power their\nmission-critical applications.\n\nJoin Vertex Data Systems as an Intern Backend Engineer and\ngain hands-on experience building scalable distributed systems.\nYou'll work alongside senior engineers to develop microservices,\n\noptimize database queries, and implement REST APIs. This is an\nexcellent opportunity to learn modern backend development\npractices, contribute to real-world production systems, and build a\nstrong foundation in systems design and cloud architecture.\n\nRESPONSIBILITIES\n\nAssist in designing and implementing new REST API endpoints\nusing Python and Go microservices\n\nWrite and maintain unit tests and integration tests for backend\nservices to ensure code quality\n\nOptimize database queries in PostgreSQL and MySQL by\nanalyzing execution plans and improving indexing strategies\n\nParticipate in code reviews and learn best practices from\nexperienced engineers\n\nDebug and troubleshoot issues in staging and production\nenvironments under mentorship\n\nDocument API specifications, architecture decisions, and\nimplementation details for team knowledge sharing\n\nCollaborate with the infrastructure team to deploy services to\nKubernetes clusters and monitor application performance\n\nContribute to improving CI/CD pipelines and tooling to\nstreamline the development workflow\n\nREQUIREMENTS\n\nCurrently pursuing a Bachelor's degree in Computer Science,\nSoftware Engineering, or related field (or recent graduate\nwithin 6 months)\n\nStrong foundation in at least one programming language\n(Python, Java, Go, or Rust)\n\nPowering real-time data infrastructurefor the next generation of applications\fUnderstanding of relational databases and SQL fundamentals\n\nBasic knowledge of HTTP, REST APIs, and asynchronous\nprogramming concepts\n\nFamiliarity with version control systems (Git) and collaborative\ndevelopment workflows\n\nBONUS POINTS\n\nExperience building simple REST APIs or web services in a\nprevious internship or academic project\n\nBasic understanding of microservices architecture and\ndistributed systems concepts\n\nExposure to containerization tools like Docker or container\norchestration platforms like Kubernetes\n\nFamiliarity with message queues (Kafka or RabbitMQ) or\nevent-driven architecture patterns\n\nBENEFITS\n\nMentorship from experienced senior engineers and architects\n\nFlexible work schedule and remote-friendly environment\n\nFree catered lunches and office snacks (SF office)\n\nProfessional development stipend ($500/semester) for\ncourses, certifications, or conferences\n\nComprehensive health insurance coverage (medical, dental,\nvision)\n\nOpportunity for full-time conversion to junior backend engineer\nrole upon successful completion\n\nAPPLY\n\nSubmit your resume, cover letter, and a link to your GitHub profile\n(or portfolio) via our careers page at\ncareers.vertexdata.io/backend-intern. We review applications on\na rolling basis. Selected candidates will participate in a technical\nphone screen followed by a take-home coding challenge and final\nteam interviews.\n\n\f",
+  "job_title": "Intern Backend Engineer",
+  "company": "Vertex Data Systems",
+  "location": null,
+  "employment_type": "Internship",
+  "experience_level": "Internship",
+  "technical_skills": [
+    "Docker",
+    "Kubernetes",
+    "foundation",
+    "grpc",
+    "mysql",
+    "postgresql"
+  ],
+  "education": [
+    "Software Engineering, or related field (or recent graduate",
+    "within 6 months)",
+    "Strong foundation in at least one programming language",
+    "(Python, Java, Go, or Rust)",
+    "Powering real-time data infrastructurefor the next generation of applications",
+    "Understanding of relational databases and SQL fundamentals",
+    "Basic knowledge of HTTP, REST APIs, and asynchronous",
+    "programming concepts",
+    "Familiarity with version control systems (Git) and collaborative",
+    "development workflows",
+    "Basic understanding of microservices architecture and",
+    "distributed systems concepts",
+    "Exposure to containerization tools like Docker or container",
+    "orchestration platforms like Kubernetes",
+    "Familiarity with message queues (Kafka or RabbitMQ) or",
+    "event-driven architecture patterns"
+  ],
+  "nice_to_have": [
+    "Experience building simple REST APIs or web services in a",
+    "previous internship or academic project",
+    "Basic understanding of microservices architecture and",
+    "distributed systems concepts",
+    "Exposure to containerization tools like Docker or container",
+    "orchestration platforms like Kubernetes",
+    "Familiarity with message queues (Kafka or RabbitMQ) or",
+    "event-driven architecture patterns"
+  ],
+  "salary": "$25",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\037_intern_backend-engineer.pdf",
+  "languages": [
+    "Java",
+    "MySQL",
+    "PostgreSQL",
+    "Python",
+    "SQL",
+    "go",
+    "grpc",
+    "rust"
+  ],
+  "education_required": [
+    "Currently pursuing a Bachelor's degree in Computer Science,"
+  ]
+}

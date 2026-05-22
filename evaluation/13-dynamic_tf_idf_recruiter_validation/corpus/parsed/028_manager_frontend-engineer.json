@@ -1,0 +1,31 @@
+{
+  "raw_text": "Prism Digital Labs\n\nManager, Frontend Engineering\n\nLOCATION\n\nSan Francisco, CA (Remote-\nfriendly)\n\nTYPE\n\nFull-time\n\nCOMPENSATION\n\n$200,000 - $280,000 USD\nannually\n\nTECH STACK\n\nReact\n\nTypeScript\n\nNext.js\n\nTailwind CSS\n\nVite\n\nWebpack\n\nWeb Accessibility (WCAG\n2.1)\n\nCore Web Vitals &\nPerformance Monitoring\n\nJest & React Testing Library\n\nFigma & Design Systems\n\nAbout Prism Digital Labs: Prism Digital Labs is a venture-\nbacked software company specializing in design systems and\nperformance optimization tools for enterprise customers.\nFounded in 2019, we work with Fortune 500 companies and\ninnovative startups to modernize their digital infrastructure.\n\nOur team of 120+ engineers is distributed across North\nAmerica and Europe, building products that help thousands of\ndevelopers ship faster, more accessible applications.\n\nWe're seeking an experienced Manager of Frontend\nEngineering to lead and grow our Frontend Platform team.\n\nYou'll oversee a team of 5-7 engineers, setting technical\ndirection, mentoring talent, and shipping customer-impacting\nfeatures. In this role, you'll balance hands-on technical\nleadership with people management, ensuring your team\ndelivers high-quality, performant, and accessible web\nexperiences. You should have 6+ years of frontend\ndevelopment experience with at least 2 years managing\nengineering teams.\n\nRESPONSIBILITIES\n\nLead and mentor a team of 5-7 frontend engineers,\nproviding technical guidance, career development, and\nperformance feedback\n\nSet technical strategy and architecture for React/TypeScript-\nbased applications, ensuring best practices in performance\noptimization and accessibility (WCAG 2.1)\n\nOwn the hiring process, including sourcing, interviewing,\nand onboarding new frontend engineers to scale the team\n\nDrive adoption of Next.js and modern build tooling\n(Vite/Webpack) across projects, establishing shared\npatterns and reusable component libraries\n\nChampion web performance initiatives, establishing metrics\nand standards for Core Web Vitals, bundle size, and load\ntime optimization\n\nCollaborate with Product and Design teams to translate\nrequirements into technical specifications and coordinate\nteam capacity planning\n\nConduct code reviews, enforce accessibility standards\n(WCAG compliance), and establish frontend best practices\nusing TypeScript and Tailwind CSS\n\nManage team goals, OKRs, and quarterly planning; present\ntechnical roadmaps and progress to leadership\n\nBuilding accessible, high-performanceweb experiences at scale\fIdentify and remove blockers, advocate for team resources,\nand foster a culture of continuous learning and\nexperimentation\n\nREQUIREMENTS\n\n6+ years of professional frontend engineering experience\nwith significant production React and TypeScript experience\n\n2+ years of hands-on people management experience,\nincluding hiring, mentoring, and performance evaluation of\n\ndirect reports\n\nDeep expertise in modern frontend tooling: Next.js, Vite,\nWebpack, and module bundling optimization\n\nDemonstrated expertise in web performance optimization\n(Core Web Vitals, lighthouse audits, bundle size analysis)\n\nStrong foundation in web accessibility (WCAG 2.1\n\ncompliance, semantic HTML, accessibility testing tools)\n\nExperience leading technical projects, making architectural\ndecisions, and establishing engineering standards across\nteams\n\nBONUS POINTS\n\nExperience building or maintaining design systems and\ncomponent libraries at scale\n\nFamiliarity with CSS-in-JS or utility-first CSS frameworks\n(Tailwind CSS)\n\nExperience with cross-functional collaboration (Product,\nDesign, DevOps) in a fast-paced environment\n\nBackground in mentoring junior engineers and growing\nearly-career talent\n\nUnderstanding of SEO best practices and server-side\nrendering with Next.js\n\nBENEFITS\n\nCompetitive equity package (0.5% - 1.5% depending on\nseniority)\n\nComprehensive health insurance (medical, dental, vision)\nwith 100% premium coverage for employees\n\nUnlimited PTO with minimum 20-day annual policy plus 10\ncompany holidays\n\nProfessional development budget of $5,000/year for\nconferences, courses, and certifications\n\nFlexible work arrangements with option for full remote or\nhybrid schedule\n\nParental leave (16 weeks paid for primary caregiver, 8\nweeks for secondary)\n\n\fHome office setup stipend ($2,000) and annual wellness\nbudget ($1,500)\n\nMonthly team events, annual company retreat in Tahoe, and\n\ncasual work environment\n\nAPPLY\n\nPlease submit your resume, a cover letter describing your\nmanagement philosophy and leadership experience, and links\nto your portfolio or GitHub profile to\ncareers@prismdigitallabs.com with the subject line 'Manager\nFrontend Engineering'. We review applications on a rolling\nbasis. For questions, contact our recruiting team at\n\nrecruiting@prismdigitallabs.com.\n\n\f",
+  "job_title": "Manager, Frontend Engineering",
+  "company": "Prism Digital Labs",
+  "location": null,
+  "employment_type": "Full-time",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "Next.js",
+    "React",
+    "foundation"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Experience building or maintaining design systems and",
+    "component libraries at scale",
+    "Familiarity with CSS-in-JS or utility-first CSS frameworks",
+    "(Tailwind CSS)",
+    "Experience with cross-functional collaboration (Product,",
+    "Design, DevOps) in a fast-paced environment",
+    "Background in mentoring junior engineers and growing",
+    "early-career talent"
+  ],
+  "salary": "$200,000 - $280,000",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\028_manager_frontend-engineer.pdf",
+  "languages": [
+    "JS",
+    "TypeScript"
+  ],
+  "education_required": []
+}

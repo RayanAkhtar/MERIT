@@ -3,11 +3,23 @@ import re
 from typing import List, Dict, Any
 from core.supabase import supabase
 
+# Backend significance band for suggested_weight (not the recruiter Likert).
+# Higher = more significant on this JD relative to other listed skills.
+# UI maps to P-1..P-5 via round(6 - weight) in ConfigEditor (1 = essential).
+SIGNIFICANCE_MIN = 1.0
+SIGNIFICANCE_MAX = 5.0
+SIGNIFICANCE_SPAN = SIGNIFICANCE_MAX - SIGNIFICANCE_MIN  # 4.0
+SIGNIFICANCE_MID = 3.0
+
+
 class WeightingEngine:
     """
     Core engine for calculating skill importance using a modified TF-IDF approach.
-    It compares how often a skill is mentioned in the current JD vs how common it 
+    It compares how often a skill is mentioned in the current JD vs how common it
     is in our historical database (the 'market' baseline).
+
+    Outputs ``suggested_weight`` on [SIGNIFICANCE_MIN, SIGNIFICANCE_MAX], not recruiter
+    Likert 1--5. The JD review UI inverts that band when showing priorities.
     """
     
     def __init__(self):
@@ -28,18 +40,19 @@ class WeightingEngine:
 
     def calculate_weights(self, jd_text: str, skills: List[str]) -> Dict[str, Dict[str, Any]]:
         """
-        Derives suggested 1-5 priority weights. 
-        Higher weights go to skills that are either mentioned a lot in the JD 
-        or are rare across the market (high 'scarcity').
+        Derives suggested_weight per skill (SIGNIFICANCE_MIN..SIGNIFICANCE_MAX).
+
+        Higher values mean higher IR significance (TF x IDF), min-max normalised across
+        the skills on this JD only. Recruiters see integer P-1..P-5 after UI mapping.
         """
         if not jd_text or not skills:
-            return {s: {"weight": 3.0, "reasoning": "Standard baseline."} for s in skills}
+            return {s: {"weight": SIGNIFICANCE_MID, "reasoning": "Standard baseline."} for s in skills}
 
         tokens = self._clean_and_tokenise(jd_text)
         total_words = len(tokens)
         
         if total_words == 0:
-            return {s: {"weight": 3.0, "reasoning": "Baseline (Empty JD)."} for s in skills}
+            return {s: {"weight": SIGNIFICANCE_MID, "reasoning": "Baseline (Empty JD)."} for s in skills}
 
         num_docs = len(self.corpus) + 1 # + 1s are because current job
         doc_frequencies = {s: 0 for s in skills}
@@ -75,18 +88,19 @@ class WeightingEngine:
                 "df": df
             }
 
-        # linear mapping to our 1.5 - 5.0 priority scale
+        # Min-max normalise raw scores across skills on THIS jd into [1.0, 5.0].
+        # Higher suggested_weight = stronger relative emphasis on this posting; weakest
+        # skill on the list -> 1.0 (maps to P-5), strongest -> 5.0 (maps to P-1) after
+        # round(6 - weight) in ConfigEditor.
         scores = [r["score"] for r in results.values()]
         min_s, max_s = min(scores), max(scores)
         s_range = max_s - min_s
-        
+
         final_output = {}
         for s, data in results.items():
-            # if all skills have the same significance, we default to the middle (3.0)
-            scaled = 3.0
+            scaled = SIGNIFICANCE_MID
             if s_range > 0:
-                # map the raw IR score to a 1.5 (low) to 5.0 (high) priority
-                scaled = 1.5 + (data["score"] - min_s) / s_range * 3.5
+                scaled = SIGNIFICANCE_MIN + (data["score"] - min_s) / s_range * SIGNIFICANCE_SPAN
             
             if data["idf"] > 1.8:
                 reason = "Niche skill; high market scarcity increases importance."

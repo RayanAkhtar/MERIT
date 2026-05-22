@@ -1,0 +1,29 @@
+{
+  "raw_text": "Luminox Labs\n\nDesigning intuitive digital experiences that empower users to accomplish more\n\nNow Hiring: Manager, Frontend Engineering\n\nRemote (US-based teams preferred) · Full-time · $210,000 - $270,000 USD annually\n\nW\n\ne're looking for a Manager of Frontend Engineering to lead our frontend platform team of 5-7 engineers.\n\nThis role combines hands-on technical leadership with people management responsibilities. You'll mentor\n\nsenior and mid-level engineers, drive architectural decisions, establish best practices for accessibility and web\n\nperformance, and directly contribute to high-impact features. You'll report to our VP of Engineering and partner\n\nclosely with product and design leadership.\n\nA B O U T U S\n\nLuminox Labs is a mid-stage SaaS company building modern analytics and workflow automation platforms for\n\nenterprise teams. We're a 200-person, remote-first engineering organization with a focus on developer experience\n\nand high-performance web applications. Since our founding in 2018, we've helped thousands of companies\n\nstreamline their operations through elegant, accessible interfaces.\n\nY O U R R O L E\n\nLead, mentor, and develop a team of 5-7 frontend engineers, providing clear technical direction, career growth\n\nopportunities, and regular feedback\n\nEstablish and enforce frontend engineering standards, including accessibility compliance (WCAG 2.1 AA),\n\nweb performance budgets, and code review practices\n\nArchitect scalable component libraries and state management solutions using React and TypeScript, supporting\n\nteams across multiple product lines\n\nDrive adoption of Next.js for server-side rendering and static generation optimization, improving Core Web\nVitals and SEO across our platform\n\nConduct quarterly technical planning sessions to identify technical debt, refactor legacy code, and plan major\n\nfrontend infrastructure initiatives\n\nPartner with product and design leaders to translate requirements into technical specifications and ensure\n\nfrontend feasibility in feature roadmaps\n\nImplement comprehensive testing strategies using Jest, React Testing Library, and Cypress to maintain >80%\n\ncode coverage and prevent regressions\n\nRepresent frontend engineering in cross-functional architecture reviews and contribute to system design\n\ndecisions affecting multiple teams\n\n\fR E Q U I R E D Q U A L I F I C AT I O N S\n\n6+ years of professional frontend engineering experience, with at least 2 years in a people management or\n\nsenior technical leadership role\n\nExpert-level proficiency in React and TypeScript, with demonstrated ability to mentor others in advanced\npatterns and best practices\n\nStrong foundation in web performance optimization, accessibility standards (WCAG), and core web vitals\n\n(LCP, FID, CLS)\n\nExperience building or scaling component libraries and design systems with Tailwind CSS or equivalent styling\n\nsolutions\n\nProven track record of owning significant technical decisions and communicating trade-offs to non-technical\n\nstakeholders\n\nFamiliarity with build tools and bundling concepts (Vite, Webpack, or comparable), with ability to optimize\n\nbuild times and bundle sizes\n\nD E S I R E D Q U A L I F I C AT I O N S\n\nExperience with Next.js in production environments, including knowledge of SSR, ISR, and app router patterns\n\nBackground mentoring junior engineers or running engineering interviews and assessments\n\nKnowledge of end-to-end testing frameworks like Cypress or Playwright for complex user workflows\n\nExperience with monorepo tooling (Turborepo, Nx) and shared component distribution strategies\n\nT O O L S  O F  T H E T R A D E\n\nReact 18+, TypeScript, Next.js, Tailwind CSS, Vite, Jest, React Testing Library, Cypress, Web Accessibility\n\n(WCAG), Web Performance Optimization\n\nW E O F F E R\n\nCompetitive health insurance (medical, dental, vision) with 100% premium coverage for employees\n\nGenerous professional development budget ($3,000/year) for conferences, courses, and certifications\n\nFlexible work schedule and 25 days PTO plus 10 company holidays\n\nFully remote with option to work from our San Francisco office 1-2 days/week if desired\n\nEquity package (0.3-0.8% depending on experience) with 4-year vesting and 1-year cliff\n\nAnnual performance bonus (15-20% of base salary)\n\nParental leave (16 weeks paid for all parents), sabbatical program after 5 years\n\nMental health support and $500/year wellness stipend\n\n\fT O A P P LY\n\nApply directly through our careers page at luminoxlabs.com/careers or send your resume and a brief note about\n\nyour management philosophy to careers@luminoxlabs.com. We review applications on a rolling basis.\n\n\f",
+  "job_title": "Now Hiring: Manager, Frontend Engineering",
+  "company": "your management philosophy to careers",
+  "location": null,
+  "employment_type": "Full-time",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "Cypress",
+    "Next.js",
+    "React",
+    "foundation",
+    "playwright"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Parental leave (16 weeks paid for all parents), sabbatical program after 5 years",
+    "Mental health support and $500/year wellness stipend"
+  ],
+  "salary": "$210,000 - $270,000",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\005_manager_frontend-engineer.pdf",
+  "languages": [
+    "JS",
+    "TypeScript",
+    "c",
+    "r"
+  ],
+  "education_required": []
+}

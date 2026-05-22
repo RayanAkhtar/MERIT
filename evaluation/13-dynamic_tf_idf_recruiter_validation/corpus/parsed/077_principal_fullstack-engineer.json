@@ -1,0 +1,36 @@
+{
+  "raw_text": "Nexus Labs\n\nPrincipal Full Stack Engineer\n\nLOCATION\n\nSan Francisco, CA (Remote-\nfirst)\n\nTYPE\n\nFull-time\n\nCOMPENSATION\n\n$280,000 - $380,000 + equity\n\nTECH STACK\n\nNode.js\n\nTypeScript\n\nReact\n\nPostgreSQL\n\nGraphQL\n\nAWS (ECS, Lambda, RDS,\nS3, CloudFormation)\n\nGCP (Cloud Run, Cloud\nSQL)\n\nDocker & Kubernetes\n\nGit & CI/CD (GitHub\nActions, GitLab CI)\n\nTerraform\n\nAbout Nexus Labs: Nexus Labs is a venture-backed cloud\ninfrastructure and platform engineering company founded in\n2019. We enable enterprise customers to build, deploy, and\nscale full-stack applications with confidence. Our platform\nabstracts complexity across microservices, real-time data, and\n\nAI model inference—serving 500+ companies across fintech,\nhealthtech, and e-commerce sectors. We're trusted by Fortune\n500 companies and high-growth startups alike.\n\nWe are seeking an exceptional Principal Full Stack Engineer\nto lead the technical direction of our platform's core\n\ninfrastructure and developer experience. As a Principal\nEngineer, you will define architecture standards, mentor senior\nengineers across teams, and drive strategic initiatives that\nimpact how thousands of developers build applications on our\nplatform. This role requires deep expertise in modern full-stack\ndevelopment, proven leadership of large-scale systems, and\nthe ability to influence organizational technical strategy.\n\nRESPONSIBILITIES\n\nDefine and evolve the organization-wide technical strategy\nfor our full-stack platform, including API design standards,\nmicroservices architecture, and cloud infrastructure patterns\n\nLead architectural reviews and design decisions for high-\nimpact initiatives; serve as the principal technical authority\nfor platform-critical decisions affecting multiple teams\n\nDesign and implement complex full-stack systems using\nNode.js, TypeScript, React, PostgreSQL, and GraphQL that\nhandle millions of daily transactions with sub-100ms latency\nrequirements\n\nMentor and guide 8-12 senior and staff engineers; conduct\ntechnical interviews, define career development\nframeworks, and foster a culture of technical excellence\n\nEstablish DevOps best practices and cloud infrastructure\nstandards using AWS (ECS, Lambda, RDS, S3) and GCP\nservices; oversee CI/CD pipeline architecture and\ndeployment automation\n\nChampion performance optimization, security hardening,\nand scalability improvements across the platform; lead post-\nincident reviews and establish reliability benchmarks\n\nCollaborate with Product and Executive leadership to shape\nthe technical roadmap; translate business objectives into\nplatform capabilities and engineering initiatives\n\nBuilding scalable, AI-readyinfrastructure for the modern web\fBuild and maintain relationships with key technology\npartners and open-source communities; contribute to\nexternal technical thought leadership through RFCs, design\n\ndocs, and architectural guidance\n\nREQUIREMENTS\n\n12+ years of professional software engineering experience,\nwith at least 4+ years in principal-level or staff engineer\nroles defining technical strategy\n\nDeep expertise in Node.js and TypeScript; demonstrated\nability to architect and scale production systems serving\nmillions of users\n\nStrong proficiency with React and modern frontend\narchitecture; experience building complex, performant user\ninterfaces for developer tools or platforms\n\nExpert-level knowledge of PostgreSQL and relational\ndatabase design; experience optimizing queries, indexing\nstrategies, and scaling databases to petabyte-scale\n\nProven experience designing and implementing REST\nand/or GraphQL APIs; deep understanding of API design\npatterns, versioning, and backward compatibility\n\nExtensive hands-on experience with AWS (EC2, ECS,\nLambda, RDS, S3, CloudFormation) and/or GCP (Compute\nEngine, Cloud Run, Cloud SQL); experience with\ninfrastructure-as-code and multi-region deployments\n\nDemonstrated leadership impact: mentored multiple\nstaff/senior engineers; led cross-functional projects affecting\norganizational strategy; influenced technical culture and\nstandards\n\nBONUS POINTS\n\nExperience with event-driven architectures, message\nqueues (Kafka, RabbitMQ), and real-time data processing\nsystems\n\nFamiliarity with observability platforms (DataDog, New\nRelic, Prometheus) and building comprehensive\nmonitoring/alerting strategies\n\nBackground in open-source projects or significant\ncontributions to widely-adopted libraries/frameworks\n\nExperience scaling engineering teams, building platform\nteams, or establishing engineering best practices across\nmultiple orgs\n\nBENEFITS\n\nCompetitive equity package (0.5%-2% depending on role\nlevel) in a venture-backed Series B company\n\n\fComprehensive health coverage: medical, dental, and\nvision insurance with company-paid premiums\n\nGenerous PTO policy: unlimited PTO + 10 company\n\nholidays + sabbatical program (3 weeks paid after 5 years)\n\n401(k) matching: 4% employer match, immediate vesting\n\nProfessional development budget: $5,000/year for\nconferences, courses, certifications, and learning materials\n\nHome office stipend: $1,500 for equipment and $200/month\n\nfor internet/utilities\n\nParental leave: 16 weeks fully paid for primary caregiver, 8\nweeks for non-primary caregiver\n\nMental health support: complimentary therapy sessions via\nHeadspace and on-site wellness coaching\n\nAPPLY\n\nSubmit your resume, a brief cover letter outlining your\ntechnical leadership philosophy, and a link to your GitHub\n\nprofile or portfolio to careers@nexuslabs.io. Include specific\nexamples of how you've shaped technical strategy at your\ncurrent or previous organization. Optionally, share a technical\nRFC or architecture decision document you've authored. We\nreview applications on a rolling basis.\n\n\f",
+  "job_title": "Principal Full Stack Engineer",
+  "company": "Nexus Labs",
+  "location": null,
+  "employment_type": "Internship",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "AWS",
+    "Docker",
+    "Kubernetes",
+    "Node.js",
+    "React",
+    "postgresql",
+    "processing"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Experience with event-driven architectures, message",
+    "queues (Kafka, RabbitMQ), and real-time data processing",
+    "systems",
+    "Familiarity with observability platforms (DataDog, New",
+    "Relic, Prometheus) and building comprehensive",
+    "monitoring/alerting strategies"
+  ],
+  "salary": "$280,000 - $380,000",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\077_principal_fullstack-engineer.pdf",
+  "languages": [
+    "JS",
+    "PostgreSQL",
+    "SQL",
+    "TypeScript",
+    "graphql"
+  ],
+  "education_required": []
+}

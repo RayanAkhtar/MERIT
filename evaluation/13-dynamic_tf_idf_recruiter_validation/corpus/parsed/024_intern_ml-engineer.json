@@ -1,0 +1,41 @@
+{
+  "raw_text": "Neuralflow Labs\n\nDemocratizing AI through scalable, interpretable machine learning solutions\n\nINTERN MACHINE LEARNING ENGINEER\n\nSan Francisco, CA (Remote-friendly) · Internship · $28-32/hour\n\nJoin Neuralflow Labs as a Machine Learning Engineer Intern and gain hands-on experience building\n\nand deploying ML models in a collaborative, learning-focused environment. You'll work alongside\n\nsenior ML engineers on real-world projects, contributing to feature engineering, model\n\nexperimentation, and pipeline development. This is an excellent opportunity to translate coursework\n\ninto practical experience and grow your technical skills in a rapidly evolving field.\n\nABOUT US\n\nNeuralflow Labs is a fast-growing AI/ML startup founded in 2021, focusing on building production-\n\ngrade machine learning systems for enterprises. We specialize in helping companies implement end-\n\nto-end ML pipelines, from data ingestion and feature engineering to model training and deployment.\nOur mission is to make enterprise-grade AI accessible to organizations of all sizes through intuitive\n\ntools and best practices.\n\nWHAT YOU'LL DO\n\nAssist in preprocessing and cleaning datasets for ML model training under senior engineer\nguidance\n\nImplement and experiment with ML models using PyTorch and TensorFlow, comparing\narchitectures and hyperparameters\n\nHelp track experiments and model metrics using MLflow, learning best practices for\nreproducibility and versioning\n\nSupport feature engineering and feature store integration using Delta Lake or similar platforms\nto understand data pipeline architecture\n\nDeploy trained models to AWS SageMaker or Google Vertex AI with mentorship, focusing on\ncontainerization and API development\n\nParticipate in code reviews and contribute to improving team documentation and ML best\npractices\n\nCollaborate with data engineering and product teams to understand real-world ML\n\nrequirements and constraints\n\nWrite clean, well-tested Python code following the team's coding standards and contribute to\ninternal ML libraries\n\nDocument experimental results and present findings to the team in weekly learning sessions\n\nREQUIRED\n\n\fCurrently pursuing a degree in Computer Science, Data Science, Statistics, Mathematics, or\n\nrelated field, or recent graduate (within 6 months)\n\nFoundational knowledge of machine learning concepts (supervised/unsupervised learning,\n\nmodel evaluation, overfitting)\n\nProficiency in Python and experience with data manipulation libraries (NumPy, Pandas)\n\nBasic understanding of deep learning frameworks; exposure to PyTorch or TensorFlow through\n\ncoursework or personal projects\n\nStrong problem-solving skills and curiosity about how ML systems work in production\n\nNICE TO HAVE\n\nExperience with version control systems (Git) and collaborative development workflows\n\nFamiliarity with Docker or basic containerization concepts\n\nPrevious experience with cloud platforms (AWS or Google Cloud) or internships in related\n\nfields\n\nPortfolio or GitHub repositories showcasing ML projects or data science work\n\nTECH STACK\n\nPython   PyTorch   TensorFlow   Keras   MLflow   AWS SageMaker\n\n  Google Vertex AI\n\n  Databricks Delta Lake\n\nDocker\n\n  scikit-learn\n\nBENEFITS\n\nCompetitive hourly rate plus performance bonus potential\n\nFlexible, remote-friendly work environment with occasional in-office collaboration\n\nMentorship from experienced ML engineers with exposure to industry best practices\n\nProfessional development budget for courses, conferences, or certifications\n\nFree access to internal ML tools and cloud computing resources for learning\n\nCasual work culture with regular team social events and learning lunches\n\nPotential for return offer conversion to full-time role based on performance\n\nHOW TO APPLY\n\nSubmit your resume, a brief cover letter, and a link to your GitHub profile or portfolio (if available) to\ncareers@neuralflowtlabs.com with the subject line 'ML Intern Application'. Alternatively, apply through\nour careers page at www.neuralflowtlabs.com/careers. Please include a short note (1-2 sentences)\nabout why you're interested in machine learning and what you hope to learn during the internship.\nApplications are reviewed on a rolling basis.\n\n\f",
+  "job_title": "INTERN MACHINE LEARNING ENGINEER",
+  "company": "Neuralflow Labs is a fast",
+  "location": null,
+  "employment_type": "Internship",
+  "experience_level": "Internship",
+  "technical_skills": [
+    "AWS",
+    "Docker",
+    "Scikit-learn",
+    "keras",
+    "numpy",
+    "pandas",
+    "pytorch",
+    "tensorflow"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Experience with version control systems (Git) and collaborative development workflows",
+    "Familiarity with Docker or basic containerization concepts",
+    "Previous experience with cloud platforms (AWS or Google Cloud) or internships in related",
+    "fields",
+    "Portfolio or GitHub repositories showcasing ML projects or data science work",
+    "Flexible, remote-friendly work environment with occasional in-office collaboration",
+    "Mentorship from experienced ML engineers with exposure to industry best practices",
+    "Professional development budget for courses, conferences, or certifications",
+    "Free access to internal ML tools and cloud computing resources for learning",
+    "Casual work culture with regular team social events and learning lunches",
+    "Potential for return offer conversion to full-time role based on performance"
+  ],
+  "salary": "$28",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\024_intern_ml-engineer.pdf",
+  "languages": [
+    "Python",
+    "pytorch"
+  ],
+  "education_required": [
+    "Currently pursuing a degree in Computer Science, Data Science, Statistics, Mathematics, or"
+  ]
+}

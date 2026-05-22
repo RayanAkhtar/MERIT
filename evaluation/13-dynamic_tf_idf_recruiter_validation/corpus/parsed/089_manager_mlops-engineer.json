@@ -1,0 +1,29 @@
+{
+  "raw_text": "Manager, MLOps Engineer\n\nVelocity AI — Accelerating machine learning from lab to production at scale\n\nLocation\n\nSan Francisco, CA (Remote-friendly)\n\nEmployment Type\n\nFull-time\n\nCompensation\n\n$220,000 - $280,000 per year\n\nThe Opportunity\n\nWe're seeking an experienced Manager, MLOps Engineer to lead and grow our MLOps platform\n\nteam. You will oversee a team of 5-7 engineers, set technical direction, manage roadmap priorities,\n\nand directly contribute to building next-generation ML deployment and monitoring systems. This role\n\nbalances hands-on technical leadership with team development, mentorship, and strategic planning.\n\nYou'll work across product, data science, and infrastructure teams to solve complex production ML\n\nchallenges at scale.\n\nAbout Velocity AI\n\nVelocity AI is a series-B platform company dedicated to simplifying ML operations and deployment at\nenterprise scale. We work with Fortune 500 companies and fast-growing startups to build robust,\nscalable ML infrastructure that reduces time-to-production and enables data teams to focus on\n\ninnovation rather than infrastructure maintenance. Our platform handles the critical bridge between\ndata science and production, ensuring models are monitored, versioned, and deployed reliably.\n\nDay-to-Day\n\nLead, mentor, and develop a team of 5-7 MLOps engineers; conduct performance reviews, career\n\nplanning, and hiring interviews\n\nDesign and architect MLOps solutions leveraging Kubernetes, Airflow, MLflow, and Kubeflow to\nsupport enterprise ML workflows\n\nEstablish technical standards, best practices, and governance frameworks for model deployment,\nversioning, and monitoring across teams\n\nOwn the roadmap for MLOps platform features; prioritize initiatives based on business impact and\nteam capacity\n\nCollaborate with Data Science and Product teams to define SLAs, deployment strategies, and\nfeature store requirements\n\nDrive implementation of monitoring, alerting, and observability solutions for production ML models\n\nusing industry-standard tools\n\nChampion code quality, automated testing, and CI/CD pipelines using Docker and containerization\n\nbest practices\n\nManage stakeholder communication; present technical progress, roadmap updates, and\nengineering metrics to leadership\n\n\fIdentify and mitigate technical risks; lead post-mortems and drive continuous improvement\n\ninitiatives\n\nYou Have\n\n6+ years of experience in ML engineering, MLOps, or infrastructure engineering, with at least 2\n\nyears in a people management role\n\nDeep hands-on expertise with container orchestration (Kubernetes) and workflow orchestration\n\n(Airflow, Kubeflow, or equivalent)\n\nProven experience designing, deploying, and maintaining ML model serving and monitoring\n\ninfrastructure in production\n\nStrong software engineering fundamentals: proficiency in Python, CI/CD tooling, and infrastructure-\n\nas-code practices\n\nDemonstrated ability to lead, mentor, and develop engineering teams; excellent communication\n\nskills across technical and non-technical stakeholders\n\nExperience with MLflow, model versioning systems, and feature stores; understanding of ML\n\nlifecycle management\n\nBonus\n\nExperience with advanced monitoring and observability platforms for ML systems (Prometheus,\nGrafana, or equivalent)\n\nFamiliarity with cloud platforms (AWS, GCP, Azure) and containerized ML workflows\n\nBackground in system design, scalability, and distributed systems thinking\n\nOpen-source contributions or community involvement in MLOps/DevOps ecosystems\n\nOur Stack\n\nKubernetes   Apache Airﬂow   MLﬂow   Kubeﬂow   Docker   Python   Prometheus/Grafana\n\nFeature Stores (Feast, Tecton)   Jenkins/GitLab CI   TensorFlow Serving/KServe\n\nWhat We Offer\n\nCompetitive equity package; Series-B company with strong upside potential\n\nComprehensive health insurance: medical, dental, vision with 100% premium coverage for\nemployee\n\nRemote-friendly culture with flexible working arrangements and home office stipend\n\n$5,000 annual professional development budget for conferences, training, and courses\n\nUnlimited PTO policy with 10+ company holidays and paid parental leave\n\n401(k) matching (4% employer contribution) and financial wellness resources\n\nCatered lunch and wellness programs; on-site gym access at SF headquarters\n\nApply\n\nApply directly at careers.velocityai.io/jobs/manager-mlopers-engineer or email recruiting@velocityai.io\nwith your resume, cover letter, and a brief note on your leadership philosophy. Reference your\n\n\fexperience with at least three technologies from our tech stack. We review applications on a rolling\n\nbasis.\n\n\f",
+  "job_title": "Manager, MLOps Engineer",
+  "company": "Velocity AI",
+  "location": null,
+  "employment_type": "Full-time",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "AWS",
+    "Docker",
+    "Kubernetes",
+    "azure",
+    "tensorflow"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Experience with advanced monitoring and observability platforms for ML systems (Prometheus,",
+    "Grafana, or equivalent)",
+    "Familiarity with cloud platforms (AWS, GCP, Azure) and containerized ML workflows",
+    "Background in system design, scalability, and distributed systems thinking",
+    "Open-source contributions or community involvement in MLOps/DevOps ecosystems"
+  ],
+  "salary": "$220,000 - $280,000 per year",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\089_manager_mlops-engineer.pdf",
+  "languages": [
+    "Python"
+  ],
+  "education_required": []
+}

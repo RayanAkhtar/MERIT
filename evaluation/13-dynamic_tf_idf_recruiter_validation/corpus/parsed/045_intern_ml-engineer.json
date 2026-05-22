@@ -1,0 +1,55 @@
+{
+  "raw_text": "NeuralSync AI // Intern Machine Learning Engineer\n\nSan Francisco, CA | Intern (Full-time, 12-week summer program) | $28-32/hour\n\nBridging human intuition with machine intelligence for enterprise decision-making\n\n>> ABOUT\n\nNeuralSync AI is a Series B machine learning platform company founded in 2021, focused on\nbuilding production-grade ML solutions for Fortune 500 enterprises. We specialize in\n\ncustom model development, MLOps infrastructure, and AI governance, helping organizations\nresponsibly deploy machine learning at scale. Our team of 45 engineers and data\n\nscientists is based in San Francisco with a growing presence in Austin, TX.\n\n>> SUMMARY\n\nJoin NeuralSync AI's ML engineering team as an Intern Machine Learning Engineer this\n\nsummer! You'll work alongside senior engineers to build, train, and deploy machine\nlearning models for real enterprise customers. This hands-on internship will give you\n\nexposure to the full ML lifecycle—from data preparation and feature engineering to model\nevaluation and production deployment. You'll contribute to meaningful projects while\n\nlearning industry best practices in MLOps, model monitoring, and reproducible ML\nworkflows.\n\n>> RESPONSIBILITIES\n\n- Assist in data preparation, cleaning, and exploratory data analysis (EDA) using\nPython and pandas under mentor guidance\n\n- Collaborate with senior engineers to implement model training pipelines using\nPyTorch or TensorFlow\n\n- Learn to version control ML experiments using MLflow, tracking metrics, parameters,\nand artifacts\n\n- Help build and test feature engineering workflows using an internal feature store\nsystem\n\n- Participate in model evaluation and validation tasks, creating performance reports\nand visualizations\n\n- Support deployment and monitoring of trained models using AWS SageMaker, including\nA/B testing setup\n\n- Document code and ML workflows to ensure reproducibility and knowledge transfer\n- Attend weekly ML seminar sessions and present learnings from assigned research\n\npapers or tools\n\n>> MUST HAVE\n\n- Currently pursuing a Bachelor's or Master's degree in Computer Science, Mathematics,\n\nStatistics, Physics, or related field\n- Strong foundational knowledge of Python programming (NumPy, Pandas, Scikit-learn)\n\n- Understanding of machine learning fundamentals: supervised learning, classification,\nregression, and model evaluation metrics\n\n- Familiarity with Git version control and command-line tools\n\n>> NICE TO HAVE\n\n- Prior experience with PyTorch or TensorFlow (coursework, personal projects, or\n\nkaggle competitions)\n\n\f- Exposure to SQL and database querying\n\n- Experience deploying models using AWS services or equivalent cloud platforms\n\n>> STACK\n\nPython (NumPy, Pandas, Scikit-learn) / PyTorch / TensorFlow / MLflow / AWS SageMaker / Feature\n\nStore (Tecton or Feast) / Git / GitHub / Jupyter Notebooks / Docker / PostgreSQL / AWS EC2 / S3\n\n>> BENEFITS\n\n- $500 housing stipend (Bay Area intern support)\n\n- Flexible work schedule with option for hybrid arrangement (2 days office, 3 remote)\n- Free access to LinkedIn Learning, DataCamp, and Coursera (professional development\n\nbudget: $1,000)\n- Weekly catered lunches and unlimited coffee/snacks in office\n\n- Mentorship from senior ML engineers with 1:1 meetings\n- Return offer eligibility for strong performers\n\n- Free public transit pass (BART/Muni)\n\n>> APPLY\n\nApply on our careers page at neuralsync.ai/careers or submit your resume and a brief\n\ncover letter explaining your interest in ML engineering to internships@neuralsync.ai.\nInclude a link to your GitHub profile if available. Phone screenings will be conducted in\n\nrolling waves through April. We encourage applications from underrepresented groups in\ntech.\n\n\f",
+  "job_title": "NeuralSync AI // Intern Machine Learning Engineer",
+  "company": "NeuralSync AI is a Series B machine learning platform company founded in",
+  "location": null,
+  "employment_type": "Internship",
+  "experience_level": "Internship",
+  "technical_skills": [
+    "AWS",
+    "Docker",
+    "Scikit-learn",
+    "numpy",
+    "pandas",
+    "postgresql",
+    "pytorch",
+    "tensorflow"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Prior experience with PyTorch or TensorFlow (coursework, personal projects, or",
+    "kaggle competitions)",
+    "Exposure to SQL and database querying",
+    "Experience deploying models using AWS services or equivalent cloud platforms",
+    ">> STACK",
+    "Python (NumPy, Pandas, Scikit-learn) / PyTorch / TensorFlow / MLflow / AWS SageMaker / Feature",
+    "Store (Tecton or Feast) / Git / GitHub / Jupyter Notebooks / Docker / PostgreSQL / AWS EC2 / S3",
+    ">> BENEFITS",
+    "$500 housing stipend (Bay Area intern support)",
+    "Flexible work schedule with option for hybrid arrangement (2 days office, 3 remote)",
+    "Free access to LinkedIn Learning, DataCamp, and Coursera (professional development",
+    "budget: $1,000)",
+    "Weekly catered lunches and unlimited coffee/snacks in office",
+    "Mentorship from senior ML engineers with 1:1 meetings",
+    "Return offer eligibility for strong performers",
+    "Free public transit pass (BART/Muni)",
+    ">> APPLY",
+    "Apply on our careers page at neuralsync.ai/careers or submit your resume and a brief",
+    "cover letter explaining your interest in ML engineering to internships@neuralsync.ai.",
+    "Include a link to your GitHub profile if available. Phone screenings will be conducted in",
+    "rolling waves through April. We encourage applications from underrepresented groups in",
+    "tech."
+  ],
+  "salary": "$28",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\045_intern_ml-engineer.pdf",
+  "languages": [
+    "PostgreSQL",
+    "Python",
+    "SQL",
+    "jupyter",
+    "pytorch"
+  ],
+  "education_required": [
+    "- Currently pursuing a Bachelor's or Master's degree in Computer Science, Mathematics,"
+  ]
+}

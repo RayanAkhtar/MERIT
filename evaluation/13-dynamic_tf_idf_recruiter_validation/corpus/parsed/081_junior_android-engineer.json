@@ -1,0 +1,48 @@
+{
+  "raw_text": "Nexus Labs // Junior Android Engineer\n\nSan Francisco, CA (Remote-Friendly) | Full-Time | $80,000 - $110,000 per year\n\nBuilding intuitive mobile experiences that connect communities\n\n>> ABOUT\n\nNexus Labs is a growth-stage mobile-first technology company founded in 2019,\nspecializing in consumer social applications with a focus on privacy-first design\n\nprinciples. We serve over 2 million active users globally and are committed to creating\nbest-in-class Android experiences. Our engineering team values collaboration, continuous\n\nlearning, and shipping quality features on a regular cadence.\n\n>> SUMMARY\n\nJoin Nexus Labs as a Junior Android Engineer and help us build the next generation of\n\nmobile social applications. You'll work on our flagship Android app, collaborating\nclosely with senior engineers and product teams to develop new features, optimize\n\nperformance, and ensure exceptional user experiences. This is an ideal role for a\nmotivated early-career engineer eager to master modern Android development using Kotlin\n\nand Jetpack libraries.\n\n>> RESPONSIBILITIES\n\n- Develop new features and user interfaces using Kotlin and Jetpack Compose following\n\nestablished design systems and architectural patterns\n- Implement reactive asynchronous operations using Coroutines to ensure smooth,\n\nresponsive user interactions\n- Design and implement local data persistence layers using Room database framework\n\nwith proper migration strategies\n- Write unit and integration tests using JUnit and Espresso to ensure code quality and\n\nprevent regressions\n- Participate in code reviews with senior engineers to learn best practices and\n\nprovide constructive feedback to peers\n- Troubleshoot and debug issues in the app using Android Studio, Logcat, and network\n\nmonitoring tools to rapidly identify root causes\n- Collaborate with designers and product managers to translate wireframes and\n\nspecifications into functional Android features\n- Contribute to the app's Play Store releases, including version management, release\n\nnotes, and monitoring app performance metrics post-launch\n\n>> MUST HAVE\n\n- Bachelor's degree in Computer Science, Software Engineering, or related field (or\n\nequivalent professional experience)\n- 1-2 years of professional Android development experience with shipped production\n\napplications\n- Strong proficiency in Kotlin programming language and Object-Oriented design\n\nprinciples\n- Solid understanding of Android lifecycle, Activities, Fragments, and Services\n\n- Experience with version control systems (Git) and familiarity with collaborative\ndevelopment workflows\n\n- Ability to write clear, maintainable code with attention to performance and memory\noptimization\n\n\f>> NICE TO HAVE\n\n- Experience with Jetpack Compose or modern declarative UI frameworks\n\n- Familiarity with Coroutines and reactive programming patterns\n- Prior experience with REST APIs and JSON parsing libraries\n\n- Understanding of Material Design principles and responsive UI patterns\n\n>> STACK\n\nKotlin / Jetpack Compose / Android Coroutines / Room Database / Android Studio / JUnit &\n\nEspresso / Retrofit & OkHttp / Android Jetpack (ViewModel, LiveData, Navigation) / Play Store\n\nConsole / Firebase Analytics\n\n>> BENEFITS\n\n- Competitive health, dental, and vision insurance (100% of premiums covered for\n\nemployee)\n- Generous paid time off: 20 days annual leave + 10 company holidays\n\n- Professional development budget of $2,000 annually for conferences, courses, and\ncertifications\n\n- Collaborative home office setup stipend ($500) and ongoing remote work equipment\nsupport\n\n- Free lunch and beverage programs at our San Francisco office for in-office days\n- Mentorship program pairing junior engineers with senior staff for career growth\n\n- 401(k) matching up to 4% of salary contributions\n\n>> APPLY\n\nSubmit your resume, a portfolio link (GitHub, personal website, or Google Play store\n\napps), and a cover letter explaining your interest in Android development to\ncareers@nexuslabs.io. Include links to any open-source contributions or sample projects.\n\nWe review applications on a rolling basis and typically respond within 1-2 weeks.\n\n\f",
+  "job_title": "Nexus Labs // Junior Android Engineer",
+  "company": "Nexus Labs is a growth",
+  "location": null,
+  "employment_type": "Full-time",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "firebase",
+    "junit"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Experience with Jetpack Compose or modern declarative UI frameworks",
+    "Familiarity with Coroutines and reactive programming patterns",
+    "Prior experience with REST APIs and JSON parsing libraries",
+    "Understanding of Material Design principles and responsive UI patterns",
+    ">> STACK",
+    "Kotlin / Jetpack Compose / Android Coroutines / Room Database / Android Studio / JUnit &",
+    "Espresso / Retrofit & OkHttp / Android Jetpack (ViewModel, LiveData, Navigation) / Play Store",
+    "Console / Firebase Analytics",
+    ">> BENEFITS",
+    "Competitive health, dental, and vision insurance (100% of premiums covered for",
+    "employee)",
+    "Generous paid time off: 20 days annual leave + 10 company holidays",
+    "Professional development budget of $2,000 annually for conferences, courses, and",
+    "certifications",
+    "Collaborative home office setup stipend ($500) and ongoing remote work equipment",
+    "support",
+    "Free lunch and beverage programs at our San Francisco office for in-office days",
+    "Mentorship program pairing junior engineers with senior staff for career growth",
+    "401(k) matching up to 4% of salary contributions",
+    ">> APPLY",
+    "Submit your resume, a portfolio link (GitHub, personal website, or Google Play store",
+    "apps), and a cover letter explaining your interest in Android development to",
+    "careers@nexuslabs.io. Include links to any open-source contributions or sample projects.",
+    "We review applications on a rolling basis and typically respond within 1-2 weeks."
+  ],
+  "salary": "$80,000 - $110,000 per year",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\081_junior_android-engineer.pdf",
+  "languages": [
+    "kotlin"
+  ],
+  "education_required": [
+    "- Bachelor's degree in Computer Science, Software Engineering, or related field (or",
+    "motivated early-career engineer eager to master modern Android development using Kotlin"
+  ]
+}

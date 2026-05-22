@@ -1,12 +1,34 @@
-# Study 13: Dynamic TF-IDF Recruiter Validation
+# Study 13: Metric Prediction vs Recruiter Alignment (Pilot)
 
-This study validates the extensibility and accuracy of the dynamic TF-IDF-based term extraction and technology weighting model inside the MERIT scoring engine through a human-in-the-loop audit.
+Validates **Pillar 1 metric prediction** (TF-IDF suggested priorities vs blinded human ratings).
 
-## Objective
-Evaluate how well MERIT's dynamic metric prediction maps to real-world recruiter expectations and domain-specific requirements.
+## Scale
 
-## Methodology
-1. Provide recruiters with a target document corpus.
-2. Run the dynamic TF-IDF weight extraction algorithm.
-3. Have recruiters manually audit and verify the predicted metric importances and skill weights against their expected scores.
-4. Record precision, recall, and overall consensus ratings.
+| Component | Size |
+|-----------|------|
+| Market corpus | 100 JDs (`data/job descriptions/`) — IDF only |
+| Human study | **3 hold-outs**, **4 evaluators** (2 recruiters + 2 Imperial peers) |
+| Skills rated | 27 total |
+
+## Hold-outs (human study)
+
+1. Junior Frontend (React)
+2. Senior ML Engineer
+3. Lead DevOps / Platform
+
+## Commands
+
+```bash
+python build_market_corpus.py
+python build_test_dataset.py
+python populate_ground_truth.py
+python run_study.py
+```
+
+## Report
+
+`FYP-report/evaluation/subsections/foundational_accuracy.tex` (Study 13)
+
+## Historical record
+
+`response.txt` — plain-language facilitator notes and results summary from the pilot run.

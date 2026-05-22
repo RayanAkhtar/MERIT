@@ -1,0 +1,25 @@
+{
+  "raw_text": "DataFlux AI\n\nTurning customer behavior into actionable intelligence\n\nNow Hiring: Mid Data Scientist\n\nSan Francisco, CA (Remote-flexible) · Full-time · $115,000 - $155,000 USD\n\nW\n\ne're hiring a Mid Data Scientist to join our Analytics team. You'll own end-to-end data science projects—\n\nfrom exploratory analysis and experimentation design to model deployment and monitoring. You'll work\n\nclosely with product, engineering, and business stakeholders to identify high-impact opportunities and deliver\n\npredictive models and statistical insights that drive business decisions. This role requires 2-5 years of professional\n\nexperience building and shipping data science solutions.\n\nA B O U T U S\n\nDataFlux AI is a Series B data analytics platform company that helps mid-market to enterprise businesses extract\n\ndeeper insights from their user behavior and transaction data. Founded in 2020, we've grown to serve 200+ clients\n\nacross e-commerce, fintech, and SaaS verticals. Our proprietary ML pipelines and statistical frameworks empower\n\ndata teams to move faster from experimentation to production insights.\n\nY O U R R O L E\n\nDesign, execute, and analyze A/B tests and statistical experiments to optimize product features and user\n\nengagement, ensuring statistical rigor and proper sample sizing\n\nBuild and maintain predictive models using Python (scikit-learn, XGBoost) to forecast user churn, customer\n\nlifetime value, and segment purchasing behavior\n\nWrite efficient SQL queries to extract, transform, and aggregate data from our data warehouse; collaborate with\n\ndata engineers on ETL optimization\n\nDevelop and document statistical analyses to answer business questions; create clear visualizations and\ndashboards to communicate findings to non-technical stakeholders\n\nImplement A/B testing frameworks and experimentation workflows; establish statistical best practices across\n\nthe analytics team\n\nMonitor model performance in production; identify drift, retrain models, and iterate on feature engineering and\n\nmodel architecture\n\nCollaborate with product and engineering teams to define success metrics and translate business requirements\n\ninto data science projects\n\nContribute to documentation and knowledge sharing; mentor junior data team members on statistical concepts\n\nand Python best practices\n\n\fR E Q U I R E D Q U A L I F I C AT I O N S\n\n2-5 years of professional experience in data science, analytics, or quantitative roles\n\nStrong proficiency in Python (Pandas, NumPy, scikit-learn) and SQL for data manipulation and analysis\n\nSolid understanding of statistics, probability, hypothesis testing, and experimental design\n\nExperience designing and analyzing A/B tests or running statistical experiments in production environments\n\nPortfolio or demonstrated experience shipping ML models or analyses that influenced business outcomes\n\nComfort working with ambiguity; ability to scope problems independently and collaborate cross-functionally\n\nD E S I R E D Q U A L I F I C AT I O N S\n\nExperience with XGBoost, LightGBM, or ensemble methods\n\nFamiliarity with cloud data warehouses (Snowflake, BigQuery, Redshift) and dbt or similar data transformation\n\ntools\n\nPrior experience with A/B testing platforms (Statsig, LaunchDarkly, Optimizely) or experiment lifecycle\n\nmanagement\n\nKnowledge of causal inference methods or observational study design\n\nT O O L S  O F  T H E T R A D E\n\nPython (Pandas, NumPy, scikit-learn), SQL, XGBoost / scikit-learn, Jupyter Notebooks / Python IDE, Snowflake /\n\nBigQuery, Git & Version Control, A/B Testing & Experimentation Frameworks, Statistics & Hypothesis Testing,\nTableau / Looker (Analytics & Visualization), Statsig (Experimentation Platform)\n\nW E O F F E R\n\nCompetitive salary + equity package (stock options)\n\nComprehensive health insurance (medical, dental, vision coverage)\n\n401(k) matching up to 4% of salary\n\nUnlimited PTO + 10 company holidays\n\nProfessional development budget ($2,000/year for courses, conferences, certifications)\n\nFlexible work environment (remote-first with optional in-office days)\n\nMental health support & wellness programs\n\nParental leave (16 weeks primary, 8 weeks secondary)\n\nT O A P P LY\n\n\fApply through our careers page at dataflux.ai/careers or email careers@dataflux.ai with your resume, cover letter,\n\nand a link to your portfolio or GitHub. Include a brief note on a recent data science project you're proud of.\n\n\f",
+  "job_title": "Now Hiring: Mid Data Scientist",
+  "company": "DataFlux AI",
+  "location": null,
+  "employment_type": "Full-time",
+  "experience_level": "Mid",
+  "technical_skills": [
+    "Scikit-learn",
+    "numpy",
+    "pandas"
+  ],
+  "education": [],
+  "nice_to_have": [],
+  "salary": "$115,000 - $155,000",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\041_mid_data-scientist.pdf",
+  "languages": [
+    "Python",
+    "SQL",
+    "c",
+    "jupyter",
+    "r"
+  ],
+  "education_required": []
+}

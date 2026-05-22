@@ -1,0 +1,40 @@
+{
+  "raw_text": "Principal Full Stack Engineer\nVertex Systems — Building scalable, intelligent infrastructure for the\n\nmodern enterprise\n\nLocation\n\nSan Francisco, CA (Remote-first, occasional in-office)\n\nEmployment Type\n\nFull-time\n\nCompensation\n\n$280,000 - $380,000 USD annually\n\nThe Opportunity\n\nWe are seeking an exceptional Principal Full Stack Engineer to join Vertex\nSystems and define the technical direction of our platform architecture. As\na Principal engineer, you will lead cross-functional technical initiatives,\n\nmentor senior engineers, and shape our long-term technology strategy across\nfrontend, backend, and infrastructure domains. This role requires 12+ years\n\nof experience building and scaling production systems, a proven track\nrecord of architectural leadership, and deep expertise across the full\n\nstack. You will work directly with our VP of Engineering and executive team\nto establish technical standards, make critical architectural decisions,\n\nand guide the evolution of our platform to support our ambitious growth\nroadmap.\n\nAbout Vertex Systems\n\nVertex Systems is a Series B SaaS infrastructure company headquartered in\n\nSan Francisco that helps enterprises manage complex distributed systems and\nreal-time data workflows. We serve over 200 customers ranging from Fortune\n500 companies to high-growth startups. Our platform processes 50+ billion\nevents daily and is trusted by organizations across finance, healthcare,\n\nand e-commerce.\n\nDay-to-Day\n\nDefine and evolve the organization-wide technical architecture and\ntechnology strategy, ensuring decisions balance scalability,\nmaintainability, and business requirements across frontend, backend, and\n\ninfrastructure layers\n\nLead architectural design reviews and RFC (Request for Comments)\nprocesses for major technical initiatives, providing authoritative\n\ntechnical guidance on complex system design decisions\n\nMentor and develop senior and staff-level engineers, conducting technical\nmentorship sessions and creating growth opportunities that build\n\norganizational technical depth\n\n\fEstablish coding standards, architectural patterns, and best practices\nacross the full stack; own the design and implementation of critical\ninfrastructure components (API layers, service mesh, caching strategies)\n\nDesign and implement scalable backend services using Node.js and\nTypeScript, with expertise in both REST and GraphQL API design patterns\nfor high-traffic systems\n\nLead the migration and optimization of PostgreSQL databases and data\npipelines to support real-time analytics and growing query volumes at\nscale\n\nChampion the adoption of cloud-native practices on AWS/GCP, defining\n\ninfrastructure-as-code standards, CI/CD pipelines, and deployment\nstrategies\n\nCollaborate with product leadership to translate business requirements\ninto technical roadmap items; advocate for technical excellence while\nbalancing business velocity\n\nParticipate in on-call rotation for critical system incidents, driving\n\npost-mortems and establishing resilience improvements across the platform\n\nYou Have\n\n12+ years of professional software engineering experience with a strong\ntrack record of building and operating production systems at scale\n\nExpert-level proficiency in backend systems design using Node.js and\nTypeScript; demonstrated ability to architect and build high-performance\nAPIs serving millions of requests\n\nDeep experience with relational database design, optimization, and\nscaling (PostgreSQL preferred); expertise in query optimization, indexing\nstrategies, and data modeling\n\nProven architectural leadership experience: designing systems that have\nscaled to handle billions of events, millions of concurrent users, or\nsignificant data volumes\n\nAdvanced knowledge of cloud infrastructure (AWS and/or GCP), including\nnetworking, storage, compute services, and infrastructure-as-code tooling\n\nStrong expertise in at least one modern frontend framework (React\npreferred) and ability to lead full-stack architectural decisions that\nspan client and server\n\nDemonstrated ability to mentor and influence senior engineers and\narchitect-level peers; experience establishing technical standards and\nbest practices at scale\n\nBonus\n\nExperience designing and operating GraphQL APIs in production\nenvironments; expertise in schema design, performance optimization, and\nfederation patterns\n\n\fTrack record of successful platform migrations or major architectural\nrefactors that improved system performance or developer velocity\n\nOpen-source contributions or leadership; experience building tools or\nframeworks used by the broader engineering community\n\nBackground in data systems, distributed computing, or real-time\nanalytics; familiarity with event streaming architectures or time-series\ndatabases\n\nExperience leading technical strategy and roadmapping in Series A/B stage\ncompanies or similarly fast-growing organizations\n\nOur Stack\n\nNode.js   TypeScript   React   PostgreSQL   GraphQL   REST APIs   AWS   Docker & Kubernetes   Redis\n\nTerraform\n\nWhat We Offer\n\nCompetitive equity package (0.5% - 1.5% depending on level) with standard\nvesting\n\nComprehensive health insurance: medical, dental, vision with 100% premium\ncoverage for employees\n\nUnlimited PTO and 10 company holidays; strong work-life balance culture\nand remote-first flexibility\n\nProfessional development budget of $5,000 annually for conferences,\n\ncourses, and learning resources\n\n$1,500 home office setup stipend; ongoing monthly stipend for internet\n\nand workspace expenses\n\nParental leave (16 weeks paid for all parents) and fertility/family-\n\nbuilding benefits\n\nAnnual company offsites in interesting locations; team bonding budget and\nsocial events\n\nCommuter benefits and subsidized gym memberships; comprehensive wellness\nprogram\n\nApply\n\nPlease submit your resume, a brief cover letter highlighting your most\n\nsignificant architectural contributions, and a link to your GitHub profile\n\nor portfolio demonstrating your full-stack expertise. Apply via our careers\npage at careers.vertexsystems.com/jobs/principal-full-stack-engineer or\n\nemail careers@vertexsystems.com with subject line 'Principal Full Stack\nEngineer Application'. Candidates will be prioritized if they include\n\nexamples of systems they've scaled to handle significant traffic or data\nvolumes.\n\n\f",
+  "job_title": "Principal Full Stack Engineer",
+  "company": "Vertex Systems",
+  "location": null,
+  "employment_type": "Internship",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "AWS",
+    "Docker",
+    "Kubernetes",
+    "Node.js",
+    "React",
+    "postgresql"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Experience designing and operating GraphQL APIs in production",
+    "environments; expertise in schema design, performance optimization, and",
+    "federation patterns",
+    "Track record of successful platform migrations or major architectural",
+    "refactors that improved system performance or developer velocity",
+    "Open-source contributions or leadership; experience building tools or",
+    "frameworks used by the broader engineering community",
+    "Background in data systems, distributed computing, or real-time",
+    "analytics; familiarity with event streaming architectures or time-series",
+    "databases",
+    "Experience leading technical strategy and roadmapping in Series A/B stage",
+    "companies or similarly fast-growing organizations"
+  ],
+  "salary": "$280,000 - $380,000",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\094_principal_fullstack-engineer.pdf",
+  "languages": [
+    "JS",
+    "PostgreSQL",
+    "TypeScript",
+    "graphql"
+  ],
+  "education_required": []
+}

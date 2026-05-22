@@ -1,0 +1,36 @@
+{
+  "raw_text": "Prism Analytics Labs\n\nTurning data chaos into actionable intelligence for businesses everywhere\n\nMID DATA SCIENTIST\n\nSan Francisco, CA (hybrid) · Full-time · $115,000 - $145,000 per year\n\nPrism Analytics Labs is seeking a Mid Data Scientist to join our growing Analytics Platform team. In this\n\nrole, you'll design and implement machine learning models, conduct rigorous A/B tests and\n\nexperimentation analyses, and collaborate with product and engineering teams to ship data-driven\n\nfeatures. You'll work on both experimental infrastructure and production models serving millions of\n\nevents daily. This is an ideal role for someone with 2-5 years of professional data science experience\n\nwho wants to deepen their expertise in experimentation, statistical modeling, and model deployment.\n\nABOUT US\n\nPrism Analytics Labs is a fast-growing data intelligence platform founded in 2019. We partner with mid-\n\nmarket and enterprise companies across retail, fintech, and healthcare to build scalable data pipelines,\nadvanced predictive models, and experimentation platforms. Our mission is to democratize data\n\nscience by making sophisticated analytics accessible to teams without deep technical expertise. We're\na team of 120+ data scientists, engineers, and product specialists, and we're expanding our analytics\n\ndivision.\n\nWHAT YOU'LL DO\n\nDesign, implement, and deploy supervised and unsupervised machine learning models using\nPython (scikit-learn, XGBoost) for classification, regression, and clustering tasks on datasets with\n\nmillions of rows\n\nOwn the end-to-end experimentation pipeline: design A/B tests and multi-armed bandit\nexperiments, calculate statistical power, analyze results using appropriate statistical methods, and\ncommunicate findings to stakeholders\n\nWrite optimized SQL queries to extract, transform, and aggregate data from PostgreSQL and\nSnowflake data warehouses for exploratory data analysis and model training\n\nPerform exploratory data analysis using Python (Pandas, NumPy, Matplotlib, Seaborn) to identify\npatterns, validate hypotheses, and generate insights that inform product decisions\n\nCollaborate with product managers and backend engineers to translate business questions into\nanalytical experiments and ensure proper instrumentation and logging\n\nDevelop and maintain documentation for models, data pipelines, and experimentation\n\nmethodologies; present findings and recommendations to both technical and non-technical\naudiences\n\n\fParticipate in code reviews, contribute to best practices documentation, and mentor junior\n\nanalysts or data science interns on statistical concepts and modeling techniques\n\nMonitor model performance in production, implement retraining pipelines, and investigate model\n\ndegradation issues\n\nREQUIRED\n\n2-5 years of professional experience in data science, analytics engineering, or quantitative roles\n\nStrong proficiency in Python for data manipulation, statistical analysis, and machine learning\n\n(Pandas, NumPy, scikit-learn)\n\nSolid SQL skills; ability to write complex queries to extract and aggregate data efficiently from\n\nrelational databases\n\nHands-on experience designing and analyzing A/B tests, experiments, and statistical hypothesis\n\ntesting; understanding of concepts like power analysis, multiple testing corrections, and effect\n\nsizes\n\nFamiliarity with machine learning fundamentals: supervised learning (linear/logistic regression,\ntree-based models), model evaluation, cross-validation, and feature engineering\n\nComfortable with version control systems (Git) and collaborative development practices\n\nNICE TO HAVE\n\nExperience with experimentation platforms (e.g., Statsig, LaunchDarkly, or custom in-house\nsystems)\n\nFamiliarity with cloud data platforms (Snowflake, BigQuery, Databricks) and ETL tools\n\nKnowledge of causal inference techniques or quasi-experimental methods (propensity score\nmatching, difference-in-differences)\n\nExperience deploying models with frameworks like FastAPI, Flask, or containerization (Docker)\n\nTECH STACK\n\nPython (Pandas, NumPy, scikit-learn)\n\n  SQL (PostgreSQL, Snowflake)\n\n  A/B Testing & Experimentation\n\nStatistical Analysis & Hypothesis Testing   XGBoost / LightGBM   Matplotlib / Seaborn   Jupyter Notebooks   Git / GitHub\n\nApache Spark (PySpark)\n\n  Statsmodels\n\nBENEFITS\n\nCompetitive health insurance (medical, dental, vision) with 90% premium coverage\n\n401(k) matching up to 4% of salary\n\nUnlimited PTO with a minimum of 15 days encouraged annually\n\nLearning and development budget of $2,000 per year for courses, conferences, or certifications\n\nWeekly catered lunches and fully stocked kitchen with snacks and beverages\n\nHome office equipment stipend ($1,500 for hybrid workers) and standing desk options\n\n\fParental leave (12 weeks paid for primary caregivers, 8 weeks for secondary)\n\nMental health support including free counseling sessions and meditation app subscriptions\n\nHOW TO APPLY\n\nApply directly through our careers portal at prism-analytics-labs.com/careers or submit your resume and\n\na brief cover letter to careers@prism-analytics-labs.com. In your application, please include a link to\n\nyour GitHub profile or a portfolio of past data science projects. We review applications on a rolling basis\n\nand aim to respond within 1-2 weeks.\n\n\f",
+  "job_title": "MID DATA SCIENTIST",
+  "company": "Prism Analytics Labs is a fast",
+  "location": null,
+  "employment_type": "Internship",
+  "experience_level": "Mid",
+  "technical_skills": [
+    "Docker",
+    "Flask",
+    "Scikit-learn",
+    "fastapi",
+    "matplotlib",
+    "numpy",
+    "pandas",
+    "postgresql"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Experience with experimentation platforms (e.g., Statsig, LaunchDarkly, or custom in-house",
+    "systems)",
+    "Familiarity with cloud data platforms (Snowflake, BigQuery, Databricks) and ETL tools",
+    "Knowledge of causal inference techniques or quasi-experimental methods (propensity score",
+    "matching, difference-in-differences)",
+    "Experience deploying models with frameworks like FastAPI, Flask, or containerization (Docker)"
+  ],
+  "salary": "$115,000 - $145,000 per year",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\021_mid_data-scientist.pdf",
+  "languages": [
+    "PostgreSQL",
+    "Python",
+    "SQL",
+    "jupyter"
+  ],
+  "education_required": []
+}

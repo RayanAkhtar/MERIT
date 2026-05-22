@@ -1,0 +1,18 @@
+{
+  "generated_at_utc": "2026-05-21T20:34:18.972973+00:00",
+  "source_directory": "data/job descriptions",
+  "document_count": 100,
+  "failed_count": 0,
+  "unique_skills": 865,
+  "seniority_distribution": {
+    "intern": 12,
+    "manager": 11,
+    "principal": 11,
+    "senior": 11,
+    "lead": 11,
+    "staff": 11,
+    "junior": 11,
+    "mid": 11,
+    "director": 11
+  }
+}

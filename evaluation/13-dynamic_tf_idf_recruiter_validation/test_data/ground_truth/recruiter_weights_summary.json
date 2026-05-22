@@ -1,0 +1,380 @@
+[
+  {
+    "holdout_id": "holdout_01_junior_frontend_react",
+    "skill": "JavaScript",
+    "category": "Languages",
+    "consensus": 2,
+    "tfidf_suggested": 2.4,
+    "tfidf_ui_priority": 4,
+    "rater_weights": {
+      "R_1": 2,
+      "R_2": 2,
+      "P_1": 2,
+      "P_2": 2
+    }
+  },
+  {
+    "holdout_id": "holdout_01_junior_frontend_react",
+    "skill": "TypeScript",
+    "category": "Languages",
+    "consensus": 2,
+    "tfidf_suggested": 2.2,
+    "tfidf_ui_priority": 4,
+    "rater_weights": {
+      "R_1": 2,
+      "R_2": 2,
+      "P_1": 2,
+      "P_2": 1
+    }
+  },
+  {
+    "holdout_id": "holdout_01_junior_frontend_react",
+    "skill": "HTML",
+    "category": "Languages",
+    "consensus": 4,
+    "tfidf_suggested": 2.4,
+    "tfidf_ui_priority": 4,
+    "rater_weights": {
+      "R_1": 5,
+      "R_2": 4,
+      "P_1": 4,
+      "P_2": 3
+    }
+  },
+  {
+    "holdout_id": "holdout_01_junior_frontend_react",
+    "skill": "CSS",
+    "category": "Languages",
+    "consensus": 4,
+    "tfidf_suggested": 2.1,
+    "tfidf_ui_priority": 4,
+    "rater_weights": {
+      "R_1": 5,
+      "R_2": 5,
+      "P_1": 4,
+      "P_2": 4
+    }
+  },
+  {
+    "holdout_id": "holdout_01_junior_frontend_react",
+    "skill": "React",
+    "category": "Technologies",
+    "consensus": 1,
+    "tfidf_suggested": 5.0,
+    "tfidf_ui_priority": 1,
+    "rater_weights": {
+      "R_1": 1,
+      "R_2": 1,
+      "P_1": 1,
+      "P_2": 1
+    }
+  },
+  {
+    "holdout_id": "holdout_01_junior_frontend_react",
+    "skill": "Jest",
+    "category": "Technologies",
+    "consensus": 4,
+    "tfidf_suggested": 2.6,
+    "tfidf_ui_priority": 3,
+    "rater_weights": {
+      "R_1": 4,
+      "R_2": 4,
+      "P_1": 3,
+      "P_2": 3
+    }
+  },
+  {
+    "holdout_id": "holdout_01_junior_frontend_react",
+    "skill": "Git",
+    "category": "Technologies",
+    "consensus": 5,
+    "tfidf_suggested": 1.0,
+    "tfidf_ui_priority": 5,
+    "rater_weights": {
+      "R_1": 5,
+      "R_2": 5,
+      "P_1": 5,
+      "P_2": 4
+    }
+  },
+  {
+    "holdout_id": "holdout_01_junior_frontend_react",
+    "skill": "REST",
+    "category": "Technologies",
+    "consensus": 4,
+    "tfidf_suggested": 1.4,
+    "tfidf_ui_priority": 5,
+    "rater_weights": {
+      "R_1": 5,
+      "R_2": 4,
+      "P_1": 4,
+      "P_2": 5
+    }
+  },
+  {
+    "holdout_id": "holdout_01_junior_frontend_react",
+    "skill": "BSc Computer Science or equivalent",
+    "category": "Education",
+    "consensus": 4,
+    "tfidf_suggested": 3.4,
+    "tfidf_ui_priority": 3,
+    "rater_weights": {
+      "R_1": 5,
+      "R_2": 4,
+      "P_1": 4,
+      "P_2": 5
+    }
+  },
+  {
+    "holdout_id": "holdout_02_senior_ml_research",
+    "skill": "Python",
+    "category": "Languages",
+    "consensus": 1,
+    "tfidf_suggested": 1.0,
+    "tfidf_ui_priority": 5,
+    "rater_weights": {
+      "R_1": 1,
+      "R_2": 1,
+      "P_1": 1,
+      "P_2": 2
+    }
+  },
+  {
+    "holdout_id": "holdout_02_senior_ml_research",
+    "skill": "SQL",
+    "category": "Languages",
+    "consensus": 4,
+    "tfidf_suggested": 1.5,
+    "tfidf_ui_priority": 4,
+    "rater_weights": {
+      "R_1": 5,
+      "R_2": 4,
+      "P_1": 4,
+      "P_2": 4
+    }
+  },
+  {
+    "holdout_id": "holdout_02_senior_ml_research",
+    "skill": "PyTorch",
+    "category": "Technologies",
+    "consensus": 1,
+    "tfidf_suggested": 3.3,
+    "tfidf_ui_priority": 3,
+    "rater_weights": {
+      "R_1": 1,
+      "R_2": 1,
+      "P_1": 1,
+      "P_2": 1
+    }
+  },
+  {
+    "holdout_id": "holdout_02_senior_ml_research",
+    "skill": "Kubernetes",
+    "category": "Technologies",
+    "consensus": 4,
+    "tfidf_suggested": 1.2,
+    "tfidf_ui_priority": 5,
+    "rater_weights": {
+      "R_1": 4,
+      "R_2": 4,
+      "P_1": 3,
+      "P_2": 4
+    }
+  },
+  {
+    "holdout_id": "holdout_02_senior_ml_research",
+    "skill": "MLflow",
+    "category": "Technologies",
+    "consensus": 4,
+    "tfidf_suggested": 2.8,
+    "tfidf_ui_priority": 3,
+    "rater_weights": {
+      "R_1": 4,
+      "R_2": 3,
+      "P_1": 3,
+      "P_2": 4
+    }
+  },
+  {
+    "holdout_id": "holdout_02_senior_ml_research",
+    "skill": "CUDA",
+    "category": "Technologies",
+    "consensus": 4,
+    "tfidf_suggested": 5.0,
+    "tfidf_ui_priority": 1,
+    "rater_weights": {
+      "R_1": 3,
+      "R_2": 2,
+      "P_1": 4,
+      "P_2": 4
+    }
+  },
+  {
+    "holdout_id": "holdout_02_senior_ml_research",
+    "skill": "PostgreSQL",
+    "category": "Technologies",
+    "consensus": 4,
+    "tfidf_suggested": 2.2,
+    "tfidf_ui_priority": 4,
+    "rater_weights": {
+      "R_1": 5,
+      "R_2": 4,
+      "P_1": 4,
+      "P_2": 5
+    }
+  },
+  {
+    "holdout_id": "holdout_02_senior_ml_research",
+    "skill": "PhD or MSc in Machine Learning, Statistics, or Computer Science",
+    "category": "Education",
+    "consensus": 5,
+    "tfidf_suggested": 5.0,
+    "tfidf_ui_priority": 1,
+    "rater_weights": {
+      "R_1": 5,
+      "R_2": 5,
+      "P_1": 5,
+      "P_2": 5
+    }
+  },
+  {
+    "holdout_id": "holdout_04_lead_devops_platform",
+    "skill": "Python",
+    "category": "Languages",
+    "consensus": 4,
+    "tfidf_suggested": 3.0,
+    "tfidf_ui_priority": 3,
+    "rater_weights": {
+      "R_1": 5,
+      "R_2": 4,
+      "P_1": 4,
+      "P_2": 3
+    }
+  },
+  {
+    "holdout_id": "holdout_04_lead_devops_platform",
+    "skill": "Go",
+    "category": "Languages",
+    "consensus": 4,
+    "tfidf_suggested": 2.9,
+    "tfidf_ui_priority": 3,
+    "rater_weights": {
+      "R_1": 4,
+      "R_2": 4,
+      "P_1": 3,
+      "P_2": 3
+    }
+  },
+  {
+    "holdout_id": "holdout_04_lead_devops_platform",
+    "skill": "SQL",
+    "category": "Languages",
+    "consensus": 4,
+    "tfidf_suggested": 3.7,
+    "tfidf_ui_priority": 2,
+    "rater_weights": {
+      "R_1": 5,
+      "R_2": 5,
+      "P_1": 4,
+      "P_2": 4
+    }
+  },
+  {
+    "holdout_id": "holdout_04_lead_devops_platform",
+    "skill": "Docker",
+    "category": "Technologies",
+    "consensus": 1,
+    "tfidf_suggested": 3.4,
+    "tfidf_ui_priority": 3,
+    "rater_weights": {
+      "R_1": 1,
+      "R_2": 1,
+      "P_1": 1,
+      "P_2": 1
+    }
+  },
+  {
+    "holdout_id": "holdout_04_lead_devops_platform",
+    "skill": "Kubernetes",
+    "category": "Technologies",
+    "consensus": 1,
+    "tfidf_suggested": 3.2,
+    "tfidf_ui_priority": 3,
+    "rater_weights": {
+      "R_1": 1,
+      "R_2": 1,
+      "P_1": 1,
+      "P_2": 2
+    }
+  },
+  {
+    "holdout_id": "holdout_04_lead_devops_platform",
+    "skill": "Terraform",
+    "category": "Technologies",
+    "consensus": 1,
+    "tfidf_suggested": 3.9,
+    "tfidf_ui_priority": 2,
+    "rater_weights": {
+      "R_1": 1,
+      "R_2": 1,
+      "P_1": 2,
+      "P_2": 1
+    }
+  },
+  {
+    "holdout_id": "holdout_04_lead_devops_platform",
+    "skill": "Prometheus",
+    "category": "Technologies",
+    "consensus": 3,
+    "tfidf_suggested": 4.0,
+    "tfidf_ui_priority": 2,
+    "rater_weights": {
+      "R_1": 4,
+      "R_2": 3,
+      "P_1": 3,
+      "P_2": 3
+    }
+  },
+  {
+    "holdout_id": "holdout_04_lead_devops_platform",
+    "skill": "Grafana",
+    "category": "Technologies",
+    "consensus": 4,
+    "tfidf_suggested": 4.4,
+    "tfidf_ui_priority": 2,
+    "rater_weights": {
+      "R_1": 5,
+      "R_2": 4,
+      "P_1": 4,
+      "P_2": 4
+    }
+  },
+  {
+    "holdout_id": "holdout_04_lead_devops_platform",
+    "skill": "Linux",
+    "category": "Technologies",
+    "consensus": 1,
+    "tfidf_suggested": 5.0,
+    "tfidf_ui_priority": 1,
+    "rater_weights": {
+      "R_1": 1,
+      "R_2": 1,
+      "P_1": 1,
+      "P_2": 1
+    }
+  },
+  {
+    "holdout_id": "holdout_04_lead_devops_platform",
+    "skill": "Degree in Computer Science or related field",
+    "category": "Education",
+    "consensus": 5,
+    "tfidf_suggested": 1.0,
+    "tfidf_ui_priority": 5,
+    "rater_weights": {
+      "R_1": 5,
+      "R_2": 5,
+      "P_1": 5,
+      "P_2": 4
+    }
+  }
+]

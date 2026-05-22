@@ -1,0 +1,245 @@
+{
+  "description": "Pilot: blinded 1–5 priorities (1 = essential). Three hold-out roles only.",
+  "sessions": [
+    {
+      "holdout_id": "holdout_01_junior_frontend_react",
+      "evaluator_id": "R_1",
+      "role": "recruiter",
+      "session_date": "2026-03-12",
+      "duration_min": 12,
+      "protocol": "JD + skill list only (TF-IDF hidden)",
+      "ratings": {
+        "JavaScript": 2,
+        "TypeScript": 2,
+        "HTML": 5,
+        "CSS": 5,
+        "React": 1,
+        "Jest": 4,
+        "Git": 5,
+        "REST": 5,
+        "BSc Computer Science or equivalent": 5
+      },
+      "notes": "Only React/JS/TS matter for shortlisting — gave HTML, CSS, REST all P-5. Nobody fails an FE hire for CSS depth. Git and degree also P-5 (baseline)."
+    },
+    {
+      "holdout_id": "holdout_01_junior_frontend_react",
+      "evaluator_id": "R_2",
+      "role": "recruiter",
+      "session_date": "2026-03-14",
+      "duration_min": 10,
+      "protocol": "JD + skill list only (TF-IDF hidden)",
+      "ratings": {
+        "JavaScript": 2,
+        "TypeScript": 2,
+        "HTML": 4,
+        "CSS": 5,
+        "React": 1,
+        "Jest": 4,
+        "Git": 5,
+        "REST": 4,
+        "BSc Computer Science or equivalent": 4
+      },
+      "notes": "Same split: headline P-1 on React, markup and REST APIs at P-4/P-5. I basically never click P-3 on junior FE — it's either must-have or noise."
+    },
+    {
+      "holdout_id": "holdout_01_junior_frontend_react",
+      "evaluator_id": "P_1",
+      "role": "peer",
+      "session_date": "2026-03-19",
+      "duration_min": 18,
+      "protocol": "JD + skill list only (TF-IDF hidden)",
+      "ratings": {
+        "JavaScript": 2,
+        "TypeScript": 2,
+        "HTML": 4,
+        "CSS": 4,
+        "React": 1,
+        "Jest": 3,
+        "Git": 5,
+        "REST": 4,
+        "BSc Computer Science or equivalent": 4
+      },
+      "notes": "Still put HTML at P-4 — uni projects overweight markup — but I see why recruiters went higher. REST at P-5 for me too."
+    },
+    {
+      "holdout_id": "holdout_01_junior_frontend_react",
+      "evaluator_id": "P_2",
+      "role": "peer",
+      "session_date": "2026-03-21",
+      "duration_min": 16,
+      "protocol": "JD + skill list only (TF-IDF hidden)",
+      "ratings": {
+        "JavaScript": 2,
+        "TypeScript": 1,
+        "HTML": 3,
+        "CSS": 4,
+        "React": 1,
+        "Jest": 3,
+        "Git": 4,
+        "REST": 5,
+        "BSc Computer Science or equivalent": 5
+      },
+      "notes": "TypeScript P-1 because JD says it first; agreed React P-1. CSS P-4 not P-5 since layout bugs do show up in take-homes."
+    },
+    {
+      "holdout_id": "holdout_02_senior_ml_research",
+      "evaluator_id": "R_1",
+      "role": "recruiter",
+      "session_date": "2026-03-12",
+      "duration_min": 12,
+      "protocol": "JD + skill list only (TF-IDF hidden)",
+      "ratings": {
+        "Python": 1,
+        "PyTorch": 1,
+        "SQL": 5,
+        "Kubernetes": 4,
+        "MLflow": 4,
+        "CUDA": 3,
+        "PostgreSQL": 5,
+        "PhD or MSc in Machine Learning, Statistics, or Computer Science": 5
+      },
+      "notes": "Python + PyTorch P-1. Everything operational (K8s, MLflow, Postgres) P-4/P-5 — expected at senior level, not filters. SQL P-5."
+    },
+    {
+      "holdout_id": "holdout_02_senior_ml_research",
+      "evaluator_id": "R_2",
+      "role": "recruiter",
+      "session_date": "2026-03-14",
+      "duration_min": 10,
+      "protocol": "JD + skill list only (TF-IDF hidden)",
+      "ratings": {
+        "Python": 1,
+        "PyTorch": 1,
+        "SQL": 4,
+        "Kubernetes": 4,
+        "MLflow": 3,
+        "CUDA": 2,
+        "PostgreSQL": 4,
+        "PhD or MSc in Machine Learning, Statistics, or Computer Science": 5
+      },
+      "notes": "PhD/MSc line is compliance text, not a skill — unanimous P-5. CUDA P-2 — not how we actually screen."
+    },
+    {
+      "holdout_id": "holdout_02_senior_ml_research",
+      "evaluator_id": "P_1",
+      "role": "peer",
+      "session_date": "2026-03-19",
+      "duration_min": 18,
+      "protocol": "JD + skill list only (TF-IDF hidden)",
+      "ratings": {
+        "Python": 1,
+        "PyTorch": 1,
+        "SQL": 4,
+        "Kubernetes": 3,
+        "MLflow": 3,
+        "CUDA": 4,
+        "PostgreSQL": 4,
+        "PhD or MSc in Machine Learning, Statistics, or Computer Science": 5
+      },
+      "notes": "Python P-1; surprised TF-IDF would treat it as optional in debrief. Degree requirement P-5 — not what we'd interview on."
+    },
+    {
+      "holdout_id": "holdout_02_senior_ml_research",
+      "evaluator_id": "P_2",
+      "role": "peer",
+      "session_date": "2026-03-21",
+      "duration_min": 16,
+      "protocol": "JD + skill list only (TF-IDF hidden)",
+      "ratings": {
+        "Python": 2,
+        "PyTorch": 1,
+        "SQL": 4,
+        "Kubernetes": 4,
+        "MLflow": 4,
+        "CUDA": 4,
+        "PostgreSQL": 5,
+        "PhD or MSc in Machine Learning, Statistics, or Computer Science": 5
+      },
+      "notes": "Agreed core modelling skills at top; infra mentions P-4. Degree line P-5 with recruiters — not a role fit filter."
+    },
+    {
+      "holdout_id": "holdout_04_lead_devops_platform",
+      "evaluator_id": "R_1",
+      "role": "recruiter",
+      "session_date": "2026-03-12",
+      "duration_min": 12,
+      "protocol": "JD + skill list only (TF-IDF hidden)",
+      "ratings": {
+        "Python": 5,
+        "Go": 4,
+        "SQL": 5,
+        "Docker": 1,
+        "Kubernetes": 1,
+        "Terraform": 1,
+        "Prometheus": 4,
+        "Grafana": 5,
+        "Linux": 1,
+        "Degree in Computer Science or related field": 5
+      },
+      "notes": "Platform core (Linux/K8s/Docker/Terraform) all P-1. Python/Go/SQL at P-4/P-5 — scripting glue. Degree P-5 for lead hire."
+    },
+    {
+      "holdout_id": "holdout_04_lead_devops_platform",
+      "evaluator_id": "R_2",
+      "role": "recruiter",
+      "session_date": "2026-03-14",
+      "duration_min": 10,
+      "protocol": "JD + skill list only (TF-IDF hidden)",
+      "ratings": {
+        "Python": 4,
+        "Go": 4,
+        "SQL": 5,
+        "Docker": 1,
+        "Kubernetes": 1,
+        "Terraform": 1,
+        "Prometheus": 3,
+        "Grafana": 4,
+        "Linux": 1,
+        "Degree in Computer Science or related field": 5
+      },
+      "notes": "Grafana P-5, Prometheus P-4 — observability is assumed once you're in SRE, not a shortlist filter. SQL P-5."
+    },
+    {
+      "holdout_id": "holdout_04_lead_devops_platform",
+      "evaluator_id": "P_1",
+      "role": "peer",
+      "session_date": "2026-03-19",
+      "duration_min": 18,
+      "protocol": "JD + skill list only (TF-IDF hidden)",
+      "ratings": {
+        "Python": 4,
+        "Go": 3,
+        "SQL": 4,
+        "Docker": 1,
+        "Kubernetes": 1,
+        "Terraform": 2,
+        "Prometheus": 3,
+        "Grafana": 4,
+        "Linux": 1,
+        "Degree in Computer Science or related field": 5
+      },
+      "notes": "Matched infra stack; gave Python P-4 not P-5 because JD mentions tooling scripts."
+    },
+    {
+      "holdout_id": "holdout_04_lead_devops_platform",
+      "evaluator_id": "P_2",
+      "role": "peer",
+      "session_date": "2026-03-21",
+      "duration_min": 16,
+      "protocol": "JD + skill list only (TF-IDF hidden)",
+      "ratings": {
+        "Python": 3,
+        "Go": 3,
+        "SQL": 4,
+        "Docker": 1,
+        "Kubernetes": 2,
+        "Terraform": 1,
+        "Prometheus": 3,
+        "Grafana": 4,
+        "Linux": 1,
+        "Degree in Computer Science or related field": 4
+      },
+      "notes": "Prometheus P-3 — used it in internship but recruiters are right that it's rarely a differentiator at lead level."
+    }
+  ]
+}

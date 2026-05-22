@@ -1,0 +1,36 @@
+{
+  "raw_text": "Senior DevOps Engineer\nCloudVenture Technologies — Enabling teams to build, deploy, and scale with\n\nconfidence.\n\nLocation\n\nRemote (US-based)\n\nEmployment Type\n\nFull-time\n\nCompensation\n\n$165,000 - $215,000 per year\n\nThe Opportunity\n\nWe are seeking an experienced Senior DevOps Engineer to join our\ninfrastructure and platform team. In this role, you will lead the design\nand implementation of scalable, reliable cloud infrastructure and CI/CD\n\nsystems that support our rapidly growing customer base. You'll work on\ncomplex infrastructure challenges, mentor junior team members, and drive\n\nbest practices across our organization. This position requires 5-8 years of\nprofessional DevOps/SRE experience and deep expertise in cloud platforms,\n\ncontainerization, and infrastructure-as-code.\n\nAbout CloudVenture Technologies\n\nCloudVenture Technologies is a mid-stage SaaS infrastructure company\nfounded in 2018, helping enterprises modernize their deployment pipelines\n\nand cloud operations. We serve over 500 organizations across North America\nand Europe, providing cutting-edge DevOps tooling and consulting services\n\nthat streamline infrastructure automation, CI/CD practices, and cloud-\nnative deployments.\n\nDay-to-Day\n\nDesign, implement, and maintain Kubernetes clusters running on AWS EKS\nand GCP GKE, ensuring high availability, security, and cost optimization\n\nacross multi-cloud environments.\n\nLead the evolution of our CI/CD infrastructure using Jenkins and GitHub\nActions, optimizing pipeline performance and reducing deployment times\n\nfrom minutes to seconds.\n\nDevelop and manage infrastructure-as-code using Terraform, managing state\n\nfiles securely and establishing standards for reusable modules across the\norganization.\n\nWrite and maintain critical automation scripts in Python and Bash for\n\ninfrastructure provisioning, monitoring alerts, and incident response\nautomation.\n\nMentor and guide junior DevOps engineers on best practices for Docker\n\ncontainerization, Kubernetes deployments, and infrastructure patterns;\n\n\fconduct code reviews on infrastructure projects.\n\nPartner with development teams to troubleshoot production issues,\noptimize application performance, and implement monitoring solutions\n\nusing Prometheus and Grafana.\n\nEstablish and enforce security policies for infrastructure, managing IAM\n\nroles, secrets management, and implementing infrastructure compliance\nscanning.\n\nDrive architectural improvements and technical initiatives that reduce\n\noperational overhead and improve system reliability across our platform.\n\nParticipate in on-call rotation, responding to and resolving critical\ninfrastructure incidents within agreed SLAs.\n\nYou Have\n\n5-8 years of hands-on professional experience in DevOps, Site Reliability\nEngineering (SRE), or infrastructure engineering roles.\n\nAdvanced proficiency with Kubernetes including cluster administration,\nworkload management, and troubleshooting production clusters.\n\nStrong expertise with at least one major cloud provider (AWS or GCP),\nincluding VPC management, IAM, and cloud-native services.\n\nDemonstrated expertise writing infrastructure-as-code using Terraform,\nmanaging complex multi-environment deployments.\n\nProficiency in Python and Bash scripting for automation, configuration\n\nmanagement, and operational tooling.\n\nDeep understanding of Docker containerization, image optimization, and\ncontainer orchestration patterns.\n\nExperience implementing and maintaining CI/CD pipelines using tools like\nJenkins, GitHub Actions, or GitLab CI.\n\nStrong problem-solving skills and proven ability to design and implement\nsolutions for complex infrastructure challenges.\n\nBonus\n\nExperience with multi-cloud strategies and active use of both AWS and GCP\nin production environments.\n\nFamiliarity with infrastructure monitoring and observability stacks\nincluding Prometheus, Grafana, ELK, or Datadog.\n\nPrevious experience mentoring and leading junior engineers or\ncontributing to engineering culture development.\n\nKnowledge of infrastructure security practices, secrets management\n(HashiCorp Vault), and compliance frameworks (SOC 2, HIPAA).\n\nContributions to open-source DevOps projects or active participation in\n\nthe DevOps community.\n\n\fExperience with service mesh technologies (Istio) or advanced networking\nin Kubernetes environments.\n\nOur Stack\n\nKubernetes   Docker   Terraform   AWS (EKS, EC2, VPC, IAM, S3)   GCP (GKE, Compute Engine, Cloud Storage)\n\nJenkins   GitHub Actions   Python   Bash   Prometheus & Grafana\n\nWhat We Offer\n\nCompetitive salary and equity package with annual stock option grants.\n\nComprehensive health insurance (medical, dental, vision) with 90%\nemployer coverage.\n\nUnlimited PTO and flexible work-from-home policy with optional co-working\nstipend.\n\nProfessional development budget ($3,000/year) for training,\n\ncertifications, and conferences.\n\nGenerous parental leave (16 weeks) and family planning support.\n\nFree access to cloud sandbox environments for personal learning and\nexperimentation.\n\nQuarterly team offsites and annual company retreat to a desirable\n\nlocation.\n\nMental health support including counseling services and wellness stipend.\n\nApply\n\nTo apply, submit your resume, a cover letter highlighting your most\nrelevant DevOps experience, and a portfolio or GitHub profile showcasing\n\nyour infrastructure projects (optional but encouraged). Apply via our\ncareers page at careers.cloudventure-tech.com or email your application to\n\nhiring@cloudventure-tech.com with the subject 'Senior DevOps Engineer\nApplication'. We review applications on a rolling basis and will contact\n\nqualified candidates within 1 week.\n\n\f",
+  "job_title": "Senior DevOps Engineer",
+  "company": "CloudVenture Technologies",
+  "location": null,
+  "employment_type": "Full-time",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "AWS",
+    "Docker",
+    "Kubernetes"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Experience with multi-cloud strategies and active use of both AWS and GCP",
+    "in production environments.",
+    "Familiarity with infrastructure monitoring and observability stacks",
+    "including Prometheus, Grafana, ELK, or Datadog.",
+    "Previous experience mentoring and leading junior engineers or",
+    "contributing to engineering culture development.",
+    "Knowledge of infrastructure security practices, secrets management",
+    "(HashiCorp Vault), and compliance frameworks (SOC 2, HIPAA).",
+    "Contributions to open-source DevOps projects or active participation in",
+    "the DevOps community.",
+    "Experience with service mesh technologies (Istio) or advanced networking",
+    "in Kubernetes environments.",
+    "location.",
+    "Mental health support including counseling services and wellness stipend."
+  ],
+  "salary": "$165,000 - $215,000 per year",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\051_senior_devops-engineer.pdf",
+  "languages": [
+    "Python"
+  ],
+  "education_required": []
+}

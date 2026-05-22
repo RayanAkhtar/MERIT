@@ -1,0 +1,29 @@
+{
+  "raw_text": "Manager, MLOps Engineering\n\nWe're hiring a Manager of MLOps Engineering to lead our platform engineering team responsible for\n\nbuilding and maintaining the infrastructure that powers ML deployment across our customer base. In\n\nthis role, you'll manage a team of 4-6 senior engineers, drive technical strategy for our MLOps\n\nplatform, and directly contribute to critical infrastructure projects. You'll mentor engineers, establish\n\nbest practices for model orchestration and monitoring, and partner with product leadership to\n\nprioritize roadmap items that maximize customer impact.\n\nAbout the Company\n\nVectorFlow AI is a Series B machine learning infrastructure company that builds cloud-native\n\nplatforms enabling enterprises to deploy, monitor, and iterate on ML models in production. Founded\nin 2019, we serve over 200 enterprise customers across fintech, healthcare, and e-commerce who\n\nrely on our orchestration and governance tools to manage complex ML workflows at scale.\n\nWhat You'll Own\n\n1. Lead and mentor a team of 4-6 senior MLOps engineers, conducting 1-on-1s, performance\n\nreviews, and career development planning\n\n2. Architect and oversee the implementation of ML model orchestration infrastructure using Airflow\n\nand Kubeflow for workflow scheduling and execution\n\n3. Establish and enforce best practices for MLflow experiment tracking, model registry, and model\n\nversioning across all production deployments\n\n4. Design and implement comprehensive model monitoring solutions using specialized tools like\nFiddler or custom dashboards to detect data drift, performance degradation, and anomalies\n\n5. Drive the adoption of feature store technology (e.g., Tecton or Feast) to standardize feature\n\nengineering and reduce training-serving skew across teams\n\n6. Manage Kubernetes infrastructure and deployment pipelines, ensuring high availability and\n\nefficient resource utilization across ML workloads\n\n7. Establish SLAs and monitoring protocols for production ML systems, including logging, alerting,\n\nand incident response procedures\n\n8. Work cross-functionally with product, data science, and security teams to define MLOps\n\nplatform requirements and roadmap priorities\n\nat VectorFlow AI — Democratizing machine learning infrastructure at scaleSan Francisco, CA • Full-time • $210,000 - $270,000 base + equity + bonus\f9. Participate in architectural decisions and code reviews for infrastructure components while\n\nmaintaining hands-on technical contribution\n\nRequired\n\nPreferred\n\n6+ years of professional experience in\n\nPrior experience with feature stores (Feast,\n\nmachine learning engineering, platform\n\nTecton, Hopsworks, or similar)\n\nengineering, or MLOps, with at least 2\n\nHands-on experience with cloud platforms\n\nyears in a management or tech lead role\n\n(AWS, GCP, or Azure) and infrastructure-\n\nProven expertise with ML orchestration\n\nas-code (Terraform, Helm)\n\ntools (Airflow, Kubeflow, or equivalent) in\n\nBackground in scalable systems design\n\nproduction environments\n\nand optimization of ML infrastructure costs\n\nStrong experience with Kubernetes,\n\nExperience with Python, Go, or other\n\ncontainerization (Docker), and CI/CD\n\nlanguages commonly used in\n\npipelines for ML workflows\n\ninfrastructure/tooling development\n\nDemonstrated track record of managing\nand developing engineering teams through\nhiring, mentorship, and performance\n\nmanagement\nDeep understanding of model monitoring,\nobservability, and production ML system\ndesign patterns\nExperience with MLflow or similar\nexperiment tracking and model registry\nsolutions\n\nTechnologies\n\nApache Airflow   Kubeflow   MLflow   Kubernetes   Docker\n\n  Feast (Feature Store)\n\nPrometheus/Grafana (Monitoring)\n\n  Fiddler (Model Monitoring)\n\n  Python   Terraform\n\nPerks & Benefits\n\nCompetitive health insurance (medical, dental, vision) with 90% company coverage for\nemployees\n401(k) with 4% company match and immediate vesting\nEquity package (stock options) with standard 4-year vesting\nFlexible work policy with home office stipend ($500/year)\nProfessional development budget ($3,000/year for conferences, courses, training)\nUnlimited PTO with a minimum of 15 days encouraged\nFree access to LinkedIn Learning and industry certifications\nMonthly team gatherings and quarterly company offsites\n\n\fNext Steps\n\nApply via our careers page at vectorflow.ai/careers or submit your resume and a cover letter\n\ndescribing your MLOps leadership experience to careers@vectorflow.ai. Please include links to\n\npublic projects, GitHub profile, or examples of infrastructure work you're proud of. Submissions\n\nreviewed on a rolling basis.\n\n\f",
+  "job_title": "Manager, MLOps Engineering",
+  "company": "VectorFlow AI",
+  "location": null,
+  "employment_type": "Full-time",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "AWS",
+    "Docker",
+    "Kubernetes",
+    "azure"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "6+ years of professional experience in",
+    "Prior experience with feature stores (Feast,",
+    "machine learning engineering, platform",
+    "Tecton, Hopsworks, or similar)",
+    "engineering, or MLOps, with at least 2"
+  ],
+  "salary": "$210,000 - $270,000",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\059_manager_mlops-engineer.pdf",
+  "languages": [
+    "Python",
+    "go"
+  ],
+  "education_required": []
+}

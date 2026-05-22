@@ -1,0 +1,38 @@
+{
+  "raw_text": "NeuralFlow AI\n\nDemocratizing machine learning deployment for enterprise teams\n\nINTERN MACHINE LEARNING ENGINEER\n\nSan Francisco, CA · Internship · $18-22/hour\n\nWe're seeking a talented Machine Learning Engineer Intern to join our platform team for a 12-week\n\npaid internship. You'll work alongside experienced ML engineers and data scientists to build and\n\noptimize machine learning models, contribute to our MLOps infrastructure, and gain hands-on\n\nexperience with production ML systems. This is a great opportunity to apply your coursework to real-\n\nworld problems and develop practical skills in model training, evaluation, and deployment.\n\nABOUT US\n\nNeuralFlow AI is a Series B machine learning platform company focused on building tools that make\n\nit easy for enterprise teams to build, train, and deploy ML models at scale. We're solving the critical\n\ngap between research and production ML systems, enabling data scientists and engineers to\ncollaborate seamlessly.\n\nWHAT YOU'LL DO\n\nDevelop and train machine learning models using PyTorch and TensorFlow under the guidance\n\nof senior engineers\n\nAssist in data preprocessing, feature engineering, and exploratory data analysis using Python\n\nand Pandas\n\nImplement and test different model architectures and evaluate their performance using\nstandard ML metrics\n\nDocument model experiments, training runs, and results using MLflow to track model lineage\nand performance\n\nSupport the deployment of trained models to AWS SageMaker, including creating inference\n\nendpoints and monitoring model performance\n\nParticipate in code reviews and contribute to our internal ML libraries and utilities on GitHub\n\nCollaborate with cross-functional teams to understand business requirements and translate\nthem into ML solutions\n\nWrite clean, well-tested Python code and follow software engineering best practices\n\nREQUIRED\n\nCurrently pursuing or recently completed a degree in Computer Science, Statistics,\nMathematics, Physics, or related field\n\nStrong Python programming skills with experience in data manipulation libraries (NumPy,\nPandas)\n\n\fUnderstanding of machine learning fundamentals: supervised learning, unsupervised learning,\n\nmodel evaluation, and overfitting\n\nFamiliarity with at least one deep learning framework (PyTorch or TensorFlow)\n\nAbility to work independently and as part of a team in a fast-paced environment\n\nNICE TO HAVE\n\nExperience with Git/GitHub version control and collaborative development workflows\n\nPrior experience with AWS services or cloud platforms\n\nFamiliarity with ML experiment tracking tools or model registries\n\nContributions to open-source ML projects or personal ML projects in a portfolio\n\nTECH STACK\n\nPython   PyTorch   TensorFlow   Scikit-learn   Pandas   NumPy   MLflow   AWS SageMaker\n\n  GitHub\n\nJupyter Notebooks\n\nBENEFITS\n\nCompetitive hourly internship rate with potential for full-time conversion\n\nFlexible work schedule accommodating academic commitments\n\nFree access to industry-standard ML tools and cloud computing resources\n\nMentorship from experienced ML engineers and data scientists\n\nCatered lunches and snacks in our San Francisco office\n\nProfessional development budget for online courses and certifications\n\nHOW TO APPLY\n\nPlease submit your resume, a brief cover letter, and a link to your GitHub profile or portfolio of ML\nprojects to careers@neuralflow-ai.com. Include the subject line 'ML Engineer Intern Application'. We\n\nreview applications on a rolling basis and will contact qualified candidates within 2 weeks.\n\n\f",
+  "job_title": "INTERN MACHINE LEARNING ENGINEER",
+  "company": "NeuralFlow AI is a Series B machine learning platform company focused on building tools that make",
+  "location": null,
+  "employment_type": "Internship",
+  "experience_level": "Internship",
+  "technical_skills": [
+    "AWS",
+    "Scikit-learn",
+    "numpy",
+    "pandas",
+    "pytorch",
+    "tensorflow"
+  ],
+  "education": [
+    "Free access to industry-standard ML tools and cloud computing resources",
+    "Mentorship from experienced ML engineers and data scientists",
+    "Catered lunches and snacks in our San Francisco office",
+    "Professional development budget for online courses and certifications"
+  ],
+  "nice_to_have": [
+    "Experience with Git/GitHub version control and collaborative development workflows",
+    "Prior experience with AWS services or cloud platforms",
+    "Familiarity with ML experiment tracking tools or model registries",
+    "Contributions to open-source ML projects or personal ML projects in a portfolio"
+  ],
+  "salary": "$18",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\011_intern_ml-engineer.pdf",
+  "languages": [
+    "Python",
+    "jupyter",
+    "pytorch"
+  ],
+  "education_required": [
+    "Currently pursuing or recently completed a degree in Computer Science, Statistics,"
+  ]
+}

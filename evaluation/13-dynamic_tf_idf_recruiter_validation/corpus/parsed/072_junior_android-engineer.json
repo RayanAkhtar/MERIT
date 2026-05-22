@@ -1,0 +1,32 @@
+{
+  "raw_text": "Nimbus Labs\n\nLOCATION\n\nSan Francisco, CA\n\nTYPE\n\nFull-time\n\nCOMPENSATION\n\n$75,000 - $95,000 USD per\n\nyear\n\nTECH STACK\n\nKotlin\n\nJetpack Compose\n\nAndroid Studio\n\nCoroutines\n\nRoom Database\n\nRetrofit\n\nJUnit4\n\nEspresso\n\nGradle\n\nGit\n\nJunior Android Engineer\n\nAbout Nimbus Labs: Nimbus Labs is a forward-thinking mobile\ntechnology startup founded in 2019, specializing in cloud-\nconnected Android applications. We build innovative solutions\nthat help businesses engage their users through intelligent,\nresponsive mobile experiences. Our team is passionate about\n\nleveraging modern Android development practices and cloud\nintegration to solve real-world problems.\n\nWe're seeking a Junior Android Engineer to join our mobile\ndevelopment team. You'll work alongside experienced engineers\nto build and maintain our flagship Android applications using\n\ncutting-edge technologies like Kotlin and Jetpack Compose. This\nrole is perfect for someone early in their career who is eager to\nlearn modern Android development practices and contribute to\napps used by millions of users worldwide.\n\nRESPONSIBILITIES\n\nDevelop new UI features and screens using Jetpack Compose\nand Android XML layouts under guidance from senior\nengineers\n\nImplement data persistence using Room database and SQLite\nfor local storage optimization\n\nWrite and execute unit tests using JUnit4 and Espresso to\n\nensure code quality and feature stability\n\nCollaborate with senior developers to refactor legacy code and\nadopt modern Kotlin best practices\n\nParticipate in code reviews and daily stand-ups to\ncommunicate progress and learn from team feedback\n\nDebug and troubleshoot Android app issues using Android\nStudio's debugger and profiling tools\n\nAssist with Play Store deployment processes and coordinate\nreleases with the QA team\n\nREQUIREMENTS\n\nBachelor's degree in Computer Science, Software Engineering,\nor related field, or equivalent practical experience\n\nProficiency in Kotlin programming with understanding of OOP\nprinciples and functional programming concepts\n\nFamiliarity with Android fundamentals (Activities, Fragments,\nServices, and the Android lifecycle)\n\nEmpowering mobile experiencesthrough intelligent cloud-nativesolutions\fBasic knowledge of REST APIs and JSON data parsing for\nnetwork communication\n\nBONUS POINTS\n\nExperience with Jetpack Compose or other modern UI\nframeworks\n\nExposure to Android Coroutines for asynchronous\nprogramming\n\nPrevious projects published on the Google Play Store or open-\n\nsource Android contributions\n\nBENEFITS\n\nCompetitive health, dental, and vision insurance coverage\n\nProfessional development budget ($2,000 annually for courses\nand conferences)\n\nFlexible work arrangements with hybrid office/remote options\n\nGenerous paid time off (20 days) plus company holidays\n\nWeekly team lunches and quarterly company outings\n\nAccess to latest development hardware and software tools\n\nAPPLY\n\nPlease submit your resume, a portfolio or GitHub link showcasing\nyour Android projects, and a cover letter explaining your interest\nin mobile development to careers@nimbuslabs.io. Applicants will\nbe contacted within 1-2 weeks of submission. We review\napplications on a rolling basis.\n\n\f",
+  "job_title": "Junior Android Engineer",
+  "company": "Nimbus Labs",
+  "location": null,
+  "employment_type": "Full-time",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "sqlite"
+  ],
+  "education": [
+    "or related field, or equivalent practical experience",
+    "Proficiency in Kotlin programming with understanding of OOP",
+    "principles and functional programming concepts",
+    "Familiarity with Android fundamentals (Activities, Fragments,",
+    "Services, and the Android lifecycle)",
+    "Empowering mobile experiencesthrough intelligent cloud-nativesolutions",
+    "Basic knowledge of REST APIs and JSON data parsing for",
+    "network communication"
+  ],
+  "nice_to_have": [],
+  "salary": "$75,000 - $95,000",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\072_junior_android-engineer.pdf",
+  "languages": [
+    "SQLite",
+    "kotlin",
+    "xml"
+  ],
+  "education_required": [
+    "Bachelor's degree in Computer Science, Software Engineering,"
+  ]
+}

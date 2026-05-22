@@ -1,0 +1,31 @@
+{
+  "raw_text": "Intern Backend Engineer\n\nJoin CloudVault Systems as an Intern Backend Engineer and gain hands-on experience building\n\nscalable backend services in a collaborative environment. You'll work alongside our experienced\n\nengineering team to develop microservices, design REST APIs, and contribute to our core\n\ninfrastructure. This is an excellent opportunity to apply your computer science fundamentals to\n\nreal-world problems and learn industry best practices in cloud architecture and database design.\n\nAbout the Company\n\nCloudVault Systems is a fast-growing fintech infrastructure startup based in San Francisco,\ndedicated to building resilient, cloud-native backend systems for financial institutions and SaaS\n\nplatforms. We're passionate about distributed systems, database optimization, and helping teams\nscale reliably.\n\nWhat You'll Own\n\n1. Assist in the design and implementation of RESTful APIs using Python and Flask/FastAPI\n\nframeworks\n\n2. Learn and contribute to our microservices architecture running on Kubernetes and Docker\n\n3. Write clean, well-tested backend code with guidance from senior engineers; participate in\n\ncode reviews to improve code quality\n\n4. Help optimize PostgreSQL queries and understand database indexing strategies under\n\nmentor supervision\n\n5. Collaborate with the team to implement message queue solutions using RabbitMQ for\n\nasynchronous task processing\n\n6. Debug and troubleshoot issues in staging and development environments, documenting\n\nfindings for future reference\n\n7. Participate in sprint planning meetings and contribute to technical documentation and design\n\ndiscussions\n\n8. Learn best practices in API design, error handling, and building resilient distributed systems\n\nRequired\n\nPreferred\n\nCurrently enrolled in or recently\ngraduated from a Bachelor's degree\n\nExperience with Git and version control\nworkflows\n\nat CloudVault Systems — Secure, scalable cloud infrastructure for modern enterprisesSan Francisco, CA (Hybrid) • Intern • $22-26/hour\fprogram in Computer Science, Software\n\nFamiliarity with containerization concepts\n\nEngineering, or related field\n\n(Docker basics)\n\nSolid understanding of fundamental\n\nPrior internship or relevant project\n\nprogramming concepts (data structures,\n\nexperience with backend development\n\nalgorithms, object-oriented design)\n\nKnowledge of message queues or\n\nBasic knowledge of at least one backend\n\nasynchronous processing patterns\n\nprogramming language (Python, Java, or\n\nGo)\n\nFamiliarity with relational databases\n\n(SQL, basic query writing)\n\nUnderstanding of HTTP and REST API\n\nconcepts\n\nAbility to work in a team environment and\n\ncommunicate technical concepts clearly\n\nTechnologies\n\nPython   FastAPI\n\n  PostgreSQL   Redis   Docker\n\n  Kubernetes   RabbitMQ   REST APIs\n\nGit\n\n  AWS (EC2, S3, RDS)\n\nPerks & Benefits\n\nFlexible work schedule and hybrid work arrangement (2 days in office, 3 remote)\nCompetitive hourly pay with potential for conversion to full-time role\nMentorship from experienced backend engineers with 5+ years of experience\nAccess to professional development resources (Udemy, Coursera, industry conferences)\nFree lunch on office days and fully stocked kitchen\nCollaborative learning environment with weekly technical talks and knowledge-sharing\nsessions\n\nNext Steps\n\nPlease submit your resume, a cover letter describing your interest in backend engineering, and a\nlink to your GitHub profile (or code samples) to careers@cloudvault.io. Include the subject line\n'Application: Intern Backend Engineer - [Your Name]'. Applications are reviewed on a rolling basis.\nSelected candidates will participate in a technical phone screen followed by a take-home coding\nassignment and a final round with our engineering team.\n\n\f",
+  "job_title": "Intern Backend Engineer",
+  "company": null,
+  "location": null,
+  "employment_type": "Internship",
+  "experience_level": "Internship",
+  "technical_skills": [
+    "AWS",
+    "Docker",
+    "Flask",
+    "Kubernetes",
+    "fastapi",
+    "postgresql",
+    "processing"
+  ],
+  "education": [],
+  "nice_to_have": [],
+  "salary": "$22",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\049_intern_backend-engineer.pdf",
+  "languages": [
+    "Java",
+    "PostgreSQL",
+    "Python",
+    "SQL",
+    "go"
+  ],
+  "education_required": [
+    "graduated from a Bachelor's degree"
+  ]
+}

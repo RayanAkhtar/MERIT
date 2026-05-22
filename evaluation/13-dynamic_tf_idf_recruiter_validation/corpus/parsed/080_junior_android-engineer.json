@@ -1,0 +1,29 @@
+{
+  "raw_text": "Velocity Labs\n\nJunior Android Engineer\n\nLOCATION\n\nAustin, TX\n\nTYPE\n\nFull-time\n\nCOMPENSATION\n\n$75,000 - $95,000 USD annually\n\nTECH STACK\n\nKotlin\n\nJetpack Compose\n\nAndroid Studio\n\nKotlin Coroutines\n\nRoom Database\n\nAndroid Jetpack libraries\n\nRetrofit (REST APIs)\n\nGradle\n\nGoogle Play Console\n\nAbout Velocity Labs: Velocity Labs is a fintech-focused mobile\nsoftware company specializing in cross-platform applications for\nfinancial services. Founded in 2019, we're a growing team of 45\nengineers based in Austin, Texas, committed to crafting seamless,\nperformant Android applications that serve millions of users globally.\n\nWe're looking for a Junior Android Engineer to join our mobile team. In\nthis role, you'll develop and maintain features for our flagship Android\napplication using modern Android technologies. You'll work closely\nwith senior engineers, participate in code reviews, and contribute to our\nmission of making financial services more accessible. This is an\nexcellent opportunity to grow your Android development skills in a\ncollaborative, fast-paced environment.\n\nRESPONSIBILITIES\n\nDevelop new features and UI components using Kotlin and Jetpack\nCompose following established design systems and best practices\n\nWrite clean, testable code and actively participate in code reviews to\nlearn from and support teammates\n\nDebug and troubleshoot Android application issues using Android\nStudio and collaborate with QA to resolve bugs\n\nImplement data persistence using Room database for local caching\nand offline functionality\n\nUtilize Kotlin Coroutines to handle asynchronous tasks and manage\nbackground operations efficiently\n\nPrepare features for Play Store deployment by following Google Play\nguidelines and participating in release management\n\nDocument code and technical decisions to maintain knowledge\n\nsharing across the team\n\nAttend sprint planning, standups, and retrospectives to coordinate\nwork and contribute ideas for team improvement\n\nREQUIREMENTS\n\nBachelor's degree in Computer Science, Software Engineering, or\n\nrelated field (or equivalent professional experience)\n\n0-2 years of professional Android development experience or\nsubstantial portfolio of Android projects\n\nStrong proficiency in Kotlin programming language\n\nSolid understanding of Android fundamentals including Activities,\nFragments, Intents, and lifecycle management\n\nBuilding intuitive mobile experiences thatempower users to move faster\fExperience building user interfaces with XML layouts or basic\nfamiliarity with Jetpack Compose\n\nBONUS POINTS\n\nExperience with Jetpack Compose for building modern declarative\nUIs\n\nFamiliarity with Kotlin Coroutines for asynchronous programming\n\nUnderstanding of Room ORM and SQLite database concepts\n\nPublished or open-source Android projects on GitHub\n\nBENEFITS\n\nCompetitive health, dental, and vision insurance coverage\n\n401(k) matching up to 4% of salary\n\nUnlimited paid time off with a minimum of 15 days encouraged\n\nProfessional development budget of $1,500 annually for courses and\nconferences\n\nFlexible hybrid work arrangement (2 days in office, 3 days remote)\n\nSnacks, beverages, and monthly team lunches\n\nMacBook Pro and latest development tools provided\n\nAPPLY\n\nPlease submit your resume, cover letter, and a link to your GitHub\nprofile or Android portfolio to careers@velocitylabs.io. Include links to\nany published Android apps or open-source projects you've contributed\nto. We review applications on a rolling basis and will follow up within\ntwo weeks of submission.\n\n\f",
+  "job_title": "Junior Android Engineer",
+  "company": "Velocity Labs",
+  "location": null,
+  "employment_type": "Full-time",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "sqlite"
+  ],
+  "education": [
+    "related field (or equivalent professional experience)",
+    "0-2 years of professional Android development experience or",
+    "substantial portfolio of Android projects"
+  ],
+  "nice_to_have": [
+    "Experience with Jetpack Compose for building modern declarative"
+  ],
+  "salary": "$75,000 - $95,000",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\080_junior_android-engineer.pdf",
+  "languages": [
+    "SQLite",
+    "kotlin",
+    "xml"
+  ],
+  "education_required": [
+    "Bachelor's degree in Computer Science, Software Engineering, or"
+  ]
+}

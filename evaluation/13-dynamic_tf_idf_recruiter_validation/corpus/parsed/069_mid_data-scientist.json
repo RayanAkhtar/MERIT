@@ -1,0 +1,38 @@
+{
+  "raw_text": "Nexora Analytics // Mid Data Scientist\n\nSan Francisco, CA (Remote-Friendly) | Full-Time | $125,000 - $155,000 USD per annum\n\nTransforming Business Insights Through Intelligent Data\n\n>> ABOUT\n\nNexora Analytics is a mid-stage data science and analytics platform company founded in\n2019. We partner with Fortune 500 companies and high-growth startups to unlock actionable\n\ninsights from their data. Our platform processes over 2 billion data points daily, enabling\ncustomers across finance, e-commerce, and SaaS to make faster, data-driven decisions. We're\n\nbacked by Tier-1 VCs and operate with a mission to democratize advanced analytics for\norganizations of all sizes.\n\n>> SUMMARY\n\nWe're seeking a Mid Data Scientist to join our Analytics Platform team. You'll develop\npredictive models, design and execute A/B tests, and build statistical analyses that drive\n\nproduct and business decisions. This role offers the opportunity to work on complex, real-\nworld datasets and collaborate with product, engineering, and business teams. You should\n\nhave 2-5 years of professional data science experience and strong proficiency in Python,\nSQL, and statistical methods.\n\n>> RESPONSIBILITIES\n\n- Develop and deploy machine learning models using scikit-learn and Python to solve\nbusiness problems, including feature engineering with Pandas and NumPy\n\n- Design and analyze A/B tests and experiments to evaluate product changes; calculate\nstatistical significance and recommend actions based on results\n\n- Write optimized SQL queries to extract, transform, and analyze data from multiple data\nsources; collaborate with data engineering on pipeline improvements\n\n- Conduct exploratory data analysis (EDA) and statistical modeling to uncover trends and\npatterns in customer behavior and product usage\n\n- Create reproducible Python scripts and Jupyter notebooks documenting methodology,\nfindings, and recommendations for stakeholders\n\n- Collaborate with product managers and engineers to define KPIs, translate business\nrequirements into analytical requirements, and present findings to non-technical\n\naudiences\n- Build and maintain dashboards and automated reporting systems to track key metrics and\n\nmodel performance over time\n- Participate in code reviews, contribute to analytics best practices, and mentor junior\n\nteam members on statistical methods and modeling techniques\n\n>> MUST HAVE\n\n- 2-5 years of professional experience in data science, analytics, or a quantitative role\n\n- Expert-level proficiency in Python, including libraries such as Pandas, NumPy, and\nscikit-learn for data manipulation and modeling\n\n- Strong SQL skills with ability to write complex queries for data extraction and\ntransformation from relational databases\n\n\f- Solid foundation in statistics and experimental design; experience designing and\n\ninterpreting A/B tests and statistical hypothesis tests\n- Experience building, evaluating, and deploying machine learning models in production or\n\nnear-production environments\n- Demonstrated ability to communicate technical findings clearly to both technical and\n\nnon-technical stakeholders\n\n>> NICE TO HAVE\n\n- Experience with causal inference methods or advanced experimental design techniques\n\n- Familiarity with data visualization tools (e.g., Tableau, Looker, or similar)\n- Knowledge of Python data visualization libraries (Matplotlib, Seaborn, or Plotly)\n\n- Experience with version control (Git) and collaborative development practices\n\n>> STACK\n\nPython (Pandas, NumPy, scikit-learn) / SQL (PostgreSQL/MySQL) / Jupyter Notebooks / Statsmodels /\n\nSciPy / A/B Testing & Experimentation Platforms / Tableau / Git/GitHub / AWS (S3, EC2, RDS) /\nApache Airflow\n\n>> BENEFITS\n\n- Competitive salary and equity package with early-stage company upside potential\n\n- Comprehensive health insurance (medical, dental, vision) with employer contributions\n- Professional development budget of $2,500 annually for courses, certifications, and\n\nconferences\n- Remote-flexible work arrangement with option to work from home 3+ days per week\n\n- Unlimited PTO policy with a minimum of 15 days encouraged\n- Collaboration with world-class data scientists and access to cutting-edge datasets\n\n- Casual, inclusive work environment with a focus on continuous learning\n\n>> APPLY\n\nTo apply, please submit your resume, a brief cover letter, and a link to your GitHub\n\nprofile or portfolio of relevant projects to careers@nexora.io. Optionally, include a link\nto a published blog post, Kaggle profile, or writeup of a data science project. Screening\n\ncalls will begin immediately upon submission.\n\n\f",
+  "job_title": "Nexora Analytics // Mid Data Scientist",
+  "company": "Nexora Analytics is a mid",
+  "location": null,
+  "employment_type": "Full-time",
+  "experience_level": "Mid",
+  "technical_skills": [
+    "AWS",
+    "Scikit-learn",
+    "foundation",
+    "matplotlib",
+    "mysql",
+    "numpy",
+    "pandas",
+    "postgresql"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Experience with causal inference methods or advanced experimental design techniques",
+    "Familiarity with data visualization tools (e.g., Tableau, Looker, or similar)",
+    "Knowledge of Python data visualization libraries (Matplotlib, Seaborn, or Plotly)",
+    "Experience with version control (Git) and collaborative development practices",
+    ">> STACK",
+    "Python (Pandas, NumPy, scikit-learn) / SQL (PostgreSQL/MySQL) / Jupyter Notebooks / Statsmodels /",
+    "SciPy / A/B Testing & Experimentation Platforms / Tableau / Git/GitHub / AWS (S3, EC2, RDS) /"
+  ],
+  "salary": "$125,000 - $155,000",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\069_mid_data-scientist.pdf",
+  "languages": [
+    "MySQL",
+    "PostgreSQL",
+    "Python",
+    "SQL",
+    "jupyter"
+  ],
+  "education_required": []
+}

@@ -1,0 +1,496 @@
+{
+  "holdout_id": "holdout_04_lead_devops_platform",
+  "job_title": "Lead DevOps / Platform Engineer",
+  "company": "Streamforge Platforms",
+  "experience_level": "Lead",
+  "raw_text": "Streamforge Platforms — Lead DevOps Engineer\n\nOwn platform reliability, observability, and delivery pipelines.\nCore stack: Linux, Docker, Kubernetes, Terraform, Helm, Prometheus, Grafana, GitHub Actions.\nPython and Go for tooling; PostgreSQL for internal services.\nOn-call leadership and SLO design required.",
+  "generated_at_utc": "2026-05-22T07:48:27.713004+00:00",
+  "metrics": {
+    "Languages": {
+      "category": "Languages",
+      "value": [
+        {
+          "value": "Python",
+          "suggested_weight": 3.0,
+          "suggested_weight_reasoning": "Balanced significance based on density and rarity.",
+          "suggested_weight_math": {
+            "tf": 0.025641,
+            "idf": 1.3956,
+            "count": 1,
+            "df": 67,
+            "total_tokens": 39,
+            "num_docs": 101,
+            "raw_score": 0.035785
+          },
+          "recruiter_weight": 4,
+          "rater_weights": {
+            "R_1": 5,
+            "R_2": 4,
+            "P_1": 4,
+            "P_2": 3
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        },
+        {
+          "value": "Go",
+          "suggested_weight": 2.9,
+          "suggested_weight_reasoning": "Balanced significance based on density and rarity.",
+          "suggested_weight_math": {
+            "tf": 0.025641,
+            "idf": 1.3247,
+            "count": 1,
+            "df": 72,
+            "total_tokens": 39,
+            "num_docs": 101,
+            "raw_score": 0.033966
+          },
+          "recruiter_weight": 4,
+          "rater_weights": {
+            "R_1": 4,
+            "R_2": 4,
+            "P_1": 3,
+            "P_2": 3
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        },
+        {
+          "value": "SQL",
+          "suggested_weight": 3.7,
+          "suggested_weight_reasoning": "Niche skill; high market scarcity increases importance.",
+          "suggested_weight_math": {
+            "tf": 0.025641,
+            "idf": 1.8775,
+            "count": 1,
+            "df": 41,
+            "total_tokens": 39,
+            "num_docs": 101,
+            "raw_score": 0.04814
+          },
+          "recruiter_weight": 4,
+          "rater_weights": {
+            "R_1": 5,
+            "R_2": 5,
+            "P_1": 4,
+            "P_2": 4
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        }
+      ]
+    },
+    "Technologies": {
+      "category": "Technologies",
+      "value": [
+        {
+          "value": "Docker",
+          "suggested_weight": 3.4,
+          "suggested_weight_reasoning": "Balanced significance based on density and rarity.",
+          "suggested_weight_math": {
+            "tf": 0.025641,
+            "idf": 1.6448,
+            "count": 1,
+            "df": 52,
+            "total_tokens": 39,
+            "num_docs": 101,
+            "raw_score": 0.042175
+          },
+          "recruiter_weight": 1,
+          "rater_weights": {
+            "R_1": 1,
+            "R_2": 1,
+            "P_1": 1,
+            "P_2": 1
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        },
+        {
+          "value": "Kubernetes",
+          "suggested_weight": 3.2,
+          "suggested_weight_reasoning": "Balanced significance based on density and rarity.",
+          "suggested_weight_math": {
+            "tf": 0.025641,
+            "idf": 1.5547,
+            "count": 1,
+            "df": 57,
+            "total_tokens": 39,
+            "num_docs": 101,
+            "raw_score": 0.039864
+          },
+          "recruiter_weight": 1,
+          "rater_weights": {
+            "R_1": 1,
+            "R_2": 1,
+            "P_1": 1,
+            "P_2": 2
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        },
+        {
+          "value": "Terraform",
+          "suggested_weight": 3.9,
+          "suggested_weight_reasoning": "Niche skill; high market scarcity increases importance.",
+          "suggested_weight_math": {
+            "tf": 0.025641,
+            "idf": 2.0042,
+            "count": 1,
+            "df": 36,
+            "total_tokens": 39,
+            "num_docs": 101,
+            "raw_score": 0.05139
+          },
+          "recruiter_weight": 1,
+          "rater_weights": {
+            "R_1": 1,
+            "R_2": 1,
+            "P_1": 2,
+            "P_2": 1
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        },
+        {
+          "value": "Prometheus",
+          "suggested_weight": 4.0,
+          "suggested_weight_reasoning": "Niche skill; high market scarcity increases importance.",
+          "suggested_weight_math": {
+            "tf": 0.025641,
+            "idf": 2.0888,
+            "count": 1,
+            "df": 33,
+            "total_tokens": 39,
+            "num_docs": 101,
+            "raw_score": 0.053558
+          },
+          "recruiter_weight": 3,
+          "rater_weights": {
+            "R_1": 4,
+            "R_2": 3,
+            "P_1": 3,
+            "P_2": 3
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        },
+        {
+          "value": "Grafana",
+          "suggested_weight": 4.4,
+          "suggested_weight_reasoning": "Niche skill; high market scarcity increases importance.",
+          "suggested_weight_math": {
+            "tf": 0.025641,
+            "idf": 2.3962,
+            "count": 1,
+            "df": 24,
+            "total_tokens": 39,
+            "num_docs": 101,
+            "raw_score": 0.061442
+          },
+          "recruiter_weight": 4,
+          "rater_weights": {
+            "R_1": 5,
+            "R_2": 4,
+            "P_1": 4,
+            "P_2": 4
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        },
+        {
+          "value": "Linux",
+          "suggested_weight": 5.0,
+          "suggested_weight_reasoning": "Niche skill; high market scarcity increases importance.",
+          "suggested_weight_math": {
+            "tf": 0.025641,
+            "idf": 2.7819,
+            "count": 1,
+            "df": 16,
+            "total_tokens": 39,
+            "num_docs": 101,
+            "raw_score": 0.071331
+          },
+          "recruiter_weight": 1,
+          "rater_weights": {
+            "R_1": 1,
+            "R_2": 1,
+            "P_1": 1,
+            "P_2": 1
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        }
+      ]
+    },
+    "Education": {
+      "category": "Education",
+      "value": [
+        {
+          "value": "Degree in Computer Science or related field",
+          "suggested_weight": 1.0,
+          "suggested_weight_reasoning": "Niche skill; high market scarcity increases importance.",
+          "suggested_weight_math": {
+            "tf": 0.0,
+            "idf": 5.6151,
+            "count": 0,
+            "df": 0,
+            "total_tokens": 39,
+            "num_docs": 101,
+            "raw_score": 0.0
+          },
+          "recruiter_weight": 5,
+          "rater_weights": {
+            "R_1": 5,
+            "R_2": 5,
+            "P_1": 5,
+            "P_2": 4
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        }
+      ]
+    },
+    "Experience": {
+      "category": "Experience",
+      "value": []
+    }
+  },
+  "tfidf_suggested_weights": {
+    "Python": {
+      "weight": 3.0,
+      "reasoning": "Balanced significance based on density and rarity.",
+      "math": {
+        "tf": 0.025641,
+        "idf": 1.3956,
+        "count": 1,
+        "df": 67,
+        "total_tokens": 39,
+        "num_docs": 101,
+        "raw_score": 0.035785
+      }
+    },
+    "Go": {
+      "weight": 2.9,
+      "reasoning": "Balanced significance based on density and rarity.",
+      "math": {
+        "tf": 0.025641,
+        "idf": 1.3247,
+        "count": 1,
+        "df": 72,
+        "total_tokens": 39,
+        "num_docs": 101,
+        "raw_score": 0.033966
+      }
+    },
+    "SQL": {
+      "weight": 3.7,
+      "reasoning": "Niche skill; high market scarcity increases importance.",
+      "math": {
+        "tf": 0.025641,
+        "idf": 1.8775,
+        "count": 1,
+        "df": 41,
+        "total_tokens": 39,
+        "num_docs": 101,
+        "raw_score": 0.04814
+      }
+    },
+    "Docker": {
+      "weight": 3.4,
+      "reasoning": "Balanced significance based on density and rarity.",
+      "math": {
+        "tf": 0.025641,
+        "idf": 1.6448,
+        "count": 1,
+        "df": 52,
+        "total_tokens": 39,
+        "num_docs": 101,
+        "raw_score": 0.042175
+      }
+    },
+    "Kubernetes": {
+      "weight": 3.2,
+      "reasoning": "Balanced significance based on density and rarity.",
+      "math": {
+        "tf": 0.025641,
+        "idf": 1.5547,
+        "count": 1,
+        "df": 57,
+        "total_tokens": 39,
+        "num_docs": 101,
+        "raw_score": 0.039864
+      }
+    },
+    "Terraform": {
+      "weight": 3.9,
+      "reasoning": "Niche skill; high market scarcity increases importance.",
+      "math": {
+        "tf": 0.025641,
+        "idf": 2.0042,
+        "count": 1,
+        "df": 36,
+        "total_tokens": 39,
+        "num_docs": 101,
+        "raw_score": 0.05139
+      }
+    },
+    "Prometheus": {
+      "weight": 4.0,
+      "reasoning": "Niche skill; high market scarcity increases importance.",
+      "math": {
+        "tf": 0.025641,
+        "idf": 2.0888,
+        "count": 1,
+        "df": 33,
+        "total_tokens": 39,
+        "num_docs": 101,
+        "raw_score": 0.053558
+      }
+    },
+    "Grafana": {
+      "weight": 4.4,
+      "reasoning": "Niche skill; high market scarcity increases importance.",
+      "math": {
+        "tf": 0.025641,
+        "idf": 2.3962,
+        "count": 1,
+        "df": 24,
+        "total_tokens": 39,
+        "num_docs": 101,
+        "raw_score": 0.061442
+      }
+    },
+    "Linux": {
+      "weight": 5.0,
+      "reasoning": "Niche skill; high market scarcity increases importance.",
+      "math": {
+        "tf": 0.025641,
+        "idf": 2.7819,
+        "count": 1,
+        "df": 16,
+        "total_tokens": 39,
+        "num_docs": 101,
+        "raw_score": 0.071331
+      }
+    },
+    "Degree in Computer Science or related field": {
+      "weight": 1.0,
+      "reasoning": "Niche skill; high market scarcity increases importance.",
+      "math": {
+        "tf": 0.0,
+        "idf": 5.6151,
+        "count": 0,
+        "df": 0,
+        "total_tokens": 39,
+        "num_docs": 101,
+        "raw_score": 0.0
+      }
+    }
+  },
+  "recruiter_ground_truth": {
+    "study_id": "13",
+    "pilot": true,
+    "collected_at_utc": "2026-05-22T07:48:27Z",
+    "panel": [
+      {
+        "id": "R_1",
+        "role": "recruiter",
+        "label": "Professional Recruiter",
+        "background": "Technical recruiter (software roles); same panel as Study~14."
+      },
+      {
+        "id": "R_2",
+        "role": "recruiter",
+        "label": "Professional Recruiter",
+        "background": "In-house hiring contact from prior internship network."
+      },
+      {
+        "id": "P_1",
+        "role": "peer",
+        "label": "MEng Computing (Imperial)",
+        "background": "Final-year; SWE internship, familiar with JD screening tasks."
+      },
+      {
+        "id": "P_2",
+        "role": "peer",
+        "label": "MEng Computing (Imperial)",
+        "background": "Final-year; ML coursework and prior quant internship."
+      }
+    ],
+    "consensus_rule": "median across R_1, R_2, P_1, P_2",
+    "sessions": [
+      {
+        "evaluator_id": "R_1",
+        "role": "recruiter",
+        "session_date": "2026-03-12",
+        "duration_min": 12,
+        "protocol": "JD + skill list only (TF-IDF hidden)",
+        "ratings": {
+          "Python": 5,
+          "Go": 4,
+          "SQL": 5,
+          "Docker": 1,
+          "Kubernetes": 1,
+          "Terraform": 1,
+          "Prometheus": 4,
+          "Grafana": 5,
+          "Linux": 1,
+          "Degree in Computer Science or related field": 5
+        },
+        "notes": "Platform core (Linux/K8s/Docker/Terraform) all P-1. Python/Go/SQL at P-4/P-5 — scripting glue. Degree P-5 for lead hire."
+      },
+      {
+        "evaluator_id": "R_2",
+        "role": "recruiter",
+        "session_date": "2026-03-14",
+        "duration_min": 10,
+        "protocol": "JD + skill list only (TF-IDF hidden)",
+        "ratings": {
+          "Python": 4,
+          "Go": 4,
+          "SQL": 5,
+          "Docker": 1,
+          "Kubernetes": 1,
+          "Terraform": 1,
+          "Prometheus": 3,
+          "Grafana": 4,
+          "Linux": 1,
+          "Degree in Computer Science or related field": 5
+        },
+        "notes": "Grafana P-5, Prometheus P-4 — observability is assumed once you're in SRE, not a shortlist filter. SQL P-5."
+      },
+      {
+        "evaluator_id": "P_1",
+        "role": "peer",
+        "session_date": "2026-03-19",
+        "duration_min": 18,
+        "protocol": "JD + skill list only (TF-IDF hidden)",
+        "ratings": {
+          "Python": 4,
+          "Go": 3,
+          "SQL": 4,
+          "Docker": 1,
+          "Kubernetes": 1,
+          "Terraform": 2,
+          "Prometheus": 3,
+          "Grafana": 4,
+          "Linux": 1,
+          "Degree in Computer Science or related field": 5
+        },
+        "notes": "Matched infra stack; gave Python P-4 not P-5 because JD mentions tooling scripts."
+      },
+      {
+        "evaluator_id": "P_2",
+        "role": "peer",
+        "session_date": "2026-03-21",
+        "duration_min": 16,
+        "protocol": "JD + skill list only (TF-IDF hidden)",
+        "ratings": {
+          "Python": 3,
+          "Go": 3,
+          "SQL": 4,
+          "Docker": 1,
+          "Kubernetes": 2,
+          "Terraform": 1,
+          "Prometheus": 3,
+          "Grafana": 4,
+          "Linux": 1,
+          "Degree in Computer Science or related field": 4
+        },
+        "notes": "Prometheus P-3 — used it in internship but recruiters are right that it's rarely a differentiator at lead level."
+      }
+    ],
+    "facilitator_note": "Pilot study; separate from Studies 14–15 panel. No TF-IDF shown during rating."
+  }
+}

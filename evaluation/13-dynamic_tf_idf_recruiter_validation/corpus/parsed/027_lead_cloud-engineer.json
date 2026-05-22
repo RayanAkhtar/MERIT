@@ -1,0 +1,52 @@
+{
+  "raw_text": "Nimbus Data Systems // Lead Cloud Engineer\n\nSan Francisco, CA (Remote-first, US-based preferred) | Full-time | $185,000 - $240,000 USD\nannually\n\nEnterprise cloud infrastructure made simple and scalable\n\n>> ABOUT\n\nNimbus Data Systems is a Series B cloud infrastructure company founded in 2018,\nspecializing in helping mid-market and enterprise customers optimize, secure, and scale\n\ntheir multi-cloud environments. We work with over 500+ customers across North America and\nEurope to reduce cloud costs, improve deployment velocity, and maintain security\n\ncompliance. Our platform automates infrastructure provisioning, cost optimization, and\ngovernance across AWS, Azure, and GCP.\n\n>> SUMMARY\n\nWe're seeking an experienced Lead Cloud Engineer to guide our infrastructure and cloud\nplatform team. You'll lead a team of 4-5 engineers, architect cloud solutions for\n\nenterprise customers, and drive best practices across AWS, Terraform, and infrastructure-\nas-code practices. This role requires 6+ years of cloud engineering experience, with\n\nproven leadership in building and mentoring high-performing teams. You'll own the\ntechnical roadmap for our cloud provisioning platform, mentor junior engineers, and\n\ncollaborate with product and customer success teams to deliver scalable solutions.\n\n>> RESPONSIBILITIES\n\n- Lead and mentor a team of 4-5 cloud engineers, conducting code reviews, career\n\ndevelopment planning, and performance evaluations\n- Architect and design scalable, secure, and cost-optimized AWS infrastructure\n\nsolutions for enterprise customers using VPC, EC2, Lambda, RDS, and managed services\n- Champion infrastructure-as-code practices by leading Terraform and CloudFormation\n\nadoption across the team and customer base\n- Own the technical roadmap for the cloud provisioning platform, collaborating with\n\nproduct managers to prioritize features and improvements\n- Design and implement cost optimization strategies for customer environments,\n\nreducing cloud spend by 20-40% through reserved instances, auto-scaling, and reserved\ncapacity\n\n- Establish and enforce cloud security best practices, including IAM policies,\nencryption, VPC design, and compliance (SOC 2, HIPAA) requirements\n\n- Drive cross-functional projects with networking, DevOps, and SRE teams to improve\nplatform reliability and customer experience\n\n- Represent Nimbus Data at customer technical reviews and architecture sessions,\nproviding thought leadership on cloud infrastructure design\n\n>> MUST HAVE\n\n- 6+ years of hands-on cloud engineering experience, with at least 3+ years focused on\nAWS (EC2, VPC, IAM, Lambda, RDS)\n\n- 2+ years of proven team leadership or senior engineer experience mentoring junior\nand mid-level engineers\n\n- Expert-level proficiency in Terraform and infrastructure-as-code principles;\nexperience with CloudFormation and CDK a plus\n\n\f- Deep understanding of cloud networking, security groups, VPC design, and routing;\n\nhands-on experience with AWS networking services (VPN, Direct Connect, Transit\nGateway)\n\n- Demonstrated experience optimizing cloud costs, rightsizing instances, and\nimplementing savings plans or reserved instance strategies\n\n- Strong scripting and automation skills in Bash, Python, or Go; experience with CI/CD\npipelines (GitHub Actions, GitLab CI, or Jenkins)\n\n>> NICE TO HAVE\n\n- AWS certifications (Solutions Architect Professional or Security Specialty)\n- Experience with multi-cloud infrastructure (Azure or GCP) and cloud migration\n\nprojects\n- Familiarity with containerization and orchestration (Docker, Kubernetes) and\n\nserverless architectures\n- Published technical content, conference speaking, or active participation in cloud\n\ncommunities\n\n>> STACK\n\nAWS (EC2, VPC, IAM, Lambda, RDS, ECS/EKS, S3, CloudWatch) / Terraform / CloudFormation / Python\n\n/ Bash/Shell scripting / GitHub/GitLab / AWS Systems Manager / Cost Explorer & Compute Optimizer\n\n/ Networking (DNS, SSL/TLS, VPN, Direct Connect) / Prometheus/CloudWatch for monitoring\n\n>> BENEFITS\n\n- Competitive health insurance (medical, dental, vision with 90% company coverage for\n\nemployees)\n- 401(k) matching (4% match on first 6% contributed) and unlimited PTO\n\n- Remote-first work culture with flexible scheduling and quarterly in-person team\nmeetings\n\n- Professional development budget ($2,000/year) for certifications, conferences, and\ntraining\n\n- Equity package (stock options) and annual performance bonuses (10-20% of salary)\n- Home office stipend ($1,500 one-time setup) and free cloud credits for learning\n\n- Mental health support (Headspace stipend) and wellness programs\n- Team lunch stipends and bi-weekly social events\n\n>> APPLY\n\nApply directly through our careers page at careers.nimbusdata.com/jobs or email your\nresume, GitHub profile, and a cover letter describing your leadership experience and most\n\ninteresting infrastructure project to careers@nimbusdata.com. Submissions are reviewed on\na rolling basis.\n\n\f",
+  "job_title": "Nimbus Data Systems // Lead Cloud Engineer",
+  "company": "Nimbus Data Systems is a Series B cloud infrastructure company founded in",
+  "location": null,
+  "employment_type": "Full-time",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "AWS",
+    "Docker",
+    "Kubernetes",
+    "azure"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "AWS certifications (Solutions Architect Professional or Security Specialty)",
+    "Experience with multi-cloud infrastructure (Azure or GCP) and cloud migration",
+    "projects",
+    "Familiarity with containerization and orchestration (Docker, Kubernetes) and",
+    "serverless architectures",
+    "Published technical content, conference speaking, or active participation in cloud",
+    "communities",
+    ">> STACK",
+    "AWS (EC2, VPC, IAM, Lambda, RDS, ECS/EKS, S3, CloudWatch) / Terraform / CloudFormation / Python",
+    "/ Bash/Shell scripting / GitHub/GitLab / AWS Systems Manager / Cost Explorer & Compute Optimizer",
+    "/ Networking (DNS, SSL/TLS, VPN, Direct Connect) / Prometheus/CloudWatch for monitoring",
+    ">> BENEFITS",
+    "Competitive health insurance (medical, dental, vision with 90% company coverage for",
+    "employees)",
+    "401(k) matching (4% match on first 6% contributed) and unlimited PTO",
+    "Remote-first work culture with flexible scheduling and quarterly in-person team",
+    "meetings",
+    "Professional development budget ($2,000/year) for certifications, conferences, and",
+    "training",
+    "Equity package (stock options) and annual performance bonuses (10-20% of salary)",
+    "Home office stipend ($1,500 one-time setup) and free cloud credits for learning",
+    "Mental health support (Headspace stipend) and wellness programs",
+    "Team lunch stipends and bi-weekly social events",
+    ">> APPLY",
+    "Apply directly through our careers page at careers.nimbusdata.com/jobs or email your",
+    "resume, GitHub profile, and a cover letter describing your leadership experience and most",
+    "interesting infrastructure project to careers@nimbusdata.com. Submissions are reviewed on",
+    "a rolling basis."
+  ],
+  "salary": "$185,000 - $240,000",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\027_lead_cloud-engineer.pdf",
+  "languages": [
+    "Python",
+    "go"
+  ],
+  "education_required": []
+}

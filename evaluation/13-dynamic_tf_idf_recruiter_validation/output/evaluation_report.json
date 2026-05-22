@@ -1,0 +1,36 @@
+{
+  "aggregate": {
+    "holdouts_scored": 3,
+    "skills_scored": 27,
+    "exact_match_rate": 0.2962962962962963,
+    "mae": 1.2592592592592593,
+    "spearman_rho": 0.25263601704346655,
+    "spearman_p": 0.20359993348114078
+  },
+  "holdouts": [
+    {
+      "holdout_id": "holdout_01_junior_frontend_react",
+      "n_skills": 9,
+      "exact_match_rate": 0.4444444444444444,
+      "mae": 0.7777777777777778,
+      "spearman_rho": 0.5222329678670935,
+      "spearman_p": 0.14922405449954335
+    },
+    {
+      "holdout_id": "holdout_02_senior_ml_research",
+      "n_skills": 8,
+      "exact_match_rate": 0.25,
+      "mae": 1.875,
+      "spearman_rho": -0.45074893585520887,
+      "spearman_p": 0.26234408558972633
+    },
+    {
+      "holdout_id": "holdout_04_lead_devops_platform",
+      "n_skills": 10,
+      "exact_match_rate": 0.2,
+      "mae": 1.2,
+      "spearman_rho": 0.396551724137931,
+      "spearman_p": 0.25656483602711166
+    }
+  ]
+}

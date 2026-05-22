@@ -1,0 +1,45 @@
+{
+  "raw_text": "ObserveStack Systems // Junior Site Reliability Engineer\n\nSan Francisco, CA (Hybrid) | Full-time | $85,000 - $105,000 per year\n\nMaking distributed systems reliable and visible for every engineering team\n\n>> ABOUT\n\nObserveStack Systems is a growing cloud infrastructure company focused on providing\nobservability and reliability solutions for distributed systems. We help engineering\n\nteams understand and optimize their infrastructure through intelligent monitoring,\ntracing, and incident management tools. Founded in 2021, we're building the next\n\ngeneration of SRE tooling for the modern cloud-native world.\n\n>> SUMMARY\n\nObserveStack Systems is hiring a Junior Site Reliability Engineer to join our\n\nInfrastructure team. In this role, you'll work on building and maintaining reliable\nsystems at scale, learning best practices in monitoring, incident response, and\n\ninfrastructure automation. You'll collaborate with senior engineers to improve our\nplatform's stability, troubleshoot production issues, and contribute to our observability\n\ninfrastructure. This is an excellent opportunity to grow your SRE skills and make a\ndirect impact on how thousands of teams monitor their applications.\n\n>> RESPONSIBILITIES\n\n- Monitor and maintain observability infrastructure using Prometheus and Grafana,\nlearning to set up alerts and dashboards for key metrics\n\n- Assist in incident response activities, documenting post-mortems and contributing to\nroot cause analysis under senior engineer guidance\n\n- Write automation scripts in Python to perform operational tasks and reduce manual\ntoil\n\n- Help maintain Kubernetes clusters by troubleshooting pod deployments, networking\nissues, and resource constraints\n\n- Implement and test SLOs/SLIs for critical services, learning how to define\nmeaningful reliability targets\n\n- Contribute to distributed tracing setup and troubleshooting using tools like Jaeger\nor Zipkin\n\n- Participate in on-call rotation (with shadow support) and handle escalations from\nmonitoring systems\n\n- Review infrastructure-as-code and automation improvements, providing feedback and\nlearning from code reviews\n\n>> MUST HAVE\n\n- 0-2 years of professional software engineering or operations experience\n- Strong foundational knowledge of Linux/Unix systems and shell scripting\n\n- Familiarity with at least one programming language (Python, Go, or similar)\n- Understanding of basic networking concepts (TCP/IP, DNS, HTTP)\n\n- Demonstrated experience with version control systems (Git)\n- Willingness to participate in on-call rotations and learn incident response\n\npractices\n\n>> NICE TO HAVE\n\n\f- Experience or coursework with Docker and container technologies\n\n- Exposure to Kubernetes or other container orchestration platforms\n- Familiarity with cloud platforms (AWS, GCP, or Azure)\n\n- Prior experience with monitoring tools like Prometheus or similar\n\n>> STACK\n\nKubernetes / Prometheus / Grafana / Python / Go / Jaeger (Distributed Tracing) / Docker /\nTerraform / Linux/systemd / PagerDuty\n\n>> BENEFITS\n\n- Competitive health, dental, and vision insurance (company covers 80% of premiums)\n\n- 401(k) matching up to 4% of salary\n- $2,000 annual professional development budget for courses, conferences, and\n\ncertifications\n- Flexible work-from-home policy with collaborative office space\n\n- Unlimited PTO with a minimum of 15 days encouraged per year\n- Free lunch and beverages in office, monthly team events\n\n- Learning opportunities through mentorship from senior SRE engineers\n\n>> APPLY\n\nTo apply, please submit your resume, a cover letter explaining your interest in SRE, and\n\na GitHub profile or portfolio link (if available) to careers@observestack.com with the\nsubject line 'Junior SRE Application'. You can also apply directly through our careers\n\npage at observestack.com/careers. We review applications on a rolling basis.\n\n\f",
+  "job_title": "ObserveStack Systems // Junior Site Reliability Engineer",
+  "company": "ObserveStack Systems is a growing cloud infrastructure company focused on providing",
+  "location": null,
+  "employment_type": "Full-time",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "AWS",
+    "Docker",
+    "Kubernetes",
+    "azure"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Experience or coursework with Docker and container technologies",
+    "Exposure to Kubernetes or other container orchestration platforms",
+    "Familiarity with cloud platforms (AWS, GCP, or Azure)",
+    "Prior experience with monitoring tools like Prometheus or similar",
+    ">> STACK",
+    "Kubernetes / Prometheus / Grafana / Python / Go / Jaeger (Distributed Tracing) / Docker /",
+    "Terraform / Linux/systemd / PagerDuty",
+    ">> BENEFITS",
+    "Competitive health, dental, and vision insurance (company covers 80% of premiums)",
+    "401(k) matching up to 4% of salary",
+    "$2,000 annual professional development budget for courses, conferences, and",
+    "certifications",
+    "Flexible work-from-home policy with collaborative office space",
+    "Unlimited PTO with a minimum of 15 days encouraged per year",
+    "Free lunch and beverages in office, monthly team events",
+    "Learning opportunities through mentorship from senior SRE engineers",
+    ">> APPLY",
+    "To apply, please submit your resume, a cover letter explaining your interest in SRE, and",
+    "a GitHub profile or portfolio link (if available) to careers@observestack.com with the",
+    "subject line 'Junior SRE Application'. You can also apply directly through our careers",
+    "page at observestack.com/careers. We review applications on a rolling basis."
+  ],
+  "salary": "$85,000 - $105,000 per year",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\033_junior_site-reliability-engineer.pdf",
+  "languages": [
+    "Python",
+    "go"
+  ],
+  "education_required": []
+}

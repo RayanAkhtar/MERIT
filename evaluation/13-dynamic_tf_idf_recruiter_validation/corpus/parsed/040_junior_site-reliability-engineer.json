@@ -1,0 +1,27 @@
+{
+  "raw_text": "CloudVeil Systems // Junior Site Reliability Engineer\n\nSan Francisco, CA (Remote-friendly) | Full-time | $85,000 - $105,000 per year\n\nMaking infrastructure invisible so your business can shine\n\n>> ABOUT\n\nCloudVeil Systems is a fast-growing infrastructure automation company founded in 2019,\nfocused on helping mid-market to enterprise organizations build resilient, self-healing\n\ncloud platforms. We specialize in observability, incident response automation, and\nreliability engineering tooling for containerized environments. Our team of 120+\n\nengineers is distributed across North America and Europe.\n\n>> SUMMARY\n\nJoin CloudVeil Systems as a Junior Site Reliability Engineer and help build the future of\n\ncloud reliability. In this role, you'll work alongside experienced SREs to design,\nimplement, and maintain the infrastructure and monitoring systems that keep our platform\n\nand customer deployments running smoothly. You'll gain hands-on experience with\nKubernetes, observability tools, and incident response in a supportive, learning-focused\n\nenvironment.\n\n>> RESPONSIBILITIES\n\n- Assist in deploying and managing containerized applications on Kubernetes clusters,\n\nincluding troubleshooting pod scheduling and resource allocation issues\n- Help implement and maintain Prometheus metrics collection and alerting rules,\n\nlearning best practices for SLO/SLI definition and monitoring\n- Support on-call rotation by responding to alerts, escalating incidents\n\nappropriately, and participating in blameless post-mortems\n- Write Python scripts to automate routine operational tasks such as log parsing,\n\ncapacity planning data collection, and deployment validation\n- Contribute to runbooks and documentation for common operational procedures and\n\nincident response workflows\n- Monitor application performance using Grafana dashboards and distributed tracing\n\ntools (Jaeger/Tempo), identifying bottlenecks and anomalies\n- Collaborate with platform and backend teams to integrate their services into our\n\nobservability stack and improve their reliability metrics\n- Participate in incident response drills and learn to use our incident management\n\ntools and communication protocols\n\n>> MUST HAVE\n\n- Bachelor's degree in Computer Science, Engineering, or equivalent professional\n\nexperience (0-2 years as SRE, DevOps, or backend engineer)\n- Foundational knowledge of Linux system administration and shell scripting (Bash)\n\n- Experience with containerization concepts and basic Docker usage\n- Familiarity with at least one programming language (Python, Go, or similar) for\n\nwriting automation scripts\n- Understanding of networking basics (DNS, TCP/IP, load balancing) and how they relate\n\nto cloud infrastructure\n\n>> NICE TO HAVE\n\n\f- Prior exposure to Kubernetes (minikube, GKE, or self-managed clusters)\n\n- Experience with infrastructure-as-code tools such as Terraform or Helm\n- Knowledge of database concepts and exposure to managing stateful systems on\n\nKubernetes\n- Familiarity with Git workflows and CI/CD pipelines\n\n>> STACK\n\nKubernetes / Prometheus / Grafana / Jaeger (Distributed Tracing) / Python / Go / Terraform /\n\nHelm / ELK Stack / Loki / PagerDuty\n\n>> BENEFITS\n\n- Comprehensive health insurance (medical, dental, vision) with 90% employer coverage\n- 401(k) matching program (up to 4% of salary)\n\n- Unlimited paid time off with minimum 15 days annually\n- Home office equipment stipend ($1,500)\n\n- Professional development budget ($2,000/year) for conferences, courses, and\ncertifications\n\n- Mentorship program pairing junior engineers with senior SREs\n- Team offsites and company retreats twice yearly\n\n- Flexible work hours and remote-first culture\n\n>> APPLY\n\nSubmit your resume and a brief cover letter explaining your interest in SRE work to\n\ncareers@cloudveil.io. Include links to any GitHub projects or deployments you've worked\non. Shortlisted candidates will be invited for an initial phone screening followed by a\n\ntechnical assessment and team interviews.\n\n\f",
+  "job_title": "CloudVeil Systems // Junior Site Reliability Engineer",
+  "company": "CloudVeil Systems is a fast",
+  "location": null,
+  "employment_type": "Full-time",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "Docker",
+    "Kubernetes"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Prior exposure to Kubernetes (minikube, GKE, or self-managed clusters)",
+    "Experience with infrastructure-as-code tools such as Terraform or Helm",
+    "Knowledge of database concepts and exposure to managing stateful systems on"
+  ],
+  "salary": "$85,000 - $105,000 per year",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\040_junior_site-reliability-engineer.pdf",
+  "languages": [
+    "Python",
+    "go"
+  ],
+  "education_required": [
+    "- Bachelor's degree in Computer Science, Engineering, or equivalent professional"
+  ]
+}

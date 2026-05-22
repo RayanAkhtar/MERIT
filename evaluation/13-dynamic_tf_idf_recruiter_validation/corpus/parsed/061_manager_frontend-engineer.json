@@ -1,0 +1,28 @@
+{
+  "raw_text": "Velocity Labs\n\nBuilding intuitive interfaces that scale\n\nMANAGER, FRONTEND ENGINEERING\n\nSan Francisco, CA (Remote-first, US-based) · Full-time · $210,000 - $270,000 USD annually\n\nVelocity Labs is seeking an experienced Manager of Frontend Engineering to lead and grow our\n\nfrontend team. You'll combine hands-on technical expertise with people management, mentoring 4-6\n\nfrontend engineers while contributing to the technical direction of our platform. This is an ideal role for a\n\nsenior engineer ready to step into leadership, balancing strategic planning with direct involvement in\n\ncritical frontend initiatives.\n\nABOUT US\n\nVelocity Labs is a fast-growing SaaS company focused on providing real-time analytics and data\nvisualization solutions for enterprise clients. We believe great user experiences are built on solid\n\nengineering foundations, cutting-edge technology, and collaborative teams. Our platform serves\nthousands of users globally, and our frontend teams are central to delivering compelling, performant\n\ninterfaces.\n\nWHAT YOU'LL DO\n\nLead, mentor, and develop a team of 4-6 frontend engineers, fostering a collaborative culture\nfocused on excellence, continuous learning, and technical growth\n\nConduct regular one-on-ones, performance reviews, and career development planning to support\nteam member growth and retention\n\nDrive the technical roadmap for frontend initiatives, collaborating with product and design teams to\ntranslate requirements into scalable React/Next.js architecture\n\nChampion best practices in code quality, accessibility compliance (WCAG 2.1), and web\nperformance optimization across the team\n\nActively participate in critical features and complex refactoring efforts—staying hands-on with\nReact, TypeScript, and modern tooling (Vite, Webpack)\n\nIdentify and resolve technical debt, establishing standards for component architecture, testing\nstrategies, and CSS-in-JS/Tailwind patterns\n\nConduct code reviews and technical interviews, maintaining high standards for code quality and\n\nmentoring junior engineers\n\nAdvocate for frontend engineering needs in company planning and resource allocation meetings\n\nREQUIRED\n\n\f6+ years of professional frontend development experience, with 2+ years in a people\n\nmanagement or technical leadership role\n\nExpert-level proficiency in React and TypeScript, with demonstrable experience building large-\n\nscale applications\n\nStrong understanding of modern frontend tooling (Vite, Webpack, build optimization) and bundling\n\nstrategies\n\nProven experience mentoring and growing engineering teams; experience with hiring, onboarding,\n\nand performance management\n\nDeep knowledge of web performance metrics (Core Web Vitals, Lighthouse) and optimization\n\ntechniques\n\nExcellent communication skills and ability to influence cross-functional stakeholders (product,\n\ndesign, backend)\n\nNICE TO HAVE\n\nExperience with Next.js and server-side rendering patterns (SSR, SSG, ISR)\n\nExpertise in web accessibility (WCAG 2.1 standards) and inclusive design practices\n\nFamiliarity with design systems and component library development\n\nExperience with monitoring and observability tools for frontend performance tracking\n\nTECH STACK\n\nReact\n\n  TypeScript\n\n  Next.js   Tailwind CSS   Vite   Webpack   Web Accessibility (WCAG)\n\nWeb Performance Optimization   CSS-in-JS (Styled Components / Emotion)\n\n  Testing frameworks (Jest, React Testing Library)\n\nBENEFITS\n\nCompetitive equity package with meaningful ownership stakes\n\nComprehensive health, dental, and vision insurance coverage\n\nUnlimited PTO and flexible work schedule with remote-first culture\n\nProfessional development budget ($3,000/year) for conferences, courses, and certifications\n\nParental leave (16 weeks primary, 8 weeks secondary)\n\nFree lunch program and home office setup stipend\n\nQuarterly team offsites and annual company retreat\n\nHOW TO APPLY\n\nSubmit your resume, a cover letter highlighting your leadership experience, and a link to your GitHub\nprofile or portfolio showcasing recent React/TypeScript work to careers@velocitylabs.io. Applicants will\nfirst go through a brief phone screen with our Head of Engineering, followed by a technical discussion\nand team culture conversation with the leadership team.\n\n\f",
+  "job_title": "MANAGER, FRONTEND ENGINEERING",
+  "company": "Velocity Labs is a fast",
+  "location": null,
+  "employment_type": "Full-time",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "Next.js",
+    "React",
+    "Styled components"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Experience with Next.js and server-side rendering patterns (SSR, SSG, ISR)",
+    "Expertise in web accessibility (WCAG 2.1 standards) and inclusive design practices",
+    "Familiarity with design systems and component library development",
+    "Experience with monitoring and observability tools for frontend performance tracking"
+  ],
+  "salary": "$210,000 - $270,000",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\061_manager_frontend-engineer.pdf",
+  "languages": [
+    "JS",
+    "TypeScript",
+    "go"
+  ],
+  "education_required": []
+}

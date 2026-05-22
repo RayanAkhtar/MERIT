@@ -100,6 +100,9 @@ def main():
     study_15 = os.path.join(root_dir, "15-bias_anonymisation_audit")
     run_study(study_15, "run_study.py")
 
+    study_13 = os.path.join(root_dir, "13-dynamic_tf_idf_recruiter_validation")
+    run_study(study_13, "run_study.py")
+
     print("\n" + "="*60)
     print("ALL EVALUATIONS COMPLETE")
     print("="*60)

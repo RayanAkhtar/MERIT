@@ -1,0 +1,26 @@
+{
+  "raw_text": "Pulse Labs\n\nEmpowering real-time health insights through intelligent mobile experiences\n\nSENIOR IOS ENGINEER\n\nSan Francisco, CA · Full-time · $165,000 - $210,000 annually\n\nWe're seeking an experienced Senior iOS Engineer with 5-8 years of professional development\n\nexperience to lead the architecture and implementation of our next-generation health monitoring\n\nplatform. You'll own the full iOS product lifecycle, mentor junior engineers, and collaborate with\n\nproduct and design teams to deliver seamless user experiences. This role requires deep expertise in\n\nmodern Swift development, reactive programming patterns, and iOS app optimization.\n\nABOUT US\n\nPulse Labs is a Series B health-tech startup focused on building cutting-edge iOS applications that\n\nhelp users monitor and optimize their personal health through real-time data visualization and AI-\n\ndriven insights. Founded in 2019, we're headquartered in San Francisco and serve over 500,000\nactive users globally with our flagship health-tracking application.\n\nWHAT YOU'LL DO\n\nDesign and implement scalable iOS architectures using MVVM and reactive programming\n\npatterns with Combine framework\n\nLead the development of performance-critical features including real-time health data\n\nsynchronization and background processing using Core Data\n\nArchitect and maintain the iOS SDK, ensuring clean separation of concerns and robust error\nhandling across UIKit and SwiftUI implementations\n\nMentor junior and mid-level iOS engineers through code reviews, architectural discussions, and\nhands-on technical guidance\n\nCollaborate with Product and Design teams to translate wireframes into polished, production-\n\nready SwiftUI implementations\n\nOptimize app performance, manage App Store deployment processes, and ensure compliance\n\nwith iOS guidelines\n\nDrive technical debt reduction initiatives and establish iOS best practices within the engineering\nteam\n\nParticipate in on-call rotation for production support and lead post-mortem analyses for critical\nissues\n\nREQUIRED\n\n5-8 years of professional iOS development experience with proven track record of shipped\nproduction apps\n\n\fAdvanced proficiency in Swift and expertise with both UIKit and SwiftUI frameworks\n\nStrong understanding of reactive programming patterns and demonstrated experience with\n\nCombine framework\n\nExperience with Core Data, local persistence, and synchronization strategies for offline-first\n\napplications\n\nProficiency with Xcode tooling, debugging, and familiarity with performance profiling\n\ninstruments\n\nKnowledge of iOS app lifecycle, memory management, and concurrency patterns (GCD,\n\nasync/await)\n\nNICE TO HAVE\n\nExperience building healthcare or wellness applications with regulatory awareness (HIPAA,\n\nHL7 standards)\n\nFamiliarity with CI/CD pipelines and automation tools (e.g., fastlane, Jenkins)\n\nProven experience mentoring engineers and contributing to team growth\n\nUnderstanding of networking stacks and experience integrating REST or GraphQL APIs\n\nTECH STACK\n\nSwift\n\n  SwiftUI\n\n  UIKit\n\n  Combine   Core Data   Xcode   Grand Central Dispatch (GCD)\n\n  URLSession\n\nApp Store Connect\n\nInstruments\n\nBENEFITS\n\nCompetitive salary and equity package with 4-year vesting schedule\n\nComprehensive health insurance (medical, dental, vision) with 100% premium coverage for\nemployees\n\nFlexible work arrangements with remote-friendly hybrid setup (3 days in office)\n\nProfessional development budget ($3,000 annually) for conferences, courses, and certifications\n\nGenerous paid time off (25 days vacation + 10 holidays + unlimited sick leave)\n\nWellness programs including gym stipend, mental health support, and quarterly wellness\nretreats\n\nParental leave (16 weeks paid for primary caregivers, 12 weeks for secondary)\n\nMac equipment allowance and latest development hardware\n\nHOW TO APPLY\n\nTo apply, please submit your resume, a brief cover letter describing your experience with iOS\narchitecture patterns, and a link to your GitHub profile or portfolio showcasing iOS projects to\ncareers@pulselabs.io. Include specific examples of scalable systems you've designed and teams\n\nyou've mentored. Applications will be reviewed on a rolling basis with interviews beginning\nimmediately for qualified candidates.\n\n \n\f",
+  "job_title": "SENIOR IOS ENGINEER",
+  "company": "Pulse Labs is a Series B health",
+  "location": null,
+  "employment_type": "Full-time",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "processing"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Experience building healthcare or wellness applications with regulatory awareness (HIPAA,",
+    "HL7 standards)",
+    "Familiarity with CI/CD pipelines and automation tools (e.g., fastlane, Jenkins)",
+    "Proven experience mentoring engineers and contributing to team growth",
+    "Understanding of networking stacks and experience integrating REST or GraphQL APIs"
+  ],
+  "salary": "$165,000 - $210,000 annually",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\063_senior_ios-engineer.pdf",
+  "languages": [
+    "graphql",
+    "swift"
+  ],
+  "education_required": []
+}

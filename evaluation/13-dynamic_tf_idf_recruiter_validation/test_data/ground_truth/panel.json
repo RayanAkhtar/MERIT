@@ -1,0 +1,34 @@
+{
+  "study": "13-dynamic_tf_idf_recruiter_validation",
+  "pilot": true,
+  "evaluator_count": 4,
+  "recruiter_count": 2,
+  "peer_count": 2,
+  "holdout_count": 3,
+  "panel": [
+    {
+      "id": "R_1",
+      "role": "recruiter",
+      "label": "Professional Recruiter",
+      "background": "Technical recruiter (software roles); same panel as Study~14."
+    },
+    {
+      "id": "R_2",
+      "role": "recruiter",
+      "label": "Professional Recruiter",
+      "background": "In-house hiring contact from prior internship network."
+    },
+    {
+      "id": "P_1",
+      "role": "peer",
+      "label": "MEng Computing (Imperial)",
+      "background": "Final-year; SWE internship, familiar with JD screening tasks."
+    },
+    {
+      "id": "P_2",
+      "role": "peer",
+      "label": "MEng Computing (Imperial)",
+      "background": "Final-year; ML coursework and prior quant internship."
+    }
+  ]
+}

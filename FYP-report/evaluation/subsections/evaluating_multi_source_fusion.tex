@@ -21,6 +21,7 @@ synthetic candidate JSON profiles created to systematically test specific edge c
 of MERIT (Stage 1). This allows us to isolate the multi-source Bayesian fusion and other scoring engines from any parsing noise.
 By assuming perfect extraction, we establish a clean mathematical baseline so we can verify that the scoring logic, temporal decay
 and conflict resolution can be demonstrated and evaluated as intended, rather than being subject to the varied errors of PDF parsing.
+Validity implications are in Section~\ref{subsec:internal-validity}.
 
 \subsection{Study 08: Algorithmic Sensitivity and Skill Decay}
 \label{subsec:study-08-skill-decay}
@@ -78,7 +79,7 @@ To verify the correctness of this model, we shall run a step-by-step mathematica
 \begin{table}[htbp]
     \centering
     \caption{Bayesian Parameter Shifts for Felix Vance. The convergence of these parameter updates are visualised in
-        Figure~\ref{fig:bayesian-fusion-convergence}.}
+        Figure~\ref{fig:bayesian-fusion-convergence} (Appendix~\ref{appendix:bayesian-fusion-charts}).}
     \label{tab:bayesian-walkthrough}
     \vspace{1.5ex}
     \begin{tabular}{l|c|c|c|c|c|c}
@@ -133,16 +134,6 @@ This worked example mathematically demonstrates that MERIT's Bayesian evidence f
 weighted average, or ignore conflicts. Instead, it captures, tracks and scales the uncertainty in the presence of
 highly contradictory signals from sources of high confidence.
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.95\textwidth]{../evaluation/12-conflict_resolution/output/fusion_convergence_detailed.png}
-    \caption{Bayesian Fusion Convergence and Conflict Resolution. The top panel traces the expected
-        value (mean fused score) alongside the mathematical uncertainty range ($1\sigma$ standard deviation band),
-        illustrating the "dissonance flare" at the conflict step. The bottom panel explicitly compares standard
-        deviation levels ($\sigma$) at each incremental fusion stage.}
-    \label{fig:bayesian-fusion-convergence}
-\end{figure}
-
 \subsection{Study 01A: Algorithmic Ablation Study}
 \label{subsec:study-01a-algorithmic-ablation}
 
@@ -162,7 +153,7 @@ Table~\ref{tab:algorithmic-ablation}.
 \begin{table}[htbp]
     \centering
     \caption{Algorithmic Benchmark and Candidate Rankings across Scoring Configurations
-        (Corresponding highlighted rank shifts are visualised in Figure~\ref{fig:rank-displacement-successes}; the complete macro trajectory plot is detailed in Appendix~\ref{appendix:rank_displacement}). To enable a direct
+        (Highlighted rank trajectories: Figure~\ref{fig:rank-displacement-successes}; full cohort: Figure~\ref{fig:rank-displacement-holistic}, Appendix~\ref{appendix:rank_displacement}). To enable a direct
         comparison between the four scoring configurations, each configuration's scoring results have been normalised
         and scaled to a uniform percentage-based scale (0--100\%).}
     \label{tab:algorithmic-ablation}
@@ -213,18 +204,7 @@ Conversely, the fusion engine successfully limits or penalises unverified or adv
 receives a negligible cardinal shift of $+0.7\%$, while Vince Vault experiences a negative cardinal shift of $-12.6\%$
 ($33.2\% \to 20.6\%$), representing the heavy evidence conflict penalty applied under validation failures. The specific
 data-source mechanics driving these individual shifts are detailed in Section~\ref{subsec:study-01b-data-source-ablation}.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.95\textwidth]{../evaluation/01-comparative_study/output/rank_displacement_successes.png}
-    \caption{Selected Case Trajectories: Successes and Systemic Limitations. Tracing highlighted candidate ranks
-        from Traditional ATS keyword matching, through Modern AI ATS and MERIT (CV-Only), to the Full MERIT multi-source
-        Bayesian engine. This focuses on key success cases (e.g., Jordan Smith, Alex Rivers, Sam Old) and systemic limitations
-        (Carl Corp) discussed in this section; the complete cohort's macro trajectories are detailed in
-        Appendix~\ref{appendix:rank_displacement}.}
-    \label{fig:rank-displacement-successes}
-\end{figure}
-
+Figure~\ref{fig:rank-displacement-successes} (Appendix~\ref{appendix:rank_displacement}) traces the highlighted cases discussed above.
 
 \subsection{Study 01B: Multi-Source Data Ablation Study}
 \label{subsec:study-01b-data-source-ablation}

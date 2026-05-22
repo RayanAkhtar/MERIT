@@ -1,0 +1,128 @@
+What we were trying to answer
+-----------------------------
+Studies 04–05 already showed the parser can miss skills on messy PDFs. Study 13 is
+different: assume the skill list is correct, and ask whether MERIT's TF-IDF engine
+gives sensible 1–5 priorities compared to what recruiters would actually set.
+
+So this is about dynamic_weighting + the 100-JD market corpus, not ingestion. We
+kept it offline (no Supabase) and small on purpose — three hold-out roles, four
+people rating them. Kinda a weakness since we are testing with a static corpus
+this evaluation will likely have different results as more newer, trendier technologise 
+come out. The importance of some languages to recruiters (such as python) could fall 
+in the future as others come to replace it. So it may not be as repeatable 10 years from now, for example.
+
+
+Setup (short version)
+---------------------
+- Corpus: 100 synthetic tech JDs for IDF only (recruiters never saw these).
+- Hold-outs: Junior Frontend (React), Senior ML, Lead DevOps — excluded from corpus.
+- Panel: R_1, R_2 (recruiters), P_1, P_2 (MEng peers at Imperial). Separate from
+  the Study 14/15 HCI panel.
+- 12 sessions total (4 raters × 3 roles). People read the JD + fixed skill list
+  with TF-IDF hidden. Scale: 1 = essential, 5 = optional (same as the UI).
+- Consensus = median of the four integer ratings per skill on that role.
+- Compared to round(6 - suggested_weight) from the offline TF-IDF recompute.
+
+n = 27 skill–role pairs (not 108 individual votes). Each dot on the scatter is
+one skill on one job, Y = that median, X = TF-IDF mapped to the same scale.
+
+Headline numbers (from run_study.py / evaluation_report.json)
+-------------------------------------------------------------
+Aggregate (27 pairs):
+  - Exact match: 29.6%  (~3 in 10 land on the same 1–5 band)
+  - MAE: 1.26           (usually off by about one full priority step)
+  - Spearman rho: 0.25, p ≈ 0.20  (weak pooled ordering; not sig at 0.05)
+
+Per hold-out:
+  - Frontend:  9 skills, 44% exact, MAE 0.78, rho 0.52
+  - ML:        8 skills, 25% exact, MAE 1.88, rho -0.45  ← worst role
+  - DevOps:   10 skills, 20% exact, MAE 1.20, rho 0.40
+
+Exact agreements (8 pairs) — both sides hit the same band:
+  React, HTML, CSS, Git (FE); SQL, PostgreSQL (ML); Linux, CS degree (DevOps).
+
+Backend suggested_weight band is [1.0, 5.0] (min-max per JD); UI uses round(6 - weight).
+
+Biggest mismatches (worth showing in the report):
+  - ML PhD/MSc education line: humans P-5 (all four agreed — not a filter),
+    TF-IDF P-1. Gap of 4. Rare token in corpus ≠ important to shortlist.
+  - ML Python: humans P-1, TF-IDF P-5 (backend 1.0 on that JD). Worst-case mismatch after [1.0,5.0] scale.
+  - ML CUDA: humans ~P-3–4, TF-IDF P-1. Inverted emphasis.
+  - FE hygiene (HTML, TypeScript, etc.): humans P-4/P-5, TF-IDF often P-3/P-4.
+    Stuff in the JD text gets mid-tier weights even when recruiters treat it as noise.
+
+What the charts are for (output/)
+---------------------------------
+  study13_holdout_metrics.png      — bar summary per role
+  study13_consensus_vs_tfidf_scatter.png — all 27 pairs; footnote explains jitter
+  study13_per_role_dumbbell.png    — side-by-side per role
+  study13_top_misalignments.png    — top gaps + green tiles for the 6 matches
+  study13_rater_heatmap_ml.png     — individual scores on ML (not consensus)
+
+We dropped the recruiter-vs-peer boxplot — both groups were already close to the
+median we plotted, so it didn't add much and was easy to misread as "perfect IRR."
+
+Qualitative stuff that mattered
+---------------------------------
+Recruiters basically live at P-1/P-2 or P-4/P-5; R_1 said they rarely touch P-3 on
+junior FE ("must-have or noise"). Peers sometimes nudged hygiene skills one step
+higher but agreed on the headline stack.
+
+The long "PhD or MSc in Machine Learning..." row is the JD education sentence copied
+verbatim into the Education metric — not a normalised skill. Everyone scored it P-5
+after we aligned the pilot narrative (credential line ≠ role fit). TF-IDF still
+loves it because it's rare in the corpus. That's the clearest "don't auto-default
+this" example in the study.
+
+Scale-use asymmetry (worth stating in the thesis)
+-------------------------------------------------
+TF-IDF min-max on each JD *forces* a spread: something maps to backend 1.0 and something to 5.0 (→ UI P-5 and P-1).
+Humans don't have that rule — they can pile many skills at P-4/P-5 (hygiene) without TF-IDF's artificial contrast.
+Recruiters rarely used P-3; lots of polarisation. Comparing MAE/Spearman across two different uses of the same 1–5 scale
+is part of why exact match looks low even when qualitatively both sides know what's headline vs noise.
+
+Plain-English conclusion
+------------------------
+TF-IDF in MERIT is useful as a *hint* in some contexts (DevOps toolchain ranked
+reasonably; a handful of exact matches), but it's not safe as silent 1–5 defaults.
+
+Calibration is poor overall (low exact match, MAE ~1.2). Ordering is mixed — good
+on tight infra JDs, actively wrong on senior ML when Python/PyTorch matter most.
+
+That matches the product choice: show suggestions, let recruiters override, especially
+for common languages, web glue, and degree boilerplate.
+
+Caveats we're honest about in the thesis
+----------------------------------------
+- Pilot only: 4 people, 3 synthetic hold-outs, facilitator-structured ratings in
+  populate_ground_truth.py (session notes are real themes; numbers are archived
+  for reproducibility, not a large independent panel study).
+- Fixed skill lists — doesn't include parser misses from Study 04.
+- Synthetic corpus (tonic.ai batch generation): we didn't scrape real job boards.
+  Tonic lets you steer batch JD synthesis (role mix, templates), so IDF partly
+  measures "what we generated" not a neutral market. Oversampling certain stacks
+  would change what's "rare" in IDF.
+- Time-specific snapshot: IDF is a picture of 2025–26 corpus + hold-outs. Python
+  looks common → TF-IDF down-ranks it on ML even when recruiters say P-1. That
+  could flip in a future labour market when new stacks dominate; production would
+  need corpus refresh/versioning.
+- Pooled Spearman across all skills/roles is exploratory; role-level rho is more
+  interpretable.
+
+Reproduce
+---------
+  python build_market_corpus.py
+  python build_test_dataset.py
+  python populate_ground_truth.py
+  python run_study.py
+
+Report section: FYP-report/evaluation/subsections/foundational_accuracy.tex
+Appendix figures: FYP-report/appendix/subsections/metric_prediction_charts.tex
+
+Hypotheses (how we read them after the run)
+-------------------------------------------
+H1 (ordinal alignment): partial — positive pooled rho but p > 0.05; DevOps saves it.
+H2 (low MAE / good calibration): not met — ~22% exact match speaks for itself.
+
+Future work if we had more time: run on parser-extracted skills, real corpus slice,
+role-aware IDF, don't run education strings through the same TF-IDF path as Python.

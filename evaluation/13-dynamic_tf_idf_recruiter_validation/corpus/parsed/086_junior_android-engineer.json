@@ -1,0 +1,26 @@
+{
+  "raw_text": "NexGen Mobile Labs\n\nEmpowering seamless mobile experiences through innovative Android solutions\n\nJUNIOR ANDROID ENGINEER\n\nSan Francisco, CA · Full-time · $75,000 - $95,000 per year\n\nWe're seeking a Junior Android Engineer to join our growing mobile development team. You'll work\n\non production Android applications using Kotlin, Jetpack Compose, and modern Android architecture\n\npatterns. This role offers mentorship from senior engineers, exposure to the full app development\n\nlifecycle, and the opportunity to contribute to apps used by thousands of users. Ideal for someone\n\nwith foundational Android knowledge eager to deepen their expertise in a collaborative environment.\n\nABOUT US\n\nNexGen Mobile Labs is a forward-thinking mobile application development studio founded in 2019.\n\nWe specialize in building high-performance Android applications for startups and mid-market\n\nenterprises. Our team of 45+ engineers is dedicated to creating intuitive, scalable mobile solutions\nthat solve real-world problems. We pride ourselves on fostering a collaborative learning environment\n\nwhere engineers grow their skills through mentorship and hands-on experience with modern Android\ntechnologies.\n\nWHAT YOU'LL DO\n\nDevelop new features and UI screens using Kotlin and Jetpack Compose under guidance from\n\nsenior engineers\n\nImplement data persistence using Room database for offline-first application functionality\n\nBuild asynchronous operations with Coroutines to handle network requests and background\ntasks efficiently\n\nWrite clean, maintainable code following established coding standards and participate in peer\ncode reviews\n\nCollaborate with designers and product managers to translate wireframes and requirements\ninto functional Android interfaces\n\nDebug and resolve issues in existing features using Android Studio debugging tools and\nprofilers\n\nParticipate in sprint planning, stand-ups, and retrospectives with the development team\n\nLearn and apply Android best practices, design patterns, and architectural principles under\nmentorship\n\nREQUIRED\n\n0-2 years of professional Android development experience or relevant internship experience\n\nProficiency in Kotlin programming language\n\n\fWorking knowledge of Android Studio and Gradle build system\n\nUnderstanding of Android lifecycle, Activities, Fragments, and basic app architecture\n\nFamiliarity with REST APIs and JSON data handling\n\nStrong problem-solving skills and ability to learn quickly\n\nNICE TO HAVE\n\nExperience building UI with Jetpack Compose or declarative UI frameworks\n\nExperience with Coroutines for asynchronous programming in Kotlin\n\nFamiliarity with local data persistence using Room or SQLite\n\nPublished app on Google Play Store or contributed to open-source Android projects\n\nKnowledge of dependency injection patterns and frameworks like Hilt\n\nTECH STACK\n\nKotlin   Jetpack Compose   Coroutines   Room Database   Android Studio   Gradle   Retrofit\n\n  Google Play Store\n\nMaterial Design 3   AndroidX Libraries\n\nBENEFITS\n\nCompetitive salary with annual review and performance bonuses\n\nComprehensive health insurance (medical, dental, vision)\n\nProfessional development budget ($2,000 annually) for courses, conferences, and certifications\n\nFlexible work arrangement (remote-friendly with 2 days per week in-office collaboration)\n\nMentorship program pairing junior engineers with senior developers\n\nCasual work environment with modern office perks (free snacks, coffee bar, gaming room)\n\nPaid time off (20 days annually) plus 5 personal development days\n\nHOW TO APPLY\n\nSubmit your resume, a portfolio or GitHub link showcasing Android projects, and a brief cover letter\nexplaining your interest in Android development to careers@nexgenmobilelabs.com. Please include\nany links to apps you've built or contributed to. Applications will be reviewed on a rolling basis. We\nalso welcome questions about the role—feel free to reach out!\n\n\f",
+  "job_title": "JUNIOR ANDROID ENGINEER",
+  "company": "NexGen Mobile Labs is a forward",
+  "location": null,
+  "employment_type": "Internship",
+  "experience_level": "Internship",
+  "technical_skills": [
+    "sqlite"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Experience building UI with Jetpack Compose or declarative UI frameworks",
+    "Experience with Coroutines for asynchronous programming in Kotlin",
+    "Familiarity with local data persistence using Room or SQLite",
+    "Published app on Google Play Store or contributed to open-source Android projects",
+    "Knowledge of dependency injection patterns and frameworks like Hilt"
+  ],
+  "salary": "$75,000 - $95,000 per year",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\086_junior_android-engineer.pdf",
+  "languages": [
+    "SQLite",
+    "kotlin"
+  ],
+  "education_required": []
+}

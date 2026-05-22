@@ -1,0 +1,866 @@
+skill,document_frequency,corpus_size
+python,66,100
+kubernetes,56,100
+docker,51,100
+aws,47,100
+postgresql,42,100
+sql,30,100
+go,26,100
+c,21,100
+azure,21,100
+r,17,100
+js,14,100
+react,14,100
+processing,13,100
+foundation,12,100
+typescript,12,100
+numpy,12,100
+pandas,12,100
+>> apply,12,100
+>> stack,12,100
+scikit-learn,11,100
+>> benefits,11,100
+graphql,10,100
+jupyter,9,100
+node.js,9,100
+mysql,8,100
+playwright,8,100
+tensorflow,8,100
+framer,8,100
+pytorch,7,100
+javascript,7,100
+java,6,100
+next.js,6,100
+storybook,6,100
+cypress,6,100
+sqlite,6,100
+swift,5,100
+rust,5,100
+kotlin,5,100
+pulumi,4,100
+grpc,4,100
+pytest,4,100
+certifications,4,100
+matplotlib,4,100
+vitest,2,100
+containerization (docker),2,100
+"currently pursuing a bachelor's degree in computer science,",2,100
+401(k) matching program (up to 4% of salary),2,100
+unlimited pto with a minimum of 15 days encouraged per year,2,100
+of premiums,2,100
+flask,2,100
+fastapi,2,100
+communities,2,100
+training,2,100
+401(k) matching up to 4% of salary,2,100
+>> about,2,100
+>> must have,2,100
+>> nice to have,2,100
+>> responsibilities,2,100
+>> summary,2,100
+architecture,2,100
+firebase,2,100
+similar),2,100
+support,2,100
+platforms,2,100
+environments,2,100
+xml,2,100
+"currently pursuing or recently completed a degree in computer science, software engineering, or related",1,100
+experience with rest api design and http fundamentals,1,100
+"comprehensive health insurance (medical, dental, vision) with company coverage",1,100
+"flexible hybrid work model (3 days in-office, 2 days remote)",1,100
+generous pto policy (20 days) plus 10 company holidays,1,100
+mental health support including subsidized therapy and wellness programs,1,100
+"parental leave (12 weeks paid for primary caregiver, 4 weeks for secondary)",1,100
+"professional development budget ($3,000/year) for courses, conferences, and certifications",1,100
+"currently pursuing or recently completed a bachelor's degree in computer science, data science, statistics,",1,100
+"experience with cloud platforms (aws, google cloud platform, or azure) or familiarity with",1,100
+"knowledge of ml operations (mlops) best practices, model versioning, or experiment tracking tools",1,100
+prior internship or project experience with machine learning or data science applications,1,100
+experience leading technical architectural reviews and establishing engineering standards across large,1,100
+"experience with infrastructure-as-code frameworks such as terraform, cloudformation, or pulumi",1,100
+"expertise with observability platforms (prometheus, datadog, elk stack) and distributed tracing tools",1,100
+open-source contribution history or maintainership of infrastructure/developer tools projects,1,100
+"published technical writing, conference talks, or recognized thought leadership in cloud architecture or",1,100
+track record of successful large-scale system migrations or major technical transformations,1,100
+distributed systems,1,100
+organizations,1,100
+mental health support and $500/year wellness stipend,1,100
+"parental leave (16 weeks paid for all parents), sabbatical program after 5 years",1,100
+5+ years of professional ios development,1,100
+12+ years of professional software engineering,1,100
+"experience building real-time data systems,",1,100
+"proven background hiring, onboarding, and",1,100
+angular,1,100
+demonstrated mentorship of multiple staff-,1,100
+developing senior engineering talent;,1,100
+"experience, with at least 5+ years in a full-stack",1,100
+level engineers,1,100
+"streaming platforms, or analytics infrastructure",1,100
+exposure to containerization technologies like docker or,1,100
+previous internship experience in backend or infrastructure,1,100
+engineering,1,100
+"background in computer science, data science, or similar technical field, or self-taught technical",1,100
+"experience with technical product management for infrastructure, apis, or backend systems",1,100
+"familiarity with modern product stack tools (figma, jira, looker, dbt) and data governance practices",1,100
+prior experience at a high-growth series b/c company or scaling to 100-500 employees,1,100
+product expertise,1,100
+"$10,000 annual wellness stipend (gym membership, mental health, wellness retreats)",1,100
+"design tool subscriptions (figma, adobe creative suite, axure, prototyping tools) provided by company",1,100
+flexible work-from-home policy with optional san francisco office space,1,100
+generous pto policy: 25 days paid time off plus 10 company holidays,1,100
+"medical, dental, and vision insurance with 90% employer coverage for employee plans",1,100
+"parental leave (16 weeks paid for primary caregiver, 12 weeks for secondary)",1,100
+"professional development budget ($5,000 annually) for courses, conferences, and design tools",1,100
+contributions to open-source ml projects or personal ml projects in a portfolio,1,100
+"currently pursuing or recently completed a degree in computer science, statistics,",1,100
+experience with git/github version control and collaborative development workflows,1,100
+familiarity with ml experiment tracking tools or model registries,1,100
+prior experience with aws services or cloud platforms,1,100
+"(gdpr, hipaa)",1,100
+"(great expectations, dbt tests), and regulatory compliance",1,100
+experience with dbt (data build tool) and modern elt/dbt best,1,100
+"hands-on experience with iceberg, delta lake, or other open",1,100
+"knowledge of data governance, data quality frameworks",1,100
+"real-time data pipeline experience using kafka, spark",1,100
+"streaming, or similar event streaming platforms",1,100
+"track record of successful hiring, team building, and",1,100
+organizational scaling,1,100
+practices for data transformation at scale,1,100
+table formats for data lakehouse architectures,1,100
+bachelor's degree in computer,1,100
+"background in fintech, healthtech, or other heavily regulated industries requiring high",1,100
+contributions to open-source infrastructure or developer tools projects,1,100
+experience with kubernetes or container orchestration in production environments; familiarity,1,100
+"experience with typescript and react ecosystem including testing frameworks (jest, react",1,100
+"testing library) and build tooling (webpack, vite)",1,100
+compliance and security standards,1,100
+with gitops deployment patterns,1,100
+"- bachelor's degree in computer science, engineering, or related field (or equivalent",1,100
+collaborative team culture with regular team outings and community events,1,100
+"competitive health, dental, and vision insurance with 90% company coverage",1,100
+"familiarity with cloud platforms (aws, gcp, or azure) and infrastructure-as-code tools",1,100
+flexible work arrangement with fully remote options after 90-day onboarding period,1,100
+free lunch stipend ($15/day) and wellness reimbursement ($100/month),1,100
+hands-on experience with kubernetes or container orchestration platforms,1,100
+kubernetes / docker / prometheus / grafana / go / python / jaeger (distributed tracing) /,1,100
+linux/unix / git / terraform,1,100
+mentorship from experienced sres and access to internal tech talks and learning,1,100
+"prior experience with monitoring tools such as prometheus, grafana, or similar",1,100
+"professional development budget of $2,500 annually for conferences, courses, and",1,100
+"submit your resume, a cover letter, and links to any relevant github projects or portfolio",1,100
+understanding of ci/cd pipelines and deployment automation,1,100
+applications on a rolling basis and will contact selected candidates within 5-7 business,1,100
+days to schedule an initial screening call.,1,100
+sessions,1,100
+work to careers@cloudweave.io with the subject line 'junior sre application'. we review,1,100
+apply on our careers page at www.nexusanalytics.com/careers or send your resume and a brief,1,100
+competitive salary and annual bonus (up to 15% of base),1,100
+"comprehensive health insurance (medical, dental, vision) with company coverage for 90%",1,100
+equity grants (stock options) for all full-time employees,1,100
+"experience with advanced ml frameworks (xgboost, lightgbm, pytorch) and ensemble",1,100
+"experience with cloud data platforms (snowflake, bigquery, redshift) or",1,100
+"familiarity with experiment tracking tools (mlflow, weights & biases) and versioning",1,100
+flexible work arrangement with remote-first culture and 3 days in-office per week,1,100
+generous pto policy: 20 days + 10 company holidays + unlimited sick leave,1,100
+git / version control / tableau / matplotlib / aws / cloud platforms,1,100
+notebooks / a/b testing & experimentation / statistical analysis & hypothesis testing / mlflow /,1,100
+"parental leave (16 weeks paid for primary caregiver, 8 weeks for secondary)",1,100
+"professional development budget of $2,500 annually for courses, conferences, and",1,100
+"python (pandas, numpy, scikit-learn) / sql (postgresql, mysql) / xgboost / lightgbm / jupyter",1,100
+basis.,1,100
+cover letter to careers@nexusanalytics.com. include a link to your github profile or,1,100
+methods,1,100
+portfolio showcasing recent data science projects. we review applications on a rolling,1,100
+strategies,1,100
+"(snowflake, bigquery, redshift) and etl concepts",1,100
+background working cross-functionally with design teams on user research and usability testing,1,100
+experience building data infrastructure or analytics products; familiarity with sql data warehouses,1,100
+"familiarity with figma, product roadmapping tools (jira, asana, productboard), and slack api",1,100
+startup or scale-up experience with exposure to multiple business models or gtm motions,1,100
+integrations,1,100
+methodologies,1,100
+"experience deploying models with frameworks like fastapi, flask, or containerization (docker)",1,100
+"experience with experimentation platforms (e.g., statsig, launchdarkly, or custom in-house",1,100
+"familiarity with cloud data platforms (snowflake, bigquery, databricks) and etl tools",1,100
+knowledge of causal inference techniques or quasi-experimental methods (propensity score,1,100
+"matching, difference-in-differences)",1,100
+systems),1,100
+"background in technical product management or a technical degree (computer science, mathematics, or related",1,100
+clarity,1,100
+8+ years of professional data engineering,1,100
+casual work culture with regular team social events and learning lunches,1,100
+"currently pursuing a degree in computer science, data science, statistics, mathematics, or",1,100
+experience with version control systems (git) and collaborative development workflows,1,100
+familiarity with docker or basic containerization concepts,1,100
+"flexible, remote-friendly work environment with occasional in-office collaboration",1,100
+free access to internal ml tools and cloud computing resources for learning,1,100
+mentorship from experienced ml engineers with exposure to industry best practices,1,100
+portfolio or github repositories showcasing ml projects or data science work,1,100
+potential for return offer conversion to full-time role based on performance,1,100
+previous experience with cloud platforms (aws or google cloud) or internships in related,1,100
+"professional development budget for courses, conferences, or certifications",1,100
+fields,1,100
+keras,1,100
+"ability to communicate technical strategy and trade-offs to executive leadership, boards, and cross-",1,100
+"background in site reliability engineering (sre) with experience establishing slos, observability,",1,100
+"demonstrated expertise building or operating large-scale internal developer platforms, ci/cd",1,100
+"experience at a series a-c infrastructure or platform software company, or at a large tech company",1,100
+"experience with go and/or python for infrastructure automation, tooling development, or platform",1,100
+"experience with security and compliance requirements in highly regulated industries (fintech,",1,100
+"familiarity with helm, argocd, flux, or other advanced kubernetes deployment patterns in",1,100
+"hands-on contribution to open-source infrastructure projects (kubernetes, terraform, backstage, or",1,100
+"proficiency with infrastructure-as-code tooling, specifically terraform; experience managing multi-",1,100
+strong systems design and architectural thinking; ability to evaluate and recommend technologies,1,100
+and on-call practices,1,100
+building internal platforms for thousands of developers,1,100
+cloud infrastructure (aws/gcp/azure) and gitops workflows,1,100
+functional stakeholders,1,100
+healthcare) at platform scale,1,100
+"infrastructure, or developer experience tooling",1,100
+"like backstage, argo cd, vault, and prometheus at organizational scale",1,100
+production multi-tenant environments,1,100
+services,1,100
+similar ecosystems),1,100
+background in data engineering or data infrastructure that complements mlops knowledge,1,100
+experience building or maintaining a feature store solution or working closely with feature,1,100
+experience with open-source mlops tools and active contribution to or leadership in the mlops,1,100
+"exposure to model monitoring frameworks and tools for detecting model drift, data drift, and",1,100
+"familiarity with cloud platforms (aws, gcp, or azure) and their managed ml services (sagemaker,",1,100
+"vertex ai, etc.)",1,100
+community,1,100
+"engineering platforms (e.g., tecton, feast, or internal solutions)",1,100
+prediction quality degradation,1,100
+/ bash/shell scripting / github/gitlab / aws systems manager / cost explorer & compute optimizer,1,100
+"/ networking (dns, ssl/tls, vpn, direct connect) / prometheus/cloudwatch for monitoring",1,100
+401(k) matching (4% match on first 6% contributed) and unlimited pto,1,100
+"aws (ec2, vpc, iam, lambda, rds, ecs/eks, s3, cloudwatch) / terraform / cloudformation / python",1,100
+aws certifications (solutions architect professional or security specialty),1,100
+apply directly through our careers page at careers.nimbusdata.com/jobs or email your,1,100
+"competitive health insurance (medical, dental, vision with 90% company coverage for",1,100
+equity package (stock options) and annual performance bonuses (10-20% of salary),1,100
+experience with multi-cloud infrastructure (azure or gcp) and cloud migration,1,100
+"familiarity with containerization and orchestration (docker, kubernetes) and",1,100
+"home office stipend ($1,500 one-time setup) and free cloud credits for learning",1,100
+mental health support (headspace stipend) and wellness programs,1,100
+"professional development budget ($2,000/year) for certifications, conferences, and",1,100
+"published technical content, conference speaking, or active participation in cloud",1,100
+remote-first work culture with flexible scheduling and quarterly in-person team,1,100
+team lunch stipends and bi-weekly social events,1,100
+a rolling basis.,1,100
+employees),1,100
+interesting infrastructure project to careers@nimbusdata.com. submissions are reviewed on,1,100
+meetings,1,100
+projects,1,100
+"resume, github profile, and a cover letter describing your leadership experience and most",1,100
+serverless architectures,1,100
+(tailwind css),1,100
+background in mentoring junior engineers and growing,1,100
+"design, devops) in a fast-paced environment",1,100
+experience building or maintaining design systems and,1,100
+"experience with cross-functional collaboration (product,",1,100
+familiarity with css-in-js or utility-first css frameworks,1,100
+component libraries at scale,1,100
+early-career talent,1,100
+"currently pursuing or recently completed (within 1 year) a degree in computer science, computer",1,100
+"background in saas or fintech security with experience navigating soc 2, iso 27001, or hipaa",1,100
+"certifications such as cissp, ccsk, or oscp; experience with container and kubernetes",1,100
+experience leading or building security teams and mentoring senior-level engineers in high-growth,1,100
+"owasp projects, threat intelligence frameworks)",1,100
+"published research, speaking engagements, or contributions to open-source security tools (e.g.,",1,100
+compliance audits,1,100
+security is a strong plus,1,100
+tech companies,1,100
+"aws solutions architect professional, devops engineer professional, or equivalent",1,100
+"experience implementing infrastructure monitoring and observability stacks (cloudwatch,",1,100
+experience with multi-cloud deployments (aws + azure or gcp); knowledge of cloud,1,100
+"familiarity with gitops workflows and tools (argocd, flux)",1,100
+"hands-on experience with cloud cost optimization tools and practices (aws cost explorer,",1,100
+"prometheus, grafana, elk)",1,100
+"spot instances, reserved instances, savings plans)",1,100
+track record of open-source contributions or speaking engagements in devops/cloud,1,100
+certification,1,100
+interoperability patterns,1,100
+"$2,000 annual professional development budget for courses, conferences, and",1,100
+"competitive health, dental, and vision insurance (company covers 80% of premiums)",1,100
+experience or coursework with docker and container technologies,1,100
+exposure to kubernetes or other container orchestration platforms,1,100
+"familiarity with cloud platforms (aws, gcp, or azure)",1,100
+flexible work-from-home policy with collaborative office space,1,100
+"free lunch and beverages in office, monthly team events",1,100
+kubernetes / prometheus / grafana / python / go / jaeger (distributed tracing) / docker /,1,100
+learning opportunities through mentorship from senior sre engineers,1,100
+prior experience with monitoring tools like prometheus or similar,1,100
+terraform / linux/systemd / pagerduty,1,100
+"to apply, please submit your resume, a cover letter explaining your interest in sre, and",1,100
+a github profile or portfolio link (if available) to careers@observestack.com with the,1,100
+page at observestack.com/careers. we review applications on a rolling basis.,1,100
+subject line 'junior sre application'. you can also apply directly through our careers,1,100
+"background in sql optimization, data warehousing concepts, or working closely with data engineering teams",1,100
+"experience building or shipping b2b saas products, especially in data, analytics, developer tools, or",1,100
+experience launching developer-focused products or managing apis and sdks,1,100
+"familiarity with looker, mode analytics, or similar bi tools for dashboarding and self-service analytics",1,100
+mba or similar business education (not required but valued),1,100
+"prior experience hiring, scaling, or managing distributed/remote engineering teams",1,100
+infrastructure,1,100
+"10+ years in infrastructure, platform",1,100
+experience with ci/cd pipelines and automated testing,1,100
+experience with graphql or rest api integration patterns in,1,100
+familiarity with accessibility standards (wcag) and voiceover,1,100
+open source contributions to ios libraries or frameworks,1,100
+"frameworks (xctest, snapshot testing)",1,100
+implementation,1,100
+production environments,1,100
+basic understanding of microservices architecture and,1,100
+experience building simple rest apis or web services in a,1,100
+exposure to containerization tools like docker or container,1,100
+familiarity with message queues (kafka or rabbitmq) or,1,100
+distributed systems concepts,1,100
+event-driven architecture patterns,1,100
+orchestration platforms like kubernetes,1,100
+previous internship or academic project,1,100
+"background in financial services, saas, or other highly regulated industries",1,100
+"certifications such as cissp, ccsk, or equivalent demonstrating security architecture",1,100
+experience conducting or leading penetration testing and red team exercises against,1,100
+experience with threat intelligence platforms and vulnerability databases,1,100
+"familiarity with container security, kubernetes security, or serverless security patterns",1,100
+enterprise environments,1,100
+expertise,1,100
+"- bachelor's degree in computer science, engineering, or equivalent professional",1,100
+experience with infrastructure-as-code tools such as terraform or helm,1,100
+knowledge of database concepts and exposure to managing stateful systems on,1,100
+"prior exposure to kubernetes (minikube, gke, or self-managed clusters)",1,100
+aws certifications (solutions architect professional or devops engineer professional),1,100
+"background in security-focused cloud architecture and compliance (soc2, hipaa, pci-dss)",1,100
+"experience with kubernetes, docker, and container orchestration in production environments",1,100
+"experience with monitoring and observability tools (datadog, new relic, prometheus)",1,100
+"familiarity with ci/cd tools (gitlab, github actions, jenkins) and deployment automation",1,100
+open-source contributions or published technical writing on cloud infrastructure topics,1,100
+"12+ years of security engineering experience, with at least 5 years in a principal,",1,100
+aws iam / identity services / owasp security standards / threat modeling (stride/pasta) / splunk,1,100
+"annual learning and development budget of $5,000 per employee for conferences,",1,100
+annual security consulting budget and professional development pathways for,1,100
+"appsec, cloud infrastructure hardening, and vulnerability management programs",1,100
+apply directly through our careers page at sentinel-dynamics.com/careers or send your,1,100
+"architect and oversee penetration testing programs, coordinating with third-party",1,100
+background in incident response or soc management with hands-on experience triaging,1,100
+competitive equity package (0.5-1.2% of preferred shares) with potential significant,1,100
+"comprehensive health insurance: medical, dental, vision with 100% premium coverage",1,100
+"deep expertise in cloud security, particularly aws iam, identity federation, and",1,100
+"define and evolve organization-wide security architecture strategy, including cloud",1,100
+"demonstrable python expertise for security automation, api development, and",1,100
+"direct strategic security technology investments (tools, platforms, training),",1,100
+"drive adoption and tuning of our siem/xdr platform (splunk/elasticsearch-based),",1,100
+enterprise security intelligence for the cloud-first era,1,100
+establish and maintain python-based security automation frameworks for threat,1,100
+experience mentoring senior engineers and shaping technical culture; proven ability,1,100
+experience with gitops and continuous security scanning in ci/cd pipelines;,1,100
+"expert-level knowledge of owasp top 10, secure sdlc practices, threat modeling",1,100
+"frameworks (metasploit, burp suite) / appsec scanning tools (sonarqube, checkmarx, or similar",1,100
+"hands-on penetration testing certification (oscp, ceh) or equivalent demonstrated",1,100
+"hub, cloudtrail) / incident response orchestration platforms",1,100
+kql),1,100
+"lead quarterly security architecture reviews with c-suite and board, presenting risk",1,100
+"lead threat modeling and owasp top 10 remediation efforts across engineering teams,",1,100
+"mentor and develop 5-7 senior security engineers, providing technical guidance on",1,100
+"open-source security project contributions (e.g., owasp projects, threat",1,100
+partner with infrastructure and product teams to implement defense-in-depth,1,100
+proven experience designing and implementing siem/threat detection platforms;,1,100
+remote-friendly work environment with flexible hours; optional access to secure,1,100
+sast) / terraform / infrastructure-as-code / cloud security posture management (aws security,1,100
+sentinel dynamics is a series c security infrastructure company focused on building next-,1,100
+strong penetration testing background or ability to lead and evaluate third-party,1,100
+"unlimited pto with a minimum of 20 recommended days annually, plus 10 company",1,100
+we are seeking a principal security engineer with 12+ years of experience to lead our,1,100
+across aws environments,1,100
+and reference calls with previous mentees or colleagues.,1,100
+and shapes the technical direction of our entire security platform.,1,100
+architectural hardening in multi-account environments,1,100
+"assessments, emerging threats, and technology roadmap recommendations",1,100
+"assessments; understanding of attack vectors, exploitation techniques, and remediation",1,100
+assessors and translating findings into concrete remediation strategies and technology,1,100
+"certifications (oscp, ceh, cissp), and training courses",1,100
+designing detection rules and response playbooks for enterprise-scale threat detection,1,100
+detection and response infrastructure. this role reports directly to the vp of security,1,100
+environments. we help fortune 500 companies prevent breaches through intelligent threat,1,100
+establishing secure coding standards and architectural review processes,1,100
+"evaluating solutions for siem, cloud security posture management (cspm), and runtime",1,100
+"executive leadership (mba, executive education)",1,100
+"familiarity with splunk, elasticsearch, or similar tools and query languages (spl,",1,100
+for employee and 80% for dependents,1,100
+"frameworks (stride, pasta), and appsec program development",1,100
+generation detection and response platforms for enterprises managing distributed cloud,1,100
+holidays and 4 weeks parental leave,1,100
+"infrastructure-as-code (terraform, cloudformation) for security controls",1,100
+"intelligence ingestion, api security scanning, and incident response workflows",1,100
+intelligence platforms) or published research,1,100
+investments,1,100
+knowledge of supply chain security practices,1,100
+"modeling, real-time detection, and automated incident response across aws, azure, and on-",1,100
+offensive security skills,1,100
+office space in san francisco,1,100
+"or elk stack (siem/xdr) / python (security automation, data analysis) / penetration testing",1,100
+organization-wide security architecture and strategy. you will define technical security,1,100
+premises infrastructure.,1,100
+protection,1,100
+"resume, cover letter, and a brief summary of a major security architecture decision",1,100
+"secure sdlc practices across all product teams, and make high-impact decisions on our",1,100
+security events and building detection logic,1,100
+"security posture, identity & access management (iam), and threat detection frameworks",1,100
+selected for initial screening will participate in a technical architecture discussion,1,100
+"staff, or lead architect role defining security strategy across organizations",1,100
+"standards, mentor a team of senior engineers, drive adoption of threat modeling and",1,100
+"strategies, including aws iam policies, secrets management, and zero-trust network",1,100
+to encrypt submissions using our pgp key (available on the careers page). candidates,1,100
+to influence across organizational boundaries without direct authority,1,100
+upside in series c funding stage,1,100
+you've led to careers@sentinel-dynamics.com. security-focused candidates should feel free,1,100
+"12+ years of qa engineering experience,",1,100
+$500 housing stipend (bay area intern support),1,100
+"- currently pursuing a bachelor's or master's degree in computer science, mathematics,",1,100
+apply on our careers page at neuralsync.ai/careers or submit your resume and a brief,1,100
+experience deploying models using aws services or equivalent cloud platforms,1,100
+exposure to sql and database querying,1,100
+"flexible work schedule with option for hybrid arrangement (2 days office, 3 remote)",1,100
+"free access to linkedin learning, datacamp, and coursera (professional development",1,100
+free public transit pass (bart/muni),1,100
+include a link to your github profile if available. phone screenings will be conducted in,1,100
+mentorship from senior ml engineers with 1:1 meetings,1,100
+"prior experience with pytorch or tensorflow (coursework, personal projects, or",1,100
+"python (numpy, pandas, scikit-learn) / pytorch / tensorflow / mlflow / aws sagemaker / feature",1,100
+return offer eligibility for strong performers,1,100
+store (tecton or feast) / git / github / jupyter notebooks / docker / postgresql / aws ec2 / s3,1,100
+weekly catered lunches and unlimited coffee/snacks in office,1,100
+"budget: $1,000)",1,100
+cover letter explaining your interest in ml engineering to internships@neuralsync.ai.,1,100
+kaggle competitions),1,100
+rolling waves through april. we encourage applications from underrepresented groups in,1,100
+tech.,1,100
+experience with room database or other local data persistence solutions,1,100
+hands-on experience with jetpack compose or declarative ui frameworks,1,100
+understanding of kotlin coroutines and async programming patterns,1,100
+graduated from a bachelor's degree,1,100
+experience designing and scaling kafka or pulsar-based streaming architectures in production;,1,100
+experience with kubernetes or containerized data workloads; familiarity with monitoring and,1,100
+proficiency with dbt for analytical modeling and testing; experience building transformation,1,100
+published technical writing or public speaking about data engineering; contributions to open-,1,100
+"logging in distributed systems (datadog, prometheus, elk)",1,100
+source data tools,1,100
+"understanding of exactly-once semantics, backpressure, and disaster recovery",1,100
+workflows for analytics and machine learning applications,1,100
+"(hashicorp vault), and compliance frameworks (soc 2, hipaa).",1,100
+contributions to open-source devops projects or active participation in,1,100
+experience with multi-cloud strategies and active use of both aws and gcp,1,100
+experience with service mesh technologies (istio) or advanced networking,1,100
+familiarity with infrastructure monitoring and observability stacks,1,100
+"knowledge of infrastructure security practices, secrets management",1,100
+mental health support including counseling services and wellness stipend.,1,100
+previous experience mentoring and leading junior engineers or,1,100
+contributing to engineering culture development.,1,100
+in kubernetes environments.,1,100
+in production environments.,1,100
+"including prometheus, grafana, elk, or datadog.",1,100
+location.,1,100
+the devops community.,1,100
+experience with prototyping tools such as framer or protopie for advanced interaction,1,100
+exposure to design research methodologies and running your own user interviews or testing,1,100
+familiarity with accessibility standards (wcag 2.1) and experience designing inclusive products,1,100
+knowledge of web development fundamentals (html/css) and familiarity with developer handoff,1,100
+demonstrations,1,100
+tools,1,100
+apache spark / apache airflow / dbt (data build tool) / snowflake / python / sql / apache kafka /,1,100
+apply directly via our careers page at prismanalyticslabs.com/careers or email your resume,1,100
+"background in data governance, data cataloging (e.g., collibra, datahub), or metadata",1,100
+bigquery / data modeling and schema design / kubernetes (for orchestration infrastructure),1,100
+competitive salary + equity package (0.5-1.2% depending on experience),1,100
+"comprehensive health coverage: medical, dental, vision with 90% premiums covered",1,100
+experience with dbt and modern data stack tooling; expertise in building reusable dbt,1,100
+"flexible work environment: remote-first with optional access to sf office; $1,500 home",1,100
+learning stipend and databricks/snowflake certification support; internal tech talks,1,100
+"mental health and wellness: on-site gym membership, meditation app access, quarterly",1,100
+"open-source contributions to data infrastructure projects (spark, airflow, dbt, or",1,100
+production experience with apache kafka or similar event streaming platforms;,1,100
+"professional development budget of $5,000 annually; conference attendance and training",1,100
+stock options with 4-year vesting and 1-year cliff; equity refresh grants for high,1,100
+track record of leading architectural initiatives or rfcs that shaped data platform,1,100
+unlimited pto with minimum 20 days encouraged; additional parental leave (16 weeks),1,100
+all-hands offsite,1,100
+and brown-bag sessions,1,100
+and cover letter to careers@prismanalyticslabs.com. include links to github profile or,1,100
+basis and move quickly for exceptional candidates.,1,100
+direction,1,100
+"macros, tests, and data quality frameworks",1,100
+management at scale,1,100
+office stipend,1,100
+performers,1,100
+public data engineering work samples if available. we review applications on a rolling,1,100
+understanding of stream processing trade-offs and consistency guarantees,1,100
+401(k) matching up to 6% with immediate vesting,1,100
+"comprehensive health, dental, and vision insurance with company-paid premiums",1,100
+flexible remote work policy; work from anywhere (us-based),1,100
+"professional development budget ($2,500/year for certifications, conferences, training)",1,100
+unlimited pto policy with minimum 3 weeks encouraged,1,100
+"background in cloud infrastructure (aws, gcp, or azure) and",1,100
+commuter benefits and annual laptop upgrade for all engineers,1,100
+"comprehensive health, dental, and vision insurance with 100%",1,100
+"contributions to open-source data engineering projects (airflow, dbt,",1,100
+"experience with data governance, metadata management, and data",1,100
+knowledge of advanced analytics and machine learning data,1,100
+mental health and wellness programs including subsidized gym,1,100
+"parental leave policy: 16 weeks for primary caregivers, 10 weeks for",1,100
+"professional development budget of $5,000 per year for conferences,",1,100
+remote-first culture with option for 2-3 days per week in office for,1,100
+"spark, etc.)",1,100
+track record of leading technical projects from conception through,1,100
+unlimited pto policy with a minimum of 4 weeks encouraged,1,100
+"annually, plus 10 company holidays",1,100
+collaboration and team building,1,100
+"courses, and certifications",1,100
+infrastructure-as-code practices,1,100
+lineage tools,1,100
+membership and meditation app access,1,100
+pipelines,1,100
+premium coverage for employees,1,100
+production deployment,1,100
+scala,1,100
+secondary caregivers,1,100
+"coursework or projects in deep learning, nlp, or computer",1,100
+currently pursuing or recently completed a bachelor's,1,100
+experience with mlflow or other experiment tracking tools,1,100
+exposure to cloud platforms (aws or google cloud) and,1,100
+prior internship or research experience in machine learning,1,100
+"degree in computer science, mathematics, physics, or",1,100
+model deployment concepts,1,100
+or related fields,1,100
+vision,1,100
+"bachelor's degree in computer science, computer engineering, or",1,100
+experience with incident response processes or on-call,1,100
+"familiarity with ci/cd pipelines and tools like jenkins, gitlab ci, or",1,100
+hands-on experience with kubernetes or container orchestration,1,100
+"previous exposure to prometheus, grafana, or similar monitoring tools",1,100
+responsibilities,1,100
+6+ years of professional experience in,1,100
+"prior experience with feature stores (feast,",1,100
+"tecton, hopsworks, or similar)",1,100
+"engineering, or mlops, with at least 2",1,100
+"machine learning engineering, platform",1,100
+"bachelor's degree in computer science,",1,100
+"experience with next.js and server-side rendering patterns (ssr, ssg, isr)",1,100
+experience with monitoring and observability tools for frontend performance tracking,1,100
+expertise in web accessibility (wcag 2.1 standards) and inclusive design practices,1,100
+familiarity with design systems and component library development,1,100
+styled components,1,100
+experience designing b2b collaboration or,1,100
+productivity software,1,100
+"experience building healthcare or wellness applications with regulatory awareness (hipaa,",1,100
+"familiarity with ci/cd pipelines and automation tools (e.g., fastlane, jenkins)",1,100
+hl7 standards),1,100
+proven experience mentoring engineers and contributing to team growth,1,100
+understanding of networking stacks and experience integrating rest or graphql apis,1,100
+"experience with swift concurrency (async/await, actors) in production applications",1,100
+"familiarity with ci/cd pipelines and automated testing frameworks for ios (xctest, ui testing)",1,100
+"knowledge of accessibility (voiceover, dynamic type) and inclusive design principles",1,100
+previous experience mentoring or leading a small team of ios engineers,1,100
+(crds),1,100
+"demonstrated expertise in kubernetes operators, helm charts, and custom resource definitions",1,100
+"experience with infrastructure security, secrets management, and implementing gitops workflows",1,100
+"experience with multi-cloud deployments across aws and gcp, including hybrid architecture",1,100
+hands-on experience with service mesh technologies such as istio or linkerd in production,1,100
+track record of optimizing cloud costs and implementing finops practices,1,100
+considerations,1,100
+$500/month remote work stipend for home office setup and,1,100
+"401(k) plan with 4% company match, financial planning",1,100
+"comprehensive health benefits including medical, dental,",1,100
+"parental leave (16 weeks paid for primary caregivers, 8",1,100
+"professional development budget of $5,000 annually for",1,100
+unlimited pto policy plus 10 company holidays,1,100
+and vision with 90% employer premium coverage,1,100
+"certifications, conferences, and training",1,100
+internet,1,100
+"services, and wellness programs",1,100
+weeks for secondary) and fertility benefits,1,100
+experience with causal inference methods or advanced experimental design techniques,1,100
+experience with version control (git) and collaborative development practices,1,100
+"familiarity with data visualization tools (e.g., tableau, looker, or similar)",1,100
+"knowledge of python data visualization libraries (matplotlib, seaborn, or plotly)",1,100
+"python (pandas, numpy, scikit-learn) / sql (postgresql/mysql) / jupyter notebooks / statsmodels /",1,100
+"scipy / a/b testing & experimentation platforms / tableau / git/github / aws (s3, ec2, rds) /",1,100
+"experience with data visualization tools (e.g., tableau, plotly, or similar) and dashboarding",1,100
+"familiarity with machine learning model deployment, mlops, or model monitoring in production",1,100
+knowledge of bayesian statistics or advanced experimentation techniques,1,100
+"prior experience in saas, product analytics, or growth-focused roles",1,100
+"bachelor's degree in computer science, software engineering,",1,100
+experience migrating a large codebase from class components or older patterns to modern,1,100
+"bachelor's degree in computer science, engineering, or related field, or equivalent",1,100
+experience with kubernetes in development or personal projects,1,100
+"familiarity with observability tools like prometheus, grafana, or similar platforms",1,100
+previous exposure to incident response or on-call environments,1,100
+"understanding of cloud platforms (aws, gcp, or azure)",1,100
+ci/cd pipelines,1,100
+commuter benefits and parking reimbursement for in-office days,1,100
+comprehensive mental health support and 24/7 counseling services,1,100
+devops engineer application'. you may also apply through our careers portal at,1,100
+experience with both aws and gcp multi-cloud strategies,1,100
+"knowledge of observability practices including prometheus, grafana, elk stack, or",1,100
+"please submit your resume, cover letter, and github/gitlab profile (or portfolio of",1,100
+proven experience implementing and managing jenkins or github actions for enterprise,1,100
+days for an initial screening call.,1,100
+infrastructure projects) to careers@nexuscloudlabs.com with the subject line 'senior,1,100
+www.nexuscloudlabs.com/careers. qualified candidates will be contacted within 5 business,1,100
+experience with advanced testing frameworks such as robot framework or katalon,1,100
+"experience with event-driven architectures, message",1,100
+"familiarity with observability platforms (datadog, new",1,100
+"relic, prometheus) and building comprehensive",1,100
+monitoring/alerting strategies,1,100
+"queues (kafka, rabbitmq), and real-time data processing",1,100
+systems,1,100
+"(ecs/eks) / prometheus / elk stack (elasticsearch, logstash, kibana) / git and github / jenkins",1,100
+/ gitlab ci / ansible / python / bash scripting / docker,1,100
+"6+ years of professional experience in cloud infrastructure, platform engineering,",1,100
+"aws (ec2, rds, vpc, lambda, s3, cloudformation, iam, cloudwatch) / terraform / kubernetes",1,100
+aws solutions architect professional or similar cloud certification,1,100
+"champion observability and monitoring; implement and refine prometheus, cloudwatch,",1,100
+"cloudformation, and iam",1,100
+cloudformation; drive adoption of iac best practices across the organization,1,100
+collaborate with product and sales teams to define technical requirements for new,1,100
+"competitive health insurance (medical, dental, vision) with company coverage at 80%",1,100
+"comprehensive mental health support including therapy stipend ($2,000/year)",1,100
+customer success to shape our platform roadmap.,1,100
+"deep hands-on expertise with aws services including ec2, rds, vpc, lambda, s3,",1,100
+"design and architect enterprise-grade aws infrastructure solutions across ec2, vpc,",1,100
+"enterprise cloud infrastructure, simplified and optimized",1,100
+equity package (0.5% - 1.5% depending on level) with 4-year vesting and 1-year cliff,1,100
+establish and maintain infrastructure-as-code standards using terraform and,1,100
+excellent communication skills with ability to present technical concepts to both,1,100
+experience mentoring junior engineers and contributing to team growth; comfortable,1,100
+"experience with multi-cloud deployments (aws, azure, or gcp) and hybrid cloud",1,100
+familiarity with containerization and kubernetes; experience with ecs or eks,1,100
+flexible pto policy with a minimum of 20 days plus 10 company holidays,1,100
+"home office equipment stipend ($1,500 one-time)",1,100
+"implement and oversee security, networking, and iam policies; ensure all deployments",1,100
+"influence engineering culture by establishing coding standards, documentation",1,100
+knowledge of python or go for infrastructure automation and tooling,1,100
+"lambda, and managed services; evaluate trade-offs between cost, performance, and",1,100
+"lead and mentor a team of 4-6 cloud engineers, conducting code reviews, providing",1,100
+lead on-call rotation and incident response for critical infrastructure incidents;,1,100
+nimbus technologies is a series b cloud infrastructure and devops solutions provider that,1,100
+nimbus technologies is seeking an experienced lead cloud engineer to lead our core,1,100
+own the optimization and cost management of aws environments; implement tagging,1,100
+"professional development budget ($3,000/year) for conferences, certifications, and",1,100
+proven experience architecting and managing production workloads at scale;,1,100
+remote-first work environment with quarterly in-person team weeks in san francisco,1,100
+"solid understanding of linux/unix administration, shell scripting, and automation",1,100
+"strong proficiency in infrastructure-as-code tools, particularly terraform;",1,100
+"submit your resume, a cover letter highlighting your leadership experience and",1,100
+"abstracts complexity across multi-cloud deployments, enabling organizations to reduce",1,100
+and elk stack integrations for proactive incident detection,1,100
+"architect scalable aws-based infrastructure, and establish best practices for",1,100
+architectures,1,100
+"automation and operational excellence, we serve fortune 500 companies and fast-growing",1,100
+careers@nimbustech.io with the subject line 'lead cloud engineer application'. initial,1,100
+conduct post-mortems and drive improvements,1,100
+"costs, improve security, and accelerate their digital transformation. with a focus on",1,100
+customer spend by 20-30%,1,100
+"demonstrated expertise in networking, security, and cost optimization",1,100
+experience with version control (git) and ci/cd pipelines,1,100
+"hands-on technical expertise with strategic leadership, working closely with product and",1,100
+"helps enterprises architect, deploy, and manage scalable cloud environments. our platform",1,100
+"infrastructure accomplishments, and a portfolio or github link showcasing your",1,100
+infrastructure team and drive the design and implementation of cloud architecture,1,100
+infrastructure-as-code work. apply via our careers page at nimbustech.io/careers or email,1,100
+"infrastructure-as-code, networking, and cost optimization. in this role, you'll combine",1,100
+"meet compliance requirements (soc 2, hipaa, pci-dss)",1,100
+or devops roles; 2+ years in a leadership or senior technical role,1,100
+platform features and validate architectural feasibility,1,100
+"practices, and knowledge-sharing sessions across the team",1,100
+resilience,1,100
+screening calls are scheduled within 48 hours for qualified candidates.,1,100
+"solutions for our enterprise customers. you will mentor a team of 4-6 engineers,",1,100
+startups across north america and europe.,1,100
+"strategies, reserved instance planning, and right-sizing initiatives that reduce",1,100
+technical and non-technical stakeholders,1,100
+"technical guidance, and fostering a culture of continuous learning and innovation",1,100
+"with code reviews, technical interviews, and defining best practices",1,100
+background in design system implementation and integration with storybook or similar component,1,100
+experience conducting or managing large-scale user research programs across multiple product lines or clients,1,100
+"experience with advanced prototyping tools such as framer, principle, or sketch prototyping",1,100
+"familiarity with accessibility testing tools such as axe, nvda, or jaws screen readers",1,100
+"published writing, conference talks, or contributions to the design community on topics like design systems,",1,100
+"accessibility, or design operations",1,100
+documentation platforms,1,100
+"bachelor's degree in computer science, software engineering, or",1,100
+experience with jetpack compose for building modern declarative,1,100
+"- bachelor's degree in computer science, software engineering, or related field (or",1,100
+401(k) matching up to 4% of salary contributions,1,100
+collaborative home office setup stipend ($500) and ongoing remote work equipment,1,100
+"competitive health, dental, and vision insurance (100% of premiums covered for",1,100
+console / firebase analytics,1,100
+"espresso / retrofit & okhttp / android jetpack (viewmodel, livedata, navigation) / play store",1,100
+experience with jetpack compose or modern declarative ui frameworks,1,100
+familiarity with coroutines and reactive programming patterns,1,100
+free lunch and beverage programs at our san francisco office for in-office days,1,100
+generous paid time off: 20 days annual leave + 10 company holidays,1,100
+kotlin / jetpack compose / android coroutines / room database / android studio / junit &,1,100
+mentorship program pairing junior engineers with senior staff for career growth,1,100
+prior experience with rest apis and json parsing libraries,1,100
+"professional development budget of $2,000 annually for conferences, courses, and",1,100
+"submit your resume, a portfolio link (github, personal website, or google play store",1,100
+understanding of material design principles and responsive ui patterns,1,100
+we review applications on a rolling basis and typically respond within 1-2 weeks.,1,100
+"apps), and a cover letter explaining your interest in android development to",1,100
+careers@nexuslabs.io. include links to any open-source contributions or sample projects.,1,100
+employee),1,100
+junit,1,100
+motivated early-career engineer eager to master modern android development using kotlin,1,100
+experience with backstage or similar developer portal and api discovery systems,1,100
+familiarity with ebpf and advanced linux networking for platform observability,1,100
+hands-on experience managing multi-cloud or hybrid infrastructure strategies,1,100
+prior experience at a venture-backed infrastructure or developer tools company,1,100
+envoy,1,100
+(sbom) practices,1,100
+"cissp, ccsk, or equivalent advanced security certification demonstrating breadth across security domains",1,100
+experience leading security transformations or building security functions from the ground up in high-growth,1,100
+"hands-on experience with threat modeling tools (microsoft threat modeling tool, iriusrisk) and secure",1,100
+"knowledge of container security, kubernetes rbac, supply chain security, and software bill of materials",1,100
+"published research, conference talks, or open-source contributions in application security, threat detection, or",1,100
+architecture frameworks,1,100
+cloud security,1,100
+companies,1,100
+"experience with helm, kustomize, or other kubernetes package managers and templating tools",1,100
+"familiarity with observability and monitoring tools such as prometheus, grafana, elk stack, or",1,100
+experience building ui with jetpack compose or declarative ui frameworks,1,100
+experience with coroutines for asynchronous programming in kotlin,1,100
+familiarity with local data persistence using room or sqlite,1,100
+knowledge of dependency injection patterns and frameworks like hilt,1,100
+published app on google play store or contributed to open-source android projects,1,100
+(feast/tecton) / kserve / python / jenkins/github actions / postgresql/dynamodb,1,100
+apply via our careers page at vectorshift.ai/careers with your resume and a cover letter,1,100
+"background in distributed systems, cloud infrastructure (aws, gcp, azure), and",1,100
+competitive salary and equity package with standard 4-year vesting,1,100
+"comprehensive health insurance (medical, dental, vision) with 90% company contribution",1,100
+contribution to open-source ml or infrastructure projects,1,100
+"experience with feature stores (feast, tecton, or comparable platforms) and their role",1,100
+"familiarity with model serving platforms (kserve, seldon, bentoml) and online/batch",1,100
+kubernetes & docker / apache airflow / kubeflow / mlflow / prometheus & grafana / feature stores,1,100
+mental health support including therapy stipend and meditation app subscriptions,1,100
+monthly lunch stipend and regular team offsites/retreats,1,100
+"parental leave (16 weeks paid for primary caregiver, 8 weeks for secondary) and",1,100
+prior experience scaling technical organizations or managing through periods of high,1,100
+"professional development budget ($5k/year) for conferences, courses, and certifications",1,100
+remote-friendly work environment with flexible hours; optional office in san francisco,1,100
+"unlimited pto with minimum 20 days encouraged, plus 10 company holidays",1,100
+dynamodb,1,100
+fertility support,1,100
+for employees,1,100
+growth,1,100
+highlighting your mlops experience and team leadership background. shortlisted candidates,1,100
+in ml systems,1,100
+"infrastructure-as-code (terraform, helm)",1,100
+leadership-focused interviews with the vp of engineering and existing team members. we,1,100
+prediction architectures,1,100
+review applications on a rolling basis and aim to move quickly with strong candidates.,1,100
+"will have an initial screening call with our talent team, followed by technical and",1,100
+"bachelor's degree in computer science, cybersecurity, or related field",1,100
+experience building security products or platform features used by,1,100
+"familiarity with compliance frameworks (soc 2, iso 27001, pci dss) and",1,100
+hands-on experience with penetration testing frameworks and tools; red,1,100
+"published research, conference talks, or contributions to open-source",1,100
+we are seeking an exceptionally experienced principal security engineer to,1,100
+ability to translate compliance requirements into technical security,1,100
+"and execute our organization-wide technical security strategy, architect",1,100
+"and security operations. you will mentor senior engineers, drive technical",1,100
+detection,1,100
+"excellence, and shape the strategic direction of our security platform. this",1,100
+expertise with the ability to influence organizational strategy and build,1,100
+high-performing teams.,1,100
+"initiatives spanning application security, cloud infrastructure security,",1,100
+is a hands-on leadership role ideal for someone who combines deep technical,1,100
+"join our security engineering organization. in this role, you will define",1,100
+"next-generation threat detection systems, and lead cross-functional",1,100
+security projects demonstrating thought leadership in appsec or threat,1,100
+team or adversarial security exercise leadership,1,100
+thousands of security professionals,1,100
+"background in system design, scalability, and distributed systems thinking",1,100
+"experience with advanced monitoring and observability platforms for ml systems (prometheus,",1,100
+"familiarity with cloud platforms (aws, gcp, azure) and containerized ml workflows",1,100
+"grafana, or equivalent)",1,100
+open-source contributions or community involvement in mlops/devops ecosystems,1,100
+(docker/kubernetes),1,100
+"- currently pursuing or recently completed a degree in computer science, statistics,",1,100
+competitive hourly rate with relocation stipend available,1,100
+experience with git version control and collaborative development workflows,1,100
+"familiarity with cloud platforms (aws, google cloud) or containerization",1,100
+flexible working arrangement with hybrid office access in downtown san francisco,1,100
+"free access to online learning platforms (coursera, datacamp) for professional",1,100
+free daily lunch and snacks in the office,1,100
+opportunity to attend 1-2 industry conferences or workshops during the internship,1,100
+pandas / scikit-learn / docker / git & github,1,100
+"please submit your resume, a brief cover letter (1 page), and a link to your github profile",1,100
+previous internship or project experience with pytorch or tensorflow,1,100
+pytorch / tensorflow / python / mlflow / aws sagemaker / feature store (tecton or feast) / numpy &,1,100
+weekly mentorship sessions with senior ml engineers on your team,1,100
+candidates within 2 weeks.,1,100
+"cover letter, tell us about a machine learning project you're most proud of and what you",1,100
+development,1,100
+learned. applications are reviewed on a rolling basis. we'll respond to shortlisted,1,100
+or portfolio showcasing any ml/data science projects to careers@neuralflow.ai. in your,1,100
+"background in accessibility (wcag, inclusive design) with demonstrated commitment to accessible product",1,100
+"experience with design system tools such as storybook, zeroheight, or comparable documentation platforms",1,100
+"experience with user research methodologies and usability testing tools like usertesting, maze, or hotjar",1,100
+familiarity with web technologies and front-end fundamentals (html/css) to better communicate with,1,100
+design,1,100
+engineering partners,1,100
+background in devops or sre with focus on ml-specific use cases and infrastructure patterns,1,100
+"experience with mlflow, kubeflow, or similar ml experiment tracking and lifecycle management",1,100
+"familiarity with model governance frameworks, data lineage tracking, and compliance in regulated",1,100
+"hands-on experience building or managing feature stores and feature platforms (e.g., feast, tecton)",1,100
+industries,1,100
+10+ years of software engineering,1,100
+"experience with backstage, pulumi, or",1,100
+developer portal frameworks,1,100
+experience with at least 5+ years in,1,100
+other declarative infrastructure and,1,100
+"platform engineering, infrastructure, or",1,100
+"background in data systems, distributed computing, or real-time",1,100
+experience designing and operating graphql apis in production,1,100
+experience leading technical strategy and roadmapping in series a/b stage,1,100
+open-source contributions or leadership; experience building tools or,1,100
+track record of successful platform migrations or major architectural,1,100
+analytics; familiarity with event streaming architectures or time-series,1,100
+companies or similarly fast-growing organizations,1,100
+databases,1,100
+"environments; expertise in schema design, performance optimization, and",1,100
+federation patterns,1,100
+frameworks used by the broader engineering community,1,100
+refactors that improved system performance or developer velocity,1,100
+12+ years of qa engineering and test,1,100
+'mid product designer application'. we review,1,100
+applications on a rolling basis. interview,1,100
+careers@vertexlabs.com with the subject line,1,100
+"design exercise, and multiple rounds of",1,100
+interviews with the design and product,1,100
+leadership team.,1,100
+"process includes a portfolio review, take-home",1,100
+"(github actions, argocd)",1,100
+"background in financial services, data infrastructure, or high-frequency systems",1,100
+contributions to open-source projects or experience designing public apis and sdks,1,100
+"experience building real-time data pipelines or event streaming systems (kafka, message queues,",1,100
+"familiarity with infrastructure-as-code (terraform, cloudformation) and ci/cd best practices",1,100
+or stream processors),1,100
+"experience with prometheus, grafana, elk stack, or equivalent",1,100
+experience with service mesh technologies such as istio or,1,100
+familiarity with multi-cloud or hybrid-cloud architectures,1,100
+monitoring and logging solutions,1,100
+"(snowflake, bigquery, redshift, databricks)",1,100
+"experience with statistical software or packages (e.g., r,",1,100
+exposure to cloud data warehouses or analytics platforms,1,100
+"familiarity with advanced ml libraries such as xgboost,",1,100
+"lightgbm, or ensemble methods",1,100
+"scipy, statsmodels)",1,100
+background in enterprise software design and understanding of b2b saas workflows and complexity,1,100
+experience building or scaling design systems in fast-growing companies and managing cross-functional,1,100
+"experience with design tokens, component apis, and design-to-code workflows (storybook, chromatic, or",1,100
+"familiarity with user research tools and analytics (maze, usertesting, hotjar, amplitude) and ability to",1,100
+"hands-on prototyping experience with framer, penpot, or similar advanced prototyping tools",1,100
+adoption,1,100
+interpret quantitative usage data,1,100

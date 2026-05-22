@@ -1,0 +1,32 @@
+{
+  "raw_text": "Intern Backend Engineer\n\nCloudStream Technologies — Building scalable real-time data infrastructure for the modern enterprise\n\nLocation\n\nSan Francisco, CA (Hybrid)\n\nEmployment Type\n\nInternship (Full-time, Summer/Contract)\n\nCompensation\n\n$22-28/hour\n\nThe Opportunity\n\nJoin CloudStream Technologies as an Intern Backend Engineer and gain hands-on experience building\n\nscalable distributed systems. You'll work alongside our senior backend team to design, implement, and\n\ntest backend services using modern technologies like Python, Go, and PostgreSQL. This internship is\n\nideal for students or recent graduates looking to strengthen their systems programming, API design, and\n\ndatabase skills in a real-world production environment.\n\nAbout CloudStream Technologies\n\nCloudStream Technologies is a fast-growing infrastructure software company founded in 2020. We\n\nspecialize in building scalable, fault-tolerant backend systems and data processing pipelines for\nenterprises across finance, e-commerce, and analytics. Our platform handles billions of events daily, and\nwe're looking for talented interns to join our backend engineering team and learn from experienced\n\nsenior engineers.\n\nDay-to-Day\n\nDevelop and maintain RESTful and gRPC APIs in Python or Go under the mentorship of senior\nengineers\n\nWrite unit tests and integration tests for backend services using pytest and built-in testing frameworks\n\nCollaborate with the team to design and implement database schemas in PostgreSQL, with guidance\non normalization and indexing strategies\n\nDebug and troubleshoot backend service issues using logging, monitoring tools, and code review\n\nfeedback\n\nParticipate in code reviews, learning best practices in code quality, documentation, and architectural\npatterns\n\nAssist in building and deploying microservices to Kubernetes clusters under supervision of DevOps\nengineers\n\nDocument API endpoints, database schemas, and internal service protocols to improve team\nknowledge base\n\nYou Have\n\n\fCurrently pursuing or recently completed (within 1 year) a degree in Computer Science, Computer\n\nEngineering, or related field\n\nStrong understanding of fundamental computer science concepts: data structures, algorithms, and\n\ntime/space complexity\n\nProficiency in at least one backend programming language (Python, Java, Go, or Rust)\n\nFamiliarity with relational databases and basic SQL querying\n\nStrong communication skills and willingness to learn from feedback and code reviews\n\nBonus\n\nExperience with REST API design or HTTP protocols\n\nExposure to Docker, containerization, or basic DevOps concepts\n\nFamiliarity with version control systems (Git) and collaborative development workflows\n\nPrevious internship or project experience building backend systems or services\n\nOur Stack\n\nPython   Go   PostgreSQL   Redis   Kafka   REST APIs   gRPC   Docker   Kubernetes   Git\n\nWhat We Offer\n\nMentorship from senior backend engineers and architects\n\nCompetitive hourly internship compensation\n\nFree lunch daily and unlimited snacks/beverages\n\nHybrid work flexibility (2-3 days in office)\n\nProfessional development budget for courses and certifications\n\nPotential for full-time conversion upon graduation and performance\n\nHealth and wellness benefits (gym membership, mental health support)\n\nApply\n\nSubmit your resume, a brief cover letter, and a link to your GitHub profile (or portfolio) to\ncareers@cloudstream.tech. In your cover letter, highlight one backend project you're most proud of and\nwhat you learned from it. Applications are reviewed on a rolling basis. We aim to respond to all applicants\nwithin 2 weeks.\n\n\f",
+  "job_title": "Intern Backend Engineer",
+  "company": "CloudStream Technologies",
+  "location": null,
+  "employment_type": "Internship",
+  "experience_level": "Internship",
+  "technical_skills": [
+    "Docker",
+    "Kubernetes",
+    "grpc",
+    "postgresql",
+    "processing",
+    "pytest"
+  ],
+  "education": [],
+  "nice_to_have": [],
+  "salary": "$22",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\030_intern_backend-engineer.pdf",
+  "languages": [
+    "Java",
+    "PostgreSQL",
+    "Python",
+    "SQL",
+    "go",
+    "grpc",
+    "rust"
+  ],
+  "education_required": [
+    "Currently pursuing or recently completed (within 1 year) a degree in Computer Science, Computer"
+  ]
+}

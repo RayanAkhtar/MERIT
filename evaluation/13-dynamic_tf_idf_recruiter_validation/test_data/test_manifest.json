@@ -1,0 +1,5 @@
+{
+  "holdout_count": 3,
+  "corpus_documents": 100,
+  "note": "Holdouts are not in data/job descriptions/ corpus."
+}

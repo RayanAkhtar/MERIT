@@ -1,0 +1,52 @@
+{
+  "raw_text": "NeuralFlow AI // Intern Machine Learning Engineer\n\nSan Francisco, CA | Internship (Full-time, 3-month summer position with potential conversion) |\n\n$25-30 per hour (approximately $5,200-6,240 for 3-month internship, 40 hrs/week)\n\nDemocratizing machine learning for enterprise-scale data challenges\n\n>> ABOUT\n\nNeuralFlow AI is a San Francisco-based startup dedicated to building scalable machine\nlearning infrastructure and tools for enterprises. We help companies unlock insights from\n\ntheir data through accessible, production-grade ML platforms. Our mission is to reduce the\nbarrier to entry for organizations seeking to implement AI-driven solutions.\n\n>> SUMMARY\n\nWe're looking for a motivated Machine Learning Engineering intern to join our Platform team\nthis summer. You'll work alongside experienced ML engineers to build and optimize machine\n\nlearning pipelines, experiment with model training frameworks, and help deploy models to\nproduction environments. This is an excellent opportunity to apply your academic knowledge\n\nto real-world ML challenges and gain hands-on experience with industry-standard tools and\nbest practices.\n\n>> RESPONSIBILITIES\n\n- Assist in building and testing machine learning models using PyTorch and TensorFlow\nunder senior engineer guidance\n\n- Help prepare and preprocess datasets for model training, ensuring data quality and\nproper feature engineering\n\n- Collaborate on implementing model training pipelines using MLflow to track experiments,\nparameters, and metrics\n\n- Support model evaluation and validation processes, including creating performance\nbenchmarks and documentation\n\n- Participate in deploying trained models to staging environments using SageMaker or\nVertex AI\n\n- Contribute to feature engineering work using our internal feature store platform,\nlearning best practices for feature management\n\n- Write clean, documented Python code and participate in code reviews with the team\n- Attend and present findings from weekly team meetings and research discussions\n\n>> MUST HAVE\n\n- Currently pursuing or recently completed a degree in Computer Science, Statistics,\nMathematics, or related field\n\n- Strong foundation in Python programming with ability to write readable, functional code\n- Understanding of machine learning fundamentals (supervised/unsupervised learning, model\n\nevaluation, overfitting)\n- Familiarity with data manipulation libraries (NumPy, Pandas) and data visualization\n\ntools\n- Ability to work independently and in team settings with clear communication and\n\nwillingness to learn\n\n\f>> NICE TO HAVE\n\n- Previous internship or project experience with PyTorch or TensorFlow\n\n- Experience with Git version control and collaborative development workflows\n- Familiarity with cloud platforms (AWS, Google Cloud) or containerization\n\n(Docker/Kubernetes)\n\n>> STACK\n\nPyTorch / TensorFlow / Python / MLflow / AWS SageMaker / Feature Store (Tecton or Feast) / NumPy &\n\nPandas / Scikit-learn / Docker / Git & GitHub\n\n>> BENEFITS\n\n- Competitive hourly rate with relocation stipend available\n\n- Flexible working arrangement with hybrid office access in downtown San Francisco\n- Free access to online learning platforms (Coursera, DataCamp) for professional\n\ndevelopment\n- Weekly mentorship sessions with senior ML engineers on your team\n\n- Free daily lunch and snacks in the office\n- Opportunity to attend 1-2 industry conferences or workshops during the internship\n\n>> APPLY\n\nPlease submit your resume, a brief cover letter (1 page), and a link to your GitHub profile\nor portfolio showcasing any ML/data science projects to careers@neuralflow.ai. In your\n\ncover letter, tell us about a machine learning project you're most proud of and what you\nlearned. Applications are reviewed on a rolling basis. We'll respond to shortlisted\n\ncandidates within 2 weeks.\n\n\f",
+  "job_title": "NeuralFlow AI // Intern Machine Learning Engineer",
+  "company": "NeuralFlow AI is a San Francisco",
+  "location": null,
+  "employment_type": "Internship",
+  "experience_level": "Internship",
+  "technical_skills": [
+    "AWS",
+    "Docker",
+    "Kubernetes",
+    "Scikit-learn",
+    "foundation",
+    "numpy",
+    "pandas",
+    "pytorch",
+    "tensorflow"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Previous internship or project experience with PyTorch or TensorFlow",
+    "Experience with Git version control and collaborative development workflows",
+    "Familiarity with cloud platforms (AWS, Google Cloud) or containerization",
+    "(Docker/Kubernetes)",
+    ">> STACK",
+    "PyTorch / TensorFlow / Python / MLflow / AWS SageMaker / Feature Store (Tecton or Feast) / NumPy &",
+    "Pandas / Scikit-learn / Docker / Git & GitHub",
+    ">> BENEFITS",
+    "Competitive hourly rate with relocation stipend available",
+    "Flexible working arrangement with hybrid office access in downtown San Francisco",
+    "Free access to online learning platforms (Coursera, DataCamp) for professional",
+    "development",
+    "Weekly mentorship sessions with senior ML engineers on your team",
+    "Free daily lunch and snacks in the office",
+    "Opportunity to attend 1-2 industry conferences or workshops during the internship",
+    ">> APPLY",
+    "Please submit your resume, a brief cover letter (1 page), and a link to your GitHub profile",
+    "or portfolio showcasing any ML/data science projects to careers@neuralflow.ai. In your",
+    "cover letter, tell us about a machine learning project you're most proud of and what you",
+    "learned. Applications are reviewed on a rolling basis. We'll respond to shortlisted",
+    "candidates within 2 weeks."
+  ],
+  "salary": "$25",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\090_intern_ml-engineer.pdf",
+  "languages": [
+    "Python",
+    "pytorch"
+  ],
+  "education_required": [
+    "- Currently pursuing or recently completed a degree in Computer Science, Statistics,"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "raw_text": "NexFlow Systems\n\nIntern Backend Engineer\n\nLOCATION\n\nSan Francisco, CA\n\nTYPE\n\nFull-Time Internship\n\nCOMPENSATION\n\n$22-26/hour\n\nTECH STACK\n\nPython\n\nGo\n\nPostgreSQL\n\nRedis\n\nRabbitMQ\n\nDocker\n\nGit\n\nREST APIs\n\ngRPC\n\nLinux\n\nAbout NexFlow Systems: NexFlow Systems is a rapidly growing\ndata infrastructure company focused on building robust, scalable\nbackend systems for enterprise clients. We specialize in\ndesigning and implementing event-driven architectures that help\norganizations process and act on data in real-time. Our mission is\n\nto simplify complex distributed systems so that engineers can\nfocus on solving business problems rather than infrastructure\nchallenges.\n\nJoin NexFlow Systems as an Intern Backend Engineer and gain\nhands-on experience building scalable distributed systems. You'll\n\nwork alongside our experienced engineering team to develop\nmicroservices, optimize database queries, and learn best\npractices in backend architecture. This is an excellent opportunity\nto apply your computer science fundamentals in a real-world\nenvironment and contribute to systems handling millions of\nevents daily.\n\nRESPONSIBILITIES\n\nDevelop and test RESTful APIs using Python and Go, following\nestablished coding standards and design patterns\n\nAssist in designing and implementing microservices that\ninteract with PostgreSQL and Redis databases\n\nWrite unit tests and integration tests to ensure code quality and\nreliability across the backend stack\n\nParticipate in code reviews and collaborate with senior\nengineers to understand design decisions and architectural\ntradeoffs\n\nDebug and troubleshoot issues in staging and production\nenvironments under guidance from mentors\n\nDocument API endpoints, database schemas, and deployment\nprocedures to support team knowledge sharing\n\nImplement message queue consumers using RabbitMQ to\nprocess asynchronous tasks and events\n\nContribute to performance optimization efforts by profiling\napplications and identifying bottlenecks\n\nREQUIREMENTS\n\nCurrently pursuing a Bachelor's degree in Computer Science,\nSoftware Engineering, or related field (or recent graduate\n\nEmpowering real-time data pipelinesfor the modern enterprise\fwithin 6 months)\n\nStrong foundation in at least one programming language\n(Python, Java, Go, or Rust)\n\nUnderstanding of relational databases and basic SQL query\noptimization\n\nFamiliarity with REST API design principles and HTTP\nprotocols\n\nBasic knowledge of version control systems (Git) and\n\ncollaborative development workflows\n\nBONUS POINTS\n\nPrevious internship experience in backend or infrastructure\nengineering\n\nExposure to containerization technologies like Docker or\nKubernetes\n\nExperience with asynchronous programming patterns and\nmessage queues\n\nUnderstanding of microservices architecture and distributed\nsystems concepts\n\nBENEFITS\n\nCompetitive hourly internship pay with potential for conversion\nto full-time role\n\nFlexible working hours to accommodate academic schedules\n\nProfessional development budget for online courses,\ncertifications, or conference attendance\n\nMentorship program pairing you with senior engineers for\nguidance and career development\n\nHealth insurance options for full-time internship participants\n\nFree snacks, beverages, and casual office environment\n\nOpportunity to work on real products used by enterprise\ncustomers\n\nRemote-friendly setup with option to work from home 2 days\nper week\n\nAPPLY\n\nSubmit your resume, a brief cover letter explaining your interest in\nbackend engineering, and a link to your GitHub profile (or\nportfolio) to careers@nexflow-systems.com. Applications\nreviewed on a rolling basis. Technical interview will include a\ntake-home coding assignment and discussion of a real-world\n\n\fbackend challenge. Please include your expected graduation\ndate and availability in your cover letter.\n\n\f",
+  "job_title": "Intern Backend Engineer",
+  "company": "NexFlow Systems",
+  "location": null,
+  "employment_type": "Internship",
+  "experience_level": "Internship",
+  "technical_skills": [
+    "Docker",
+    "Kubernetes",
+    "foundation",
+    "grpc",
+    "postgresql"
+  ],
+  "education": [
+    "Software Engineering, or related field (or recent graduate",
+    "Empowering real-time data pipelinesfor the modern enterprise",
+    "within 6 months)",
+    "Strong foundation in at least one programming language",
+    "(Python, Java, Go, or Rust)",
+    "Understanding of relational databases and basic SQL query",
+    "optimization",
+    "Familiarity with REST API design principles and HTTP",
+    "protocols",
+    "Basic knowledge of version control systems (Git) and",
+    "collaborative development workflows",
+    "Professional development budget for online courses,",
+    "certifications, or conference attendance",
+    "Mentorship program pairing you with senior engineers for",
+    "guidance and career development",
+    "Health insurance options for full-time internship participants",
+    "Free snacks, beverages, and casual office environment",
+    "Opportunity to work on real products used by enterprise",
+    "customers",
+    "Remote-friendly setup with option to work from home 2 days",
+    "per week"
+  ],
+  "nice_to_have": [
+    "Previous internship experience in backend or infrastructure",
+    "engineering",
+    "Exposure to containerization technologies like Docker or"
+  ],
+  "salary": "$22",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\008_intern_backend-engineer.pdf",
+  "languages": [
+    "Java",
+    "PostgreSQL",
+    "Python",
+    "SQL",
+    "go",
+    "grpc",
+    "rust"
+  ],
+  "education_required": [
+    "Currently pursuing a Bachelor's degree in Computer Science,"
+  ]
+}

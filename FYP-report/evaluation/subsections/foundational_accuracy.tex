@@ -11,6 +11,8 @@ layout-based parsing.
 Our evaluation consists of two separate audits measuring the accuracy of information retrieval for CVs
 and JDs, respectively. Both studies compare the system's extraction outputs against human-verified
 ground-truth datasets, evaluating a total of 30 CVs (balanced across diverse layouts) and 15 JDs.
+Per-document score distributions are in Appendix~\ref{appendix:ingestion-charts}, 
+summary tables remain below.
 
 \subsection{Ingestion Architecture \& Methodological Mechanics}
 The ingestion layer implements custom parsing scripts located in \texttt{/backend/core/parsers}. These
@@ -118,20 +120,12 @@ in Table \ref{tab:cv_parser_results}.
     \end{tabularx}
 \end{table}
 
-The distribution of individual scores across the template pool can be viewed in
-Figure~\ref{fig:cv_parser_accuracy}.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.95\textwidth]{../evaluation/04-ir_parser_test/output/ir_parser_accuracy.png}
-    \caption{Study 04: CV parser extraction accuracy audit across 30 diverse layouts, covering
-        precision, recall, F1-score, and match rates across a balanced $N=15$ single-column (linear) vs. $N=15$ multi-column layout set.}
-    \label{fig:cv_parser_accuracy}
-\end{figure}
+The distribution of individual scores across the template pool is plotted in
+Figure~\ref{fig:cv_parser_accuracy} (Appendix~\ref{appendix:ingestion-charts}).
 
 \subsubsection{Qualitative Analysis \& Parsing Volatility}
 This audit reveals a major structural insight that explains the average performance metrics and the
-volatility observed in Figure~\ref{fig:cv_parser_accuracy}.
+volatility observed in the per-document distribution (Figure~\ref{fig:cv_parser_accuracy}).
 
 The structural layout of the CV will significantly affect the performance of the parser, a layout
 vulnerability that has been recently formalised in large-scale multi-template resume parsing benchmarks
@@ -160,8 +154,8 @@ candidates with simple, linear templates—favoring "ATS-friendly" formatting ov
 \label{subsec:study-05}
 The JD parser was evaluated in a similar manner, with a total of 15 job descriptions across different software
 engineering roles to ensure a wide range of formats and technical requirements. The compiled mean results
-are summarised in Table~\ref{tab:jd_parser_results}, and the individual distribution is visualised in
-Figure~\ref{fig:jd_parser_accuracy}.
+are summarised in Table~\ref{tab:jd_parser_results}, the per-document distribution is in
+Figure~\ref{fig:jd_parser_accuracy} (Appendix~\ref{appendix:ingestion-charts}).
 
 \begin{table}[htbp]
     \centering
@@ -179,14 +173,6 @@ Figure~\ref{fig:jd_parser_accuracy}.
         \hline
     \end{tabularx}
 \end{table}
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.95\textwidth]{../evaluation/05-jd_parser_test/output/jd_parser_accuracy.png}
-    \caption{Study 05: Job Description (JD) parser extraction accuracy audit, showing performance for skill
-        requirements, title match, and company match metrics.}
-    \label{fig:jd_parser_accuracy}
-\end{figure}
 
 \subsubsection{Qualitative Analysis \& Strategic Ingestion Failure Cases}
 
@@ -214,6 +200,75 @@ extraction bottleneck is non-critical, as identifying the employer name from the
 feature rather than a core functional requirement. This metric will have no impact on the overall
 ranking of candidates.
 
+
+
+\subsection{Study 13: Metric Prediction and Recruiter Alignment}
+\label{subsec:study-13-metric-prediction}
+
+While Studies~04 and~05 test skill \emph{extraction}, Study~13 evaluates whether TF-IDF \emph{priority} suggestions align with recruiters.
+We test \textbf{H1} (positive Spearman $\rho$ within each role) and \textbf{H2} (low MAE versus consensus on MERIT's 1--5 scale,
+where 1 = essential and 5 = optional).
+
+\subsubsection{Method}
+For the generation of the market corpus, we leverage Tonic.ai to generate $N = 100$ synthetic JDs. This provides a relatively realistic
+dataset to aid the computation of IDF. Three hold-outs are excluded from this corpus (Junior Frontend/React, Senior ML, Lead DevOps/Platform)
+so that IDF is not biased toward the skills under test. We use one pooled document-frequency table, in other words, we do not partition the corpus by
+job title or role family.
+
+Our study includes four evaluators (two recruiters and two academic peers) rating study-controlled skill lists under a blind protocol
+(JD and metrics are shown, but TF-IDF suggestions are hidden). Consensus is the median of the four integer ratings. We compare this to
+TF-IDF suggestions using exact match, MAE, and Spearman $\rho$. Charts are in Appendix~\ref{appendix:metric-prediction-charts}.
+
+\subsubsection{Results}
+\begin{table}[htbp]
+    \centering
+    \caption{Study~13 (pilot): TF-IDF vs consensus priorities, $N = 4$ evaluators, three hold-out roles, $n = 27$ skill--role pairs.}
+    \label{tab:study-13-metric-alignment}
+    \begin{tabularx}{\textwidth}{l c c c c}
+        \hline
+        \textbf{Hold-out role} & \textbf{Skills rated} & \textbf{Exact match} & \textbf{MAE} & \textbf{Spearman $\rho$} \\
+        \hline
+        Junior Frontend (React) & 9  & 44.4\% & 0.78 & 0.52 \\
+        Senior ML Engineer       & 8  & 25.0\% & 1.88 & $-0.45$ \\
+        Lead DevOps / Platform   & 10 & 20.0\% & 1.20 & 0.40 \\
+        \hline
+        \textbf{Aggregate} ($n=27$) & 27 & 29.6\% & 1.26 & 0.25 \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+Table~\ref{tab:study-13-metric-alignment} shows that TF-IDF is not well calibrated as an 
+automatic 1--5 default. Alignment is role-dependent: junior frontend performs best, senior ML worst, and lead DevOps sits between the two. 
+Aggregate $\rho = 0.25$ is positive but not significant at $\alpha = 0.05$.
+
+Of the 27 skill--role pairs, eight achieve exact agreement and a further nine differ by only one Likert band (63\% within $\pm 1$).
+These near-misses show that the engine can be directionally useful, but it is not safe as a silent default. The largest gaps include
+Python on the senior ML hold-out (consensus P-1, TF-IDF P-5): Python appears in many role templates in the pooled corpus, so global IDF
+treats it as common for that vacancy even though recruiters rated it essential. Similar headline failures appear for the PhD/MSc
+education line and CUDA on the same hold-out.
+
+\subsubsection{Limitations and implications}
+\label{subsubsec:study-13-limitations}
+
+This is a pilot study ($N = 4$ evaluators, $n = 27$ pairs), and the results are not generalisable to the wider market.
+Due to the constraints of the project, we could not run a larger panel or ingest a longitudinal corpus of real JDs within scope.
+
+Another limitation is cross-role IDF interference. Take Python as an example: it is common across many domains in our pooled corpus,
+so IDF can down-rank it on a senior ML hold-out even when recruiters treat it as essential. The same pooling effect can mis-rank
+role-specific requirements in niche hiring (e.g.\ quantitative development, where Python may be a differentiator rather than baseline
+noise) because document frequency is shared across unrelated templates.
+
+Participants were also not asked to spread ratings evenly across P-1--P-5, whereas TF-IDF applies per-JD min--max normalisation and
+tends to stretch suggestions across the band. Recruiters instead polarised toward P-1/P-2 for headline skills and P-4/P-5 for hygiene
+requirements, with little use of P-3. That mismatch can depress exact-match rate and $\rho$ without invalidating the pilot, it is a
+comparison caveat we report alongside the within-$\pm 1$ band counts above. Cross-study validity threats are summarised in
+Section~\ref{sec:threats-to-validity}.
+
+To conclude, we believe \textbf{H1} is only partly supported and \textbf{H2} is not met. The pilot supports treating TF-IDF as
+suggestions with mandatory human overrides, rather than silent defaults. Further work could stratify IDF by role family and study how
+recruiters distribute priorities without forcing an even spread across the Likert scale.
+
+
 \subsection{Downstream Mitigation and Architectural Rationale}
 \label{subsec:downstream-mitigation}
 
@@ -225,12 +280,8 @@ incomplete skill extraction. Through providing structured data sources (such as 
 high-skill candidates can still be successfully considered within MERIT, even if their CVs are poorly formatted.
 
 \subsubsection{Glass-Box Explainability (Pillar 3)}
-The high volatility of heuristic parsing (evident in Figures~\ref{fig:cv_parser_accuracy} and
-\ref{fig:jd_parser_accuracy}) underscores the risk of relying on automated screening platforms
+The high volatility of heuristic parsing (evident in Appendix~\ref{appendix:ingestion-charts}) underscores the risk of relying on automated screening platforms
 that operate as black boxes. By displaying detailed, interactive candidate reports that show exactly
 where every matching skill was extracted and how it was verified, MERIT equips recruiters to immediately
 audit, correct, and override parsing discrepancies. This transparency ensures highly valid hiring
 decisions despite the persistent limitations of automated document parsing.
-
-\subsection{TODO: Study 13: Dynamic Metric Extraction and Recruiter Validation}
-TODO: Detail the human validation study evaluating the TF-IDF dynamic weighting and metric prediction engine. Recruiters are provided with a reference document corpus and verify whether the automatically predicted metric importances and skill weightings align with their expected domain-specific requirements. (Reference Study 13)

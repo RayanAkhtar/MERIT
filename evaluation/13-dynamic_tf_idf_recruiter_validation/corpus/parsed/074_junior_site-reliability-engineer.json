@@ -1,0 +1,30 @@
+{
+  "raw_text": "CloudPulse Systems\n\nMaking infrastructure invisible, reliability visible.\n\nJUNIOR SITE RELIABILITY ENGINEER\n\nSan Francisco, CA (Remote-friendly) · Full-time · $85,000 - $115,000 per year\n\nJoin CloudPulse Systems as a Junior Site Reliability Engineer and kickstart your career in\n\ninfrastructure reliability. You'll work alongside experienced SREs to design, deploy, and maintain our\n\nproduction systems, learn industry best practices in observability and incident response, and\n\ncontribute to building infrastructure that serves thousands of users. This is an ideal role if you're\n\npassionate about learning how systems work at scale and want hands-on experience with modern\n\ncloud-native tooling.\n\nABOUT US\n\nCloudPulse Systems is a fast-growing infrastructure software company founded in 2019, specializing\n\nin cloud-native observability and reliability solutions. We empower engineering teams at mid-market\nand enterprise companies to build and maintain resilient systems at scale. Our platform helps\n\nthousands of developers monitor distributed systems, reduce incidents, and achieve their reliability\ngoals.\n\nWHAT YOU'LL DO\n\nAssist in designing and implementing monitoring solutions using Prometheus and Grafana to\n\ntrack system health and performance metrics\n\nParticipate in on-call rotation (with mentorship) to respond to production incidents, learning\n\nincident response procedures and post-incident review practices\n\nWrite and maintain infrastructure-as-code using Terraform to provision and manage cloud\n\nresources in a repeatable manner\n\nContribute to SLO/SLI definition and tracking for critical services, helping to establish reliability\ntargets and measure system performance\n\nCollaborate with backend and platform teams to optimize application performance and\ntroubleshoot production issues\n\nLearn and implement distributed tracing using tools like Jaeger to understand system behavior\nand identify bottlenecks\n\nDevelop automation scripts in Python or Go to reduce toil and improve operational efficiency\n\nDocument runbooks, troubleshooting guides, and operational procedures to improve team\nknowledge sharing\n\nREQUIRED\n\n\fBachelor's degree in Computer Science, Engineering, or related field, or equivalent\n\nprofessional experience\n\nFoundational understanding of Linux/Unix systems and command-line tools\n\nBasic knowledge of containerization and orchestration concepts (Docker, Kubernetes\n\nfundamentals)\n\nFamiliarity with at least one programming language (Python, Go, Bash, or similar) for scripting\n\nand automation\n\nStrong communication skills and ability to work well in a team environment\n\nEnthusiasm for learning and willingness to take on new technical challenges\n\nNICE TO HAVE\n\nExperience with Kubernetes in development or personal projects\n\nFamiliarity with observability tools like Prometheus, Grafana, or similar platforms\n\nPrevious exposure to incident response or on-call environments\n\nUnderstanding of cloud platforms (AWS, GCP, or Azure)\n\nTECH STACK\n\nKubernetes   Prometheus   Grafana   Jaeger (distributed tracing)\n\n  Python   Go   Terraform   Docker\n\n  Linux\n\nSLO/SLI frameworks\n\nBENEFITS\n\nCompetitive health, dental, and vision insurance coverage\n\n401(k) matching up to 4% of salary\n\nUnlimited paid time off with a minimum of 15 days encouraged per year\n\nProfessional development budget of $2,000 annually for courses, conferences, and\ncertifications\n\nRemote-friendly work environment with flexible hours\n\nMentorship from experienced SREs and engineers on the team\n\nHOW TO APPLY\n\nSubmit your resume, a brief cover letter, and a link to your GitHub profile (if available) via our careers\nportal at careers.cloudpulse.io. Please apply with the job reference 'JSRE-2024-SF'. We review\napplications on a rolling basis.\n\n\f",
+  "job_title": "JUNIOR SITE RELIABILITY ENGINEER",
+  "company": "learning how systems work at scale and want hands",
+  "location": null,
+  "employment_type": "Full-time",
+  "experience_level": "Mid",
+  "technical_skills": [
+    "AWS",
+    "Docker",
+    "Kubernetes",
+    "azure"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Experience with Kubernetes in development or personal projects",
+    "Familiarity with observability tools like Prometheus, Grafana, or similar platforms",
+    "Previous exposure to incident response or on-call environments",
+    "Understanding of cloud platforms (AWS, GCP, or Azure)"
+  ],
+  "salary": "$85,000 - $115,000 per year",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\074_junior_site-reliability-engineer.pdf",
+  "languages": [
+    "Python",
+    "go"
+  ],
+  "education_required": [
+    "Bachelor's degree in Computer Science, Engineering, or related field, or equivalent"
+  ]
+}

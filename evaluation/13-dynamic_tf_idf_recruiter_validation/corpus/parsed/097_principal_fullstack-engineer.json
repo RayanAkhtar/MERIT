@@ -1,0 +1,36 @@
+{
+  "raw_text": "Principal Full Stack Engineer\n\nPrism Systems — Building real-time data platforms that power enterprise intelligence\n\nLocation\n\nSan Francisco, CA (Remote-Flexible)\n\nEmployment Type\n\nFull-time\n\nCompensation\n\n$280,000 - $380,000 base + equity + bonus\n\nThe Opportunity\n\nPrism Systems is seeking an experienced Principal Full Stack Engineer to lead technical strategy\n\nacross our core platform. You'll architect foundational systems serving millions of transactions, mentor\n\nstaff and senior engineers, and drive org-wide technical decisions affecting 50+ engineers. This is a\n\nhands-on principal role where you'll spend 40% on strategic leadership and 60% building critical\n\nsystems.\n\nAbout Prism Systems\n\nPrism Systems is a Series C fintech and data infrastructure company founded in 2018. We build\n\nmodern, scalable data pipelines and real-time analytics platforms for enterprises. Our platform\nprocesses over 500 billion events daily and serves customers in financial services, e-commerce, and\nSaaS. We have 150 engineers across three global offices and are backed by tier-one VCs.\n\nDay-to-Day\n\nDefine and evolve the technical architecture of our real-time event processing platform, ensuring\nscalability, reliability, and security across 50+ microservices\n\nLead cross-functional technical initiatives spanning frontend (React), backend (Node.js/TypeScript),\nand infrastructure (AWS/GCP), unblocking 3-4 teams simultaneously\n\nMentor 4-6 senior and staff engineers, conducting architecture reviews, code reviews, and career\ndevelopment conversations\n\nDrive strategic decisions on technology choices, migration paths, and foundational system\n\ninvestments with 2-3 year business impact\n\nOwn the design and implementation of critical services (GraphQL API layer, data ingestion pipeline,\nreal-time streaming framework) ensuring sub-100ms latencies\n\nEstablish technical standards, best practices, and development workflows for PostgreSQL query\noptimization and distributed system patterns\n\nCollaborate with VPs of Engineering and Product to translate business requirements into technical\nroadmaps and communicate technical risks to leadership\n\nChampion observability, testability, and production excellence; own or co-own SLA metrics for core\nplatform components\n\nRepresent Prism Systems in external forums (conferences, open-source projects) and contribute to\ninternal knowledge-sharing via architecture RFCs\n\n\fYou Have\n\n12+ years of software engineering experience with 4+ years in principal, staff, or technical lead\n\nroles at scale\n\nDemonstrated expertise in full-stack development: Node.js/TypeScript backend and React frontend\n\nin production systems\n\nDeep proficiency with PostgreSQL (query optimization, indexing, replication) and REST/GraphQL\n\nAPI design patterns\n\nStrong experience architecting systems on AWS or GCP, including containerization (Docker),\n\norchestration (Kubernetes), and serverless patterns\n\nProven ability to define technical strategy, influence large organizations (50+ engineers), and\n\nmentor senior-level engineers\n\nTrack record of shipping high-impact, low-latency systems handling millions of requests or events\n\nat scale\n\nBonus\n\nExperience building real-time data pipelines or event streaming systems (Kafka, message queues,\n\nor stream processors)\n\nContributions to open-source projects or experience designing public APIs and SDKs\n\nBackground in financial services, data infrastructure, or high-frequency systems\n\nFamiliarity with infrastructure-as-code (Terraform, CloudFormation) and CI/CD best practices\n(GitHub Actions, ArgoCD)\n\nOur Stack\n\nNode.js   TypeScript   React   PostgreSQL   GraphQL   REST APIs   AWS (EC2, RDS, Lambda, S3)\n\nDocker & Kubernetes   GCP (Firestore, Pub/Sub)   Redis & Message Queues\n\nWhat We Offer\n\nCompetitive equity package (0.5–2% depending on level) with 4-year vesting\n\nComprehensive health, dental, and vision coverage (100% employer-paid for employees, 75% for\ndependents)\n\nUnlimited PTO + 15 company holidays + sabbatical program (3 weeks paid after 5 years)\n\nRemote-first culture with flexible work arrangements; quarterly in-person sync in SF\n\nProfessional development budget: $5,000/year for conferences, courses, or training\n\nParental leave (20 weeks paid for primary caregiver, 12 weeks for secondary)\n\n401(k) matching up to 6% + financial planning consultation\n\nFree lunch stipend ($20/day) and wellness allowance ($250/month for gym or wellness services)\n\nApply\n\nApply via our careers portal at www.prismsystems.io/careers with your resume, LinkedIn profile, and a\nbrief note on why you're interested in this role. We also welcome referrals from current Prism\n\n\femployees—send referrals to careers@prismsystems.io. First-round interviews are typically 45-\n\nminute technical conversations with our VP of Engineering.\n\n\f",
+  "job_title": "Principal Full Stack Engineer",
+  "company": "Prism Systems",
+  "location": null,
+  "employment_type": "Internship",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "AWS",
+    "Docker",
+    "Kubernetes",
+    "Node.js",
+    "React",
+    "postgresql",
+    "processing"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Experience building real-time data pipelines or event streaming systems (Kafka, message queues,",
+    "or stream processors)",
+    "Contributions to open-source projects or experience designing public APIs and SDKs",
+    "Background in financial services, data infrastructure, or high-frequency systems",
+    "Familiarity with infrastructure-as-code (Terraform, CloudFormation) and CI/CD best practices",
+    "(GitHub Actions, ArgoCD)"
+  ],
+  "salary": "$280,000 - $380,000",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\097_principal_fullstack-engineer.pdf",
+  "languages": [
+    "JS",
+    "PostgreSQL",
+    "TypeScript",
+    "c",
+    "graphql"
+  ],
+  "education_required": []
+}

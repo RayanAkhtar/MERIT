@@ -1,0 +1,38 @@
+{
+  "raw_text": "Principal Full Stack Engineer\n\nWe are seeking a Principal Full Stack Engineer to lead our platform's technical evolution and define the\narchitectural direction for our distributed systems. This is a rare opportunity to shape not just code, but the\norganization's engineering culture, technical standards, and long-term vision. You'll work across the full stack\n—from our React-based control plane to our Node.js/TypeScript backend services and PostgreSQL data layer\n—while mentoring senior engineers and driving high-impact technical initiatives across multiple teams. This\n\nrole reports directly to the VP of Engineering and sits at the intersection of product strategy, infrastructure, and\norganizational leadership.\n\nAbout the Company\n\nVelocity Data Systems is a Series B SaaS company specializing in real-time data pipelines and analytics\ninfrastructure. We serve Fortune 500 companies and high-growth startups across finance, e-commerce, and\n\nhealthcare sectors. Our mission is to make enterprise-grade data infrastructure accessible and effortless to\ndeploy, enabling organizations to make decisions at the speed of their data.\n\nWhat You'll Own\n\n1. Define and communicate the organization-wide technical strategy, architecture patterns, and engineering\n\nbest practices; mentor Principal and Staff-level engineers to adopt and evolve these standards\n\n2. Architect and implement complex, mission-critical full-stack systems spanning React frontends,\n\nTypeScript/Node.js microservices, PostgreSQL databases, and AWS/GCP cloud infrastructure; serve as\nthe technical authority on high-risk decisions\n\n3. Lead cross-functional technical initiatives (12+ month roadmaps) involving multiple teams; unblock\norganizational bottlenecks through technical leadership, code review, and architectural guidance\n\n4. Design and iterate on REST and GraphQL APIs that serve both internal and external consumers;\n\nestablish API design standards and security protocols across the platform\n\n5. Drive infrastructure-as-code initiatives using AWS CDK or Terraform; establish guardrails for\n\ndeployment, monitoring (CloudWatch, Datadog), and disaster recovery across production environments\n\n6. Conduct deep-dive code reviews and technical discussions with senior engineers; provide constructive\n\nfeedback that raises the bar for the entire engineering organization\n\n7. Evaluate and integrate new technologies (databases, message queues, frameworks) into the stack; assess\n\ntrade-offs between scalability, maintainability, and team velocity\n\nat Velocity Data Systems — Building the next generation of real-time data infrastructure for enterprisesSan Francisco, CA (Remote-First) • Full-Time • $280,000 - $380,000 USD\f8. Build and sustain relationships with key stakeholders in Product, Design, and Operations; translate\n\nbusiness strategy into technical roadmap and communicate technical constraints to non-technical leaders\n\n9. Champion a culture of technical excellence, continuous learning, and knowledge sharing; establish\n\ncommunities of practice around key technologies and architectural patterns\n\nRequired\n\nPreferred\n\n12+ years of professional software engineering\nexperience, with at least 5+ years in a full-stack\n\nExperience building real-time data systems,\nstreaming platforms, or analytics infrastructure\n\nProven background hiring, onboarding, and\ndeveloping senior engineering talent;\ndemonstrated mentorship of multiple Staff-\nlevel engineers\nOpen-source contributions or established\nthought leadership in the engineering\ncommunity (speaking, writing, recognized\n\nexpertise)\n\ncapacity building distributed systems at scale\nDeep expertise in TypeScript/Node.js and at\nleast one frontend framework (React, Vue,\nAngular); demonstrated ability to make sound\narchitectural decisions across the stack\nStrong proficiency with SQL and relational\ndatabases (PostgreSQL); experience designing\n\nschemas for performance, query optimization,\nand replication at scale\nProven track record defining technical strategy,\nsetting engineering standards, and influencing\norganizational direction; prior experience as a\nStaff engineer, Tech Lead, or Principal engineer\npreferred\nExpert-level understanding of cloud platforms\n(AWS or GCP); hands-on experience with\n\ncontainerization (Docker), orchestration\n(Kubernetes), and infrastructure-as-code\ntooling\nMastery of API design (REST, GraphQL);\nunderstanding of authentication, authorization,\nrate-limiting, and security best practices at the\nAPI layer\nExceptional communication skills; ability to\narticulate complex technical concepts to\n\ndiverse audiences (engineers, product leaders,\nboard members) and drive alignment on\ntechnical decisions\n\nTechnologies\n\n\fNode.js\n\n  TypeScript\n\n  React\n\n  PostgreSQL   GraphQL   REST APIs\n\n  AWS   Docker\n\n  Kubernetes\n\nTerraform\n\nPerks & Benefits\n\nCompetitive equity package (options or RSUs); participation in Series B exit upside\nComprehensive health insurance (medical, dental, vision) with 90% company contribution for employee\n+ dependents\nUnlimited PTO with a minimum of 20 days encouraged; separate parental leave (16 weeks for primary\ncaregiver, 8 weeks for secondary)\n\nProfessional development budget ($5,000/year) for conferences, courses, training; sabbatical program (4\nweeks fully paid after 5 years)\nFlexible work arrangements including full remote or office-based work from our SF headquarters;\nmonthly team gatherings and quarterly offsites in interesting locations\nWellness program including gym stipend ($150/month), mental health counseling, and meditation app\nsubscription\nLearning stipend for books and technical certifications; internal lunch-and-learns and tech talks led by\nengineering leadership\n\nNext Steps\n\nApply via our careers page at velocitydatasystems.com/careers or email your resume and a brief cover letter\nhighlighting your most impactful architectural decisions or systems you've led to\ncareers@velocitydatasystems.com. Include links to your GitHub profile or portfolio work if available. We\nreview applications on a rolling basis and will contact qualified candidates within one week. For questions, feel\nfree to reach out to our Talent team at talent@velocitydatasystems.com.\n\n\f",
+  "job_title": "Principal Full Stack Engineer",
+  "company": null,
+  "location": null,
+  "employment_type": "Internship",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "AWS",
+    "Docker",
+    "Kubernetes",
+    "Node.js",
+    "React",
+    "angular",
+    "postgresql"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "12+ years of professional software engineering",
+    "experience, with at least 5+ years in a full-stack",
+    "Experience building real-time data systems,",
+    "streaming platforms, or analytics infrastructure",
+    "Proven background hiring, onboarding, and",
+    "developing senior engineering talent;",
+    "demonstrated mentorship of multiple Staff-",
+    "level engineers"
+  ],
+  "salary": "$280,000 - $380,000",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\007_principal_fullstack-engineer.pdf",
+  "languages": [
+    "JS",
+    "PostgreSQL",
+    "SQL",
+    "TypeScript",
+    "graphql"
+  ],
+  "education_required": []
+}

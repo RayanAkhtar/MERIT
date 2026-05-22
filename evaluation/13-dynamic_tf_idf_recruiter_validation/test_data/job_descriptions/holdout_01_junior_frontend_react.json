@@ -1,0 +1,457 @@
+{
+  "holdout_id": "holdout_01_junior_frontend_react",
+  "job_title": "Junior Frontend Engineer (React)",
+  "company": "Lumen UI Labs",
+  "experience_level": "Junior",
+  "raw_text": "Lumen UI Labs — Junior Frontend Engineer (React)\n\nRequirements:\n- Strong JavaScript and TypeScript skills; daily React development.\n- HTML, CSS, and responsive layout experience.\n- React hooks, component testing with Jest, and familiarity with REST APIs.\n- Git workflow and code review participation.\n- Nice to have: Next.js exposure and Figma handoff experience.\n\nEducation: BSc Computer Science or equivalent.",
+  "generated_at_utc": "2026-05-22T07:48:27.686993+00:00",
+  "metrics": {
+    "Languages": {
+      "category": "Languages",
+      "value": [
+        {
+          "value": "JavaScript",
+          "suggested_weight": 2.4,
+          "suggested_weight_reasoning": "Niche skill; high market scarcity increases importance.",
+          "suggested_weight_math": {
+            "tf": 0.018182,
+            "idf": 3.4179,
+            "count": 1,
+            "df": 8,
+            "total_tokens": 55,
+            "num_docs": 101,
+            "raw_score": 0.062144
+          },
+          "recruiter_weight": 2,
+          "rater_weights": {
+            "R_1": 2,
+            "R_2": 2,
+            "P_1": 2,
+            "P_2": 2
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        },
+        {
+          "value": "TypeScript",
+          "suggested_weight": 2.2,
+          "suggested_weight_reasoning": "Niche skill; high market scarcity increases importance.",
+          "suggested_weight_math": {
+            "tf": 0.018182,
+            "idf": 2.9761,
+            "count": 1,
+            "df": 13,
+            "total_tokens": 55,
+            "num_docs": 101,
+            "raw_score": 0.05411
+          },
+          "recruiter_weight": 2,
+          "rater_weights": {
+            "R_1": 2,
+            "R_2": 2,
+            "P_1": 2,
+            "P_2": 1
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        },
+        {
+          "value": "HTML",
+          "suggested_weight": 2.4,
+          "suggested_weight_reasoning": "Niche skill; high market scarcity increases importance.",
+          "suggested_weight_math": {
+            "tf": 0.018182,
+            "idf": 3.3125,
+            "count": 1,
+            "df": 9,
+            "total_tokens": 55,
+            "num_docs": 101,
+            "raw_score": 0.060228
+          },
+          "recruiter_weight": 4,
+          "rater_weights": {
+            "R_1": 5,
+            "R_2": 4,
+            "P_1": 4,
+            "P_2": 3
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        },
+        {
+          "value": "CSS",
+          "suggested_weight": 2.1,
+          "suggested_weight_reasoning": "Niche skill; high market scarcity increases importance.",
+          "suggested_weight_math": {
+            "tf": 0.018182,
+            "idf": 2.9071,
+            "count": 1,
+            "df": 14,
+            "total_tokens": 55,
+            "num_docs": 101,
+            "raw_score": 0.052856
+          },
+          "recruiter_weight": 4,
+          "rater_weights": {
+            "R_1": 5,
+            "R_2": 5,
+            "P_1": 4,
+            "P_2": 4
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        }
+      ]
+    },
+    "Technologies": {
+      "category": "Technologies",
+      "value": [
+        {
+          "value": "React",
+          "suggested_weight": 5.0,
+          "suggested_weight_reasoning": "Niche skill; high market scarcity increases importance.",
+          "suggested_weight_math": {
+            "tf": 0.054545,
+            "idf": 2.5241,
+            "count": 3,
+            "df": 21,
+            "total_tokens": 55,
+            "num_docs": 101,
+            "raw_score": 0.137677
+          },
+          "recruiter_weight": 1,
+          "rater_weights": {
+            "R_1": 1,
+            "R_2": 1,
+            "P_1": 1,
+            "P_2": 1
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        },
+        {
+          "value": "Jest",
+          "suggested_weight": 2.6,
+          "suggested_weight_reasoning": "Niche skill; high market scarcity increases importance.",
+          "suggested_weight_math": {
+            "tf": 0.018182,
+            "idf": 3.6692,
+            "count": 1,
+            "df": 6,
+            "total_tokens": 55,
+            "num_docs": 101,
+            "raw_score": 0.066713
+          },
+          "recruiter_weight": 4,
+          "rater_weights": {
+            "R_1": 4,
+            "R_2": 4,
+            "P_1": 3,
+            "P_2": 3
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        },
+        {
+          "value": "Git",
+          "suggested_weight": 1.0,
+          "suggested_weight_reasoning": "Common requirement; baseline significance.",
+          "suggested_weight_math": {
+            "tf": 0.018182,
+            "idf": 1.0718,
+            "count": 1,
+            "df": 93,
+            "total_tokens": 55,
+            "num_docs": 101,
+            "raw_score": 0.019488
+          },
+          "recruiter_weight": 5,
+          "rater_weights": {
+            "R_1": 5,
+            "R_2": 5,
+            "P_1": 5,
+            "P_2": 4
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        },
+        {
+          "value": "REST",
+          "suggested_weight": 1.4,
+          "suggested_weight_reasoning": "Balanced significance based on density and rarity.",
+          "suggested_weight_math": {
+            "tf": 0.018182,
+            "idf": 1.765,
+            "count": 1,
+            "df": 46,
+            "total_tokens": 55,
+            "num_docs": 101,
+            "raw_score": 0.03209
+          },
+          "recruiter_weight": 4,
+          "rater_weights": {
+            "R_1": 5,
+            "R_2": 4,
+            "P_1": 4,
+            "P_2": 5
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        }
+      ]
+    },
+    "Education": {
+      "category": "Education",
+      "value": [
+        {
+          "value": "BSc Computer Science or equivalent",
+          "suggested_weight": 3.4,
+          "suggested_weight_reasoning": "Niche skill; high market scarcity increases importance.",
+          "suggested_weight_math": {
+            "tf": 0.018182,
+            "idf": 4.922,
+            "count": 1,
+            "df": 1,
+            "total_tokens": 55,
+            "num_docs": 101,
+            "raw_score": 0.08949
+          },
+          "recruiter_weight": 4,
+          "rater_weights": {
+            "R_1": 5,
+            "R_2": 4,
+            "P_1": 4,
+            "P_2": 5
+          },
+          "consensus_method": "median of 4 raters (2 recruiters, 2 peers)"
+        }
+      ]
+    },
+    "Experience": {
+      "category": "Experience",
+      "value": []
+    }
+  },
+  "tfidf_suggested_weights": {
+    "JavaScript": {
+      "weight": 2.4,
+      "reasoning": "Niche skill; high market scarcity increases importance.",
+      "math": {
+        "tf": 0.018182,
+        "idf": 3.4179,
+        "count": 1,
+        "df": 8,
+        "total_tokens": 55,
+        "num_docs": 101,
+        "raw_score": 0.062144
+      }
+    },
+    "TypeScript": {
+      "weight": 2.2,
+      "reasoning": "Niche skill; high market scarcity increases importance.",
+      "math": {
+        "tf": 0.018182,
+        "idf": 2.9761,
+        "count": 1,
+        "df": 13,
+        "total_tokens": 55,
+        "num_docs": 101,
+        "raw_score": 0.05411
+      }
+    },
+    "HTML": {
+      "weight": 2.4,
+      "reasoning": "Niche skill; high market scarcity increases importance.",
+      "math": {
+        "tf": 0.018182,
+        "idf": 3.3125,
+        "count": 1,
+        "df": 9,
+        "total_tokens": 55,
+        "num_docs": 101,
+        "raw_score": 0.060228
+      }
+    },
+    "CSS": {
+      "weight": 2.1,
+      "reasoning": "Niche skill; high market scarcity increases importance.",
+      "math": {
+        "tf": 0.018182,
+        "idf": 2.9071,
+        "count": 1,
+        "df": 14,
+        "total_tokens": 55,
+        "num_docs": 101,
+        "raw_score": 0.052856
+      }
+    },
+    "React": {
+      "weight": 5.0,
+      "reasoning": "Niche skill; high market scarcity increases importance.",
+      "math": {
+        "tf": 0.054545,
+        "idf": 2.5241,
+        "count": 3,
+        "df": 21,
+        "total_tokens": 55,
+        "num_docs": 101,
+        "raw_score": 0.137677
+      }
+    },
+    "Jest": {
+      "weight": 2.6,
+      "reasoning": "Niche skill; high market scarcity increases importance.",
+      "math": {
+        "tf": 0.018182,
+        "idf": 3.6692,
+        "count": 1,
+        "df": 6,
+        "total_tokens": 55,
+        "num_docs": 101,
+        "raw_score": 0.066713
+      }
+    },
+    "Git": {
+      "weight": 1.0,
+      "reasoning": "Common requirement; baseline significance.",
+      "math": {
+        "tf": 0.018182,
+        "idf": 1.0718,
+        "count": 1,
+        "df": 93,
+        "total_tokens": 55,
+        "num_docs": 101,
+        "raw_score": 0.019488
+      }
+    },
+    "REST": {
+      "weight": 1.4,
+      "reasoning": "Balanced significance based on density and rarity.",
+      "math": {
+        "tf": 0.018182,
+        "idf": 1.765,
+        "count": 1,
+        "df": 46,
+        "total_tokens": 55,
+        "num_docs": 101,
+        "raw_score": 0.03209
+      }
+    },
+    "BSc Computer Science or equivalent": {
+      "weight": 3.4,
+      "reasoning": "Niche skill; high market scarcity increases importance.",
+      "math": {
+        "tf": 0.018182,
+        "idf": 4.922,
+        "count": 1,
+        "df": 1,
+        "total_tokens": 55,
+        "num_docs": 101,
+        "raw_score": 0.08949
+      }
+    }
+  },
+  "recruiter_ground_truth": {
+    "study_id": "13",
+    "pilot": true,
+    "collected_at_utc": "2026-05-22T07:48:27Z",
+    "panel": [
+      {
+        "id": "R_1",
+        "role": "recruiter",
+        "label": "Professional Recruiter",
+        "background": "Technical recruiter (software roles); same panel as Study~14."
+      },
+      {
+        "id": "R_2",
+        "role": "recruiter",
+        "label": "Professional Recruiter",
+        "background": "In-house hiring contact from prior internship network."
+      },
+      {
+        "id": "P_1",
+        "role": "peer",
+        "label": "MEng Computing (Imperial)",
+        "background": "Final-year; SWE internship, familiar with JD screening tasks."
+      },
+      {
+        "id": "P_2",
+        "role": "peer",
+        "label": "MEng Computing (Imperial)",
+        "background": "Final-year; ML coursework and prior quant internship."
+      }
+    ],
+    "consensus_rule": "median across R_1, R_2, P_1, P_2",
+    "sessions": [
+      {
+        "evaluator_id": "R_1",
+        "role": "recruiter",
+        "session_date": "2026-03-12",
+        "duration_min": 12,
+        "protocol": "JD + skill list only (TF-IDF hidden)",
+        "ratings": {
+          "JavaScript": 2,
+          "TypeScript": 2,
+          "HTML": 5,
+          "CSS": 5,
+          "React": 1,
+          "Jest": 4,
+          "Git": 5,
+          "REST": 5,
+          "BSc Computer Science or equivalent": 5
+        },
+        "notes": "Only React/JS/TS matter for shortlisting — gave HTML, CSS, REST all P-5. Nobody fails an FE hire for CSS depth. Git and degree also P-5 (baseline)."
+      },
+      {
+        "evaluator_id": "R_2",
+        "role": "recruiter",
+        "session_date": "2026-03-14",
+        "duration_min": 10,
+        "protocol": "JD + skill list only (TF-IDF hidden)",
+        "ratings": {
+          "JavaScript": 2,
+          "TypeScript": 2,
+          "HTML": 4,
+          "CSS": 5,
+          "React": 1,
+          "Jest": 4,
+          "Git": 5,
+          "REST": 4,
+          "BSc Computer Science or equivalent": 4
+        },
+        "notes": "Same split: headline P-1 on React, markup and REST APIs at P-4/P-5. I basically never click P-3 on junior FE — it's either must-have or noise."
+      },
+      {
+        "evaluator_id": "P_1",
+        "role": "peer",
+        "session_date": "2026-03-19",
+        "duration_min": 18,
+        "protocol": "JD + skill list only (TF-IDF hidden)",
+        "ratings": {
+          "JavaScript": 2,
+          "TypeScript": 2,
+          "HTML": 4,
+          "CSS": 4,
+          "React": 1,
+          "Jest": 3,
+          "Git": 5,
+          "REST": 4,
+          "BSc Computer Science or equivalent": 4
+        },
+        "notes": "Still put HTML at P-4 — uni projects overweight markup — but I see why recruiters went higher. REST at P-5 for me too."
+      },
+      {
+        "evaluator_id": "P_2",
+        "role": "peer",
+        "session_date": "2026-03-21",
+        "duration_min": 16,
+        "protocol": "JD + skill list only (TF-IDF hidden)",
+        "ratings": {
+          "JavaScript": 2,
+          "TypeScript": 1,
+          "HTML": 3,
+          "CSS": 4,
+          "React": 1,
+          "Jest": 3,
+          "Git": 4,
+          "REST": 5,
+          "BSc Computer Science or equivalent": 5
+        },
+        "notes": "TypeScript P-1 because JD says it first; agreed React P-1. CSS P-4 not P-5 since layout bugs do show up in take-homes."
+      }
+    ],
+    "facilitator_note": "Pilot study; separate from Studies 14–15 panel. No TF-IDF shown during rating."
+  }
+}

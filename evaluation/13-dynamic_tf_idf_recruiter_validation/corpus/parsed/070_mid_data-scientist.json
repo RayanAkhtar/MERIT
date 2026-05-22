@@ -1,0 +1,29 @@
+{
+  "raw_text": "Mid Data Scientist\n\nCatalyst Labs — Turning data into intelligence, insights into impact.\n\nLocation\n\nSan Francisco, CA (Remote-friendly, 3 days/week on-site)\n\nEmployment Type\n\nFull-time\n\nCompensation\n\n$125,000 - $155,000 USD per year\n\nThe Opportunity\n\nCatalyst Labs is seeking a Mid Data Scientist to join our Analytics team. In this role, you'll design and\n\nexecute A/B tests, build statistical models for product recommendations, and develop data pipelines\n\nthat drive business decisions for our clients. You'll work cross-functionally with product and\n\nengineering teams to translate business questions into rigorous data science solutions. This is an\n\nideal opportunity for someone with 2-5 years of experience looking to grow their skills in\n\nexperimentation, causal inference, and machine learning at scale.\n\nAbout Catalyst Labs\n\nCatalyst Labs is a fast-growing data intelligence platform founded in 2019 that helps mid-market SaaS\ncompanies unlock actionable insights from their user behavior data. We build ML-powered analytics\ntools that enable product teams to make faster, data-driven decisions. Our platform processes millions\n\nof events daily and serves over 200 enterprise clients.\n\nDay-to-Day\n\nDesign and analyze A/B tests and multivariate experiments for product features; calculate power\nanalysis, define metrics, and present statistical findings to stakeholders\n\nBuild predictive models using scikit-learn and statistical methods (e.g., logistic regression,\nensemble techniques) to forecast user churn and guide retention strategies\n\nWrite optimized SQL queries and Python (Pandas/NumPy) scripts to extract, transform, and\n\nanalyze large datasets from our data warehouse\n\nDevelop and maintain reproducible data pipelines using Python and SQL to ensure data quality and\nautomated reporting for key business metrics\n\nCollaborate with product managers and engineers to scope data science projects, define success\n\nmetrics, and iterate on model performance\n\nCommunicate findings and recommendations to non-technical stakeholders through visualizations,\ndashboards, and written reports\n\nMentor junior analysts on statistical best practices, experimental design, and Python data analysis\ntechniques\n\nContribute to the evaluation and adoption of new tools and frameworks to improve model\ndeployment and monitoring\n\nYou Have\n\n\f2-5 years of professional experience in data science, analytics, or a quantitative role\n\nStrong proficiency in Python (Pandas, NumPy, scikit-learn) for data manipulation and statistical\n\nmodeling\n\nSolid SQL skills with ability to write complex queries for data exploration and feature engineering\n\nWorking knowledge of statistical concepts: hypothesis testing, A/B testing, confidence intervals,\n\nand p-values\n\nExperience with experimentation and causal inference (e.g., randomized controlled trials,\n\ndifference-in-differences)\n\nAbility to communicate technical findings to both technical and non-technical audiences\n\nBonus\n\nExperience with data visualization tools (e.g., Tableau, Plotly, or similar) and dashboarding\n\nFamiliarity with machine learning model deployment, MLOps, or model monitoring in production\n\nenvironments\n\nPrior experience in SaaS, product analytics, or growth-focused roles\n\nKnowledge of Bayesian statistics or advanced experimentation techniques\n\nOur Stack\n\nPython   Pandas   NumPy   scikit-learn   SQL   Jupyter Notebooks   Git/GitHub   Tableau\n\nApache Spark (PySpark)   Statsmodels (for statistical modeling)\n\nWhat We Offer\n\nCompetitive health insurance (medical, dental, vision) with 90% employer coverage\n\nFlexible PTO policy with a minimum of 20 days per year\n\nProfessional development budget of $2,500/year for courses, conferences, or certifications\n\nCollaborative remote-friendly work environment with modern tools and collaborative spaces\n\nEquity options (stock grant with 4-year vesting schedule)\n\nFree lunch and beverages in the San Francisco office; meal stipend for remote days\n\nWellness program including gym membership reimbursement and mental health support\n\nParental leave and family support benefits\n\nApply\n\nTo apply, submit your resume, a cover letter describing your experience with A/B testing or statistical\nmodeling, and a link to your GitHub or a portfolio of past work to: careers@catalystlabs.io. Please\ninclude 'Mid Data Scientist - [Your Name]' in the subject line. We review applications on a rolling basis.\n\n\f",
+  "job_title": "Mid Data Scientist",
+  "company": "Catalyst Labs",
+  "location": null,
+  "employment_type": "Full-time",
+  "experience_level": "Mid",
+  "technical_skills": [
+    "Scikit-learn",
+    "numpy",
+    "pandas"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Experience with data visualization tools (e.g., Tableau, Plotly, or similar) and dashboarding",
+    "Familiarity with machine learning model deployment, MLOps, or model monitoring in production",
+    "environments",
+    "Prior experience in SaaS, product analytics, or growth-focused roles",
+    "Knowledge of Bayesian statistics or advanced experimentation techniques"
+  ],
+  "salary": "$125,000 - $155,000",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\070_mid_data-scientist.pdf",
+  "languages": [
+    "Python",
+    "SQL",
+    "jupyter"
+  ],
+  "education_required": []
+}

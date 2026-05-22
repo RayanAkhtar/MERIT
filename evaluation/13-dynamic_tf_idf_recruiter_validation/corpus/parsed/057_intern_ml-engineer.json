@@ -1,0 +1,43 @@
+{
+  "raw_text": "NeuralShift AI\n\nLOCATION\n\nSan Francisco, CA\n\nTYPE\n\nInternship\n\nCOMPENSATION\n\n$18-22/hour\n\nTECH STACK\n\nPyTorch\n\nTensorFlow\n\nMLflow\n\nAWS SageMaker\n\nGoogle Vertex AI\n\nFeature Store\n\nPython\n\nDocker\n\nKubernetes\n\nSQL\n\nIntern Machine Learning Engineer\n\nAbout NeuralShift AI: NeuralShift AI is an innovative machine\nlearning platform company based in San Francisco that helps\nenterprises build, deploy, and monitor ML models at scale. We\nspecialize in end-to-end ML infrastructure, enabling data\nteams to move from experimentation to production faster than\n\never before. Our mission is to make advanced ML accessible\nto organizations of all sizes.\n\nJoin NeuralShift AI as a Machine Learning Engineer Intern and\ngain hands-on experience building ML models and pipelines in\na fast-paced environment. You'll work alongside senior ML\n\nengineers on real production challenges, learning industry best\npractices while contributing to features that serve thousands of\nenterprise customers. This is an ideal role for students or\nrecent graduates looking to launch their ML engineering career\nwith mentorship from experienced practitioners.\n\nRESPONSIBILITIES\n\nDevelop and train machine learning models using PyTorch\nand TensorFlow under senior engineer guidance\n\nAssist in preparing datasets, performing feature\nengineering, and validating data quality for ML pipelines\n\nCollaborate on model experimentation, tracking experiments\n\nwith MLflow and documenting findings in technical reports\n\nHelp deploy models to AWS SageMaker or Google Vertex\nAI following established best practices\n\nParticipate in code reviews, learning ML engineering\nstandards and contributing to internal documentation\n\nDebug and improve existing ML models by analyzing\nperformance metrics and running ablation studies\n\nSupport feature store management and explore best\npractices for feature versioning and sharing across teams\n\nREQUIREMENTS\n\nCurrently pursuing or recently completed a Bachelor's\ndegree in Computer Science, Mathematics, Physics, or\nrelated field\n\nStrong foundation in Python programming with experience\nin data manipulation libraries (NumPy, Pandas)\n\nUnderstanding of machine learning fundamentals:\nsupervised/unsupervised learning, model evaluation, and\noverfitting\n\nDemocratizing machine learning forenterprise decision-making\fFamiliarity with at least one ML framework (PyTorch or\nTensorFlow)\n\nSolid grasp of linear algebra, statistics, and calculus\n\nfundamentals\n\nBONUS POINTS\n\nExperience with MLflow or other experiment tracking tools\n\nExposure to cloud platforms (AWS or Google Cloud) and\nmodel deployment concepts\n\nCoursework or projects in deep learning, NLP, or computer\nvision\n\nPrior internship or research experience in machine learning\nor related fields\n\nBENEFITS\n\nCompetitive hourly rate with potential for conversion to full-\n\ntime upon graduation\n\nMentorship from experienced ML engineers and access to\nregular learning sessions\n\nProfessional development budget for courses, conferences,\nor certifications\n\nFlexible working arrangements and remote work options\n\nFree access to ML learning platforms and technical\nresources\n\nCasual work environment with team lunches and social\nevents\n\nAPPLY\n\nSubmit your resume, cover letter, and a link to your GitHub\nprofile or portfolio demonstrating ML projects to\ncareers@neuralshift.ai. Please include a brief description of\nyour most interesting ML project to date. Applications are\nreviewed on a rolling basis.\n\n\f",
+  "job_title": "hour\n\nTECH STACK\n\nPyTorch\n\nTensorFlow\n\nMLflow\n\nAWS SageMaker\n\nGoogle Vertex AI\n\nFeature Store\n\nPython\n\nDocker\n\nKubernetes\n\nSQL\n\nIntern Machine Learning Engineer",
+  "company": "NeuralShift AI",
+  "location": null,
+  "employment_type": "Internship",
+  "experience_level": "Internship",
+  "technical_skills": [
+    "AWS",
+    "Docker",
+    "Kubernetes",
+    "foundation",
+    "numpy",
+    "pandas",
+    "pytorch",
+    "tensorflow"
+  ],
+  "education": [
+    "related field",
+    "Strong foundation in Python programming with experience",
+    "in data manipulation libraries (NumPy, Pandas)"
+  ],
+  "nice_to_have": [
+    "Experience with MLflow or other experiment tracking tools",
+    "Exposure to cloud platforms (AWS or Google Cloud) and",
+    "model deployment concepts",
+    "Coursework or projects in deep learning, NLP, or computer",
+    "vision",
+    "Prior internship or research experience in machine learning",
+    "or related fields"
+  ],
+  "salary": "$18",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\057_intern_ml-engineer.pdf",
+  "languages": [
+    "Python",
+    "SQL",
+    "pytorch"
+  ],
+  "education_required": [
+    "Currently pursuing or recently completed a Bachelor's",
+    "degree in Computer Science, Mathematics, Physics, or"
+  ]
+}

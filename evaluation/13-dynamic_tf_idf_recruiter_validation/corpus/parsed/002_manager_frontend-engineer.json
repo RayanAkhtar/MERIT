@@ -1,0 +1,33 @@
+{
+  "raw_text": "Prism UI Labs\n\nBuilding the future of accessible, high-performance web experiences\n\nNow Hiring: Manager, Frontend Engineering\n\nSan Francisco, CA (Hybrid) · Full-time · $210,000 - $270,000 USD\n\nW\n\ne're seeking an experienced Manager of Frontend Engineering to lead and grow our frontend team. You'll\n\noversee a team of 5-8 talented engineers, guide architectural decisions, and drive the technical vision for our\n\nReact-based design system platform. In this role, you'll balance hands-on technical contributions with people\n\nleadership, mentoring, and strategic planning. Ideal candidates bring 6+ years of experience including significant\n\npeople management, strong expertise in modern frontend technologies, and a proven track record of building high-\nperforming teams.\n\nA B O U T U S\n\nPrism UI Labs is a forward-thinking SaaS company specializing in design systems and component libraries for\n\nenterprise applications. We serve Fortune 500 companies and innovative startups alike, providing the\n\ninfrastructure needed to build scalable, accessible web interfaces. Our team is passionate about performance\n\noptimization, accessibility standards, and developer experience.\n\nY O U R R O L E\n\nLead, mentor, and develop a team of 5-8 frontend engineers, conducting regular 1-on-1s, performance reviews,\nand career development planning\n\nDesign and implement team technical roadmap, prioritizing feature development, refactoring efforts, and\n\nperformance optimization initiatives across React and Next.js applications\n\nArchitect scalable frontend solutions for complex UI challenges, establishing best practices for TypeScript,\n\naccessibility (WCAG 2.1), and web performance standards\n\nOversee code quality and engineering standards, reviewing architecture decisions and ensuring team follows\n\nestablished patterns for component development with React and Tailwind CSS\n\nCollaborate with product, design, and backend teams to define requirements and deliver customer-facing\n\nfeatures; represent the frontend team in cross-functional planning\n\nManage hiring and onboarding for the frontend team, defining skill requirements and conducting technical\n\ninterviews for React and TypeScript expertise\n\nChampion web performance and accessibility initiatives, implementing automated testing with tools like\n\nLighthouse CI and accessibility linting across the codebase\n\n\fContribute hands-on technical work on high-impact projects, particularly in areas requiring architectural\n\nexpertise (e.g., design system evolution, build optimization with Vite)\n\nDrive knowledge sharing through tech talks, documentation, and mentoring on advanced frontend concepts like\nconcurrent rendering, component composition, and performance profiling\n\nR E Q U I R E D Q U A L I F I C AT I O N S\n\n6+ years of professional frontend development experience, with at least 2+ years in a people management or\n\ntechnical leadership role\n\nExpert-level proficiency in React and TypeScript, with strong understanding of component patterns, hooks, and\n\nstate management\n\nDemonstrated experience building or maintaining large-scale design systems or component libraries\n\nDeep knowledge of web performance optimization techniques and familiarity with tools like Webpack and Vite\n\nfor build optimization\n\nStrong commitment to web accessibility standards (WCAG 2.1) with experience implementing and testing\n\naccessible components\n\nProven track record of successfully hiring, mentoring, and growing engineering teams; experience with\n\nperformance reviews and career development\n\nExcellent communication skills and ability to influence cross-functional stakeholders without formal authority\n\nD E S I R E D Q U A L I F I C AT I O N S\n\nExperience with Next.js and server-side rendering optimization\n\nBackground in mentoring junior/mid-level engineers or leading technical initiatives from conception to\n\ndelivery\n\nFamiliarity with modern CSS frameworks like Tailwind CSS and CSS-in-JS solutions\n\nExperience with frontend testing frameworks and testing best practices (Vitest, Testing Library, Playwright)\n\nBackground in open-source contribution or community engagement within the frontend ecosystem\n\nT O O L S  O F  T H E T R A D E\n\nReact, TypeScript, Next.js, Tailwind CSS, Vite, Webpack, WCAG 2.1 Accessibility Standards, Web Performance\n\nAPIs & Lighthouse, Testing Library & Vitest, Storybook\n\nW E O F F E R\n\nCompetitive salary and equity package with annual bonus\n\nComprehensive health insurance (medical, dental, vision) with company coverage\n\nProfessional development budget ($3,000/year) for courses, conferences, and certifications\n\n\fFlexible hybrid work model (3 days in-office, 2 days remote)\n\nGenerous PTO policy (20 days) plus 10 company holidays\n\nParental leave (12 weeks paid for primary caregiver, 4 weeks for secondary)\n\nMental health support including subsidized therapy and wellness programs\n\nHome office stipend and equipment allowance\n\nT O A P P LY\n\nSubmit your resume, cover letter, and links to your work (GitHub profile, portfolio, or design system examples)\n\nvia our careers page at prismuiabs.com/careers. Please include specific examples of teams you've led, technical\n\ninitiatives you've driven, and your approach to mentoring engineers. We review applications on a rolling basis.\n\n\f",
+  "job_title": "Now Hiring: Manager, Frontend Engineering",
+  "company": "performance",
+  "location": null,
+  "employment_type": "Full-time",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "Next.js",
+    "React",
+    "playwright",
+    "storybook",
+    "vitest"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Comprehensive health insurance (medical, dental, vision) with company coverage",
+    "Professional development budget ($3,000/year) for courses, conferences, and certifications",
+    "Flexible hybrid work model (3 days in-office, 2 days remote)",
+    "Generous PTO policy (20 days) plus 10 company holidays",
+    "Parental leave (12 weeks paid for primary caregiver, 4 weeks for secondary)",
+    "Mental health support including subsidized therapy and wellness programs"
+  ],
+  "salary": "$210,000 - $270,000",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\002_manager_frontend-engineer.pdf",
+  "languages": [
+    "JS",
+    "TypeScript",
+    "c",
+    "r"
+  ],
+  "education_required": []
+}

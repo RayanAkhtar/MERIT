@@ -1,0 +1,36 @@
+{
+  "raw_text": "Intern Backend Engineer\n\nJoin our Backend Engineering team as an Intern and gain hands-on\nexperience building scalable microservices and distributed systems. You'll\nwork alongside experienced engineers to develop and maintain core backend\nservices, write production-quality code, and learn industry best practices\n\nin designing APIs, working with message queues, and database optimization.\n\nThis is an excellent opportunity to apply your computer science\nfundamentals in a real-world environment and contribute to systems that\n\npower our customers' businesses.\n\nAbout the Company\n\nDataStream Systems is a growing technology startup focused on developing\n\ninfrastructure and tools for real-time data processing and analytics. Our\nmission is to empower enterprises with the ability to build, deploy, and\n\nscale distributed backend systems that can handle millions of events per\nsecond with sub-second latency.\n\nWhat You'll Own\n\n1. Develop and maintain REST API endpoints in Python/Go following\nestablished design patterns and our internal API guidelines\n\n2. Write unit tests and integration tests for new backend features using\n\npytest and standard testing frameworks\n\n3. Work with PostgreSQL and Redis to design efficient database queries\n\nand optimize data retrieval patterns\n\n4. Participate in code reviews with senior engineers and implement\n\nfeedback to improve code quality\n\n5. Collaborate on designing and implementing microservices that\n\ncommunicate via RabbitMQ for asynchronous processing\n\n6. Debug and troubleshoot issues in production and staging environments\n\nwith guidance from senior engineers\n\nat DataStream Systems — Building scalable real-time data pipelines forenterprise applicationsSan Francisco, CA (Remote-friendly) • Internship (Full-time) • $28-32/hour\f7. Document your code and create runbooks for services you develop with\n\nmentorship from the team\n\n8. Contribute to infrastructure improvements and deployment pipelines\n\nusing Docker and Kubernetes\n\nRequired\n\nPreferred\n\nCurrently pursuing or recently\ncompleted (within 6 months) a\nBachelor's degree in Computer\n\nScience, Computer Engineering,\nor related field\nStrong foundation in data\nstructures, algorithms, and\nobject-oriented programming\nprinciples\n\nExperience with at least one\nbackend programming language\n(Python, Go, Java, or Rust)\nFamiliarity with relational\ndatabases and SQL fundamentals\nUnderstanding of HTTP/REST APIs\nand basic networking concepts\n\nExperience building and\nconsuming REST APIs in a real\nproject or internship\n\nFamiliarity with Docker,\ncontainerization, or basic\nDevOps concepts\nKnowledge of message queues or\nasynchronous processing\npatterns\n\nExposure to microservices\narchitecture or distributed\nsystems\n\nTechnologies\n\nPython   Go   PostgreSQL   Redis   RabbitMQ   REST APIs   Docker   Kubernetes\n\ngRPC   Git\n\nPerks & Benefits\n\nCompetitive hourly internship rate with potential for conversion to\nfull-time role\nMentorship from senior engineers and dedicated learning time each week\nFree access to professional development courses and conference\nattendance opportunities\nFlexible working hours and remote-friendly environment\nCollaborative team culture with regular tech talks and knowledge-\nsharing sessions\n\nNext Steps\n\n\fSubmit your resume, a brief cover letter, and a link to your GitHub\nprofile (or code portfolio) to careers@datastreamsystems.com with the\nsubject line 'Intern Backend Engineer Application'. Include any notable\nprojects or contributions you'd like us to review. We review applications\non a rolling basis and conduct technical interviews with promising\ncandidates.\n\n\f",
+  "job_title": "Intern Backend Engineer",
+  "company": null,
+  "location": null,
+  "employment_type": "Internship",
+  "experience_level": "Internship",
+  "technical_skills": [
+    "Docker",
+    "Kubernetes",
+    "foundation",
+    "grpc",
+    "postgresql",
+    "processing",
+    "pytest"
+  ],
+  "education": [
+    "Science, Computer Engineering,",
+    "or related field"
+  ],
+  "nice_to_have": [],
+  "salary": "$28",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\013_intern_backend-engineer.pdf",
+  "languages": [
+    "Java",
+    "PostgreSQL",
+    "Python",
+    "SQL",
+    "go",
+    "grpc",
+    "rust"
+  ],
+  "education_required": [
+    "Bachelor's degree in Computer"
+  ]
+}

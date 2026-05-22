@@ -1,0 +1,34 @@
+{
+  "raw_text": "Nexus Cloud Labs // Senior DevOps Engineer\n\nSan Francisco, CA (Remote-Friendly) | Full-Time | $165,000 - $215,000 USD per annum\n\nEnterprise infrastructure automation for the modern cloud era\n\n>> ABOUT\n\nNexus Cloud Labs is a fast-growing cloud infrastructure and automation company\nspecializing in helping enterprises migrate to, manage, and optimize their cloud\n\nenvironments. Founded in 2018, we serve Fortune 500 companies across finance, healthcare,\nand e-commerce sectors, providing turnkey DevOps solutions and managed infrastructure\n\nservices. Our team of 150+ engineers is committed to building the most reliable,\nscalable, and automated cloud platforms on the market.\n\n>> SUMMARY\n\nWe're seeking an experienced Senior DevOps Engineer to lead infrastructure modernization\ninitiatives and mentor junior team members at Nexus Cloud Labs. In this role, you'll\n\narchitect and implement cloud infrastructure solutions, manage Kubernetes deployments at\nscale, and drive operational excellence across our platform. You'll work with AWS and\n\nGCP, design CI/CD pipelines, and ensure 99.9%+ uptime for mission-critical systems\nserving thousands of users globally.\n\n>> RESPONSIBILITIES\n\n- Design, implement, and maintain highly available Kubernetes clusters on AWS and GCP,\nhandling thousands of containerized workloads across production environments\n\n- Architect infrastructure-as-code solutions using Terraform and CloudFormation,\nmanaging infrastructure versioning and change management across multiple cloud\n\nproviders\n- Lead the development and optimization of CI/CD pipelines using GitHub Actions and\n\nJenkins, reducing deployment time by 40%+ and improving release velocity\n- Mentor and code-review junior DevOps engineers, establishing best practices for\n\ninfrastructure automation, security, and monitoring\n- Develop and maintain comprehensive monitoring, logging, and alerting systems using\n\nPrometheus, Grafana, and ELK Stack to ensure system reliability and performance\n- Collaborate with security and compliance teams to implement infrastructure security\n\ncontrols, automated compliance scanning, and disaster recovery procedures\n- Conduct root cause analysis on production incidents, implement permanent fixes, and\n\nshare learnings across the engineering organization\n- Drive infrastructure cost optimization initiatives, analyzing cloud spend and\n\nimplementing resource optimization strategies that reduce operational costs by 20%+\nannually\n\n>> MUST HAVE\n\n- 5-8 years of professional DevOps, cloud infrastructure, or SRE experience\n- Advanced proficiency with Kubernetes administration, including cluster design,\n\nnetworking, storage, and troubleshooting in production environments\n- Strong hands-on experience with Docker containerization and container orchestration\n\nat scale\n- Proficiency with Infrastructure-as-Code tools, specifically Terraform and/or\n\nCloudFormation, with experience managing multi-environment deployments\n\n\f- Demonstrable experience with AWS or GCP (or both) including VPCs, RDS, S3, EC2, IAM,\n\nor equivalent GCP services\n- Advanced scripting skills in Bash and Python for automation, tooling, and\n\ninfrastructure management\n\n>> NICE TO HAVE\n\n- Experience with both AWS and GCP multi-cloud strategies\n\n- Proven experience implementing and managing Jenkins or GitHub Actions for enterprise\nCI/CD pipelines\n\n- Knowledge of observability practices including Prometheus, Grafana, ELK Stack, or\nDatadog\n\n- Experience with GitOps methodologies and ArgoCD or Flux\n- AWS Solutions Architect or Kubernetes Administrator (CKA) certification\n\n>> STACK\n\nKubernetes (K8s) / Docker / Terraform / AWS (EC2, RDS, S3, VPC, IAM, Lambda, CloudFormation) /\n\nGoogle Cloud Platform (GCP) (GKE, Compute Engine, Cloud Storage) / GitHub Actions / Jenkins /\nBash/Shell Scripting / Python / Prometheus & Grafana\n\n>> BENEFITS\n\n- Competitive health insurance: medical, dental, and vision coverage with 80% employer\ncontribution\n\n- Generous paid time off: 20 days PTO + 10 company holidays + unlimited sick days\n- Professional development budget: $3,000 annually for certifications, conferences,\n\nand training\n- Equity compensation: stock options with 4-year vesting for all full-time employees\n\n- Fully remote-friendly with optional office access in San Francisco and Austin\n- Annual performance bonus: 15-25% of base salary\n\n- Comprehensive mental health support and 24/7 counseling services\n- Commuter benefits and parking reimbursement for in-office days\n\n>> APPLY\n\nPlease submit your resume, cover letter, and GitHub/GitLab profile (or portfolio of\ninfrastructure projects) to careers@nexuscloudlabs.com with the subject line 'Senior\n\nDevOps Engineer Application'. You may also apply through our careers portal at\nwww.nexuscloudlabs.com/careers. Qualified candidates will be contacted within 5 business\n\ndays for an initial screening call.\n\n\f",
+  "job_title": "Nexus Cloud Labs // Senior DevOps Engineer",
+  "company": "Nexus Cloud Labs is a fast",
+  "location": null,
+  "employment_type": "Full-time",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "AWS",
+    "Docker",
+    "Kubernetes"
+  ],
+  "education": [],
+  "nice_to_have": [
+    "Experience with both AWS and GCP multi-cloud strategies",
+    "Proven experience implementing and managing Jenkins or GitHub Actions for enterprise",
+    "CI/CD pipelines",
+    "Knowledge of observability practices including Prometheus, Grafana, ELK Stack, or",
+    "Comprehensive mental health support and 24/7 counseling services",
+    "Commuter benefits and parking reimbursement for in-office days",
+    ">> APPLY",
+    "Please submit your resume, cover letter, and GitHub/GitLab profile (or portfolio of",
+    "infrastructure projects) to careers@nexuscloudlabs.com with the subject line 'Senior",
+    "DevOps Engineer Application'. You may also apply through our careers portal at",
+    "www.nexuscloudlabs.com/careers. Qualified candidates will be contacted within 5 business",
+    "days for an initial screening call."
+  ],
+  "salary": "$165,000 - $215,000",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\075_senior_devops-engineer.pdf",
+  "languages": [
+    "Python"
+  ],
+  "education_required": []
+}

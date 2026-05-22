@@ -115,17 +115,9 @@ in Table~\ref{tab:shapley-verification}.
 
 \subsubsection{Key XAI Insights: The Power of Negative Attribution}
 
-The source-level attribution breakdown for each candidate is visualised in Figure~\ref{fig:shapley-attribution-breakdown}.
-This figure highlights how the "Glass-Box" scorecard enables recruiters to immediately diagnose the drivers behind a candidate's score.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.95\textwidth]{../evaluation/11-shapley_verification/output/shapley_attribution_breakdown.png}
-    \caption{Shapley Source Attribution Breakdown per Candidate. Positive attributions stack to the right,
-        showing how each source contributes to the final score. The hatched bar for Vince Vault on the left highlights the
-        negative GitHub attribution ($\phi_{GitHub} \approx -0.071$), mathematically penalising the candidate for identity mismatch fraud.}
-    \label{fig:shapley-attribution-breakdown}
-\end{figure}
+The source-level attribution breakdown for each candidate is in Figure~\ref{fig:shapley-attribution-breakdown}
+(Appendix~\ref{appendix:shapley-charts}), which illustrates how the Glass-Box 
+scorecard surfaces drivers behind each score.
 
 A key finding from this study was the presence of negative attributions within the candidate's source attributions. In the context
 of cooperative game theory, a player would only receive a negative Shapley value if their inclusion in a coalition would lead to a
@@ -158,14 +150,25 @@ independent, demonstrated evidence, providing us with means to calculate the com
 utilisation as well as project history. MERIT is designed to expose this which cannot be falsified, therefore pointing out
 the importance of additional evidence sources to create a holistic picture of a candidate.
 
-\begin{figure}[htbp]
+\begin{table}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{../evaluation/11-shapley_verification/output/shapley_source_dominance.png}
-    \caption{Aggregate Source Contribution across all candidates, visualising the percentage-based dominance of each
-        source's positive attributions. CV claims and public GitHub repositories represent the primary scoring signals.}
-    \label{fig:shapley-source-dominance}
-\end{figure}
+    \caption{Aggregate positive Shapley attribution by source (Study~11, ten-candidate cohort). 
+    Shares sum positive $\phi_i$ only (negative GitHub penalties excluded from the pie denominator).}
+    \label{tab:shapley-source-dominance}
+    \vspace{1.5ex}
+    \small
+    \begin{tabular}{l|c|c}
+        \hline
+        \textbf{Source} & \textbf{Sum of positive $\phi_i$} & \textbf{Share of pool (\%)} \\ \hline
+        CV (claimed)       & 2.429 & 59.6 \\
+        GitHub (demonstrated) & 1.564 & 38.4 \\
+        LinkedIn (claimed)    & 0.085 & 2.1 \\ \hline
+    \end{tabular}
+\end{table}
 
+Across the cohort, demonstrated GitHub evidence supplies a large share of positive attribution despite sparse 
+LinkedIn personas. This is shown in Table~\ref{tab:shapley-source-dominance} and Figure~\ref{fig:shapley-source-dominance} 
+(Appendix~\ref{appendix:shapley-charts}).
 
 \subsection{Study 14: HCI Trial}
 \label{subsec:hci-trial-protocol}
@@ -220,9 +223,7 @@ as the basis for synthesising these candidates:
     \item \textbf{Aaron Mohammed} (Identity Squatter - claims deep Java/Go systems expertise on CV, squatted GitHub)
 \end{itemize}
 
-We present the quantitative results of this trial in Table~\ref{tab:hci-trial-results} and, as usual, the data for this trial can be found
-in the \texttt{evaluation/14-hci\_trial/} directory. This includes the CV of the candidate, as well as the JSON information that was passed
-into MERIT to produce the rankings and reports for these candidates.
+We present the quantitative results of this trial in Table~\ref{tab:hci-trial-results}. Decision-reversal, confidence-shift, and SUS distributions are in Appendix~\ref{appendix:hci-trial-charts} (Figures~\ref{fig:hci-decision-reversals}--\ref{fig:hci-sus-distribution}). Raw session data are in \texttt{evaluation/14-hci\_trial/}.
 
 
 \begin{table}[htbp]
@@ -295,18 +296,10 @@ Although our evaluator pool size ($N=5$) is modest, this sample size is well-sup
 theory. Jakob Nielsen's mathematical model of usability discovery \cite{nielsen1993mathematical} demonstrates that 
 a sample of five evaluators is sufficient to identify approximately 85\% of interface usability issues.
 
-While our model is "Excellent" on paper, we must be critical of this actual result. Firstly, it is vulnerable to a wide range of
-biases, most particularly those in our evaluation group. Three of the five evaluators ($P_1, P_2, P_3$) are technical CS students
-acquainted with me. This pre-existing relationship introduces a clear risk of social desirability bias (or courtesy bias). This is
-where participants may unknowingly inflate usability ratings or downplay system complexity to support my project's success. There is
-no way to be certain that this bias did not affect the results of the SUS survey, but we must take this into consideration.
-
-In a similar manner, the two professional recruiters ($R_1, R_2$) were part of firms that I had previous interactions with,
-which could have furthered this bias. However, the effect of which would likely be significantly smaller than that of the student
-participants. This could be suggested by the fact that the recruiter scores were more conservative than the student scores,
-indicating that they were less likely to be affected by social desirability bias. Reflecting on this courtesy bias is
-essential to maintain academic objectivity and prevent overclaiming the baseline system usability, especially since the
-SUS score was quite close to the threshold for being considered "excellent" (80.3).
+Although SUS was ``Excellent'' (81.5), the $N=5$ convenience sample, including three peers acquainted with the author, introduces
+courtesy bias (Section~\ref{subsec:construct-validity}). Stage~1 always precedes Stage~2, and the paired $t$-test rows are not
+independent across candidates (Sections~\ref{subsec:internal-validity}, \ref{subsec:conclusion-validity}); we therefore treat
+inferential statistics as exploratory.
 
 \subsubsection{Qualitative Trust \& Feedback Analysis}
 The qualitative feedback gathered from the evaluators highlighted how MERIT's explainability layer resolves the standard

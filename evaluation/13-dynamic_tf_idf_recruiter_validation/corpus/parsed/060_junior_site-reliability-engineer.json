@@ -1,0 +1,28 @@
+{
+  "raw_text": "CloudSync Systems\n\nJunior Site Reliability\nEngineer\n\nLOCATION\n\nSan Francisco, CA\n(Remote-friendly)\n\nTYPE\n\nFull-time\n\nCOMPENSATION\n\n$85,000 - $110,000 per\nyear\n\nTECH STACK\n\nKubernetes\n\nDocker\n\nPrometheus\n\nGrafana\n\nPython\n\nBash\n\nJaeger (Distributed\nTracing)\n\nAlertmanager\n\nLinux/Ubuntu\n\nGit\n\nAbout CloudSync Systems: CloudSync Systems is\na mid-stage infrastructure platform company\nthat helps organizations build and maintain\nresilient cloud-native applications. We\nprovide observability and automation tools\nthat enable teams to manage complex\ndistributed systems with confidence. Founded\nin 2019, we serve hundreds of customers across\nfintech, e-commerce, and media industries.\n\nWe're hiring a Junior Site Reliability\nEngineer to join our Platform Reliability\nteam. You'll work alongside experienced SREs\nto build and maintain the infrastructure that\npowers our customers' applications. In this\nrole, you'll gain hands-on experience with\ncontainerization, monitoring, incident\nresponse, and automation. This is an excellent\nopportunity to launch your career in SRE while\nlearning from industry practitioners in a\ncollaborative, supportive environment.\n\nRESPONSIBILITIES\n\nAssist in deploying and managing Kubernetes\nclusters in production environments under\nmentor supervision\n\nMonitor application and infrastructure\nhealth using Prometheus and Grafana,\nlearning to identify and escalate anomalies\n\nParticipate in on-call rotations (non-\nprimary) and shadow experienced SREs during\nincidents to understand troubleshooting\nworkflows\n\nWrite and maintain monitoring dashboards and\nalerting rules for key services and\ninfrastructure metrics\n\nContribute to runbooks and documentation for\ncommon operational procedures and incident\nresponse workflows\n\nImplement observability improvements by\nadding instrumentation to Python services\nand analyzing distributed traces in Jaeger\n\nReliable infrastructure thatscales with your ambition\fCollaborate with platform engineers to\ndefine and track SLOs/SLIs for internal\nservices, learning how to measure\nreliability\n\nAutomate routine operational tasks using\nBash scripts and Python, reducing manual\ntoil across the team\n\nREQUIREMENTS\n\nBachelor's degree in Computer Science,\nEngineering, or related field (or equivalent\nprofessional experience)\n\nFoundational knowledge of Linux/Unix systems\nand command-line tools\n\nBasic understanding of networking concepts\n(TCP/IP, DNS, HTTP) and how the internet\nworks\n\nFamiliarity with containerization concepts\nor hands-on experience with Docker\n\nStrong desire to learn cloud infrastructure\n\nand commitment to operational excellence\n\nBONUS POINTS\n\nPrevious internship or coursework experience\nwith Kubernetes or container orchestration\n\nExperience writing scripts in Python or Go\nfor automation tasks\n\nPrior exposure to monitoring and\nobservability tools like Prometheus or\nGrafana\n\nFamiliarity with CI/CD pipelines and Git\nversion control\n\nBENEFITS\n\nComprehensive health insurance (medical,\ndental, vision) with company coverage\nstarting day one\n\n401(k) matching up to 4% and financial\nwellness resources\n\nUnlimited paid time off plus 10 company\nholidays\n\nProfessional development budget ($2,000\nannually for courses, conferences,\ncertifications)\n\n\fMentorship program pairing you with senior\nSREs for career growth\n\nRemote-friendly work environment with\nflexible hours\n\nQuarterly team offsites and learning\nsessions focused on SRE best practices\n\nAPPLY\n\nSubmit your resume, a brief cover letter, and\na link to your GitHub profile (if available)\nto careers@cloudsync.systems. Include a short\nnote about why you're interested in SRE and\n\nany relevant projects or experiences. We\nreview applications on a rolling basis and aim\nto respond within one week.\n\n\f",
+  "job_title": "Engineer",
+  "company": "CloudSync Systems",
+  "location": null,
+  "employment_type": "Internship",
+  "experience_level": "Internship",
+  "technical_skills": [
+    "Docker",
+    "Kubernetes"
+  ],
+  "education": [
+    "Engineering, or related field (or equivalent",
+    "professional experience)",
+    "Foundational knowledge of Linux/Unix systems",
+    "and command-line tools"
+  ],
+  "nice_to_have": [],
+  "salary": "$85,000 - $110,000",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\060_junior_site-reliability-engineer.pdf",
+  "languages": [
+    "Python",
+    "go"
+  ],
+  "education_required": [
+    "Bachelor's degree in Computer Science,"
+  ]
+}

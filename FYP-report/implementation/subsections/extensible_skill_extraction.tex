@@ -86,19 +86,27 @@ $W_s$ for each skill is the product of these two components:
     W_s = TF(s, J) \times IDF(s, D)
 \end{equation}
 
-The resulting significance score is linearly mapped to a $1$ to $5$ priority scale.
-This ensures that if a recruiter asks for a common skill like "Python" and a more niche skill
-like "Jupyter Notebook" the system prioritises the rarer skill unless the JD explicitly
-emphasises "Python" through high repetition density.
+For each configured job, we compute the $W_s$ scores for each skill, this may also commonly referred to as an extensible metric.
+These raw scores are the product of the TF and IDF scores for each skill. From here, we then min-max normalise the scores
+to the range $[1.0, 5.0]$ with one decimal place. Higher values mean stronger emphasis on that skill for the given job.
+If a JD mentions both a common skill (e.g.\ ``Python'') and a rarer one (e.g.\ ``Jupyter''), the rarer term tends toward 
+the top of the band unless the common skill is repeatedly mentioned in the JD. The market corpud $D$ is populated from
+historical job descriptions held in Supabase (or alternatively could be populated from an offline corpus, such as during evaluation).
+Note that the performance of TF-IDF is dependent on the market corpus, and as such, if the market corpus is not representative of 
+the current market, the performance of TF-IDF will be affected. This allows MERIT to keep up to date with the current market, and to be 
+extensible to any technical domain.
+
 
 \subsection{Psychometric Scaling \& Target Weights}
-The nature of recruitment is subjective, and because of this, it is necessary for recruiters to have
-control over the weighting of skills, especially if they do not agree with the TF-IDF scores. To address this,
-MERIT provides a user-friendly interface for manual weight adjustments, following a 5-point Likert scale. This
-design choice is informed by pyschometric research on optimal rating scales \cite{lozano2008effect, coelho2007choice}.
-
-To further support this reasoning, we turn to Miller's Law regarding the limits of human information processing
-($7 \pm 2$ chunks) \cite{miller1956magical}. Users often struggle to make consistent distinctions on wider scales
-(such as 10 or 100 points), which introduces "noise" into the scoring. By providing a 5-point scale, MERIT improves inter-rater
-reliability, and reduces the cognitive load for metric configuration. Currently, these weightings, from 1-5, are linearly mapped 
-to a 0-1 scale to be used in the fusion engine as the Target Weight.
+Weights should never be fixed, TF-IDF is merely a suggestion based off the market corpus. As such, we also allow recruiters
+to manually adjust the weights of the skills on the job. This is achieved through the use of a 5-point Likert scale, where
+1 = essential and 5 = almost optional. This choice is supported by psychometric research on rating-scale length 
+\cite{lozano2008effect, coelho2007choice}. Note it is possible to completely disregard a metric as well if the recruiter does 
+not wish to include that metric in the candidate matching process. Note weightings in the backend and frontend are inverses
+due to the way that Likert scales correlate to the target weights, as such, in the backend, higher weights mean more significant
+for that skill on that job, while in the frontend, lower weights mean more significant. Simply put, the frontend weights are given
+by the formula:
+\begin{equation}
+    P_{\text{UI}} = \max\left(1,\; \min\left(5,\; \mathrm{round}(6 - \texttt{suggested\_weight})\right)\right).
+\end{equation}
+Thus the strongest skill on a JD ($5.0$) is shown as P-1 and the weakest ($1.0$) as P-5.

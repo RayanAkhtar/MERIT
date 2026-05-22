@@ -1,0 +1,39 @@
+{
+  "raw_text": "CloudWeave Systems\n\nMaking cloud infrastructure observable, resilient, and autonomous\n\nJUNIOR SITE RELIABILITY ENGINEER\n\nSan Francisco, CA (Remote-friendly) · Full-time · $80,000 - $105,000 per year\n\nCloudWeave Systems is seeking a Junior Site Reliability Engineer to join\n\nour growing Reliability team. In this role, you will support the design,\ndeployment, and monitoring of our cloud infrastructure, learn incident\nresponse practices, and contribute to improving system reliability. You'll\nwork alongside experienced SREs, gain hands-on experience with modern\nobservability tools, and help automate operational tasks. This is an\nexcellent opportunity to launch your SRE career in a collaborative\n\nenvironment with mentorship and clear growth paths.\n\nABOUT US\n\nCloudWeave Systems is a fast-growing infrastructure software company\n\nfocused on helping mid-market and enterprise organizations build and\nmaintain reliable, observable cloud systems. Founded in 2019, we've grown\n\nto 85 team members and serve over 200 customers across fintech, e-\ncommerce, and SaaS sectors. Our platform helps engineering teams reduce\nmean time to recovery (MTTR), standardize incident response, and shift\n\nleft on reliability practices.\n\nWHAT YOU'LL DO\n\nAssist in monitoring and maintaining Kubernetes clusters in\n\nproduction, including node management, workload orchestration, and\ntroubleshooting deployment issues\n\nHelp develop and maintain runbooks and playbooks for common\noperational scenarios and incident response procedures\n\nContribute to the design and implementation of alerting rules in\n\nPrometheus, with guidance from senior team members\n\nSupport the setup and configuration of Grafana dashboards for key\nservice metrics and SLI/SLO tracking\n\nParticipate in on-call rotations (with ramping responsibility over\nfirst 6 months) and respond to incidents with senior SRE oversight\n\nWrite Python or Go scripts to automate routine operational tasks, such\nas log processing, infrastructure provisioning, and health checks\n\nCollaborate with development teams to instrument applications with\ndistributed tracing using tools like Jaeger or Datadog, and analyze\n\n\ftraces to identify performance bottlenecks\n\nDocument infrastructure architecture, operational procedures, and\nlessons learned from incidents to build team knowledge\n\nParticipate in SLO/SLI definition workshops and help track reliability\nmetrics for internal and customer-facing services\n\nREQUIRED\n\nBachelor's degree in Computer Science, Computer Engineering, or\nequivalent professional experience (0-2 years in DevOps, systems\nadministration, or related roles)\n\nStrong foundational knowledge of Linux systems administration and\n\nnetworking (DNS, TCP/IP, firewalls)\n\nExperience or solid understanding of containerization concepts and\nDocker\n\nFamiliarity with at least one cloud platform (AWS, GCP, or Azure) and\ninfrastructure-as-code principles\n\nProficiency in at least one scripting or programming language (Python,\nGo, Bash, or similar)\n\nUnderstanding of monitoring and observability fundamentals (logs,\nmetrics, traces)\n\nNICE TO HAVE\n\nHands-on experience with Kubernetes or container orchestration\n\nplatforms\n\nPrevious exposure to Prometheus, Grafana, or similar monitoring tools\n\nExperience with incident response processes or on-call\nresponsibilities\n\nFamiliarity with CI/CD pipelines and tools like Jenkins, GitLab CI, or\nGitHub Actions\n\nTECH STACK\n\nKubernetes   Prometheus   Grafana   Jaeger (distributed tracing)   Python   Go\n\nAWS (EC2, RDS, VPC)   Docker   Git / GitHub   PagerDuty\n\nBENEFITS\n\nCompetitive health, dental, and vision insurance (80% employer\n\ncovered)\n\n401(k) matching up to 4% of salary\n\n$2,500 annual professional development and conference budget\n\nGenerous remote work policy with optional office access in San\n\nFrancisco\n\n\fMentorship program pairing junior engineers with experienced SREs for\ncareer growth\n\nPaid time off: 20 days PTO + 10 company holidays\n\nMental health support and wellness programs\n\nHOW TO APPLY\n\nApply via our careers page at careers.cloudweave.io or email resume and\ncover letter to careers@cloudweave.io. Please include a brief note about\nwhat aspects of SRE and infrastructure reliability interest you most.\nInterviews include a technical screening, system design discussion, and\nteam panel. We review applications on a rolling basis.\n\n\f",
+  "job_title": "JUNIOR SITE RELIABILITY ENGINEER",
+  "company": "CloudWeave Systems is a fast",
+  "location": null,
+  "employment_type": "Internship",
+  "experience_level": "Senior",
+  "technical_skills": [
+    "AWS",
+    "Docker",
+    "Kubernetes",
+    "azure",
+    "processing"
+  ],
+  "education": [
+    "equivalent professional experience (0-2 years in DevOps, systems",
+    "administration, or related roles)",
+    "Strong foundational knowledge of Linux systems administration and",
+    "networking (DNS, TCP/IP, firewalls)",
+    "Experience or solid understanding of containerization concepts and"
+  ],
+  "nice_to_have": [
+    "Hands-on experience with Kubernetes or container orchestration",
+    "platforms",
+    "Previous exposure to Prometheus, Grafana, or similar monitoring tools",
+    "Experience with incident response processes or on-call",
+    "responsibilities",
+    "Familiarity with CI/CD pipelines and tools like Jenkins, GitLab CI, or"
+  ],
+  "salary": "$80,000 - $105,000 per year",
+  "source_file": "c:\\Users\\Rayan\\OneDrive - Imperial College London\\4th year\\FYP\\MERIT\\data\\job descriptions\\058_junior_site-reliability-engineer.pdf",
+  "languages": [
+    "Python",
+    "go"
+  ],
+  "education_required": [
+    "Bachelor's degree in Computer Science, Computer Engineering, or"
+  ]
+}
