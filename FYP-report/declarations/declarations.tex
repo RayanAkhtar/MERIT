@@ -2,28 +2,45 @@
 
 \section{Use of Generative AI}
 
-% Generative AI tools were used in this project to assist with routine coding tasks, debugging, frontend development, styling, and the creation of test cases. 
-% The tools used include ChatGPT, VS Code Copilot, and Cursor. 
-% In all cases, any code produced by these systems was carefully reviewed and modified where necessary to ensure alignment with MERIT's requirements and quality standards. 
-% No AI-generated material was used for the core algorithm design, including the scoring logic and conceptual framework. 
-% All final submissions reflect the author's independent work and understanding.
+Throughout the development of MERIT, I have used generative AI tools (ChatGPT, Cursor, Google Antigravity IDE, and Gemini Pro)
+for routine implementation support: frontend styling, boilerplate code, test scaffolding, and syntax-level
+debugging. I also leveraged them for minor proofreading and \LaTeX{} formatting of the report. All factual
+claims, numerical results, and technical arguments were written and verified by myself, the author.
+
+All personas and scenarios were defined by the author, which were then used to generate the synthetic evaluation dataset.
+LLM-assisted tools aided in the generation of synthetic candidate JSON and job-description corpora. The author reviewed,
+edited and validated all files before use. Where we have used real candidate data for the generation of synthetic profiles,
+the author obtained consent from the individuals involved, and ensured that their data was not present in the synthetic dataset.
+
+The core algorithm design, such as Bayesian Fusion and scoring logic, are the author's original work. This extends to the 
+system architecture, evaluation design, and also the interpretation of results. In instances where an AI tool suggested a 
+technical approach (specifically, game-theoretic source attribution), the author himself independently reviewed the 
+literature, and only adopted the approach upon verification.
+
+All submitted work reflects the author's understanding and responsibility for the project's design, implementation, and evaluation.
 
 \section{Ethical Considerations}
 
 This project involved processing sensitive data from candidate CVs, LinkedIn profiles, and GitHub repositories. 
 Ethical issues such as privacy, consent, and bias were carefully considered. 
 Most candidate data used during testing was anonymised or synthetic to prevent disclosure of personal information.
-For live LinkedIn ingestion tests, at most 30 profiles were retrieved via Apify; each belonged to a personal contact who gave informed consent for FYP use only (see Chapter~6). This approach is not intended for deployment.
-In cases where anonymisation was not possible, data was stored securely using a reliable database provider (Supabase). 
-Ethical reviews were conducted with the project supervisor to ensure compliance with relevant guidance, and no formal ethics approval was required given the limited scale, consent-based live subset, and predominant use of synthetic or anonymised evaluation data.
+For live LinkedIn ingestion tests, at most 30 profiles were retrieved via Apify, each belonging to a personal contact 
+who gave informed consent for FYP use only (see Chapter~6). This approach is not intended for deployment.
+Where live data were stored, they were held in Supabase with access restricted via environment variables, no sensitive 
+data were published in the repository.
 
 \section{Sustainability}
 
-The project does not pose any significant environmental impacts. 
-MERIT operates as a lightweight software system, and its development and deployment are not expected to contribute meaningfully to carbon emissions or resource consumption.
+The project does not pose any significant environmental impacts.
+MERIT is lightweight in terms of carbon emissions and resource consumption, 
+it does not require any significant infrastructure or resources to run.
+
 
 \section{Availability of Data and Materials}
-
-All project source code, test cases, and supporting scripts are available within the project repository: \textit{https://github.com/RayanAkhtar/MERIT}. 
-Synthetic datasets used for testing and demonstration are included in the repository. No sensitive or personally identifiable information has been shared. 
-Full access is provided to allow replication, evaluation, and verification of results.
+Refer to the following link for the availability of data and materials: \url{https://github.com/RayanAkhtar/MERIT}.
+This repository contains source code, evaluation studies, and supporting scripts.
+Note that the full synthetic evaluation dataset is not included in this repository, we only include the relevant
+datasets for the evaluation studies. This dataset can be found in the \textit{/test\_data} directory in a given evaluation study.
+Full access has been provided to allow replication, evaluation and the verification of results.
+With the sole exception of the author, there is no sensitive or personally identifiable information that has been shared or stored in this 
+repository.
