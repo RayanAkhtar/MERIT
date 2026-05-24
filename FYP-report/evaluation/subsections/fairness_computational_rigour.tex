@@ -1,7 +1,7 @@
 \section{Fairness, Security \& Computational Rigour}
 \label{sec:fairness-computational-rigour}
 
-The previous sections covered the accuracy of MERIT, its fusion logic, explainability and also it's alignment with human experts.
+The previous sections covered the accuracy of MERIT, its fusion logic, explainability and also its alignment with human experts.
 We now move on to the last stage of our evaluation by testing the fairness, security against adversarial inputs and computational 
 scalability of MERIT. Refer to Appendix~\ref{appendix:fairness-scalability-charts} for 
 and \ref{appendix:bias-anonymisation-charts} for the charts associated with this section.
@@ -11,7 +11,7 @@ and \ref{appendix:bias-anonymisation-charts} for the charts associated with this
 
 The previous sections established that MERIT is able to accurately rank candidates based on their CV and public-repository evidence.
 It is also able to explain its decisions, and align with human experts. We now move on to the fairness of MERIT, by testing 
-it's ability to mitigate bias and anonymise candidate data. In this study (\texttt{15-bias\_anonymisation\_audit/}), we will be testing 
+its ability to mitigate bias and anonymise candidate data. In this study (\texttt{15-bias\_anonymisation\_audit/}), we will be testing 
 the efficacy of Blind Mode, a UI feature which redacts PII and other sensitive information from the candidate's data. Blind Mode
 also standardises the layout of the candidate's data, including the CV to ensure a fair comparison between candidates, devoid
 of any visual bias.
@@ -145,9 +145,9 @@ checks, and it is not proof of demographic fairness.
 \subsection{Study 06: Adversarial Stress Testing}
 \label{subsec:study-06-adversarial}
 
-This study provides a small-scale evaluation of MERIT's reaction to a base candide that has been duplicated with 
-different pertubations to simulate different real-world scenarios and adversarial attacks. All candidates in this test are 
-a copy of the same base candidate, \textbf{Honest Candidate}, and the pertubated candidate's name is often derived from
+This study provides a small-scale evaluation of MERIT's reaction to a base candidate that has been duplicated with 
+different perturbations to simulate different real-world scenarios and adversarial attacks. All candidates in this test are 
+a copy of the same base candidate, \textbf{Honest Candidate}, and the perturbed candidate's name is often derived from
 the scenario or attack they represent. \textbf{Honest Candidate} is a junior software engineer with a strong CV and a fair 
 match percentage of 49.8\%. We have the following scenarios:
 \begin{itemize}
@@ -216,18 +216,18 @@ In this case, it is important to note that they are not penalised, but rather th
 signal strength from GitHub.
 
 \textbf{Ghost} is also another response that we believe to be successful, in which a candidate attempts to game the system by keyword stuffing their CV 
-while also providing a public-repository that contradicts their claims. As shown, CV-only partialy penalised due to the keyword-stuffing. What is more important
+while also providing a public-repository that contradicts their claims. As shown, CV-only partially penalised due to the keyword-stuffing. What is more important
 lies in the $\Delta_{\mathrm{honest\_fusion}}$ score, which is $-15.0$. This is due to the Bayesian Fusion updating the Beta Distribution to reflect the lower
 signal strength from GitHub as they are unable to provide evidence of their skills.
 
 \textbf{Partial mitigations.}
 An example of a partially successful instance is the \textbf{Fraud} scenario, in which a candidate successfully inflates their CV-only score through false claims,
-while providing repository ecidence that contradicts this. Unlike \textbf{Ghost}, the candidate overhauls their CV to appear more skilled than they are, rather than
+while providing repository evidence that contradicts this. Unlike \textbf{Ghost}, the candidate overhauls their CV to appear more skilled than they are, rather than
 simply keyword stuffing their CV. As shown, CV-only is increased by $+14.7$ points. When it comes to the Bayesian Fusion, the score is increased by $+3.1$ points.
 This is due to the Bayesian Fusion updating the Beta Distribution to reflect the low signal strength from the candidate's GitHub profile.
 
 \textbf{Documented failure modes.}
-The bigget failure with the Integrity Engine, namely, the \textbf{Smart Squatter} scenario. In this case, the candidate was able to bypass the integrity engine by
+The biggest failure with the Integrity Engine, namely, the \textbf{Smart Squatter} scenario. In this case, the candidate was able to bypass the integrity engine by
 finding a GitHub portfolio that matches the candidate's name, is able to pass the fuzzy name-match, and is able to score a high score when evaluated against that
 specific JD. This is a rare scenario in the real-world, but it is important to note that it is possible.
 
@@ -359,13 +359,3 @@ are introduced. In a real-world context, this isn't a significant concern, but i
 process decides to introduce more data sources to the screening process. The memory overhead of MERIT is shown to be quite negligable after accounting for this, 
 as through the difference in RSS growth between MERIT Explainable between $N = 10$ and $N = 500$ is only $22.7MB$. This is a relatively small amount of memory, 
 and is likely to be negligible in the context of a production system.
-
-\medskip
-\noindent
-The purpose of this section is not to re-validate the mechanisms of MERIT, but to instead understand whether the system is mature enough to be deployed in 
-a profuction environment, under proxy biases, manipulation and scale. Study~15 helped to show that MERIT is able to mitigate bias and anonymise candidate data,
-Study~06 later showed that we can block most forms of naive attempts to game both previously existing ATS systems, as well as MERIT itself with documented
-residual gaming risks. Studies~02 and ~03 both highlighted that MERIT is both spacetime and runtime efficient, with explainability being the main memory premium,
-and Shapley values being the main runtime premium. MERIT is best positioned as an auditable screening assistant that is fast enough for batch triage,
-but also transparent enough for recruiter override. It is also anonymisable enough to reduce some first-pass proxy noise, serving as a fair and responsible system.
-MERIT should not be considered as a fully autonomous or fairness-certified hiring authority, but rather as a tool to aid the recruitment process. 

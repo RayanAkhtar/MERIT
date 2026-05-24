@@ -1,0 +1,19 @@
+\section{Evaluation Scope \& Deployment Limits}
+\label{sec:scope-deployment}
+
+The conclusions made in the sections above are subject to the following constraints, which are detailed in Section~\ref{sec:threats-to-validity}.
+
+\textbf{Evidence base.} For the sake of demonstration, evaluations include synthetic personas and labels that were
+engineered by the author to exhibit specific behaviours.  Adversarial cases (Studies~06, 10) and failure studies (Studies~01, 08) 
+mitigate cherry-picking, but do not replace independent ground truth or hire-outcome validation.
+
+\textbf{Comparators and benchmarks.} The Traditional and Modern AI ATS baselines are not commercial products, and are not open-source alternatives.
+They are both baselines under identical local inputs. Studies~02--03 are single-run on one workstation.
+
+
+\textbf{Prototype readiness.} 
+MERIT is research-grade, not production-ready. It is hard-coded to three sources, and consent-limited live LinkedIn ingestion.
+N+1 queries are acceptable only at tested batch sizes, and there is no end-to-end live PDF evaluation. The safest deployment mode would
+require the removal of LinkedIn ingestion, as well as human-in-the-loop screening, especially when GitHub profiles are empty, or sources disagree.
+Refer to Sections~\ref{sec:data-privacy-gdpr}--\ref{sec:societal-impact} for more details.
+

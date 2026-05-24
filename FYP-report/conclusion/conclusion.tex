@@ -1,6 +1,57 @@
 \chapter{Conclusion}
+\label{ch:conclusion}
 
-This final chapter summarizes the achievements of the MERIT project and provides a final verdict on the efficacy of the system as a verifiable, explainable, and multi-source candidate screening pipeline.
+While Chapter~\ref{ch:reflection} interprets the evaluation in depth, 
+this chapter states the final verdict only.
 
-\input{conclusion/subsections/summary_achievements.tex}
-\input{conclusion/subsections/final_verdict.tex}
+The initial question asked was whether extensible, multi-source and explainable ATS systems could support
+fairer, more reliable technical screenings compared to single-source rigid black-box alternatives. 
+The motivation, was to move beyond CV-only screening, with its parsing fragility, self-report bias and opaque
+ATS rankings. Instead we pivot towards demonstrated evidence and recruiter-visible scoring. MERIT achieved
+this as a working end-to-end prototype (from ingestion, to scoring, to explainability) and as an evaluation 
+program of fifteen traceable studies. Given the evidence in Chapter~\ref{ch:evaluation}, the answer is a 
+qualified yes for research-prototype feasibility, however, a clear no for autonomous production deployment, as
+mentioned in Section~\ref{sec:future-work-roadmap}.
+
+To anchor this judgement, consider the high-discrimination cohort of Study~07 ($n=10$), where MERIT achieved the highest observed
+expert rank agreement ($\rho = 0.697$, $p = 0.025$) and recovered candidates whom CV-only 
+baselines discarded when GitHub demonstrated role-relevant work (Jordan Smith, Study~01B). However, we should
+still note that under deliberate CV--GitHub dissonance, MERIT goes strongly against the expert consensus (Study~10).
+MERIT, therefore, changes who is surfaced in favourable conditions, it does not yet guarantee correct ranking in all conditions.
+
+MERIT is best used as an \textbf{auditable screening assistant}, in which recruiters inspect per-source evidence, treat
+ranks as hypothesis, and override the engine's decisions where necessary. It may fail when treated as an oracle,
+especially under conflicting sources, missing GitHub history, and role contexts that the metric model does not encode.
+
+
+Against the three pillars:
+
+\begin{itemize}
+  \item \textbf{Extensible---yes, with caveats.} JD-driven metric suggestion and recruiter-overridable weights
+  are implemented and partially validated (Studies~04, 05, 13). Ingestion error can still propagate into the
+  rubric; configurability is the strength, document understanding the weakness.
+  \item \textbf{Multi-source---yes, conditionally.} Fusion recovers hidden talent and penalises several fraud
+  patterns when public evidence exists (Studies~01B, 07, 14). It also introduces open-source visibility bias,
+  weak handling of empty repositories, and rank collapse under dissonance. Evidence-first ranking is the
+  strength; missing-data and conflict policy the weakness.
+  \item \textbf{Explainable---yes, but not sufficient for trust.} Shapley attributions, audit trails, and Blind
+  Mode are implemented and tested (Studies~11, 14--15), yet transparent scores can anchor automation bias, and
+  exact explainability does not scale cheaply past a few sources (Study~02). Contestability is the strength, however, 
+  cost, as well as incomplete de-biasing serve as weaknesses.
+\end{itemize}
+
+\textbf{Deployment.} MERIT should not auto-reject candidates, claim fairness certification, or assert improved
+hire quality without outcome-linked field studies (Section~\ref{subsec:future-validation}). Those boundaries are
+developed in Chapter~\ref{ch:reflection}.
+
+\textbf{Contribution.} 
+MERIT demonstrates a coherent, evaluated alternative to the current CV-only rigid black-box ATS design. 
+We document failures as well as successes, and give recruiters evidence to disagree with the machine.
+It is critical to also state what was \emph{not} shown: parser $F_1$, Spearman~$\rho$, and usability scores
+are feasibility indicators. They cannot serve as proof of improved hire quality, as they are not outcome-linked.
+
+Taken together, MERIT meets its FYP aim of designing and validating a multimodal screening architecture. 
+It does not yet meet the bar for unsupervised deployment in live hiring. That is a worthwhile foundation for
+human-in-the-loop technical recruitment, provided the limitations in Chapter~\ref{ch:reflection} are treated as
+release blockers, not footnotes. Critical reflection and a prioritised roadmap appear in
+Chapter~\ref{ch:reflection}.

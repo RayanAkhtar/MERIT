@@ -1,7 +1,7 @@
 \section{Threats to Validity}
 \label{sec:threats-to-validity}
 
-The evaluation in this chapter is designed to be both comprehencive and rigorous, however, no emperical study
+The evaluation in this chapter is designed to be both comprehensive and rigorous, however, no empirical study
 is without its limitations. In this section, we cover any threats to validity that may affect the validity of
 our results. Following the established taxonomy of Wohlin et al.~\cite{wohlin_threats}, we follow the same categorisations.
 We cover construct validity, internal validity, external validity and conclusion validity. Across these fifteen evaluation 
@@ -68,20 +68,20 @@ rather than by confounding factors.
 
 \textbf{Simulated Baseline Systems.}
 The ``Modern AI ATS'' and ``Traditional ATS'' baselines serve as comparators to MERIT (Full) and MERIT (CV-Only). They are
-not proprietary commercial products, nor open-source alternatived. They are both in-repository baselines under identical local inputs.
+not proprietary commercial products, nor open-source alternatives. They are both in-repository baselines under identical local inputs.
 Reported speed-ups (e.g.\ $\approx 46\times$ at $N=500$) compare algorithm families upon the author's workstation. As such, it does
 not account for vendor SLAs, API latency, or managed-cloud deployments. Traditional ATS is keyword-counting only and may understate
 modern vendor semantic features.
 
 \textbf{Single-Run and Single-Machine Benchmarks.}
 Studies~02--03 record one wall-clock and memory sweep per configuration on a single consistent development workstation. The specifications
-of this workstation are discussed in Section~\ref{subsec:studies-02-03-scalability}.. Note
+of this workstation are discussed in Section~\ref{subsec:studies-02-03-scalability}. Note
 that there are no confidence intervals, cross-hardware replication and repeated trials. There is a likelihood of shifts in terms of 
 absolute seconds or MB figures on rerun. We deem these shifts to be relatively insignificant due to the general pattern of runtime and
 memory overhead being relatively consistent across the different configurations.
 
 \textbf{Fixed HCI Protocol Order (Study~14).}
-In the HCI study, Stage~1 always preceeds Stage~2, and as such, the reversals and confidence gains may partly reflect order effects rather
+In the HCI study, Stage~1 always precedes Stage~2, and as such, the reversals and confidence gains may partly reflect order effects rather
 than explainability alone.
 
 \textbf{Adversarial Scenario Construction.}
@@ -90,7 +90,7 @@ not account attack sophistication across a real applicant pool. The residual fai
 are documented as high-effort edge cases, but their base rate in live hiring is unknown.
 
 \textbf{Cherry-Picked Failure and Success Cases.}
-Studies~01 and ~10 both include intentionally engineered failure and success naritives in order to aid explaination. However, such
+Studies~01 and ~10 both include intentionally engineered failure and success narratives in order to aid explaination. However, such
 narratives may shadow the general pattern of the engine's performance, and as such, they may not be representative of the general population.
 Please refer to Section~\ref{subsec:study-10-spearman-dissonance} and 
 Section~\ref{subsec:study-01a-algorithmic-ablation} for more details.
@@ -101,7 +101,7 @@ Section~\ref{subsec:study-01a-algorithmic-ablation} for more details.
 External validity covers the extent to which our findings may be generalised beyond the conditions of these studies.
 
 \textbf{Small Cohort Sizes and Discrete Outcomes.}
-Due to the small cohort sized of $n=10$ candidates per JD, the Spearman rank correlation coefficient $\rho$ is quite volitile,
+Due to the small cohort sized of $n=10$ candidates per JD, the Spearman rank correlation coefficient $\rho$ is quite volatile,
 and $p$-values are also sensitive to one rank swap. Because of this, we cannot make any claims about the generalisability of the results.
 In a similar vein, Study~15 employs $n=4$ evaluators per arm, and four candidates, so shortlist rates move in 25\% steps, and
 cannot support most claims. Study~14's $N=5$ and Study 13's $N=4$ cannot represent global recruiter populations.
@@ -154,7 +154,7 @@ Despite the limitations we note above, this chapter still provides convergent ev
 data. We cannot treat this as a proof of production readiness, however, we can frame three bounded claims that follow directly from
 the studies.
 
-\textbf{The use of evicence.}
+\textbf{The use of evidence.}
 In the emulated JSON cohorts (Studies~01, 06, 07--10), MERIT's multi-source fusion and integrity checks are shown to move 
 rankings in directions that match the design's intent. An example of this is Jordan Smith, a candidate who is usually penalised 
 by CV-only systems, however, is uplifted when GitHub is included. Another example is the lowering of scores when presented with
@@ -172,7 +172,7 @@ For the benchmark studies (Studies~02--03), MERIT is shown to remain within sub-
 capabilities of MERIT (all sources and full explainability). The overall pattern of runtime and memory overhead is still
 enough to support a feasibility argument for batch screening.
 
-We do not claim that MERIT is fairness-certified, nor do we with to presentit as a fully autonomous hiring authority.
+We do not claim that MERIT is fairness-certified, nor do we with to present it as a fully autonomous hiring authority.
 Future work would be needed to address these limitations, such as counterbalanced HCI trials, larger independent recruiter panels,
 repeated benchmarks with variance reporting, end-to-end PDF ingestion tests, and field studies linking MERIT outputs to interview
 and hire outcomes. MERIT is best described as an \textbf{auditable screening assistant}. It's purpose is to help recruiters

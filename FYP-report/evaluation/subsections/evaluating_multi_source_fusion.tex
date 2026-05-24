@@ -16,7 +16,7 @@ a Modern AI enhanced ATS, MERIT with only CV signals, and then finally MERIT wit
 we specifically refer to the integration of GitHub and LinkedIn signals. With the same ATS setup and candidate pool, we will
 then proceed with a data ablation study, where we will point out the success and failure cases of the model.
 
-These studies assumes that candidate CVs were successfully extracted without error. These evaluations run on emulated, 
+These studies assume that candidate CVs were successfully extracted without error. These evaluations run on emulated, 
 synthetic candidate JSON profiles created to systematically test specific edge cases, bypassing the PDF extraction layer 
 of MERIT (Stage 1). This allows us to isolate the multi-source Bayesian fusion and other scoring engines from any parsing noise.
 By assuming perfect extraction, we establish a clean mathematical baseline so we can verify that the scoring logic, temporal decay
@@ -209,7 +209,7 @@ Figure~\ref{fig:rank-displacement-successes} (Appendix~\ref{appendix:rank_displa
 \subsection{Study 01B: Multi-Source Data Ablation Study}
 \label{subsec:study-01b-data-source-ablation}
 
-This study will cover the critical trade-offs present in a system that doesnt just follow claimed evidence but also takes
+This study will cover the critical trade-offs present in a system that doesn't just follow claimed evidence but also takes
 into account demonstrated evidence. MERIT aims to increase the amount of information to take into account for candidate evaluation
 by considering LinkedIn and Github alongside CVs.
 
@@ -233,7 +233,7 @@ The achilles heel of this approach is that merit is \textbf{heavily dependent} o
 In this case, we point out Carl Corp, a candidate who's data on GitHub is essentially empty, since most of his commits are towards
 private repositories. As a result, he scores low for GitHub signals, and is unable to demonstrate his expertise in the programming languages
 required by the JD. This results in a fall from Rank \#2 to Rank \#10 between the Modern AI ATS and Full MERIT evaluations.
-This "Propriety Data Gap" is a critical limitation of MERIT that will signifiantly, and unfairly hinder candidates that are not able
+This "Propriety Data Gap" is a critical limitation of MERIT that will significantly, and unfairly hinder candidates that are not able
 to share their evidence of code, and will unfairly advantage candidates who have less experience but are able to share their code.
 This represents a key trade-off in the design of MERIT. While we are now able to avoid some forms of bias due to the multi-source nature
 of the system, we are now introducing a new form of bias based on the accessibility of a candidate's data. This raises the question of

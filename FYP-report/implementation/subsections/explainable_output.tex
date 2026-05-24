@@ -9,13 +9,13 @@ Theory for data source contributions both to the candidate's final score, as wel
 \subsection{Probabilistic Scoring \& Confidence Intervals}
 As mentioned in the previous chapter, Bayesian Evidence Fusion not only provides an expected value, but also a variance, in other words,
 the certainty of that candidate's score. Two candidates may have a similar expected score for a metrics, but could have vastly different
-levels of confidence due to the sources of information for that metric. For example, one candiate may have verified signals across multiple
+levels of confidence due to the sources of information for that metric. For example, one candidate may have verified signals across multiple
 sources, while another candidate may only have a single, unverified claim from a low-trust source. It is important that a recruiter is able
 to know of this, and in a simple manner.
 
 We defined how variance is computed in section 4.3.4. We build upon this by now computing the confidence interval for that candidate's score.
 Firstly, we calculate the standard deviation as $\sigma = \sqrt{\text{Var}(\theta)}$ to quantify this uncertainty. In our implementation of
-MERIT, we avoid displaying confidence intervals to avoid cognitive overload for the recruiter. Instead, we our confidence in a candidates
+MERIT, we avoid displaying confidence intervals to avoid cognitive overload for the recruiter. Instead, we express our confidence in a candidates
 score by outputting a label: "High Confidence", "Medium Confidence", or "Low Confidence".
 
 We define "High Confidence" as a standard deviation $\sigma < 0.20$, "Medium Confidence" as $0.20 \le \sigma < 0.35$, and

@@ -1,6 +1,28 @@
-The rising number of technical roles has led to a surge in the volume of applicants, making early-stage candidate screening a challenge. 
-Traditional CV-based evaluations are cognitively demanding and prone to bias. 
-Automated systems have been introduced to challenge these issues, however they often rely on rigid criteria, ignore alternative demonstrations of skill, and reproduce historical biases. 
-To address these limitations, this project proposes a multimodal screening system, M.E.R.I.T (Multi-source Employment Ranking \& Insight Tool), hereafter referred to as MERIT, which combines CV data with verified behavioural and proficiency-based evidence from sources such as GitHub and LinkedIn.
-MERIT evaluates candidates based on observable performance, mitigates bias, allows for customisable role-specific metrics and also provides a transparent scoring system with detailed reporting. 
-Through the integration of multiple sources of evidence, as well as supporting data-driven decision-making, MERIT enhances the reliability, fairness and efficiency of technical recruitment.
+Technical recruitment faces the challenge of growing applicant volumes. The result of this is cognitively
+demanding CV reviews, as well as the use of automated screening tools that are often rigid, opaque and 
+dependent on the CV as the sole source of information. This paper presents \textbf{M.E.R.I.T}
+(Multi-source Employment Ranking \& Insight Tool), referred to as MERIT throughout the rest of the report.
+MERIT is a prototype screening pipeline that combines the curriculum vitae (CV) and job description (JD) 
+ingestion with evidence from GitHub and LinkedIn, and exposes candidate rankings through glass-box explanations.
+
+MERIT's design is split into three core concepts, tying into the three stages of a screening pipeline.
+The first core concept is \emph{extensible} metric extraction, which aims to 
+allow recruiters to define their own metrics based on the job description.
+The second core concept is \emph{multi-source} fusion, which aims to combine 
+evidence from multiple sources to provide a detailed view of a candidate.
+The third core concept is \emph{explainable} scoring, which aims to give a more 
+transparent and interpretable explanation for the candidate's ranking.
+
+The results demonstrate that multi-source fusion has the capacity to recover qualifies candidates who may
+have been overlooked by CV-only baselines when public work samples strongly support claimed skills. This is evidenced
+by the highest observed expert rank correlation in one high-discrimination cohort (Study~07, $n=10$, Spearman $\rho = 0.697$, $p < 0.05$).
+Results also point towards the effectiveness of explainability, with a formative glass-box pilot ($N=5$) indicating recruiters overturn
+misleading shortlists when weak evidence or dishonest behaviour is revealed. However, these achievements do not
+come without limitations. Due to the unstructured nature of CVs and JDs, we are subject to parsing errors and noise.
+We also observe how multi-source fusion often penalises empty data sources, and may also deviate significantly
+from expert orderings under adversarial source conflict.
+
+Therefore, MERIT is best characterised as an \textbf{auditable screening assistant} 
+for human-in-the-loop review, rather than a fairness-certified or autonomous hiring authority.
+We document both the successes and the failures in in order to support future work towards various research questions.
+

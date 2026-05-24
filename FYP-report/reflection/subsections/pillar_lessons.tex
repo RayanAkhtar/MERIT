@@ -1,0 +1,32 @@
+\section{Design Lessons by Pillar}
+\label{sec:pillar-lessons}
+
+Section~\ref{sec:objectives-retrospective} summarises the evaluation outcomes. This section 
+serves as a record for the design lessons from building and testing MERIT. It covers how the implementation architecture should be 
+understood, and also the where evaluation exposed the gaps that will be addressed later in Section~\ref{sec:future-work-roadmap}.
+It is not a list of features, but rather a record of design decisions and the reasoning behind such choices.
+
+\subsection{Pillar 1: Treat ingestion as lossy}
+\label{sec:pillar1-reflection}
+
+Study~04 reveals the reasoning behind this, more specifically, the fact that coordinate-based PDF extraction often comes with
+a wide variety of flaws and a margin for error. No two CVs are the same, and even aspects such as formatting can greatly 
+affect the accuracy of extraction. No amount of dictionary skill matching can overcome lost employment blocks. Thus, we 
+must treat unstructured data ingestion as lossy, and provide a control surface for recruiters to manually override the engine's decisions.
+In this case, we considered LinkedIn as a fallback for corrupted CV text, not as optional enrichment, a design choice that only became fully
+clear once parsing was audited.
+
+\subsection{Pillar 2: Missing data $\neq$ low skill}
+\label{sec:pillar2-reflection}
+
+The lesson here is not that multi-source fusion is missing, but rather that the current scoring policy
+treats absent GitHub activity as weak/no evidence, rather than a potential signal of missing data. This is
+evidenced in Study~01B, where Carl Corp is penalised for empty GitHub despite significant tenure.
+Research into missing data policies is therefore a promising direction for future work.
+
+\subsection{Pillar 3: Explain conflict, not only attribution}
+\label{sec:pillar3-reflection}
+Glass-box output is core to MERIT's design, from the implementation of Shapley values to the integration of Blind Mode.
+Negative source contributions and integrity-driven reversals show the Glass-Box working as intended. However, the key
+lesson we need to note is that we must understand the limits of what was shipped. Study~10 shows that the system can still
+accompany a wrong rank unless we are able to surface dissonance appropriately.

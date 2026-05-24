@@ -182,8 +182,8 @@ The objective of this study is to measure both the decision and confidence calib
 of the explainability layer. We cover three central hypotheses:
 
 \begin{itemize}
-    \item \textbf{Hypothesis 1 (Decision Calibration):} Access to the Glass-Box XAI audit trail will significantly
-          increase the rate at which recruiters reverse incorrect screening decisions for adversarial candidates (such as
+    \item \textbf{Hypothesis 1 (Decision Calibration):} Access to the Glass-Box XAI audit trail will increase the rate at 
+    which recruiters reverse incorrect screening decisions for adversarial candidates (such as
           keyword-stuffers and identity squatters) and "hidden gems" (like high-potential candidates with low tenure).
     \item \textbf{Hypothesis 2 (Confidence Calibration):} Recruiters will exhibit a higher alignment between their
           screening confidence and the empirical evidence, resulting in increased confidence for verified candidates and
@@ -210,8 +210,10 @@ They are also asked to rate their confidence, along with an explanation of how t
 \subsubsection{Key Quantitative Metrics and Empirical Results}
 This pilot user trial includes 5 participants, consisting of 2 professional recruiters ($R_1, R_2$) with extensive experience in
 software development talent acquisition, and 3 technical peers ($P_1, P_2, P_3$), representing MEng Computing
-students at Imperial College London. These participants are familiar with the technical recruitment process and have
-undergone multiple technical projects and internships.
+students at Imperial College London; three of these peers were acquainted with the author. 
+These participants are familiar with the technical recruitment process and have undergone multiple technical projects and internships. 
+Given $N=5$, we treat this as a formative pilot and report descriptive statistics, inferential tests are 
+exploratory only (Section~\ref{sec:threats-to-validity}).
 
 To prevent participant fatigue, we present each evaluator with only 4 synthetic candidates to evaluate. Unlike the personas
 mentioned in previous sections, these candidates were designed in a real-world scenario. We used real candidate information
@@ -246,8 +248,8 @@ We present the quantitative results of this trial in Table~\ref{tab:hci-trial-re
     }
 \end{table}
 
-This pilot user study successfully shows that the three central hypotheses of the explainability layer are validated
-under realistic human hiring constraints. We detail the results below:
+This pilot provides directional support for all three hypotheses under realistic hiring constraints, 
+none are confirmed at inferential strength given $N=5$. We detail the results below:
 
 \subsection*{Quantitative Results}
 
@@ -274,32 +276,23 @@ Instead, they rejected him based on the fact that he showed a lack of integrity 
 can be used to identify and reject participants who are not a good fit for the company culture, even if they are technically skilled.
 
 
-\subsubsection{Trust Calibration (Hypothesis 2)}
-Once evaluators were presented with the Glass-Box MERIT interface, we observed a significant positive confidence shift ($\Delta C$)
+\subsubsection{Confidence Calibration (Hypothesis 2)}
+Once evaluators were presented with the Glass-Box MERIT interface, we observed a positive confidence shift ($\Delta C$)
 across all profiles. This was particularly notable in the case of Moinecha Ramos-Horta, where her average confidence
 rose from $3.80$ (Stage 1) to $4.60$ (Stage 2), an increase of $0.80$. In a similar fashion, confidence for Aaron Mohammed
-also increased significantly, rising from $3.20$ (Stage 1) to $4.80$ (Stage 2), an increase of $1.60$, which was
+also increased, rising from $3.20$ (Stage 1) to $4.80$ (Stage 2), an increase of $1.60$, which was
 due to the veto penalty that stemmed from his dishonesty, giving the evaluators the confidence to reject him with high conviction.
 
-To formally test the significance of these confidence shifts, we conducted a two-tailed paired-samples t-test comparing
-pre-exposure and post-exposure confidence scores across all 20 participant evaluations (5 participants x 4 profiles).
-The analysis revealed a highly statistically significant confidence shift, $t(19) = -5.60, \ p < 0.001$ ($p = 2.14 \times 10^{-5}$), indicating
-that the confidence shifts were statistically significant and not due to random chance. More specifically, the average confidence across
-all 20 evaluations increased from $3.75$ (Stage 1) to $4.45$ (Stage 2), representing a $0.70$ point increase. This
-mathematically validates Hypothesis 2, proving that the Glass-Box attributions build quantifiable decision conviction.
+The average confidence across all 20 profile-level observations (5 participants $\times$ 4 candidates) increased from $3.75$ 
+(Stage 1) to $4.45$ (Stage 2), a mean increase of $0.70$ on a 5-point scale. A paired $t$-test on these rows yields 
+$t(19) = -5.60$, $p < 0.001$, but the rows are not independent (fixed Stage~1$\rightarrow$Stage~2 order, repeated participants, 
+acquaintance bias among peers). We therefore report this as descriptive evidence for Hypothesis~2, not confirmatory inference.
 
-\subsubsection{Trust Calibration (Hypothesis 3)}
+\subsubsection{Usability (Hypothesis 3)}
 To evaluate the usability of MERIT's glass-box architecture, we followed the standard System Usability Scale (SUS) survey \cite{brooke1996sus}.
 MERIT achieved an average SUS score of \textbf{81.50} out of 100, with individual scores ranging from 77.5 to 85.0.
-According to the Bangor et al. acceptability scale, this corresponds to an "Excellent" rating (Grade A). 
-Although our evaluator pool size ($N=5$) is modest, this sample size is well-supported by established usability 
-theory. Jakob Nielsen's mathematical model of usability discovery \cite{nielsen1993mathematical} demonstrates that 
-a sample of five evaluators is sufficient to identify approximately 85\% of interface usability issues.
-
-Although SUS was ``Excellent'' (81.5), the $N=5$ convenience sample, including three peers acquainted with the author, introduces
-courtesy bias (Section~\ref{subsec:construct-validity}). Stage~1 always precedes Stage~2, and the paired $t$-test rows are not
-independent across candidates (Sections~\ref{subsec:internal-validity}, \ref{subsec:conclusion-validity}); we therefore treat
-inferential statistics as exploratory.
+According to the Bangor et al. acceptability scale, this corresponds to an ``Excellent'' rating (Grade A) at face value.
+With $N=5$, it indicates interface feasibility only, not product-market validation (Section~\ref{subsec:construct-validity}).
 
 \subsubsection{Qualitative Trust \& Feedback Analysis}
 The qualitative feedback gathered from the evaluators highlighted how MERIT's explainability layer resolves the standard
@@ -331,6 +324,5 @@ Technical Recruiter $R_1$ added regarding the identity mismatch veto:
         different name, there is no point looking any further. It saved me a lot of wasted phone screening time."}
 \end{quote}
 
-Collectively, these results demonstrate the success of MERIT's explainability pillar. Both the game theoretic analysis in Study 11
-and the qualitative feedback from the user study indicate that the explainability layer is both theoretically sound and highly effective
-in practical, human-in-the-loop technical recruitment.
+Collectively, these results provide formative support for MERIT's explainability pillar. Study~11 confirms theoretical consistency. 
+This pilot suggests the layer may aid practical, human-in-the-loop review, but a larger recruiter panel is needed before stronger claims.

@@ -21,7 +21,7 @@ The candidate CV is used as a template for synthetic data generation, and is als
 
 To emulate the real-world hiring process, we will have between one and three recruiters decide on a rank ordering of the candidates.
 For this study, to ensure realistic results, we do not anonymise the candidates, and instead use their real names.
-The concensus is then encoded as an ordered list of CV filenames in \texttt{human\_rankings.txt}, where rank 1 is the best match
+The consensus is then encoded as an ordered list of CV filenames in \texttt{human\_rankings.txt}, where rank 1 is the best match
 for the job, while rank 10 is the worst.
 
 For the ATS platforms, we feed in the Job Description and candidate CVs to produce a rank ordering of candidates, based on 
@@ -33,7 +33,7 @@ with the following formula:
 \end{equation}
 
 We report the correlation coefficient and two-sided $p$-value from the standard test implemented in the evaluation harness 
-(\texttt{scipy.stats.spearmanr}), with $n = 10$ for all four studies. The four engines are compared on identical inputs,
+(\texttt{scipy.stats.spearmanr}), with $n = 10$ for all four studies. With only ten ranks, $\rho$ is sensitive to a single swap; $p$-values are reported for completeness but should be read as exploratory. The four engines are compared on identical inputs,
 like with the previous studies on candidate personas. Once again, the engines are as follows: \textbf{Traditional ATS}, 
 \textbf{Modern AI ATS}, \textbf{MERIT (CV Only)}, and \textbf{MERIT (Full)} (CV plus LinkedIn and GitHub enrichment).
 
@@ -48,8 +48,7 @@ while the underlying coefficients are recorded in Table~\ref{tab:spearman-study-
 
 \begin{table}[htbp]
     \centering
-    \caption{Spearman correlation with expert consensus (Study~07, $n = 10$). MERIT (Full) achieves the strongest 
-    agreement and is statistically significant at $p < 0.05$.}
+    \caption{Spearman correlation with expert consensus (Study~07, $n = 10$). MERIT (Full) achieves the highest $\rho$ among engines in this cohort ($p = 0.025$).}
     \label{tab:spearman-study-07}
     \vspace{1.5ex}
     \small
@@ -133,7 +132,7 @@ act as a tie-breaker when the CV-only scores are too close to call.
 We can observe tight score clustering in the rankings 
 (found in \texttt{evaluation/09-spearman\_peer\_competition/output/detailed\_rankings.csv}), which explains the weak 
 CV-only $\rho$. The additional sources of information are able to act as a tie-breaker when the CV-only scores are too close to call.
-While this case doesnt highlight MERIT (Full) as the best performing engine, it is still able to achieve a strong alignment with
+While this case doesn't highlight MERIT (Full) as the best performing engine, it is still able to achieve a strong alignment with
 the expert consensus and put forward a strong case for the use of additional sources of information to help with tie-breaking.
 
 \subsection{Study 10: Signal dissonance and empirical failure mode}
