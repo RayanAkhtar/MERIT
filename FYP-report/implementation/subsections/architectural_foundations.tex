@@ -18,16 +18,18 @@ MERIT employs a decoupled microservice architecture to separate the
 concerns of data ingestion, job configuration, and the presentation of results.
 We used Flask (Python) as a backend for data ingestion and fusion due to its rich ecosystem
 of python libraries such as NLTK, Spacy, and Scikit-learn.
-Next.js was selected for the frontend to enable a high-performance, interactive interface
-for "Glass-Box" visualisations.
+To ensure fast, prototyping and development, we used TypeScript for the frontend, 
+with React and Next.js for the UI. Note that our choice of tech stack is not mandatory, it is 
+just a recommendation for fast, scalable and maintainable development.
 
 A relational PostgreSQL store (via Supabase) was selected to enforce data integrity,
 ensuring that every ranked result is linked via foreign keys to a specific,
 immutable recruiter configuration.
 
 \subsection{Reliability \& Scalability}
-During the development of MERIT, we encountered scalability and reliability challenges.
-We will now discuss the solutions we implemented to address these obstacles.
+While prototyping MERIT, we encounntered many major obstacles that provided 
+significant obstacles to the development of the system. Below, are the two 
+most significant challenges that we faced:
 
 \subsubsection{The N+1 Query Bottleneck}
 A significant scalability challenge was the \textbf{N+1 query bottleneck}. When
@@ -38,10 +40,9 @@ $O(N)$ to $O(1)$. The benefits of this runtime optimisation are significant when
 a large candidate pool, which will be almost always the case in real-world
 applications.
 
-\subsubsection{Global Error Handling and Validation}
-A similar challenge that persisted throughout the development of
-MERIT was reliability. This issue often stemmed from unstructured data sources, more specifically
-CVs and JDs. To address this reliability challenge, we introduced global Flask middleware in order
-to intercept exceptions across MERIT's pipeline. We follow this up with strict JSON schema validation
-at the data ingestion boundary. This approach ensures that only verified signals enter the
-multi-source fusion engine, maintaining the integrity of the explainable audit trail.
+\subsubsection{Global Error Handling}
+Due to the lack of type safety in python, we encountered numerous runtime errors throughout prototyping.
+One of the most significant challenges we faces was in the parsing of unstructured data (CVs and JDs).
+Our approach to overcome this was in the form of the introduction of global Flask middleware to
+intercept any exceptions throughout the backend pipeline. Followiung this up with strict JSON schema validation ensures
+that only verified signals enter the multi-source fusion engine. This helped ensure the integrity of the explainability layer.

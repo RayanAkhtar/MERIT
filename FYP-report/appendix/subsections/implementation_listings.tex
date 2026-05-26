@@ -1,0 +1,53 @@
+\chapter{Implementation Listings}
+\label{appendix:implementation_listings}
+
+Representative configuration excerpts and schema fragments referenced in Chapter~\ref{ch:implementation}.
+
+\subsection{Truncated Result Payload Schema}
+
+\begin{moderncode}[title={Truncated Result Payload Schema}]
+  \label{lst:payload_schema}
+  \begin{lstlisting}[language=json]
+{
+  "overall_score": 0.82,
+  "calculation_summary": {
+    "formula": "SUM(MetricScore * Weight) / SUM(Weights)",
+    "logic": "High-confidence match driven by verified GitHub activity."
+  },
+  "metrics": {
+    "req_python": {
+      "score": 0.91,
+      "breakdown": [{
+        "item": "Python Proficiency",
+        "notes": "Consensus achieved across multiple sources.",
+        "source_details": [
+          {
+            "source": "GitHub",
+            "explanation": "Verified in 4 repositories.",
+            "trust": 0.9
+          },
+          {
+            "source": "CV",
+            "explanation": "Found in skills list.",
+            "trust": 0.5
+          }
+        ]
+      }]
+    }
+  }
+}
+\end{lstlisting}
+\end{moderncode}
+
+\subsection{Keyword Stuffing Penalty Logic}
+
+\begin{moderncode}[title={Keyword Stuffing Penalty Logic}]
+    \label{lst:stuffing_logic}
+    \begin{lstlisting}[language=json]
+"ANTI_STUFFING": {
+    "OCCURRENCE_LIMIT": 5,          // Repetitions allowed per CV
+    "PENALTY_PER_OCCURRENCE": 0.05, // 5% reduction per excess
+    "MAX_TOTAL_PENALTY": 0.60       // Penalty cap
+}
+\end{lstlisting}
+\end{moderncode}

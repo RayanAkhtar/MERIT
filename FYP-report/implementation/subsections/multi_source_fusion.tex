@@ -23,6 +23,34 @@ For both classes of metrics, the system may take into account multiple data sour
 (such as CV and LinkedIn) while other sources may be evidence-driven (such as GitHub). After reducing these signals to a single score,
 we perform a weighted average of all the metrics to compute the final (match) score.
 
+\subsection{Semantic Skill Matching}
+\label{subsec:semantic-skill-matching}
+
+One of the biggest issues with keyword-matching screening systems lies in their ridgidity.
+Suppose a candidate applied to a role where "SQL" is required, however, the candidate only uses
+"PostgrSQL" or "Postgres" in their CV. This candidate would likely achieve a zero for the "SQL" metric.
+This is where semantic skill matching (or bridging) comes in. When there are no exact matches,
+we perform a cosine similarity operation, using the \textit{SentenceTransformers} library with the 
+\textit{all-MiniLM-L6-v2} model. We selected this model due to its efficiency and accuracy regarding
+technical terminology. 
+
+For this model, we encode the skills into a 384-dimensional vector space, and then compute cosine
+similarity.
+
+\begin{equation}
+    \text{similarity} = \cos(\theta) = \frac{\mathbf{A} \cdot \mathbf{B}}{\|\mathbf{A}\| \|\mathbf{B}\|}
+\end{equation}
+
+To be considered as a semantic bridge, there must be a cosine similarity score of $\geq 0.50$ between
+the extensible metric and the skill mentioned in the candidate CV. This threshold was determined 
+through iterative testing. The threshold is permissive enough to match terms such as "SQL" and "PostgreSQL",
+while also remaining strict enough to reject other, unrelated terms such as "Python" and "JavaScript".
+Whenever there is a semantic bridge, we also pass this information to the frontend to let the recruiter know
+of both extensible metric, as well as the skill that was bridged against it, to ensure full transparency.
+This way, in the event of a false-positive, the recruiter can easily identify and correct it.
+
+
+\input{implementation/high_level_system_design/semantic_skill_scoring_diagram.tex}
 
 \subsection{Integrity Layer}
 A common flaw in legacy ATS platforms lies in their vulnerability to adversarial attacks, such as
@@ -44,9 +72,12 @@ loss grows with longer periods of non-use \cite{arthur1998}. Industry research p
 become outdated far more quickly than they once did \cite{ibm2019skillsgap,wef2020futurejobs}. Traditional ATS platforms fail to account for this since
 there is often no significant evidence to uncover when the candidate last used the skill in question.
 
-To address this concern, MERIT implements an exponential decay model for technical skills, inspired by classical models of memory
-retention \cite{ebbinghaus1885memory}. For every skill signal extracted, its base value is penalised based on the time elapsed
-since it was last utilised. The decayed signal strength, $\mathcal{S}_{\text{decay}}$, is calculated as:
+MERIT attepts to overcome this issue through the addition of an exponential skill decay model for extensible metrics (e.g. "Python").
+We apply this to the GitHub signal, as it is the most reliable signal for demonstrating evidence of a candidate's skill.
+For other signals, it is usually harder to find a point to start the decay from, but for GitHub, we can determine it from the last
+point of significant activity. In our backend, we get the repositories' language distribution, spread it across it's active years and use that
+to calculate the last point of significant activity, using that year as the start of the decay. Subtracting this value from the current
+date nets us with the $\Delta t$ value in the decay formula:
 
 \begin{equation}
   \mathcal{S}_{\text{decay}} = \mathcal{S}_{\text{base}} \cdot e^{-\lambda \Delta t}
@@ -55,8 +86,7 @@ since it was last utilised. The decayed signal strength, $\mathcal{S}_{\text{dec
 Where:
 \begin{itemize}
   \item $\mathcal{S}_{\text{base}}$ is the initial magnitude of the extracted skill signal.
-  \item $\Delta t$ is the time elapsed (in years) since the end date of the relevant
-        experience or repository commit.
+  \item $\Delta t$ is the time elapsed (in years) since the end date of the relevant activity.
   \item $\lambda$ is the decay constant, determining the rate of skill degradation.
 \end{itemize}
 
@@ -71,21 +101,26 @@ potentially obsolete capabilities.
 
 
 \subsection{Evidence-Based Signal Aggregation}
-When it comes to evaluating a candidate, there are two forms of evidence that we can use to evaluate them.
-The first form of evidence is \textbf{Claimed Evidence}, where the candidate explicitly declares to possess
-a certain skill or experience. This form of evidence is commonly found in CVs and LinkedIn profiles, and is often
-the only form of evidence available to traditional ATS platforms. A major limitation to this form of evidence lies in
-the potential for self-embellishment, as candidates may be incentivised to overstate their abilities to
-secure a position.
+The reasoning for MERIT's multi-source design is to be able to consider different sources of candidate data,
+those that are self-reported by the user, and those that the user has actually been able to demonstrate
+proficiency in. MERIT splits these into two different forms of evidence, \textbf{Claimed Evidence} and 
+\textbf{Demonstrated Evidence}.
 
-To account for this, we turn to the second form of evidence, \textbf{Demonstrated Evidence}. This form of evidence is
-derived from auditable, historical actions, specifically GitHub repositories. To provide an example, a candidate may
-claim on their CV that they possess expertise in Python. However, this claim can then be challenged by the
-presence of their GitHub repositories, specifically looking at the candidate's general language distribution throughout their
-GitHub profile. Demonstrated evidence is significantly harder to game, as it requires a candidate to
-possess actual experience in a skill to demonstrate it.
+\textbf{Claimed evidence} refers to a self-declared proficiency in a skill, programming language or framework.
+This form of evidence is commonly found in CVs and LinkedIn profiles due to the user being responsible
+for their own claims. This is the only form of evidence usually considered by ATS scoring engines, making
+these systems biased towards candidates who are able to present their skills in a better light. Self-embellishment
+if often never punished, as it is difficult to verify, but this is where the beauty of MERIT comes into play,
+with its second form of evidence.
 
-This formal separation of evidence is key to MERIT's "Evidence-based evaluation" ethos, and will play a key role in Bayesian Fusion.
+\textbf{Demonstrated Evidence} refers to evidence derived from auditable, historical actions. In our case, this is 
+specifically GitHub repositories. For example, a candidate is likely to claim Python proficiency on their CV for 
+a job application, however, this claim can be challenged by the presence of this skill on their GitHub repositories.
+Demonstrated evidence is significantly harder to game as it required a candidate to actually use it as part of 
+their own projects or daily work.
+
+This formal separation of evidence is key to MERIT's "Evidence-based evaluation" ethos, and will 
+play a key role in Bayesian Fusion.
 
 \subsection{Bayesian Fusion}
 The most significant innovation in MERIT's Multi-Source Fusion module lies in the adoption of \textbf{Bayesian Evidence Fusion}.
@@ -152,64 +187,43 @@ who may not have evidence to back it up.
 
 \subsection{Glass-Box Payload}
 The majority of modern ATS platforms receive criticism for being black-box in nature. It is often unclear to recruiters exactly
-how a candidate was ranked, nor can it delve into the specific metrics that contributed to a candidate's final score. MERIT aims to
-challenge this paradigm by returning a comprehensive JSON payload (\texttt{results\_payload}) that serves
-as a mathematical audit trail. This captures the lineage of a recruitment decision, from the raw data being extracted,
-to bayesian fusion. This includes any penalties incurred during the scoring process.
+how a candidate was ranked, nor can it delve into the specific metrics that contributed to a candidate's final score. 
+MERIT's attempt to address this core problem is through returning a JSON payload that functions as a mathematical audit trail.
+We show the full scoring process for a given metric, from the raw data being extracted, to the temporal decay applied to
+demonstrated evidence signals, to the Bayesian Fusion process. Where penalties are applied (such as keyword stuffing), they
+are also raised as well. 
 We also store a lightweight \texttt{summary\_data} object\footnote{The \texttt{summary\_data} field is a lightweight UI-optimisation
   feature designed to populate recruiter dashboards without the network latency of fetching the complete, multi-megabyte
   \texttt{results\_payload}.}, which contains high-level
 metadata (such as the top candidate and score) for rapid batch retrieval without
 re-processing the full evaluation payload.
 
-As illustrated in Figure \ref{fig:schema_overview}, this payload is the terminal product
-of the execution stage. Its hierarchical structure ensures that every high-level score
-is supported by granular evidence chunks. We categorise this schema into three functional layers.
+The payload is a final product of the execution stage. Its structure ensures that every high-level score is
+backed by the granular source-specific evidence that it's comprised of. The schema consists of three main layers,
+as illustrated in Figure \ref{fig:schema_overview}:
 
-The first layer is the aggregation layer, which contains the overall score and the
+
+The first layer is the highest level layer, the aggregation layer, which contains the overall score and the
 calculation summary, providing a high-level overview and the global weighted
-formula used. The second layer is the metric layer. This contains the specific evaluation criteria
-(e.g., \textit{Experience}, \textit{req\_Python}). Each entry contains its independent
-Bayesian parameters ($\alpha, \beta$) and its fused score. The third layer is the evidence layer,
-which is the most granular level, found within\texttt{source\_details}. This contains the specific
+formula used. The second layer is the middle layer, the metric layer. This contains the specific evaluation criteria
+(e.g., \textit{Experience}, \textit{req\_Python}) stated in the job configuration. Each entry contains its independent
+Bayesian parameters ($\alpha, \beta$) and its fused score where necessary. The third layer is the evidence layer,
+which is the lowest level layer, found within \texttt{source\_details}. This contains the specific
 string derivations, source confidence coefficients, and temporal decay penalties applied to individual signals.
 
 
-Listing \ref{lst:payload_schema} demonstrates a truncated representation of this
+Listing~\ref{lst:payload_schema} in 
+Appendix~\ref{appendix:implementation_listings} demonstrates
+this architecture in practice. By exposing this data in a candidate's report, we are able to justify the
+score for a given candidate. We can see how each data source contributed for a given metric, and to what extent.
+We can see how bayesian fusion was applied with these contributions to produce a per-metric score. From there,
+we can see how the metrics are weighted according to priority in order to produce a final match score. By showing
+every stage in detail, we are finally able to provide recruiters with the tools to challenge and interrogate the score,
+rather than just accepting the score as a black-box.
+
+
+demonstrates 
+a truncated representation of this
 architecture. By exposing this data through the system's "Insight" panel in the
 frontend, MERIT transforms a binary hiring decision into a defensible, auditable
 decision that recruiters are able to challenge and interrogate.
-
-\begin{moderncode}[title={Truncated Result Payload Schema}]
-  \label{lst:payload_schema}
-  \begin{lstlisting}[language=json]
-{
-  "overall_score": 0.82,
-  "calculation_summary": {
-    "formula": "SUM(MetricScore * Weight) / SUM(Weights)",
-    "logic": "High-confidence match driven by verified GitHub activity."
-  },
-  "metrics": {
-    "req_python": {
-      "score": 0.91,
-      "breakdown": [{
-        "item": "Python Proficiency",
-        "notes": "Consensus achieved across multiple sources.",
-        "source_details": [
-          {
-            "source": "GitHub",
-            "explanation": "Verified in 4 repositories.",
-            "trust": 0.9
-          },
-          {
-            "source": "CV",
-            "explanation": "Found in skills list.",
-            "trust": 0.5
-          }
-        ]
-      }]
-    }
-  }
-}
-\end{lstlisting}
-\end{moderncode}

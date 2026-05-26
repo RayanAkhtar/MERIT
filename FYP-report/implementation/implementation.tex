@@ -1,16 +1,13 @@
 \chapter{The Architecture \& Implementation of MERIT}
 \label{ch:implementation}
 
-This chapter covers the implementation and architecture of MERIT. This involves
-the transition from theoretical frameworks established in chapter 2, to a functional,
-full-stack implementation of a multi-source, extensible and glass-box candidate screening
-system tailored to technical recruitment.
-For MERIT, we built a decoupled microservice pattern. Next.js was selected for
-the frontend due to its ease of use and speed of development. For similar reasons, we
-also opted for a Flask backend, also noting its advantages in large data processing capabilities
-and its rich ecosystem of NLP libraries.
-We will now cover the specific design choices and mathematical models that 
-MERIT leverages across these phases.
+In this chapter, we cover both the architectural design, as well as the implementation of MERIT.
+We start with a high-level system overview, presenting the three key stages of the pipeline (Ingestion, Scoring, Explainability).
+From there, we will cover each of these stages in more detail, going over the notable contributions to each stage that
+differ from other existing screening systems. From there, we will conclude the chapter with bias and algorithmic safeguards
+that prevent candidates from gaming the system, as well as the anti-bias measures that we take to ensure a fair assessment of 
+candidate potential, devoid of personal bias. We will now cover the specific design choices and mathematical models that MERIT
+leverages across these three phases to ensure extensibility, multi-source fusion and explainability.
 
 \input{implementation/subsections/architectural_foundations.tex}
 \input{implementation/subsections/extensible_skill_extraction.tex}

@@ -118,9 +118,10 @@ Another key innovation towards the UX of merit is the "Insights" panel. When vie
 a "report" for them, which will provide them with an overlay of, not only the candidate's score, but also how it was calculated. The metric's
 calculation is also provided as a human-readable string, which can be used to understand the logic behind the score. To further aid transparency,
 any penalisations such as (such as Squatting) are also flagged to the user to highlight the negative impact of such actions on the candidate's score.
-Alongside this, it is also possible to see structured views of the candidate's provided data source (e.g. their CV, or a simplified
-representation of their GitHub profile). This allows recruiters to cross-reference the system's claims with the candidate's actual provided data,
-ensuring full transparency.
+To ensure full auditability, we also provide views of each candidate's extracted data sources, so that recruiters can cross-check the audit trail.
+It is also possible to view skillsets that may have not been considered by the scoring engine, for example, a configuration may have had Python
+as a metric, but the candidate may have Jupyter Notebook listed in their GitHub section of this view. If the semantic bridge mechanic fails to 
+catch this, the recruiter would be able to still observe this data and potentially change their decision after accounting for this information.
 
 
 \begin{figure}[htpb]

@@ -1,0 +1,80 @@
+\begin{figure}[htbp]
+    \centering
+    \resizebox{0.98\textwidth}{!}{%
+    \begin{tikzpicture}[
+        arch_block/.style={
+            rectangle, draw=ImperialBlue, fill=white, text width=1.65cm,
+            align=center, minimum height=0.62cm, rounded corners=2pt,
+            font=\scriptsize\sffamily, line width=0.7pt
+        },
+        arch_source/.style={
+            rectangle, draw=CoolGrey, fill=LightBlue!20, text width=1.5cm,
+            align=center, minimum height=0.55cm, font=\scriptsize\sffamily,
+            line width=0.7pt
+        },
+        arch_math/.style={
+            diamond, draw=ImperialBlue, fill=LightBlue!10, text width=0.95cm,
+            align=center, inner sep=0pt, font=\tiny\sffamily, line width=0.7pt,
+            aspect=1.45
+        },
+        arch_decision/.style={
+            diamond, draw=ImperialBlue, fill=white, text width=1.05cm,
+            align=center, inner sep=0pt, font=\tiny\sffamily, line width=0.7pt,
+            aspect=1.45
+        },
+        arr/.style={
+            -{Stealth[scale=1.0]}, thick, draw=ImperialBlue
+        },
+        busline/.style={
+            thick, draw=ImperialBlue
+        },
+        edgelabel/.style={font=\tiny\itshape, inner sep=2pt, fill=white}
+    ]
+        % Row centres at y = ±1.05; columns spaced on a fixed grid
+        \node [arch_source] (metric) at (0, 1.05) {\textbf{JD Metric}\\{\tiny e.g.\ PostgreSQL}};
+        \node [arch_source] (skills) at (0, -1.05) {\textbf{CV Skills}\\{\tiny canonical}};
+
+        \node [arch_decision] (exact) at (3.5, 0) {Exact\\match?};
+
+        \node [arch_block] (lex) at (6.2, 1.05) {\textbf{Lexical}\\CV signal};
+        \node [arch_block] (sbert) at (6.2, -1.05) {\textbf{SBERT}\\{\tiny all-MiniLM-L6-v2}};
+        \node [arch_math] (cosine) at (8.5, -1.05) {Cosine\\{\tiny $\geq 0.50$}};
+
+        \node [arch_block] (out) at (13.2, 0) {\textbf{CV metric}\\signal};
+
+        % Shared vertical buses (schema-style joints)
+        \coordinate (inBus) at (1.65, 0);
+        \coordinate (branchBus) at (4.55, 0);
+        \coordinate (mergeBus) at (11.0, 0);
+
+        % Inputs tap a vertical bus (horizontal arrows only; no opposing heads)
+        \draw [arr] (metric.east) -- (inBus |- metric.east);
+        \draw [arr] (skills.east) -- (inBus |- skills.east);
+        \draw [busline] (inBus |- metric.east) -- (inBus |- skills.east);
+        \draw [arr] (inBus) -- (exact.west);
+
+        % yes / no on horizontal legs (symmetric from branch bus)
+        \draw [arr] (exact.east) -- (branchBus);
+        \draw [arr] (branchBus) -- (branchBus |- lex.east)
+            node[pos=0.55, above, edgelabel] {yes} -- (lex.west);
+        \draw [arr] (branchBus) -- (branchBus |- sbert.east)
+            node[pos=0.55, below, edgelabel] {no} -- (sbert.west);
+
+        % Semantic path (straight, same row as SBERT)
+        \draw [arr] (sbert.east) -- (cosine.west);
+
+        % Branches tap merge bus (horizontal in; one arrow out)
+        \draw [arr] (lex.east) -- (mergeBus |- lex.east);
+        \draw [arr] (cosine.east) -- (mergeBus |- cosine.east);
+        \draw [busline] (mergeBus |- lex.east) -- (mergeBus |- cosine.east);
+        \draw [arr] (mergeBus) -- (out.west);
+
+    \end{tikzpicture}%
+    }
+    \caption[Stage~2: semantic skill bridging]{Semantic skill bridging during the scoring of
+    extensible metrics for the CV. If we see a direct match on an extensible metric (E.g. "SQL"),
+    we have a lexical CV signal, similar to keyword matching. If there is not a direct match (E.g. "PostgreSQL"),
+    we perform cosine similarity between the skills we have extracted, and the metric in the configuration.
+    If there is a match ($\geq 0.50$), then there is a valid semantic bridge, and we then update the CV metric signal.}
+    \label{fig:semantic_skill_scoring}
+\end{figure}

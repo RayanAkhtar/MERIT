@@ -1,58 +1,33 @@
 \section{Stage 1: Data Extraction and Job Configuration}
 The first stage of the MERIT pipeline focuses on \textit{Data Extraction} and \textit{Job Configuration}.
 Here, we translate unstructured job requirements into a structured, weighted mathematically-backed profile.
-This stage is critical for establishing the system's "Integrity Signal". Rather than requiring
-recruiters to manually define every skill and priority, MERIT leverages automated extraction
+Rather than requiring recruiters to manually define every skill and priority, MERIT leverages automated extraction
 and market-aware weighting to pre-fill the job's configuration.
-This process, illustrated in Figure \ref{fig:skill_extraction_pipeline}, ensures that the system remains
+This process ensures that the system remains
 extensible to any technical domain while significantly reducing the manual overhead of
 job setup.
 
 
-\input{implementation/high_level_system_design/skill_extraction_diagram.tex}
-
 \subsection{Ingestion \& Normalisation}
 The first step in this stage is the ingestion and normalisation of heterogeneous data sources.
-As illustrated in Figure \ref{fig:extraction_flow}, MERIT handles both unstructured documents
-(CVs and JDs) and structured API signals (GitHub and LinkedIn). This layer performs
-canonical skill mapping to ensure that signals from different sources can be compared
-within a unified schema.
+As shown in Figure \ref{fig:extraction_flow}, 
+MERIT has the capability to parse both unstructured and structured data sources. In this 
+case, the unstructured data sources are the CVs and JDs, while the structured data sources 
+are the GitHub and LinkedIn API endpoints. This layer performs canonical skill mapping 
+to ensure that signals from different sources can be compared within a unified schema.
 
 \input{implementation/high_level_system_design/extraction_layer_diagram.tex}
 
 \subsection{Skill Extraction \& Preprocessing}
-Before we perform semantic analysis, we first need to extract the relevant technical
-skills from the job descriptions and CVs. For MERIT, we have implemented a heuristic
-entity extraction method that utilises a curated dictionary of over 500 technical
-languages and frameworks (stored in \texttt{skills\_data.json}). This system identifies
-raw mentions of these terms within the text. This helps us isolate technical signals from general
-prose, to ensure that the semantic matcher only focuses on relevant skills. Another purpose of this
-preprocessing step is to resolve common variations of the same skill. For example, the term
-"JS" is often used interchangeably with "JavaScript" in job descriptions. By identifying and
-normalising these variations, we prevent the inclusion of unnecessary noise during the vector similarity calculation.
 
-\subsection{Semantic Skill Matching}
-After we have performed a relatively rigid entity extraction, we move onto the
-semantic matching stage. Here, we address the limitations of traditional Applicant
-Tracking Systems (ATS) that rely on exact string matching. We are able to achieve this through
-the use of Latent Space Mathematics. Rather than following traditional ATS systems that rely on
-exact string matching, we instead rely on vector-based similarity analysis.
-
-We use the \textit{SentenceTransformers} library, and the \textit{all-MiniLM-L6-v2} model for this process.
-This model was selected for its balance between efficiency and accuracy for technical terminology.
-We encode terms into a 384-dimensional dense vector space, capturing the underlying semantic relationships
-between technologies. This is achieved through the application of the \textbf{cosine similarity}
-formula as demonstrated below.
-
-\begin{equation}
-    \text{similarity} = \cos(\theta) = \frac{\mathbf{A} \cdot \mathbf{B}}{\|\mathbf{A}\| \|\mathbf{B}\|}
-\end{equation}
-
-For MERIT, we set the threshold to $0.50$, this was determined through iterative testing and
-comparison with the results of the heuristic entity extraction method. This threshold is
-significant enough to determine that "SQL" and "PostgreSQL" are similar skills, while not being
-too strict as to reject semantically similar terms such as "React" and "React.js"
-
+For MERIT's ingestion stage, we tend to follow a similar approach to that of other existing ATS systems.
+The main part we would like to point out is the extraction of technical skills from both JDs and CVs.
+To do this, we build a dcitionary of $\approx 500$ technical langauges and frameworks, statically available as 
+\textit{skills\_data.json}. This data is updated periodically with a script from the devicon dataset to ensure
+that it stays up to date with the latest technologies. Once the dictionary is build, we perform regex matching on
+the text to identify exact matches to the skill (ensuring that "C++" does not match "C") to prevent false positives.
+During this stage, we also group variations of the same skill (for example, "JS" and "JavaScript") to prevent inaccuracies
+later on during the scoring stage, and alternate names when creating job match configurations, reducing unnecessary clutter.
 
 \subsection{Dynamic Metric Weighting}
 Another key innovation towards the extensibility of MERIT lies in the inference of skill importance
