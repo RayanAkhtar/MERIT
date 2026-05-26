@@ -52,71 +52,73 @@
 \draw[arrow] (ac.east) -- (behint.west);
 \draw[arrow] (behint.east) -- (offer.west);
 
-
 \end{tikzpicture}
-\caption{Overview of a typical technical recruitment pipeline. Core stages are shown as solid boxes. Optional or organisation-dependent stages are dashed. The final outcome (job offer) is visually distinguished from other stages.}
+\caption[Technical recruitment pipeline]{A diagram showing a typical technical recruitment pipeline. 
+Common, core stages are shown as solid boxes. Optional or organisation-dependent stages are dashed. Optional stages
+are often only part of the pipeline for larger organisations that have the resources to conduct them. 
+The final outcome (job offer) is visually distinguished from other stages.}
 \label{fig:tech-recruitment-pipeline}
 \end{figure}
 
 When it comes to the application for technical positions, candidates will typically progress through multiple evaluation stages. 
 While the sequence and steps taken often vary due to organisation size and maturity, industry research consistently shows that the technical recruitment pipelines will follow a multi-step structure \cite{cappelli2019}. 
-\\\\
 
-\subsection{Recruiter Screen}
+
+\subsubsection{Recruiter Screen}
 Recruiter screens: In most organisations, the hiring process will begin with the recruiter reviewing a candidate's CV in order to determine their alignment with the role's requirements. 
 This step is almost universal, with 93\% of companies conducting an initial CV screen as the first hiring step \cite{hackerrank2018recruiting}. 
 Candidates are often suggested to provide additional sources such as LinkedIn, GitHub and personal websites, however, research shows that these sources are rarely reviewed consistently. 
 Although many employers claim to value portfolios, such as GitHub, with 72.7\% listing it among in-demand qualifications, in practice, the initial screening mostly relies on CVs \cite{hackerrank2018skills}. 
 Academic research also highlights that early-stage reviewers rely mainly on CVs and institutional cues as opposed to external behaviour evidence \cite{moore2023}.
 
-\subsection{Online Behavioural Assessment} 
+\subsubsection{Online Behavioural Assessment} 
 Larger enterprises commonly have an additional behavioural assessment, often in the form of a game, or a recorded interview, where candidates are prompted to record their response to common interview questions. 
 These tools, while uncommon in technical hiring, should also be considered as approximately 14\% of companies use behavioural games and 22\% use asynchronous video interviews \cite{talentboard2021}. 
 Academic research also highlights the growing role of such digital and behavioural assessment methods, showing they can be used to assess candidates outside of their traditional CV data \cite{chamorro2016}. 
 Smaller companies, however, rarely adopt such methods due to cost, limited perceived value and candidate-dropout risk.
 
-\subsection{Online Technical Assessment}
+\subsubsection{Online Technical Assessment}
 Online technical assessments (commonly referred to as OAs) are core to the hiring process for many organisations. 
 OAs often take place on platforms such as HackerRank and CodeSignal, and often focus on Data Structures and Algorithms (DSA). 
 HackerRank's research shows that online assessments are widely used in the technical hiring pipeline, and continue to be a central tool for screening candidates \cite{hackerrank2023skills}. 
 Similarly, CodeSignal also highlight the growth in the adoption of these platforms as well as their role in standardising early-stage evaluations \cite{codesignal2022}.
 
-\subsection{Live Behavioural Interview}
+\subsubsection{Live Behavioural Interview}
 Live behavioural interviews are a common stage in technical recruitment, often conducted by HR or hiring managers to assess a candidate's cultural fit, communication skills and motivations for the role and company.
 This process follows traditional interview formats, with a focus on behavioural questions alongside further discussions regarding the candidate's background, providing a better insight into a candidate's previous experiences and soft skills.
 
-\subsection{Live Technical Interview}
+\subsubsection{Live Technical Interview}
 Live technical interviews refers to the group of assessments which often involve an element of programming in front of an engineer at the hiring organisation, often involving live-coding, paired programming, or on-the-spot problem solving. 
 These forms of assessment remain as a core part of the process for most software engineering hiring processes when it comes to evaluating a candidate's technical proficiency. 
 As such, many organisations treat this as a central evaluation stage. 
 While reliable aggregate data for this is scarce, multiple industry-level reports and practitioner accounts can confirm that live technical interviews remain an essential method for assessing candidates \cite{karat2020}. 
-\\\\
+
 Some academic and industry critiques point out the limitations of this format, specifically stress under observation, lack of realism, and poor predictive validity for long-term developer performance. 
 This suggests that hiring pipelines should leverage alternative assessment methods as opposed to solely live coding rounds \cite{microsoft_hiring_broken}.
 
-\subsection{Take Home Assignment}
+\subsubsection{Take Home Assignment}
 For organisations that prefer “skill-based hiring”, they may incorporate take-home tests as part of their technical hiring process. 
 These assignments require a candidate to build or extend a small system, followed by a review interview. 
 According to TestGorilla's 2024 survey, a large portion of employers report using assignment, or work-sample based assessments as a part of their hiring pipeline, highlighting the relevance of take-home assessments for a realistic evaluation of coding ability and design choices \cite{testgorilla2024}. 
 They argue that these assignments provide a better benchmark for the candidate's real-world development skills rather than time-limited algorithmic tests and whiteboard interviews.
 
-\subsection{Work Sample Review}
+\subsubsection{Work Sample Review}
 Many employers like to also use real-world evidence, such as GitHub repositories, open-source commits and portfolio projects to assess a candidate's ability to build software. 
 According to LinkedIn, around 58\% of engineering hiring managers review code samples or project repositories when available \cite{linkedin2023_fos}. 
 However, this is often done later in the pipeline due to the time and expertise required for evaluation. 
 Academic literature shows that work-sample tests are one of the highest-validity predictors of job performance (validity coefficient of 0.54) \cite{schmidt1998}, significantly outperforming CV-based assessments.
 
-\subsection{Assessment Centre}
+\subsubsection{Assessment Centre}
 An assessment centre (commonly referred to as AC) is a structured multi-exercise evaluation process, often used in graduate programs and enterprise-level hiring. 
 Recent data suggests that a minority of organisations (approximately 16\%) use formal assessment centres as part of their selection process \cite{cipd2022}. 
 Here, they commonly evaluate soft skills, such as teamwork, communication, problem-solving and behavioural skills, often through group exercises, psychometric tests, role plays and combined tasks \cite{psychometricsuccess2023}. 
 While not widely used, ACs remain useful for gaining deeper insights into the candidate's interpersonal and non-technical capabilities.
 
-\subsection{Relevance to MERIT}
+\subsubsection{Relevance to MERIT}
 Given the complexities and inconsistencies that are present in the technical hiring process, the screening stage remains to be the most influential, yet error prone point in the process. 
 Organisations rely heavily on this filter, yet early decisions are often solely based on a brief CV review, which is often shown to be vulnerable to bias, information loss and unreliable judgement. 
 MERIT will target this part of the pipeline to improve accuracy, fairness and evidence-quality in order to produce the greatest organisational impact.
-\\\\
+
 MERIT will strengthen screening through the integration of multimodal evidence, such as GitHub activity, CV data, and other sources, to provide verifiable behavioural and technical indicators. 
 This early-stage assessment can reduce or refine the need for later steps, such as online coding tests, manual work-sample reviews, and broad behavioural screens, while still highlighting areas where further evaluation is necessary. 
 The system will be designed to be adaptable across different organisation sizes, for example smaller firms will benefit from reduced reliance on time-consuming take-home tasks, and larger firms can improve their structured assessments with transparent data-driven insights. 

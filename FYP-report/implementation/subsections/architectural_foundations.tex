@@ -3,7 +3,7 @@
 \definecolor{LightBlue}{RGB}{235, 245, 255}   % Adjusted background blue
 \definecolor{CoolGrey}{RGB}{158, 161, 162}    % Neutral Grey
 
-\section{Architectural Overview \& Foundations}
+\section{High-Level System Design}
 The architecture of MERIT is designed to address the "Black-Box" nature of traditional
 recruitment systems. It is partitioned into three core pipeline stages:
 \textbf{Data Extraction and Job Configuration}, \textbf{Multi-Source Evidence Fusion}, and
@@ -13,7 +13,7 @@ the recruiter interacts with the three stages of MERIT.
 % Figure 4.1: High-Level System Design
 \input{implementation/high_level_system_design/system_design_diagram.tex}
 
-\subsection{Architectural Rationale}
+\subsection{Rationale}
 MERIT employs a decoupled microservice architecture to separate the
 concerns of data ingestion, job configuration, and the presentation of results.
 We used Flask (Python) as a backend for data ingestion and fusion due to its rich ecosystem
@@ -25,7 +25,7 @@ A relational PostgreSQL store (via Supabase) was selected to enforce data integr
 ensuring that every ranked result is linked via foreign keys to a specific,
 immutable recruiter configuration.
 
-\subsection{Technical Foundations: Reliability \& Scalability}
+\subsection{Reliability \& Scalability}
 During the development of MERIT, we encountered scalability and reliability challenges.
 We will now discuss the solutions we implemented to address these obstacles.
 

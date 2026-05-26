@@ -1,15 +1,19 @@
 \chapter{Bayesian Fusion Convergence (Study 12)}
 \label{appendix:bayesian-fusion-charts}
 
-Figure for the Felix Vance Java metric walkthrough 
-(Section~\ref{subsec:study-12-bayesian-conflict-resolution}). 
-Step-wise $\alpha$, $\beta$, fused score, and uncertainty are tabulated in Table~\ref{tab:bayesian-walkthrough}.
+Figure for the Bayesian Evidence Fusion convergence for Felix Vance with the Java metric. Here, we plot
+both the expected value as well as the variance of the beta distribution, highlighting the initial convergance
+upon ingestion of a strong CV signal. Note the divergence following the ingestion of a weak, conflicting github signal.
+Note both a lower expected value and higher variance due to this. The table for this graphic can be found in 
+Table~\ref{tab:bayesian-walkthrough}.
+
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.95\textwidth]{../evaluation/12-conflict_resolution/output/fusion_convergence_detailed.png}
-    \caption{Bayesian fusion convergence and conflict resolution for Felix Vance (Java). 
-    The top panel shows the mean fused score with $1\sigma$ band. 
-    The bottom panel shows the uncertainty ($\sigma$) at each evidence step.}
+    \caption[Study~12: Bayesian fusion convergence (Java)]{Study~12: Bayesian Fusion Convergance for Felix Vance
+    with the Java metri. The top panel shows the transformation of the beta distribution's expected value and variance
+    following ingestion of evidence. The bottom panel displays shifts in uncertainty at each evidence step, showing the
+    effect of supporting and conflicting evidence.}
     \label{fig:bayesian-fusion-convergence}
 \end{figure}

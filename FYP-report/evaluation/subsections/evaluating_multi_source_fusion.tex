@@ -1,4 +1,4 @@
-\section{Evaluating Pillar 2: Multi-Source Evidence Fusion}
+\section{Evaluating Pillar 2: Multi-Source Fusion}
 \label{sec:evaluating-multi-source-fusion}
 
 % Helper macros for evaluation tables (defined at top to prevent duplicate definition/undefined command errors)
@@ -11,10 +11,11 @@ This section evaluates both the mathematical and empirical validity of MERIT's m
 To ensure a rigorous evaluation, we will proceed, once again, with a bottom-up evaluation. We will start with a study on the
 algorithmic sensitivity with skill decay. From there, we will move on to evaluate Bayesian fusion, and how the model deals
 with conflicting signals for a specific metric in a configuration. Then, we will proceed to an algorithmic ablation study;
-here, we will run four models for ATS systems against the same candidate pool and JD. The models will be a traditional ATS,
-a Modern AI enhanced ATS, MERIT with only CV signals, and then finally MERIT with all sources. When referring to "all" sources,
-we specifically refer to the integration of GitHub and LinkedIn signals. With the same ATS setup and candidate pool, we will
-then proceed with a data ablation study, where we will point out the success and failure cases of the model.
+here, we will run four scoring engines against the same candidate pool and JD: a \textbf{Traditional ATS} baseline (keyword-based CV screening),
+a \textbf{Modern AI ATS} baseline (semantic CV screening), MERIT with only CV signals, and MERIT with all sources.
+When referring to ``all'' sources, we specifically refer to the integration of GitHub and LinkedIn signals.
+With the same engine setup and candidate pool, we will then proceed with a data ablation study, where we will point out the success and failure cases of the model.
+The labels \textbf{Traditional ATS} and \textbf{Modern AI ATS} denote in-repository CV screening baselines that replicate scoring logic typical of rule-based and AI-assisted Applicant Tracking Systems (ATS); they are not proprietary commercial products. MERIT is evaluated as a separate multimodal screening system.
 
 These studies assume that candidate CVs were successfully extracted without error. These evaluations run on emulated, 
 synthetic candidate JSON profiles created to systematically test specific edge cases, bypassing the PDF extraction layer 
@@ -35,7 +36,7 @@ last actively practised.
 \end{equation}
 where $S_0$ is the initial unweighted skill score extracted by the ingestion engine, and $\lambda$ is the
 skill decay constant. In this implementation, $\lambda$ is set to $\approx 0.25$, corresponding
-to a skill half-life of exactly $t_{1/2} = 2.77$ years.
+to a skill half-life of exactly $t_{1/2} = 2.77$ years, as described in Section~\ref{subsec:skill-decay-modelling}.
 
 To evaluate two candidates to compare the effects of this model, both candidates have the exact same CV history,
 with the only differing factor being the active time of usage for these skills (evaluated against a study baseline year of 2024):
@@ -61,7 +62,7 @@ Go, and would experience a ramp-up period in the initial months.
 
 
 
-\subsection{Study 12: Bayesian Conflict Resolution Verification}
+\subsection{Study 12: Bayesian Conflict Resolution}
 \label{subsec:study-12-bayesian-conflict-resolution}
 
 In the previous section, we demonstrated that MERIT employs a Bayesian evidence fusion model with Beta
@@ -78,7 +79,8 @@ To verify the correctness of this model, we shall run a step-by-step mathematica
 
 \begin{table}[htbp]
     \centering
-    \caption{Bayesian Parameter Shifts for Felix Vance. The convergence of these parameter updates are visualised in
+    \caption[Study~12: Bayesian parameter shifts (Felix Vance)]{Bayesian Parameter Shifts for Felix Vance, demonstrating the effects of contradictory 
+    evidence on the expected value and uncertainty. The convergence of these parameter updates are visualised in
         Figure~\ref{fig:bayesian-fusion-convergence} (Appendix~\ref{appendix:bayesian-fusion-charts}).}
     \label{tab:bayesian-walkthrough}
     \vspace{1.5ex}
@@ -134,14 +136,14 @@ This worked example mathematically demonstrates that MERIT's Bayesian evidence f
 weighted average, or ignore conflicts. Instead, it captures, tracks and scales the uncertainty in the presence of
 highly contradictory signals from sources of high confidence.
 
-\subsection{Study 01A: Algorithmic Ablation Study}
+\subsection{Study 01A: Algorithmic Ablation}
 \label{subsec:study-01a-algorithmic-ablation}
 
-To evaluate the benefits and drawbacks of MERIT's multi-source fusion model, we will compare it against three other ATS models.
-The first model is a \textbf{Traditional ATS} model, representing the legacy industry-standard keyword-matching approach \cite{vanesch2019}. This baseline scores candidates solely on the count of matching keywords in their CV. The next model is a \textbf{Modern AI ATS}, a single-source ATS that computes cosine
-similarities between CV embeddings and Job Description (JD) embeddings using a Sentence-BERT (SBERT) model \cite{reimers2019sentence}. For the purposes of this study, we also consider
-MERIT as a baseline to compare against; for this baseline, we only consider CV data, to replicate how MERIT would perform
-when only considering this single-source data. Finally, we have the full MERIT model, which considers all sources of
+To evaluate the benefits and drawbacks of MERIT's multi-source fusion model, we will compare it against three other baseline screening engines.
+The first is \textbf{Traditional ATS}, an in-repository keyword-matching baseline representing CV screening logic typical of rule-based ATS products \cite{vanesch2019}; it scores candidates solely on the count of matching keywords in their CV.
+The second is \textbf{Modern AI ATS}, an in-repository semantic baseline representing CV-only screening typical of AI-assisted ATS products; it computes cosine
+similarities between CV embeddings and Job Description (JD) embeddings using a Sentence-BERT (SBERT) model \cite{reimers2019sentence}.
+Neither baseline is a commercial ATS platform. We also run \textbf{MERIT (CV Only)} on CV data alone, and \textbf{MERIT (Full)}, which considers all sources of
 evidence.
 
 The complete ranking outcomes, as well as the normalised candidate scores across these four models are detailed in
@@ -152,10 +154,10 @@ Table~\ref{tab:algorithmic-ablation}.
 
 \begin{table}[htbp]
     \centering
-    \caption{Algorithmic Benchmark and Candidate Rankings across Scoring Configurations
-        (Highlighted rank trajectories: Figure~\ref{fig:rank-displacement-successes}; full cohort: Figure~\ref{fig:rank-displacement-holistic}, Appendix~\ref{appendix:rank_displacement}). To enable a direct
-        comparison between the four scoring configurations, each configuration's scoring results have been normalised
-        and scaled to a uniform percentage-based scale (0--100\%).}
+    \caption[Study~01A: Algorithmic benchmark rankings]{ Algorithmic Benchmarking and Candidate Rankings for 10 personas across four different scoring engines. $\delta\%$ represents
+    the score gain/loss between the CV-Only and Full MERIT configurations, highlighting the effect of multi-source fusion on different personas. 
+    Refer to Figure~\ref{fig:rank-displacement-successes} (Appendix~\ref{appendix:rank_displacement}) for the complete rank displacement trajectories.
+    Note that scores have been normalised on a scale of 0 to 100\% where appropriate.}
     \label{tab:algorithmic-ablation}
     \vspace{1.5ex}
     \small
@@ -206,7 +208,7 @@ receives a negligible cardinal shift of $+0.7\%$, while Vince Vault experiences 
 data-source mechanics driving these individual shifts are detailed in Section~\ref{subsec:study-01b-data-source-ablation}.
 Figure~\ref{fig:rank-displacement-successes} (Appendix~\ref{appendix:rank_displacement}) traces the highlighted cases discussed above.
 
-\subsection{Study 01B: Multi-Source Data Ablation Study}
+\subsection{Study 01B: Multi-Source Data Ablation}
 \label{subsec:study-01b-data-source-ablation}
 
 This study will cover the critical trade-offs present in a system that doesn't just follow claimed evidence but also takes

@@ -1,4 +1,4 @@
-\section{Stage 2: Multi-Source Evidence Fusion \& Scoring}
+\section{Stage 2: Multi-Source Candidate Ranking}
 Once candidate data and a job description have been extracted and combined in a configuration, we can then proceed to
 the execution stage. In this stage, we compute signals for each metric. This can be done in two different ways
 depending on whether the metric is baseline or extensible. Both metrics may take into account multiple data sources,
@@ -10,7 +10,7 @@ profile alongside a job description to produce a final score.
 
 \input{implementation/high_level_system_design/relational_schema_diagram.tex}
 
-\subsection{Metric Types: Baseline vs. Extensible}
+\subsection{Baseline vs. Extensible Metrics}
 When executing a job configuration, the system, categorises evaluation criteria against two different kinds of metrics.
 \textbf{Baseline Metrics} are pre-defined metrics that are common to all configurations, and typically follow the industry-standard
 heuristics. For example, a candidate's education level is a universal factor in technical recruitment that can be assessed
@@ -24,7 +24,7 @@ For both classes of metrics, the system may take into account multiple data sour
 we perform a weighted average of all the metrics to compute the final (match) score.
 
 
-\subsection{Adversarial Mitigation \& Integrity Layer}
+\subsection{Integrity Layer}
 A common flaw in legacy ATS platforms lies in their vulnerability to adversarial attacks, such as
 keyword-stuffing or identity squatting. To combat these, MERIT incorporates an Integrity Layer
 that executes concurrently with the signal extraction process. While the detailed heuristics for
@@ -34,14 +34,17 @@ poisoned data (in other words, data that warrants a penalty) carries less signif
 model if other signals are still robust. For example, a candidate who gets penalised for keyword stuffing in their CV may
 still rank highly if they have strong evidence from other sources for that metric.
 
-\subsubsection{Temporal Skill Decay Modelling}
-Skill Decay, first coined by Hermann Ebbinghaus in 1885, refers to the study of the rate at which a skill or
-knowledge is lost over time due to a lack of practice or usage. When it comes to the context of technical recruitment, it is
-clear that recency of experience matters. A candidate who used a certain programming language 5 years ago does not carry
-the same weight as a candidate who used that same programming language a few months ago. A current limitation of traditional
-ATS platforms is their failure to account for this.
+\subsubsection{Skill Decay Modelling}
+\label{subsec:skill-decay-modelling}
+Skill decay is a concept that is used to model the loss of a skill over time, given that the skill has not been used for a period of time.
+Applying this to technical recruitment, it is intuitive that the recency of a candidate's skill matters. A candidate may have been considered
+an expert in a certain programming language ten years ago, but if they had not used it since then, would their level be considered the same?
+They may not carry the same weight as a candidate who has used it often within the past few months, and prior research shows that this skill
+loss grows with longer periods of non-use \cite{arthur1998}. Industry research points to a similar finding, where workplace skills (especially technical skills)
+become outdated far more quickly than they once did \cite{ibm2019skillsgap,wef2020futurejobs}. Traditional ATS platforms fail to account for this since
+there is often no significant evidence to uncover when the candidate last used the skill in question.
 
-To address this concern, MERIT implements an Exponential Decay Model for technical skills, inspired by classical models of memory
+To address this concern, MERIT implements an exponential decay model for technical skills, inspired by classical models of memory
 retention \cite{ebbinghaus1885memory}. For every skill signal extracted, its base value is penalised based on the time elapsed
 since it was last utilised. The decayed signal strength, $\mathcal{S}_{\text{decay}}$, is calculated as:
 
@@ -58,14 +61,16 @@ Where:
 \end{itemize}
 
 The system is configured with a default exponential decay constant of $\lambda = 0.25$,
-translating to an approximate half-life of $2.8$ years for technical skills. This temporal
-adjustment ensures that recent, relevant experience naturally outranks historical, potentially
-obsolete capabilities.
+which corresponds to a half-life of $t_{1/2} = \ln(2)/\lambda \approx 2.8$ years.
+This value is not taken directly from a single empirical study. Instead, it is a practical default chosen to align with
+industry estimates that technical skills can lose much of their relevance within roughly 2.5--5 years \cite{ibm2019skillsgap}.
+This default value ensures that recent, relevant experience naturally outranks historical,
+potentially obsolete capabilities.
 
 \input{implementation/high_level_system_design/skill_decay_graph.tex}
 
 
-\subsection{Source-Aware Signal Aggregation}
+\subsection{Evidence-Based Signal Aggregation}
 When it comes to evaluating a candidate, there are two forms of evidence that we can use to evaluate them.
 The first form of evidence is \textbf{Claimed Evidence}, where the candidate explicitly declares to possess
 a certain skill or experience. This form of evidence is commonly found in CVs and LinkedIn profiles, and is often
@@ -82,7 +87,7 @@ possess actual experience in a skill to demonstrate it.
 
 This formal separation of evidence is key to MERIT's "Evidence-based evaluation" ethos, and will play a key role in Bayesian Fusion.
 
-\subsection{Bayesian Evidence Fusion}
+\subsection{Bayesian Fusion}
 The most significant innovation in MERIT's Multi-Source Fusion module lies in the adoption of \textbf{Bayesian Evidence Fusion}.
 Initial iterations of MERIT attempted to combine skill signals using static weighted averages. However, this approach often dilutes
 the importance of demonstrated evidence (GitHub) with claimed evidence (CV and LinkedIn). This approach also failed to account for the
@@ -145,7 +150,7 @@ who may not have evidence to back it up.
 
 
 
-\subsection{Result Payload Architecture: The Glass-Box Proof}
+\subsection{Glass-Box Payload}
 The majority of modern ATS platforms receive criticism for being black-box in nature. It is often unclear to recruiters exactly
 how a candidate was ranked, nor can it delve into the specific metrics that contributed to a candidate's final score. MERIT aims to
 challenge this paradigm by returning a comprehensive JSON payload (\texttt{results\_payload}) that serves

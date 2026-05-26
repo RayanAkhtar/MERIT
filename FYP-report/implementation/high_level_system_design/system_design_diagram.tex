@@ -46,11 +46,11 @@
         \draw [arrow] (audit.east) -- ++(1.5,0) |- (u2.east) node[pos=0.75, above, font=\footnotesize\sffamily, black, fill=white, inner sep=1pt] {Explainable Insights};
 
         % Domain Headers (Drawn last with white background to create "gap" in arrows)
-        \node [domain_label, fill=white, inner sep=2pt] at (area1.north) {I. INTELLIGENT CONFIGURATION};
-        \node [domain_label, fill=white, inner sep=2pt] at (area2.north) {II. EVIDENCE FUSION};
-        \node [domain_label, fill=white, inner sep=2pt] at (area3.north) {III. EXPLAINABLE INTERPRETATION};
+        \node [domain_label, fill=white, inner sep=2pt] at (area1.north) {I. DATA EXTRACTION};
+        \node [domain_label, fill=white, inner sep=2pt] at (area2.north) {II. MULTI-SOURCE FUSION};
+        \node [domain_label, fill=white, inner sep=2pt] at (area3.north) {III. RANKING \& EXPLAINABILITY};
 
     \end{tikzpicture}
-    \caption{High-Level System Design: The three stages of MERIT.}
+    \caption[MERIT three-stage architecture]{High-Level System Design: The three stages of MERIT: Ingestion, Scoring, Explainability}
     \label{fig:high_level_arch}
 \end{figure}

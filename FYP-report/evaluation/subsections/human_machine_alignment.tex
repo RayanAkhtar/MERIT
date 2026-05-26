@@ -1,4 +1,4 @@
-\section{Human-Machine Alignment \& Expert Correlation}
+\section{Human-Machine Alignment}
 \label{sec:human-machine-alignment}
 
 The previous rank-based accuracy metrics measured the performance of MERIT's against specific adversarial candidates
@@ -7,11 +7,11 @@ on the candidates' persona. In this section, we will instead have recruiters ran
 in order to evaluate the overall performance of MERIT's scoring system against a fixed expert consensus.
 
 This Section will use the Spearman rank-correlation test between the rankings produced by MERIT and the expert consensus.
-We will also compare the performance of MERIT against a traditional keyword ATS and a semantic ``modern'' ATS in order 
+We will also compare the performance of MERIT against two CV screening baselines (Traditional ATS and Modern AI ATS) in order 
 to act as a baseline for comparison. Throughout this chapter, we will present numeric tables for each study. To see 
 a graphical representation of the results, please refer to Appendix~\ref{appendix:spearman-charts}.
 
-\subsection{Methodological setup \& mathematical framework}
+\subsection{Methodology}
 \label{subsec:spearman-method}
 
 We will run four different studies, each with a different set of ten candidates as well as a job description to match that
@@ -19,13 +19,16 @@ cohort against. The ten candidates are synthetic individuals created to be reali
 We create synthetic JSON data for their CV, GitHub and LinkedIn profiles to be used as input for the scoring engines. 
 The candidate CV is used as a template for synthetic data generation, and is also kept as a source of truth for the expert consensus.
 
+Throughout this section, \textbf{Traditional ATS} and \textbf{Modern AI ATS} label in-repository CV screening baselines (keyword matching and SBERT cosine similarity, respectively) that model scoring stages commonly embedded in rule-based and AI-assisted Applicant Tracking Systems (ATS).
+They are not commercial ATS products. MERIT is a multimodal screening system evaluated alongside these baselines.
+
 To emulate the real-world hiring process, we will have between one and three recruiters decide on a rank ordering of the candidates.
 For this study, to ensure realistic results, we do not anonymise the candidates, and instead use their real names.
 The consensus is then encoded as an ordered list of CV filenames in \texttt{human\_rankings.txt}, where rank 1 is the best match
 for the job, while rank 10 is the worst.
 
-For the ATS platforms, we feed in the Job Description and candidate CVs to produce a rank ordering of candidates, based on 
-descending order of the match score outputted by each engine. In our tests, $h_i$ denotes the human rank, while $e_i$
+For each engine, we feed in the Job Description and candidate CVs to produce a rank ordering of candidates, based on 
+descending order of the match score outputted by that engine. In our tests, $h_i$ denotes the human rank, while $e_i$
 denotes the engine rank for a given candidate $i$. We can then calculate the Spearman rank-correlation coefficient $\rho$
 with the following formula:
 \begin{equation}
@@ -37,7 +40,7 @@ We report the correlation coefficient and two-sided $p$-value from the standard 
 like with the previous studies on candidate personas. Once again, the engines are as follows: \textbf{Traditional ATS}, 
 \textbf{Modern AI ATS}, \textbf{MERIT (CV Only)}, and \textbf{MERIT (Full)} (CV plus LinkedIn and GitHub enrichment).
 
-\subsection{Study 07: High discrimination scenario}
+\subsection{Study 07: High Discrimination}
 \label{subsec:study-07-spearman-high-discrimination}
 
 The first study will be a high discrimination scenario to find the best fit for a full-stack backend engineer. Our recruiters 
@@ -48,7 +51,10 @@ while the underlying coefficients are recorded in Table~\ref{tab:spearman-study-
 
 \begin{table}[htbp]
     \centering
-    \caption{Spearman correlation with expert consensus (Study~07, $n = 10$). MERIT (Full) achieves the highest $\rho$ among engines in this cohort ($p = 0.025$).}
+    \caption[Study~07: Spearman $\rho$ (High Discrimination Cohort)]{Spearman Correlation Coefficients for the High Discrimination Cohort.
+    This cohort comprises of candidates with different seniorities and career paths, testing MERIT's ability to distinguish between relevant and 
+    completely irrelevant candidates for a specific role. MERIT (Full) achieves the highest $\rho$ among engines in this cohort ($p = 0.0251$) and also
+    the highest Spearman correlation coefficient of $0.6970$.}
     \label{tab:spearman-study-07}
     \vspace{1.5ex}
     \small
@@ -67,7 +73,7 @@ it performs worse than the AI baseline, but still better than the traditional AT
 confirms that the top human pick (Moinecha Ramos-Horta) is ranked first by MERIT (Full), while weak matches are pushed down the list.
 
 
-\subsection{Study 08: Seniority-bias stress test}
+\subsection{Study 08: Seniority-Bias}
 \label{subsec:study-08-spearman-seniority}
 
 The next study will be a seniority-bias stress test to find the best fit for an intern backend engineer. Here, our recruiters
@@ -77,8 +83,11 @@ engines since this is a rare edge-case in real-world scenarios. It is not often 
 
 \begin{table}[htbp]
     \centering
-    \caption{Spearman correlation with expert consensus (Study~08, seniority-bias audit, $n = 10$). Strong negative 
-    $\rho$ for baselines indicates systematic inversion relative to the human ordering.}
+    \caption[Study~08: Spearman $\rho$ (seniority bias)]{Spearman correlation coefficients for the Seniority Bias Cohort.
+    This cohort comprises of candidates only with different levels of seniority, but for the same role. We test MERIT's ability to distinguish between
+    senior and junior candidates for the same role, under the premise of no significantly contradictory evidence between the CV and other data sources.
+    MERIT (CV Only) and MERIT (Full) tie at $\rho = -0.5152$ ($p = 0.1276$).
+    Modern AI ATS shows the strongest inverse correlation ($\rho = -0.8061$, $p = 0.0049$).}
     \label{tab:spearman-study-08}
     \vspace{1.5ex}
     \small
@@ -92,15 +101,20 @@ engines since this is a rare edge-case in real-world scenarios. It is not often 
     \end{tabular}
 \end{table}
 
+For this cohort, the synthetic GitHub and LinkedIn profiles are intentionally designed to align with the given candidate's CV.
+None of the profiles introduce contradictory evidence. MERIT (Full) raises the absolute scores of candidates, but still preserves the same rank orderings as MERIT (CV Only)
+due to this aligninment of evidence. This does not lead to the conclusion that multi-source fusion is ineffective, but rather that multi-source fusion is discriminatory
+upon the presence of contradictory evidence.
+
 Inspecting the rankings (found in \texttt{evaluation/08-spearman\_seniority\_bias\_audit/output/detailed\_rankings.csv}), 
 the human-preferred intern profile (Vincent Germain, human rank~1) is ranked quite low across all scoring engines.
-On the other hand, principal/staff CVs score higher, highlighting the gap between MERIT's current weighting, and this
-scenario's `potential over title' consensus. The outcome of this is quite valuable as an honest stress test, as opposed 
+On the other hand, principal/staff CVs score higher, highlighting the gap between MERIT's current weighting and this
+scenario's ``potential over title'' consensus. The outcome of this is quite valuable as an honest stress test, as opposed 
 to a cherry-picked success case. Here, we see that all scoring engines are unable to understand the nuances of candidate
 recruitment when it comes to overqualified candidates.
 
 
-\subsection{Study 09: Peer competition (closely matched mid-level pool)}
+\subsection{Study 09: Peer Competition}
 \label{subsec:study-09-spearman-peer}
 After conducting studies on cases with significant differentiators such as seniority and career path, we now move on to 
 a more closely matched pool of candidates. The aim of this study is to find the best fit for a mid-level backend engineer.
@@ -115,7 +129,11 @@ act as a tie-breaker when the CV-only scores are too close to call.
 
 \begin{table}[htbp]
     \centering
-    \caption{Spearman correlation with expert consensus (Study~09, peer competition, $n = 10$).}
+    \caption[Study~09: Spearman $\rho$ (peer competition)]{Spearman correlation coefficients for the Peer Competition Cohort.
+    This cohort comprises of candidates with similar seniorities and career paths, testing MERIT's ability to distinguish between
+    candidates with similar qualifications for the same role. MERIT (Full) achieves the second highest alignment with the expert consensus at $\rho = 0.6242$ ($p = 0.0537$).
+    The traditional ATS achieves the strongest alignment with the expert consensus at $\rho = 0.7939$ ($p = 0.0061$).
+    Modern AI ATS shows the weakest alignment with the expert consensus at $\rho = 0.2364$ ($p = 0.5109$).}
     \label{tab:spearman-study-09}
     \vspace{1.5ex}
     \small
@@ -135,7 +153,7 @@ CV-only $\rho$. The additional sources of information are able to act as a tie-b
 While this case doesn't highlight MERIT (Full) as the best performing engine, it is still able to achieve a strong alignment with
 the expert consensus and put forward a strong case for the use of additional sources of information to help with tie-breaking.
 
-\subsection{Study 10: Signal dissonance and empirical failure mode}
+\subsection{Study 10: Signal Dissonance}
 \label{subsec:study-10-spearman-dissonance}
 
 The next study is a cherry-picked failure case to highlight the achilles heel of MERIT (Full). Note that the setup for this study
@@ -152,8 +170,11 @@ clear message to the reader that MERIT (Full) can only perform as good as the qu
 
 \begin{table}[htbp]
     \centering
-    \caption{Spearman correlation with expert consensus (Study~10, signal dissonance, $n = 10$). MERIT (Full) loses 
-    monotonic agreement with the expert list.}
+    \caption[Study~10: Spearman $\rho$ (signal dissonance)]{Spearman correlation coefficients for the Signal Dissonance Cohort.
+    This cohort comprises of candidates with similar seniorities and career paths, but with conflicting signals between the CV and external evidence.
+    MERIT (Full) diverges significantly from the expert list, with a $\rho$ of $0.0061$ and a $p$-value of $0.987$.
+    The traditional ATS achieves the strongest alignment with the expert consensus at $\rho = 0.5515$ ($p = 0.0984$).
+    Modern AI ATS shows the weakest alignment with the expert consensus at $\rho = 0.2848$ ($p = 0.4250$).}
     \label{tab:spearman-study-10}
     \vspace{1.5ex}
     \small
@@ -173,7 +194,7 @@ top-pick candidate (Moinecha Ramos-Horta, human rank~1) is dropped to the second
 make the failure case more obvious and easier to understand. We clearly show that if the data sources are contradictory, 
 the multi-source pillar of MERIT collapses and is unable to make confident and accurate decisions.
 
-\subsection{Synthesis}
+\subsection{Conclusion}
 \label{subsec:spearman-synthesis}
 
 Across the four studies, no single engine dominates every scenario, which is expected, given the nature of the studies and 

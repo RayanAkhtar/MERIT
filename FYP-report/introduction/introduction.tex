@@ -66,12 +66,10 @@ decision-making in technical recruitment.
 
 
 \section{Contributions}
-MERIT takes inspiration from existing screening systems commonly found in both academia and industry, notably those that map
-CV information against a job description to determine candidate progression. However, rather than relying on a rigid,
-single-source automated architecture or presenting a disjointed set of feature enhancements, the contribution of this work is
-structured around three core architectural pillars (or processing stages). These pillars directly address the critical limitations of
-contemporary automated hiring. More specifically, we address layout-driven parsing failures, single-source dependency, rigid metrics
-and the lack of trust in automated rankings:
+MERIT attempts to addrress the limitations of both traditional and modern automated screening systems, targeting the
+ridgidity of metrics, single-source dependency, as well as the lack of openness with regards to the scoring process.
+Our contributions to this domain revolve around three architectural pillars, one for each stage of a typical screening pipeline (input
+ingestion, scoring, and explainability). The pillars aim to overcome the limitations of automated hiring.
 
 \subsubsection{Pillar 1: Extensibility \& Customisable Evaluation}
 The first pillar aims to establish a dynamic, recruitment-aligned foundation by inferring screening metrics as well as target skills
@@ -96,32 +94,34 @@ By taking both of these factors into consideration, as well as the application o
 resolution, MERIT mitigates the impact of resume exaggerations as well as missing information, to help capture a more holistic
 view of a candidate and their technical proficiency.
 
-\subsubsection{Pillar 3: Glass-Box Explainability}
+\subsubsection{Pillar 3: The Explainability Layer}
 The final pillar revolves around trust, auditability and transparency, to combat the limitations of black-box screening systems.
 MERIT abandons unexplained, arbitrary numerical grading that lacks significance in order to ensure that recruiters can truly
-understand why a candidate was given a certain rank by MERIT. We adopt game-theoretic scoring (e.g.\ Shapley values) to help create this glass-box, 
-pairing it with interactive recruiter dashboards, clear visualisations as well as candidate anonymisation. These additions to 
-the current state of screening systems help to directly mitigate systemic bias, ensure auditability and also help to 
-develop and support fair, data-driven hiring decisions.
+understand why a candidate was given a certain rank by MERIT. One of the main contributions of this pillar is the audit trail
+generation, providing a transparent and traceable explanation behind candidate scoring. This contribution is supplemented with
+the addition of game-theoretic scoring through Shapley values in order to provide a more fair and accurate assessment of a candidate's abilities.
+We pair these contributions with interactive dashboard, clear visualisation, and also candidate anonymisation to reduce the risk
+of human bias in the screening process.
 
 By combining these three pillars, MERIT is able to provide a more fair and accurate assessment of a candidate's abilities
-by shifting away from self-reported skill inflation and CV formatting biases. MERIT also aims to mitigate both cognitive
-and discriminatory biases through candidate anonymisation with standardised formatting of CV data. These pillars will also
+by shifting away from self-reported skill inflation and CV formatting biases. By introducing candidate anonymisation and
+standardised formatting of CV data, we aim to further reduce this risk of bias. These pillars will also
 assist in providing complete transparency on automated screening through interactive, source-traceable recruiter reports.
 
 
-\section{Report Outline}
-The remainder of this report is presented as follows:
+\section{Report Structure}
+This report will take the following structure:
 \begin{itemize}
   \item \textbf{Chapter 2: Background} outlines the standard procedures, cognitive demands, and systemic biases 
   inherent in manual recruitment.
   \item \textbf{Chapter 3: Technical Foundations \& Related Work} examines both traditional and AI-assisted automated 
   screening systems, the risks of automated bias propagation, and existing work in the field of technical recruitment that applies to MERIT.
-  \item \textbf{Chapter 4: Implementation} details the architecture of MERIT, including the parsing pipeline, scoring 
-  algorithms, and the dynamic metric extraction engine.
+  \item \textbf{Chapter 4: Implementation} provides an in-depth look at the architecture behind MERIT. We cover the full proces,
+  from the ingestion pipeline, to the scoring algorithms, as well as the explainability layer.
   \item \textbf{Chapter 5: Evaluation} presents the quantitative and qualitative findings validating the three core 
   architectural pillars of the system to evaluate the tradeoffs present in following MERIT's architecture.
-  \item \textbf{Chapter 6: Ethics} discusses key societal, legal, and operational considerations surrounding algorithmic hiring.
+  \item \textbf{Chapter 6: Ethics} discusses key societal, legal, and operational considerations surrounding algorithmic hiring as well
+  as well as the ethical implications of using MERIT in the hiring process.
   \item \textbf{Chapter 7: Critical Reflection \& Future Work} provides a pillar-aligned retrospective on evaluation
   outcomes, design trade-offs, and methodological scope, together with a prioritised research and deployment roadmap.
   \item \textbf{Chapter 8: Conclusion} delivers a final verdict on whether MERIT achieved its three pillars

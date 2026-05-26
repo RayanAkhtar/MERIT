@@ -11,7 +11,7 @@ job setup.
 
 \input{implementation/high_level_system_design/skill_extraction_diagram.tex}
 
-\subsection{Data Ingestion \& Normalisation}
+\subsection{Ingestion \& Normalisation}
 The first step in this stage is the ingestion and normalisation of heterogeneous data sources.
 As illustrated in Figure \ref{fig:extraction_flow}, MERIT handles both unstructured documents
 (CVs and JDs) and structured API signals (GitHub and LinkedIn). This layer performs
@@ -20,7 +20,7 @@ within a unified schema.
 
 \input{implementation/high_level_system_design/extraction_layer_diagram.tex}
 
-\subsection{Entity Extraction \& Preprocessing}
+\subsection{Skill Extraction \& Preprocessing}
 Before we perform semantic analysis, we first need to extract the relevant technical
 skills from the job descriptions and CVs. For MERIT, we have implemented a heuristic
 entity extraction method that utilises a curated dictionary of over 500 technical
@@ -54,7 +54,7 @@ significant enough to determine that "SQL" and "PostgreSQL" are similar skills, 
 too strict as to reject semantically similar terms such as "React" and "React.js"
 
 
-\subsection{Dynamic Weighting via TF-IDF}
+\subsection{Dynamic Metric Weighting}
 Another key innovation towards the extensibility of MERIT lies in the inference of skill importance
 when setting weights during the configuration stage. This is achieved through the application of a
 modified Term Frequency-Inverse Document Frequency (TF-IDF) approach. This aligns with foundational
@@ -97,7 +97,7 @@ the current market, the performance of TF-IDF will be affected. This allows MERI
 extensible to any technical domain.
 
 
-\subsection{Psychometric Scaling \& Target Weights}
+\subsection{Target Metric Weights}
 Weights should never be fixed, TF-IDF is merely a suggestion based off the market corpus. As such, we also allow recruiters
 to manually adjust the weights of the skills on the job. This is achieved through the use of a 5-point Likert scale, where
 1 = essential and 5 = almost optional. This choice is supported by psychometric research on rating-scale length 

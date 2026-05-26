@@ -6,7 +6,7 @@ We now move on to the last stage of our evaluation by testing the fairness, secu
 scalability of MERIT. Refer to Appendix~\ref{appendix:fairness-scalability-charts} for 
 and \ref{appendix:bias-anonymisation-charts} for the charts associated with this section.
 
-\subsection{Study 15: Bias Mitigation \& Anonymisation Efficacy}
+\subsection{Study 15: Bias Mitigation}
 \label{subsec:bias-mitigation-efficacy}
 
 The previous sections established that MERIT is able to accurately rank candidates based on their CV and public-repository evidence.
@@ -82,7 +82,7 @@ plot the same data. Table~\ref{tab:bias-disparity-metrics} summarises the presti
 
 \begin{table}[htbp]
     \centering
-    \caption{Blind Mode audit summary (Study~15, between-subjects: $n = 4$ per UI arm, 4 candidates). Rates are the 
+    \caption[Study~15: Blind Mode shortlist rates]{Blind Mode audit summary (Study~15, between-subjects: $n = 4$ per UI arm, 4 candidates). Rates are the
     fraction of evaluators in that arm who shortlisted the profile.}
     \label{tab:bias-audit-summary}
     \vspace{1.5ex}
@@ -101,7 +101,7 @@ plot the same data. Table~\ref{tab:bias-disparity-metrics} summarises the presti
 
 \begin{table}[htbp]
     \centering
-    \caption{Aggregate disparity metrics (Study~15, between-subjects). Prestige-high: Riko and Aisling; prestige-mid/low: Vincent and Jude.}
+    \caption[Study~15: Aggregate disparity metrics]{Study~15: Aggregate disparity metrics (Study~15, between-subjects). High Prestige: Riko and Aisling. Mid/Low Prestige: Vincent and Jude.}
     \label{tab:bias-disparity-metrics}
     \vspace{1.5ex}
     \small
@@ -174,11 +174,11 @@ Full MERIT per scenario and report deviation from the honest baseline.
 
 \begin{table}[htbp]
     \centering
-    \caption{Adversarial robustness matrix (Study~06). All personas share the same \textbf{Honest Candidate} baseline (CV-only 29.6\%, Full 49.8\%). 
-    $\Delta_{\mathrm{honest\_cv}}$ is each scenario's CV-only score minus the honest CV-only score (29.6\%). 
-    $\Delta_{\mathrm{fusion}}$ is Full MERIT minus CV-only on the same row. 
-    $\Delta_{\mathrm{honest\_fusion}}$ is each scenario's Full MERIT score minus the honest Full score (49.8\%). 
-    Figure~\ref{fig:adversarial-robustness} visualises $\Delta_{\mathrm{honest\_fusion}}$ with attack-level annotations.}
+    \caption[Study~06: Adversarial robustness matrix]{ Study~06: Adversarial robustness matrix for Study~06, all candidates share the same \textbf{Honest candidate} baseline.
+    $\Delta_{\mathrm{honest\_cv}}$ is each scenario's CV-only score minus the honest CV-only score.
+    $\Delta_{\mathrm{fusion}}$ is Full MERIT minus CV-only on the same row.
+    $\Delta_{\mathrm{honest\_fusion}}$ is each scenario's Full MERIT score minus the honest Full score.
+    Figure~\ref{fig:adversarial-robustness} visualises $\Delta_{\mathrm{honest\_fusion}}$ with annotations for each scenario.}
     \label{tab:adversarial-matrix}
     \vspace{1.5ex}
     \footnotesize
@@ -246,7 +246,7 @@ From here, the actor would need to find a name that is close enough to bypass th
 full names that match. This effort would technically work, but in the real-world, where a candidate applies to a vast array of jobs with different metrics, 
 this would be impractical. In our example, we consider GitHub portfolios, but this identity squatting can be applied to other data sources, such as LinkedIn as well.
 
-\subsection{Studies 02 \& 03: Computational Scalability \& Performance Benchmarks}
+\subsection{Studies 02 \& 03: Scalability \& Performance Benchmarks}
 \label{subsec:studies-02-03-scalability}
 The next two studies (Study~02 and Study~03) focus on the performance of MERIT, in terms of both runtime and spacetime complexities for a batch of 
 $N \in \{10, 50, 100, 200, 500\}$ candidates. We will benchmark these against Traditional ATS, Modern AI ATS, and MERIT. To truly measure the differences
@@ -266,7 +266,7 @@ representations of the data, please refer to Appendix~\ref{appendix:fairness-sca
 
 \begin{table}[htbp]
     \centering
-    \caption{Batch ranking latency (Study~02). Wall-clock seconds to score an entire cohort.}
+    \caption[Study~02: Batch ranking latency]{Study~02: Batch ranking latency for Study~02, with wall-clock seconds to score an entire cohort of size $N$.}
     \label{tab:runtime-results}
     \vspace{1.5ex}
     \small
@@ -302,9 +302,7 @@ Table~\ref{tab:engine-load} and Table~\ref{tab:spacetime-batch} summarise \textt
 
 \begin{table}[htbp]
     \centering
-    \caption{Static engine memory footprint (Study~03). Per-engine RSS 
-    delta from initialisation through one warmup score, each measured in a 
-    fresh subprocess (MB).}
+    \caption[Study~03: Static memory footprint]{Study~03: Static engine memory footprint for Study~03, measured in a fresh subprocess in megabytes (MB).}
     \label{tab:engine-load}
     \vspace{1.5ex}
     \small
@@ -321,9 +319,9 @@ Table~\ref{tab:engine-load} and Table~\ref{tab:spacetime-batch} summarise \textt
 
 \begin{table}[htbp]
     \centering
-    \caption{Incremental batch memory overhead (Study~03). Per-(engine, $N$) RSS growth during batch 
-    scoring in a fresh subprocess, measured after \texttt{gc.collect()} with the engine already 
-    loaded (MB). Same engine ordering as Table~\ref{tab:runtime-results}.}
+    \caption[Study~03: Incremental batch memory]{Study~03: Incremental batch memory overhead for Study~03, 
+    measured after \texttt{gc.collect()} with the engine already loaded in megabytes (MB).
+    Same engine ordering as Table~\ref{tab:runtime-results}.}
     \label{tab:spacetime-batch}
     \vspace{1.5ex}
     \small

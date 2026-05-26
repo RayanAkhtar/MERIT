@@ -1,4 +1,4 @@
-\section{Stage 3: Explainable Interpretation \& Visualisation}
+\section{Stage 3: Explainable and Auditable Rankings}
 The last stage of MERIT takes place once we have finished computing metrics for all of the candidates in the job configuration.
 In this stage, we translate the complex internal mathematical states into transparent human-readable audit trails, as well as
 simple visualisations to aid readability and understanding. MERIT aim of being a glass-box recruitment depends upon this stage,
@@ -6,7 +6,7 @@ as we need to ensure that recruiters are not just given a final score, but also 
 trust, or even challenge candidate scores. We aid this by also providing probabilistic confidence scoring, applying Cooperative Game
 Theory for data source contributions both to the candidate's final score, as well as to their individual metrics.
 
-\subsection{Probabilistic Scoring \& Confidence Intervals}
+\subsection{Metric Confidence}
 As mentioned in the previous chapter, Bayesian Evidence Fusion not only provides an expected value, but also a variance, in other words,
 the certainty of that candidate's score. Two candidates may have a similar expected score for a metrics, but could have vastly different
 levels of confidence due to the sources of information for that metric. For example, one candidate may have verified signals across multiple
@@ -25,7 +25,7 @@ By outputting intuitive labels, rather than raw intervals, recruiters can quickl
 backed by a variety of strong evidence.
 
 
-\subsection{Shapley Value Integration}
+\subsection{Data Source Attribution}
 While Bayesian Evidence Fusion and confidence scoring addresses the problem of understanding a candidate's proficiencies, we must address
 the biggest disadvantage of this approach. Bayesian Evidence Fusion, at its core, is an aggregation mechanic that fuses multiple signals
 together. We lose key information about the impact of each data source on that metric's final score. We cannot tell if a candidate got a high
@@ -61,14 +61,15 @@ to a data source, and inform the recruiter whether a candidate's score was drive
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.95\textwidth]{implementation/screenshots/shapley_source_breakdown.png}
-    \caption{The Source Influence Breakdown panel from the candidate profile. This figure uses
-        Shapley Values to demonstrate source influence on the candidate's overall score, ensuring
-        recruiters understand the basis of the candidate's evidence (claimed evidence or demonstrated evidence).}
+    \caption[Source Influence Breakdown panel]{ A visualisation of the candidate's profile and score breakdown upon running
+    a configuration. For this candidate, we can observe the Shapley Values for each data source in the top-left panel.
+    This breakdown can be used to understand the core basis of a candidate's score, whether it was driven by demonstrated evidence, 
+    or claimed evidence.}
     \label{fig:shapley_attribution}
 \end{figure}
 
 
-\subsection{Audit Trail Generation \& Algorithmic Contestability}
+\subsection{Algorithmic Contestability}
 ATS platforms are often criticised for their lack of transparency and auditability. When a candidate is given a low score,
 or rejected from an ATS, both candidates, as well as the recruiters have no insight as to why that was the case. Due to this,
 neither party can learn from this interaction, or challenge the claims that the system makes.
@@ -90,7 +91,7 @@ This "Glass-Box" approach attempts to bridge the gap between complex probabilist
 workflows, transforming a binary hiring decision into a defensible and interrogate-able process.
 
 
-\subsection{Dynamic Cohort Normalisation}
+\subsection{Relative Cohort Normalisation}
 Another common flaw with algorithmic scoring is the absence of relative context. A candidate with a year of experience may seem
 weak on paper, but would be considered exceptional if the majority of the applicant pool had little to no experience. However, due
 to this, the candidate would likely be undervalued if the system does not correctly highlight the difference in experience between
@@ -103,7 +104,7 @@ we aggregate these results to identify cohort maximums. In the second pass, we r
 the batch maximums. This approach, while not runtime efficient for extremely large datasets, ensures that MERIT's ranking remain adaptive
 to the competitive landscape, rather than an arbitrary baseline.
 
-\subsection{Interactive Visualisation}
+\subsection{Glass-Box Dashboard}
 Understandably, presenting the raw JSON \textit{results\_payload} is unreasonable due to it being inherently unscalable and poor UX.
 We will briefly go over the main features of our Next.js frontend to create an intuitive, visual "Glass-Box" dashboard.
 
@@ -125,17 +126,21 @@ ensuring full transparency.
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.95\textwidth]{implementation/screenshots/candidate_rankings_dashboard.png}
-    \caption{The main Intelligence Report dashboard displaying the candidate rankings. Recruiters can view scores
-        across all configured metrics alongside confidence badges. Warnings are illustrated by the amber traffic light icons,
-        flagging penalties such as keyword-stuffing.}
+    \caption[Intelligence Report dashboard]{The Intelligence Report dashboard, showing the candidate rankings for a given configuration.
+    Recruiters are able to view and query the candidate rankings, alongside confidence badges, visible upon opening a given candidate's report.
+    Where a candidate is subject to a non-critical penalty (such as Keyword Stuffing), an amber traffic light icon will be presented to the recruiter as
+    shown in the screenshot. In the event of a critical penalty (such as Identity Squatting), a red warning icon will be presented to the recruiter.}
     \label{fig:candidate_rankings}
 \end{figure}
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.95\textwidth]{implementation/screenshots/metric_insights_panel.png}
-    \caption{The expanded Insights panel for a specific metric (Python). This view presents the traffic-light
-        confidence badge, the human-readable logic string, the aggregated signals, and actionable advice on how the
-        score could be improved.}
+    \caption[Metric Insights panel (Python)]{The expanded Insights panel for a specific metric (Python). This is a candidate-specific
+    breakdown of the candidate's final score, detailing per-metric values as well as the confidence level of that metric. This view
+    presents a medium confidence score, as given by the amber traffic light color. It is possible to view the audit trail to view per-source
+    breakdowns of the score, as well as how bayesian fusion was applied to the score, along with a Shapley Value breakdown as well.
+    Relative, actionable advice is also provided to the recruiter to improve the candidate's score, or note why a candidate failed to achieve 
+    a higher score.}
     \label{fig:insights_dashboard}
 \end{figure}

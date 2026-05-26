@@ -1,30 +1,41 @@
-\chapter{End-to-End Mathematical Audit Trail}
+\chapter{Mathematical Audit Trail}
 \label{appendix:math_trail}
 
-This appendix provides a complete, step-by-step visual breakdown of the Verification Audit for the Python metric, as calculated by the MERIT execution engine. This explicitly details the underlying mathematical logic including temporal decay, heuristic normalisation, Bayesian Evidence Fusion, and Shapley Value attribution.
+This appendix serves as a complete visual breakdown of what a typical MERIT metric calculation looks like
+for a given candidate. In this case, we consider a programming language metric, Python, this is an extensible
+metric derived from a job description (not a hardcoded baseline metric). Here, we show the recruiter the
+complete logic behind how the strength of each data source is calculated, and the weights that are applied to 
+each source when later performing Bayesian Evidence Fusion. This trail also accounts for heuristic decay,
+batch normalisation and also the display of Shapley Values to inform the recruiter whether our score 
+was driven by demonstrated evidence, or claimed evidence.
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.85\textwidth]{implementation/screenshots/math_trail_phase_0_1.png}
-    \caption{Phase 0 and Phase 1 of the Verification Audit for the a Python metric (extensible metric derived from a JD). 
-    The math trail explicitly shows the application of the temporal decay penalty 
-    and the heuristic normalisation of signals from the candidate's GitHub, CV, and LinkedIn.}
+    \caption[Math Audit Trail: Phases 0 \& 1 (Data Source Strength \& Skill Decay)]{Phase 0 and Phase 1 of the Math Audit Trail 
+    for the Python metric (extensible metric derived from a JD). The calculations for the strength of each data source are shown,
+    and skill decay is applied specifically to the GitHub source. Note that we do not perform this operation for self-reported data
+    to account for potential stretching of the timeline for projects.}
     \label{fig:audit_trail_phase_1}
 \end{figure}
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.85\textwidth]{implementation/screenshots/math_trail_phase_2.png}
-    \caption{Phase 2 of the Verification Audit, visualising the Bayesian Evidence Fusion 
-    process. It also displays the final attribution of source impact for this specific metric, 
-    calculated via Shapley Values.}
+    \caption[Math Audit Trail: Phase 2 (Bayesian fusion \& Shapley Values)]{Phade 2 of the Math Audit Trail for the 
+    Python metric. This phase dispplays the Bayesian Evidence Fusion process as well as shapley value calculations.
+    For bayesian fusion, we use the strength of the signal $Str$ and the trust value of the signal $Tr$ to update
+    the alpha and beta parameters of the Beta distribution. We compute Shapley Values for each data source to determine
+    the contribution of each source to the final score.}
     \label{fig:audit_trail_phase_2}
 \end{figure}
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.85\textwidth]{implementation/screenshots/math_trail_phase_3.png}
-    \caption{Phase 3 of the Verification Audit, where the mathematical uncertainty ($\sigma$) 
-    of the Beta distribution is calculated to derive the final confidence level of the metric's score.}
+    \caption[Math Audit Trail: Phase 3 (Confidence Level \& Final Score)]{Phase 3 of the Math Audit Trail for the 
+    Python metric. Here, we use the Beta distribution to display both the match score (expected value) as well
+    as our confidence in that score (variance). For the confidence level, we use bounds to group variance into three 
+    categories: "High Confidence", "Medium Confidence", and "Low Confidence".}
     \label{fig:audit_trail_phase_3}
 \end{figure}

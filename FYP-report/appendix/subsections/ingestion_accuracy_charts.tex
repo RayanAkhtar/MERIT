@@ -1,18 +1,24 @@
 \chapter{Ingestion Accuracy Charts (Studies 04 \& 05)}
 \label{appendix:ingestion-charts}
 
-Charts for the CV and Job Description parser audits (Section~\ref{sec:foundational-ingestion-extensibility}). Aggregate metrics appear in Tables~\ref{tab:cv_parser_results} and~\ref{tab:jd_parser_results}; per-document score distributions are shown here.
+Bar charts for the CV and Job Description parser audits (Section~\ref{sec:foundational-ingestion-extensibility}).
+Refer to Tables~\ref{tab:cv_parser_results} and~\ref{tab:jd_parser_results} for the aggregate metrics.
+Note that for the CV ingestion audit, we separate single-column and multi-column layouts to highlight
+the significance of the structural layout of the CV on the parser's accuracy.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.95\textwidth]{../evaluation/04-ir_parser_test/output/ir_parser_accuracy.png}
-    \caption{Study~04: CV parser extraction accuracy across 30 layouts ($N=15$ single-column, $N=15$ multi-column).}
+    \caption[Study~04: CV parser accuracy by layout]{Study~04 CV parser accuracy by layout. We have a total of 
+    30 CVs in this study. There is a 50/50 split between single-column and multi-column layouts. Note the significant
+    disparity between the two layouts for the experience recall metric, highlighting the structural vulnerability of the parser.}
     \label{fig:cv_parser_accuracy}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.95\textwidth]{../evaluation/05-jd_parser_test/output/jd_parser_accuracy.png}
-    \caption{Study~05: Job Description parser accuracy across 15 documents.}
+    \caption[Study~05: JD parser accuracy]{Study~05: Job Description parser accuracy across 15 documents.
+    Note the low accuracy for the company match metric, highlighting the structural vulnerability of the parser.}
     \label{fig:jd_parser_accuracy}
 \end{figure}

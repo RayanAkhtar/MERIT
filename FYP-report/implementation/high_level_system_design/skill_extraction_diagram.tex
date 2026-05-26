@@ -33,7 +33,8 @@
             node[pos=0.25, below, font=\tiny\itshape, xshift=0.5cm] {Requirement Embeddings};
 
     \end{tikzpicture}
-    \caption{Stage 1: The Intelligent Configuration process for dynamic skill weighting 
-    (TF-IDF) and semantic requirement mapping.}
+    \caption[Metric Weighting \& Semantic Skill Mapping]{A diagram showing the process of metric weighting and semantic skill mapping. 
+    We use TF-IDF to create scores and normalise them to a 5-point Likert scale.
+    Later, during the scoring stage, we use SentenceTransformer on candidate skills to compare similarities between candidate skills and metrics.}
     \label{fig:skill_extraction_pipeline}
 \end{figure}

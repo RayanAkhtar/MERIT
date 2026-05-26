@@ -9,7 +9,7 @@ with a methodological justification regarding the symmetry axiom. Following this
 interaction (HCI) user trial conducted to evaluate the usability and decision-making impact of MERIT's explainability layer on professional
 recruiters.
 
-\subsection{Study 11: Shapley Value Mathematical Verification}
+\subsection{Study 11: Shapley Value Verification}
 \label{subsec:study-11-shapley-verification}
 
 To ensure our source-level attributions are mathematically source, we shall formally evaluate the implementation against three of
@@ -73,9 +73,9 @@ in Table~\ref{tab:shapley-verification}.
 
 \begin{table}[htbp]
     \centering
-    \caption{Shapley Value Mathematical Verification (Study 11). The sum of all source attributions ($\sum \phi_i$) matches
-        the grand coalition match score $v(N)$ within floating-point tolerance ($\Delta < 10^{-6}$). Vince Vault's negative
-        GitHub attribution ($\phi_{GitHub} \approx -0.071$) highlights the engine's active penalty under identity mismatch.}
+    \caption[Study~11: Shapley verification]{The sum of all source attributions ($\sum \phi_i$) matching the grand coalition match score
+    $v(N)$ within floating-point tolerance ($\Delta < 10^{-6}$) to account for precision errors. Note that negative Shapley values are present,
+    noting Vince Vault's penalisation for an identity mismatch on GitHub.}
     \label{tab:shapley-verification}
     \vspace{1.5ex}
     \small
@@ -152,8 +152,9 @@ the importance of additional evidence sources to create a holistic picture of a 
 
 \begin{table}[htbp]
     \centering
-    \caption{Aggregate positive Shapley attribution by source (Study~11, ten-candidate cohort). 
-    Shares sum positive $\phi_i$ only (negative GitHub penalties excluded from the pie denominator).}
+    \caption[Study~11: Aggregate Shapley by source]{ Study~11: Shapley attributions per source for the ten-candidate cohort in \ref{tab:shapley-verification}.
+    The shares sum positive $\phi_i$ only, excluding the negative GitHub penalty from the pie's demoninator to avoid the potential for zero division,
+    for future evaluation runs.}
     \label{tab:shapley-source-dominance}
     \vspace{1.5ex}
     \small
@@ -230,9 +231,9 @@ We present the quantitative results of this trial in Table~\ref{tab:hci-trial-re
 
 \begin{table}[htbp]
     \centering
-    \caption{Quantitative Results of the HCI Pilot User Trial ($N = 5$ Evaluators). Decisions are represented as the ratio of
-        Shortlisted ($S$) to Rejected ($R$). Decision Reversal Rate (DRR) measures the percentage of Stage 1 decisions that were
-        reversed in Stage 2. Confidence is scored on a 5-point Likert scale (1 = Not Confident, 5 = Extremely Confident).}
+    \caption[Study~14: HCI pilot results]{ Quantitative results of Study~14, with $N = 5 Evaluators$. Decisions are split into shortlisted and rejected decisions ($S$ and $R$ respectively).
+    Decision Reversal Rate (DRR) refers to a Stage 1 decision that was later reversed in Stage 2 after being presented with the Glass-Box scorecard.
+    Confidence follows the 5-point Likert scale (1 = Not Confident, 5 = Extremely Confident)}
     \label{tab:hci-trial-results}
     \vspace{1.5ex}
     \small

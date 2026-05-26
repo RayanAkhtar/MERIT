@@ -1,4 +1,4 @@
-\section{Foundational Ingestion \& Evaluating Pillar 1: Extensibility}
+\section{Evaluating Pillar 1: Extensibility}
 \label{sec:foundational-ingestion-extensibility}
 
 In real-world applications, the performance of MERIT is heavily dependent on the accuracy of its information
@@ -14,7 +14,7 @@ ground-truth datasets, evaluating a total of 30 CVs (balanced across diverse lay
 Per-document score distributions are in Appendix~\ref{appendix:ingestion-charts}, 
 summary tables remain below.
 
-\subsection{Ingestion Architecture \& Methodological Mechanics}
+\subsection{Ingestion Methodology}
 The ingestion layer implements custom parsing scripts located in \texttt{/backend/core/parsers}. These
 scripts ingest, sanitise, and extract key entities from unstructured PDF files through the following
 pipeline:
@@ -24,7 +24,7 @@ For both CVs and JDs, raw text and embedded hyperlinks are extracted using the P
 \texttt{pdfplumber} and \texttt{pdfminer} \cite{pdfminer}. The extracted raw text is then sanitised by
 removing null bytes (\texttt{\textbackslash u0000}) and redundant whitespace characters.
 
-\subsubsection{Named Entity Recognition (NER) \& Contact Parsing}
+\subsubsection{Named Entity Recognition \& Contact Parsing}
 To extract candidate identities, the first 500 characters of the document are processed by spaCy's
 English NER pipeline (\texttt{en\_core\_web\_sm}) \cite{spacy2020}. Candidate names are identified by
 matching the \texttt{PERSON} entity label. Email addresses are extracted using targeted regular expressions,
@@ -46,7 +46,7 @@ headings (e.g., 'Experience', 'Education', 'Projects'). Bullet points and text b
 delimits (pipes, colons, and commas) to extract roles, companies, and institutions, while regular expressions
 extract and normalise temporal date ranges.
 
-\subsection{Mathematical Performance Metrics}
+\subsection{Evaluation Metrics}
 \label{subsec:mathematical-metrics}
 
 For our evaluation, we will be evaluating both set-based and string-based comparisons between the ground truth,
@@ -88,7 +88,7 @@ exact binary matches, we do the same for job titles in JDs. However, for the com
 perform a partial containment indicator, checking to see if the ground truth label is a substring of the
 extracted label.
 
-\subsection{Study 04: CV Ingestion Accuracy Audit}
+\subsection{Study 04: CV Ingestion Accuracy}
 \label{subsec:study-04}
 
 We evaluate the CV parser on a pool of 30 candidate CVs, covering common LaTeX templates, corporate two-page
@@ -99,7 +99,8 @@ in Table \ref{tab:cv_parser_results}.
 
 \begin{table}[htbp]
     \centering
-    \caption{Study 04: Breakdown of CV Ingestion Accuracy Metrics by Layout Type ($N=30$)}
+    \caption[Study~04: CV ingestion by layout]{Study 04: Breakdown of CV Ingestion Accuracy Metrics by Layout Type ($N=30$). 
+    There is a 50/50 split between single-column and multi-column CVs.}
     \label{tab:cv_parser_results}
     \begin{tabularx}{\textwidth}{
             >{\raggedright\arraybackslash\hsize=1.4\hsize}X
@@ -150,7 +151,7 @@ represent a fair or accurate representation of candidate capability, but rather 
 candidates with simple, linear templates—favoring "ATS-friendly" formatting over genuine professional merit.
 
 
-\subsection{Study 05: Job Description Intelligence Audit}
+\subsection{Study 05: Job Description Accuracy}
 \label{subsec:study-05}
 The JD parser was evaluated in a similar manner, with a total of 15 job descriptions across different software
 engineering roles to ensure a wide range of formats and technical requirements. The compiled mean results
@@ -159,7 +160,7 @@ Figure~\ref{fig:jd_parser_accuracy} (Appendix~\ref{appendix:ingestion-charts}).
 
 \begin{table}[htbp]
     \centering
-    \caption{Study 05: Mean Job Description Extraction Accuracy Metrics ($N=15$)}
+    \caption[Study~05: JD extraction accuracy]{Study 05: Mean Job Description Extraction Accuracy Metrics ($N=15$)}
     \label{tab:jd_parser_results}
     \begin{tabularx}{\textwidth}{X c c}
         \hline
@@ -202,7 +203,7 @@ ranking of candidates.
 
 
 
-\subsection{Study 13: Metric Prediction and Recruiter Alignment}
+\subsection{Study 13: Metric Prediction vs Recruiter Alignment}
 \label{subsec:study-13-metric-prediction}
 
 While Studies~04 and~05 test skill \emph{extraction}, Study~13 evaluates whether TF-IDF \emph{priority} suggestions align with recruiters.
@@ -222,7 +223,7 @@ TF-IDF suggestions using exact match, MAE, and Spearman $\rho$. Charts are in Ap
 \subsubsection{Results}
 \begin{table}[htbp]
     \centering
-    \caption{Study~13 (pilot): TF-IDF vs consensus priorities, $N = 4$ evaluators, three hold-out roles, $n = 27$ skill--role pairs.}
+    \caption[Study~13: TF-IDF vs consensus]{Study~13 (pilot): TF-IDF vs evaluator consensus with three hold-out roles, $N = 4$ evaluators, $n = 27$ skill--role pairs.}
     \label{tab:study-13-metric-alignment}
     \begin{tabularx}{\textwidth}{l c c c c}
         \hline
@@ -269,7 +270,7 @@ suggestions with mandatory human overrides, rather than silent defaults. Further
 recruiters distribute priorities without forcing an even spread across the Likert scale.
 
 
-\subsection{Downstream Mitigation and Architectural Rationale}
+\subsection{Downstream Mitigation}
 \label{subsec:downstream-mitigation}
 
 These quantitative findings empirically justify two of the three core architectural pillars of the MERIT system.
