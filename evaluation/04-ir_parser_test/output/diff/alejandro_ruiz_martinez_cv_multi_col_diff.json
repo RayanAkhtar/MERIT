@@ -1,0 +1,113 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "docker",
+            "dynamodb",
+            "go",
+            "grpc",
+            "java",
+            "kubernetes",
+            "postgresql",
+            "python",
+            "rust",
+            "sql"
+        ],
+        "Missed (False Negatives)": [
+            "crdt",
+            "datadog",
+            "distributed systems",
+            "event sourcing",
+            "gcp",
+            "git",
+            "github",
+            "grafana",
+            "idempotency patterns",
+            "jaeger",
+            "javascript/typescript",
+            "jira",
+            "kafka",
+            "message queues",
+            "microservices architecture",
+            "prometheus",
+            "protocol buffers",
+            "real-time processing",
+            "redis",
+            "terraform"
+        ],
+        "Extra (False Positives/Noise)": [
+            "foundation",
+            "javascript",
+            "processing",
+            "typescript"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "university of cambridge",
+            "stripe",
+            "wise",
+            "cloudflare",
+            "jane street"
+        ],
+        "Missed": [
+            "imperial college london",
+            "paymentvault",
+            "txnreplay",
+            "distributedledger",
+            "qcon london & goto conferences",
+            "open payments community foundation"
+        ],
+        "All Extracted Entities": [
+            "alejandro",
+            "stripe",
+            "senior backend engineer, payments infrastructure",
+            "ruiz-martinez",
+            "worth $150m arr",
+            "alejandro.ruiz.martinez@gmail.com",
+            "in alejandro-ruiz-martinez 23% yoy",
+            "alejandroruizmartinez",
+            "\u2325 wise (formerly transferwise)",
+            "backend engineer, core payments",
+            "\u2318 https",
+            "\u25c6 education",
+            "190+ countries",
+            "47min to 12min",
+            "first-class honors (); awarded",
+            "project on distributed consensus",
+            "forex volume",
+            "led systems architecture club (60+",
+            "cloudflare",
+            "members); organized weekly seminars",
+            "backend engineer, billing & payments",
+            "with engineers from citadel and google",
+            "on low-latency systems design",
+            "university of cambridge",
+            "reducing customer complaint tickets by 64%",
+            "postgraduate diploma in advanced",
+            "(92/100) in distributed parallelization",
+            "research on cloud computing",
+            "jane street",
+            "teaching assistant for 3 courses on",
+            "backend engineer, clearing & settlement",
+            "concurrency and distributed systems;",
+            "mentored 25 undergraduates in systems",
+            "design projects",
+            "worth $8.4m",
+            "\u25c6 skills",
+            "javascript/typescript"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": false,
+        "Email Correct": true,
+        "Extracted": {
+            "name": null,
+            "email": "alejandro.ruiz.martinez@gmail.com"
+        },
+        "Expected": {
+            "name": "Alejandro Ruiz-Martinez",
+            "email": "alejandro.ruiz.martinez@gmail.com"
+        }
+    }
+}

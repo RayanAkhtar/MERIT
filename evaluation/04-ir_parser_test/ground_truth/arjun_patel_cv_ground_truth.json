@@ -1,0 +1,49 @@
+{
+    "name": "Arjun Patel",
+    "email": "arjun.patel@gmail.com",
+    "skills": [
+        "Airflow",
+        "Apache Beam",
+        "Apache Flink",
+        "Apache Kafka",
+        "AWS",
+        "ClickHouse",
+        "Confluence",
+        "DataDog",
+        "Debezium",
+        "Docker",
+        "GCP",
+        "Git",
+        "Go",
+        "Grafana",
+        "Java",
+        "Jira",
+        "Kotlin",
+        "Kubernetes",
+        "PostgreSQL",
+        "Prometheus",
+        "Python",
+        "Redis",
+        "Scala",
+        "Spark Streaming",
+        "SQL",
+        "Terraform"
+    ],
+    "experience": [
+        "Imperial College London",
+        "University of Amsterdam",
+        "Datadog",
+        "Stripe",
+        "Wise",
+        "Thoughtworks",
+        "FlowSync",
+        "RiverTelemetry",
+        "PipelineSync",
+        "Apache Kafka Community",
+        "Data Engineering Europe Conference"
+    ],
+    "education": [
+        "Imperial College London",
+        "University of Amsterdam"
+    ]
+}

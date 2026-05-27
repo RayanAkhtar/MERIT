@@ -1,0 +1,507 @@
+{
+    "raw_cv_text": "Yara Al-Rashid\nYA\nSenior Application Security Engineer @ Cloudflare\n+44 20 7946 0958 \u00b7 yara.alrashid@gmail.com \u00b7 yara-al-rashid \u00b7 YaraAlRashid \u00b7 https://yara.dev\nEXPERIENCE PROJECTS EDUCATION\nCloudflare VulnRadar Imperial College London\nSenior Application Security Engineer \u00b7 2023- Python, FastAPI, PostgreSQL, Kubernetes, MSc Cyber Security \u00b7 2019-2021\nPresent YARA Rules \u00b7 2022-Present Achieved distinction with 78% average;\nLed security review of microservices Open-source runtime vulnerability scanner led secure coding workshop for 45+\nplatform processing 25M+ requests/sec; for containerized applications; 2,840+ students covering OWASP Top 10 and\nidentified 18 critical vulnerabilities GitHub stars, 280K+ monthly downloads; threat modeling\nreducing CVSS exposure by 94% and detects 340+ CVE patterns with 92.3%\nThesis on 'Runtime API Monitoring for\npreventing estimated $12M+ in breach true positive rate\nZero-Day Detection in Microservices'\ncosts Implemented adaptive ML-based anomaly published as conference paper with 340+\nArchitected SAST/DAST pipeline detection reducing scan time by 68% citations\nreducing mean time to vulnerability (from 240s to 77s per image) while\nUniversity of Waterloo\ndetection from 23 days to 4.2 days across maintaining 99.1% vulnerability coverage\nBASc Computer Science (Honours) \u00b7 2015-\n180+ engineering teams; achieved 99.2% accuracy\n2019\nfalse positive suppression rate\nCryptoShield Graduated with 3.87/4.0 GPA; President of\nDesigned custom WAF rules for GraphQL Rust, C, LLVM, OpenSSL, TLS 1.3 \u00b7 2021- Cybersecurity Club growing membership\nAPIs blocking 2.3M+ attack payloads 2023 from 12 to 120+ members over 2 years\nmonthly (99.7% precision) while Cryptographic vulnerability detection\nCo-authored 2 peer-reviewed security\nmaintaining 99.95% legitimate traffic library for C/C++/Rust codebases; 1,240+\npapers on cryptographic side-channel\nthroughput stars, 95K+ weekly downloads; identified\nattacks and supply chain vulnerability\n156+ real-world cryptographic misuse\nStripe analysis\npatterns in production systems\nApplication Security Engineer \u00b7 2021-2023\nEstablished threat modeling framework Achieved sub-2ms analysis latency per\nadopted across 12 product teams; 10K lines of code with zero false negatives\ncompleted 47 threat models discovering on 45 OWASP crypto test cases; integrated SKILLS\n156 design-level risks with 89% into CI/CD pipelines for 40+ enterprises Languages\nremediation rate within SLA AuthPulse Python Rust Go TypeScript\nReduced payment API latency from 18ms TypeScript, Node.js, Next.js, OAuth 2.0, Java C SQL Bash\nto 12.4ms (31% improvement) while SAML 2.0 \u00b7 2020-2022\nTechnologies\nadding comprehensive input validation; Reference implementation and testing\nOAuth 2.0 OIDC SAML 2.0\nhandled $890B+ in annual transaction harness for OAuth 2.0/OIDC compliance;\nvolume with zero authentication bypasses 1,680+ GitHub stars, 156K+ total clones; TLS 1.3 AES-256 RSA WebAuthn\nBuilt automated secrets detection system certified against 34 official OpenID FIDO2 Kubernetes Docker\nFoundation test cases\nscanning 2.1M commits/month across Apache Kafka gRPC GraphQL\nmonorepo; prevented 23 incidents Provides 18+ pre-configured vulnerability REST APIs JWT\npreventing exposure of AWS/payment scenarios with 99.7% accuracy in\nTools\nprocessor credentials simulating real-world authentication\nBurp Suite Professional OWASP ZAP\nattacks; used in security training by 12\nWise Fortune 500 companies SonarQube Snyk Checkmarx\nSecurity Engineer (Application Security\nGitLab SAST AWS Security Hub\nFocus) \u00b7 2019-2021\nLed incident response for 8 critical Datadog ELK Stack Splunk\nvulnerabilities in payment reconciliation EXTRACURRICULAR Threat Modeling (Microsoft Threat\nservices affecting 4.2M+ user accounts; Modeling Tool)\nBlack Hat USA & OWASP Global\nachieved 100% remediation in 6.5 hours Wireshark Metasploit\nAppSec\naverage MTTR\nConference Speaker & Training Instructor \u00b7\nImplemented OAuth 2.0/OIDC\n2021-Present\nauthentication overhaul serving 180+ API\nDelivered 8 talks on microservices\nclients; reduced authentication-related security and API threat modeling to\nincidents by 87% while decreasing token\n2,400+ security practitioners; 2023 talk\nvalidation latency by 15.3ms\n'Zero-Trust Architecture for Polyglot APIs'\nConducted 52 secure code reviews across achieved 4.8/5.0 attendee rating\nfintech Python/Golang codebases; trained\nDesigned 6-hour intensive workshop on\n34 engineers achieving 78% reduction in\nruntime security and behavior-based\nOWASP Top 10 findings in subsequent\nanomaly detection; trained 340+ engineers\nsprints with 89% reporting significant\nPalantir Technologies improvement in threat detection\nSecurity Intelligence Analyst (Contract) \u00b7 capabilities\n2018-2019\nOWASP Project Leadership & OSS\nAnalyzed 340+ data pipeline\nMentorship\nconfigurations identifying 67 privilege\nOWASP Top 10 Maintainer & Senior Mentor\nescalation pathways; remediation roadmap (Linux Foundation) \u00b7 2020-Present\nprevented estimated 12 high-impact Co-maintained OWASP Top 10 2021\nrelease guiding 45+ security researchers;\nincidents based on threat intelligence document received 2.3M+ downloads and\ncorrelation integrated into 180+ university\nDeveloped Python framework for cybersecurity curricula globally\nautomated SQL injection pattern detection Mentored 12 junior security engineers\nacross distributed systems achieving through formal program; 11 mentees\n94.2% recall with 98.1% precision on promoted to senior/lead roles within 18-24\n180K+ query samples months with average 34% salary increase\nConducted red team assessment of access\ncontrol matrices across 18 internal\nplatforms; discovered 23 logic flaws\nincluding IDOR and broken function-level\naccess control allowing lateral movement",
+    "name": "Yara Al-Rashid YA",
+    "email": "yara.alrashid@gmail.com",
+    "phone": "+442079460958",
+    "links": {
+        "other": [
+            "https://yara.dev"
+        ],
+        "linkedin": [],
+        "github": []
+    },
+    "skills": [
+        "aws",
+        "c",
+        "c++",
+        "docker",
+        "fastapi",
+        "foundation",
+        "go",
+        "golang",
+        "graphql",
+        "grpc",
+        "java",
+        "js",
+        "kubernetes",
+        "llvm",
+        "next.js",
+        "node.js",
+        "postgresql",
+        "processing",
+        "python",
+        "rust",
+        "sql",
+        "typescript"
+    ],
+    "projects": [],
+    "extracurricular": [],
+    "cv_experience": [
+        {
+            "name": "Cloudflare VulnRadar Imperial College London",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Thesis on 'Runtime API Monitoring for",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Zero-Day Detection in Microservices'",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "University of Waterloo",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "BASc Computer Science (Honours) \u00b7",
+            "subtitle": "",
+            "start_date": "2015",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "180+ engineering teams; achieved 99.2% accuracy",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "",
+            "subtitle": "",
+            "start_date": "2019",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "false positive suppression rate",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Co-authored 2 peer-reviewed security",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "papers on cryptographic side-channel",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "throughput stars, 95K+ weekly downloads; identified",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "attacks and supply chain vulnerability",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "156+ real-world cryptographic misuse",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Stripe analysis",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "patterns in production systems",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Application Security Engineer \u00b7",
+            "subtitle": "",
+            "start_date": "2021",
+            "end_date": "2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Technologies",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "OAuth 2.0 OIDC SAML 2.0",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Foundation test cases",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Tools",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "processor credentials simulating real-world authentication",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Burp Suite Professional OWASP ZAP",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Security Engineer (Application Security",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "GitLab SAST AWS Security Hub",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Focus) \u00b7",
+            "subtitle": "",
+            "start_date": "2019",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Black Hat USA & OWASP Global",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "AppSec",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "average MTTR",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Conference Speaker & Training Instructor \u00b7",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Implemented OAuth 2.0/OIDC",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "",
+            "subtitle": "",
+            "start_date": "2021",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "authentication overhaul serving 180+ API",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Delivered 8 talks on microservices",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "incidents by 87% while decreasing token",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "2,400+ security practitioners;  talk",
+            "subtitle": "",
+            "start_date": "2023",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "validation latency by 15.3ms",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "'Zero-Trust Architecture for Polyglot APIs'",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "fintech Python/Golang codebases; trained",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Designed 6-hour intensive workshop on",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "34 engineers achieving 78% reduction in",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "runtime security and behavior-based",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "OWASP Top 10 findings in subsequent",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "anomaly detection; trained 340+ engineers",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "sprints with 89% reporting significant",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Palantir Technologies improvement in threat detection",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Security Intelligence Analyst (Contract) \u00b7 capabilities",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "",
+            "subtitle": "",
+            "start_date": "2018",
+            "end_date": "2019",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "OWASP Project Leadership & OSS",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Analyzed 340+ data pipeline",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Mentorship",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "configurations identifying 67 privilege",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "release guiding 45+ security researchers;",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "correlation integrated into 180+ university",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Conducted red team assessment of access",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "control matrices across 18 internal",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "platforms; discovered 23 logic flaws",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "including IDOR and broken function-level",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "access control allowing lateral movement",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Cloudflare VulnRadar Imperial College London\nSenior Application Security Engineer \u00b7 2023- Python, FastAPI, PostgreSQL, Kubernetes, MSc Cyber Security \u00b7 2019-2021\nPresent YARA Rules \u00b7 2022-Present Achieved distinction with 78% average;\nLed security review of microservices Open-source runtime vulnerability scanner led secure coding workshop for 45+\nplatform processing 25M+ requests/sec; for containerized applications; 2,840+ students covering OWASP Top 10 and\nidentified 18 critical vulnerabilities GitHub stars, 280K+ monthly downloads; threat modeling\nreducing CVSS exposure by 94% and detects 340+ CVE patterns with 92.3%\nThesis on 'Runtime API Monitoring for\npreventing estimated $12M+ in breach true positive rate\nZero-Day Detection in Microservices'\ncosts Implemented adaptive ML-based anomaly published as conference paper with 340+\nArchitected SAST/DAST pipeline detection reducing scan time by 68% citations\nreducing mean time to vulnerability (from 240s to 77s per image) while\nUniversity of Waterloo\ndetection from 23 days to 4.2 days across maintaining 99.1% vulnerability coverage\nBASc Computer Science (Honours) \u00b7 2015-\n180+ engineering teams; achieved 99.2% accuracy\n2019\nfalse positive suppression rate\nCryptoShield Graduated with 3.87/4.0 GPA; President of\nDesigned custom WAF rules for GraphQL Rust, C, LLVM, OpenSSL, TLS 1.3 \u00b7 2021- Cybersecurity Club growing membership\nAPIs blocking 2.3M+ attack payloads 2023 from 12 to 120+ members over 2 years\nmonthly (99.7% precision) while Cryptographic vulnerability detection\nCo-authored 2 peer-reviewed security\nmaintaining 99.95% legitimate traffic library for C/C++/Rust codebases; 1,240+\npapers on cryptographic side-channel\nthroughput stars, 95K+ weekly downloads; identified\nattacks and supply chain vulnerability\n156+ real-world cryptographic misuse\nStripe analysis\npatterns in production systems\nApplication Security Engineer \u00b7 2021-2023\nEstablished threat modeling framework Achieved sub-2ms analysis latency per\nadopted across 12 product teams; 10K lines of code with zero false negatives\ncompleted 47 threat models discovering on 45 OWASP crypto test cases; integrated SKILLS\n156 design-level risks with 89% into CI/CD pipelines for 40+ enterprises Languages\nremediation rate within SLA AuthPulse Python Rust Go TypeScript\nReduced payment API latency from 18ms TypeScript, Node.js, Next.js, OAuth 2.0, Java C SQL Bash\nto 12.4ms (31% improvement) while SAML 2.0 \u00b7 2020-2022\nTechnologies\nadding comprehensive input validation; Reference implementation and testing\nOAuth 2.0 OIDC SAML 2.0\nhandled $890B+ in annual transaction harness for OAuth 2.0/OIDC compliance;\nvolume with zero authentication bypasses 1,680+ GitHub stars, 156K+ total clones; TLS 1.3 AES-256 RSA WebAuthn\nBuilt automated secrets detection system certified against 34 official OpenID FIDO2 Kubernetes Docker\nFoundation test cases\nscanning 2.1M commits/month across Apache Kafka gRPC GraphQL\nmonorepo; prevented 23 incidents Provides 18+ pre-configured vulnerability REST APIs JWT\npreventing exposure of AWS/payment scenarios with 99.7% accuracy in\nTools\nprocessor credentials simulating real-world authentication\nBurp Suite Professional OWASP ZAP\nattacks; used in security training by 12\nWise Fortune 500 companies SonarQube Snyk Checkmarx\nSecurity Engineer (Application Security\nGitLab SAST AWS Security Hub\nFocus) \u00b7 2019-2021\nLed incident response for 8 critical Datadog ELK Stack Splunk\nvulnerabilities in payment reconciliation EXTRACURRICULAR Threat Modeling (Microsoft Threat\nservices affecting 4.2M+ user accounts; Modeling Tool)\nBlack Hat USA & OWASP Global\nachieved 100% remediation in 6.5 hours Wireshark Metasploit\nAppSec\naverage MTTR\nConference Speaker & Training Instructor \u00b7\nImplemented OAuth 2.0/OIDC\n2021-Present\nauthentication overhaul serving 180+ API\nDelivered 8 talks on microservices\nclients; reduced authentication-related security and API threat modeling to\nincidents by 87% while decreasing token\n2,400+ security practitioners; 2023 talk\nvalidation latency by 15.3ms\n'Zero-Trust Architecture for Polyglot APIs'\nConducted 52 secure code reviews across achieved 4.8/5.0 attendee rating\nfintech Python/Golang codebases; trained\nDesigned 6-hour intensive workshop on\n34 engineers achieving 78% reduction in\nruntime security and behavior-based\nOWASP Top 10 findings in subsequent\nanomaly detection; trained 340+ engineers\nsprints with 89% reporting significant\nPalantir Technologies improvement in threat detection\nSecurity Intelligence Analyst (Contract) \u00b7 capabilities\n2018-2019\nOWASP Project Leadership & OSS\nAnalyzed 340+ data pipeline\nMentorship\nconfigurations identifying 67 privilege\nOWASP Top 10 Maintainer & Senior Mentor\nescalation pathways; remediation roadmap (Linux Foundation) \u00b7 2020-Present\nprevented estimated 12 high-impact Co-maintained OWASP Top 10 2021\nrelease guiding 45+ security researchers;\nincidents based on threat intelligence document received 2.3M+ downloads and\ncorrelation integrated into 180+ university\nDeveloped Python framework for cybersecurity curricula globally\nautomated SQL injection pattern detection Mentored 12 junior security engineers\nacross distributed systems achieving through formal program; 11 mentees\n94.2% recall with 98.1% precision on promoted to senior/lead roles within 18-24\n180K+ query samples months with average 34% salary increase\nConducted red team assessment of access\ncontrol matrices across 18 internal\nplatforms; discovered 23 logic flaws\nincluding IDOR and broken function-level\naccess control allowing lateral movement",
+    "education": []
+}

@@ -1,0 +1,90 @@
+{
+    "Skills": {
+        "Matched": [
+            "c++",
+            "firebase",
+            "flutter",
+            "graphql",
+            "grpc",
+            "kotlin",
+            "python",
+            "sqlite",
+            "swift"
+        ],
+        "Missed (False Negatives)": [
+            "android studio",
+            "app annie analytics",
+            "arkit",
+            "avfoundation",
+            "charles proxy",
+            "core data",
+            "corelocation",
+            "figma",
+            "git",
+            "github actions",
+            "instruments",
+            "ios",
+            "javascript/typescript",
+            "jenkins",
+            "jira",
+            "lldb debugger",
+            "metal",
+            "objective-c",
+            "proxyman",
+            "react native",
+            "websocket",
+            "xcode"
+        ],
+        "Extra (False Positives/Noise)": [
+            "c",
+            "foundation",
+            "javascript",
+            "processing",
+            "react",
+            "typescript"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "stripe",
+            "wise",
+            "figma",
+            "shopify"
+        ],
+        "Missed": [
+            "eth zurich",
+            "university of toronto",
+            "motionsync",
+            "platformbridge",
+            "cachevault",
+            "react native eu conference",
+            "ios.dev community"
+        ],
+        "All Extracted Entities": [
+            "stripe",
+            "incremental arr",
+            "bugs by 67% (q1",
+            "story points over 8 quarters",
+            "wise (formerly transferwise)",
+            "optimized refresh intervals",
+            "year",
+            "figma",
+            "frame capture analysis)",
+            "during peak load testing (1k rps)",
+            "shopify",
+            "authorization caching"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": true,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Dimitri Okafor-Nikolaev",
+            "email": "dimitri.okafor@gmail.com"
+        },
+        "Expected": {
+            "name": "Dimitri Okafor-Nikolaev",
+            "email": "dimitri.okafor@gmail.com"
+        }
+    }
+}

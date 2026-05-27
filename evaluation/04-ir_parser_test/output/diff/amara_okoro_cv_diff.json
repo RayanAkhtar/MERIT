@@ -1,0 +1,83 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "docker",
+            "envoy",
+            "go",
+            "grpc",
+            "javascript",
+            "kubernetes",
+            "postgresql",
+            "python",
+            "rust",
+            "sql"
+        ],
+        "Missed (False Negatives)": [
+            "argocd",
+            "azure (aks",
+            "bash",
+            "consul",
+            "cosmos",
+            "datadog",
+            "db)",
+            "elk stack",
+            "gcp",
+            "git",
+            "gitlab ci/cd",
+            "grafana",
+            "hashicorp suite",
+            "jenkins",
+            "linux",
+            "new relic",
+            "prometheus",
+            "rabbitmq",
+            "redis",
+            "terraform",
+            "vault"
+        ],
+        "Extra (False Positives/Noise)": [
+            "azure",
+            "foundation",
+            "processing"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "datadog",
+            "cloudflare",
+            "wise",
+            "shopify"
+        ],
+        "Missed": [
+            "imperial college london",
+            "university of lagos",
+            "fluxcapacity",
+            "sentrynet",
+            "chaoswarden",
+            "kubecon europe",
+            "cloud native computing foundation"
+        ],
+        "All Extracted Entities": [
+            "datadog",
+            "$4.2m annually while maintaining 99.99% sla",
+            "cloudflare",
+            "convergence time from 3.2s to 0.8s",
+            "wise",
+            "annually",
+            "shopify"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": false,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Email",
+            "email": "amara.okoro@gmail.com"
+        },
+        "Expected": {
+            "name": "Amara Okoro",
+            "email": "amara.okoro@gmail.com"
+        }
+    }
+}

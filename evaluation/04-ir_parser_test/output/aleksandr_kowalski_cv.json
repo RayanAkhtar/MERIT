@@ -1,0 +1,254 @@
+{
+    "raw_cv_text": "Aleksandr Kowalski\n+44 20 7946 0958 | Email: aleksandr.kowalski@gmail.com | LinkedIn: aleksandr-kowalski | GitHub: AleksandrKowalski |\nhttps://aleksandr.dev\nEDUCATION\nETH Zurich (Swiss Federal Institute of Technology) | MSc Computer Science 2010\u20132012\nThesis on distributed systems optimization achieved 9.2/10 (top 3% cohort); published 2 peer-\nreviewed papers on lock-free concurrent data structures in IEEE Transactions on Parallel and\nDistributed Systems\nLed Systems Engineering Club with 150+ members; organized 8 technical workshops on concurrency\npatterns, attracting speakers from Google and Microsoft\nUniversity of Warsaw | BSc Mathematics & Computer Science 2006\u20132010\nGraduated summa cum laude with 3.95/4.0 GPA; awarded Faculty Excellence Award for\ncontributions to algorithmic research\nConducted undergraduate research on randomized algorithms under Prof. Marek Cygan; co-authored\n1 publication in competitive programming domain\nEXPERIENCE\nStripe | Principal Engineer, Infrastructure & Performance 2019\u2013Present\nArchitected and led 12-person team delivering next-generation payment processing pipeline; reduced\nP99 latency by 340ms (from 450ms\u2192110ms) and increased throughput 2.8x (180K\u2192504K req/sec)\nserving $2.2T+ annual payment volume\nDesigned distributed consensus protocol for real-time settlement reconciliation across 18 global\nregions; achieved 99.9997% consistency (3 nines improvement) while cutting operational overhead\nby $4.2M annually\nMentored 5 senior engineers to principal-track roles; established incident command training program\nreducing MTTR by 62% and incident severity by 58% across 200+ microservices\nCloudflare | Senior Staff Engineer, Network Systems 2016\u20132019\nBuilt HTTP/3 and QUIC optimization layer deployed across 280+ edge locations processing 40M\nreq/sec; improved median latency 230ms\u219285ms (63% reduction) and reduced packet loss recovery\noverhead by 45%\nLed platform reliability initiative improving global DNS resolution SLA from 99.95%\u219299.999% (4-\nnines improvement); saved customers ~$18M in potential downtime costs annually\nChampioned adoption of eBPF-based network telemetry across infrastructure; cut observability costs\nby 67% ($2.8M savings) while increasing metric resolution from 60s to 1s intervals\nShopify | Staff Engineer, Platform & Databases 2013\u20132016\nRedesigned distributed sharding architecture for primary transactional database (900GB+, 250K\nqueries/sec); achieved 4x improvement in query latency (from 280ms\u219270ms) and enabled 5.2x\ncapacity scaling without hardware upgrades\nImplemented real-time replication system for cross-datacenter failover; reduced RTO from 45\nminutes\u21924 minutes and RPO from 30s\u2192<100ms, earning $6.8M in SLA credit avoidance\nManaged platform infrastructure for 850K+ merchant stores; optimized resource allocation reducing\ncloud spend by $3.1M YoY while maintaining 99.98% uptime SLA across containerized workloads\nGoogle | Senior Software Engineer, Infrastructure 2011\u20132013\nDeveloped high-performance RPC framework for MapReduce clusters processing 8 exabytes/day; cut\nrequest serialization overhead by 73% through custom binary protocol and reduced tail latency (p99)\nfrom 320ms\u219280ms\nOwned cluster resource scheduler serving 14K compute nodes across 6 datacenters; improved\nresource utilization by 31% ($12M annual savings) and reduced job startup time by 52%\nCo-authored 2 internal papers on distributed tracing and adaptive batching; knowledge transferred to\n28 engineers across 4 teams reducing incident resolution time by 44%\nPROJECTS\nCacheMeld | Rust, C++, Redis, Memcached 2020\u2013Present\nOpen-source distributed cache coherence framework with intelligent multi-tier invalidation; 4,200+\nGitHub stars, 187K monthly npm downloads, and adopted by 40+ companies including 2 Fortune\n500s\nAchieved 95th percentile cache hit rate 87.4% on real-world workloads vs. 71% for competitors;\nprovided 4.2x memory efficiency through adaptive compression, reducing production cache footprint\nby $800K annually for users\nVectorFlow | Go, Python, TensorFlow, Protocol Buffers 2018\u20132022\nMachine learning inference serving platform with dynamic batching; achieved 8,600+ GitHub stars\nand integrated into 12 production systems at Stripe, Shopify, and Figma\nDelivered 6.8x throughput improvement (from 420\u21922,856 inferences/sec per GPU) through model\nquantization and batch optimization; reduced inference latency from 142ms\u219238ms while cutting\nGPU costs by 58%\nRaftControl | Go, Protobuf, etcd, Kubernetes 2019\u20132021\nConsensus algorithm testing and verification framework; 2,100+ GitHub stars with adoption in 18\nproduction systems; featured in 3 academic papers on consensus correctness\nReduced consensus failure detection time from 14s\u21921.2s through improved leader election logic;\ngenerated 500K+ test scenarios covering edge cases, catching 47 previously unknown bugs in popular\nimplementations\nEXTRACURRICULAR\nStrange Loop Conference & QCon | Technical Speaker & Program Committee Member 2017\u2013Present\nDelivered 6 keynotes and technical talks on distributed systems, concurrency, and performance\noptimization with combined audience reach of 8,400+ engineers; talks achieved 4.7/5.0 average\nspeaker rating\nServed on program committee for 4 conferences selecting 180+ talks from 2,100+ submissions;\nmentored 12 first-time speakers resulting in 9 accepted presentations and fostering emerging voices in\nsystems community\nOpen Source Systems Mentorship Initiative | Principal Mentor & Advisor 2016\u2013Present\nActively mentor 7 open-source projects across Rust ecosystem; 4 mentees promoted to core\nmaintainer roles within 18 months; mentored codebase now maintains 99.2% test coverage with zero\ncritical CVEs in 3-year period\nAuthored comprehensive distributed systems and performance optimization guide (100K+ GitHub\nclones, 340K readers); established weekly office hours attended by 45+ engineers, providing\ntechnical guidance on architecture decisions and code reviews\nTECHNICAL SKILLS\nLanguages \u2013 Go, Rust, C++, Python, Java, SQL, Bash, JavaScript\nTechnologies \u2013 Kubernetes, Distributed Systems, Consensus Algorithms (Raft, Paxos), Protocol Buffers,\ngRPC, REST APIs, Event Streaming (Kafka), PostgreSQL, DynamoDB, Redis, Message Queues\n(RabbitMQ), TensorFlow, Docker, Terraform, etcd, Datadog, Prometheus\nTools \u2013 Git, Linux, Docker, Kubernetes, Terraform, CloudFormation, GitHub Actions, Jenkins,\nPrometheus, Grafana, Datadog, PagerDuty, VirtualBox, GCP, AWS, Azure, Bazel",
+    "name": "Aleksandr Kowalski",
+    "email": "aleksandr.kowalski@gmail.com",
+    "phone": "+442079460958",
+    "links": {
+        "other": [
+            "https://aleksandr.dev"
+        ],
+        "linkedin": [
+            "https://linkedin.com/in/aleksandr-kowalski"
+        ],
+        "github": [
+            "https://github.com/AleksandrKowalski"
+        ]
+    },
+    "skills": [
+        "aws",
+        "azure",
+        "c",
+        "c++",
+        "docker",
+        "dynamodb",
+        "go",
+        "grpc",
+        "java",
+        "javascript",
+        "kubernetes",
+        "memcached",
+        "postgresql",
+        "processing",
+        "python",
+        "rust",
+        "sql",
+        "tensorflow"
+    ],
+    "projects": [
+        {
+            "name": "CacheMeld",
+            "subtitle": "Rust, C++, Redis, Memcached",
+            "start_date": "2020",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "500s",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "by $800K annually for users",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "VectorFlow",
+            "subtitle": "Go, Python, TensorFlow, Protocol Buffers",
+            "start_date": "2018",
+            "end_date": "2022",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "GPU costs by 58%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "RaftControl",
+            "subtitle": "Go, Protobuf, etcd, Kubernetes",
+            "start_date": "2019",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "implementations",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "Strange Loop Conference & QCon",
+            "subtitle": "Technical Speaker & Program Committee Member",
+            "start_date": "2017",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "speaker rating",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "systems community",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Open Source Systems Mentorship Initiative",
+            "subtitle": "Principal Mentor & Advisor",
+            "start_date": "2016",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "critical CVEs in 3-year period",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Stripe",
+            "subtitle": "Principal Engineer, Infrastructure & Performance",
+            "start_date": "2019",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "serving $2.2T+ annual payment volume",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "by $4.2M annually",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Cloudflare",
+            "subtitle": "Senior Staff Engineer, Network Systems",
+            "start_date": "2016",
+            "end_date": "2019",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "overhead by 45%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Shopify",
+            "subtitle": "Staff Engineer, Platform & Databases",
+            "start_date": "2013",
+            "end_date": "2016",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "capacity scaling without hardware upgrades",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Google",
+            "subtitle": "Senior Software Engineer, Infrastructure",
+            "start_date": "2011",
+            "end_date": "2013",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "from 320ms\u219280ms",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Stripe | Principal Engineer, Infrastructure & Performance 2019\u2013Present\nArchitected and led 12-person team delivering next-generation payment processing pipeline; reduced\nP99 latency by 340ms (from 450ms\u2192110ms) and increased throughput 2.8x (180K\u2192504K req/sec)\nserving $2.2T+ annual payment volume\nDesigned distributed consensus protocol for real-time settlement reconciliation across 18 global\nregions; achieved 99.9997% consistency (3 nines improvement) while cutting operational overhead\nby $4.2M annually\nMentored 5 senior engineers to principal-track roles; established incident command training program\nreducing MTTR by 62% and incident severity by 58% across 200+ microservices\nCloudflare | Senior Staff Engineer, Network Systems 2016\u20132019\nBuilt HTTP/3 and QUIC optimization layer deployed across 280+ edge locations processing 40M\nreq/sec; improved median latency 230ms\u219285ms (63% reduction) and reduced packet loss recovery\noverhead by 45%\nLed platform reliability initiative improving global DNS resolution SLA from 99.95%\u219299.999% (4-\nnines improvement); saved customers ~$18M in potential downtime costs annually\nChampioned adoption of eBPF-based network telemetry across infrastructure; cut observability costs\nby 67% ($2.8M savings) while increasing metric resolution from 60s to 1s intervals\nShopify | Staff Engineer, Platform & Databases 2013\u20132016\nRedesigned distributed sharding architecture for primary transactional database (900GB+, 250K\nqueries/sec); achieved 4x improvement in query latency (from 280ms\u219270ms) and enabled 5.2x\ncapacity scaling without hardware upgrades\nImplemented real-time replication system for cross-datacenter failover; reduced RTO from 45\nminutes\u21924 minutes and RPO from 30s\u2192<100ms, earning $6.8M in SLA credit avoidance\nManaged platform infrastructure for 850K+ merchant stores; optimized resource allocation reducing\ncloud spend by $3.1M YoY while maintaining 99.98% uptime SLA across containerized workloads\nGoogle | Senior Software Engineer, Infrastructure 2011\u20132013\nDeveloped high-performance RPC framework for MapReduce clusters processing 8 exabytes/day; cut\nrequest serialization overhead by 73% through custom binary protocol and reduced tail latency (p99)\nfrom 320ms\u219280ms\nOwned cluster resource scheduler serving 14K compute nodes across 6 datacenters; improved\nresource utilization by 31% ($12M annual savings) and reduced job startup time by 52%\nCo-authored 2 internal papers on distributed tracing and adaptive batching; knowledge transferred to\n28 engineers across 4 teams reducing incident resolution time by 44%",
+    "education": [
+        {
+            "name": "ETH Zurich (Swiss Federal Institute of Technology)",
+            "subtitle": "MSc Computer Science",
+            "start_date": "2010",
+            "end_date": "2012",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "University of Warsaw",
+            "subtitle": "BSc Mathematics & Computer Science",
+            "start_date": "2006",
+            "end_date": "2010",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Graduated summa cum laude with 3.95/4.0 GPA; awarded Faculty Excellence Award for",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Conducted undergraduate research on randomized algorithms under Prof.",
+            "subtitle": "Marek Cygan; co-authored",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "1 publication in competitive programming domain",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ]
+}

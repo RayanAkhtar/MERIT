@@ -1,0 +1,501 @@
+{
+    "raw_cv_text": "EXPERIENCE\nAmara Okoro\nDatadog 2022\u2013Present\nSenior Site Reliability Engineer\nArchitected and deployed multi-region Kubernetes infrastructure supporting 18M+\nmetrics/second ingestion; reduced P99 latency by 340ms through custom scheduler and\n\u25c6 CONTACT\nadmission controller tuning\n\u260e +44 20 7946 0958 Led incident response program across 4 SRE teams (35 people); implemented\nautomated runbook generation reducing MTTR by 65% (from 24 min to 8.4 min) for\namara.okoro@gmail.com\n\u2709 120+ alert types\nin amara-okoro Designed cost optimization framework leveraging spot instances and bin-packing\nalgorithms; saved $4.2M annually while maintaining 99.99% SLA\nAmaraOkoro\n\u2325\nCloudflare 2020\u20132022\n\u2318 https://amara.dev\nDevOps Engineer II\nOperated and scaled global edge network infrastructure across 200+ data centers;\n\u25c6 EDUCATION\nincreased request throughput by 2.3x (from 28M to 64M req/sec) by optimizing BGP\nImperial College London failover logic and reducing convergence time from 3.2s to 0.8s\nMSc Computer Science (Systems & Implemented GitOps-based configuration management for 600+ microservices using\nNetworks)\nArgoCD; reduced deployment error rate by 94% (from 3.8% to 0.22%) and deployment\n2018\u20132020\ntime to 4 minutes\nThesis on distributed consensus protocols\nBuilt comprehensive observability platform aggregating logs, traces, and metrics from\nfor Kubernetes clusters; achieved 40%\n45K containers; cut debugging time by 55% and reduced false-positive alerts by 71%\nreduction in consensus latency under\nByzantine fault tolerance with custom Wise 2019\u20132020\nRAFT implementation DevOps Engineer\nFirst-class honours (3.9/4.0 GPA); Containerized legacy monolithic payment system serving 8M+ customers; orchestrated\nrecipient of the Bartle Scholarship for migration of 15 applications to Kubernetes, reducing resource footprint by 48% and\nexcellence in systems architecture server costs by $1.8M annually\nDesigned and implemented disaster recovery procedures achieving RTO of 15 minutes\nUniversity of Lagos\nBSc Computer Science and RPO of 5 minutes across 3 regions; conducted quarterly drills with 100% success\n2014\u20132018 rate\nGraduated with distinction (3.87/4.0 GPA); Developed custom Prometheus exporters and dashboards for infrastructure telemetry;\nPresident of the ACM Student Chapter, improved incident detection speed by 73% with advanced anomaly detection using\ngrew membership from 45 to 280+ statistical thresholding\nmembers over 2 years\nShopify 2018\u20132019\nCapstone project: container orchestration\nInfrastructure Engineer\nplatform for resource-constrained\nManaged production Kubernetes clusters processing 2.1M transactions/day across\nenvironments, deployed across 12\n4,000+ nodes; implemented custom resource quotas and network policies reducing\ncampus servers handling 500+ concurrent\nnoisy neighbor impact by 82%\nusers\nAutomated infrastructure provisioning using Terraform; reduced environment setup time\nfrom 6 hours to 12 minutes and eliminated 340+ manual configuration steps\n\u25c6 SKILLS\nCollaborated with data platform team to optimize PostgreSQL replication; increased\nLanguages replica synchronization speed by 1.4x and reduced failover time from 90 seconds to 28\nGo Python Rust Bash SQL seconds\nJavaScript\nPROJECTS\nTechnologies\nKubernetes Docker Prometheus FluxCapacity 2021\u2013Present\nGo, Kubernetes, ETCD, Prometheus\nGrafana ELK Stack PostgreSQL\nOpen-source predictive auto-scaling engine for Kubernetes achieving 89% resource\nRedis RabbitMQ gRPC Envoy\nutilization (vs. 62% with HPA); 2.8K GitHub stars and 140+ contributors from 22\nTerraform ArgoCD Jenkins\ncountries\nGitLab CI/CD\nReduced scaling latency by 340ms using ML-based demand forecasting; featured in\nTools\nKubeCon talk attended by 1,200+ attendees with 4.8/5.0 rating\nAWS (EC2 EKS RDS S3 Lambda)\nSentryNet 2020\u20132022\nGCP (GKE Cloud Run Bigtable)\nRust, eBPF, Linux kernel\nAzure (AKS Cosmos DB) Datadog\nBuilt low-overhead network performance monitoring tool using eBPF; deployed in\nNew Relic HashiCorp suite Vault\nproduction at 8 companies monitoring 40K+ endpoints with <2% CPU overhead vs. 8%\nConsul Linux Git for existing tools\nReleased 12 stable versions with 1.2K GitHub stars; achieved 15K monthly downloads\nfrom crates.io with 96% positive user feedback\nChaosWarden 2019\u20132020\nPython, Docker, Kubernetes, fault injection\nDeveloped chaos engineering framework compatible with Kubernetes and Docker\nSwarm; automated resilience testing for 50+ teams, identifying 340+ potential failure\nmodes\nReduced time-to-resilience discovery by 78% vs. manual testing; 890 GitHub stars and\nadopted by 3 Fortune 500 companies\nEXTRACURRICULAR\nKubeCon Europe 2021\u20132024\nSession Speaker & Track Chair\nDelivered 4 talks on observability and chaos engineering to audiences of 800\u20131,200\nattendees; achieved 4.7/5.0 average rating across all sessions\nChaired 'Infrastructure at Scale' track in 2023 (12 sessions); mentored 25 emerging\nspeakers and increased diversity representation by 34%\nCloud Native Computing Foundation 2020\u2013Present\nMaintainer, Kubernetes SIG-Reliability\nLead maintainer for reliability best practices documentation; contributed 180+ code\nreviews and merged 92 proposals from global community\nOrganized bi-weekly office hours attracting 40\u201360 engineers; built mentorship program\nthat trained 18 junior SREs for senior roles at major tech companies",
+    "name": null,
+    "email": "amara.okoro@gmail.com",
+    "phone": "+442079460958",
+    "links": {
+        "other": [
+            "https://amara.dev"
+        ],
+        "linkedin": [],
+        "github": []
+    },
+    "skills": [
+        "aws",
+        "azure",
+        "docker",
+        "envoy",
+        "foundation",
+        "go",
+        "grpc",
+        "javascript",
+        "kubernetes",
+        "postgresql",
+        "processing",
+        "python",
+        "rust",
+        "sql"
+    ],
+    "projects": [
+        {
+            "name": "Technologies",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Kubernetes Docker Prometheus FluxCapacity",
+            "subtitle": "",
+            "start_date": "2021",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Go, Kubernetes, ETCD, Prometheus",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Grafana ELK Stack PostgreSQL",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Redis RabbitMQ gRPC Envoy",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Terraform ArgoCD Jenkins",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "countries",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "GitLab CI/CD",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Tools",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "AWS (EC2 EKS RDS S3 Lambda)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "SentryNet",
+            "subtitle": "",
+            "start_date": "2020",
+            "end_date": "2022",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "GCP (GKE Cloud Run Bigtable)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Rust, eBPF, Linux kernel",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Azure (AKS Cosmos DB) Datadog",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "New Relic HashiCorp suite Vault",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Consul Linux Git for existing tools",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "ChaosWarden",
+            "subtitle": "",
+            "start_date": "2019",
+            "end_date": "2020",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Python, Docker, Kubernetes, fault injection",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "modes",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "adopted by 3 Fortune 500 companies",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "KubeCon Europe",
+            "subtitle": "",
+            "start_date": "2021",
+            "end_date": "2024",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Session Speaker & Track Chair",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Cloud Native Computing Foundation",
+            "subtitle": "",
+            "start_date": "2020",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Maintainer, Kubernetes SIG-Reliability",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Amara Okoro",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Datadog",
+            "subtitle": "",
+            "start_date": "2022",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Senior Site Reliability Engineer",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "\u25c6 CONTACT",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "admission controller tuning",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "amara.okoro@gmail.com",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "\u2709 120+ alert types",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "AmaraOkoro",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "\u2325",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Cloudflare",
+            "subtitle": "",
+            "start_date": "2020",
+            "end_date": "2022",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "\u2318 https",
+            "subtitle": "//amara.dev",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "DevOps Engineer II",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "\u25c6 EDUCATION",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Networks)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "",
+            "subtitle": "",
+            "start_date": "2018",
+            "end_date": "2020",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "time to 4 minutes",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Thesis on distributed consensus protocols",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "for Kubernetes clusters; achieved 40%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "reduction in consensus latency under",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "RAFT implementation DevOps Engineer",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "University of Lagos",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "rate",
+            "subtitle": "",
+            "start_date": "2014",
+            "end_date": "2018",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "members over 2 years",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Shopify",
+            "subtitle": "",
+            "start_date": "2018",
+            "end_date": "2019",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Capstone project",
+            "subtitle": "container orchestration",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Infrastructure Engineer",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "platform for resource-constrained",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "environments, deployed across 12",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "campus servers handling 500+ concurrent",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "noisy neighbor impact by 82%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "users",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "\u25c6 SKILLS",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Go Python Rust Bash SQL seconds",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "JavaScript",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Amara Okoro\nDatadog 2022\u2013Present\nSenior Site Reliability Engineer\nArchitected and deployed multi-region Kubernetes infrastructure supporting 18M+\nmetrics/second ingestion; reduced P99 latency by 340ms through custom scheduler and\n\u25c6 CONTACT\nadmission controller tuning\n\u260e +44 20 7946 0958 Led incident response program across 4 SRE teams (35 people); implemented\nautomated runbook generation reducing MTTR by 65% (from 24 min to 8.4 min) for\namara.okoro@gmail.com\n\u2709 120+ alert types\nin amara-okoro Designed cost optimization framework leveraging spot instances and bin-packing\nalgorithms; saved $4.2M annually while maintaining 99.99% SLA\nAmaraOkoro\n\u2325\nCloudflare 2020\u20132022\n\u2318 https://amara.dev\nDevOps Engineer II\nOperated and scaled global edge network infrastructure across 200+ data centers;\n\u25c6 EDUCATION\nincreased request throughput by 2.3x (from 28M to 64M req/sec) by optimizing BGP\nImperial College London failover logic and reducing convergence time from 3.2s to 0.8s\nMSc Computer Science (Systems & Implemented GitOps-based configuration management for 600+ microservices using\nNetworks)\nArgoCD; reduced deployment error rate by 94% (from 3.8% to 0.22%) and deployment\n2018\u20132020\ntime to 4 minutes\nThesis on distributed consensus protocols\nBuilt comprehensive observability platform aggregating logs, traces, and metrics from\nfor Kubernetes clusters; achieved 40%\n45K containers; cut debugging time by 55% and reduced false-positive alerts by 71%\nreduction in consensus latency under\nByzantine fault tolerance with custom Wise 2019\u20132020\nRAFT implementation DevOps Engineer\nFirst-class honours (3.9/4.0 GPA); Containerized legacy monolithic payment system serving 8M+ customers; orchestrated\nrecipient of the Bartle Scholarship for migration of 15 applications to Kubernetes, reducing resource footprint by 48% and\nexcellence in systems architecture server costs by $1.8M annually\nDesigned and implemented disaster recovery procedures achieving RTO of 15 minutes\nUniversity of Lagos\nBSc Computer Science and RPO of 5 minutes across 3 regions; conducted quarterly drills with 100% success\n2014\u20132018 rate\nGraduated with distinction (3.87/4.0 GPA); Developed custom Prometheus exporters and dashboards for infrastructure telemetry;\nPresident of the ACM Student Chapter, improved incident detection speed by 73% with advanced anomaly detection using\ngrew membership from 45 to 280+ statistical thresholding\nmembers over 2 years\nShopify 2018\u20132019\nCapstone project: container orchestration\nInfrastructure Engineer\nplatform for resource-constrained\nManaged production Kubernetes clusters processing 2.1M transactions/day across\nenvironments, deployed across 12\n4,000+ nodes; implemented custom resource quotas and network policies reducing\ncampus servers handling 500+ concurrent\nnoisy neighbor impact by 82%\nusers\nAutomated infrastructure provisioning using Terraform; reduced environment setup time\nfrom 6 hours to 12 minutes and eliminated 340+ manual configuration steps\n\u25c6 SKILLS\nCollaborated with data platform team to optimize PostgreSQL replication; increased\nLanguages replica synchronization speed by 1.4x and reduced failover time from 90 seconds to 28\nGo Python Rust Bash SQL seconds\nJavaScript",
+    "education": []
+}

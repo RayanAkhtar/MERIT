@@ -1,0 +1,179 @@
+{
+    "raw_cv_text": "Arjun Mehta\n+44 20 7946 0958 | Email: arjun.mehta@outlook.com | LinkedIn: arjun-mehta-distributed | GitHub: ArjunMehta |\nhttps://arjun.dev\nEDUCATION\nImperial College London | MSc Computer Science (Distributed Systems) 2019-2021\nThesis on consensus algorithms achieved 98.7% Byzantine fault tolerance; published in IEEE\nTransactions on Parallel and Distributed Systems with 127 citations\nGraduated with Distinction (GPA 3.95/4.0); awarded the John Pratt Prize for outstanding research in\nsystems engineering\nETH Zurich | BSc Computer Science 2015-2019\nRanked top 2% of cohort; led Systems Theory lab as student mentor to 8 junior students over 2 years\nCompleted internship on sharded database optimization reducing query latency by 62% (840ms \u2192\n320ms) for 50M+ records\nEXPERIENCE\nStripe | Senior Backend Engineer (Distributed Systems) 2021-2024\nArchitected and deployed a new transaction settlement service handling 500K+ TPS across 4\ndatacenters; reduced p99 latency from 145ms to 28ms (81% improvement) and achieved 99.999%\nuptime\nLed design and implementation of a distributed rate-limiting system protecting payment\ninfrastructure; processed 2.3B requests/day with < 1ms overhead per request, preventing estimated\n$12M+ in fraud losses\nManaged team of 5 engineers on consensus layer refactoring; reduced database replication lag from\n3.2s to 180ms (94% improvement) across 6 sharded clusters, directly enabling new real-time product\nfeatures\nCloudflare | Staff Backend Engineer 2018-2021\nDesigned and shipped edge cache invalidation system using gossip protocol; reduced stale content\nserving by 99.2% with zero false positives across 180+ datacenters serving 250M requests/sec\nOptimized distributed tracing system reducing storage costs by $2.8M annually while improving trace\ncollection completeness from 87% to 99.6% across 50K+ monitored services\nDrove refactoring of HTTP/3 connection pooling logic; reduced memory footprint by 53% per\nconnection (4.2MB \u2192 1.9MB) enabling 35% more concurrent connections per edge server\nWise (formerly TransferWise) | Backend Engineer 2016-2018\nBuilt real-time foreign exchange distributed ledger system achieving 4ms 99th percentile latency\nacross 8 regions; reconciliation completeness increased from 94% to 99.97% across $140B+ in\nmonthly transaction volume\nImplemented sharded event sourcing architecture reducing write contention by 71%; throughput\nincreased from 45K ops/sec to 186K ops/sec supporting 2.1M daily active users\nEngineered failover orchestration system reducing MTTR from 8.5 minutes to 34 seconds; enabled\nfully automated recovery for 12 critical services with zero manual intervention\nPROJECTS\nConsensusDB | Rust, gRPC, Raft, Protocol Buffers 2022-2024\nOpen-source distributed database implementation achieving 2.1K GitHub stars; benchmarks show\n94K writes/sec with sub-100ms replication latency across 5-node cluster\nBuilt comprehensive test suite with 847 unit tests covering Byzantine fault tolerance scenarios;\nachieved 99.4% code coverage and 2.3M downloads on crates.io\nShardMaster | Go, etcd, Kubernetes, Protocol Buffers 2021-2023\nDistributed sharding orchestration framework reducing data rebalancing time by 68% (from 45\nminutes to 14 minutes) for clusters with 1.2TB+ data; prevents shard hotspots with 94% accuracy\n1.4K GitHub stars; deployed in production across 8 companies; supports automatic replication factor\nadjustment maintaining 99.95% availability SLA\nLatticeTrace | Rust, Apache Kafka, ClickHouse, WebAssembly 2020-2022\nObservability platform for distributed systems processing 180M spans/day with < 800\u00b5s processing\nlatency; uses lazy evaluation to reduce storage requirements by 76% vs traditional APM\n870 GitHub stars; successfully ingests traces from 340+ microservices; query response times\nimproved by 91% (2.3s \u2192 210ms avg) through columnar aggregation\nReplicaSync | Scala, Apache Flink, Cassandra, gRPC 2019-2021\nReal-time data replication engine supporting 5 consistency models with adaptive failover; 680\nGitHub stars and used by 4 production teams handling 890K events/sec\nAchieved 99.98% replication accuracy with < 450ms max propagation delay across multi-region\nclusters; reduced operational incidents by 87% vs legacy replication approach\nEXTRACURRICULAR\nDistributedSystems.fyi | Founder & Content Lead 2021-Present\nBuilt educational platform with 240+ technical articles on consensus, sharding, and fault tolerance;\naccumulated 47K monthly readers and 8.2K newsletter subscribers\nMentored 34 engineers through intensive system design program; 92% of mentees secured senior+\npositions at tier-1 companies within 6 months\nVLDB & ACM SIGMOD | Technical Speaker & Conference Committee 2020-Present\nDelivered talks on 'Consensus at Scale' (VLDB 2023) and 'Distributed Tracing Trade-offs' (SIGMOD\n2022); combined audience reach of 2,400+ researchers; talks received average 4.7/5 feedback rating\nReviewed 28 papers as committee member for distributed systems track; co-organized workshop on\n'Byzantine Fault Tolerance in Production' attended by 180+ practitioners\nTECHNICAL SKILLS\nLanguages \u2013 Rust, Go, Scala, Python, Java, C++\nTechnologies \u2013 Raft, Paxos, gRPC, Apache Kafka, Cassandra, PostgreSQL, etcd, ZooKeeper,\nElasticsearch, Prometheus, Jaeger, Kubernetes, Docker\nTools \u2013 Git, Docker, Kubernetes, Terraform, GitLab CI/CD, DataDog, New Relic, Grafana, Protocol\nBuffers, Apache Flink, Redis",
+    "name": "Arjun Mehta",
+    "email": "arjun.mehta@outlook.com",
+    "phone": "+442079460958",
+    "links": {
+        "other": [
+            "https://arjun.dev"
+        ],
+        "linkedin": [
+            "https://linkedin.com/in/arjun-mehta-distributed"
+        ],
+        "github": [
+            "https://github.com/ArjunMehta"
+        ]
+    },
+    "skills": [
+        "c",
+        "c++",
+        "cassandra",
+        "clickhouse",
+        "docker",
+        "go",
+        "grpc",
+        "java",
+        "kubernetes",
+        "postgresql",
+        "processing",
+        "python",
+        "rust",
+        "scala",
+        "webassembly"
+    ],
+    "projects": [
+        {
+            "name": "ConsensusDB",
+            "subtitle": "Rust, gRPC, Raft, Protocol Buffers",
+            "start_date": "2022",
+            "end_date": "2024",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "ShardMaster",
+            "subtitle": "Go, etcd, Kubernetes, Protocol Buffers",
+            "start_date": "2021",
+            "end_date": "2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "adjustment maintaining 99.95% availability SLA",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "LatticeTrace",
+            "subtitle": "Rust, Apache Kafka, ClickHouse, WebAssembly",
+            "start_date": "2020",
+            "end_date": "2022",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "ReplicaSync",
+            "subtitle": "Scala, Apache Flink, Cassandra, gRPC",
+            "start_date": "2019",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "DistributedSystems.fyi",
+            "subtitle": "Founder & Content Lead",
+            "start_date": "2021",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "VLDB & ACM SIGMOD",
+            "subtitle": "Technical Speaker & Conference Committee",
+            "start_date": "2020",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Stripe",
+            "subtitle": "Senior Backend Engineer (Distributed Systems)",
+            "start_date": "2021",
+            "end_date": "2024",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "uptime",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "$12M+ in fraud losses",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "features",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Cloudflare",
+            "subtitle": "Staff Backend Engineer",
+            "start_date": "2018",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Wise (formerly TransferWise)",
+            "subtitle": "Backend Engineer",
+            "start_date": "2016",
+            "end_date": "2018",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "monthly transaction volume",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Stripe | Senior Backend Engineer (Distributed Systems) 2021-2024\nArchitected and deployed a new transaction settlement service handling 500K+ TPS across 4\ndatacenters; reduced p99 latency from 145ms to 28ms (81% improvement) and achieved 99.999%\nuptime\nLed design and implementation of a distributed rate-limiting system protecting payment\ninfrastructure; processed 2.3B requests/day with < 1ms overhead per request, preventing estimated\n$12M+ in fraud losses\nManaged team of 5 engineers on consensus layer refactoring; reduced database replication lag from\n3.2s to 180ms (94% improvement) across 6 sharded clusters, directly enabling new real-time product\nfeatures\nCloudflare | Staff Backend Engineer 2018-2021\nDesigned and shipped edge cache invalidation system using gossip protocol; reduced stale content\nserving by 99.2% with zero false positives across 180+ datacenters serving 250M requests/sec\nOptimized distributed tracing system reducing storage costs by $2.8M annually while improving trace\ncollection completeness from 87% to 99.6% across 50K+ monitored services\nDrove refactoring of HTTP/3 connection pooling logic; reduced memory footprint by 53% per\nconnection (4.2MB \u2192 1.9MB) enabling 35% more concurrent connections per edge server\nWise (formerly TransferWise) | Backend Engineer 2016-2018\nBuilt real-time foreign exchange distributed ledger system achieving 4ms 99th percentile latency\nacross 8 regions; reconciliation completeness increased from 94% to 99.97% across $140B+ in\nmonthly transaction volume\nImplemented sharded event sourcing architecture reducing write contention by 71%; throughput\nincreased from 45K ops/sec to 186K ops/sec supporting 2.1M daily active users\nEngineered failover orchestration system reducing MTTR from 8.5 minutes to 34 seconds; enabled\nfully automated recovery for 12 critical services with zero manual intervention",
+    "education": [
+        {
+            "name": "Imperial College London",
+            "subtitle": "MSc Computer Science (Distributed Systems)",
+            "start_date": "2019",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "ETH Zurich",
+            "subtitle": "BSc Computer Science",
+            "start_date": "2015",
+            "end_date": "2019",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Completed internship on sharded database optimization reducing query latency by 62% (840ms \u2192",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ]
+}

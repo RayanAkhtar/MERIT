@@ -1,0 +1,513 @@
+{
+    "raw_cv_text": "Amara Okonkwo\nAO\nSenior Platform Engineer, Observability Infrastructure @ Datadog\n+44 20 7946 0958 \u00b7 amara.okonkwo@gmail.com \u00b7 amara-okonkwo \u00b7 AmaraOkonkwo \u00b7 https://amara.dev\nEXPERIENCE PROJECTS EDUCATION\nDatadog MetricFlow University of Cambridge\nSenior Platform Engineer, Observability Go, Prometheus, eBPF, PostgreSQL \u00b7 2021\u2013 MPhil Computer Science (Distributed\nInfrastructure \u00b7 2022\u2013Present Present Systems & Networks) \u00b7 2017\u20132019\nLed redesign of trace ingestion pipeline Open-source distributed metrics Achieved Distinction (3.92 GPA\nhandling 2.1M spans/sec globally; reduced cardinality manager with 2,847 GitHub equivalent); thesis on low-latency trace\nP99 latency from 850ms to 120ms (86% stars; used by 340+ organizations to aggregation for microservices reduced\nimprovement) and cut infrastructure costs prevent cardinality explosions in collection overhead by 34%\nby $4.2M annually across 12-region Prometheus; achieved 4.2M NPM/PyPI Led Systems Research Society (40+\ndeployment downloads YTD members), organized 8 seminars on\nOwned distributed cardinality control Reduces metrics cardinality by avg 56% observability at scale featuring speakers\nsystem for metrics; prevented 7 customer- via intelligent tag dropping and from Stripe and Google\nimpacting outages by implementing real- aggregation; eBPF kernel module provides\nUniversity of Lagos\ntime tag explosion detection, improving <0.1% CPU overhead for inline\nBSc Computer Science \u00b7 2013\u20132017\nplatform stability to 99.995% SLA classification on 1M+ active metric\nFirst Class Honours (3.89 GPA); awarded\n(reduced incidents by 68%) streams\nBest Computer Science Graduate;\nMentored 6 junior engineers on TraceAI competed in ACM ICPC West Africa\nobservability fundamentals; drove 3 RFCs Rust, Apache Arrow, ML (scikit-learn), regionals\nthrough architecture review process for Docker \u00b7 2020\u2013Present\nDeveloped distributed fault-tolerant\nagent optimization, achieving 28% Anomaly detection service for distributed\ncaching system as capstone; published\nreduction in agent memory footprint traces with 1,156 GitHub stars; processes\nfindings in university tech journal with\n(45MB \u2192 32MB baseline) 900K traces/hour with 89ms P99 detection\n120+ citations\nlatency; 92% precision on root cause\nCloudflare\ncandidate ranking\nPlatform Engineer, Reliability & Telemetry \u00b7\n2020\u20132022 Reduced false positive rate from 18%\nArchitected distributed tracing system for (baseline heuristics) to 3.2% via SKILLS\n200+ edge locations processing 180K supervised ML on trace feature extraction;\nLanguages\nrequests/sec; achieved 98.2% trace capture community contributions yielded 8 high-\nGo Python Rust TypeScript\nrate with <2% latency overhead via impact PRs from external developers\nSQL Java Bash\nintelligent sampling and context\nObservabilityLens\npropagation optimization Technologies\nPython, FastAPI, TypeScript/React, Grafana \u00b7\nBuilt anomaly detection pipeline for DNS 2019\u20132021 Prometheus Grafana Elasticsearch\nquery patterns; flagged security threats Educational platform for teaching SRE Jaeger Datadog OpenTelemetry\nwith 94% precision, preventing 12+ DDoS observability concepts; 847 GitHub stars; Kubernetes Docker gRPC\nincidents affecting 50M+ users across hosted workshops at 6 conferences\nApache Kafka PostgreSQL Redis\n$2.1B customer base (KubeCon NA 2020, Velocity London\neBPF Apache Arrow\nImproved observability cost efficiency by 2021, DevOps Days Berlin 2021); trained\nimplementing adaptive sampling and 2,100+ engineers Tools\nGit GitHub ArgoCD Terraform\ncompression; reduced telemetry egress by Built cost simulator module that helped\n62% while maintaining 99.1% coverage of 340 users estimate observability spend; CI/CD (GitHub Actions GitLab CI)\ncritical error paths reduced median implementation time for PagerDuty Honeycomb\nStripe telemetry strategies by 34% (9.2 days \u2192 Linux profiling (perf flamegraphs)\n6.1 days)\nSoftware Engineer, Platform Infrastructure \u00b7 Jupyter DuckDB\n2019\u20132020\nDesigned and deployed distributed tracing\ninstrumentation across 4 core payment\nEXTRACURRICULAR\nprocessing services; reduced MTTR by\n41% (from 23 min to 13.5 min) and KubeCon + CloudNativeCon\nenabled root cause analysis of 99.2% of P1 Speaker & Track Chair, Observability \u00b7 2021\u2013\nPresent\nincidents within 3 minutes\nDelivered keynote 'Scaling Traces to\nOptimized metrics cardinality\nBillions: Lessons from Production' at\nmanagement; identified and eliminated\nKubeCon North America 2022 (1,200+\n15.2M unused metric combinations,\nattendees); received 4.7/5 feedback score\nreducing Prometheus storage by 38% and\nwith 340+ post-talk discussions\nmonthly cloud spend by $180K\nCurated 16-session observability track for\nEstablished observability SLO framework\nKubeCon Europe 2023; selected speakers\nfor 50+ service teams; achieved <4% SLO\nfrom 140+ submissions; track achieved\nviolation rate across 8 critical business\nhighest attendance (2,100+ engineers)\nflows handling $50B+ annual transaction\nacross 3 sub-tracks\nvolume\nCloud Native Computing Foundation\nWise\n(CNCF)\nJunior Platform Engineer \u00b7 2018\u20132019\nOpen Source Maintainer & Mentor \u00b7 2020\u2013\nPresent\nImplemented first unified logging pipeline Maintain OpenTelemetry Go SDK; 2.1M+\nfor 8 core services; aggregated 1.8B log weekly downloads; review 60+ PRs\nentries/day with sub-100ms query latency, monthly and triaged 480+ GitHub issues\nenabling faster incident triage and YTD; onboarded 12 new contributors with\nreducing support tickets by 24% structured mentorship leading to 14\nContributed to on-call tooling merged contributions\nimprovements; shipped dashboards that Mentor 4 junior engineers on observability\nreduced paging latency by 12s average, architecture through CNCF mentorship\nand built automation to resolve 31% of program; 3 mentees promoted to senior\nlow-severity alerts autonomously roles and 1 published technical blog post\nDeveloped cost optimization analysis on distributed tracing that reached 18K\ntooling that identified $127K in wasted readers\ninfrastructure spend quarterly; documented\nfindings that informed 3 major\narchitectural decisions",
+    "name": "AmaraOkonkwo",
+    "email": "amara.okonkwo@gmail.com",
+    "phone": "+442079460958",
+    "links": {
+        "other": [
+            "https://amara.dev"
+        ],
+        "linkedin": [],
+        "github": []
+    },
+    "skills": [
+        "docker",
+        "duckdb",
+        "fastapi",
+        "foundation",
+        "go",
+        "grpc",
+        "java",
+        "jupyter",
+        "kubernetes",
+        "postgresql",
+        "processing",
+        "pypi",
+        "python",
+        "react",
+        "rust",
+        "scikit",
+        "scikit-learn",
+        "sql",
+        "typescript"
+    ],
+    "projects": [],
+    "extracurricular": [
+        {
+            "name": "processing services; reduced MTTR by",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Present",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "incidents within 3 minutes",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Delivered keynote 'Scaling Traces to",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Optimized metrics cardinality",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Billions",
+            "subtitle": "Lessons from Production' at",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "management; identified and eliminated",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "KubeCon North America  (1,200+",
+            "subtitle": "",
+            "start_date": "2022",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "15.2M unused metric combinations,",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "attendees); received 4.7/5 feedback score",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "reducing Prometheus storage by 38% and",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "with 340+ post-talk discussions",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "monthly cloud spend by $180K",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Curated 16-session observability track for",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Established observability SLO framework",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "KubeCon Europe ; selected speakers",
+            "subtitle": "",
+            "start_date": "2023",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "from 140+ submissions; track achieved",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "violation rate across 8 critical business",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "highest attendance (2,100+ engineers)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "flows handling $50B+ annual transaction",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "across 3 sub-tracks",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "volume",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Cloud Native Computing Foundation",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Wise",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "(CNCF)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Junior Platform Engineer \u00b7",
+            "subtitle": "",
+            "start_date": "2018",
+            "end_date": "2019",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Present",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Contributed to on-call tooling merged contributions",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "infrastructure spend quarterly; documented",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "findings that informed 3 major",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "architectural decisions",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Datadog MetricFlow University of Cambridge",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "University of Lagos",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "BSc Computer Science \u00b7",
+            "subtitle": "",
+            "start_date": "2013",
+            "end_date": "2017",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "(3.89 GPA); awarded",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": "First Class Honours",
+            "summary": ""
+        },
+        {
+            "name": "(reduced incidents by 68%) streams",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Best Computer Science Graduate;",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Developed distributed fault-tolerant",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "caching system as capstone; published",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "findings in university tech journal with",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "120+ citations",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "latency; 92% precision on root cause",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Cloudflare",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "candidate ranking",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Platform Engineer, Reliability & Telemetry \u00b7",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Languages",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Go Python Rust TypeScript",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "SQL Java Bash",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "intelligent sampling and context",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "ObservabilityLens",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "propagation optimization Technologies",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Python, FastAPI, TypeScript/React, Grafana \u00b7",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Apache Kafka PostgreSQL Redis",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "eBPF Apache Arrow",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Git GitHub ArgoCD Terraform",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "6.1 days)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "",
+            "subtitle": "",
+            "start_date": "2019",
+            "end_date": "2020",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Designed and deployed distributed tracing",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "instrumentation across 4 core payment",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Datadog MetricFlow University of Cambridge\nSenior Platform Engineer, Observability Go, Prometheus, eBPF, PostgreSQL \u00b7 2021\u2013 MPhil Computer Science (Distributed\nInfrastructure \u00b7 2022\u2013Present Present Systems & Networks) \u00b7 2017\u20132019\nLed redesign of trace ingestion pipeline Open-source distributed metrics Achieved Distinction (3.92 GPA\nhandling 2.1M spans/sec globally; reduced cardinality manager with 2,847 GitHub equivalent); thesis on low-latency trace\nP99 latency from 850ms to 120ms (86% stars; used by 340+ organizations to aggregation for microservices reduced\nimprovement) and cut infrastructure costs prevent cardinality explosions in collection overhead by 34%\nby $4.2M annually across 12-region Prometheus; achieved 4.2M NPM/PyPI Led Systems Research Society (40+\ndeployment downloads YTD members), organized 8 seminars on\nOwned distributed cardinality control Reduces metrics cardinality by avg 56% observability at scale featuring speakers\nsystem for metrics; prevented 7 customer- via intelligent tag dropping and from Stripe and Google\nimpacting outages by implementing real- aggregation; eBPF kernel module provides\nUniversity of Lagos\ntime tag explosion detection, improving <0.1% CPU overhead for inline\nBSc Computer Science \u00b7 2013\u20132017\nplatform stability to 99.995% SLA classification on 1M+ active metric\nFirst Class Honours (3.89 GPA); awarded\n(reduced incidents by 68%) streams\nBest Computer Science Graduate;\nMentored 6 junior engineers on TraceAI competed in ACM ICPC West Africa\nobservability fundamentals; drove 3 RFCs Rust, Apache Arrow, ML (scikit-learn), regionals\nthrough architecture review process for Docker \u00b7 2020\u2013Present\nDeveloped distributed fault-tolerant\nagent optimization, achieving 28% Anomaly detection service for distributed\ncaching system as capstone; published\nreduction in agent memory footprint traces with 1,156 GitHub stars; processes\nfindings in university tech journal with\n(45MB \u2192 32MB baseline) 900K traces/hour with 89ms P99 detection\n120+ citations\nlatency; 92% precision on root cause\nCloudflare\ncandidate ranking\nPlatform Engineer, Reliability & Telemetry \u00b7\n2020\u20132022 Reduced false positive rate from 18%\nArchitected distributed tracing system for (baseline heuristics) to 3.2% via SKILLS\n200+ edge locations processing 180K supervised ML on trace feature extraction;\nLanguages\nrequests/sec; achieved 98.2% trace capture community contributions yielded 8 high-\nGo Python Rust TypeScript\nrate with <2% latency overhead via impact PRs from external developers\nSQL Java Bash\nintelligent sampling and context\nObservabilityLens\npropagation optimization Technologies\nPython, FastAPI, TypeScript/React, Grafana \u00b7\nBuilt anomaly detection pipeline for DNS 2019\u20132021 Prometheus Grafana Elasticsearch\nquery patterns; flagged security threats Educational platform for teaching SRE Jaeger Datadog OpenTelemetry\nwith 94% precision, preventing 12+ DDoS observability concepts; 847 GitHub stars; Kubernetes Docker gRPC\nincidents affecting 50M+ users across hosted workshops at 6 conferences\nApache Kafka PostgreSQL Redis\n$2.1B customer base (KubeCon NA 2020, Velocity London\neBPF Apache Arrow\nImproved observability cost efficiency by 2021, DevOps Days Berlin 2021); trained\nimplementing adaptive sampling and 2,100+ engineers Tools\nGit GitHub ArgoCD Terraform\ncompression; reduced telemetry egress by Built cost simulator module that helped\n62% while maintaining 99.1% coverage of 340 users estimate observability spend; CI/CD (GitHub Actions GitLab CI)\ncritical error paths reduced median implementation time for PagerDuty Honeycomb\nStripe telemetry strategies by 34% (9.2 days \u2192 Linux profiling (perf flamegraphs)\n6.1 days)\nSoftware Engineer, Platform Infrastructure \u00b7 Jupyter DuckDB\n2019\u20132020\nDesigned and deployed distributed tracing\ninstrumentation across 4 core payment",
+    "education": []
+}

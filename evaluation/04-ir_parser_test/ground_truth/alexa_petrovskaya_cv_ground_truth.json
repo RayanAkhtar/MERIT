@@ -1,0 +1,49 @@
+{
+    "name": "Alexa Petrovskaya",
+    "email": "alexa.petrovskaya@gmail.com",
+    "skills": [
+        "AWS (EC2",
+        "Chrome DevTools",
+        "Datadog",
+        "Docker",
+        "Figma",
+        "Git",
+        "GitHub",
+        "Go",
+        "GraphQL",
+        "gRPC",
+        "Java",
+        "JavaScript",
+        "Jira",
+        "Kafka",
+        "Kubernetes",
+        "Linux",
+        "PostgreSQL",
+        "Postman",
+        "Python",
+        "RDS",
+        "React",
+        "Redis",
+        "Rust",
+        "S3)",
+        "SQL",
+        "TypeScript",
+        "VS Code"
+    ],
+    "experience": [
+        "Imperial College London",
+        "University of Amsterdam",
+        "Stripe",
+        "Figma",
+        "Wise",
+        "QueryVault",
+        "PixelForge",
+        "SyntaxShield",
+        "PyCon Europe",
+        "Coding Mentorship Initiative"
+    ],
+    "education": [
+        "Imperial College London",
+        "University of Amsterdam"
+    ]
+}

@@ -1,0 +1,308 @@
+{
+    "raw_cv_text": "Arjun Desai\nSoftware Engineer Intern\n\u260e +44 20 7946 0958 \u2709 arjun.desai@gmail.com in/arjun-desai gh/ArjunDesai https://arjun.dev\nPROJECTS\nEXPERIENCE\nCacheFlow | 2024\nStripe | Jun\u2013Aug 2023 TypeScript, React, Node.js, Redis, PostgreSQL\nSoftware Engineer Intern\nBuilt open-source distributed caching framework with automatic\nBuilt payment processing microservices in Go reducing\ninvalidation; achieved 8.2K GitHub stars and 150K+ monthly\ntransaction latency by 47ms (18% improvement) for 50K+ daily\nnpm downloads within 6 months of launch\nrequests; code merged to production within 2 days\nImplemented adaptive TTL mechanism and compression\nDesigned and implemented comprehensive unit/integration test\nalgorithms reducing memory usage by 58% compared to\nsuite increasing coverage from 62% to 89%, preventing 3 critical\nstandard Redis implementations; benchmarks published in blog\nbugs in staging\npost (2.3K reads)\nCollaborated with 6-person platform team to migrate legacy\npayment reconciliation system to Kafka, reducing data sync time GraphQL Schema Validator | 2023\nRust, GraphQL, CLI\nby 2.3 hours (from 5.2h to 2.9h per day)\nDeveloped compile-time schema validation tool for GraphQL\nCloudflare | Jan\u2013May 2023 APIs; 6.5K GitHub stars with 89K monthly downloads; used\nFull-Stack Engineer Intern internally by 50+ engineering teams at 8 Fortune 500 companies\nDeveloped React + TypeScript dashboard UI for DDoS\nAchieved 40\u00d7 performance improvement over Node.js-based\nanalytics, consumed by 8K+ paying customers; improved page\ncompetitors through Rust implementation; validation time:\nload time from 3.2s to 840ms (74% reduction)\n120ms vs. 4.8s for enterprise-scale schemas (2K+ types)\nOptimized PostgreSQL queries using explain analyze and\nindexing strategy, reducing API response time by 65% for user StreamSync | 2023\u20132024\nGo, gRPC, Protobuf, Kubernetes\nonboarding endpoints serving 2M+ monthly active users\nCreated real-time data synchronization library for microservices;\nMaintained 2 open-source projects with 4.2K+ GitHub stars;\nsupports 500K+ events/second throughput with sub-50ms\nreviewed 12 community PRs and merged critical bugfixes,\nlatency; 3.1K GitHub stars and active maintenance with 14\nboosting release download rate by 23%\ncontributors\nDatadog | Jul\u2013Sep 2022 Implemented consensus-based conflict resolution achieving\nSoftware Engineer Intern 99.99% eventual consistency guarantees; published technical\nBuilt real-time monitoring alerts backend in Python + FastAPI\ndeep-dive (1.8K medium.com claps)\nprocessing 500K+ metrics per second; system achieved 99.97%\nuptime SLA across 3 availability zones PerformanceInsight | 2022\u20132023\nPython, FastAPI, Vue.js, ClickHouse\nEngineered efficient time-series data aggregation reducing\nBuilt full-stack web application for application performance\nmemory footprint by 52% (from 2.8GB to 1.3GB per worker\nmonitoring; supports 4M+ metric ingestion per minute with\nnode) without compromising query latency\n<500ms query response time across 90-day retention\nDesigned schema migrations framework supporting 0-downtime\nDesigned novel columnar data compression technique reducing\ndeployments across 45K+ customer databases; reduced\nstorage costs by 44% (from \u00a38K/month to \u00a34.5K/month) without\ndeployment window from 6 hours to 12 minutes\nsacrificing query performance; presented at PyCon 2023 (320\nWise | Sep 2024\u2013Present attendees)\nGraduate Software Engineer\nEDUCATION\nArchitected end-to-end payments orchestration service in Java +\nSpring Boot handling 200K+ daily international transfers;\nImperial College London | 2020\u20132024\nimproved transaction success rate from 94.2% to 98.1%\nMEng Computing (First Class Honours)\nImplemented distributed tracing instrumentation across 12 Achieved 3.92/4.0 GPA with Distinction in final year; awarded\nmicroservices using OpenTelemetry, reducing mean time to Imperial Excellence Scholarship (top 2% of cohort)\nresolution (MTTR) for production issues by 31 minutes Led Department Computing Society (150+ members) as\nDeployed real-time FX rate caching layer (Redis) decreasing President, organized weekly technical workshops and secured\nquote latency by 340ms (92% improvement) and reducing \u00a312K sponsorship from industry partners\ndatabase load by 67% across 15 backend instances\nUniversity of Cambridge | 2023\nCambridge Summer Researcher (CS Program)\nCompleted 8-week research internship on distributed systems\noptimization; co-authored paper on consensus algorithms\nachieving 34% latency reduction\nMentored 4 junior developers on systems design patterns;\nmentor feedback scores averaged 4.8/5.0\nEXTRACURRICULAR European Software Engineering Conference (ESEC) | 2023\u2013\n2024\nPython Software Foundation | 2022\u2013Present Speaker & Workshop Facilitator\nOpen Source Maintainer Delivered 2 conference talks on 'Scaling Microservices to 1M+\nMaintain 2 core libraries with 180K+ weekly PyPI downloads; RPS' (ESEC 2024, 380 attendees); session feedback: 4.7/5.0;\ntriaged and resolved 240+ issues and merged 95 community published accompanying 22-page technical report with 8.3K\nPRs from 45+ contributors worldwide downloads\nAuthored 3 technical documentation guides and 2 architectural Facilitated full-day workshop on 'Production-Grade Go for\nRFCs; community feedback: 4.9/5.0 average helpfulness rating Backend Engineers' at 3 major conferences; trained 180+\nacross 1.2K responses engineers; post-workshop survey: 94% would recommend\nSKILLS\nLanguages: Python, JavaScript/TypeScript, Go, Java, Rust, SQL\nTechnologies: React, Node.js, FastAPI, Spring Boot, GraphQL,\ngRPC, PostgreSQL, Redis, Kafka, Kubernetes, Docker, AWS (S3,\nLambda, RDS, ECS)\nTools: Git, GitHub, GitLab, Jira, Datadog, Prometheus,\nPagerDuty, Figma, VS Code, IntelliJ IDEA",
+    "name": null,
+    "email": "arjun.desai@gmail.com",
+    "phone": "+442079460958",
+    "links": {
+        "other": [
+            "https://arjun.dev"
+        ],
+        "linkedin": [],
+        "github": []
+    },
+    "skills": [
+        "aws",
+        "clickhouse",
+        "docker",
+        "fastapi",
+        "foundation",
+        "go",
+        "graphql",
+        "grpc",
+        "java",
+        "javascript",
+        "js",
+        "kubernetes",
+        "node.js",
+        "postgresql",
+        "processing",
+        "pypi",
+        "python",
+        "react",
+        "rust",
+        "spring",
+        "sql",
+        "typescript"
+    ],
+    "projects": [],
+    "extracurricular": [],
+    "cv_experience": [
+        {
+            "name": "CacheFlow",
+            "subtitle": "",
+            "start_date": "2024",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Stripe",
+            "subtitle": "Jun\u2013 TypeScript, React, Node.js, Redis, PostgreSQL",
+            "start_date": "Aug 2023",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Software Engineer Intern",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Implemented adaptive TTL mechanism and compression",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Designed and implemented comprehensive unit/integration test",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "bugs in staging",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "post (2.3K reads)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "payment reconciliation system to Kafka, reducing data sync time GraphQL Schema Validator",
+            "subtitle": "",
+            "start_date": "2023",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Rust, GraphQL, CLI",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Cloudflare",
+            "subtitle": "Jan\u2013 APIs; 6.5K GitHub stars with 89K monthly downloads; used",
+            "start_date": "May 2023",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Achieved 40\u00d7 performance improvement over Node.js-based",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "competitors through Rust implementation; validation time",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "indexing strategy, reducing API response time by 65% for user StreamSync",
+            "subtitle": "",
+            "start_date": "2023",
+            "end_date": "2024",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Go, gRPC, Protobuf, Kubernetes",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "supports 500K+ events/second throughput with sub-50ms",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "boosting release download rate by 23%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "contributors",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Datadog",
+            "subtitle": "Jul\u2013 Implemented consensus-based conflict resolution achieving",
+            "start_date": "Sep 2022",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "deep-dive (1.8K medium.com claps)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "uptime SLA across 3 availability zones PerformanceInsight",
+            "subtitle": "",
+            "start_date": "2022",
+            "end_date": "2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Python, FastAPI, Vue.js, ClickHouse",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Engineered efficient time-series data aggregation reducing",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "node) without compromising query latency",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Designed schema migrations framework supporting 0-downtime",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "deployments across 45K+ customer databases; reduced",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Wise",
+            "subtitle": "attendees)",
+            "start_date": "Sep 2024",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Graduate Software Engineer",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "CacheFlow | 2024\nStripe | Jun\u2013Aug 2023 TypeScript, React, Node.js, Redis, PostgreSQL\nSoftware Engineer Intern\nBuilt open-source distributed caching framework with automatic\nBuilt payment processing microservices in Go reducing\ninvalidation; achieved 8.2K GitHub stars and 150K+ monthly\ntransaction latency by 47ms (18% improvement) for 50K+ daily\nnpm downloads within 6 months of launch\nrequests; code merged to production within 2 days\nImplemented adaptive TTL mechanism and compression\nDesigned and implemented comprehensive unit/integration test\nalgorithms reducing memory usage by 58% compared to\nsuite increasing coverage from 62% to 89%, preventing 3 critical\nstandard Redis implementations; benchmarks published in blog\nbugs in staging\npost (2.3K reads)\nCollaborated with 6-person platform team to migrate legacy\npayment reconciliation system to Kafka, reducing data sync time GraphQL Schema Validator | 2023\nRust, GraphQL, CLI\nby 2.3 hours (from 5.2h to 2.9h per day)\nDeveloped compile-time schema validation tool for GraphQL\nCloudflare | Jan\u2013May 2023 APIs; 6.5K GitHub stars with 89K monthly downloads; used\nFull-Stack Engineer Intern internally by 50+ engineering teams at 8 Fortune 500 companies\nDeveloped React + TypeScript dashboard UI for DDoS\nAchieved 40\u00d7 performance improvement over Node.js-based\nanalytics, consumed by 8K+ paying customers; improved page\ncompetitors through Rust implementation; validation time:\nload time from 3.2s to 840ms (74% reduction)\n120ms vs. 4.8s for enterprise-scale schemas (2K+ types)\nOptimized PostgreSQL queries using explain analyze and\nindexing strategy, reducing API response time by 65% for user StreamSync | 2023\u20132024\nGo, gRPC, Protobuf, Kubernetes\nonboarding endpoints serving 2M+ monthly active users\nCreated real-time data synchronization library for microservices;\nMaintained 2 open-source projects with 4.2K+ GitHub stars;\nsupports 500K+ events/second throughput with sub-50ms\nreviewed 12 community PRs and merged critical bugfixes,\nlatency; 3.1K GitHub stars and active maintenance with 14\nboosting release download rate by 23%\ncontributors\nDatadog | Jul\u2013Sep 2022 Implemented consensus-based conflict resolution achieving\nSoftware Engineer Intern 99.99% eventual consistency guarantees; published technical\nBuilt real-time monitoring alerts backend in Python + FastAPI\ndeep-dive (1.8K medium.com claps)\nprocessing 500K+ metrics per second; system achieved 99.97%\nuptime SLA across 3 availability zones PerformanceInsight | 2022\u20132023\nPython, FastAPI, Vue.js, ClickHouse\nEngineered efficient time-series data aggregation reducing\nBuilt full-stack web application for application performance\nmemory footprint by 52% (from 2.8GB to 1.3GB per worker\nmonitoring; supports 4M+ metric ingestion per minute with\nnode) without compromising query latency\n<500ms query response time across 90-day retention\nDesigned schema migrations framework supporting 0-downtime\nDesigned novel columnar data compression technique reducing\ndeployments across 45K+ customer databases; reduced\nstorage costs by 44% (from \u00a38K/month to \u00a34.5K/month) without\ndeployment window from 6 hours to 12 minutes\nsacrificing query performance; presented at PyCon 2023 (320\nWise | Sep 2024\u2013Present attendees)\nGraduate Software Engineer",
+    "education": [
+        {
+            "name": "",
+            "subtitle": "MEng Computing ()",
+            "start_date": null,
+            "end_date": null,
+            "grade": "First Class Honours",
+            "summary": ""
+        },
+        {
+            "name": "data",
+            "subtitle": "base load by 67% across 15 backend instances",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "mentor feedback scores averaged 4.8/5.0",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Open Source",
+            "subtitle": "Maintainer Delivered 2 conference talks on 'Scaling Microservices to 1M+",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Maintain 2 core libraries with 180K+ weekly PyPI downloads; RPS' (ESEC",
+            "subtitle": "380 attendees); session feedback: 4.7/5.0;",
+            "start_date": "2024",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "RFCs; community feedback",
+            "subtitle": "4.9/5.0 average helpfulness rating Backend Engineers' at 3 major conferences; trained 180+",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ]
+}

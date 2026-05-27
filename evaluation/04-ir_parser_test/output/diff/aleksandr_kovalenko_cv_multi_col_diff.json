@@ -1,0 +1,110 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "c++",
+            "cassandra",
+            "docker",
+            "envoy",
+            "go",
+            "grpc",
+            "java",
+            "kubernetes",
+            "postgresql",
+            "python",
+            "rust",
+            "tensorflow",
+            "typescript",
+            "webassembly"
+        ],
+        "Missed (False Negatives)": [
+            "bash",
+            "bazel",
+            "cuda",
+            "datadog",
+            "ebpf",
+            "elk stack",
+            "flamegraph",
+            "gcp",
+            "git",
+            "github actions",
+            "grafana",
+            "http/3",
+            "jaeger",
+            "pagerduty",
+            "perf",
+            "prometheus",
+            "protobuf",
+            "quic",
+            "redis",
+            "strace",
+            "terraform"
+        ],
+        "Extra (False Positives/Noise)": [
+            "azure",
+            "c",
+            "foundation",
+            "processing"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "university of amsterdam",
+            "cloudflare",
+            "shopify",
+            "datadog"
+        ],
+        "Missed": [
+            "eth zurich",
+            "wise",
+            "edgemesh: distributed control plane framework",
+            "quantum: adaptive edge caching system",
+            "rapidroute: global load balancing simulator",
+            "usenix atc & acm sigcomm",
+            "open source mentorship program"
+        ],
+        "All Extracted Entities": [
+            "cloudflare edgemesh",
+            "university of amsterdam",
+            "b.sc. computer science with minor in",
+            "guarantees; achieved 99.98% uptime sla quantum",
+            "median)  \u20ac15k in prizes",
+            "ml-driven predictive caching system",
+            "shopify",
+            "reducing cache misses by 34% through",
+            "senior engineer, infrastructure & edge",
+            "310ms) and increasing transaction decisions",
+            "typescript java bash protobuf",
+            "technologies",
+            "kubernetes grpc ebpf",
+            "guarantees; improved data freshness by rapidroute",
+            "91% and reduced split-brain incidents simulator",
+            "tools",
+            "git terraform datadog pagerduty",
+            "topologies with microsecond-precision",
+            "datadog flamegraph strace",
+            "timing; 15k monthly active users",
+            "senior software engineer, edge agents &",
+            "including engineers from netflix, stripe,",
+            "observability \u00b7",
+            "and uber",
+            "engineered lightweight edge agents (8.2",
+            "annually reviewed systems conferences",
+            "designed distributed tracing system for",
+            "edge-to-cloud observability capturing",
+            "340m traces/day with 99.9% delivery"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": false,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "AleksandrKovalenko",
+            "email": "aleksandr.kovalenko@outlook.com"
+        },
+        "Expected": {
+            "name": "Aleksandr Kovalenko",
+            "email": "aleksandr.kovalenko@outlook.com"
+        }
+    }
+}

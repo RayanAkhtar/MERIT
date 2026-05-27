@@ -1,0 +1,90 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "c++",
+            "cassandra",
+            "docker",
+            "envoy",
+            "go",
+            "grpc",
+            "java",
+            "kubernetes",
+            "postgresql",
+            "python",
+            "rust",
+            "tensorflow",
+            "typescript",
+            "webassembly"
+        ],
+        "Missed (False Negatives)": [
+            "bash",
+            "bazel",
+            "cuda",
+            "datadog",
+            "ebpf",
+            "elk stack",
+            "flamegraph",
+            "gcp",
+            "git",
+            "github actions",
+            "grafana",
+            "http/3",
+            "jaeger",
+            "pagerduty",
+            "perf",
+            "prometheus",
+            "protobuf",
+            "quic",
+            "redis",
+            "strace",
+            "terraform"
+        ],
+        "Extra (False Positives/Noise)": [
+            "azure",
+            "c",
+            "foundation",
+            "processing"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "cloudflare",
+            "shopify",
+            "datadog",
+            "wise"
+        ],
+        "Missed": [
+            "eth zurich",
+            "university of amsterdam",
+            "edgemesh: distributed control plane framework",
+            "quantum: adaptive edge caching system",
+            "rapidroute: global load balancing simulator",
+            "usenix atc & acm sigcomm",
+            "open source mentorship program"
+        ],
+        "All Extracted Entities": [
+            "cloudflare",
+            "customers $8.3m annually in bandwidth costs",
+            "shopify",
+            "datadog",
+            "compute costs by $4.2m annually",
+            "31% (from 23min \u2192 16min average)",
+            "wise (formerly transferwise)",
+            "unblocking \u00a32.8b additional monthly volume",
+            "40ms) for payment apis"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": false,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "ETH Zurich",
+            "email": "aleksandr.kovalenko@outlook.com"
+        },
+        "Expected": {
+            "name": "Aleksandr Kovalenko",
+            "email": "aleksandr.kovalenko@outlook.com"
+        }
+    }
+}

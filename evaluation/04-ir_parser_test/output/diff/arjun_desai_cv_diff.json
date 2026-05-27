@@ -1,0 +1,82 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "docker",
+            "fastapi",
+            "go",
+            "graphql",
+            "grpc",
+            "java",
+            "kubernetes",
+            "node.js",
+            "postgresql",
+            "python",
+            "react",
+            "rust",
+            "sql"
+        ],
+        "Missed (False Negatives)": [
+            "datadog",
+            "figma",
+            "git",
+            "github",
+            "gitlab",
+            "intellij idea",
+            "javascript/typescript",
+            "jira",
+            "kafka",
+            "pagerduty",
+            "prometheus",
+            "redis",
+            "spring boot",
+            "vs code"
+        ],
+        "Extra (False Positives/Noise)": [
+            "clickhouse",
+            "foundation",
+            "javascript",
+            "js",
+            "processing",
+            "pypi",
+            "spring",
+            "typescript"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "stripe",
+            "cloudflare",
+            "datadog",
+            "wise"
+        ],
+        "Missed": [
+            "imperial college london",
+            "university of cambridge",
+            "cacheflow",
+            "graphql schema validator",
+            "streamsync",
+            "performanceinsight",
+            "python software foundation",
+            "european software engineering conference"
+        ],
+        "All Extracted Entities": [
+            "stripe",
+            "cloudflare",
+            "datadog",
+            "wise"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": false,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Arjun Desai +44",
+            "email": "arjun.desai@gmail.com"
+        },
+        "Expected": {
+            "name": "Arjun Desai",
+            "email": "arjun.desai@gmail.com"
+        }
+    }
+}

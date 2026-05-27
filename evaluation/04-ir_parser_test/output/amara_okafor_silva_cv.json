@@ -1,0 +1,319 @@
+{
+    "raw_cv_text": "Amara Okafor-Silva\n+44 7700 123456 | Email: amara.okafor@gmail.com | LinkedIn: amara-okafor-silva | GitHub: AmaraOkaforSilva |\nhttps://amara.dev\nEDUCATION\nImperial College London | BSc Computer Science with Distinction 2018-2021\nAchieved 3.89/4.0 GPA with First-class honors; awarded the Anglo-German Scholarship for\nacademic excellence in human-computer interaction\nLed the Imperial Web Development Society (150+ members), organizing weekly design system\nworkshops and mentoring 8 junior developers in component-driven architecture\nETH Zurich | MSc Computer Science (Systems Track) with Summa Cum Laude 2021-2023\n3.95/4.0 cumulative GPA; thesis on 'Performance Optimizations in Token-Based Design Systems'\npublished in ACM CHI workshop proceedings\nTeaching assistant for UI Engineering seminar across 2 semesters; mentored cohort of 45 students\nwith 94% positive feedback rating\nEXPERIENCE\nFigma | Senior Frontend Engineer, Design Systems 2023-Present\nArchitected and shipped the Components v2 system supporting 40+ primitive component types and\n500+ compound variants; reduced bundle size by 28% (from 340KB to 245KB gzip) and decreased\ntime-to-interactive by 340ms across 12M+ monthly active users\nLed design system adoption initiative across 8 product teams (120+ engineers), achieving 87%\ncomponent reuse rate (+34% YoY); implemented automated accessibility auditing reducing WCAG\nviolations by 91% (from 2.3K to 210 issues)\nDesigned and open-sourced component API surface and tooling; contributed Storybook integration\nreducing setup time from 4 hours to 12 minutes; library fork rate grew 2,100+ GitHub stars in 8\nmonths\nStripe | Frontend Engineer II, Platform Design 2022-2023\nBuilt token-driven theming engine supporting 15+ dark/light mode variants and RTL layouts;\neliminated 47KB dead CSS and reduced theme application latency by 56ms (measured at p95) across\n8 merchant dashboards serving 500K+ businesses\nImplemented comprehensive Storybook documentation for 220+ reusable components with\ninteractive props panels; improved design-to-dev handoff velocity by 6.2 days per sprint for team of\n9; component discovery metrics showed 73% increased reuse\nShipped CSS-in-JS migration (styled-components \u2192 vanilla-extract) across 12 feature modules;\nimproved build times by 2.1 minutes (18% reduction) and reduced runtime style computation\noverhead by 43%; zero breaking changes across 800+ component consumers\nCloudflare | Frontend Engineer, Developer Experience 2021-2022\nLed cross-team UI component library standardization initiative; consolidated 340 duplicate\ncomponents into unified 85-component system; achieved 76% code deduplication and 2.3MB bundle\nsavings across 15+ internal dashboards\nDeveloped TypeScript-first component API with runtime prop validation and compile-time type\nchecking; reduced component-related bugs by 64% (from 18 monthly incidents to 6.5) and improved\ndeveloper experience NPS from 34 to 71\nMentored cohort of 4 junior frontend engineers on design systems fundamentals and component\ncomposition patterns; 100% of mentees promoted or received significant project ownership within 12\nmonths\nWise (formerly TransferWise) | Frontend Engineer, UI Patterns 2020-2021\nBuilt foundational design system documentation site using Gatsby and MDX supporting 12 design\ntokens categories with live code examples; improved onboarding time for new frontend hires by 4.8\ndays and reduced design-dev sync meetings by 62%\nImplemented automated visual regression testing suite with Percy integration across 180 components;\ncaught 43 unintended style regressions pre-production and achieved 100% test coverage on design\nsystem core module\nShipped responsive grid system and layout primitives supporting 6 breakpoints; powered redesign of\n8 product surfaces with 31% improvement in mobile user engagement and 12% reduction in mobile\ninteraction latency\nPROJECTS\nTokenForge | TypeScript, Node.js, GraphQL, Figma Plugin API 2023-Present\nOpen-source design token generation and synchronization tool bridging Figma tokens to code (CSS,\nSCSS, JSON); 890 GitHub stars, 45K+ npm downloads/month, adopted by 20+ companies including\n2 Series-B funded startups\nImplemented bidirectional token sync engine with conflict resolution; plugin reduces token extraction\nworkflow from 2.5 hours to 8 minutes; analyzed performance showed 94% reduction in manual token\nmanagement overhead for design teams\nChromatic | React, CSS Modules, Webpack 5, Jest, Storybook 7.0 2022-2023\nComprehensive accessible React component library for typography-heavy applications; 12.3K\nGitHub stars, featured in Awesome React list; 127K npm downloads across 3-month span with\n4.9/5.0 rating\nEngineered automated accessibility compliance suite catching WCAG 2.1 AA violations; all 56\ncomponents ship with axe-core audits and manual testing docs; zero accessibility issues reported in\nproduction across 2 years\nDesignOps Dashboard | Next.js 13, TailwindCSS, Prisma, PostgreSQL, Vercel 2021-2022\nFull-stack metrics platform tracking design system adoption KPIs and component usage analytics;\n156 GitHub stars, 3.2K unique monthly visitors; powers internal Figma design metrics at previous\nemployer\nOptimized dashboard queries reducing page load P95 latency from 3.4s to 680ms (80%\nimprovement); implemented serverless functions handling 2.1M monthly metric ingestion events with\n$127/month AWS cost\nTypeScale Generator | React, Web Workers, Canvas API, Vite 2020-2021\nInteractive tool for generating typographic scales based on mathematical ratios; 2,847 GitHub stars,\n89K+ total visits, widely shared in design systems community; featured in CSS-Tricks and Smashing\nMagazine\nImplemented Web Worker-based rendering engine processing 12,000+ scale variations in <200ms;\noptimized memory usage by 73% through lazy-loaded canvas rendering\nEXTRACURRICULAR\nDesign Systems Conference (DSConf) | Speaker & Steering Committee Member 2022-Present\nKeynote speaker at DSConf 2023 ('Scaling Design Systems for 500+ Engineers'); presentation\nreached 3,200+ live attendees and 14.7K views on YouTube within 6 weeks; post-event feedback\n4.7/5.0 stars (n=687)\nSteering committee member curating talks and workshops; led selection process for 28 talks from 156\nsubmissions; coordinated 12-month speaker mentorship program elevating 6 emerging voices in\ndesign systems community\nOpen Source Maintainer, Storybook Project | Core Contributor & Design Systems 2021-\nChampion Present\nMerged 87+ pull requests and triaged 2,300+ issues across 3 years; maintained design systems\ndocumentation resulting in 48% reduction in support questions on Storybook discussions; 1.2M+\ntotal GitHub stars for Storybook ecosystem\nEstablished 'Design Systems Addon' initiative shipping 4 major feature releases; adoption by 28% of\nStorybook user base (estimated 340K+ monthly active projects); mentored 7 contributors to\nmaintainer status\nTECHNICAL SKILLS\nLanguages \u2013 TypeScript, JavaScript (ES2023+), HTML5, CSS3/SCSS, GraphQL, SQL\nTechnologies \u2013 React 18+, Next.js, Storybook 7+, Figma, CSS-in-JS (styled-components, vanilla-\nextract), Web Components, Vite, Webpack 5, Node.js, Web Accessibility (WCAG 2.1 AA/AAA)\nTools \u2013 Git, GitHub, Figma, VS Code, Playwright, Jest, Vitest, Percy, Chromatic, Chrome DevTools,\nLighthouse, Axe DevTools, Datadog, Sentry, ESLint, Prettier",
+    "name": "Email",
+    "email": "amara.okafor@gmail.com",
+    "phone": "+447700123456",
+    "links": {
+        "other": [
+            "https://amara.dev"
+        ],
+        "linkedin": [
+            "https://linkedin.com/in/amara-okafor-silva"
+        ],
+        "github": [
+            "https://github.com/AmaraOkaforSilva"
+        ]
+    },
+    "skills": [
+        "aws",
+        "css3",
+        "gatsby",
+        "graphql",
+        "html5",
+        "javascript",
+        "js",
+        "next.js",
+        "node.js",
+        "playwright",
+        "postgresql",
+        "processing",
+        "react",
+        "sql",
+        "storybook",
+        "styled-components",
+        "tailwindcss",
+        "typescript",
+        "vitest"
+    ],
+    "projects": [
+        {
+            "name": "TokenForge",
+            "subtitle": "TypeScript, Node.js, GraphQL, Figma Plugin API",
+            "start_date": "2023",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "2 Series-B funded startups",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "management overhead for design teams",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Chromatic",
+            "subtitle": "React, CSS Modules, Webpack 5, Jest, Storybook 7.0",
+            "start_date": "2022",
+            "end_date": "2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "4.9/5.0 rating",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "production across 2 years",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "DesignOps Dashboard",
+            "subtitle": "Next.js 13, TailwindCSS, Prisma, PostgreSQL, Vercel",
+            "start_date": "2021",
+            "end_date": "2022",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "employer",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "$127/month AWS cost",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "TypeScale Generator",
+            "subtitle": "React, Web Workers, Canvas API, Vite",
+            "start_date": "2020",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Magazine",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "Design Systems Conference (DSConf)",
+            "subtitle": "Speaker & Steering Committee Member",
+            "start_date": "2022",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "4.7/5.0 stars (n=687)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "design systems community",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Open Source Maintainer, Storybook Project",
+            "subtitle": "Core Contributor & Design Systems",
+            "start_date": "2021",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Champion Present",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "total GitHub stars for Storybook ecosystem",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "maintainer status",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Figma",
+            "subtitle": "Senior Frontend Engineer, Design Systems",
+            "start_date": "2023",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "months",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Stripe",
+            "subtitle": "Frontend Engineer II, Platform Design",
+            "start_date": "2022",
+            "end_date": "2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "8 merchant dashboards serving 500K+ businesses",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Cloudflare",
+            "subtitle": "Frontend Engineer, Developer Experience",
+            "start_date": "2021",
+            "end_date": "2022",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "savings across 15+ internal dashboards",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "months",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Wise (formerly TransferWise)",
+            "subtitle": "Frontend Engineer, UI Patterns",
+            "start_date": "2020",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "system core module",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "interaction latency",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Figma | Senior Frontend Engineer, Design Systems 2023-Present\nArchitected and shipped the Components v2 system supporting 40+ primitive component types and\n500+ compound variants; reduced bundle size by 28% (from 340KB to 245KB gzip) and decreased\ntime-to-interactive by 340ms across 12M+ monthly active users\nLed design system adoption initiative across 8 product teams (120+ engineers), achieving 87%\ncomponent reuse rate (+34% YoY); implemented automated accessibility auditing reducing WCAG\nviolations by 91% (from 2.3K to 210 issues)\nDesigned and open-sourced component API surface and tooling; contributed Storybook integration\nreducing setup time from 4 hours to 12 minutes; library fork rate grew 2,100+ GitHub stars in 8\nmonths\nStripe | Frontend Engineer II, Platform Design 2022-2023\nBuilt token-driven theming engine supporting 15+ dark/light mode variants and RTL layouts;\neliminated 47KB dead CSS and reduced theme application latency by 56ms (measured at p95) across\n8 merchant dashboards serving 500K+ businesses\nImplemented comprehensive Storybook documentation for 220+ reusable components with\ninteractive props panels; improved design-to-dev handoff velocity by 6.2 days per sprint for team of\n9; component discovery metrics showed 73% increased reuse\nShipped CSS-in-JS migration (styled-components \u2192 vanilla-extract) across 12 feature modules;\nimproved build times by 2.1 minutes (18% reduction) and reduced runtime style computation\noverhead by 43%; zero breaking changes across 800+ component consumers\nCloudflare | Frontend Engineer, Developer Experience 2021-2022\nLed cross-team UI component library standardization initiative; consolidated 340 duplicate\ncomponents into unified 85-component system; achieved 76% code deduplication and 2.3MB bundle\nsavings across 15+ internal dashboards\nDeveloped TypeScript-first component API with runtime prop validation and compile-time type\nchecking; reduced component-related bugs by 64% (from 18 monthly incidents to 6.5) and improved\ndeveloper experience NPS from 34 to 71\nMentored cohort of 4 junior frontend engineers on design systems fundamentals and component\ncomposition patterns; 100% of mentees promoted or received significant project ownership within 12\nmonths\nWise (formerly TransferWise) | Frontend Engineer, UI Patterns 2020-2021\nBuilt foundational design system documentation site using Gatsby and MDX supporting 12 design\ntokens categories with live code examples; improved onboarding time for new frontend hires by 4.8\ndays and reduced design-dev sync meetings by 62%\nImplemented automated visual regression testing suite with Percy integration across 180 components;\ncaught 43 unintended style regressions pre-production and achieved 100% test coverage on design\nsystem core module\nShipped responsive grid system and layout primitives supporting 6 breakpoints; powered redesign of\n8 product surfaces with 31% improvement in mobile user engagement and 12% reduction in mobile\ninteraction latency",
+    "education": [
+        {
+            "name": "Imperial College London",
+            "subtitle": "BSc Computer Science with",
+            "start_date": "2018",
+            "end_date": "2021",
+            "grade": "Distinction",
+            "summary": ""
+        },
+        {
+            "name": "Achieved 3.89/4.0 GPA with First-class honors; awarded the Anglo-German Scholarship for",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "academic excellence in human-computer interaction",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "ETH Zurich",
+            "subtitle": "MSc Computer Science (Systems Track) with Summa Cum Laude",
+            "start_date": "2021",
+            "end_date": "2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "3.95/4.0 cumulative GPA; thesis on 'Performance Optimizations in Token-Based Design Systems'",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "with 94% positive feedback rating",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ]
+}

@@ -1,0 +1,101 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "azure",
+            "docker",
+            "go",
+            "grpc",
+            "kubernetes",
+            "postgresql",
+            "python",
+            "rust",
+            "sql"
+        ],
+        "Missed (False Negatives)": [
+            "argocd",
+            "bash",
+            "confluence",
+            "consul",
+            "datadog",
+            "elasticsearch",
+            "elk stack",
+            "etcd",
+            "gcp",
+            "git",
+            "github",
+            "gitlab",
+            "grafana",
+            "jaeger",
+            "jenkins",
+            "jira",
+            "kafka",
+            "pagerduty",
+            "prometheus",
+            "terraform",
+            "vault"
+        ],
+        "Extra (False Positives/Noise)": [
+            "clickhouse",
+            "fastapi",
+            "foundation",
+            "processing",
+            "react"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "technical university of munich",
+            "cloudflare",
+            "hashicorp",
+            "stripe",
+            "wise"
+        ],
+        "Missed": [
+            "national university of sofia",
+            "cloudshield - multi-cloud security orchestration",
+            "observeflow - real-time infrastructure analytics",
+            "regionsync - cross-datacenter state management",
+            "alertxl - intelligent incident correlation engine",
+            "cloud native computing foundation",
+            "infrastructure engineering meetup - berlin"
+        ],
+        "All Extracted Entities": [
+            "valentina",
+            "cloudflare",
+            "senior site reliability engineer",
+            "karinsky",
+            "valentina.karinsky@gmail.com hashicorp",
+            "\u2709",
+            "infrastructure engineer",
+            "in valentina-karinsky",
+            "\u2318 https",
+            "distribution across + nodes",
+            "technical university of munich (tum)",
+            "stripe",
+            "msc computer science",
+            "sre (platform infrastructure)",
+            "optimization",
+            "engineering",
+            "wise (formerly transferwise)",
+            "systems programming and network",
+            "implemented alerting reducing mean-time-to-awareness by 52%",
+            "infrastructure",
+            "led systems administration labs for 150+",
+            "students; designed curriculum for",
+            "containerization concepts"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": false,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Karinsky Led",
+            "email": "valentina.karinsky@gmail.com"
+        },
+        "Expected": {
+            "name": "Valentina Karinsky",
+            "email": "valentina.karinsky@gmail.com"
+        }
+    }
+}

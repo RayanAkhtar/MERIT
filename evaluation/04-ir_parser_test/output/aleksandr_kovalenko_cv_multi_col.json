@@ -1,0 +1,425 @@
+{
+    "raw_cv_text": "Aleksandr Kovalenko\nAK\nStaff Engineer, Edge Computing & Networking @ Cloudflare\n+44 7911 556 238 \u00b7 aleksandr.kovalenko@outlook.com \u00b7 aleksandr-kovalenko \u00b7 AleksandrKovalenko \u00b7 https://kovalenko.dev\nEXPERIENCE PROJECTS EDUCATION\nCloudflare EdgeMesh: Distributed Control Plane ETH Zurich (Swiss Federal Institute\nStaff Engineer, Edge Computing & Framework of Technology)\nNetworking \u00b7 2021\u2013Present Go, Rust, Protobuf, gRPC, eBPF, Kubernetes M.Sc. Computer Science, Systems &\nArchitected and shipped Cloudflare \u00b7 2019\u2013Present Networking \u00b7 2015\u20132017\nWorkers at the Edge v3 runtime, reducing Open-source edge networking framework Graduated with distinction (GPA 3.9/4.0);\ncold-start latency by 87ms (from 152ms with 3,200+ GitHub stars and 120K+ thesis on distributed edge computing\n\u2192 65ms) and increasing throughput by monthly downloads; enables sub- architectures achieved 47 citations in peer-\n340% (from 8.2K to 35.8K req/s per edge millisecond inter-node communication reviewed venues\nlocation); impacts 1.2M+ monthly active across heterogeneous edge clusters; President of Systems & Optimization Club\ndeployments across 275+ data centers benchmarks show 2.1x throughput (2016\u20132017), grew membership from 12\nLed 12-person distributed systems team improvement over Istio (47K vs 22K to 180+ students; organized 8 industry\nbuilding next-generation edge caching req/s) with 71% lower memory footprint seminars with speakers from Google,\nlayer; reduced cache miss ratio by 23% Implemented novel eBPF-based packet Cloudflare, and Cisco\n(from 18.4% \u2192 14.2%) through predictive steering achieving 94% reduction in\nUniversity of Amsterdam\npre-warming algorithms, saving customers context-switching overhead; 340+\nB.Sc. Computer Science with minor in\n$8.3M annually in bandwidth costs contributing members from Cloudflare, Electrical Engineering \u00b7 2011\u20132015\nDesigned real-time telemetry pipeline Azure, and AWS contributing Summa cum laude (GPA 3.85/4.0);\ncollecting 2.1B events/day from edge optimizations; adopted by 18 production awarded University Excellence\nnetwork with sub-millisecond latency platforms processing 8.2B events/day Scholarship for top 2% of cohort\nguarantees; achieved 99.98% uptime SLA Quantum: Adaptive Edge Caching Led peer mentorship program for 35 first-\nand reduced debugging time for incident System year students; coordinated 4 hackathons\nresolution by 64% (from 45min \u2192 16min Python, C++, Redis, TensorFlow, CUDA \u00b7 with 200+ participants each, sponsoring\nmedian) 2021\u2013Present \u20ac15K in prizes\nML-driven predictive caching system\nShopify\nreducing cache misses by 34% through\nSenior Engineer, Infrastructure & Edge\nNetworks \u00b7 2019\u20132021 lightweight neural networks (8.2KB model\nRebuilt checkout payment processing size); 1,400+ GitHub stars with adoption SKILLS\ninfrastructure for edge execution, reducing across 6 major CDNs; inference latency of Languages\nP99 latency by 340ms (from 650ms \u2192 1.2ms at p95 ensures real-time cache Go Rust Python C++\n310ms) and increasing transaction decisions\nTypeScript Java Bash Protobuf\nthroughput by 2.8x (from 18K \u2192 50.4K Achieved 340% ROI in customer\nTechnologies\nTPS); unblocked Q4 2020 peak season deployments by reducing bandwidth costs\nKubernetes gRPC eBPF\nhandling 228% YoY traffic growth $2.1M/year; open-sourced with\nOwned geo-distributed consensus protocol comprehensive benchmarking suite; won TensorFlow Redis PostgreSQL\nfor inventory synchronization across 80 'Best Infrastructure Tool' at Open Source Cassandra Prometheus Jaeger\nedge locations with sub-50ms consistency Infrastructure Summit 2022 WebAssembly CUDA Docker\nguarantees; improved data freshness by RapidRoute: Global Load Balancing Envoy QUIC HTTP/3\n91% and reduced split-brain incidents Simulator\nTools\nfrom 12/month \u2192 0 over 8-month period Rust, WebAssembly, TypeScript, WebGL,\nGit Terraform Datadog PagerDuty\nMentored 5 junior engineers; 3 were Kubernetes \u00b7 2020\u20132021\npromoted to senior within 18 months; Interactive browser-based simulator for Grafana ELK Stack AWS (EC2\nconducted 40+ code reviews maintaining geo-distributed load balancing algorithms; Lambda CloudFront)\n99.7% test coverage across 450K lines of 890 GitHub stars; enables testing of 40+ GCP (Compute Engine Cloud CDN)\ncritical infrastructure code algorithms across 250+ synthetic GitHub Actions Bazel perf\ntopologies with microsecond-precision\nDatadog flamegraph strace\ntiming; 15K monthly active users\nSenior Software Engineer, Edge Agents &\nincluding engineers from Netflix, Stripe,\nObservability \u00b7 2017\u20132019\nand Uber\nEngineered lightweight edge agents (8.2\nMB footprint) deployed to 18,000+ Validated theoretical edge routing\ncustomer environments; optimized CPU algorithms achieving 23% latency\noverhead by 62% through lock-free data reduction vs production systems;\nstructures and async I/O, reducing benchmarked on realistic traces of 2.1B\ncustomer compute costs by $4.2M requests/day; published findings in 2 peer-\nannually reviewed systems conferences\nDesigned distributed tracing system for\nedge-to-cloud observability capturing\n340M traces/day with 99.9% delivery\nEXTRACURRICULAR\nguarantees and variable 2-5s latency;\nUSENIX ATC & ACM SIGCOMM\nshipped live tracing feature reducing\nMTTR by 31% (from 23min \u2192 16min Speaker & Session Chair (2019\u20132023) \u00b7\n2019\u20132023\naverage)\nDelivered 5 talks on edge computing\nBuilt cost-analysis module preventing\narchitectures and distributed systems\n67% of user-initiated scaling errors\nthrough predictive modeling; saved reaching 2,400+ live attendees and 80K+\ncustomers $12.7M in wasted infrastructure YouTube views; 'Scaling Edge Networks\nspend over 18-month deployment to 275+ Points of Presence' talk (2022)\ncited in 34+ subsequent research papers\nWise (formerly TransferWise)\nSoftware Engineer, Backend & Payment Chaired 3 conference sessions covering\nSystems \u00b7 2015\u20132017 networking and infrastructure; peer-\nImplemented high-performance currency reviewed 28 papers for USENIX ATC,\nrouting engine processing 340K ACM SIGCOMM, and NSDI spanning\ntransactions/day with 99.97% uptime; edge computing, distributed consensus,\nreduced transaction settlement time by 4.2 and observability\nhours through optimized batch processing,\nOpen Source Mentorship Program\nunblocking \u00a32.8B additional monthly\n(Linux Foundation & CNCF)\nvolume\nMaintainer & Senior Mentor \u00b7 2018\u2013Present\nOwned microservices migration from Maintained 6 critical open-source projects\nmonolith affecting 12 dependent teams; with 7,200+ combined GitHub stars;\ncoordinated rollout of 26 services mentored 23 early-career engineers with\nmaintaining zero downtime; achieved 8.4x 18 (78%) advancing to senior roles within\nimprovement in P99 latency (from 340ms 3 years; reviewed 2,400+ pull requests\n\u2192 40ms) for payment APIs with average turnaround of 8.2 hours\nImproved fraud detection ML model Established code quality standards and\naccuracy from 89.2% \u2192 94.7% through testing infrastructure increasing CI/CD\nfeature engineering; reduced false coverage from 62% \u2192 98%; fostered\npositives by 58%, preventing $340K in inclusive community attracting 340+\nlegitimate transaction blocks international contributors across 42\ncountries; organized annual summit with\n180+ attendees",
+    "name": "AleksandrKovalenko",
+    "email": "aleksandr.kovalenko@outlook.com",
+    "phone": null,
+    "links": {
+        "other": [
+            "https://kovalenko.dev"
+        ],
+        "linkedin": [],
+        "github": []
+    },
+    "skills": [
+        "aws",
+        "azure",
+        "c",
+        "c++",
+        "cassandra",
+        "docker",
+        "envoy",
+        "foundation",
+        "go",
+        "grpc",
+        "java",
+        "kubernetes",
+        "postgresql",
+        "processing",
+        "python",
+        "rust",
+        "tensorflow",
+        "typescript",
+        "webassembly"
+    ],
+    "projects": [],
+    "extracurricular": [
+        {
+            "name": "guarantees and variable 2-5s latency;",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "USENIX ATC & ACM SIGCOMM",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "shipped live tracing feature reducing",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "",
+            "subtitle": "",
+            "start_date": "2019",
+            "end_date": "2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "average)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Delivered 5 talks on edge computing",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Built cost-analysis module preventing",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "architectures and distributed systems",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "67% of user-initiated scaling errors",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "cited in 34+ subsequent research papers",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Wise (formerly TransferWise)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "hours through optimized batch processing,",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Open Source Mentorship Program",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "unblocking \u00a32.8B additional monthly",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "(Linux Foundation & CNCF)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "volume",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Maintainer & Senior Mentor \u00b7",
+            "subtitle": "",
+            "start_date": "2018",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "countries; organized annual summit with",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "180+ attendees",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Cloudflare EdgeMesh",
+            "subtitle": "Distributed Control Plane ETH Zurich (Swiss Federal Institute",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "University of Amsterdam",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "B.Sc. Computer Science with minor in",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "guarantees; achieved 99.98% uptime SLA Quantum",
+            "subtitle": "Adaptive Edge Caching Led peer mentorship program for 35 first-",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "median)  \u20ac15K in prizes",
+            "subtitle": "",
+            "start_date": "2021",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "ML-driven predictive caching system",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Shopify",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "reducing cache misses by 34% through",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Senior Engineer, Infrastructure & Edge",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "310ms) and increasing transaction decisions",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "TypeScript Java Bash Protobuf",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Technologies",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Kubernetes gRPC eBPF",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "guarantees; improved data freshness by RapidRoute",
+            "subtitle": "Global Load Balancing Envoy QUIC HTTP/3",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "91% and reduced split-brain incidents Simulator",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Tools",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Git Terraform Datadog PagerDuty",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "topologies with microsecond-precision",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Datadog flamegraph strace",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "timing; 15K monthly active users",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Senior Software Engineer, Edge Agents &",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "including engineers from Netflix, Stripe,",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Observability \u00b7",
+            "subtitle": "",
+            "start_date": "2017",
+            "end_date": "2019",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "and Uber",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Engineered lightweight edge agents (8.2",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "annually reviewed systems conferences",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Designed distributed tracing system for",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "edge-to-cloud observability capturing",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "340M traces/day with 99.9% delivery",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Cloudflare EdgeMesh: Distributed Control Plane ETH Zurich (Swiss Federal Institute\nStaff Engineer, Edge Computing & Framework of Technology)\nNetworking \u00b7 2021\u2013Present Go, Rust, Protobuf, gRPC, eBPF, Kubernetes M.Sc. Computer Science, Systems &\nArchitected and shipped Cloudflare \u00b7 2019\u2013Present Networking \u00b7 2015\u20132017\nWorkers at the Edge v3 runtime, reducing Open-source edge networking framework Graduated with distinction (GPA 3.9/4.0);\ncold-start latency by 87ms (from 152ms with 3,200+ GitHub stars and 120K+ thesis on distributed edge computing\n\u2192 65ms) and increasing throughput by monthly downloads; enables sub- architectures achieved 47 citations in peer-\n340% (from 8.2K to 35.8K req/s per edge millisecond inter-node communication reviewed venues\nlocation); impacts 1.2M+ monthly active across heterogeneous edge clusters; President of Systems & Optimization Club\ndeployments across 275+ data centers benchmarks show 2.1x throughput (2016\u20132017), grew membership from 12\nLed 12-person distributed systems team improvement over Istio (47K vs 22K to 180+ students; organized 8 industry\nbuilding next-generation edge caching req/s) with 71% lower memory footprint seminars with speakers from Google,\nlayer; reduced cache miss ratio by 23% Implemented novel eBPF-based packet Cloudflare, and Cisco\n(from 18.4% \u2192 14.2%) through predictive steering achieving 94% reduction in\nUniversity of Amsterdam\npre-warming algorithms, saving customers context-switching overhead; 340+\nB.Sc. Computer Science with minor in\n$8.3M annually in bandwidth costs contributing members from Cloudflare, Electrical Engineering \u00b7 2011\u20132015\nDesigned real-time telemetry pipeline Azure, and AWS contributing Summa cum laude (GPA 3.85/4.0);\ncollecting 2.1B events/day from edge optimizations; adopted by 18 production awarded University Excellence\nnetwork with sub-millisecond latency platforms processing 8.2B events/day Scholarship for top 2% of cohort\nguarantees; achieved 99.98% uptime SLA Quantum: Adaptive Edge Caching Led peer mentorship program for 35 first-\nand reduced debugging time for incident System year students; coordinated 4 hackathons\nresolution by 64% (from 45min \u2192 16min Python, C++, Redis, TensorFlow, CUDA \u00b7 with 200+ participants each, sponsoring\nmedian) 2021\u2013Present \u20ac15K in prizes\nML-driven predictive caching system\nShopify\nreducing cache misses by 34% through\nSenior Engineer, Infrastructure & Edge\nNetworks \u00b7 2019\u20132021 lightweight neural networks (8.2KB model\nRebuilt checkout payment processing size); 1,400+ GitHub stars with adoption SKILLS\ninfrastructure for edge execution, reducing across 6 major CDNs; inference latency of Languages\nP99 latency by 340ms (from 650ms \u2192 1.2ms at p95 ensures real-time cache Go Rust Python C++\n310ms) and increasing transaction decisions\nTypeScript Java Bash Protobuf\nthroughput by 2.8x (from 18K \u2192 50.4K Achieved 340% ROI in customer\nTechnologies\nTPS); unblocked Q4 2020 peak season deployments by reducing bandwidth costs\nKubernetes gRPC eBPF\nhandling 228% YoY traffic growth $2.1M/year; open-sourced with\nOwned geo-distributed consensus protocol comprehensive benchmarking suite; won TensorFlow Redis PostgreSQL\nfor inventory synchronization across 80 'Best Infrastructure Tool' at Open Source Cassandra Prometheus Jaeger\nedge locations with sub-50ms consistency Infrastructure Summit 2022 WebAssembly CUDA Docker\nguarantees; improved data freshness by RapidRoute: Global Load Balancing Envoy QUIC HTTP/3\n91% and reduced split-brain incidents Simulator\nTools\nfrom 12/month \u2192 0 over 8-month period Rust, WebAssembly, TypeScript, WebGL,\nGit Terraform Datadog PagerDuty\nMentored 5 junior engineers; 3 were Kubernetes \u00b7 2020\u20132021\npromoted to senior within 18 months; Interactive browser-based simulator for Grafana ELK Stack AWS (EC2\nconducted 40+ code reviews maintaining geo-distributed load balancing algorithms; Lambda CloudFront)\n99.7% test coverage across 450K lines of 890 GitHub stars; enables testing of 40+ GCP (Compute Engine Cloud CDN)\ncritical infrastructure code algorithms across 250+ synthetic GitHub Actions Bazel perf\ntopologies with microsecond-precision\nDatadog flamegraph strace\ntiming; 15K monthly active users\nSenior Software Engineer, Edge Agents &\nincluding engineers from Netflix, Stripe,\nObservability \u00b7 2017\u20132019\nand Uber\nEngineered lightweight edge agents (8.2\nMB footprint) deployed to 18,000+ Validated theoretical edge routing\ncustomer environments; optimized CPU algorithms achieving 23% latency\noverhead by 62% through lock-free data reduction vs production systems;\nstructures and async I/O, reducing benchmarked on realistic traces of 2.1B\ncustomer compute costs by $4.2M requests/day; published findings in 2 peer-\nannually reviewed systems conferences\nDesigned distributed tracing system for\nedge-to-cloud observability capturing\n340M traces/day with 99.9% delivery",
+    "education": []
+}

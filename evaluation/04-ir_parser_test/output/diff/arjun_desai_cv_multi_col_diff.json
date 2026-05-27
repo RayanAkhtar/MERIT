@@ -1,0 +1,105 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "docker",
+            "fastapi",
+            "go",
+            "graphql",
+            "grpc",
+            "java",
+            "kubernetes",
+            "node.js",
+            "postgresql",
+            "python",
+            "react",
+            "rust",
+            "sql"
+        ],
+        "Missed (False Negatives)": [
+            "datadog",
+            "figma",
+            "git",
+            "github",
+            "gitlab",
+            "intellij idea",
+            "javascript/typescript",
+            "jira",
+            "kafka",
+            "pagerduty",
+            "prometheus",
+            "redis",
+            "spring boot",
+            "vs code"
+        ],
+        "Extra (False Positives/Noise)": [
+            "clickhouse",
+            "foundation",
+            "javascript",
+            "js",
+            "processing",
+            "pypi",
+            "spring",
+            "typescript"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "stripe",
+            "cloudflare",
+            "datadog",
+            "wise",
+            "cacheflow",
+            "graphql schema validator",
+            "streamsync",
+            "performanceinsight"
+        ],
+        "Missed": [
+            "imperial college london",
+            "university of cambridge",
+            "python software foundation",
+            "european software engineering conference"
+        ],
+        "All Extracted Entities": [
+            "cacheflow",
+            "stripe",
+            "software engineer intern",
+            "implemented adaptive ttl mechanism and compression",
+            "designed and implemented comprehensive unit/integration test",
+            "bugs in staging",
+            "post (2.3k reads)",
+            "payment reconciliation system to kafka, reducing data sync time graphql schema validator",
+            "rust, graphql, cli",
+            "cloudflare",
+            "achieved 40\u00d7 performance improvement over node.js-based",
+            "competitors through rust implementation; validation time",
+            "indexing strategy, reducing api response time by 65% for user streamsync",
+            "go, grpc, protobuf, kubernetes",
+            "supports 500k+ events/second throughput with sub-50ms",
+            "boosting release download rate by 23%",
+            "contributors",
+            "datadog",
+            "deep-dive (1.8k medium.com claps)",
+            "uptime sla across 3 availability zones performanceinsight",
+            "python, fastapi, vue.js, clickhouse",
+            "engineered efficient time-series data aggregation reducing",
+            "node) without compromising query latency",
+            "designed schema migrations framework supporting 0-downtime",
+            "deployments across 45k+ customer databases; reduced",
+            "wise",
+            "graduate software engineer"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": false,
+        "Email Correct": true,
+        "Extracted": {
+            "name": null,
+            "email": "arjun.desai@gmail.com"
+        },
+        "Expected": {
+            "name": "Arjun Desai",
+            "email": "arjun.desai@gmail.com"
+        }
+    }
+}

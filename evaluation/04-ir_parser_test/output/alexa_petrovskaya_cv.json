@@ -1,0 +1,158 @@
+{
+    "raw_cv_text": "Alexa Petrovskaya\n+44 7911 234567 | Email: alexa.petrovskaya@gmail.com | LinkedIn: alexa-petrovskaya | GitHub: AlexaPetrovskaya |\nhttps://alexa.dev\nEDUCATION\nImperial College London | BSc Computing (2nd Year) 2022 - Present\nAchieved 78% in Year 1 (equivalent to 1st class honors track); ranked top 12% in Algorithms & Data\nStructures module with 89%\nLed peer study group of 18 students in discrete mathematics, improving cohort average from 71% to\n76% over 1 semester\nUniversity of Amsterdam | Exchange Year - Computer Science 2023 - 2024\nCompleted advanced systems programming course with distinction (9.2/10); built a kernel module\nachieving 12% faster I/O throughput\nParticipated in ACM ICPC qualifying round, solving 4/10 problems and ranking 47th among 250+\nteams from Benelux region\nEXPERIENCE\nStripe | Software Engineering Intern Summer 2023 (3 months)\nOptimized payment processing pipeline by refactoring legacy fraud detection service; reduced\naverage latency from 287ms to 156ms (46% improvement) affecting 850K+ daily transactions\nImplemented distributed caching layer for card validation using Redis; improved throughput from\n4.2K to 18.5K requests/sec (340% gain) and reduced database load by 67%\nShipped 8 pull requests merged by senior engineers; wrote comprehensive unit tests achieving 94%\ncode coverage and prevented 3 critical race conditions before production deployment\nFigma | Frontend Engineering Intern Summer 2024 (3.5 months)\nBuilt real-time collaboration feature for shape drawing; optimized WebSocket message batching\nreduced network payload by 73% and improved sync latency from 420ms to 89ms for 12K+\nconcurrent users\nRefactored canvas rendering pipeline to use WebGL instead of Canvas2D; achieved 3.8x faster frame\nrendering (from 24fps to 91fps) on 4K viewport with 50K+ elements\nConducted accessibility audit fixing 27 WCAG 2.1 AA violations; implemented keyboard navigation\nimproving keyboard-only user coverage from 41% to 94% across design editor\nWise (formerly TransferWise) | Full-Stack Engineering Intern Winter 2024 (2 months)\nDeveloped internal analytics dashboard using React + TypeScript + GraphQL; reduced report\ngeneration time from 6.2 seconds to 0.8 seconds (7.75x speedup) for 500K+ transaction queries\nMigrated legacy payment gateway integration from REST to gRPC protocol; achieved 42% reduction\nin latency (340ms \u2192 197ms) and 58% lower bandwidth consumption across 200+ daily payment\nroutes\nFixed 12 production bugs identified through monitoring alerts; reduced API error rate for money\ntransfer endpoints from 0.34% to 0.07% and saved $47K in failed transaction refunds\nPROJECTS\nQueryVault | Rust, PostgreSQL, Tokio, Protocol Buffers 2023 - Present\nBuilt high-performance distributed query cache middleware; 2,400+ GitHub stars, benchmarks show\n8.9x latency reduction for repeated queries (from 340ms to 38ms) and handles 45K QPS at p99<50ms\nImplemented consensus protocol for cache invalidation across 7-node cluster achieving <200ms\nconsistency window; 2.3K+ releases on crates.io with 89K+ monthly downloads\nPixelForge | TypeScript, Canvas API, Vite, Jest 2023 - 2024\nOpen-source pixel art editor with collaborative features; reached 1,680+ GitHub stars in 8 months,\n890+ active monthly users, and featured in ProductHunt #3 trending\nOptimized rendering performance from 15fps to 60fps+ on large canvases (8K\u00d78K pixels) through\nWebWorker architecture; reduced initial bundle size from 2.4MB to 380KB via tree-shaking\nSyntaxShield | Python, LLVM, AST parsing, pytest 2024\nStatic analysis linter for Python detecting 34 categories of code smells and security issues; 476\nGitHub stars with 12K+ PyPI downloads since launch 2 months ago\nAchieves sub-second analysis on projects up to 100K lines of code; correctly identifies 97.2% of\nintentional vulnerabilities in test suite and integrates with 8+ popular IDEs\nEXTRACURRICULAR\nPyCon Europe 2024 | Conference Speaker - 'Performance Engineering for Young Developers' 2024\nDelivered 45-minute technical talk to 280+ attendees covering profiling techniques and optimization\ncase studies; talk received 4.8/5 average rating (146 evaluations) and was selected as top 5 talks\nPublished accompanying blog post that reached 15K+ views; created open-source profiling toolkit\ndemonstrated in talk with 340+ GitHub stars\nCoding Mentorship Initiative (Imperial + Amsterdam) | Senior Mentor - Backend 2023 -\nSystems & Databases Present\nMentored 8 junior students (first-year undergrads) through capstone projects; 87.5% mentees\nachieved 1st class marks (up from 62% cohort average) and 6/8 secured internships at tier-1 tech\ncompanies\nConducted weekly 1-hour sessions covering system design, database optimization, and Rust\nfundamentals; created 14-module curriculum used by 140+ students across both universities\nTECHNICAL SKILLS\nLanguages \u2013 Python, TypeScript, Rust, JavaScript, SQL, Java, Go\nTechnologies \u2013 React, PostgreSQL, Redis, Kafka, gRPC, GraphQL, Docker, Kubernetes, AWS (EC2,\nRDS, S3), Git\nTools \u2013 VS Code, Git, GitHub, Figma, Datadog, Jira, Docker, Linux, Postman, Chrome DevTools",
+    "name": "Email",
+    "email": "alexa.petrovskaya@gmail.com",
+    "phone": "+447911234567",
+    "links": {
+        "other": [
+            "https://alexa.dev"
+        ],
+        "linkedin": [
+            "https://linkedin.com/in/alexa-petrovskaya"
+        ],
+        "github": [
+            "https://github.com/AlexaPetrovskaya"
+        ]
+    },
+    "skills": [
+        "aws",
+        "docker",
+        "go",
+        "graphql",
+        "grpc",
+        "java",
+        "javascript",
+        "kubernetes",
+        "llvm",
+        "postgresql",
+        "processing",
+        "pypi",
+        "pytest",
+        "python",
+        "react",
+        "rust",
+        "sql",
+        "typescript"
+    ],
+    "projects": [
+        {
+            "name": "QueryVault",
+            "subtitle": "Rust, PostgreSQL, Tokio, Protocol Buffers",
+            "start_date": "2023",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "PixelForge",
+            "subtitle": "TypeScript, Canvas API, Vite, Jest",
+            "start_date": "2023",
+            "end_date": "2024",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "SyntaxShield",
+            "subtitle": "Python, LLVM, AST parsing, pytest",
+            "start_date": "2024",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "PyCon Europe",
+            "subtitle": "Conference Speaker - 'Performance Engineering for Young Developers'",
+            "start_date": "2024",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Coding Mentorship Initiative (Imperial + Amsterdam)",
+            "subtitle": "Senior Mentor - Backend",
+            "start_date": "2023",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Systems & Databases Present",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "companies",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Stripe",
+            "subtitle": "Software Engineering Intern Summer  (3 months)",
+            "start_date": "2023",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Figma",
+            "subtitle": "Frontend Engineering Intern Summer  (3.5 months)",
+            "start_date": "2024",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "concurrent users",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Wise (formerly TransferWise)",
+            "subtitle": "Full-Stack Engineering Intern Winter  (2 months)",
+            "start_date": "2024",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "routes",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Stripe | Software Engineering Intern Summer 2023 (3 months)\nOptimized payment processing pipeline by refactoring legacy fraud detection service; reduced\naverage latency from 287ms to 156ms (46% improvement) affecting 850K+ daily transactions\nImplemented distributed caching layer for card validation using Redis; improved throughput from\n4.2K to 18.5K requests/sec (340% gain) and reduced database load by 67%\nShipped 8 pull requests merged by senior engineers; wrote comprehensive unit tests achieving 94%\ncode coverage and prevented 3 critical race conditions before production deployment\nFigma | Frontend Engineering Intern Summer 2024 (3.5 months)\nBuilt real-time collaboration feature for shape drawing; optimized WebSocket message batching\nreduced network payload by 73% and improved sync latency from 420ms to 89ms for 12K+\nconcurrent users\nRefactored canvas rendering pipeline to use WebGL instead of Canvas2D; achieved 3.8x faster frame\nrendering (from 24fps to 91fps) on 4K viewport with 50K+ elements\nConducted accessibility audit fixing 27 WCAG 2.1 AA violations; implemented keyboard navigation\nimproving keyboard-only user coverage from 41% to 94% across design editor\nWise (formerly TransferWise) | Full-Stack Engineering Intern Winter 2024 (2 months)\nDeveloped internal analytics dashboard using React + TypeScript + GraphQL; reduced report\ngeneration time from 6.2 seconds to 0.8 seconds (7.75x speedup) for 500K+ transaction queries\nMigrated legacy payment gateway integration from REST to gRPC protocol; achieved 42% reduction\nin latency (340ms \u2192 197ms) and 58% lower bandwidth consumption across 200+ daily payment\nroutes\nFixed 12 production bugs identified through monitoring alerts; reduced API error rate for money\ntransfer endpoints from 0.34% to 0.07% and saved $47K in failed transaction refunds",
+    "education": [
+        {
+            "name": "Imperial College London",
+            "subtitle": "BSc Computing (2nd Year)",
+            "start_date": "2022",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Led peer study group of 18 students in discrete mathematics",
+            "subtitle": "improving cohort average from 71% to",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ]
+}

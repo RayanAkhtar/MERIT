@@ -1,0 +1,116 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "clickhouse",
+            "docker",
+            "go",
+            "java",
+            "kotlin",
+            "kubernetes",
+            "postgresql",
+            "python",
+            "scala",
+            "sql"
+        ],
+        "Missed (False Negatives)": [
+            "airflow",
+            "apache beam",
+            "apache flink",
+            "apache kafka",
+            "confluence",
+            "datadog",
+            "debezium",
+            "gcp",
+            "git",
+            "grafana",
+            "jira",
+            "prometheus",
+            "redis",
+            "spark streaming",
+            "terraform"
+        ],
+        "Extra (False Positives/Noise)": [
+            "bootstrap",
+            "processing",
+            "rocksdb"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "imperial college london",
+            "university of amsterdam",
+            "datadog",
+            "stripe",
+            "wise",
+            "thoughtworks",
+            "flowsync",
+            "rivertelemetry",
+            "pipelinesync",
+            "apache kafka community",
+            "data engineering europe conference"
+        ],
+        "Missed": [],
+        "All Extracted Entities": [
+            "flowsync",
+            "datadog",
+            "senior data engineer \u2014 streaming infrastructure",
+            "open-source framework for building exactly-once streaming",
+            "maven central",
+            "dashboard refreshes serving 15k+ customers",
+            "apis",
+            "for 97% of ingestion paths",
+            "designed and open-sourced custom kafka consumer group rivertelemetry",
+            "go, prometheus, clickhouse, timescaledb",
+            "high-performance metrics collection agent for distributed",
+            "by 12+ companies (800+ github stars)",
+            "companies to monitor 50k+ services globally",
+            "stripe",
+            "data engineer \u2014 payment streams",
+            "650k transactions/sec with exactly-once semantics; detected",
+            "and prevented $47m in fraudulent transactions annually via real- pipelinesync",
+            "python, sqlalchemy, pyarrow, airflow, s3",
+            "100gb datasets",
+            "volume capacity per cluster",
+            "reviews education",
+            "wise (transferwise)",
+            "imperial college london",
+            "data engineer \u2014 real-time analytics",
+            "msc computer science (distributed systems)",
+            "thesis on low-latency event stream processing",
+            "border transfers/hour with sub-second latency; improved",
+            "throughput",
+            "detection stream processors",
+            "group with 32 members",
+            "finance and risk teams university of amsterdam",
+            "mttr from 35min to 8min",
+            "thoughtworks",
+            "software engineer \u2014 data infrastructure extracurricular",
+            "and apache spark; onboarded 12 cross-functional teams and apache kafka community",
+            "contributor & kip review committee member",
+            "via reusable abstractions",
+            "including kip-694 (transaction coordinator improvements);",
+            "millions of users",
+            "100% (from 8/quarter to 0)",
+            "adopted by confluent engineering; improvements reduce",
+            "data engineering europe conference",
+            "speaker & workshop organizer",
+            "languages",
+            "talks averaged 4.8/5.0 rating with 80k+ youtube views technologies",
+            "tools",
+            "score"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": false,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Kafka",
+            "email": "arjun.patel@gmail.com"
+        },
+        "Expected": {
+            "name": "Arjun Patel",
+            "email": "arjun.patel@gmail.com"
+        }
+    }
+}

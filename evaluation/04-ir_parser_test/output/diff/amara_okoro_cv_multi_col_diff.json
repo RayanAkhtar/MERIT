@@ -1,0 +1,109 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "docker",
+            "envoy",
+            "go",
+            "grpc",
+            "javascript",
+            "kubernetes",
+            "postgresql",
+            "python",
+            "rust",
+            "sql"
+        ],
+        "Missed (False Negatives)": [
+            "argocd",
+            "azure (aks",
+            "bash",
+            "consul",
+            "cosmos",
+            "datadog",
+            "db)",
+            "elk stack",
+            "gcp",
+            "git",
+            "gitlab ci/cd",
+            "grafana",
+            "hashicorp suite",
+            "jenkins",
+            "linux",
+            "new relic",
+            "prometheus",
+            "rabbitmq",
+            "redis",
+            "terraform",
+            "vault"
+        ],
+        "Extra (False Positives/Noise)": [
+            "azure",
+            "foundation",
+            "processing"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "university of lagos",
+            "datadog",
+            "cloudflare",
+            "shopify"
+        ],
+        "Missed": [
+            "imperial college london",
+            "wise",
+            "fluxcapacity",
+            "sentrynet",
+            "chaoswarden",
+            "kubecon europe",
+            "cloud native computing foundation"
+        ],
+        "All Extracted Entities": [
+            "amara okoro",
+            "datadog",
+            "senior site reliability engineer",
+            "\u25c6 contact",
+            "admission controller tuning",
+            "amara.okoro@gmail.com",
+            "\u2709 120+ alert types",
+            "amaraokoro",
+            "\u2325",
+            "cloudflare",
+            "\u2318 https",
+            "devops engineer ii",
+            "\u25c6 education",
+            "networks)",
+            "time to 4 minutes",
+            "thesis on distributed consensus protocols",
+            "for kubernetes clusters; achieved 40%",
+            "reduction in consensus latency under",
+            "raft implementation devops engineer",
+            "university of lagos",
+            "rate",
+            "members over 2 years",
+            "shopify",
+            "capstone project",
+            "infrastructure engineer",
+            "platform for resource-constrained",
+            "environments, deployed across 12",
+            "campus servers handling 500+ concurrent",
+            "noisy neighbor impact by 82%",
+            "users",
+            "\u25c6 skills",
+            "go python rust bash sql seconds",
+            "javascript"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": false,
+        "Email Correct": true,
+        "Extracted": {
+            "name": null,
+            "email": "amara.okoro@gmail.com"
+        },
+        "Expected": {
+            "name": "Amara Okoro",
+            "email": "amara.okoro@gmail.com"
+        }
+    }
+}

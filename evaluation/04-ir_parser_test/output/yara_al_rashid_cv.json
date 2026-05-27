@@ -1,0 +1,154 @@
+{
+    "raw_cv_text": "Yara Al-Rashid\n+44 20 7946 0958 | Email: yara.alrashid@gmail.com | LinkedIn: yara-al-rashid | GitHub: YaraAlRashid | https://yara.dev\nEDUCATION\nImperial College London | MSc Cyber Security 2019-2021\nAchieved distinction with 78% average; led secure coding workshop for 45+ students covering\nOWASP Top 10 and threat modeling\nThesis on 'Runtime API Monitoring for Zero-Day Detection in Microservices' published as\nconference paper with 340+ citations\nUniversity of Waterloo | BASc Computer Science (Honours) 2015-2019\nGraduated with 3.87/4.0 GPA; President of Cybersecurity Club growing membership from 12 to 120+\nmembers over 2 years\nCo-authored 2 peer-reviewed security papers on cryptographic side-channel attacks and supply chain\nvulnerability analysis\nEXPERIENCE\nCloudflare | Senior Application Security Engineer 2023-Present\nLed security review of microservices platform processing 25M+ requests/sec; identified 18 critical\nvulnerabilities reducing CVSS exposure by 94% and preventing estimated $12M+ in breach costs\nArchitected SAST/DAST pipeline reducing mean time to vulnerability detection from 23 days to 4.2\ndays across 180+ engineering teams; achieved 99.2% false positive suppression rate\nDesigned custom WAF rules for GraphQL APIs blocking 2.3M+ attack payloads monthly (99.7%\nprecision) while maintaining 99.95% legitimate traffic throughput\nStripe | Application Security Engineer 2021-2023\nEstablished threat modeling framework adopted across 12 product teams; completed 47 threat models\ndiscovering 156 design-level risks with 89% remediation rate within SLA\nReduced payment API latency from 18ms to 12.4ms (31% improvement) while adding\ncomprehensive input validation; handled $890B+ in annual transaction volume with zero\nauthentication bypasses\nBuilt automated secrets detection system scanning 2.1M commits/month across monorepo; prevented\n23 incidents preventing exposure of AWS/payment processor credentials\nWise | Security Engineer (Application Security Focus) 2019-2021\nLed incident response for 8 critical vulnerabilities in payment reconciliation services affecting 4.2M+\nuser accounts; achieved 100% remediation in 6.5 hours average MTTR\nImplemented OAuth 2.0/OIDC authentication overhaul serving 180+ API clients; reduced\nauthentication-related incidents by 87% while decreasing token validation latency by 15.3ms\nConducted 52 secure code reviews across fintech Python/Golang codebases; trained 34 engineers\nachieving 78% reduction in OWASP Top 10 findings in subsequent sprints\nPalantir Technologies | Security Intelligence Analyst (Contract) 2018-2019\nAnalyzed 340+ data pipeline configurations identifying 67 privilege escalation pathways; remediation\nroadmap prevented estimated 12 high-impact incidents based on threat intelligence correlation\nDeveloped Python framework for automated SQL injection pattern detection across distributed\nsystems achieving 94.2% recall with 98.1% precision on 180K+ query samples\nConducted red team assessment of access control matrices across 18 internal platforms; discovered 23\nlogic flaws including IDOR and broken function-level access control allowing lateral movement\nPROJECTS\nVulnRadar | Python, FastAPI, PostgreSQL, Kubernetes, YARA Rules 2022-Present\nOpen-source runtime vulnerability scanner for containerized applications; 2,840+ GitHub stars,\n280K+ monthly downloads; detects 340+ CVE patterns with 92.3% true positive rate\nImplemented adaptive ML-based anomaly detection reducing scan time by 68% (from 240s to 77s\nper image) while maintaining 99.1% vulnerability coverage accuracy\nCryptoShield | Rust, C, LLVM, OpenSSL, TLS 1.3 2021-2023\nCryptographic vulnerability detection library for C/C++/Rust codebases; 1,240+ stars, 95K+ weekly\ndownloads; identified 156+ real-world cryptographic misuse patterns in production systems\nAchieved sub-2ms analysis latency per 10K lines of code with zero false negatives on 45 OWASP\ncrypto test cases; integrated into CI/CD pipelines for 40+ enterprises\nAuthPulse | TypeScript, Node.js, Next.js, OAuth 2.0, SAML 2.0 2020-2022\nReference implementation and testing harness for OAuth 2.0/OIDC compliance; 1,680+ GitHub stars,\n156K+ total clones; certified against 34 official OpenID Foundation test cases\nProvides 18+ pre-configured vulnerability scenarios with 99.7% accuracy in simulating real-world\nauthentication attacks; used in security training by 12 Fortune 500 companies\nEXTRACURRICULAR\nBlack Hat USA & OWASP Global AppSec | Conference Speaker & Training Instructor 2021-Present\nDelivered 8 talks on microservices security and API threat modeling to 2,400+ security practitioners;\n2023 talk 'Zero-Trust Architecture for Polyglot APIs' achieved 4.8/5.0 attendee rating\nDesigned 6-hour intensive workshop on runtime security and behavior-based anomaly detection;\ntrained 340+ engineers with 89% reporting significant improvement in threat detection capabilities\nOWASP Project Leadership & OSS Mentorship | OWASP Top 10 Maintainer & Senior 2020-\nMentor (Linux Foundation) Present\nCo-maintained OWASP Top 10 2021 release guiding 45+ security researchers; document received\n2.3M+ downloads and integrated into 180+ university cybersecurity curricula globally\nMentored 12 junior security engineers through formal program; 11 mentees promoted to senior/lead\nroles within 18-24 months with average 34% salary increase\nTECHNICAL SKILLS\nLanguages \u2013 Python, Rust, Go, TypeScript, Java, C, SQL, Bash\nTechnologies \u2013 OAuth 2.0, OIDC, SAML 2.0, TLS 1.3, AES-256, RSA, WebAuthn, FIDO2,\nKubernetes, Docker, Apache Kafka, gRPC, GraphQL, REST APIs, JWT\nTools \u2013 Burp Suite Professional, OWASP ZAP, SonarQube, Snyk, Checkmarx, GitLab SAST, AWS\nSecurity Hub, Datadog, ELK Stack, Splunk, Threat Modeling (Microsoft Threat Modeling Tool),\nWireshark, Metasploit",
+    "name": "Yara Al-Rashid",
+    "email": "yara.alrashid@gmail.com",
+    "phone": "+442079460958",
+    "links": {
+        "other": [
+            "https://yara.dev"
+        ],
+        "linkedin": [
+            "https://linkedin.com/in/yara-al-rashid"
+        ],
+        "github": [
+            "https://github.com/YaraAlRashid"
+        ]
+    },
+    "skills": [
+        "aws",
+        "c",
+        "c++",
+        "docker",
+        "fastapi",
+        "foundation",
+        "go",
+        "golang",
+        "graphql",
+        "grpc",
+        "java",
+        "js",
+        "kubernetes",
+        "llvm",
+        "next.js",
+        "node.js",
+        "postgresql",
+        "processing",
+        "python",
+        "rust",
+        "sql",
+        "typescript"
+    ],
+    "projects": [
+        {
+            "name": "VulnRadar",
+            "subtitle": "Python, FastAPI, PostgreSQL, Kubernetes, YARA Rules",
+            "start_date": "2022",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "CryptoShield",
+            "subtitle": "Rust, C, LLVM, OpenSSL, TLS 1.3",
+            "start_date": "2021",
+            "end_date": "2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "AuthPulse",
+            "subtitle": "TypeScript, Node.js, Next.js, OAuth 2.0, SAML 2.0",
+            "start_date": "2020",
+            "end_date": "2022",
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "Black Hat USA & OWASP Global AppSec",
+            "subtitle": "Conference Speaker & Training Instructor",
+            "start_date": "2021",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "OWASP Project Leadership & OSS Mentorship",
+            "subtitle": "OWASP Top 10 Maintainer & Senior",
+            "start_date": "2020",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Mentor (Linux Foundation) Present",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Cloudflare",
+            "subtitle": "Senior Application Security Engineer",
+            "start_date": "2023",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Stripe",
+            "subtitle": "Application Security Engineer",
+            "start_date": "2021",
+            "end_date": "2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "authentication byes",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": "pass",
+            "summary": ""
+        },
+        {
+            "name": "Wise",
+            "subtitle": "Security Engineer (Application Security Focus)",
+            "start_date": "2019",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Palantir Technologies",
+            "subtitle": "Security Intelligence Analyst (Contract)",
+            "start_date": "2018",
+            "end_date": "2019",
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Cloudflare | Senior Application Security Engineer 2023-Present\nLed security review of microservices platform processing 25M+ requests/sec; identified 18 critical\nvulnerabilities reducing CVSS exposure by 94% and preventing estimated $12M+ in breach costs\nArchitected SAST/DAST pipeline reducing mean time to vulnerability detection from 23 days to 4.2\ndays across 180+ engineering teams; achieved 99.2% false positive suppression rate\nDesigned custom WAF rules for GraphQL APIs blocking 2.3M+ attack payloads monthly (99.7%\nprecision) while maintaining 99.95% legitimate traffic throughput\nStripe | Application Security Engineer 2021-2023\nEstablished threat modeling framework adopted across 12 product teams; completed 47 threat models\ndiscovering 156 design-level risks with 89% remediation rate within SLA\nReduced payment API latency from 18ms to 12.4ms (31% improvement) while adding\ncomprehensive input validation; handled $890B+ in annual transaction volume with zero\nauthentication bypasses\nBuilt automated secrets detection system scanning 2.1M commits/month across monorepo; prevented\n23 incidents preventing exposure of AWS/payment processor credentials\nWise | Security Engineer (Application Security Focus) 2019-2021\nLed incident response for 8 critical vulnerabilities in payment reconciliation services affecting 4.2M+\nuser accounts; achieved 100% remediation in 6.5 hours average MTTR\nImplemented OAuth 2.0/OIDC authentication overhaul serving 180+ API clients; reduced\nauthentication-related incidents by 87% while decreasing token validation latency by 15.3ms\nConducted 52 secure code reviews across fintech Python/Golang codebases; trained 34 engineers\nachieving 78% reduction in OWASP Top 10 findings in subsequent sprints\nPalantir Technologies | Security Intelligence Analyst (Contract) 2018-2019\nAnalyzed 340+ data pipeline configurations identifying 67 privilege escalation pathways; remediation\nroadmap prevented estimated 12 high-impact incidents based on threat intelligence correlation\nDeveloped Python framework for automated SQL injection pattern detection across distributed\nsystems achieving 94.2% recall with 98.1% precision on 180K+ query samples\nConducted red team assessment of access control matrices across 18 internal platforms; discovered 23\nlogic flaws including IDOR and broken function-level access control allowing lateral movement",
+    "education": [
+        {
+            "name": "Imperial College London",
+            "subtitle": "MSc Cyber Security",
+            "start_date": "2019",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "University of Waterloo",
+            "subtitle": "BASc Computer Science (Honours)",
+            "start_date": "2015",
+            "end_date": "2019",
+            "grade": null,
+            "summary": ""
+        }
+    ]
+}

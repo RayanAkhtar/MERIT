@@ -1,0 +1,93 @@
+{
+    "Skills": {
+        "Matched": [
+            "graphql",
+            "html5",
+            "javascript",
+            "next.js",
+            "node.js",
+            "playwright",
+            "sql",
+            "typescript",
+            "vitest"
+        ],
+        "Missed (False Negatives)": [
+            "axe devtools",
+            "chromatic",
+            "chrome devtools",
+            "css-in-js (styled-components",
+            "css3/scss",
+            "datadog",
+            "eslint",
+            "extract)",
+            "figma",
+            "git",
+            "github",
+            "jest",
+            "lighthouse",
+            "percy",
+            "prettier",
+            "react 18+",
+            "sentry",
+            "storybook 7+",
+            "vanilla",
+            "vite",
+            "vs code",
+            "web accessibility",
+            "web components",
+            "webpack 5"
+        ],
+        "Extra (False Positives/Noise)": [
+            "aws",
+            "css3",
+            "gatsby",
+            "js",
+            "postgresql",
+            "processing",
+            "react",
+            "storybook",
+            "styled-components",
+            "tailwindcss"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "imperial college london",
+            "eth zurich",
+            "figma",
+            "tokenforge"
+        ],
+        "Missed": [
+            "stripe",
+            "cloudflare",
+            "wise",
+            "chromatic",
+            "designops dashboard",
+            "typescale generator",
+            "design systems conference",
+            "open source maintainer, storybook project"
+        ],
+        "All Extracted Entities": [
+            "figma tokenforge imperial college london",
+            "api \u00b7  2018-2021",
+            "eth zurich",
+            "msc computer science (systems track) with",
+            "in awesome react list; 127k npm",
+            "frontend engineer ii, platform design \u00b7",
+            "downloads across 3-month span with",
+            "built token-driven theming engine 4.9/5.0 rating"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": false,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "AmaraOkaforSilva",
+            "email": "amara.okafor@gmail.com"
+        },
+        "Expected": {
+            "name": "Amara Okafor-Silva",
+            "email": "amara.okafor@gmail.com"
+        }
+    }
+}

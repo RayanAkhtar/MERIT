@@ -1,0 +1,116 @@
+{
+    "Skills": {
+        "Matched": [
+            "c++",
+            "docker",
+            "go",
+            "grpc",
+            "jupyter",
+            "kubernetes",
+            "postgresql",
+            "python",
+            "pytorch",
+            "rust",
+            "sql",
+            "tensorflow"
+        ],
+        "Missed (False Negatives)": [
+            "buffers",
+            "cuda",
+            "dvc",
+            "git",
+            "grafana",
+            "jira",
+            "kubeflow",
+            "onnx",
+            "prometheus",
+            "protocol",
+            "ray",
+            "rdma",
+            "redis",
+            "tensorrt",
+            "torchserve",
+            "weights & biases"
+        ],
+        "Extra (False Positives/Noise)": [
+            "c",
+            "fastapi",
+            "processing",
+            "pypi"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "university of cambridge",
+            "eth zurich",
+            "stripe",
+            "datadog",
+            "palantir technologies",
+            "jane street",
+            "quantumspark",
+            "pipelineoptima",
+            "edgethreshold",
+            "servecache"
+        ],
+        "Missed": [
+            "neurips conference",
+            "open source community"
+        ],
+        "All Extracted Entities": [
+            "quantumspark",
+            "stripe",
+            "senior machine learning engineer, inference pipelines",
+            "architected real-time fraud detection inference pipeline",
+            "downloads; benchmarks show 5.8x throughput improvement",
+            "over standard onnx runtime",
+            "implemented adaptive quantization algorithm that automatically",
+            "architectures",
+            "under 120ms",
+            "open-sourced torchserve feature for quantized int8 inference pipelineoptima",
+            "go, protocol buffers, grpc, postgresql, prometheus",
+            "distributed inference orchestrator with automatic request",
+            "from community adoption across 180+ companies",
+            "datadog",
+            "optimized anomaly detection model serving infrastructure;",
+            "17.4m inferences/sec) on cpu-only clusters",
+            "implemented automated a/b testing framework for inference edgethreshold",
+            "tensorflow lite, onnx, rust, grpc, redis",
+            "across 50+ customer accounts",
+            "(rust community)",
+            "established inference performance optimization best practices",
+            "across 140+ production models",
+            "palantir technologies",
+            "machine learning engineer, inference systems",
+            "built distributed inference orchestration layer for graph neural servecache",
+            "python, c++, cuda, rdma, fastapi",
+            "high-performance model inference cache layer exploiting",
+            "across 8-gpu clusters",
+            "cache lookup latency",
+            "benchmark shows 12.4x throughput improvement on",
+            "load balancing and speculative execution strategies",
+            "system; implemented automated performance regression testing",
+            "incidents by 56% yoy",
+            "university of cambridge",
+            "jane street",
+            "quantitative researcher, ml infrastructure",
+            "on x86 hardware",
+            "coordinated \u00a345k sponsorship funding",
+            "accuracy",
+            "established inference performance benchmarking framework",
+            "saving ~$1.8m quarterly in hardware costs",
+            "eth zurich"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": true,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Amira Benslama",
+            "email": "amira.benslama@gmail.com"
+        },
+        "Expected": {
+            "name": "Amira Benslama",
+            "email": "amira.benslama@gmail.com"
+        }
+    }
+}

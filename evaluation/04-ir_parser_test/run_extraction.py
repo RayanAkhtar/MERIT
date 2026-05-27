@@ -8,15 +8,33 @@ sys.path.append(os.path.abspath(os.path.join(current_dir, '../../backend')))
 from core.parsers.cv import parse_cv
 
 resumes_dir = os.path.join(current_dir, "test_data/resumes")
+single_dir = os.path.join(current_dir, "test_data/single-column")
+multi_dir = os.path.join(current_dir, "test_data/multi-column")
 output_dir = os.path.join(current_dir, "output")
 os.makedirs(output_dir, exist_ok=True)
 
 def run_extraction():
-    files = [f for f in os.listdir(resumes_dir) if f.endswith(".pdf")]
-    print(f"Extracting data from {len(files)} resumes...")
+    search_dirs = [single_dir, multi_dir, resumes_dir]
+    pdf_paths = []
+    for d in search_dirs:
+        if not os.path.isdir(d):
+            continue
+        for f in os.listdir(d):
+            if f.lower().endswith(".pdf"):
+                pdf_paths.append(os.path.join(d, f))
+
+    # De-duplicate by filename (prefer single/multi over legacy resumes/)
+    by_name = {}
+    for p in pdf_paths:
+        name = os.path.basename(p)
+        if name not in by_name:
+            by_name[name] = p
+    paths = [by_name[k] for k in sorted(by_name.keys())]
+
+    print(f"Extracting data from {len(paths)} resumes...")
     
-    for filename in files:
-        path = os.path.join(resumes_dir, filename)
+    for path in paths:
+        filename = os.path.basename(path)
         try:
             parsed_data = parse_cv(path)
             report_data = parsed_data.copy()

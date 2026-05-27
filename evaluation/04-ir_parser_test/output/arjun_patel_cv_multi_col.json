@@ -1,0 +1,411 @@
+{
+    "raw_cv_text": "Arjun Patel\nSenior Data Engineer \u2014 Streaming Infrastructure\n\u260e +44 20 7946 0958 \u2709 arjun.patel@gmail.com in/arjun-patel-data-eng gh/ArjunPatel https://arjun.dev\nPROJECTS\nEXPERIENCE\nFlowSync | 2021-2023\nDatadog | 2022-Present Kotlin, Kafka, Apache Flink, RocksDB, Docker\nSenior Data Engineer \u2014 Streaming Infrastructure\nOpen-source framework for building exactly-once streaming\nArchitected and deployed real-time metric aggregation pipeline\npipelines with automatic state management and checkpointing;\nprocessing 8.2B events/day across 50+ Kafka clusters; reduced\n2,100+ GitHub stars, 180+ forks, 45K downloads/month on\nquery latency from 2.8s to 340ms (88% improvement) for\nMaven Central\ndashboard refreshes serving 15K+ customers\nBenchmarked throughput at 1.8M events/sec per node with sub-\nLed migration of legacy batch ETL to Apache Flink-based\n100ms latency tail percentiles (p99); reduced boilerplate code\nstateful processing, cutting infrastructure costs by $2.1M\nfor new pipeline development by 70% compared to raw Flink\nannually and improving metric freshness from 5min to <500ms\nAPIs\nfor 97% of ingestion paths\nDesigned and open-sourced custom Kafka consumer group RiverTelemetry | 2022-Present\nGo, Prometheus, ClickHouse, TimescaleDB\nrebalancer reducing rebalance time from 18s to 2.1s, preventing\nHigh-performance metrics collection agent for distributed\n4-hour monthly data freshness windows; adopted internally and\nsystems; 650+ GitHub stars, used in production by 200+\nby 12+ companies (800+ GitHub stars)\ncompanies to monitor 50K+ services globally\nStripe | 2020-2022 Achieves <5% CPU overhead with lock-free ring buffers; sends\nData Engineer \u2014 Payment Streams\ntelemetry at 100K metrics/sec with <50ms latency; reduced disk\nBuilt production streaming pipeline (Kafka + Flink) ingesting\nI/O by 85% vs. competing solutions (Telegraf, collectd)\n650K transactions/sec with exactly-once semantics; detected\nand prevented $47M in fraudulent transactions annually via real- PipelineSync | 2019-2021\nPython, SQLAlchemy, PyArrow, Airflow, S3\ntime ML model serving with <120ms latency\nData pipeline testing and validation framework supporting\nOptimized stream join operations across 8 billion daily payment\nincremental validation; 920+ GitHub stars, adopted by 35+\nevents, reducing state store memory footprint by 62% (from\norganizations; reduces testing time from 2 hours to 8 minutes for\n840GB to 319GB per node) and enabling 40% larger transaction\n100GB datasets\nvolume capacity per cluster\nIntegrates schema validation, row-level hashing, and statistical\nMentored team of 6 junior engineers on distributed systems best\ndrift detection; caught 99.2% of data quality regressions in\npractices; conducted 18 technical interviews and promoted 3\nproduction pipelines when applied as pre-deployment checks\nindividuals to senior roles; drove 15+ architectural design\nreviews EDUCATION\nWise (TransferWise) | 2019-2020\nImperial College London | 2018-2019\nData Engineer \u2014 Real-Time Analytics\nMSc Computer Science (Distributed Systems)\nEngineered real-time settlement pipeline processing 125K cross-\nThesis on low-latency event stream processing: achieved 45ms\nborder transfers/hour with sub-second latency; improved\nend-to-end latency on Kafka clusters with 2.3M events/sec\nsettlement accuracy from 99.2% to 99.97% using custom fraud\nthroughput\ndetection stream processors\nDistinction grade (GPA 3.91/4.0); recipient of the Shell\nReduced data warehouse refresh cycle from 6 hours to 4\nTechnology Fellowship; led the Distributed Systems reading\nminutes by migrating CDC pipeline from Logstash to Kafka\ngroup with 32 members\nConnect with Debezium, unlocking 24/7 real-time reporting for\nFinance and Risk teams University of Amsterdam | 2015-2018\nBSc Computer Science (Algorithms & Data Systems)\nImplemented comprehensive monitoring and alerting for 18\nSumma cum laude (GPA 3.87/4.0); published 1 peer-reviewed\ncritical data pipelines using Prometheus and custom Kafka\npaper on time-series compression in streaming contexts\nmetric exporters; achieved 99.98% uptime SLA and reduced\nPresident of the Data Science Club (200+ members); mentored\nMTTR from 35min to 8min\n15 junior developers in systems design fundamentals\nThoughtworks | 2017-2019\nSoftware Engineer \u2014 Data Infrastructure EXTRACURRICULAR\nDeveloped internal streaming data platform using Apache Kafka\nand Apache Spark; onboarded 12 cross-functional teams and Apache Kafka Community | 2020-Present\nContributor & KIP Review Committee Member\nreduced data pipeline development time from 3 weeks to 3 days\nContributed 12 pull requests merged into core Kafka codebase,\nvia reusable abstractions\nincluding KIP-694 (transaction coordinator improvements);\nDesigned schema evolution strategy for event streams\nreviews averaged 3.2 PRs/week across 8+ KIPs affecting\nsupporting 30+ event types with backward/forward compatibility;\nmillions of users\nreduced production incidents related to schema mismatches by\nCo-authored technical RFC for stream recovery optimization\n100% (from 8/quarter to 0)\nadopted by Confluent engineering; improvements reduce\nAuthored technical blog posts and internal documentation on\nbootstrap time by 40% for 10TB+ clusters\nstream processing patterns; reached 45K+ readers and\ncontributed to 4 tech talks at company conferences\nData Engineering Europe Conference | 2021-2023 SKILLS\nSpeaker & Workshop Organizer\nDelivered 3 keynote talks on 'Streaming at Scale' reaching\nLanguages: Python, Kotlin, Go, SQL, Scala, Java\n1,200+ attendees at conferences in Berlin, Amsterdam, London;\ntalks averaged 4.8/5.0 rating with 80K+ YouTube views Technologies: Apache Kafka, Apache Flink, Spark Streaming,\ncombined Apache Beam, Debezium, Airflow, ClickHouse, PostgreSQL,\nRedis, AWS (S3, Kinesis, EC2), GCP (BigQuery, Dataflow)\nDesigned and led 2-day hands-on workshop on production\nKafka architectures; mentored 60+ engineers; 92% completion\nTools: Docker, Kubernetes, Terraform, Git, Prometheus, Grafana,\nrate with post-workshop survey showing 8.9/10 satisfaction DataDog, Jira, Confluence\nscore",
+    "name": "Kafka",
+    "email": "arjun.patel@gmail.com",
+    "phone": "+442079460958",
+    "links": {
+        "other": [
+            "https://arjun.dev"
+        ],
+        "linkedin": [],
+        "github": []
+    },
+    "skills": [
+        "aws",
+        "bootstrap",
+        "clickhouse",
+        "docker",
+        "go",
+        "java",
+        "kotlin",
+        "kubernetes",
+        "postgresql",
+        "processing",
+        "python",
+        "rocksdb",
+        "scala",
+        "sql"
+    ],
+    "projects": [],
+    "extracurricular": [],
+    "cv_experience": [
+        {
+            "name": "FlowSync",
+            "subtitle": "",
+            "start_date": "2021",
+            "end_date": "2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Datadog",
+            "subtitle": "Kotlin, Kafka, Apache Flink, RocksDB, Docker",
+            "start_date": "2022",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Senior Data Engineer \u2014 Streaming Infrastructure",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Open-source framework for building exactly-once streaming",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Maven Central",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "dashboard refreshes serving 15K+ customers",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "APIs",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "for 97% of ingestion paths",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Designed and open-sourced custom Kafka consumer group RiverTelemetry",
+            "subtitle": "",
+            "start_date": "2022",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Go, Prometheus, ClickHouse, TimescaleDB",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "High-performance metrics collection agent for distributed",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "by 12+ companies (800+ GitHub stars)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "companies to monitor 50K+ services globally",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Stripe",
+            "subtitle": "Achieves <5% CPU overhead with lock-free ring buffers; sends",
+            "start_date": "2020",
+            "end_date": "2022",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Data Engineer \u2014 Payment Streams",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "650K transactions/sec with exactly-once semantics; detected",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "and prevented $47M in fraudulent transactions annually via real- PipelineSync",
+            "subtitle": "",
+            "start_date": "2019",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Python, SQLAlchemy, PyArrow, Airflow, S3",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "100GB datasets",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "volume capacity per cluster",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "reviews EDUCATION",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Wise (TransferWise)",
+            "subtitle": "",
+            "start_date": "2019",
+            "end_date": "2020",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Imperial College London",
+            "subtitle": "",
+            "start_date": "2018",
+            "end_date": "2019",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Data Engineer \u2014 Real-Time Analytics",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "MSc Computer Science (Distributed Systems)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Thesis on low-latency event stream processing",
+            "subtitle": "achieved 45ms",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "border transfers/hour with sub-second latency; improved",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "throughput",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "detection stream processors",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "group with 32 members",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Finance and Risk teams University of Amsterdam",
+            "subtitle": "",
+            "start_date": "2015",
+            "end_date": "2018",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "MTTR from 35min to 8min",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Thoughtworks",
+            "subtitle": "",
+            "start_date": "2017",
+            "end_date": "2019",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Software Engineer \u2014 Data Infrastructure EXTRACURRICULAR",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "and Apache Spark; onboarded 12 cross-functional teams and Apache Kafka Community",
+            "subtitle": "",
+            "start_date": "2020",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Contributor & KIP Review Committee Member",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "via reusable abstractions",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "including KIP-694 (transaction coordinator improvements);",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "millions of users",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "100% (from 8/quarter to 0)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "adopted by Confluent engineering; improvements reduce",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Data Engineering Europe Conference",
+            "subtitle": "SKILLS",
+            "start_date": "2021",
+            "end_date": "2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Speaker & Workshop Organizer",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Languages",
+            "subtitle": "Python, Kotlin, Go, SQL, Scala, Java",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "talks averaged 4.8/5.0 rating with 80K+ YouTube views Technologies",
+            "subtitle": "Apache Kafka, Apache Flink, Spark Streaming,",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Tools",
+            "subtitle": "Docker, Kubernetes, Terraform, Git, Prometheus, Grafana,",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "score",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "FlowSync | 2021-2023\nDatadog | 2022-Present Kotlin, Kafka, Apache Flink, RocksDB, Docker\nSenior Data Engineer \u2014 Streaming Infrastructure\nOpen-source framework for building exactly-once streaming\nArchitected and deployed real-time metric aggregation pipeline\npipelines with automatic state management and checkpointing;\nprocessing 8.2B events/day across 50+ Kafka clusters; reduced\n2,100+ GitHub stars, 180+ forks, 45K downloads/month on\nquery latency from 2.8s to 340ms (88% improvement) for\nMaven Central\ndashboard refreshes serving 15K+ customers\nBenchmarked throughput at 1.8M events/sec per node with sub-\nLed migration of legacy batch ETL to Apache Flink-based\n100ms latency tail percentiles (p99); reduced boilerplate code\nstateful processing, cutting infrastructure costs by $2.1M\nfor new pipeline development by 70% compared to raw Flink\nannually and improving metric freshness from 5min to <500ms\nAPIs\nfor 97% of ingestion paths\nDesigned and open-sourced custom Kafka consumer group RiverTelemetry | 2022-Present\nGo, Prometheus, ClickHouse, TimescaleDB\nrebalancer reducing rebalance time from 18s to 2.1s, preventing\nHigh-performance metrics collection agent for distributed\n4-hour monthly data freshness windows; adopted internally and\nsystems; 650+ GitHub stars, used in production by 200+\nby 12+ companies (800+ GitHub stars)\ncompanies to monitor 50K+ services globally\nStripe | 2020-2022 Achieves <5% CPU overhead with lock-free ring buffers; sends\nData Engineer \u2014 Payment Streams\ntelemetry at 100K metrics/sec with <50ms latency; reduced disk\nBuilt production streaming pipeline (Kafka + Flink) ingesting\nI/O by 85% vs. competing solutions (Telegraf, collectd)\n650K transactions/sec with exactly-once semantics; detected\nand prevented $47M in fraudulent transactions annually via real- PipelineSync | 2019-2021\nPython, SQLAlchemy, PyArrow, Airflow, S3\ntime ML model serving with <120ms latency\nData pipeline testing and validation framework supporting\nOptimized stream join operations across 8 billion daily payment\nincremental validation; 920+ GitHub stars, adopted by 35+\nevents, reducing state store memory footprint by 62% (from\norganizations; reduces testing time from 2 hours to 8 minutes for\n840GB to 319GB per node) and enabling 40% larger transaction\n100GB datasets\nvolume capacity per cluster\nIntegrates schema validation, row-level hashing, and statistical\nMentored team of 6 junior engineers on distributed systems best\ndrift detection; caught 99.2% of data quality regressions in\npractices; conducted 18 technical interviews and promoted 3\nproduction pipelines when applied as pre-deployment checks\nindividuals to senior roles; drove 15+ architectural design\nreviews EDUCATION\nWise (TransferWise) | 2019-2020\nImperial College London | 2018-2019\nData Engineer \u2014 Real-Time Analytics\nMSc Computer Science (Distributed Systems)\nEngineered real-time settlement pipeline processing 125K cross-\nThesis on low-latency event stream processing: achieved 45ms\nborder transfers/hour with sub-second latency; improved\nend-to-end latency on Kafka clusters with 2.3M events/sec\nsettlement accuracy from 99.2% to 99.97% using custom fraud\nthroughput\ndetection stream processors\nDistinction grade (GPA 3.91/4.0); recipient of the Shell\nReduced data warehouse refresh cycle from 6 hours to 4\nTechnology Fellowship; led the Distributed Systems reading\nminutes by migrating CDC pipeline from Logstash to Kafka\ngroup with 32 members\nConnect with Debezium, unlocking 24/7 real-time reporting for\nFinance and Risk teams University of Amsterdam | 2015-2018\nBSc Computer Science (Algorithms & Data Systems)\nImplemented comprehensive monitoring and alerting for 18\nSumma cum laude (GPA 3.87/4.0); published 1 peer-reviewed\ncritical data pipelines using Prometheus and custom Kafka\npaper on time-series compression in streaming contexts\nmetric exporters; achieved 99.98% uptime SLA and reduced\nPresident of the Data Science Club (200+ members); mentored\nMTTR from 35min to 8min\n15 junior developers in systems design fundamentals\nThoughtworks | 2017-2019\nSoftware Engineer \u2014 Data Infrastructure EXTRACURRICULAR\nDeveloped internal streaming data platform using Apache Kafka\nand Apache Spark; onboarded 12 cross-functional teams and Apache Kafka Community | 2020-Present\nContributor & KIP Review Committee Member\nreduced data pipeline development time from 3 weeks to 3 days\nContributed 12 pull requests merged into core Kafka codebase,\nvia reusable abstractions\nincluding KIP-694 (transaction coordinator improvements);\nDesigned schema evolution strategy for event streams\nreviews averaged 3.2 PRs/week across 8+ KIPs affecting\nsupporting 30+ event types with backward/forward compatibility;\nmillions of users\nreduced production incidents related to schema mismatches by\nCo-authored technical RFC for stream recovery optimization\n100% (from 8/quarter to 0)\nadopted by Confluent engineering; improvements reduce\nAuthored technical blog posts and internal documentation on\nbootstrap time by 40% for 10TB+ clusters\nstream processing patterns; reached 45K+ readers and\ncontributed to 4 tech talks at company conferences\nData Engineering Europe Conference | 2021-2023 SKILLS\nSpeaker & Workshop Organizer\nDelivered 3 keynote talks on 'Streaming at Scale' reaching\nLanguages: Python, Kotlin, Go, SQL, Scala, Java\n1,200+ attendees at conferences in Berlin, Amsterdam, London;\ntalks averaged 4.8/5.0 rating with 80K+ YouTube views Technologies: Apache Kafka, Apache Flink, Spark Streaming,\ncombined Apache Beam, Debezium, Airflow, ClickHouse, PostgreSQL,\nRedis, AWS (S3, Kinesis, EC2), GCP (BigQuery, Dataflow)\nDesigned and led 2-day hands-on workshop on production\nKafka architectures; mentored 60+ engineers; 92% completion\nTools: Docker, Kubernetes, Terraform, Git, Prometheus, Grafana,\nrate with post-workshop survey showing 8.9/10 satisfaction DataDog, Jira, Confluence\nscore",
+    "education": []
+}

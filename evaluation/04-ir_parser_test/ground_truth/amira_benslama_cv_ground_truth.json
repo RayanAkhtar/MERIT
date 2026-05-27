@@ -1,0 +1,53 @@
+{
+    "name": "Amira Benslama",
+    "email": "amira.benslama@gmail.com",
+    "skills": [
+        "Buffers",
+        "C++",
+        "CUDA",
+        "Docker",
+        "DVC",
+        "Git",
+        "Go",
+        "Grafana",
+        "gRPC",
+        "JIRA",
+        "Jupyter",
+        "Kubeflow",
+        "Kubernetes",
+        "ONNX",
+        "PostgreSQL",
+        "Prometheus",
+        "Protocol",
+        "Python",
+        "PyTorch",
+        "Ray",
+        "RDMA",
+        "Redis",
+        "Rust",
+        "SQL",
+        "TensorFlow",
+        "TensorRT",
+        "TorchServe",
+        "Weights & Biases"
+    ],
+    "experience": [
+        "University of Cambridge",
+        "ETH Zurich",
+        "Stripe",
+        "Datadog",
+        "Palantir Technologies",
+        "Jane Street",
+        "QuantumSpark",
+        "PipelineOptima",
+        "EdgeThreshold",
+        "ServeCache",
+        "NeurIPS Conference",
+        "Open Source Community"
+    ],
+    "education": [
+        "University of Cambridge",
+        "ETH Zurich",
+        "GPA 3.89/4.0 with distinction in all machine learning courses; awarded ETH Medal for exceptional"
+    ]
+}

@@ -1,0 +1,590 @@
+{
+    "raw_cv_text": "EXPERIENCE\nAlejandro\nStripe 2021-Present\nSenior Backend Engineer, Payments Infrastructure\nRuiz-Martinez\nArchitected new payment processing pipeline reducing latency from 450ms to 89ms p99\n(80% improvement) for 8M+ daily transactions; directly enabled 3 new partnerships\nworth $150M ARR\n\u25c6 CONTACT Owned ledger microservice handling $2.3T in annual volume; optimized database\nqueries reducing CPU utilization by 42%, saving $680K/year in infrastructure costs\n\u260e +44 7911 456 789 across 12 regions\nLed cross-functional team of 6 engineers (backend, payments, security) on idempotency\nalejandro.ruiz.martinez@gmail.com\n\u2709 framework; prevented $4.2M in duplicate transaction losses, reduced fraud losses by\nin alejandro-ruiz-martinez 23% YoY\nAlejandroRuizMartinez\n\u2325 Wise (formerly TransferWise) 2019-2021\nBackend Engineer, Core Payments\n\u2318 https://alejandro.dev\nRedesigned multi-currency settlement engine to support real-time processing; increased\nthroughput from 45K to 320K transactions/hour, handling 8 currency corridors across\n\u25c6 EDUCATION\n190+ countries\nImperial College London Implemented distributed tracing infrastructure using Jaeger/Opentelemetry across 120+\nMEng Computer Science microservices; reduced mean time to resolution (MTTR) for production incidents from\n2013-2017\n47min to 12min\nFirst-class honors (GPA 3.9/4.0); awarded\nBuilt redundancy layer for foreign exchange rate feeds; achieved 99.99% availability (4\nImperial Prize for Excellence in final year\nminutes downtime/month) and reduced FX quote errors by 87%, protecting $120M daily\nproject on distributed consensus\nforex volume\nLed Systems Architecture club (60+\nCloudflare 2018-2019\nmembers); organized weekly seminars\nBackend Engineer, Billing & Payments\nwith engineers from Citadel and Google\nDeveloped webhook delivery system processing 600M events/month with 99.95%\non low-latency systems design\nguaranteed delivery; implemented exponential backoff with intelligent retry logic\nUniversity of Cambridge\nreducing customer complaint tickets by 64%\nPostgraduate Diploma in Advanced\nComputing Optimized billing calculation engine handling 2.1M active accounts; reduced monthly\n2017-2018 batch job runtime from 8.5 hours to 1.2 hours through algorithmic improvements and\nDistinction (92/100) in Distributed parallelization\nSystems and Advanced Algorithms; thesis Migrated legacy payment processor integration (Stripe) for 450K+ customers with zero\npublished in ACM SIGOPS Workshop on downtime; coordinated testing of 2.3M transactions, achieved 0 data loss\nResearch on Cloud Computing\nJane Street 2017-2018\nTeaching assistant for 3 courses on\nBackend Engineer, Clearing & Settlement\nconcurrency and distributed systems;\nBuilt real-time position reconciliation system matching 15B+ trades daily with 100ms\nmentored 25 undergraduates in systems\nlatency; detected booking discrepancies affecting $2.1M and prevented settlement fails\ndesign projects\nworth $8.4M\nOptimized order routing algorithm improving execution quality by 1.3 basis points on\n\u25c6 SKILLS\naverage; generated incremental trading P&L of $12.8M annually\nLanguages Designed circuit breaker and failover mechanisms for NYSE/NASDAQ connectivity;\nGo Python Rust SQL Java achieved 99.998% uptime during critical trading windows across 50+ trading pairs\nJavaScript/TypeScript\nPROJECTS\nTechnologies\nPostgreSQL Redis DynamoDB Kafka PaymentVault 2022-Present\nGo, PostgreSQL, gRPC, Protocol Buffers, Redis\ngRPC Protocol Buffers\nOpen-source encrypted payment token storage service with compliance features (PCI-\nDistributed Systems Event Sourcing\nDSS, SOC2); 1,200+ GitHub stars, 28K monthly downloads, used by 12 fintech\nCRDT Microservices Architecture\ncompanies processing $500M+ annually\nReal-time Processing Message Queues\nAchieved sub-millisecond token lookup (p99: 0.8ms) through optimized in-memory\nIdempotency Patterns\ncaching and database indexing; benchmarks show 450K ops/sec throughput on\nTools\nstandard hardware\nKubernetes Docker Prometheus\nTxnReplay 2021-2023\nGrafana DataDog Jaeger Git\nPython, Kubernetes, PostgreSQL, Prometheus, Grafana\nGitHub Jira Terraform AWS (EC2\nTransaction replay and debugging tool for payment systems; 890 GitHub stars, used\nRDS DynamoDB S3 Lambda) GCP\ninternally at 3 major fintech firms for forensic analysis; reduced payment dispute\ninvestigation time by 71%\nProcessed 50M+ transaction records in replay tests; memory-efficient streaming design\nhandles 10GB datasets with <512MB peak memory, supporting 99.2% test coverage for\nlegacy payment flows\nDistributedLedger 2020-2022\nRust, DynamoDB, EventSourcing, Tokio async runtime\nCRDT-based distributed ledger for microservices; 650+ GitHub stars, 15K monthly\ndownloads from package managers; consistent replication across 7 data centers with\neventual consistency guarantees\nBenchmarks demonstrate 89% reduction in reconciliation time (from 4.2 hours to 28\nminutes) vs. traditional approaches; write latency: 18ms p99, 240K writes/sec\nsustainable throughput\nEXTRACURRICULAR\nQCon London & GOTO Conferences 2021-2024\nConference Speaker (3 talks)\nSpoke on 'Building Resilient Payment Systems at Scale' (2023, 800+ attendees); talk\npublished on InfoQ with 52K views, invited to present at 4 additional conferences\nincluding QCon San Francisco\nCo-authored workshop 'Distributed Transactions in Payments Infrastructure' reaching\n200+ engineers; workshop rated 4.8/5.0 stars (180 responses); mentored 12\nparticipants who later implemented learnings in production\nOpen Payments Community Foundation 2019-Present\nCore Maintainer & Technical Advisor\nLead maintainer for OpenPayments specification; 450+ GitHub stars, 80+ contributors\nacross 15 countries; specification adopted by 22 fintech companies including 2 unicorns\nMentored 18 junior engineers on systems design and payments architecture; 6 mentees\npromoted to senior roles; organized monthly technical workshops averaging 45+\nattendees",
+    "name": null,
+    "email": "alejandro.ruiz.martinez@gmail.com",
+    "phone": null,
+    "links": {
+        "other": [
+            "https://alejandro.dev"
+        ],
+        "linkedin": [],
+        "github": []
+    },
+    "skills": [
+        "aws",
+        "docker",
+        "dynamodb",
+        "foundation",
+        "go",
+        "grpc",
+        "java",
+        "javascript",
+        "kubernetes",
+        "postgresql",
+        "processing",
+        "python",
+        "rust",
+        "sql",
+        "typescript"
+    ],
+    "projects": [
+        {
+            "name": "Technologies",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "PostgreSQL Redis DynamoDB Kafka PaymentVault",
+            "subtitle": "",
+            "start_date": "2022",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Go, PostgreSQL, gRPC, Protocol Buffers, Redis",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "gRPC Protocol Buffers",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Distributed Systems Event Sourcing",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "CRDT Microservices Architecture",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "companies processing $500M+ annually",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Real-time Processing Message Queues",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Achieved sub-millisecond token lookup (p99",
+            "subtitle": "0.8ms) through optimized in-memory",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Idempotency Patterns",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Tools",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "standard hardware",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Kubernetes Docker Prometheus",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "TxnReplay",
+            "subtitle": "",
+            "start_date": "2021",
+            "end_date": "2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Grafana DataDog Jaeger Git",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Python, Kubernetes, PostgreSQL, Prometheus, Grafana",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "GitHub Jira Terraform AWS (EC2",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "RDS DynamoDB S3 Lambda) GCP",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "investigation time by 71%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "legacy payment flows",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "DistributedLedger",
+            "subtitle": "",
+            "start_date": "2020",
+            "end_date": "2022",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Rust, DynamoDB, EventSourcing, Tokio async runtime",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "eventual consistency guarantees",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "minutes) vs. traditional approaches; write latency",
+            "subtitle": "18ms p99, 240K writes/sec",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "sustainable throughput",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "QCon London & GOTO Conferences",
+            "subtitle": "",
+            "start_date": "2021",
+            "end_date": "2024",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Conference Speaker (3 talks)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "including QCon San Francisco",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Open Payments Community Foundation",
+            "subtitle": "",
+            "start_date": "2019",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Core Maintainer & Technical Advisor",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "attendees",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Alejandro",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Stripe",
+            "subtitle": "",
+            "start_date": "2021",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Senior Backend Engineer, Payments Infrastructure",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Ruiz-Martinez",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "worth $150M ARR",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "alejandro.ruiz.martinez@gmail.com",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "in alejandro-ruiz-martinez 23% YoY",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "AlejandroRuizMartinez",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "\u2325 Wise (formerly TransferWise)",
+            "subtitle": "",
+            "start_date": "2019",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Backend Engineer, Core Payments",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "\u2318 https",
+            "subtitle": "//alejandro.dev",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "\u25c6 EDUCATION",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "190+ countries",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "",
+            "subtitle": "",
+            "start_date": "2013",
+            "end_date": "2017",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "47min to 12min",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "First-class honors (); awarded",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": "GPA 3.9/4.0",
+            "summary": ""
+        },
+        {
+            "name": "project on distributed consensus",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "forex volume",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Led Systems Architecture club (60+",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Cloudflare",
+            "subtitle": "",
+            "start_date": "2018",
+            "end_date": "2019",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "members); organized weekly seminars",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Backend Engineer, Billing & Payments",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "with engineers from Citadel and Google",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "on low-latency systems design",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "University of Cambridge",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "reducing customer complaint tickets by 64%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Postgraduate Diploma in Advanced",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "(92/100) in Distributed parallelization",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": "Distinction",
+            "summary": ""
+        },
+        {
+            "name": "Research on Cloud Computing",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Jane Street",
+            "subtitle": "",
+            "start_date": "2017",
+            "end_date": "2018",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Teaching assistant for 3 courses on",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Backend Engineer, Clearing & Settlement",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "concurrency and distributed systems;",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "mentored 25 undergraduates in systems",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "design projects",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "worth $8.4M",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "\u25c6 SKILLS",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "JavaScript/TypeScript",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Alejandro\nStripe 2021-Present\nSenior Backend Engineer, Payments Infrastructure\nRuiz-Martinez\nArchitected new payment processing pipeline reducing latency from 450ms to 89ms p99\n(80% improvement) for 8M+ daily transactions; directly enabled 3 new partnerships\nworth $150M ARR\n\u25c6 CONTACT Owned ledger microservice handling $2.3T in annual volume; optimized database\nqueries reducing CPU utilization by 42%, saving $680K/year in infrastructure costs\n\u260e +44 7911 456 789 across 12 regions\nLed cross-functional team of 6 engineers (backend, payments, security) on idempotency\nalejandro.ruiz.martinez@gmail.com\n\u2709 framework; prevented $4.2M in duplicate transaction losses, reduced fraud losses by\nin alejandro-ruiz-martinez 23% YoY\nAlejandroRuizMartinez\n\u2325 Wise (formerly TransferWise) 2019-2021\nBackend Engineer, Core Payments\n\u2318 https://alejandro.dev\nRedesigned multi-currency settlement engine to support real-time processing; increased\nthroughput from 45K to 320K transactions/hour, handling 8 currency corridors across\n\u25c6 EDUCATION\n190+ countries\nImperial College London Implemented distributed tracing infrastructure using Jaeger/Opentelemetry across 120+\nMEng Computer Science microservices; reduced mean time to resolution (MTTR) for production incidents from\n2013-2017\n47min to 12min\nFirst-class honors (GPA 3.9/4.0); awarded\nBuilt redundancy layer for foreign exchange rate feeds; achieved 99.99% availability (4\nImperial Prize for Excellence in final year\nminutes downtime/month) and reduced FX quote errors by 87%, protecting $120M daily\nproject on distributed consensus\nforex volume\nLed Systems Architecture club (60+\nCloudflare 2018-2019\nmembers); organized weekly seminars\nBackend Engineer, Billing & Payments\nwith engineers from Citadel and Google\nDeveloped webhook delivery system processing 600M events/month with 99.95%\non low-latency systems design\nguaranteed delivery; implemented exponential backoff with intelligent retry logic\nUniversity of Cambridge\nreducing customer complaint tickets by 64%\nPostgraduate Diploma in Advanced\nComputing Optimized billing calculation engine handling 2.1M active accounts; reduced monthly\n2017-2018 batch job runtime from 8.5 hours to 1.2 hours through algorithmic improvements and\nDistinction (92/100) in Distributed parallelization\nSystems and Advanced Algorithms; thesis Migrated legacy payment processor integration (Stripe) for 450K+ customers with zero\npublished in ACM SIGOPS Workshop on downtime; coordinated testing of 2.3M transactions, achieved 0 data loss\nResearch on Cloud Computing\nJane Street 2017-2018\nTeaching assistant for 3 courses on\nBackend Engineer, Clearing & Settlement\nconcurrency and distributed systems;\nBuilt real-time position reconciliation system matching 15B+ trades daily with 100ms\nmentored 25 undergraduates in systems\nlatency; detected booking discrepancies affecting $2.1M and prevented settlement fails\ndesign projects\nworth $8.4M\nOptimized order routing algorithm improving execution quality by 1.3 basis points on\n\u25c6 SKILLS\naverage; generated incremental trading P&L of $12.8M annually\nLanguages Designed circuit breaker and failover mechanisms for NYSE/NASDAQ connectivity;\nGo Python Rust SQL Java achieved 99.998% uptime during critical trading windows across 50+ trading pairs\nJavaScript/TypeScript",
+    "education": []
+}

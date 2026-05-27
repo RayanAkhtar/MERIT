@@ -1,0 +1,81 @@
+{
+    "Skills": {
+        "Matched": [
+            "c++",
+            "cassandra",
+            "docker",
+            "go",
+            "grpc",
+            "java",
+            "kubernetes",
+            "postgresql",
+            "python",
+            "rust",
+            "scala"
+        ],
+        "Missed (False Negatives)": [
+            "apache flink",
+            "apache kafka",
+            "buffers",
+            "datadog",
+            "elasticsearch",
+            "etcd",
+            "git",
+            "gitlab ci/cd",
+            "grafana",
+            "jaeger",
+            "new relic",
+            "paxos",
+            "prometheus",
+            "protocol",
+            "raft",
+            "redis",
+            "terraform",
+            "zookeeper"
+        ],
+        "Extra (False Positives/Noise)": [
+            "c",
+            "clickhouse",
+            "processing",
+            "webassembly"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "stripe",
+            "cloudflare",
+            "wise"
+        ],
+        "Missed": [
+            "imperial college london",
+            "eth zurich",
+            "consensusdb",
+            "shardmaster",
+            "latticetrace",
+            "replicasync",
+            "distributedsystems.fyi",
+            "vldb & acm sigmod"
+        ],
+        "All Extracted Entities": [
+            "stripe",
+            "uptime",
+            "$12m+ in fraud losses",
+            "features",
+            "cloudflare",
+            "wise (formerly transferwise)",
+            "monthly transaction volume"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": true,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Arjun Mehta",
+            "email": "arjun.mehta@outlook.com"
+        },
+        "Expected": {
+            "name": "Arjun Mehta",
+            "email": "arjun.mehta@outlook.com"
+        }
+    }
+}

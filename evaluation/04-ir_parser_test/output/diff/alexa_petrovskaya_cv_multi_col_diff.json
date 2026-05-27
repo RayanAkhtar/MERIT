@@ -1,0 +1,70 @@
+{
+    "Skills": {
+        "Matched": [
+            "docker",
+            "go",
+            "graphql",
+            "grpc",
+            "java",
+            "javascript",
+            "kubernetes",
+            "postgresql",
+            "python",
+            "react",
+            "rust",
+            "sql",
+            "typescript"
+        ],
+        "Missed (False Negatives)": [
+            "aws (ec2",
+            "chrome devtools",
+            "datadog",
+            "figma",
+            "git",
+            "github",
+            "jira",
+            "kafka",
+            "linux",
+            "postman",
+            "rds",
+            "redis",
+            "s3)",
+            "vs code"
+        ],
+        "Extra (False Positives/Noise)": [
+            "aws",
+            "llvm",
+            "processing",
+            "pypi",
+            "pytest"
+        ]
+    },
+    "Experience": {
+        "Matched": [],
+        "Missed": [
+            "imperial college london",
+            "university of amsterdam",
+            "stripe",
+            "figma",
+            "wise",
+            "queryvault",
+            "pixelforge",
+            "syntaxshield",
+            "pycon europe",
+            "coding mentorship initiative"
+        ],
+        "All Extracted Entities": []
+    },
+    "Contact Info": {
+        "Name Correct": false,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Canvas API",
+            "email": "alexa.petrovskaya@gmail.com"
+        },
+        "Expected": {
+            "name": "Alexa Petrovskaya",
+            "email": "alexa.petrovskaya@gmail.com"
+        }
+    }
+}

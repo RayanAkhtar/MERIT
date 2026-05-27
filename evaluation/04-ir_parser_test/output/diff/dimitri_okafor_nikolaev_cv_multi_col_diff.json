@@ -1,0 +1,127 @@
+{
+    "Skills": {
+        "Matched": [
+            "c++",
+            "firebase",
+            "flutter",
+            "graphql",
+            "grpc",
+            "kotlin",
+            "python",
+            "sqlite",
+            "swift"
+        ],
+        "Missed (False Negatives)": [
+            "android studio",
+            "app annie analytics",
+            "arkit",
+            "avfoundation",
+            "charles proxy",
+            "core data",
+            "corelocation",
+            "figma",
+            "git",
+            "github actions",
+            "instruments",
+            "ios",
+            "javascript/typescript",
+            "jenkins",
+            "jira",
+            "lldb debugger",
+            "metal",
+            "objective-c",
+            "proxyman",
+            "react native",
+            "websocket",
+            "xcode"
+        ],
+        "Extra (False Positives/Noise)": [
+            "c",
+            "foundation",
+            "javascript",
+            "processing",
+            "react",
+            "typescript"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "stripe",
+            "wise",
+            "figma",
+            "shopify",
+            "motionsync",
+            "cachevault"
+        ],
+        "Missed": [
+            "eth zurich",
+            "university of toronto",
+            "platformbridge",
+            "react native eu conference",
+            "ios.dev community"
+        ],
+        "All Extracted Entities": [
+            "dimitri",
+            "stripe",
+            "okafor-",
+            "nikolaev",
+            "and code stripping",
+            "directly contributing ~$18m incremental arr",
+            "reducing critical bugs by 67% (q1",
+            "dimitri.okafor@gmail.com",
+            "\u2709",
+            "in dimitri-okafor-nikolaev",
+            "wise (formerly transferwise)",
+            "dmitriokafornikolaev",
+            "\u2325 mobile engineer (ios specialist)",
+            "\u2318 https",
+            "technology) cross-currency fees in first year",
+            "msc computer science (mobile systems &",
+            "distributed computing)",
+            "optimization",
+            "figma",
+            "connections using custom socket",
+            "dean's honours (); chair of",
+            "eth mobile development club\u2014grew",
+            "membership 240% (45\u2192108 members)",
+            "and organized 3 hackathons with 180+",
+            "participants",
+            "basc computer engineering",
+            "shopify",
+            "ios engineer",
+            "specialized in mobile & embedded",
+            "systems; capstone",
+            "bluetooth le framework achieving 98.7%",
+            "85k+ retail stores globally",
+            "connection stability vs. 94.2% industry",
+            "cumulative ; recipient of",
+            "through batching and pre-authorization caching",
+            "ontario engineering award; competed in",
+            "\u25c6 skills access platform",
+            "languages projects",
+            "swift kotlin javascript/typescript",
+            "motionsync",
+            "with <8mb memory overhead",
+            "tools",
+            "app annie analytics lldb debugger",
+            "18 mid-market fintech companies",
+            "background processes",
+            "cachevault",
+            "swift, sqlite, grpc, protobuf",
+            "foundation urlcache",
+            "stripe services processing 340b+ cache objects/month"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": false,
+        "Email Correct": true,
+        "Extracted": {
+            "name": null,
+            "email": "dimitri.okafor@gmail.com"
+        },
+        "Expected": {
+            "name": "Dimitri Okafor-Nikolaev",
+            "email": "dimitri.okafor@gmail.com"
+        }
+    }
+}

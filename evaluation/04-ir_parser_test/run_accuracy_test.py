@@ -5,6 +5,20 @@ import unicodedata
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 output_dir = os.path.join(current_dir, "output")
+ground_truth_dir = os.path.join(current_dir, "ground_truth")
+
+
+def output_stem_to_gt_stem(output_stem: str) -> str:
+    """Map parsed output basename (no .json) to canonical ground-truth stem.
+
+    Multi-column PDFs are parsed to ``{name}_multi_col.json`` but share the same
+    expected labels as ``{name}.json`` — compare both against ``{name}_ground_truth.json``.
+    """
+    suffix = "_multi_col"
+    if output_stem.endswith(suffix):
+        return output_stem[: -len(suffix)]
+    return output_stem
+
 
 def normalize_string(s):
     """Normalize unicode strings to ASCII, removing accents and diacritics."""
@@ -76,39 +90,59 @@ def run_test():
     results = []
     diff_dir = os.path.join(output_dir, "diff")
     os.makedirs(diff_dir, exist_ok=True)
-    
-    gt_files = [f for f in os.listdir(os.path.join(current_dir, "ground_truth")) if f.endswith("_ground_truth.json")]
-    
-    for gt_filename in gt_files:
-        base_name = gt_filename.replace("_ground_truth.json", "")
-        output_file = base_name + ".json"
-        output_path = os.path.join(output_dir, output_file)
-        gt_path = os.path.join(current_dir, "ground_truth", gt_filename)
-        
-        if not os.path.exists(output_path):
+
+    manifest_path = os.path.join(current_dir, "test_data", "layout_manifest.csv")
+    allowed_output_stems = None
+    if os.path.exists(manifest_path):
+        manifest_df = pd.read_csv(manifest_path)
+        allowed_output_stems = {
+            os.path.splitext(os.path.basename(f))[0] for f in manifest_df["File"]
+        }
+
+    for output_filename in sorted(os.listdir(output_dir)):
+        if not output_filename.endswith(".json"):
             continue
-            
+        output_path = os.path.join(output_dir, output_filename)
+        if not os.path.isfile(output_path):
+            continue
+
+        output_stem = output_filename[:-5]  # strip .json
+        if allowed_output_stems is not None and output_stem not in allowed_output_stems:
+            continue
+
+        gt_stem = output_stem_to_gt_stem(output_stem)
+        gt_filename = f"{gt_stem}_ground_truth.json"
+        gt_path = os.path.join(ground_truth_dir, gt_filename)
+
+        if not os.path.exists(gt_path):
+            continue
+
         with open(output_path, "r", encoding="utf-8") as f:
             extracted = json.load(f)
-            
+
         with open(gt_path, "r", encoding="utf-8") as f:
             gt = json.load(f)
-        
+
         metrics, diff = calculate_metrics(extracted, gt)
-        if metrics:
-            metrics["File"] = base_name + ".pdf"
-            results.append(metrics)
-            
-            diff_path = os.path.join(diff_dir, f"{base_name}_diff.json")
-            with open(diff_path, "w", encoding="utf-8") as f:
-                json.dump(diff, f, indent=4)
-    
+        if not metrics:
+            continue
+
+        metrics["File"] = output_stem + ".pdf"
+        results.append(metrics)
+
+        diff_path = os.path.join(diff_dir, f"{output_stem}_diff.json")
+        with open(diff_path, "w", encoding="utf-8") as f:
+            json.dump(diff, f, indent=4)
+
     df = pd.DataFrame(results)
     summary_path = os.path.join(current_dir, "output/accuracy_summary.csv")
     df.to_csv(summary_path, index=False)
-    
+
     print("\n--- IR Parser Accuracy Results ---")
-    print(df.drop(columns=["File"]).mean())
+    if len(df) == 0:
+        print("No matching output/ground-truth pairs found.")
+    else:
+        print(df.drop(columns=["File"]).mean())
     print(f"\nDetailed report saved to {summary_path}")
 
 if __name__ == "__main__":

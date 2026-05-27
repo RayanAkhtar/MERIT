@@ -1,0 +1,92 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "css3",
+            "docker",
+            "express",
+            "graphql",
+            "html5",
+            "javascript",
+            "kubernetes",
+            "mongodb",
+            "next.js",
+            "node.js",
+            "postgresql",
+            "python",
+            "react",
+            "sql",
+            "typescript"
+        ],
+        "Missed (False Negatives)": [
+            "chrome devtools",
+            "circleci",
+            "datadog",
+            "figma",
+            "git",
+            "github actions",
+            "jest",
+            "jira",
+            "new",
+            "postman",
+            "redis",
+            "relic",
+            "slack",
+            "vite",
+            "vs code",
+            "webpack",
+            "websockets"
+        ],
+        "Extra (False Positives/Noise)": [
+            "foundation",
+            "influxdb",
+            "js",
+            "processing"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "stripe",
+            "figma",
+            "shopify",
+            "wise"
+        ],
+        "Missed": [
+            "imperial college london",
+            "university of amsterdam",
+            "llmcache",
+            "reactflow pro",
+            "serversync",
+            "benchmark",
+            "react amsterdam & node.js conf eu",
+            "node.js foundation & npm maintainer community"
+        ],
+        "All Extracted Entities": [
+            "stripe",
+            "payment processing delays",
+            "across 15m+ monthly users",
+            "days",
+            "figma",
+            "(lighthouse performance",
+            "shopify",
+            "compliance) across shopify's platform",
+            "45k throughput (webhooks/sec) without service degradation",
+            "wise",
+            "improved ux responsiveness",
+            "p99",
+            "throughput from 3.2k to 18k req/s"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": true,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Karim El-Sayed",
+            "email": "karim.elsayed@gmail.com"
+        },
+        "Expected": {
+            "name": "Karim El-Sayed",
+            "email": "karim.elsayed@gmail.com"
+        }
+    }
+}

@@ -1,0 +1,527 @@
+{
+    "raw_cv_text": "Aleksandr Kowalski\nAK\nPrincipal Engineer, Infrastructure & Performance @ Stripe\n+44 20 7946 0958 \u00b7 aleksandr.kowalski@gmail.com \u00b7 aleksandr-kowalski \u00b7 AleksandrKowalski \u00b7 https://aleksandr.dev\nEXPERIENCE PROJECTS EDUCATION\nStripe CacheMeld ETH Zurich (Swiss Federal Institute\nPrincipal Engineer, Infrastructure & Rust, C++, Redis, Memcached \u00b7 2020\u2013Present of Technology)\nPerformance \u00b7 2019\u2013Present Open-source distributed cache coherence MSc Computer Science \u00b7 2010\u20132012\nArchitected and led 12-person team framework with intelligent multi-tier Thesis on distributed systems optimization\ndelivering next-generation payment invalidation; 4,200+ GitHub stars, 187K achieved 9.2/10 (top 3% cohort);\nprocessing pipeline; reduced P99 latency monthly npm downloads, and adopted by published 2 peer-reviewed papers on lock-\nby 340ms (from 450ms\u2192110ms) and 40+ companies including 2 Fortune 500s free concurrent data structures in IEEE\nincreased throughput 2.8x (180K\u2192504K Achieved 95th percentile cache hit rate Transactions on Parallel and Distributed\nreq/sec) serving $2.2T+ annual payment 87.4% on real-world workloads vs. 71% Systems\nvolume\nfor competitors; provided 4.2x memory Led Systems Engineering Club with 150+\nDesigned distributed consensus protocol efficiency through adaptive compression, members; organized 8 technical\nfor real-time settlement reconciliation reducing production cache footprint by workshops on concurrency patterns,\nacross 18 global regions; achieved $800K annually for users attracting speakers from Google and\n99.9997% consistency (3 nines Microsoft\nVectorFlow\nimprovement) while cutting operational\nGo, Python, TensorFlow, Protocol Buffers \u00b7 University of Warsaw\noverhead by $4.2M annually\n2018\u20132022 BSc Mathematics & Computer Science \u00b7\nMentored 5 senior engineers to principal- Machine learning inference serving 2006\u20132010\ntrack roles; established incident command platform with dynamic batching; achieved Graduated summa cum laude with 3.95/4.0\ntraining program reducing MTTR by 62% 8,600+ GitHub stars and integrated into 12 GPA; awarded Faculty Excellence Award\nand incident severity by 58% across 200+ production systems at Stripe, Shopify, and for contributions to algorithmic research\nmicroservices Figma Conducted undergraduate research on\nCloudflare Delivered 6.8x throughput improvement randomized algorithms under Prof. Marek\nSenior Staff Engineer, Network Systems \u00b7 (from 420\u21922,856 inferences/sec per Cygan; co-authored 1 publication in\n2016\u20132019 GPU) through model quantization and competitive programming domain\nBuilt HTTP/3 and QUIC optimization batch optimization; reduced inference\nlayer deployed across 280+ edge locations latency from 142ms\u219238ms while cutting\nprocessing 40M req/sec; improved median GPU costs by 58%\nlatency 230ms\u219285ms (63% reduction) SKILLS\nRaftControl\nand reduced packet loss recovery overhead Languages\nGo, Protobuf, etcd, Kubernetes \u00b7 2019\u20132021\nby 45%\nConsensus algorithm testing and Go Rust C++ Python Java\nLed platform reliability initiative\nverification framework; 2,100+ GitHub SQL Bash JavaScript\nimproving global DNS resolution SLA\nstars with adoption in 18 production Technologies\nfrom 99.95%\u219299.999% (4-nines\nsystems; featured in 3 academic papers on\nKubernetes Distributed Systems\nimprovement); saved customers ~$18M in\nconsensus correctness\npotential downtime costs annually Consensus Algorithms (Raft Paxos)\nReduced consensus failure detection time\nChampioned adoption of eBPF-based Protocol Buffers gRPC REST APIs\nfrom 14s\u21921.2s through improved leader\nnetwork telemetry across infrastructure; Event Streaming (Kafka) PostgreSQL\nelection logic; generated 500K+ test\ncut observability costs by 67% ($2.8M\nscenarios covering edge cases, catching 47 DynamoDB Redis\nsavings) while increasing metric resolution\npreviously unknown bugs in popular Message Queues (RabbitMQ)\nfrom 60s to 1s intervals\nimplementations TensorFlow Docker Terraform\nShopify\netcd Datadog Prometheus\nStaff Engineer, Platform & Databases \u00b7 2013\u2013\n2016 Tools\nRedesigned distributed sharding EXTRACURRICULAR Git Linux Docker Kubernetes\narchitecture for primary transactional Strange Loop Conference & QCon Terraform CloudFormation\ndatabase (900GB+, 250K queries/sec);\nTechnical Speaker & Program Committee GitHub Actions Jenkins Prometheus\nachieved 4x improvement in query latency Member \u00b7 2017\u2013Present\nGrafana Datadog PagerDuty\n(from 280ms\u219270ms) and enabled 5.2x Delivered 6 keynotes and technical talks\ncapacity scaling without hardware on distributed systems, concurrency, and VirtualBox GCP AWS Azure\nupgrades performance optimization with combined Bazel\nImplemented real-time replication system audience reach of 8,400+ engineers; talks\nfor cross-datacenter failover; reduced RTO achieved 4.7/5.0 average speaker rating\nfrom 45 minutes\u21924 minutes and RPO Served on program committee for 4\nfrom 30s\u2192<100ms, earning $6.8M in conferences selecting 180+ talks from\nSLA credit avoidance 2,100+ submissions; mentored 12 first-\nManaged platform infrastructure for time speakers resulting in 9 accepted\n850K+ merchant stores; optimized presentations and fostering emerging\nresource allocation reducing cloud spend voices in systems community\nby $3.1M YoY while maintaining 99.98%\nOpen Source Systems Mentorship\nuptime SLA across containerized\nInitiative\nworkloads\nPrincipal Mentor & Advisor \u00b7 2016\u2013Present\nGoogle Actively mentor 7 open-source projects\nacross Rust ecosystem; 4 mentees\nSenior Software Engineer, Infrastructure \u00b7 promoted to core maintainer roles within\n2011\u20132013 18 months; mentored codebase now\nDeveloped high-performance RPC\nmaintains 99.2% test coverage with zero\nframework for MapReduce clusters\ncritical CVEs in 3-year period\nprocessing 8 exabytes/day; cut request\nAuthored comprehensive distributed\nserialization overhead by 73% through\nsystems and performance optimization\ncustom binary protocol and reduced tail\nguide (100K+ GitHub clones, 340K\nlatency (p99) from 320ms\u219280ms\nreaders); established weekly office hours\nOwned cluster resource scheduler serving attended by 45+ engineers, providing\n14K compute nodes across 6 datacenters;\ntechnical guidance on architecture\nimproved resource utilization by 31%\ndecisions and code reviews\n($12M annual savings) and reduced job\nstartup time by 52%\nCo-authored 2 internal papers on\ndistributed tracing and adaptive batching;\nknowledge transferred to 28 engineers\nacross 4 teams reducing incident\nresolution time by 44%",
+    "name": "Aleksandr Kowalski AK Principal Engineer",
+    "email": "aleksandr.kowalski@gmail.com",
+    "phone": "+442079460958",
+    "links": {
+        "other": [
+            "https://aleksandr.dev"
+        ],
+        "linkedin": [],
+        "github": []
+    },
+    "skills": [
+        "aws",
+        "azure",
+        "c",
+        "c++",
+        "docker",
+        "dynamodb",
+        "go",
+        "grpc",
+        "java",
+        "javascript",
+        "kubernetes",
+        "memcached",
+        "postgresql",
+        "processing",
+        "python",
+        "rust",
+        "sql",
+        "tensorflow"
+    ],
+    "projects": [],
+    "extracurricular": [],
+    "cv_experience": [
+        {
+            "name": "volume",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "99.9997% consistency (3 nines Microsoft",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "VectorFlow",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "improvement) while cutting operational",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "overhead by $4.2M annually",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "microservices Figma Conducted undergraduate research on",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "latency 230ms\u219285ms (63% reduction) SKILLS",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "RaftControl",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Go, Protobuf, etcd, Kubernetes \u00b7",
+            "subtitle": "",
+            "start_date": "2019",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "by 45%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Led platform reliability initiative",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "improving global DNS resolution SLA",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "from 99.95%\u219299.999% (4-nines",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Kubernetes Distributed Systems",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "improvement); saved customers ~$18M in",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "consensus correctness",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Reduced consensus failure detection time",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "from 14s\u21921.2s through improved leader",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "election logic; generated 500K+ test",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "cut observability costs by 67% ($2.8M",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "savings) while increasing metric resolution",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "from 60s to 1s intervals",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "implementations TensorFlow Docker Terraform",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Shopify",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "etcd Datadog Prometheus",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Tools",
+            "subtitle": "",
+            "start_date": "2016",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "database (900GB+, 250K queries/sec);",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Grafana Datadog PagerDuty",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "upgrades performance optimization with combined Bazel",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "by $3.1M YoY while maintaining 99.98%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Open Source Systems Mentorship",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "uptime SLA across containerized",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Initiative",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "workloads",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Principal Mentor & Advisor \u00b7",
+            "subtitle": "",
+            "start_date": "2016",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Google Actively mentor 7 open-source projects",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "across Rust ecosystem; 4 mentees",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "18 months; mentored codebase now",
+            "subtitle": "",
+            "start_date": "2011",
+            "end_date": "2013",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Developed high-performance RPC",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "maintains 99.2% test coverage with zero",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "framework for MapReduce clusters",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "critical CVEs in 3-year period",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "processing 8 exabytes/day; cut request",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Authored comprehensive distributed",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "serialization overhead by 73% through",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "systems and performance optimization",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "custom binary protocol and reduced tail",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "guide (100K+ GitHub clones, 340K",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "latency (p99) from 320ms\u219280ms",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "readers); established weekly office hours",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "14K compute nodes across 6 datacenters;",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "technical guidance on architecture",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "improved resource utilization by 31%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "decisions and code reviews",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "($12M annual savings) and reduced job",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "startup time by 52%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Co-authored 2 internal papers on",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "distributed tracing and adaptive batching;",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "knowledge transferred to 28 engineers",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "across 4 teams reducing incident",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "resolution time by 44%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Stripe CacheMeld ETH Zurich (Swiss Federal Institute\nPrincipal Engineer, Infrastructure & Rust, C++, Redis, Memcached \u00b7 2020\u2013Present of Technology)\nPerformance \u00b7 2019\u2013Present Open-source distributed cache coherence MSc Computer Science \u00b7 2010\u20132012\nArchitected and led 12-person team framework with intelligent multi-tier Thesis on distributed systems optimization\ndelivering next-generation payment invalidation; 4,200+ GitHub stars, 187K achieved 9.2/10 (top 3% cohort);\nprocessing pipeline; reduced P99 latency monthly npm downloads, and adopted by published 2 peer-reviewed papers on lock-\nby 340ms (from 450ms\u2192110ms) and 40+ companies including 2 Fortune 500s free concurrent data structures in IEEE\nincreased throughput 2.8x (180K\u2192504K Achieved 95th percentile cache hit rate Transactions on Parallel and Distributed\nreq/sec) serving $2.2T+ annual payment 87.4% on real-world workloads vs. 71% Systems\nvolume\nfor competitors; provided 4.2x memory Led Systems Engineering Club with 150+\nDesigned distributed consensus protocol efficiency through adaptive compression, members; organized 8 technical\nfor real-time settlement reconciliation reducing production cache footprint by workshops on concurrency patterns,\nacross 18 global regions; achieved $800K annually for users attracting speakers from Google and\n99.9997% consistency (3 nines Microsoft\nVectorFlow\nimprovement) while cutting operational\nGo, Python, TensorFlow, Protocol Buffers \u00b7 University of Warsaw\noverhead by $4.2M annually\n2018\u20132022 BSc Mathematics & Computer Science \u00b7\nMentored 5 senior engineers to principal- Machine learning inference serving 2006\u20132010\ntrack roles; established incident command platform with dynamic batching; achieved Graduated summa cum laude with 3.95/4.0\ntraining program reducing MTTR by 62% 8,600+ GitHub stars and integrated into 12 GPA; awarded Faculty Excellence Award\nand incident severity by 58% across 200+ production systems at Stripe, Shopify, and for contributions to algorithmic research\nmicroservices Figma Conducted undergraduate research on\nCloudflare Delivered 6.8x throughput improvement randomized algorithms under Prof. Marek\nSenior Staff Engineer, Network Systems \u00b7 (from 420\u21922,856 inferences/sec per Cygan; co-authored 1 publication in\n2016\u20132019 GPU) through model quantization and competitive programming domain\nBuilt HTTP/3 and QUIC optimization batch optimization; reduced inference\nlayer deployed across 280+ edge locations latency from 142ms\u219238ms while cutting\nprocessing 40M req/sec; improved median GPU costs by 58%\nlatency 230ms\u219285ms (63% reduction) SKILLS\nRaftControl\nand reduced packet loss recovery overhead Languages\nGo, Protobuf, etcd, Kubernetes \u00b7 2019\u20132021\nby 45%\nConsensus algorithm testing and Go Rust C++ Python Java\nLed platform reliability initiative\nverification framework; 2,100+ GitHub SQL Bash JavaScript\nimproving global DNS resolution SLA\nstars with adoption in 18 production Technologies\nfrom 99.95%\u219299.999% (4-nines\nsystems; featured in 3 academic papers on\nKubernetes Distributed Systems\nimprovement); saved customers ~$18M in\nconsensus correctness\npotential downtime costs annually Consensus Algorithms (Raft Paxos)\nReduced consensus failure detection time\nChampioned adoption of eBPF-based Protocol Buffers gRPC REST APIs\nfrom 14s\u21921.2s through improved leader\nnetwork telemetry across infrastructure; Event Streaming (Kafka) PostgreSQL\nelection logic; generated 500K+ test\ncut observability costs by 67% ($2.8M\nscenarios covering edge cases, catching 47 DynamoDB Redis\nsavings) while increasing metric resolution\npreviously unknown bugs in popular Message Queues (RabbitMQ)\nfrom 60s to 1s intervals\nimplementations TensorFlow Docker Terraform\nShopify\netcd Datadog Prometheus\nStaff Engineer, Platform & Databases \u00b7 2013\u2013\n2016 Tools\nRedesigned distributed sharding EXTRACURRICULAR Git Linux Docker Kubernetes\narchitecture for primary transactional Strange Loop Conference & QCon Terraform CloudFormation\ndatabase (900GB+, 250K queries/sec);\nTechnical Speaker & Program Committee GitHub Actions Jenkins Prometheus\nachieved 4x improvement in query latency Member \u00b7 2017\u2013Present\nGrafana Datadog PagerDuty\n(from 280ms\u219270ms) and enabled 5.2x Delivered 6 keynotes and technical talks\ncapacity scaling without hardware on distributed systems, concurrency, and VirtualBox GCP AWS Azure\nupgrades performance optimization with combined Bazel\nImplemented real-time replication system audience reach of 8,400+ engineers; talks\nfor cross-datacenter failover; reduced RTO achieved 4.7/5.0 average speaker rating\nfrom 45 minutes\u21924 minutes and RPO Served on program committee for 4\nfrom 30s\u2192<100ms, earning $6.8M in conferences selecting 180+ talks from\nSLA credit avoidance 2,100+ submissions; mentored 12 first-\nManaged platform infrastructure for time speakers resulting in 9 accepted\n850K+ merchant stores; optimized presentations and fostering emerging\nresource allocation reducing cloud spend voices in systems community\nby $3.1M YoY while maintaining 99.98%\nOpen Source Systems Mentorship\nuptime SLA across containerized\nInitiative\nworkloads\nPrincipal Mentor & Advisor \u00b7 2016\u2013Present\nGoogle Actively mentor 7 open-source projects\nacross Rust ecosystem; 4 mentees\nSenior Software Engineer, Infrastructure \u00b7 promoted to core maintainer roles within\n2011\u20132013 18 months; mentored codebase now\nDeveloped high-performance RPC\nmaintains 99.2% test coverage with zero\nframework for MapReduce clusters\ncritical CVEs in 3-year period\nprocessing 8 exabytes/day; cut request\nAuthored comprehensive distributed\nserialization overhead by 73% through\nsystems and performance optimization\ncustom binary protocol and reduced tail\nguide (100K+ GitHub clones, 340K\nlatency (p99) from 320ms\u219280ms\nreaders); established weekly office hours\nOwned cluster resource scheduler serving attended by 45+ engineers, providing\n14K compute nodes across 6 datacenters;\ntechnical guidance on architecture\nimproved resource utilization by 31%\ndecisions and code reviews\n($12M annual savings) and reduced job\nstartup time by 52%\nCo-authored 2 internal papers on\ndistributed tracing and adaptive batching;\nknowledge transferred to 28 engineers\nacross 4 teams reducing incident\nresolution time by 44%",
+    "education": []
+}

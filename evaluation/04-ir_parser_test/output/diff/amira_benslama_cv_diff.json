@@ -1,0 +1,87 @@
+{
+    "Skills": {
+        "Matched": [
+            "c++",
+            "docker",
+            "go",
+            "grpc",
+            "jupyter",
+            "kubernetes",
+            "postgresql",
+            "python",
+            "pytorch",
+            "rust",
+            "sql",
+            "tensorflow"
+        ],
+        "Missed (False Negatives)": [
+            "buffers",
+            "cuda",
+            "dvc",
+            "git",
+            "grafana",
+            "jira",
+            "kubeflow",
+            "onnx",
+            "prometheus",
+            "protocol",
+            "ray",
+            "rdma",
+            "redis",
+            "tensorrt",
+            "torchserve",
+            "weights & biases"
+        ],
+        "Extra (False Positives/Noise)": [
+            "c",
+            "fastapi",
+            "processing",
+            "pypi"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "stripe",
+            "datadog",
+            "palantir technologies",
+            "jane street"
+        ],
+        "Missed": [
+            "university of cambridge",
+            "eth zurich",
+            "quantumspark",
+            "pipelineoptima",
+            "edgethreshold",
+            "servecache",
+            "neurips conference",
+            "open source community"
+        ],
+        "All Extracted Entities": [
+            "stripe",
+            "saving $2.3m/year in compute costs",
+            "under 120ms",
+            "datadog",
+            "inferences/sec) on cpu-only clusters",
+            "customer accounts",
+            "production models",
+            "palantir technologies",
+            "clusters",
+            "by 56% yoy",
+            "jane street",
+            "hardware",
+            "~$1.8m quarterly in hardware costs"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": true,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Amira Benslama",
+            "email": "amira.benslama@gmail.com"
+        },
+        "Expected": {
+            "name": "Amira Benslama",
+            "email": "amira.benslama@gmail.com"
+        }
+    }
+}

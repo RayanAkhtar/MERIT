@@ -1,0 +1,207 @@
+{
+    "raw_cv_text": "Amara Okonkwo\n+44 20 7946 0958 | Email: amara.okonkwo@gmail.com | LinkedIn: amara-okonkwo | GitHub: AmaraOkonkwo |\nhttps://amara.dev\nEDUCATION\nUniversity of Cambridge | MPhil Computer Science (Distributed Systems & Networks) 2017\u20132019\nAchieved Distinction (3.92 GPA equivalent); thesis on low-latency trace aggregation for\nmicroservices reduced collection overhead by 34%\nLed Systems Research Society (40+ members), organized 8 seminars on observability at scale\nfeaturing speakers from Stripe and Google\nUniversity of Lagos | BSc Computer Science 2013\u20132017\nFirst Class Honours (3.89 GPA); awarded Best Computer Science Graduate; competed in ACM ICPC\nWest Africa regionals\nDeveloped distributed fault-tolerant caching system as capstone; published findings in university tech\njournal with 120+ citations\nEXPERIENCE\nDatadog | Senior Platform Engineer, Observability Infrastructure 2022\u2013Present\nLed redesign of trace ingestion pipeline handling 2.1M spans/sec globally; reduced P99 latency from\n850ms to 120ms (86% improvement) and cut infrastructure costs by $4.2M annually across 12-region\ndeployment\nOwned distributed cardinality control system for metrics; prevented 7 customer-impacting outages by\nimplementing real-time tag explosion detection, improving platform stability to 99.995% SLA\n(reduced incidents by 68%)\nMentored 6 junior engineers on observability fundamentals; drove 3 RFCs through architecture\nreview process for agent optimization, achieving 28% reduction in agent memory footprint (45MB \u2192\n32MB baseline)\nCloudflare | Platform Engineer, Reliability & Telemetry 2020\u20132022\nArchitected distributed tracing system for 200+ edge locations processing 180K requests/sec;\nachieved 98.2% trace capture rate with <2% latency overhead via intelligent sampling and context\npropagation optimization\nBuilt anomaly detection pipeline for DNS query patterns; flagged security threats with 94% precision,\npreventing 12+ DDoS incidents affecting 50M+ users across $2.1B customer base\nImproved observability cost efficiency by implementing adaptive sampling and compression; reduced\ntelemetry egress by 62% while maintaining 99.1% coverage of critical error paths\nStripe | Software Engineer, Platform Infrastructure 2019\u20132020\nDesigned and deployed distributed tracing instrumentation across 4 core payment processing\nservices; reduced MTTR by 41% (from 23 min to 13.5 min) and enabled root cause analysis of 99.2%\nof P1 incidents within 3 minutes\nOptimized metrics cardinality management; identified and eliminated 15.2M unused metric\ncombinations, reducing Prometheus storage by 38% and monthly cloud spend by $180K\nEstablished observability SLO framework for 50+ service teams; achieved <4% SLO violation rate\nacross 8 critical business flows handling $50B+ annual transaction volume\nWise | Junior Platform Engineer 2018\u20132019\nImplemented first unified logging pipeline for 8 core services; aggregated 1.8B log entries/day with\nsub-100ms query latency, enabling faster incident triage and reducing support tickets by 24%\nContributed to on-call tooling improvements; shipped dashboards that reduced paging latency by 12s\naverage, and built automation to resolve 31% of low-severity alerts autonomously\nDeveloped cost optimization analysis tooling that identified $127K in wasted infrastructure spend\nquarterly; documented findings that informed 3 major architectural decisions\nPROJECTS\nMetricFlow | Go, Prometheus, eBPF, PostgreSQL 2021\u2013Present\nOpen-source distributed metrics cardinality manager with 2,847 GitHub stars; used by 340+\norganizations to prevent cardinality explosions in Prometheus; achieved 4.2M NPM/PyPI downloads\nYTD\nReduces metrics cardinality by avg 56% via intelligent tag dropping and aggregation; eBPF kernel\nmodule provides <0.1% CPU overhead for inline classification on 1M+ active metric streams\nTraceAI | Rust, Apache Arrow, ML (scikit-learn), Docker 2020\u2013Present\nAnomaly detection service for distributed traces with 1,156 GitHub stars; processes 900K traces/hour\nwith 89ms P99 detection latency; 92% precision on root cause candidate ranking\nReduced false positive rate from 18% (baseline heuristics) to 3.2% via supervised ML on trace\nfeature extraction; community contributions yielded 8 high-impact PRs from external developers\nObservabilityLens | Python, FastAPI, TypeScript/React, Grafana 2019\u20132021\nEducational platform for teaching SRE observability concepts; 847 GitHub stars; hosted workshops\nat 6 conferences (KubeCon NA 2020, Velocity London 2021, DevOps Days Berlin 2021); trained\n2,100+ engineers\nBuilt cost simulator module that helped 340 users estimate observability spend; reduced median\nimplementation time for telemetry strategies by 34% (9.2 days \u2192 6.1 days)\nEXTRACURRICULAR\nKubeCon + CloudNativeCon | Speaker & Track Chair, Observability 2021\u2013Present\nDelivered keynote 'Scaling Traces to Billions: Lessons from Production' at KubeCon North America\n2022 (1,200+ attendees); received 4.7/5 feedback score with 340+ post-talk discussions\nCurated 16-session observability track for KubeCon Europe 2023; selected speakers from 140+\nsubmissions; track achieved highest attendance (2,100+ engineers) across 3 sub-tracks\nCloud Native Computing Foundation (CNCF) | Open Source Maintainer & Mentor 2020\u2013Present\nMaintain OpenTelemetry Go SDK; 2.1M+ weekly downloads; review 60+ PRs monthly and triaged\n480+ GitHub issues YTD; onboarded 12 new contributors with structured mentorship leading to 14\nmerged contributions\nMentor 4 junior engineers on observability architecture through CNCF mentorship program; 3\nmentees promoted to senior roles and 1 published technical blog post on distributed tracing that\nreached 18K readers\nTECHNICAL SKILLS\nLanguages \u2013 Go, Python, Rust, TypeScript, SQL, Java, Bash\nTechnologies \u2013 Prometheus, Grafana, Elasticsearch, Jaeger, Datadog, OpenTelemetry, Kubernetes,\nDocker, gRPC, Apache Kafka, PostgreSQL, Redis, eBPF, Apache Arrow\nTools \u2013 Git, GitHub, ArgoCD, Terraform, CI/CD (GitHub Actions, GitLab CI), PagerDuty, Honeycomb,\nLinux profiling (perf, flamegraphs), Jupyter, DuckDB",
+    "name": "Email",
+    "email": "amara.okonkwo@gmail.com",
+    "phone": "+442079460958",
+    "links": {
+        "other": [
+            "https://amara.dev"
+        ],
+        "linkedin": [
+            "https://linkedin.com/in/amara-okonkwo"
+        ],
+        "github": [
+            "https://github.com/AmaraOkonkwo"
+        ]
+    },
+    "skills": [
+        "docker",
+        "duckdb",
+        "fastapi",
+        "foundation",
+        "go",
+        "grpc",
+        "java",
+        "jupyter",
+        "kubernetes",
+        "postgresql",
+        "processing",
+        "pypi",
+        "python",
+        "react",
+        "rust",
+        "scikit",
+        "scikit-learn",
+        "sql",
+        "typescript"
+    ],
+    "projects": [
+        {
+            "name": "MetricFlow",
+            "subtitle": "Go, Prometheus, eBPF, PostgreSQL",
+            "start_date": "2021",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "YTD",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "TraceAI",
+            "subtitle": "Rust, Apache Arrow, ML (scikit-learn), Docker",
+            "start_date": "2020",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "ObservabilityLens",
+            "subtitle": "Python, FastAPI, TypeScript/React, Grafana",
+            "start_date": "2019",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "2,100+ engineers",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "KubeCon + CloudNativeCon",
+            "subtitle": "Speaker & Track Chair, Observability",
+            "start_date": "2021",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Delivered keynote 'Scaling Traces to Billions",
+            "subtitle": "Lessons from Production' at KubeCon North America",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Cloud Native Computing Foundation (CNCF)",
+            "subtitle": "Open Source Maintainer & Mentor",
+            "start_date": "2020",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "merged contributions",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "reached 18K readers",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Datadog",
+            "subtitle": "Senior Platform Engineer, Observability Infrastructure",
+            "start_date": "2022",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "deployment",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "(reduced incidents by 68%)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "32MB baseline)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Cloudflare",
+            "subtitle": "Platform Engineer, Reliability & Telemetry",
+            "start_date": "2020",
+            "end_date": "2022",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "propagation optimization",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Stripe",
+            "subtitle": "Software Engineer, Platform Infrastructure",
+            "start_date": "2019",
+            "end_date": "2020",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "of P1 incidents within 3 minutes",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Wise",
+            "subtitle": "Junior Platform Engineer",
+            "start_date": "2018",
+            "end_date": "2019",
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Datadog | Senior Platform Engineer, Observability Infrastructure 2022\u2013Present\nLed redesign of trace ingestion pipeline handling 2.1M spans/sec globally; reduced P99 latency from\n850ms to 120ms (86% improvement) and cut infrastructure costs by $4.2M annually across 12-region\ndeployment\nOwned distributed cardinality control system for metrics; prevented 7 customer-impacting outages by\nimplementing real-time tag explosion detection, improving platform stability to 99.995% SLA\n(reduced incidents by 68%)\nMentored 6 junior engineers on observability fundamentals; drove 3 RFCs through architecture\nreview process for agent optimization, achieving 28% reduction in agent memory footprint (45MB \u2192\n32MB baseline)\nCloudflare | Platform Engineer, Reliability & Telemetry 2020\u20132022\nArchitected distributed tracing system for 200+ edge locations processing 180K requests/sec;\nachieved 98.2% trace capture rate with <2% latency overhead via intelligent sampling and context\npropagation optimization\nBuilt anomaly detection pipeline for DNS query patterns; flagged security threats with 94% precision,\npreventing 12+ DDoS incidents affecting 50M+ users across $2.1B customer base\nImproved observability cost efficiency by implementing adaptive sampling and compression; reduced\ntelemetry egress by 62% while maintaining 99.1% coverage of critical error paths\nStripe | Software Engineer, Platform Infrastructure 2019\u20132020\nDesigned and deployed distributed tracing instrumentation across 4 core payment processing\nservices; reduced MTTR by 41% (from 23 min to 13.5 min) and enabled root cause analysis of 99.2%\nof P1 incidents within 3 minutes\nOptimized metrics cardinality management; identified and eliminated 15.2M unused metric\ncombinations, reducing Prometheus storage by 38% and monthly cloud spend by $180K\nEstablished observability SLO framework for 50+ service teams; achieved <4% SLO violation rate\nacross 8 critical business flows handling $50B+ annual transaction volume\nWise | Junior Platform Engineer 2018\u20132019\nImplemented first unified logging pipeline for 8 core services; aggregated 1.8B log entries/day with\nsub-100ms query latency, enabling faster incident triage and reducing support tickets by 24%\nContributed to on-call tooling improvements; shipped dashboards that reduced paging latency by 12s\naverage, and built automation to resolve 31% of low-severity alerts autonomously\nDeveloped cost optimization analysis tooling that identified $127K in wasted infrastructure spend\nquarterly; documented findings that informed 3 major architectural decisions",
+    "education": [
+        {
+            "name": "University of Lagos",
+            "subtitle": "BSc Computer Science",
+            "start_date": "2013",
+            "end_date": "2017",
+            "grade": null,
+            "summary": ""
+        }
+    ]
+}

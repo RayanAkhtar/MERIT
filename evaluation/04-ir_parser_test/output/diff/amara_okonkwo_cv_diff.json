@@ -1,0 +1,88 @@
+{
+    "Skills": {
+        "Matched": [
+            "docker",
+            "duckdb",
+            "go",
+            "grpc",
+            "java",
+            "jupyter",
+            "kubernetes",
+            "postgresql",
+            "python",
+            "rust",
+            "sql",
+            "typescript"
+        ],
+        "Missed (False Negatives)": [
+            "apache arrow",
+            "apache kafka",
+            "argocd",
+            "bash",
+            "ci/cd",
+            "datadog",
+            "ebpf",
+            "elasticsearch",
+            "git",
+            "github",
+            "grafana",
+            "honeycomb",
+            "jaeger",
+            "linux profiling",
+            "opentelemetry",
+            "pagerduty",
+            "prometheus",
+            "redis",
+            "terraform"
+        ],
+        "Extra (False Positives/Noise)": [
+            "fastapi",
+            "foundation",
+            "processing",
+            "pypi",
+            "react",
+            "scikit",
+            "scikit-learn"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "datadog",
+            "cloudflare",
+            "stripe",
+            "wise"
+        ],
+        "Missed": [
+            "university of cambridge",
+            "university of lagos",
+            "metricflow",
+            "traceai",
+            "observabilitylens",
+            "kubecon + cloudnativecon",
+            "cloud native computing foundation"
+        ],
+        "All Extracted Entities": [
+            "datadog",
+            "deployment",
+            "(reduced incidents by 68%)",
+            "32mb baseline)",
+            "cloudflare",
+            "propagation optimization",
+            "stripe",
+            "of p1 incidents within 3 minutes",
+            "wise"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": false,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Email",
+            "email": "amara.okonkwo@gmail.com"
+        },
+        "Expected": {
+            "name": "Amara Okonkwo",
+            "email": "amara.okonkwo@gmail.com"
+        }
+    }
+}

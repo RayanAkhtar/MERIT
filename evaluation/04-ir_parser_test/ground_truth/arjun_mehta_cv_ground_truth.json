@@ -1,0 +1,52 @@
+{
+    "name": "Arjun Mehta",
+    "email": "arjun.mehta@outlook.com",
+    "skills": [
+        "Apache Flink",
+        "Apache Kafka",
+        "Buffers",
+        "C++",
+        "Cassandra",
+        "DataDog",
+        "Docker",
+        "Elasticsearch",
+        "etcd",
+        "Git",
+        "GitLab CI/CD",
+        "Go",
+        "Grafana",
+        "gRPC",
+        "Jaeger",
+        "Java",
+        "Kubernetes",
+        "New Relic",
+        "Paxos",
+        "PostgreSQL",
+        "Prometheus",
+        "Protocol",
+        "Python",
+        "Raft",
+        "Redis",
+        "Rust",
+        "Scala",
+        "Terraform",
+        "ZooKeeper"
+    ],
+    "experience": [
+        "Imperial College London",
+        "ETH Zurich",
+        "Stripe",
+        "Cloudflare",
+        "Wise",
+        "ConsensusDB",
+        "ShardMaster",
+        "LatticeTrace",
+        "ReplicaSync",
+        "DistributedSystems.fyi",
+        "VLDB & ACM SIGMOD"
+    ],
+    "education": [
+        "Imperial College London",
+        "ETH Zurich"
+    ]
+}

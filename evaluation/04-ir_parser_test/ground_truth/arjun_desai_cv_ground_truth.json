@@ -1,0 +1,52 @@
+{
+    "name": "Arjun Desai",
+    "email": "arjun.desai@gmail.com",
+    "skills": [
+        "AWS",
+        "Datadog",
+        "Docker",
+        "FastAPI",
+        "Figma",
+        "Git",
+        "GitHub",
+        "GitLab",
+        "Go",
+        "GraphQL",
+        "gRPC",
+        "IntelliJ IDEA",
+        "Java",
+        "JavaScript/TypeScript",
+        "Jira",
+        "Kafka",
+        "Kubernetes",
+        "Node.js",
+        "PagerDuty",
+        "PostgreSQL",
+        "Prometheus",
+        "Python",
+        "React",
+        "Redis",
+        "Rust",
+        "Spring Boot",
+        "SQL",
+        "VS Code"
+    ],
+    "experience": [
+        "Imperial College London",
+        "University of Cambridge",
+        "Stripe",
+        "Cloudflare",
+        "Datadog",
+        "Wise",
+        "CacheFlow",
+        "GraphQL Schema Validator",
+        "StreamSync",
+        "PerformanceInsight",
+        "Python Software Foundation",
+        "European Software Engineering Conference"
+    ],
+    "education": [
+        "Imperial College London",
+        "University of Cambridge"
+    ]
+}

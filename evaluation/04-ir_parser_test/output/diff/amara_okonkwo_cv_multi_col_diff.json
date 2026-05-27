@@ -1,0 +1,106 @@
+{
+    "Skills": {
+        "Matched": [
+            "docker",
+            "duckdb",
+            "go",
+            "grpc",
+            "java",
+            "jupyter",
+            "kubernetes",
+            "postgresql",
+            "python",
+            "rust",
+            "sql",
+            "typescript"
+        ],
+        "Missed (False Negatives)": [
+            "apache arrow",
+            "apache kafka",
+            "argocd",
+            "bash",
+            "ci/cd",
+            "datadog",
+            "ebpf",
+            "elasticsearch",
+            "git",
+            "github",
+            "grafana",
+            "honeycomb",
+            "jaeger",
+            "linux profiling",
+            "opentelemetry",
+            "pagerduty",
+            "prometheus",
+            "redis",
+            "terraform"
+        ],
+        "Extra (False Positives/Noise)": [
+            "fastapi",
+            "foundation",
+            "processing",
+            "pypi",
+            "react",
+            "scikit",
+            "scikit-learn"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "university of cambridge",
+            "university of lagos",
+            "datadog",
+            "cloudflare",
+            "metricflow",
+            "observabilitylens"
+        ],
+        "Missed": [
+            "stripe",
+            "wise",
+            "traceai",
+            "kubecon + cloudnativecon",
+            "cloud native computing foundation"
+        ],
+        "All Extracted Entities": [
+            "datadog metricflow university of cambridge",
+            "university of lagos",
+            "bsc computer science \u00b7",
+            "(3.89 gpa); awarded",
+            "(reduced incidents by 68%) streams",
+            "best computer science graduate;",
+            "developed distributed fault-tolerant",
+            "caching system as capstone; published",
+            "findings in university tech journal with",
+            "120+ citations",
+            "latency; 92% precision on root cause",
+            "cloudflare",
+            "candidate ranking",
+            "platform engineer, reliability & telemetry \u00b7",
+            "languages",
+            "go python rust typescript",
+            "sql java bash",
+            "intelligent sampling and context",
+            "observabilitylens",
+            "propagation optimization technologies",
+            "python, fastapi, typescript/react, grafana \u00b7",
+            "apache kafka postgresql redis",
+            "ebpf apache arrow",
+            "git github argocd terraform",
+            "6.1 days)",
+            "designed and deployed distributed tracing",
+            "instrumentation across 4 core payment"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": false,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "AmaraOkonkwo",
+            "email": "amara.okonkwo@gmail.com"
+        },
+        "Expected": {
+            "name": "Amara Okonkwo",
+            "email": "amara.okonkwo@gmail.com"
+        }
+    }
+}

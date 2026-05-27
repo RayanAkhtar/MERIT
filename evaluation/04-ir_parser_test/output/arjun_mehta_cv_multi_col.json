@@ -1,0 +1,470 @@
+{
+    "raw_cv_text": "EXPERIENCE\nArjun Mehta\nStripe 2021-2024\nSenior Backend Engineer (Distributed Systems)\nArchitected and deployed a new transaction settlement service handling 500K+ TPS\nacross 4 datacenters; reduced p99 latency from 145ms to 28ms (81% improvement)\n\u25c6 CONTACT\nand achieved 99.999% uptime\n\u260e +44 20 7946 0958 Led design and implementation of a distributed rate-limiting system protecting payment\ninfrastructure; processed 2.3B requests/day with < 1ms overhead per request,\narjun.mehta@outlook.com\n\u2709 preventing estimated $12M+ in fraud losses\nin arjun-mehta-distributed Managed team of 5 engineers on consensus layer refactoring; reduced database\nreplication lag from 3.2s to 180ms (94% improvement) across 6 sharded clusters,\nArjunMehta\n\u2325\ndirectly enabling new real-time product features\n\u2318 https://arjun.dev\nCloudflare 2018-2021\nStaff Backend Engineer\n\u25c6 EDUCATION\nDesigned and shipped edge cache invalidation system using gossip protocol; reduced\nImperial College London stale content serving by 99.2% with zero false positives across 180+ datacenters\nMSc Computer Science (Distributed serving 250M requests/sec\nSystems)\nOptimized distributed tracing system reducing storage costs by $2.8M annually while\n2019-2021\nimproving trace collection completeness from 87% to 99.6% across 50K+ monitored\nThesis on consensus algorithms achieved\nservices\n98.7% Byzantine fault tolerance;\nDrove refactoring of HTTP/3 connection pooling logic; reduced memory footprint by 53%\npublished in IEEE Transactions on\nper connection (4.2MB \u2192 1.9MB) enabling 35% more concurrent connections per edge\nParallel and Distributed Systems with 127\nserver\ncitations\nGraduated with Distinction (GPA Wise (formerly TransferWise) 2016-2018\n3.95/4.0); awarded the John Pratt Prize Backend Engineer\nfor outstanding research in systems Built real-time foreign exchange distributed ledger system achieving 4ms 99th percentile\nengineering latency across 8 regions; reconciliation completeness increased from 94% to 99.97%\nacross $140B+ in monthly transaction volume\nETH Zurich\nImplemented sharded event sourcing architecture reducing write contention by 71%;\nBSc Computer Science\n2015-2019 throughput increased from 45K ops/sec to 186K ops/sec supporting 2.1M daily active\nRanked top 2% of cohort; led Systems users\nTheory lab as student mentor to 8 junior Engineered failover orchestration system reducing MTTR from 8.5 minutes to 34\nstudents over 2 years seconds; enabled fully automated recovery for 12 critical services with zero manual\nCompleted internship on sharded intervention\ndatabase optimization reducing query\nPROJECTS\nlatency by 62% (840ms \u2192 320ms) for\n50M+ records ConsensusDB 2022-2024\nRust, gRPC, Raft, Protocol Buffers\n\u25c6 SKILLS Open-source distributed database implementation achieving 2.1K GitHub stars;\nbenchmarks show 94K writes/sec with sub-100ms replication latency across 5-node\nLanguages\ncluster\nRust Go Scala Python Java C++\nBuilt comprehensive test suite with 847 unit tests covering Byzantine fault tolerance\nTechnologies\nscenarios; achieved 99.4% code coverage and 2.3M downloads on crates.io\nRaft Paxos gRPC Apache Kafka\nShardMaster 2021-2023\nCassandra PostgreSQL etcd\nGo, etcd, Kubernetes, Protocol Buffers\nZooKeeper Elasticsearch Prometheus\nDistributed sharding orchestration framework reducing data rebalancing time by 68%\nJaeger Kubernetes Docker\n(from 45 minutes to 14 minutes) for clusters with 1.2TB+ data; prevents shard hotspots\nTools with 94% accuracy\nGit Docker Kubernetes Terraform\n1.4K GitHub stars; deployed in production across 8 companies; supports automatic\nGitLab CI/CD DataDog New Relic replication factor adjustment maintaining 99.95% availability SLA\nGrafana Protocol Buffers Apache Flink\nLatticeTrace 2020-2022\nRedis\nRust, Apache Kafka, ClickHouse, WebAssembly\nObservability platform for distributed systems processing 180M spans/day with < 800\u00b5s\nprocessing latency; uses lazy evaluation to reduce storage requirements by 76% vs\ntraditional APM\n870 GitHub stars; successfully ingests traces from 340+ microservices; query response\ntimes improved by 91% (2.3s \u2192 210ms avg) through columnar aggregation\nReplicaSync 2019-2021\nScala, Apache Flink, Cassandra, gRPC\nReal-time data replication engine supporting 5 consistency models with adaptive\nfailover; 680 GitHub stars and used by 4 production teams handling 890K events/sec\nAchieved 99.98% replication accuracy with < 450ms max propagation delay across\nmulti-region clusters; reduced operational incidents by 87% vs legacy replication\napproach\nEXTRACURRICULAR\nDistributedSystems.fyi 2021-Present\nFounder & Content Lead\nBuilt educational platform with 240+ technical articles on consensus, sharding, and fault\ntolerance; accumulated 47K monthly readers and 8.2K newsletter subscribers\nMentored 34 engineers through intensive system design program; 92% of mentees\nsecured senior+ positions at tier-1 companies within 6 months\nVLDB & ACM SIGMOD 2020-Present\nTechnical Speaker & Conference Committee\nDelivered talks on 'Consensus at Scale' (VLDB 2023) and 'Distributed Tracing Trade-\noffs' (SIGMOD 2022); combined audience reach of 2,400+ researchers; talks received\naverage 4.7/5 feedback rating\nReviewed 28 papers as committee member for distributed systems track; co-organized\nworkshop on 'Byzantine Fault Tolerance in Production' attended by 180+ practitioners",
+    "name": "Arjun Mehta Stripe",
+    "email": "arjun.mehta@outlook.com",
+    "phone": "+442079460958",
+    "links": {
+        "other": [
+            "https://arjun.dev"
+        ],
+        "linkedin": [],
+        "github": []
+    },
+    "skills": [
+        "c",
+        "c++",
+        "cassandra",
+        "clickhouse",
+        "docker",
+        "go",
+        "grpc",
+        "java",
+        "kubernetes",
+        "postgresql",
+        "processing",
+        "python",
+        "rust",
+        "scala",
+        "webassembly"
+    ],
+    "projects": [
+        {
+            "name": "50M+ records ConsensusDB",
+            "subtitle": "",
+            "start_date": "2022",
+            "end_date": "2024",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Rust, gRPC, Raft, Protocol Buffers",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Languages",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "cluster",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Rust Go Scala Python Java C++",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Technologies",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Raft Paxos gRPC Apache Kafka",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "ShardMaster",
+            "subtitle": "",
+            "start_date": "2021",
+            "end_date": "2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Cassandra PostgreSQL etcd",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Go, etcd, Kubernetes, Protocol Buffers",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "ZooKeeper Elasticsearch Prometheus",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Jaeger Kubernetes Docker",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Tools with 94% accuracy",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Git Docker Kubernetes Terraform",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Grafana Protocol Buffers Apache Flink",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "LatticeTrace",
+            "subtitle": "",
+            "start_date": "2020",
+            "end_date": "2022",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Redis",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Rust, Apache Kafka, ClickHouse, WebAssembly",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "traditional APM",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "ReplicaSync",
+            "subtitle": "",
+            "start_date": "2019",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Scala, Apache Flink, Cassandra, gRPC",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "approach",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "DistributedSystems.fyi",
+            "subtitle": "",
+            "start_date": "2021",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Founder & Content Lead",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "VLDB & ACM SIGMOD",
+            "subtitle": "",
+            "start_date": "2020",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Technical Speaker & Conference Committee",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "average 4.7/5 feedback rating",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Arjun Mehta",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Stripe",
+            "subtitle": "",
+            "start_date": "2021",
+            "end_date": "2024",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Senior Backend Engineer (Distributed Systems)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "\u25c6 CONTACT",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "and achieved 99.999% uptime",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "arjun.mehta@outlook.com",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "ArjunMehta",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "\u2325",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "directly enabling new real-time product features",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "\u2318 https",
+            "subtitle": "//arjun.dev",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Cloudflare",
+            "subtitle": "",
+            "start_date": "2018",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Staff Backend Engineer",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "\u25c6 EDUCATION",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Systems)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "",
+            "subtitle": "",
+            "start_date": "2019",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Thesis on consensus algorithms achieved",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "services",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "98.7% Byzantine fault tolerance;",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "published in IEEE Transactions on",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Parallel and Distributed Systems with 127",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "server",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "citations",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "across $140B+ in monthly transaction volume",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "ETH Zurich",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "BSc Computer Science",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Completed internship on sharded intervention",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "database optimization reducing query",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Arjun Mehta\nStripe 2021-2024\nSenior Backend Engineer (Distributed Systems)\nArchitected and deployed a new transaction settlement service handling 500K+ TPS\nacross 4 datacenters; reduced p99 latency from 145ms to 28ms (81% improvement)\n\u25c6 CONTACT\nand achieved 99.999% uptime\n\u260e +44 20 7946 0958 Led design and implementation of a distributed rate-limiting system protecting payment\ninfrastructure; processed 2.3B requests/day with < 1ms overhead per request,\narjun.mehta@outlook.com\n\u2709 preventing estimated $12M+ in fraud losses\nin arjun-mehta-distributed Managed team of 5 engineers on consensus layer refactoring; reduced database\nreplication lag from 3.2s to 180ms (94% improvement) across 6 sharded clusters,\nArjunMehta\n\u2325\ndirectly enabling new real-time product features\n\u2318 https://arjun.dev\nCloudflare 2018-2021\nStaff Backend Engineer\n\u25c6 EDUCATION\nDesigned and shipped edge cache invalidation system using gossip protocol; reduced\nImperial College London stale content serving by 99.2% with zero false positives across 180+ datacenters\nMSc Computer Science (Distributed serving 250M requests/sec\nSystems)\nOptimized distributed tracing system reducing storage costs by $2.8M annually while\n2019-2021\nimproving trace collection completeness from 87% to 99.6% across 50K+ monitored\nThesis on consensus algorithms achieved\nservices\n98.7% Byzantine fault tolerance;\nDrove refactoring of HTTP/3 connection pooling logic; reduced memory footprint by 53%\npublished in IEEE Transactions on\nper connection (4.2MB \u2192 1.9MB) enabling 35% more concurrent connections per edge\nParallel and Distributed Systems with 127\nserver\ncitations\nGraduated with Distinction (GPA Wise (formerly TransferWise) 2016-2018\n3.95/4.0); awarded the John Pratt Prize Backend Engineer\nfor outstanding research in systems Built real-time foreign exchange distributed ledger system achieving 4ms 99th percentile\nengineering latency across 8 regions; reconciliation completeness increased from 94% to 99.97%\nacross $140B+ in monthly transaction volume\nETH Zurich\nImplemented sharded event sourcing architecture reducing write contention by 71%;\nBSc Computer Science\n2015-2019 throughput increased from 45K ops/sec to 186K ops/sec supporting 2.1M daily active\nRanked top 2% of cohort; led Systems users\nTheory lab as student mentor to 8 junior Engineered failover orchestration system reducing MTTR from 8.5 minutes to 34\nstudents over 2 years seconds; enabled fully automated recovery for 12 critical services with zero manual\nCompleted internship on sharded intervention\ndatabase optimization reducing query",
+    "education": []
+}

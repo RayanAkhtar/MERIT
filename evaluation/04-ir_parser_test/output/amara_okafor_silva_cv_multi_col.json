@@ -1,0 +1,104 @@
+{
+    "raw_cv_text": "Amara Okafor-Silva\nAO\nSenior Frontend Engineer, Design Systems @ Figma\n+44 7700 123456 \u00b7 amara.okafor@gmail.com \u00b7 amara-okafor-silva \u00b7 AmaraOkaforSilva \u00b7 https://amara.dev\nEXPERIENCE PROJECTS EDUCATION\nFigma TokenForge Imperial College London\nSenior Frontend Engineer, Design Systems \u00b7 TypeScript, Node.js, GraphQL, Figma Plugin BSc Computer Science with Distinction \u00b7\n2023-Present API \u00b7 2023-Present 2018-2021\nArchitected and shipped the Components Open-source design token generation and Achieved 3.89/4.0 GPA with First-class\nv2 system supporting 40+ primitive synchronization tool bridging Figma honors; awarded the Anglo-German\ncomponent types and 500+ compound tokens to code (CSS, SCSS, JSON); 890 Scholarship for academic excellence in\nvariants; reduced bundle size by 28% GitHub stars, 45K+ npm human-computer interaction\n(from 340KB to 245KB gzip) and downloads/month, adopted by 20+ Led the Imperial Web Development\ndecreased time-to-interactive by 340ms companies including 2 Series-B funded Society (150+ members), organizing\nacross 12M+ monthly active users startups weekly design system workshops and\nLed design system adoption initiative Implemented bidirectional token sync mentoring 8 junior developers in\nacross 8 product teams (120+ engineers), engine with conflict resolution; plugin component-driven architecture\nachieving 87% component reuse rate reduces token extraction workflow from\nETH Zurich\n(+34% YoY); implemented automated 2.5 hours to 8 minutes; analyzed\nMSc Computer Science (Systems Track) with\naccessibility auditing reducing WCAG performance showed 94% reduction in Summa Cum Laude \u00b7 2021-2023\nviolations by 91% (from 2.3K to 210 manual token management overhead for 3.95/4.0 cumulative GPA; thesis on\nissues) design teams 'Performance Optimizations in Token-\nDesigned and open-sourced component Chromatic Based Design Systems' published in ACM\nAPI surface and tooling; contributed React, CSS Modules, Webpack 5, Jest, CHI workshop proceedings\nStorybook integration reducing setup time Storybook 7.0 \u00b7 2022-2023 Teaching assistant for UI Engineering\nfrom 4 hours to 12 minutes; library fork Comprehensive accessible React seminar across 2 semesters; mentored\nrate grew 2,100+ GitHub stars in 8 months component library for typography-heavy cohort of 45 students with 94% positive\nStripe applications; 12.3K GitHub stars, featured feedback rating\nin Awesome React list; 127K npm\nFrontend Engineer II, Platform Design \u00b7\n2022-2023 downloads across 3-month span with\nBuilt token-driven theming engine 4.9/5.0 rating\nSKILLS\nsupporting 15+ dark/light mode variants Engineered automated accessibility\nand RTL layouts; eliminated 47KB dead compliance suite catching WCAG 2.1 AA Languages\nCSS and reduced theme application violations; all 56 components ship with TypeScript JavaScript (ES2023+)\nlatency by 56ms (measured at p95) across axe-core audits and manual testing docs;\nHTML5 CSS3/SCSS GraphQL\n8 merchant dashboards serving 500K+ zero accessibility issues reported in\nSQL\nbusinesses production across 2 years\nTechnologies\nImplemented comprehensive Storybook DesignOps Dashboard\nReact 18+ Next.js Storybook 7+\ndocumentation for 220+ reusable Next.js 13, TailwindCSS, Prisma,\ncomponents with interactive props panels; PostgreSQL, Vercel \u00b7 2021-2022 Figma CSS-in-JS (styled-components\nimproved design-to-dev handoff velocity Full-stack metrics platform tracking vanilla-extract) Web Components\nby 6.2 days per sprint for team of 9; design system adoption KPIs and Vite Webpack 5 Node.js\ncomponent discovery metrics showed 73% component usage analytics; 156 GitHub\nWeb Accessibility (WCAG 2.1 AA/AAA)\nincreased reuse stars, 3.2K unique monthly visitors;\nShipped CSS-in-JS migration (styled- powers internal Figma design metrics at Tools\ncomponents \u2192 vanilla-extract) across 12 previous employer Git GitHub Figma VS Code\nfeature modules; improved build times by Optimized dashboard queries reducing Playwright Jest Vitest Percy\n2.1 minutes (18% reduction) and reduced page load P95 latency from 3.4s to 680ms Chromatic Chrome DevTools\nruntime style computation overhead by (80% improvement); implemented Lighthouse Axe DevTools Datadog\n43%; zero breaking changes across 800+ serverless functions handling 2.1M\nSentry ESLint Prettier\ncomponent consumers monthly metric ingestion events with\n$127/month AWS cost\nCloudflare\nFrontend Engineer, Developer Experience \u00b7 TypeScale Generator\n2021-2022 React, Web Workers, Canvas API, Vite \u00b7 2020-\nLed cross-team UI component library 2021\nstandardization initiative; consolidated 340 Interactive tool for generating typographic\nduplicate components into unified 85- scales based on mathematical ratios; 2,847\ncomponent system; achieved 76% code GitHub stars, 89K+ total visits, widely\ndeduplication and 2.3MB bundle savings shared in design systems community;\nacross 15+ internal dashboards featured in CSS-Tricks and Smashing\nDeveloped TypeScript-first component Magazine\nAPI with runtime prop validation and Implemented Web Worker-based rendering\ncompile-time type checking; reduced engine processing 12,000+ scale variations\ncomponent-related bugs by 64% (from 18 in <200ms; optimized memory usage by\nmonthly incidents to 6.5) and improved 73% through lazy-loaded canvas rendering\ndeveloper experience NPS from 34 to 71\nMentored cohort of 4 junior frontend\nengineers on design systems fundamentals\nand component composition patterns;\n100% of mentees promoted or received EXTRACURRICULAR\nsignificant project ownership within 12 Design Systems Conference (DSConf)\nmonths Speaker & Steering Committee Member \u00b7\n2022-Present\nWise (formerly TransferWise)\nKeynote speaker at DSConf 2023 ('Scaling\nFrontend Engineer, UI Patterns \u00b7 2020-2021\nDesign Systems for 500+ Engineers');\nBuilt foundational design system\npresentation reached 3,200+ live attendees\ndocumentation site using Gatsby and\nand 14.7K views on YouTube within 6\nMDX supporting 12 design tokens\nweeks; post-event feedback 4.7/5.0 stars\ncategories with live code examples;\n(n=687)\nimproved onboarding time for new\nfrontend hires by 4.8 days and reduced Steering committee member curating talks\ndesign-dev sync meetings by 62% and workshops; led selection process for\n28 talks from 156 submissions;\nImplemented automated visual regression\ncoordinated 12-month speaker mentorship\ntesting suite with Percy integration across\nprogram elevating 6 emerging voices in\n180 components; caught 43 unintended\ndesign systems community\nstyle regressions pre-production and\nachieved 100% test coverage on design Open Source Maintainer, Storybook\nsystem core module Project\nShipped responsive grid system and layout Core Contributor & Design Systems\nChampion \u00b7 2021-Present\nprimitives supporting 6 breakpoints;\nMerged 87+ pull requests and triaged\npowered redesign of 8 product surfaces\n2,300+ issues across 3 years; maintained\nwith 31% improvement in mobile user\ndesign systems documentation resulting in\nengagement and 12% reduction in mobile\n48% reduction in support questions on\ninteraction latency\nStorybook discussions; 1.2M+ total\nGitHub stars for Storybook ecosystem\nEstablished 'Design Systems Addon'\ninitiative shipping 4 major feature\nreleases; adoption by 28% of Storybook\nuser base (estimated 340K+ monthly\nactive projects); mentored 7 contributors\nto maintainer status",
+    "name": "AmaraOkaforSilva",
+    "email": "amara.okafor@gmail.com",
+    "phone": "+447700123456",
+    "links": {
+        "other": [
+            "https://amara.dev"
+        ],
+        "linkedin": [],
+        "github": []
+    },
+    "skills": [
+        "aws",
+        "css3",
+        "gatsby",
+        "graphql",
+        "html5",
+        "javascript",
+        "js",
+        "next.js",
+        "node.js",
+        "playwright",
+        "postgresql",
+        "processing",
+        "react",
+        "sql",
+        "storybook",
+        "styled-components",
+        "tailwindcss",
+        "typescript",
+        "vitest"
+    ],
+    "projects": [],
+    "extracurricular": [],
+    "cv_experience": [
+        {
+            "name": "Figma TokenForge Imperial College London",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "API \u00b7  2018-2021",
+            "subtitle": "",
+            "start_date": "2023",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "ETH Zurich",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "MSc Computer Science (Systems Track) with",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "in Awesome React list; 127K npm",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Frontend Engineer II, Platform Design \u00b7",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "downloads across 3-month span with",
+            "subtitle": "",
+            "start_date": "2022",
+            "end_date": "2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Built token-driven theming engine 4.9/5.0 rating",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Figma TokenForge Imperial College London\nSenior Frontend Engineer, Design Systems \u00b7 TypeScript, Node.js, GraphQL, Figma Plugin BSc Computer Science with Distinction \u00b7\n2023-Present API \u00b7 2023-Present 2018-2021\nArchitected and shipped the Components Open-source design token generation and Achieved 3.89/4.0 GPA with First-class\nv2 system supporting 40+ primitive synchronization tool bridging Figma honors; awarded the Anglo-German\ncomponent types and 500+ compound tokens to code (CSS, SCSS, JSON); 890 Scholarship for academic excellence in\nvariants; reduced bundle size by 28% GitHub stars, 45K+ npm human-computer interaction\n(from 340KB to 245KB gzip) and downloads/month, adopted by 20+ Led the Imperial Web Development\ndecreased time-to-interactive by 340ms companies including 2 Series-B funded Society (150+ members), organizing\nacross 12M+ monthly active users startups weekly design system workshops and\nLed design system adoption initiative Implemented bidirectional token sync mentoring 8 junior developers in\nacross 8 product teams (120+ engineers), engine with conflict resolution; plugin component-driven architecture\nachieving 87% component reuse rate reduces token extraction workflow from\nETH Zurich\n(+34% YoY); implemented automated 2.5 hours to 8 minutes; analyzed\nMSc Computer Science (Systems Track) with\naccessibility auditing reducing WCAG performance showed 94% reduction in Summa Cum Laude \u00b7 2021-2023\nviolations by 91% (from 2.3K to 210 manual token management overhead for 3.95/4.0 cumulative GPA; thesis on\nissues) design teams 'Performance Optimizations in Token-\nDesigned and open-sourced component Chromatic Based Design Systems' published in ACM\nAPI surface and tooling; contributed React, CSS Modules, Webpack 5, Jest, CHI workshop proceedings\nStorybook integration reducing setup time Storybook 7.0 \u00b7 2022-2023 Teaching assistant for UI Engineering\nfrom 4 hours to 12 minutes; library fork Comprehensive accessible React seminar across 2 semesters; mentored\nrate grew 2,100+ GitHub stars in 8 months component library for typography-heavy cohort of 45 students with 94% positive\nStripe applications; 12.3K GitHub stars, featured feedback rating\nin Awesome React list; 127K npm\nFrontend Engineer II, Platform Design \u00b7\n2022-2023 downloads across 3-month span with\nBuilt token-driven theming engine 4.9/5.0 rating",
+    "education": []
+}

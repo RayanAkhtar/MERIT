@@ -1,0 +1,276 @@
+{
+    "raw_cv_text": "Amira Benslama\n+44 7911 523847 | Email: amira.benslama@gmail.com | LinkedIn: amira-benslama | GitHub: AmiraBenslama |\nhttps://amira.dev\nEDUCATION\nUniversity of Cambridge | MSc Machine Learning and Machine Intelligence 2019\u20132021\nThesis on quantized neural networks for edge inference achieved 94.2% accuracy with 8.7x model\ncompression on ImageNet; published at ICLR 2021 Workshop\nPresident of Cambridge AI Society (250+ members); organized 12 seminars with speakers from\nDeepMind, Google Brain; coordinated \u00a345K sponsorship funding\nETH Zurich | BSc Computer Science with Systems Focus 2015\u20132019\nGPA 3.89/4.0 with distinction in all machine learning courses; awarded ETH Medal for exceptional\nthesis on distributed training systems\nLed systems lab teaching assistant role for 120+ students; mentored 8 junior researchers on CUDA\noptimization, improving their codebases by avg. 3.2x throughput\nEXPERIENCE\nStripe | Senior Machine Learning Engineer, Inference Pipelines 2022\u2013Present\nArchitected real-time fraud detection inference pipeline processing 12.8M transactions/day; reduced\nlatency from 580ms to 94ms (6.2x improvement) through model distillation and ONNX optimization,\nsaving $2.3M/year in compute costs\nLed cross-functional team of 5 ML engineers and 3 infrastructure engineers; designed dynamic\nbatching system that increased GPU utilization from 38% to 81% while maintaining P99 latency\nunder 120ms\nOpen-sourced TorchServe feature for quantized INT8 inference that achieved 4.1M downloads;\ncontributed to 2.8 GitHub stars from community adoption across 180+ companies\nDatadog | Machine Learning Engineer, ML Platform 2021\u20132022\nOptimized anomaly detection model serving infrastructure; migrated from TensorFlow 1.x to PyTorch\n+ TorchScript, achieving 8.3x throughput improvement (2.1M inferences/sec to 17.4M\ninferences/sec) on CPU-only clusters\nImplemented automated A/B testing framework for inference model updates; reduced deployment\nrisk and enabled 3x faster iteration cycles; measured 23% uplift in false positive reduction across 50+\ncustomer accounts\nMentored 4 junior ML engineers on production systems; established inference performance\noptimization best practices adopted org-wide, reducing median model latency by 31% across 140+\nproduction models\nPalantir Technologies | Machine Learning Engineer, Inference Systems 2019\u20132021\nBuilt distributed inference orchestration layer for graph neural networks on enterprise datasets; scaled\nthroughput from 42K to 340K inferences/sec while maintaining <180ms P99 latency across 8-GPU\nclusters\nDeveloped model serving gateway with intelligent request routing that reduced tail latency (P99) by\n47% through dynamic load balancing and speculative execution strategies\nContributed to internal ML model registry and version control system; implemented automated\nperformance regression testing that caught model degradations before production, reducing incidents\nby 56% YoY\nJane Street | Quantitative Researcher, ML Infrastructure 2018\u20132019\nDesigned ultra-low latency inference system for reinforcement learning trading models; achieved\n<2.3ms end-to-end inference latency through custom C++ runtimes and SIMD optimizations on x86\nhardware\nOptimized neural network model compression pipeline reducing model size from 890MB to 12MB\n(74x reduction) via knowledge distillation and pruning while maintaining 99.4% prediction accuracy\nEstablished inference performance benchmarking framework tracking 18 production models across\nGPU/CPU/FPGA targets; provided weekly reports guiding resource allocation decisions saving\n~$1.8M quarterly in hardware costs\nPROJECTS\nQuantumSpark | Python, ONNX, TensorRT, Kubernetes, Redis 2021\u2013Present\nOpen-source framework for deploying quantized deep learning models at scale; 8.2K GitHub stars\nand 142K monthly PyPI downloads; benchmarks show 5.8x throughput improvement over standard\nONNX Runtime\nImplemented adaptive quantization algorithm that automatically determines optimal precision per\nlayer; reduces model size by avg. 6.3x with <0.8% accuracy loss validated on 47 model architectures\nPipelineOptima | Go, Protocol Buffers, gRPC, PostgreSQL, Prometheus 2020\u2013Present\nDistributed inference orchestrator with automatic request batching and model ensemble management;\ndeployed in production serving 890K requests/sec at Datadog and Stripe partners; 3.1K GitHub stars\nReduces inference latency variance by 64% through priority queue scheduling and dynamic request\ntimeout adjustment; enables 99.8% SLA compliance on variable workloads\nEdgeThreshold | TensorFlow Lite, ONNX, Rust, gRPC, Redis 2019\u20132020\nMobile and edge inference optimization toolkit achieving 11x model compression and 7.2x latency\nreduction on ARM processors; 2.3K GitHub stars and 58K downloads on pub.dev (Rust community)\nCase study published demonstrating on-device multi-lingual NLP inference (40 languages) with\n680KB model size achieving 94.1% accuracy; adopted by 12 commercial mobile apps across 2.8M+\nusers\nServeCache | Python, C++, CUDA, RDMA, FastAPI 2018\u20132019\nHigh-performance model inference cache layer exploiting temporal and spatial locality; 1.9K GitHub\nstars; reduces compute by 73% on repetitive inference queries with <8ms cache lookup latency\nBenchmark shows 12.4x throughput improvement on transformer model serving under realistic traffic\npatterns; publicly validated on BERT, T5, and LLAMA family models\nEXTRACURRICULAR\nNeurIPS Conference | Invited Speaker & Workshop Organizer 2021\u2013Present\nDelivered keynote 'Inference at Scale: From Edge to Enterprise' at NeurIPS 2023 and 2024 (1,200+\nattendees each); published accompanying technical whitepaper with 890 citations\nOrganized annual 'ML Serving & Deployment' workshop attracting 450+ industry practitioners;\nmanaged 8-person organizing committee and secured $180K sponsorship from major tech companies\nOpen Source Community | Maintainer & Mentor 2020\u2013Present\nLead maintainer of 4 high-impact inference libraries (QuantumSpark, PipelineOptima,\nEdgeThreshold, ServeCache) with combined 15K+ GitHub stars; manage 23 active contributors and\nreview 140+ PRs monthly\nEstablished mentorship program pairing 6 junior ML engineers from underrepresented backgrounds\nwith industry mentors; 100% program completion rate with 5 mentees securing roles at tier-1 tech\ncompanies (Google, Microsoft, Meta)\nTECHNICAL SKILLS\nLanguages \u2013 Python, C++, Rust, Go, SQL, CUDA\nTechnologies \u2013 PyTorch, TensorFlow, ONNX, TensorRT, TorchServe, Kubernetes, gRPC, Protocol\nBuffers, Redis, PostgreSQL, RDMA\nTools \u2013 Docker, Prometheus, Grafana, Git, JIRA, Jupyter, DVC, Weights & Biases, Kubeflow, Ray",
+    "name": "Amira Benslama",
+    "email": "amira.benslama@gmail.com",
+    "phone": null,
+    "links": {
+        "other": [
+            "https://amira.dev"
+        ],
+        "linkedin": [
+            "https://linkedin.com/in/amira-benslama"
+        ],
+        "github": [
+            "https://github.com/AmiraBenslama"
+        ]
+    },
+    "skills": [
+        "c",
+        "c++",
+        "docker",
+        "fastapi",
+        "go",
+        "grpc",
+        "jupyter",
+        "kubernetes",
+        "postgresql",
+        "processing",
+        "pypi",
+        "python",
+        "pytorch",
+        "rust",
+        "sql",
+        "tensorflow"
+    ],
+    "projects": [
+        {
+            "name": "QuantumSpark",
+            "subtitle": "Python, ONNX, TensorRT, Kubernetes, Redis",
+            "start_date": "2021",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "ONNX Runtime",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "PipelineOptima",
+            "subtitle": "Go, Protocol Buffers, gRPC, PostgreSQL, Prometheus",
+            "start_date": "2020",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "EdgeThreshold",
+            "subtitle": "TensorFlow Lite, ONNX, Rust, gRPC, Redis",
+            "start_date": "2019",
+            "end_date": "2020",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "users",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "ServeCache",
+            "subtitle": "Python, C++, CUDA, RDMA, FastAPI",
+            "start_date": "2018",
+            "end_date": "2019",
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "NeurIPS Conference",
+            "subtitle": "Invited Speaker & Workshop Organizer",
+            "start_date": "2021",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Delivered keynote 'Inference at Scale",
+            "subtitle": "From Edge to Enterprise' at NeurIPS  and 2024 (1,200+",
+            "start_date": "2023",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Open Source Community",
+            "subtitle": "Maintainer & Mentor",
+            "start_date": "2020",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "review 140+ PRs monthly",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "companies (Google, Microsoft, Meta)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Stripe",
+            "subtitle": "Senior Machine Learning Engineer, Inference Pipelines",
+            "start_date": "2022",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "saving $2.3M/year in compute costs",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "under 120ms",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Datadog",
+            "subtitle": "Machine Learning Engineer, ML Platform",
+            "start_date": "2021",
+            "end_date": "2022",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "inferences/sec) on CPU-only clusters",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "customer accounts",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "production models",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Palantir Technologies",
+            "subtitle": "Machine Learning Engineer, Inference Systems",
+            "start_date": "2019",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "clusters",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "by 56% YoY",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Jane Street",
+            "subtitle": "Quantitative Researcher, ML Infrastructure",
+            "start_date": "2018",
+            "end_date": "2019",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "hardware",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "~$1.8M quarterly in hardware costs",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Stripe | Senior Machine Learning Engineer, Inference Pipelines 2022\u2013Present\nArchitected real-time fraud detection inference pipeline processing 12.8M transactions/day; reduced\nlatency from 580ms to 94ms (6.2x improvement) through model distillation and ONNX optimization,\nsaving $2.3M/year in compute costs\nLed cross-functional team of 5 ML engineers and 3 infrastructure engineers; designed dynamic\nbatching system that increased GPU utilization from 38% to 81% while maintaining P99 latency\nunder 120ms\nOpen-sourced TorchServe feature for quantized INT8 inference that achieved 4.1M downloads;\ncontributed to 2.8 GitHub stars from community adoption across 180+ companies\nDatadog | Machine Learning Engineer, ML Platform 2021\u20132022\nOptimized anomaly detection model serving infrastructure; migrated from TensorFlow 1.x to PyTorch\n+ TorchScript, achieving 8.3x throughput improvement (2.1M inferences/sec to 17.4M\ninferences/sec) on CPU-only clusters\nImplemented automated A/B testing framework for inference model updates; reduced deployment\nrisk and enabled 3x faster iteration cycles; measured 23% uplift in false positive reduction across 50+\ncustomer accounts\nMentored 4 junior ML engineers on production systems; established inference performance\noptimization best practices adopted org-wide, reducing median model latency by 31% across 140+\nproduction models\nPalantir Technologies | Machine Learning Engineer, Inference Systems 2019\u20132021\nBuilt distributed inference orchestration layer for graph neural networks on enterprise datasets; scaled\nthroughput from 42K to 340K inferences/sec while maintaining <180ms P99 latency across 8-GPU\nclusters\nDeveloped model serving gateway with intelligent request routing that reduced tail latency (P99) by\n47% through dynamic load balancing and speculative execution strategies\nContributed to internal ML model registry and version control system; implemented automated\nperformance regression testing that caught model degradations before production, reducing incidents\nby 56% YoY\nJane Street | Quantitative Researcher, ML Infrastructure 2018\u20132019\nDesigned ultra-low latency inference system for reinforcement learning trading models; achieved\n<2.3ms end-to-end inference latency through custom C++ runtimes and SIMD optimizations on x86\nhardware\nOptimized neural network model compression pipeline reducing model size from 890MB to 12MB\n(74x reduction) via knowledge distillation and pruning while maintaining 99.4% prediction accuracy\nEstablished inference performance benchmarking framework tracking 18 production models across\nGPU/CPU/FPGA targets; provided weekly reports guiding resource allocation decisions saving\n~$1.8M quarterly in hardware costs",
+    "education": [
+        {
+            "name": "University of Cambridge",
+            "subtitle": "MSc Machine Learning and Machine Intelligence",
+            "start_date": "2019",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "compression on ImageNet; published at ICLR  Workshop",
+            "subtitle": "",
+            "start_date": "2021",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "ETH Zurich",
+            "subtitle": "BSc Computer Science with Systems Focus",
+            "start_date": "2015",
+            "end_date": "2019",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "with distinction in all",
+            "subtitle": "machine learning courses; awarded ETH Medal for exceptional",
+            "start_date": null,
+            "end_date": null,
+            "grade": "GPA 3.89/4.0",
+            "summary": ""
+        },
+        {
+            "name": "optimization",
+            "subtitle": "improving their codebases by avg. 3.2x throughput",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ]
+}

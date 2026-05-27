@@ -1,0 +1,93 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "docker",
+            "go",
+            "graphql",
+            "grpc",
+            "java",
+            "kubernetes",
+            "python",
+            "rust",
+            "sql",
+            "typescript"
+        ],
+        "Missed (False Negatives)": [
+            "aes-256",
+            "apache kafka",
+            "bash",
+            "burp suite professional",
+            "checkmarx",
+            "datadog",
+            "elk stack",
+            "fido2",
+            "gitlab sast",
+            "jwt",
+            "metasploit",
+            "oauth 2.0",
+            "oidc",
+            "owasp zap",
+            "rest apis",
+            "rsa",
+            "saml 2.0",
+            "security hub",
+            "snyk",
+            "sonarqube",
+            "splunk",
+            "threat modeling",
+            "tls 1.3",
+            "webauthn",
+            "wireshark"
+        ],
+        "Extra (False Positives/Noise)": [
+            "c",
+            "c++",
+            "fastapi",
+            "foundation",
+            "golang",
+            "js",
+            "llvm",
+            "next.js",
+            "node.js",
+            "postgresql",
+            "processing"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "cloudflare",
+            "stripe",
+            "wise",
+            "palantir technologies"
+        ],
+        "Missed": [
+            "imperial college london",
+            "university of waterloo",
+            "vulnradar",
+            "cryptoshield",
+            "authpulse",
+            "black hat usa & owasp global appsec",
+            "owasp project leadership & oss mentorship"
+        ],
+        "All Extracted Entities": [
+            "cloudflare",
+            "stripe",
+            "authentication byes",
+            "wise",
+            "palantir technologies"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": true,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Yara Al-Rashid",
+            "email": "yara.alrashid@gmail.com"
+        },
+        "Expected": {
+            "name": "Yara Al-Rashid",
+            "email": "yara.alrashid@gmail.com"
+        }
+    }
+}

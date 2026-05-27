@@ -1,0 +1,38 @@
+{
+    "raw_cv_text": "Alexa Petrovskaya\nSoftware Engineering Intern\n\u260e +44 7911 234567 \u2709 alexa.petrovskaya@gmail.com in/alexa-petrovskaya gh/AlexaPetrovskaya https://alexa.dev\nPixelForge | 2023 - 2024\nEXPERIENCE TypeScript, Canvas API, Vite, Jest\nOpen-source pixel art editor with collaborative features; reached\nStripe | Summer 2023 (3 months)\n1,680+ GitHub stars in 8 months, 890+ active monthly users,\nSoftware Engineering Intern\nand featured in ProductHunt #3 trending\nOptimized payment processing pipeline by refactoring legacy\nfraud detection service; reduced average latency from 287ms to Optimized rendering performance from 15fps to 60fps+ on large\n156ms (46% improvement) affecting 850K+ daily transactions canvases (8K\u00d78K pixels) through WebWorker architecture;\nreduced initial bundle size from 2.4MB to 380KB via tree-\nImplemented distributed caching layer for card validation using\nshaking\nRedis; improved throughput from 4.2K to 18.5K requests/sec\n(340% gain) and reduced database load by 67% SyntaxShield | 2024\nPython, LLVM, AST parsing, pytest\nShipped 8 pull requests merged by senior engineers; wrote\nStatic analysis linter for Python detecting 34 categories of code\ncomprehensive unit tests achieving 94% code coverage and\nsmells and security issues; 476 GitHub stars with 12K+ PyPI\nprevented 3 critical race conditions before production\ndownloads since launch 2 months ago\ndeployment\nAchieves sub-second analysis on projects up to 100K lines of\nFigma | Summer 2024 (3.5 months)\ncode; correctly identifies 97.2% of intentional vulnerabilities in\nFrontend Engineering Intern\ntest suite and integrates with 8+ popular IDEs\nBuilt real-time collaboration feature for shape drawing; optimized\nWebSocket message batching reduced network payload by 73% EDUCATION\nand improved sync latency from 420ms to 89ms for 12K+\nconcurrent users Imperial College London | 2022 - Present\nBSc Computing (2nd Year)\nRefactored canvas rendering pipeline to use WebGL instead of\nAchieved 78% in Year 1 (equivalent to 1st class honors track);\nCanvas2D; achieved 3.8x faster frame rendering (from 24fps to\nranked top 12% in Algorithms & Data Structures module with\n91fps) on 4K viewport with 50K+ elements\n89%\nConducted accessibility audit fixing 27 WCAG 2.1 AA violations;\nLed peer study group of 18 students in discrete mathematics,\nimplemented keyboard navigation improving keyboard-only user\nimproving cohort average from 71% to 76% over 1 semester\ncoverage from 41% to 94% across design editor\nUniversity of Amsterdam | 2023 - 2024\nWise (formerly TransferWise) | Winter 2024 (2 months)\nExchange Year - Computer Science\nFull-Stack Engineering Intern\nCompleted advanced systems programming course with\nDeveloped internal analytics dashboard using React +\ndistinction (9.2/10); built a kernel module achieving 12% faster\nTypeScript + GraphQL; reduced report generation time from 6.2\nI/O throughput\nseconds to 0.8 seconds (7.75x speedup) for 500K+ transaction\nqueries Participated in ACM ICPC qualifying round, solving 4/10\nproblems and ranking 47th among 250+ teams from Benelux\nMigrated legacy payment gateway integration from REST to\nregion\ngRPC protocol; achieved 42% reduction in latency (340ms \u2192\n197ms) and 58% lower bandwidth consumption across 200+ EXTRACURRICULAR\ndaily payment routes\nFixed 12 production bugs identified through monitoring alerts; PyCon Europe 2024 | 2024\nConference Speaker - 'Performance Engineering for Young\nreduced API error rate for money transfer endpoints from 0.34%\nDevelopers'\nto 0.07% and saved $47K in failed transaction refunds\nDelivered 45-minute technical talk to 280+ attendees covering\nPROJECTS profiling techniques and optimization case studies; talk received\n4.8/5 average rating (146 evaluations) and was selected as top\nQueryVault | 2023 - Present 5 talks\nRust, PostgreSQL, Tokio, Protocol Buffers\nPublished accompanying blog post that reached 15K+ views;\nBuilt high-performance distributed query cache middleware;\ncreated open-source profiling toolkit demonstrated in talk with\n2,400+ GitHub stars, benchmarks show 8.9x latency reduction\n340+ GitHub stars\nfor repeated queries (from 340ms to 38ms) and handles 45K\nQPS at p99<50ms Coding Mentorship Initiative (Imperial + Amsterdam) | 2023 -\nPresent\nImplemented consensus protocol for cache invalidation across\nSenior Mentor - Backend Systems & Databases\n7-node cluster achieving <200ms consistency window; 2.3K+\nMentored 8 junior students (first-year undergrads) through\nreleases on crates.io with 89K+ monthly downloads\ncapstone projects; 87.5% mentees achieved 1st class marks (up\nfrom 62% cohort average) and 6/8 secured internships at tier-1\ntech companies\nConducted weekly 1-hour sessions covering system design,\ndatabase optimization, and Rust fundamentals; created 14-\nmodule curriculum used by 140+ students across both\nuniversities\nSKILLS\nTechnologies: React, PostgreSQL, Redis, Kafka, gRPC,\nGraphQL, Docker, Kubernetes, AWS (EC2, RDS, S3), Git\nLanguages: Python, TypeScript, Rust, JavaScript, SQL, Java, Go\nTools: VS Code, Git, GitHub, Figma, Datadog, Jira, Docker, Linux,\nPostman, Chrome DevTools",
+    "name": "Canvas API",
+    "email": "alexa.petrovskaya@gmail.com",
+    "phone": "+447911234567",
+    "links": {
+        "other": [
+            "https://alexa.dev"
+        ],
+        "linkedin": [],
+        "github": []
+    },
+    "skills": [
+        "aws",
+        "docker",
+        "go",
+        "graphql",
+        "grpc",
+        "java",
+        "javascript",
+        "kubernetes",
+        "llvm",
+        "postgresql",
+        "processing",
+        "pypi",
+        "pytest",
+        "python",
+        "react",
+        "rust",
+        "sql",
+        "typescript"
+    ],
+    "projects": [],
+    "extracurricular": [],
+    "cv_experience": [],
+    "experience": null,
+    "education": []
+}

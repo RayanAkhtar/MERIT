@@ -1,0 +1,77 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "css3",
+            "docker",
+            "express",
+            "graphql",
+            "html5",
+            "javascript",
+            "kubernetes",
+            "mongodb",
+            "next.js",
+            "node.js",
+            "postgresql",
+            "python",
+            "react",
+            "sql",
+            "typescript"
+        ],
+        "Missed (False Negatives)": [
+            "chrome devtools",
+            "circleci",
+            "datadog",
+            "figma",
+            "git",
+            "github actions",
+            "jest",
+            "jira",
+            "new",
+            "postman",
+            "redis",
+            "relic",
+            "slack",
+            "vite",
+            "vs code",
+            "webpack",
+            "websockets"
+        ],
+        "Extra (False Positives/Noise)": [
+            "foundation",
+            "influxdb",
+            "js",
+            "processing"
+        ]
+    },
+    "Experience": {
+        "Matched": [],
+        "Missed": [
+            "imperial college london",
+            "university of amsterdam",
+            "stripe",
+            "figma",
+            "shopify",
+            "wise",
+            "llmcache",
+            "reactflow pro",
+            "serversync",
+            "benchmark",
+            "react amsterdam & node.js conf eu",
+            "node.js foundation & npm maintainer community"
+        ],
+        "All Extracted Entities": []
+    },
+    "Contact Info": {
+        "Name Correct": true,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Karim El-Sayed",
+            "email": "karim.elsayed@gmail.com"
+        },
+        "Expected": {
+            "name": "Karim El-Sayed",
+            "email": "karim.elsayed@gmail.com"
+        }
+    }
+}

@@ -1,0 +1,509 @@
+{
+    "raw_cv_text": "EXPERIENCE\nDimitri\nStripe 2021\u2013Present\nSenior Mobile Engineer (iOS + React Native)\nOkafor-\nLed architecture redesign of Stripe's mobile SDK payment processing layer for iOS 14\u2013\n18 compatibility; reduced transaction failure rate by 12% (2.8%\u21922.46%) across 500M+\nNikolaev\nannual transactions and improved cold-start launch time by 280ms through lazy-loading\nand code stripping\nOwned cross-platform React Native implementation for Stripe Payment Sheet; drove\n\u25c6 CONTACT 34% increase in mobile conversion rates (6.2%\u21928.3%) across 50K+ merchant partners,\ndirectly contributing ~$18M incremental ARR\n\u260e +44 20 7946 0958 Mentored team of 6 junior iOS engineers; established mobile code review standards\nreducing critical bugs by 67% (Q1: 22 issues \u2192 Q4: 7 issues); managed sprint velocity\ndimitri.okafor@gmail.com\n\u2709\nimprovement from 45 to 78 story points over 8 quarters\nin dimitri-okafor-nikolaev\nWise (formerly TransferWise) 2019\u20132021\nDmitriOkaforNikolaev\n\u2325 Mobile Engineer (iOS Specialist)\n\u2318 https://dimitriokafor.dev Redesigned iOS app's real-time FX quote engine using reactive streams (RxSwift); cut\nUI update latency by 420ms (650ms\u2192230ms) and reduced battery drain by 31% in\n\u25c6 EDUCATION foreground usage through optimized refresh intervals\nShipped multi-currency wallet feature (iOS + Android via Flutter bridge); achieved 89%\nETH Zurich (Swiss Federal Institute of adoption rate (Day 30 DAU) among 3.2M iOS users; feature generated \u00a34.7M in new\nTechnology) cross-currency fees in first year\nMSc Computer Science (Mobile Systems &\nImplemented on-device biometric authentication system supporting Face ID, Touch ID,\nDistributed Computing)\n2017\u20132019 and fallback mechanisms; reduced authentication failure rates by 58% (8.3%\u21923.5%)\nThesis on real-time iOS networking and improved user NPS by 22 points in post-launch survey of 15K users\noptimization: reduced cold-start latency by\nFigma 2019\u20132019\n340ms across 50K+ concurrent Mobile Engineer (Cross-Platform)\nconnections using custom socket\nDeveloped Figma's first production iOS app prototype in Swift; optimized canvas\nbuffering\u2014published in ACM MobiSys rendering achieving 60fps consistency across all iPhone models (XS, XR, 11) with\nworkshop average GPU memory footprint of 186MB vs. 320MB initial implementation\nDean's Honours (GPA 3.89/4.0); Chair of\nBuilt real-time sync engine for collaborative editing using WebSocket + local SQLite;\nETH Mobile Development Club\u2014grew\nsupport for 50+ simultaneous remote cursors with <100ms propagation latency\nmembership 240% (45\u2192108 members)\n(measured via Chrome DevTools frame capture analysis)\nand organized 3 hackathons with 180+\nWrote foundational iOS networking layer with automatic retry logic and exponential\nparticipants\nbackoff; reduced P99 request latency from 1850ms to 680ms and improved endpoint\nUniversity of Toronto availability from 98.1% to 99.7% during peak load testing (1K RPS)\nBASc Computer Engineering\nShopify 2017\u20132019\n2013\u20132017\niOS Engineer\nSpecialized in mobile & embedded\nBuilt Shopify Point of Sale (POS) iOS app module for inventory sync; optimized\nsystems; capstone: cross-platform\ndatabase queries reducing sync time from 12.3s to 2.1s for 50K SKU catalogs; impacted\nBluetooth LE framework achieving 98.7%\n85K+ retail stores globally\nconnection stability vs. 94.2% industry\nbaseline Shipped payment processing feature supporting 12 payment gateways; achieved 99.2%\ntransaction success rate and reduced average transaction processing time by 340ms\nCumulative GPA 3.82/4.0; recipient of\nthrough batching and pre-authorization caching\nOntario Engineering Award; competed in\nACM ICPC (Top 20 regionals) Led iOS app accessibility audit and remediation; improved WCAG 2.1 AA compliance\nscore from 61% to 94%; directly enabled 120K+ users with visual/motor impairments to\n\u25c6 SKILLS access platform\nLanguages PROJECTS\nSwift Kotlin JavaScript/TypeScript\nMotionSync 2020\u20132021\nPython Objective-C C++ Swift, SwiftUI, CoreAnimation, Metal, Firebase\nTechnologies Open-source iOS animation library for synchronized multi-device interactions; 2,847\niOS (UIKit SwiftUI) React Native GitHub stars, 12.3K weekly downloads on CocoaPods; featured in Ray Wenderlich's\nFlutter Core Data SQLite WebSocket 'Best iOS Libraries' (2021)\nGRPC GraphQL Firebase ARKit Benchmarked 140% faster frame render time vs. CABasicAnimation baseline through\nCoreLocation AVFoundation Metal Metal-accelerated interpolation; maintained 60fps across iPhone SE to iPhone 13 Pro\nwith <8MB memory overhead\nTools\nXcode Android Studio Git Jira PlatformBridge 2020\u2013Present\nJenkins GitHub Actions Instruments Kotlin, Swift, C++, JNI, React Native\nFigma Proxyman Charles Proxy Cross-platform native module abstraction library enabling 60% code reuse between iOS\nand Android codebases without sacrificing performance; 834 GitHub stars, adopted by\nApp Annie analytics LLDB debugger\n18 mid-market fintech companies\nReduced inter-process communication (IPC) latency from 45ms to 8ms through custom\nC++ serialization layer; eliminated 3 major memory leak classes affecting long-running\nbackground processes\nCacheVault 2021\u2013Present\nSwift, SQLite, GRPC, Protobuf\nPersistent caching framework for iOS with multi-tier eviction policy (LRU + LFU hybrid);\n1,456 GitHub stars, 8.9K monthly downloads; 23% faster cold-start vs. standard\nFoundation URLCache\nImplemented advanced compression using ZSTD codec achieving 73% size reduction\nfor JSON payloads; reduced cloud storage costs by $42K annually across 6 internal\nStripe services processing 340B+ cache objects/month\nEXTRACURRICULAR\nReact Native EU Conference 2021\u20132023\nConference Speaker & Workshop Organizer\nDelivered keynote 'Building Production-Grade Cross-Platform Apps' (500+ attendees,\n78K YouTube views); workshop materials downloaded 34K+ times and cited in 12 open-\nsource projects\nCo-organized React Native performance optimization track attracting 180 engineers;\npost-conference survey: 92% satisfaction rate and 68% reported implementing\nrecommendations within 2 weeks\niOS.dev Community (Open Source Maintainer) 2019\u2013Present\nCore Contributor & Technical Mentor\nMaintain 3 active Swift libraries with 50+ community pull requests reviewed annually;\nmentored 12 junior iOS engineers toward first open-source contribution\u20148 became\nregular contributors\nReduced issue resolution time from 14 days to 2.3 days through CI/CD automation and\ntriage guidelines; achieved 97% community satisfaction score (Net Promoter Score) in\n2023 survey of 287 library users",
+    "name": null,
+    "email": "dimitri.okafor@gmail.com",
+    "phone": "+442079460958",
+    "links": {
+        "other": [
+            "https://dimitriokafor.dev"
+        ],
+        "linkedin": [],
+        "github": []
+    },
+    "skills": [
+        "c",
+        "c++",
+        "firebase",
+        "flutter",
+        "foundation",
+        "graphql",
+        "grpc",
+        "javascript",
+        "kotlin",
+        "processing",
+        "python",
+        "react",
+        "sqlite",
+        "swift",
+        "typescript"
+    ],
+    "projects": [],
+    "extracurricular": [
+        {
+            "name": "React Native EU Conference",
+            "subtitle": "",
+            "start_date": "2021",
+            "end_date": "2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Conference Speaker & Workshop Organizer",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "source projects",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "post-conference survey",
+            "subtitle": "92% satisfaction rate and 68% reported implementing",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "recommendations within 2 weeks",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "iOS.dev Community (Open Source Maintainer)",
+            "subtitle": "",
+            "start_date": "2019",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Core Contributor & Technical Mentor",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "regular contributors",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "survey of 287 library users",
+            "subtitle": "",
+            "start_date": "2023",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Dimitri",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Stripe",
+            "subtitle": "",
+            "start_date": "2021",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Okafor-",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Nikolaev",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "and code stripping",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "directly contributing ~$18M incremental ARR",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "reducing critical bugs by 67% (Q1",
+            "subtitle": "22 issues \u2192 Q4: 7 issues); managed sprint velocity",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "dimitri.okafor@gmail.com",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "\u2709",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "in dimitri-okafor-nikolaev",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Wise (formerly TransferWise)",
+            "subtitle": "",
+            "start_date": "2019",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "DmitriOkaforNikolaev",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "\u2325 Mobile Engineer (iOS Specialist)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "\u2318 https",
+            "subtitle": "//dimitriokafor.dev Redesigned iOS app's real-time FX quote engine using reactive streams (RxSwift); cut",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Technology) cross-currency fees in first year",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "MSc Computer Science (Mobile Systems &",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Distributed Computing)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "optimization",
+            "subtitle": "reduced cold-start latency by",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Figma",
+            "subtitle": "",
+            "start_date": "2019",
+            "end_date": "2019",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "connections using custom socket",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Dean's Honours (); Chair of",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": "GPA 3.89/4.0",
+            "summary": ""
+        },
+        {
+            "name": "ETH Mobile Development Club\u2014grew",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "membership 240% (45\u2192108 members)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "and organized 3 hackathons with 180+",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "participants",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "BASc Computer Engineering",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Shopify",
+            "subtitle": "",
+            "start_date": "2017",
+            "end_date": "2019",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "",
+            "subtitle": "",
+            "start_date": "2013",
+            "end_date": "2017",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "iOS Engineer",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Specialized in mobile & embedded",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "systems; capstone",
+            "subtitle": "cross-platform",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Bluetooth LE framework achieving 98.7%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "85K+ retail stores globally",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "connection stability vs. 94.2% industry",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Cumulative ; recipient of",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": "GPA 3.82/4.0",
+            "summary": ""
+        },
+        {
+            "name": "through batching and pre-authorization caching",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Ontario Engineering Award; competed in",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "\u25c6 SKILLS access platform",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Languages PROJECTS",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Swift Kotlin JavaScript/TypeScript",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "MotionSync",
+            "subtitle": "",
+            "start_date": "2020",
+            "end_date": "2021",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "with <8MB memory overhead",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Tools",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "App Annie analytics LLDB debugger",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "18 mid-market fintech companies",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "background processes",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "CacheVault",
+            "subtitle": "",
+            "start_date": "2021",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Swift, SQLite, GRPC, Protobuf",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Foundation URLCache",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Stripe services processing 340B+ cache objects/month",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Dimitri\nStripe 2021\u2013Present\nSenior Mobile Engineer (iOS + React Native)\nOkafor-\nLed architecture redesign of Stripe's mobile SDK payment processing layer for iOS 14\u2013\n18 compatibility; reduced transaction failure rate by 12% (2.8%\u21922.46%) across 500M+\nNikolaev\nannual transactions and improved cold-start launch time by 280ms through lazy-loading\nand code stripping\nOwned cross-platform React Native implementation for Stripe Payment Sheet; drove\n\u25c6 CONTACT 34% increase in mobile conversion rates (6.2%\u21928.3%) across 50K+ merchant partners,\ndirectly contributing ~$18M incremental ARR\n\u260e +44 20 7946 0958 Mentored team of 6 junior iOS engineers; established mobile code review standards\nreducing critical bugs by 67% (Q1: 22 issues \u2192 Q4: 7 issues); managed sprint velocity\ndimitri.okafor@gmail.com\n\u2709\nimprovement from 45 to 78 story points over 8 quarters\nin dimitri-okafor-nikolaev\nWise (formerly TransferWise) 2019\u20132021\nDmitriOkaforNikolaev\n\u2325 Mobile Engineer (iOS Specialist)\n\u2318 https://dimitriokafor.dev Redesigned iOS app's real-time FX quote engine using reactive streams (RxSwift); cut\nUI update latency by 420ms (650ms\u2192230ms) and reduced battery drain by 31% in\n\u25c6 EDUCATION foreground usage through optimized refresh intervals\nShipped multi-currency wallet feature (iOS + Android via Flutter bridge); achieved 89%\nETH Zurich (Swiss Federal Institute of adoption rate (Day 30 DAU) among 3.2M iOS users; feature generated \u00a34.7M in new\nTechnology) cross-currency fees in first year\nMSc Computer Science (Mobile Systems &\nImplemented on-device biometric authentication system supporting Face ID, Touch ID,\nDistributed Computing)\n2017\u20132019 and fallback mechanisms; reduced authentication failure rates by 58% (8.3%\u21923.5%)\nThesis on real-time iOS networking and improved user NPS by 22 points in post-launch survey of 15K users\noptimization: reduced cold-start latency by\nFigma 2019\u20132019\n340ms across 50K+ concurrent Mobile Engineer (Cross-Platform)\nconnections using custom socket\nDeveloped Figma's first production iOS app prototype in Swift; optimized canvas\nbuffering\u2014published in ACM MobiSys rendering achieving 60fps consistency across all iPhone models (XS, XR, 11) with\nworkshop average GPU memory footprint of 186MB vs. 320MB initial implementation\nDean's Honours (GPA 3.89/4.0); Chair of\nBuilt real-time sync engine for collaborative editing using WebSocket + local SQLite;\nETH Mobile Development Club\u2014grew\nsupport for 50+ simultaneous remote cursors with <100ms propagation latency\nmembership 240% (45\u2192108 members)\n(measured via Chrome DevTools frame capture analysis)\nand organized 3 hackathons with 180+\nWrote foundational iOS networking layer with automatic retry logic and exponential\nparticipants\nbackoff; reduced P99 request latency from 1850ms to 680ms and improved endpoint\nUniversity of Toronto availability from 98.1% to 99.7% during peak load testing (1K RPS)\nBASc Computer Engineering\nShopify 2017\u20132019\n2013\u20132017\niOS Engineer\nSpecialized in mobile & embedded\nBuilt Shopify Point of Sale (POS) iOS app module for inventory sync; optimized\nsystems; capstone: cross-platform\ndatabase queries reducing sync time from 12.3s to 2.1s for 50K SKU catalogs; impacted\nBluetooth LE framework achieving 98.7%\n85K+ retail stores globally\nconnection stability vs. 94.2% industry\nbaseline Shipped payment processing feature supporting 12 payment gateways; achieved 99.2%\ntransaction success rate and reduced average transaction processing time by 340ms\nCumulative GPA 3.82/4.0; recipient of\nthrough batching and pre-authorization caching\nOntario Engineering Award; competed in\nACM ICPC (Top 20 regionals) Led iOS app accessibility audit and remediation; improved WCAG 2.1 AA compliance\nscore from 61% to 94%; directly enabled 120K+ users with visual/motor impairments to\n\u25c6 SKILLS access platform\nLanguages PROJECTS\nSwift Kotlin JavaScript/TypeScript\nMotionSync 2020\u20132021\nPython Objective-C C++ Swift, SwiftUI, CoreAnimation, Metal, Firebase\nTechnologies Open-source iOS animation library for synchronized multi-device interactions; 2,847\niOS (UIKit SwiftUI) React Native GitHub stars, 12.3K weekly downloads on CocoaPods; featured in Ray Wenderlich's\nFlutter Core Data SQLite WebSocket 'Best iOS Libraries' (2021)\nGRPC GraphQL Firebase ARKit Benchmarked 140% faster frame render time vs. CABasicAnimation baseline through\nCoreLocation AVFoundation Metal Metal-accelerated interpolation; maintained 60fps across iPhone SE to iPhone 13 Pro\nwith <8MB memory overhead\nTools\nXcode Android Studio Git Jira PlatformBridge 2020\u2013Present\nJenkins GitHub Actions Instruments Kotlin, Swift, C++, JNI, React Native\nFigma Proxyman Charles Proxy Cross-platform native module abstraction library enabling 60% code reuse between iOS\nand Android codebases without sacrificing performance; 834 GitHub stars, adopted by\nApp Annie analytics LLDB debugger\n18 mid-market fintech companies\nReduced inter-process communication (IPC) latency from 45ms to 8ms through custom\nC++ serialization layer; eliminated 3 major memory leak classes affecting long-running\nbackground processes\nCacheVault 2021\u2013Present\nSwift, SQLite, GRPC, Protobuf\nPersistent caching framework for iOS with multi-tier eviction policy (LRU + LFU hybrid);\n1,456 GitHub stars, 8.9K monthly downloads; 23% faster cold-start vs. standard\nFoundation URLCache\nImplemented advanced compression using ZSTD codec achieving 73% size reduction\nfor JSON payloads; reduced cloud storage costs by $42K annually across 6 internal\nStripe services processing 340B+ cache objects/month",
+    "education": []
+}

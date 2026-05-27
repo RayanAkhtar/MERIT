@@ -1,0 +1,342 @@
+{
+    "raw_cv_text": "EXPERIENCE\nValentina\nCloudflare 2022-present\nSenior Site Reliability Engineer\nKarinsky\nLed infrastructure modernization initiative serving 200M+ daily requests; migrated 40+\nmicroservices to Kubernetes, reducing deployment time by 67%\nDesigned and implemented multi-region disaster recovery system with 99.99% uptime\n\u25c6 CONTACT SLA; reduced RTO from 4h to 12min across 8 data centers\nMentored team of 5 junior SREs; established runbook automation reducing MTTR by\n\u260e +44 7911 445823 45% on critical incidents\nvalentina.karinsky@gmail.com HashiCorp 2020-2022\n\u2709\nInfrastructure Engineer\nin valentina-karinsky\nArchitected Terraform state management infrastructure supporting 500+ enterprise\n\u2325 ValentinaKarinsky clients; implemented consistency checks reducing deployment errors by 89%\n\u2318 https://valentina.dev Optimized Consul cluster operations across AWS, Azure, GCP; reduced cloud\ninfrastructure costs by $2.1M annually through auto-scaling policies\n\u25c6 EDUCATION Built CI/CD pipeline using Vault for secrets rotation; achieved zero-knowledge secret\ndistribution across 1200+ nodes\nTechnical University of Munich (TUM)\nStripe 2018-2020\nMSc Computer Science\n2017-2019 SRE (Platform Infrastructure)\nThesis on distributed systems Managed Kubernetes platform serving $100B+ annual payment volume; implemented\noptimization: reduced latency by 34% in automated capacity planning reducing over-provisioning waste by 38%\nhorizontally-scaled microservice Designed distributed tracing system using Jaeger; identified and resolved 12 critical\narchitectures latency bottlenecks in payment processing pipeline\nGPA 3.8/4.0; completed specialization in Led on-call rotation covering 24/7 incident response; achieved 99.98% API availability\nCloud Computing and Infrastructure maintaining SLA commitments across all regions\nEngineering\nWise (formerly TransferWise) 2017-2018\nNational University of Sofia Junior DevOps Engineer\nBSc Information Technology Automated infrastructure provisioning on AWS using Terraform; reduced manual\n2013-2017\ndeployment steps from 47 to 3, cutting deployment time from 90min to 8min\nGraduated top 8% of cohort; focus on\nBuilt monitoring dashboards with Prometheus and Grafana for 30+ microservices;\nsystems programming and network\nimplemented alerting reducing mean-time-to-awareness by 52%\ninfrastructure\nContributed to Kubernetes migration project; containerized legacy payment processing\nLed systems administration labs for 150+\nservice, improving release frequency from monthly to weekly\nstudents; designed curriculum for\ncontainerization concepts\nPROJECTS\n\u25c6 SKILLS CloudShield - Multi-Cloud Security Orchestration 2023\nTerraform, Kubernetes, Vault, Python, AWS/GCP\nLanguages Built automated security compliance framework for 3 cloud providers; reduced security\nGo Python Rust Bash SQL audit time from 3 weeks to 2 days through policy-as-code\nTechnologies Implemented 650+ infrastructure policy checks; caught 87% of misconfigurations before\nKubernetes Terraform Prometheus deployment, preventing 4+ production incidents\nDocker AWS GCP Azure Kafka ObserveFlow - Real-time Infrastructure Analytics 2022\ngRPC etcd PostgreSQL Elasticsearch Prometheus, ClickHouse, Go, Apache Kafka, React\nVault Consul Jaeger Engineered high-throughput metrics pipeline processing 50M+ data points/minute with\nTools <100ms query latency at 99th percentile\nGit GitHub GitLab Jenkins ArgoCD Enabled 120+ engineers across company to debug infrastructure issues 5x faster;\nGrafana PagerDuty DataDog reduced incident investigation time from avg 45min to 9min\nELK Stack Jira Confluence RegionSync - Cross-Datacenter State Management 2021\netcd, gRPC, Rust, Docker, PostgreSQL\nDesigned state consistency layer supporting eventual consistency model across 15\nregions; achieved sub-second convergence with 99.97% accuracy\nReduced data replication bandwidth by 72% through intelligent compression; saved\n$340K annually in egress costs\nAlertXL - Intelligent Incident Correlation Engine 2020\nPython, Machine Learning, Elasticsearch, Kafka, FastAPI\nDeveloped ML-based alert deduplication system reducing alert noise by 68%; on-call\nengineers reported 46% improvement in mean-time-to-resolution\nProcessed 2.3M alerts/day with 94% precision in root-cause clustering; prevented alert\nfatigue across 80+ person engineering team\nEXTRACURRICULAR\nCloud Native Computing Foundation (CNCF) 2021-present\nKubernetes Maintainer (Release Team)\nOversee testing and validation for quarterly Kubernetes releases; coordinate quality\nassurance across 40+ volunteer contributors worldwide\nPublished 8 technical RFCs on container orchestration patterns; speaker at KubeCon\nEU 2022, 2023 reaching 3,500+ attendees\nInfrastructure Engineering Meetup - Berlin 2020-present\nCo-organizer & Speaker\nGrew meetup from 120 to 890 active members; organized 24 technical talks covering\nobservability, infrastructure automation, and incident management\nMentored 15 junior engineers transitioning into SRE roles through structured 12-week\nprogram with 92% completion rate",
+    "name": "Karinsky Led",
+    "email": "valentina.karinsky@gmail.com",
+    "phone": null,
+    "links": {
+        "other": [
+            "https://valentina.dev"
+        ],
+        "linkedin": [],
+        "github": []
+    },
+    "skills": [
+        "aws",
+        "azure",
+        "clickhouse",
+        "docker",
+        "fastapi",
+        "foundation",
+        "go",
+        "grpc",
+        "kubernetes",
+        "postgresql",
+        "processing",
+        "python",
+        "react",
+        "rust",
+        "sql"
+    ],
+    "projects": [
+        {
+            "name": "Terraform, Kubernetes, Vault, Python, AWS/GCP",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "etcd, gRPC, Rust, Docker, PostgreSQL",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "$340K annually in egress costs",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Python, Machine Learning, Elasticsearch, Kafka, FastAPI",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "engineers reported 46% improvement in mean-time-to-resolution",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "fatigue across 80+ person engineering team",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "Cloud Native Computing Foundation (CNCF)",
+            "subtitle": "",
+            "start_date": "2021",
+            "end_date": "present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Kubernetes Maintainer (Release Team)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "assurance across 40+ volunteer contributors worldwide",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "EU , 2023 reaching 3,500+ attendees",
+            "subtitle": "",
+            "start_date": "2022",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Infrastructure Engineering Meetup - Berlin",
+            "subtitle": "",
+            "start_date": "2020",
+            "end_date": "present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Co-organizer & Speaker",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "observability, infrastructure automation, and incident management",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "program with 92% completion rate",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Valentina",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Cloudflare",
+            "subtitle": "",
+            "start_date": "2022",
+            "end_date": "present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Senior Site Reliability Engineer",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Karinsky",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "valentina.karinsky@gmail.com HashiCorp",
+            "subtitle": "",
+            "start_date": "2020",
+            "end_date": "2022",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "\u2709",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Infrastructure Engineer",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "in valentina-karinsky",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "\u2318 https",
+            "subtitle": "//valentina.dev Optimized Consul cluster operations across AWS, Azure, GCP; reduced cloud",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "distribution across + nodes",
+            "subtitle": "",
+            "start_date": "1200",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Technical University of Munich (TUM)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Stripe",
+            "subtitle": "",
+            "start_date": "2018",
+            "end_date": "2020",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "MSc Computer Science",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "SRE (Platform Infrastructure)",
+            "subtitle": "",
+            "start_date": "2017",
+            "end_date": "2019",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "optimization",
+            "subtitle": "reduced latency by 34% in automated capacity planning reducing over-provisioning waste by 38%",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Engineering",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Wise (formerly TransferWise)",
+            "subtitle": "",
+            "start_date": "2017",
+            "end_date": "2018",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "",
+            "subtitle": "",
+            "start_date": "2013",
+            "end_date": "2017",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "systems programming and network",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "implemented alerting reducing mean-time-to-awareness by 52%",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "infrastructure",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Led systems administration labs for 150+",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "students; designed curriculum for",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "containerization concepts",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Valentina\nCloudflare 2022-present\nSenior Site Reliability Engineer\nKarinsky\nLed infrastructure modernization initiative serving 200M+ daily requests; migrated 40+\nmicroservices to Kubernetes, reducing deployment time by 67%\nDesigned and implemented multi-region disaster recovery system with 99.99% uptime\n\u25c6 CONTACT SLA; reduced RTO from 4h to 12min across 8 data centers\nMentored team of 5 junior SREs; established runbook automation reducing MTTR by\n\u260e +44 7911 445823 45% on critical incidents\nvalentina.karinsky@gmail.com HashiCorp 2020-2022\n\u2709\nInfrastructure Engineer\nin valentina-karinsky\nArchitected Terraform state management infrastructure supporting 500+ enterprise\n\u2325 ValentinaKarinsky clients; implemented consistency checks reducing deployment errors by 89%\n\u2318 https://valentina.dev Optimized Consul cluster operations across AWS, Azure, GCP; reduced cloud\ninfrastructure costs by $2.1M annually through auto-scaling policies\n\u25c6 EDUCATION Built CI/CD pipeline using Vault for secrets rotation; achieved zero-knowledge secret\ndistribution across 1200+ nodes\nTechnical University of Munich (TUM)\nStripe 2018-2020\nMSc Computer Science\n2017-2019 SRE (Platform Infrastructure)\nThesis on distributed systems Managed Kubernetes platform serving $100B+ annual payment volume; implemented\noptimization: reduced latency by 34% in automated capacity planning reducing over-provisioning waste by 38%\nhorizontally-scaled microservice Designed distributed tracing system using Jaeger; identified and resolved 12 critical\narchitectures latency bottlenecks in payment processing pipeline\nGPA 3.8/4.0; completed specialization in Led on-call rotation covering 24/7 incident response; achieved 99.98% API availability\nCloud Computing and Infrastructure maintaining SLA commitments across all regions\nEngineering\nWise (formerly TransferWise) 2017-2018\nNational University of Sofia Junior DevOps Engineer\nBSc Information Technology Automated infrastructure provisioning on AWS using Terraform; reduced manual\n2013-2017\ndeployment steps from 47 to 3, cutting deployment time from 90min to 8min\nGraduated top 8% of cohort; focus on\nBuilt monitoring dashboards with Prometheus and Grafana for 30+ microservices;\nsystems programming and network\nimplemented alerting reducing mean-time-to-awareness by 52%\ninfrastructure\nContributed to Kubernetes migration project; containerized legacy payment processing\nLed systems administration labs for 150+\nservice, improving release frequency from monthly to weekly\nstudents; designed curriculum for\ncontainerization concepts",
+    "education": []
+}

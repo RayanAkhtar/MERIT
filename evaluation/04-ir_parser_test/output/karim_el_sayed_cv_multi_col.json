@@ -1,0 +1,91 @@
+{
+    "raw_cv_text": "Karim El-Sayed\nSenior Full-Stack Engineer\n\u260e +44 7911 564 287 \u2709 karim.elsayed@gmail.com in/karim-el-sayed gh/KarimElSayed https://karim.dev\nWise | 2015\u20132017\nEXPERIENCE Junior Full-Stack Engineer\nImplemented real-time currency exchange rate feeds using\nStripe | 2021\u2013Present\nNode.js EventEmitter and WebSocket, delivering sub-500ms\nSenior Full-Stack Engineer\nupdates to 200K+ concurrent users; reduced customer churn by\nArchitected and shipped a new payments reconciliation\n8% through improved UX responsiveness\ndashboard in React + Node.js (GraphQL), serving 40K+ daily\nactive merchants; reduced transaction settlement latency by Created React-based admin dashboard for monitoring transfers\nacross 180+ currency corridors; engineered backend REST API\n340ms (42% improvement) through optimized database queries\n(Node.js + PostgreSQL) handling 12K req/s with <200ms\nand Redis caching, saving $2.1M annually in payment\nlatency at p99\nprocessing delays\nLed migration of 12 legacy REST endpoints to GraphQL, Optimized database queries across 15 high-traffic endpoints,\nreducing frontend API payload sizes by 64% (avg. 340KB \u2192 reducing median query time from 920ms to 120ms (87%\nimprovement); implemented connection pooling and query\n120KB per request) and decreasing Time To Interactive (TTI)\ncaching, increasing throughput from 3.2K to 18K req/s\nfrom 2.8s to 1.1s across 15M+ monthly users\nMentored 6 junior engineers across 3 continents; designed and PROJECTS\ntaught a 6-week full-stack Node.js masterclass, improving team\nthroughput by 28% and reducing code review cycles from 4 LLMCache | 2023\u2013Present\ndays to 1.2 days React, Node.js, Redis, TypeScript\nOpen-source semantic caching layer for LLM API calls (Node.js\nFigma | 2019\u20132021 + Redis backend); reduces redundant API calls by 67% through\nFull-Stack Engineer II\nvector similarity matching, cutting inference costs by\nBuilt real-time collaboration engine for Figma's design files using\n$340K/month for enterprise users\nWebSockets + Node.js, supporting 8K+ concurrent users per\nGitHub: 4,200+ stars, 210+ forks; 18K+ weekly npm downloads;\nserver with <50ms latency; improved multiplayer sync accuracy\nbenchmarks show 5.2x faster response times vs. traditional key-\nfrom 94.2% to 99.7% by implementing CRDT-based conflict\nvalue caching; featured on ProductHunt with 2.8K upvotes\nresolution\nOptimized React component rendering pipeline using ReactFlow Pro | 2022\u2013Present\nReact.memo, useMemo, and code-splitting; reduced bundle size React, TypeScript, Canvas API\nfrom 780KB to 240KB (69% reduction), achieving 3.2s initial Visual node-and-edge graph editor library for React; 6,800+\nload time (Lighthouse Performance: 94), directly attributing to GitHub stars, 340+ contributors, 92K+ weekly downloads; used\n12% increase in daily signups by Zapier, Retool, and 15+ Fortune 500 companies for workflow\nautomation\nOwned infrastructure for multi-region deployment (AWS EC2,\nOptimized rendering with virtual scrolling and WebWorker\nKubernetes); implemented load balancing and auto-scaling that\nreduced p99 response time from 890ms to 180ms under peak offloading; achieves 60fps on 10K+ node graphs (96% rendering\nload (8000 req/s), and achieved 99.98% uptime SLA improvement), and <80ms interaction latency even with complex\nnode operations\nShopify | 2017\u20132019\nFull-Stack Engineer ServerSync | 2021\u20132022\nDeveloped customer analytics dashboard (React frontend, Node.js, TypeScript, GraphQL, PostgreSQL\nNode.js + Express backend) used by 120K+ store owners; End-to-end encrypted document sync engine; 1,200+ GitHub\nstars; enables offline-first applications with automatic conflict\nengineered data pipeline processing 2.1B+ events/day, cut\nresolution and merkle-tree based delta compression\nquery response times from 8.2s to 340ms through indexing and\nquery optimization Reduces network bandwidth by 78% through binary delta\nContributed to Polaris design system; created 8 reusable React encoding; syncs 50MB+ documents in <2.1s over 3G networks;\ncomponents used across 50+ internal applications, reducing UI used in production by 3 privacy-focused startups serving 180K+\nusers\ndevelopment time by 35% and standardizing accessibility\n(WCAG 2.1 AA compliance) across Shopify's platform BenchMark | 2020\u20132021\nBuilt and maintained Node.js webhook delivery system handling Node.js, Express, React, InfluxDB\n580M+ webhooks/month with 99.97% delivery success rate; Cloud-native performance benchmarking framework for\ndesigned async queue architecture using Bull.js that scaled from Node.js/React applications; 820+ GitHub stars, 4.2K weekly\n2K to 45K throughput (webhooks/sec) without service npm downloads; automated regression detection and historical\ndegradation trend analysis across 12 metrics\nIntegrated with CI/CD (GitHub Actions, CircleCI); tracks latency,\nthroughput, memory usage, bundle size with <1% overhead;\nhelped clients identify performance regressions within 5 minutes\n(vs. manual 2-hour investigation)\nEDUCATION Node.js Foundation & npm Maintainer Community | 2019\u2013\nPresent\nImperial College London | 2018\u20132019 Open Source Maintainer & Mentor\nMSc Computing (Distributed Systems) Active maintainer of 4 npm packages with 180K+ combined\nGraduated with Distinction (78% average); thesis on \"Optimizing weekly downloads (published 28 releases across projects);\nReact concurrent rendering for low-latency financial processed 340+ pull requests and triaged 580+ GitHub issues,\ndashboards\" published at PeerJ Computer Science, achieving maintaining <48-hour response SLA\n340+ citations Mentored 8 junior developers becoming open-source\nLed the Imperial Coding Society as Secretary (2018\u20132019), contributors; 3 mentees now maintain their own packages with\ngrew membership from 180 to 480+ members and organized 8 50K+ downloads; designed mentorship program adopted by\nindustry speaker events including talks by engineers from Node.js Foundation for 40+ participants\nGoogle Brain and DeepMind\nSKILLS\nUniversity of Amsterdam | 2014\u20132017\nBSc Computer Science\nLanguages: JavaScript, TypeScript, Python, SQL, GraphQL,\nGraduated top 8% of cohort (GPA 3.87/4.0); honors thesis on\nHTML5, CSS3\n\"Node.js cluster optimization for microservices\" selected for\npublication in IEEE Transactions on Software Engineering Technologies: React, Next.js, Node.js, Express, GraphQL,\nPresident of the Open Source Community Club (2016\u20132017), WebSockets, PostgreSQL, Redis, MongoDB, AWS (EC2, RDS,\nS3, Lambda), Kubernetes, Docker, Git\nmentored 12 junior developers and maintained 3 active\npackages with 50K+ combined monthly downloads on npm\nTools: VS Code, Chrome DevTools, Jest, Webpack, Vite, GitHub\nActions, CircleCI, Datadog, New Relic, Figma, Postman, Jira,\nEXTRACURRICULAR\nSlack\nReact Amsterdam & Node.js Conf EU | 2021\u20132023\nKeynote Speaker & Workshop Facilitator\nDelivered 2 keynote talks: \"Scaling React at 100M+ Users\"\n(React Amsterdam 2023, 1,200+ attendees, 340K+ YouTube\nviews) and \"Advanced Node.js Patterns for Distributed Systems\"\n(Node.js Conf 2022, 680+ live attendees)\nHosted 6 hands-on workshops teaching full-stack React +\nNode.js architecture; 280+ attendees across events with 4.8/5\naverage satisfaction rating; 1 workshop published as O'Reilly\ntraining course (12K+ enrollments)",
+    "name": "Karim El-Sayed",
+    "email": "karim.elsayed@gmail.com",
+    "phone": null,
+    "links": {
+        "other": [
+            "https://karim.dev"
+        ],
+        "linkedin": [],
+        "github": [
+            "https://github.com/4"
+        ]
+    },
+    "skills": [
+        "aws",
+        "css3",
+        "docker",
+        "express",
+        "foundation",
+        "graphql",
+        "html5",
+        "influxdb",
+        "javascript",
+        "js",
+        "kubernetes",
+        "mongodb",
+        "next.js",
+        "node.js",
+        "postgresql",
+        "processing",
+        "python",
+        "react",
+        "sql",
+        "typescript"
+    ],
+    "projects": [],
+    "extracurricular": [
+        {
+            "name": "Slack",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "React Amsterdam & Node.js Conf EU",
+            "subtitle": "",
+            "start_date": "2021",
+            "end_date": "2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Keynote Speaker & Workshop Facilitator",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Delivered 2 keynote talks",
+            "subtitle": "\"Scaling React at 100M+ Users\"",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "(Node.js Conf , 680+ live attendees)",
+            "subtitle": "",
+            "start_date": "2022",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "training course (12K+ enrollments)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [],
+    "experience": null,
+    "education": []
+}

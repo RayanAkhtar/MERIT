@@ -16,33 +16,22 @@ def generate_accuracy_plots():
 
     df = pd.read_csv(summary_path)
     
-    # Classify files based on layout structure
-    single_column_files = [
-        "001_Milton_Uati_Junior_Software_Engineer.pdf",
-        "002_Zainab_Verstraeten_Mid-Level_Software_Engineer.pdf",
-        "003_Henriette_Romero_Senior_Software_Engineer.pdf",
-        "004_Srgio_Makhambetov_Staff_Software_Engineer.pdf",
-        "007_Santi_Lin_Mid-Level_Frontend_Engineer.pdf",
-        "008_Nil_Nelson_Senior_Frontend_Engineer.pdf",
-        "009_Fatemah_deJonge_Staff_Frontend_Engineer.pdf",
-        "012_Moinecha_Ramos-Horta_Mid-Level_Backend_Engineer.pdf",
-        "013_Riko_AlTayer_Senior_Backend_Engineer.pdf",
-        "014_Iris_Thijs_Staff_Backend_Engineer.pdf",
-        "015_Patricia_Al-Bahar_Principal_Backend_Engineer.pdf",
-        "016_Hiba_Hewage_Junior_Full_Stack_Engineer.pdf",
-        "017_Peak_Ruiz_Mid-Level_Full_Stack_Engineer.pdf",
-        "018_Khadija_Talon_Senior_Full_Stack_Engineer.pdf",
-        "0121_Arvid_Sandberg_Mid-Level_Quantitative_Developer.pdf"
-    ]
-    
-    df['Layout'] = df['File'].apply(lambda x: 'Single-Column (Linear)' if x in single_column_files else 'Multi-Column (Asymmetrical)')
+    # Classify files based on explicit manifest (keeps repo structure as source-of-truth)
+    manifest_path = os.path.join(current_dir, "test_data", "layout_manifest.csv")
+    if os.path.exists(manifest_path):
+        manifest = pd.read_csv(manifest_path)
+        layout_map = dict(zip(manifest["File"], manifest["Layout"]))
+        df["Layout"] = df["File"].map(layout_map).fillna("Unknown")
+    else:
+        df["Layout"] = "Unknown"
     
     # Compute averages grouped by Layout
     metrics = ["Skill Precision", "Skill Recall", "Skill F1", "Experience Recall", "Name Match", "Email Match"]
     grouped = df.groupby('Layout')[metrics].mean() * 100
     
-    # Reindex to ensure order
-    grouped = grouped.reindex(['Single-Column (Linear)', 'Multi-Column (Asymmetrical)'])
+    # Reindex to ensure order if both are present
+    preferred = ['Single-Column (Linear)', 'Multi-Column (Asymmetrical)', 'Unknown']
+    grouped = grouped.reindex([x for x in preferred if x in grouped.index])
     
     x = np.arange(len(metrics))
     width = 0.35  # width of the bars
@@ -53,8 +42,10 @@ def generate_accuracy_plots():
     single_vals = grouped.loc['Single-Column (Linear)'].values
     multi_vals = grouped.loc['Multi-Column (Asymmetrical)'].values
     
-    rects1 = ax.bar(x - width/2, single_vals, width, label='Single-Column (Linear) [N=15]', color=ICL_NAVY, alpha=0.9, edgecolor='black', linewidth=0.8)
-    rects2 = ax.bar(x + width/2, multi_vals, width, label='Multi-Column (Asymmetrical) [N=15]', color=ICL_LIGHT_BLUE, alpha=0.9, edgecolor='black', linewidth=0.8)
+    n_single = int((df["Layout"] == "Single-Column (Linear)").sum())
+    n_multi = int((df["Layout"] == "Multi-Column (Asymmetrical)").sum())
+    rects1 = ax.bar(x - width/2, single_vals, width, label=f'Single-Column (Linear) [N={n_single}]', color=ICL_NAVY, alpha=0.9, edgecolor='black', linewidth=0.8)
+    rects2 = ax.bar(x + width/2, multi_vals, width, label=f'Multi-Column (Asymmetrical) [N={n_multi}]', color=ICL_LIGHT_BLUE, alpha=0.9, edgecolor='black', linewidth=0.8)
     
     ax.set_title('CV Ingestion Performance: Single-Column vs. Multi-Column Layouts (Study 04)', fontsize=14, fontweight='bold', pad=25)
     ax.set_ylabel('Accuracy Score (%)', fontsize=12, labelpad=10)

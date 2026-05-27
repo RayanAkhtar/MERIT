@@ -1,0 +1,90 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "azure",
+            "c++",
+            "docker",
+            "dynamodb",
+            "go",
+            "grpc",
+            "java",
+            "javascript",
+            "kubernetes",
+            "postgresql",
+            "python",
+            "rust",
+            "sql",
+            "tensorflow"
+        ],
+        "Missed (False Negatives)": [
+            "bash",
+            "bazel",
+            "cloudformation",
+            "consensus algorithms",
+            "datadog",
+            "distributed systems",
+            "etcd",
+            "event streaming",
+            "gcp",
+            "git",
+            "github actions",
+            "grafana",
+            "jenkins",
+            "linux",
+            "message queues",
+            "pagerduty",
+            "prometheus",
+            "protocol buffers",
+            "redis",
+            "rest apis",
+            "terraform",
+            "virtualbox"
+        ],
+        "Extra (False Positives/Noise)": [
+            "c",
+            "memcached",
+            "processing"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "stripe",
+            "cloudflare",
+            "shopify",
+            "google"
+        ],
+        "Missed": [
+            "eth zurich",
+            "university of warsaw",
+            "cachemeld",
+            "vectorflow",
+            "raftcontrol",
+            "strange loop conference & qcon",
+            "open source systems mentorship initiative"
+        ],
+        "All Extracted Entities": [
+            "stripe",
+            "serving $2.2t+ annual payment volume",
+            "by $4.2m annually",
+            "cloudflare",
+            "overhead by 45%",
+            "shopify",
+            "capacity scaling without hardware upgrades",
+            "google",
+            "from 320ms\u219280ms"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": true,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Aleksandr Kowalski",
+            "email": "aleksandr.kowalski@gmail.com"
+        },
+        "Expected": {
+            "name": "Aleksandr Kowalski",
+            "email": "aleksandr.kowalski@gmail.com"
+        }
+    }
+}

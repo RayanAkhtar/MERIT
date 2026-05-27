@@ -1,0 +1,194 @@
+{
+    "raw_cv_text": "Arjun Desai\n+44 20 7946 0958 | Email: arjun.desai@gmail.com | LinkedIn: arjun-desai | GitHub: ArjunDesai | https://arjun.dev\nEDUCATION\nImperial College London | MEng Computing (First Class Honours) 2020\u20132024\nAchieved 3.92/4.0 GPA with Distinction in final year; awarded Imperial Excellence Scholarship (top\n2% of cohort)\nLed Department Computing Society (150+ members) as President, organized weekly technical\nworkshops and secured \u00a312K sponsorship from industry partners\nUniversity of Cambridge | Cambridge Summer Researcher (CS Program) 2023\nCompleted 8-week research internship on distributed systems optimization; co-authored paper on\nconsensus algorithms achieving 34% latency reduction\nMentored 4 junior developers on systems design patterns; mentor feedback scores averaged 4.8/5.0\nEXPERIENCE\nStripe | Software Engineer Intern Jun\u2013Aug 2023\nBuilt payment processing microservices in Go reducing transaction latency by 47ms (18%\nimprovement) for 50K+ daily requests; code merged to production within 2 days\nDesigned and implemented comprehensive unit/integration test suite increasing coverage from 62%\nto 89%, preventing 3 critical bugs in staging\nCollaborated with 6-person platform team to migrate legacy payment reconciliation system to Kafka,\nreducing data sync time by 2.3 hours (from 5.2h to 2.9h per day)\nCloudflare | Full-Stack Engineer Intern Jan\u2013May 2023\nDeveloped React + TypeScript dashboard UI for DDoS analytics, consumed by 8K+ paying\ncustomers; improved page load time from 3.2s to 840ms (74% reduction)\nOptimized PostgreSQL queries using explain analyze and indexing strategy, reducing API response\ntime by 65% for user onboarding endpoints serving 2M+ monthly active users\nMaintained 2 open-source projects with 4.2K+ GitHub stars; reviewed 12 community PRs and\nmerged critical bugfixes, boosting release download rate by 23%\nDatadog | Software Engineer Intern Jul\u2013Sep 2022\nBuilt real-time monitoring alerts backend in Python + FastAPI processing 500K+ metrics per second;\nsystem achieved 99.97% uptime SLA across 3 availability zones\nEngineered efficient time-series data aggregation reducing memory footprint by 52% (from 2.8GB to\n1.3GB per worker node) without compromising query latency\nDesigned schema migrations framework supporting 0-downtime deployments across 45K+ customer\ndatabases; reduced deployment window from 6 hours to 12 minutes\nWise | Graduate Software Engineer Sep 2024\u2013Present\nArchitected end-to-end payments orchestration service in Java + Spring Boot handling 200K+ daily\ninternational transfers; improved transaction success rate from 94.2% to 98.1%\nImplemented distributed tracing instrumentation across 12 microservices using OpenTelemetry,\nreducing mean time to resolution (MTTR) for production issues by 31 minutes\nDeployed real-time FX rate caching layer (Redis) decreasing quote latency by 340ms (92%\nimprovement) and reducing database load by 67% across 15 backend instances\nPROJECTS\nCacheFlow | TypeScript, React, Node.js, Redis, PostgreSQL 2024\nBuilt open-source distributed caching framework with automatic invalidation; achieved 8.2K GitHub\nstars and 150K+ monthly npm downloads within 6 months of launch\nImplemented adaptive TTL mechanism and compression algorithms reducing memory usage by 58%\ncompared to standard Redis implementations; benchmarks published in blog post (2.3K reads)\nGraphQL Schema Validator | Rust, GraphQL, CLI 2023\nDeveloped compile-time schema validation tool for GraphQL APIs; 6.5K GitHub stars with 89K\nmonthly downloads; used internally by 50+ engineering teams at 8 Fortune 500 companies\nAchieved 40\u00d7 performance improvement over Node.js-based competitors through Rust\nimplementation; validation time: 120ms vs. 4.8s for enterprise-scale schemas (2K+ types)\nStreamSync | Go, gRPC, Protobuf, Kubernetes 2023\u20132024\nCreated real-time data synchronization library for microservices; supports 500K+ events/second\nthroughput with sub-50ms latency; 3.1K GitHub stars and active maintenance with 14 contributors\nImplemented consensus-based conflict resolution achieving 99.99% eventual consistency guarantees;\npublished technical deep-dive (1.8K medium.com claps)\nPerformanceInsight | Python, FastAPI, Vue.js, ClickHouse 2022\u20132023\nBuilt full-stack web application for application performance monitoring; supports 4M+ metric\ningestion per minute with <500ms query response time across 90-day retention\nDesigned novel columnar data compression technique reducing storage costs by 44% (from\n\u00a38K/month to \u00a34.5K/month) without sacrificing query performance; presented at PyCon 2023 (320\nattendees)\nEXTRACURRICULAR\nPython Software Foundation | Open Source Maintainer 2022\u2013Present\nMaintain 2 core libraries with 180K+ weekly PyPI downloads; triaged and resolved 240+ issues and\nmerged 95 community PRs from 45+ contributors worldwide\nAuthored 3 technical documentation guides and 2 architectural RFCs; community feedback: 4.9/5.0\naverage helpfulness rating across 1.2K responses\nEuropean Software Engineering Conference (ESEC) | Speaker & Workshop Facilitator 2023\u20132024\nDelivered 2 conference talks on 'Scaling Microservices to 1M+ RPS' (ESEC 2024, 380 attendees);\nsession feedback: 4.7/5.0; published accompanying 22-page technical report with 8.3K downloads\nFacilitated full-day workshop on 'Production-Grade Go for Backend Engineers' at 3 major\nconferences; trained 180+ engineers; post-workshop survey: 94% would recommend\nTECHNICAL SKILLS\nLanguages \u2013 Python, JavaScript/TypeScript, Go, Java, Rust, SQL\nTechnologies \u2013 React, Node.js, FastAPI, Spring Boot, GraphQL, gRPC, PostgreSQL, Redis, Kafka,\nKubernetes, Docker, AWS (S3, Lambda, RDS, ECS)\nTools \u2013 Git, GitHub, GitLab, Jira, Datadog, Prometheus, PagerDuty, Figma, VS Code, IntelliJ IDEA",
+    "name": "Arjun Desai +44",
+    "email": "arjun.desai@gmail.com",
+    "phone": "+442079460958",
+    "links": {
+        "other": [
+            "https://arjun.dev"
+        ],
+        "linkedin": [
+            "https://linkedin.com/in/arjun-desai"
+        ],
+        "github": [
+            "https://github.com/ArjunDesai"
+        ]
+    },
+    "skills": [
+        "aws",
+        "clickhouse",
+        "docker",
+        "fastapi",
+        "foundation",
+        "go",
+        "graphql",
+        "grpc",
+        "java",
+        "javascript",
+        "js",
+        "kubernetes",
+        "node.js",
+        "postgresql",
+        "processing",
+        "pypi",
+        "python",
+        "react",
+        "rust",
+        "spring",
+        "sql",
+        "typescript"
+    ],
+    "projects": [
+        {
+            "name": "CacheFlow",
+            "subtitle": "TypeScript, React, Node.js, Redis, PostgreSQL",
+            "start_date": "2024",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "GraphQL Schema Validator",
+            "subtitle": "Rust, GraphQL, CLI",
+            "start_date": "2023",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "implementation; validation time",
+            "subtitle": "120ms vs. 4.8s for enterprise-scale schemas (2K+ types)",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "StreamSync",
+            "subtitle": "Go, gRPC, Protobuf, Kubernetes",
+            "start_date": "2023",
+            "end_date": "2024",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "published technical deep-dive (1.8K medium.com claps)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "PerformanceInsight",
+            "subtitle": "Python, FastAPI, Vue.js, ClickHouse",
+            "start_date": "2022",
+            "end_date": "2023",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "attendees)",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "name": "Python Software Foundation",
+            "subtitle": "Open Source Maintainer",
+            "start_date": "2022",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Authored 3 technical documentation guides and 2 architectural RFCs; community feedback",
+            "subtitle": "4.9/5.0",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "average helpfulness rating across 1.2K responses",
+            "subtitle": "",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "European Software Engineering Conference (ESEC)",
+            "subtitle": "Speaker & Workshop Facilitator",
+            "start_date": "2023",
+            "end_date": "2024",
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "session feedback",
+            "subtitle": "4.7/5.0; published accompanying 22-page technical report with 8.3K downloads",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "conferences; trained 180+ engineers; post-workshop survey",
+            "subtitle": "94% would recommend",
+            "start_date": null,
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "cv_experience": [
+        {
+            "name": "Stripe",
+            "subtitle": "Software Engineer Intern Jun\u2013",
+            "start_date": "Aug 2023",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Cloudflare",
+            "subtitle": "Full-Stack Engineer Intern Jan\u2013",
+            "start_date": "May 2023",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Datadog",
+            "subtitle": "Software Engineer Intern Jul\u2013",
+            "start_date": "Sep 2022",
+            "end_date": null,
+            "grade": null,
+            "summary": ""
+        },
+        {
+            "name": "Wise",
+            "subtitle": "Graduate Software Engineer",
+            "start_date": "Sep 2024",
+            "end_date": "Present",
+            "grade": null,
+            "summary": ""
+        }
+    ],
+    "experience": "Stripe | Software Engineer Intern Jun\u2013Aug 2023\nBuilt payment processing microservices in Go reducing transaction latency by 47ms (18%\nimprovement) for 50K+ daily requests; code merged to production within 2 days\nDesigned and implemented comprehensive unit/integration test suite increasing coverage from 62%\nto 89%, preventing 3 critical bugs in staging\nCollaborated with 6-person platform team to migrate legacy payment reconciliation system to Kafka,\nreducing data sync time by 2.3 hours (from 5.2h to 2.9h per day)\nCloudflare | Full-Stack Engineer Intern Jan\u2013May 2023\nDeveloped React + TypeScript dashboard UI for DDoS analytics, consumed by 8K+ paying\ncustomers; improved page load time from 3.2s to 840ms (74% reduction)\nOptimized PostgreSQL queries using explain analyze and indexing strategy, reducing API response\ntime by 65% for user onboarding endpoints serving 2M+ monthly active users\nMaintained 2 open-source projects with 4.2K+ GitHub stars; reviewed 12 community PRs and\nmerged critical bugfixes, boosting release download rate by 23%\nDatadog | Software Engineer Intern Jul\u2013Sep 2022\nBuilt real-time monitoring alerts backend in Python + FastAPI processing 500K+ metrics per second;\nsystem achieved 99.97% uptime SLA across 3 availability zones\nEngineered efficient time-series data aggregation reducing memory footprint by 52% (from 2.8GB to\n1.3GB per worker node) without compromising query latency\nDesigned schema migrations framework supporting 0-downtime deployments across 45K+ customer\ndatabases; reduced deployment window from 6 hours to 12 minutes\nWise | Graduate Software Engineer Sep 2024\u2013Present\nArchitected end-to-end payments orchestration service in Java + Spring Boot handling 200K+ daily\ninternational transfers; improved transaction success rate from 94.2% to 98.1%\nImplemented distributed tracing instrumentation across 12 microservices using OpenTelemetry,\nreducing mean time to resolution (MTTR) for production issues by 31 minutes\nDeployed real-time FX rate caching layer (Redis) decreasing quote latency by 340ms (92%\nimprovement) and reducing database load by 67% across 15 backend instances",
+    "education": [
+        {
+            "name": "Imperial College London",
+            "subtitle": "MEng Computing ()",
+            "start_date": "2020",
+            "end_date": "2024",
+            "grade": "First Class Honours",
+            "summary": ""
+        }
+    ]
+}

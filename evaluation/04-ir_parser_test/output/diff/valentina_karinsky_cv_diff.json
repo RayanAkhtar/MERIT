@@ -1,0 +1,88 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "azure",
+            "docker",
+            "go",
+            "grpc",
+            "kubernetes",
+            "postgresql",
+            "python",
+            "rust",
+            "sql"
+        ],
+        "Missed (False Negatives)": [
+            "argocd",
+            "bash",
+            "confluence",
+            "consul",
+            "datadog",
+            "elasticsearch",
+            "elk stack",
+            "etcd",
+            "gcp",
+            "git",
+            "github",
+            "gitlab",
+            "grafana",
+            "jaeger",
+            "jenkins",
+            "jira",
+            "kafka",
+            "pagerduty",
+            "prometheus",
+            "terraform",
+            "vault"
+        ],
+        "Extra (False Positives/Noise)": [
+            "clickhouse",
+            "fastapi",
+            "foundation",
+            "processing",
+            "react"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "cloudflare",
+            "hashicorp",
+            "stripe",
+            "wise"
+        ],
+        "Missed": [
+            "technical university of munich",
+            "national university of sofia",
+            "cloudshield - multi-cloud security orchestration",
+            "observeflow - real-time infrastructure analytics",
+            "regionsync - cross-datacenter state management",
+            "alertxl - intelligent incident correlation engine",
+            "cloud native computing foundation",
+            "infrastructure engineering meetup - berlin"
+        ],
+        "All Extracted Entities": [
+            "cloudflare",
+            "incidents",
+            "hashicorp",
+            "$2.1m annually through auto-scaling policies",
+            "across + nodes",
+            "stripe",
+            "bottlenecks in payment processing pipeline",
+            "sla commitments across all regions",
+            "wise (formerly transferwise)",
+            "alerting reducing mean-time-to-awareness by 52%"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": true,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Valentina Karinsky",
+            "email": "valentina.karinsky@gmail.com"
+        },
+        "Expected": {
+            "name": "Valentina Karinsky",
+            "email": "valentina.karinsky@gmail.com"
+        }
+    }
+}

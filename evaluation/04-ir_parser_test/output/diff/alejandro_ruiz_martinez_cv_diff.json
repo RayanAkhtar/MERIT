@@ -1,0 +1,82 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "docker",
+            "dynamodb",
+            "go",
+            "grpc",
+            "java",
+            "kubernetes",
+            "postgresql",
+            "python",
+            "rust",
+            "sql"
+        ],
+        "Missed (False Negatives)": [
+            "crdt",
+            "datadog",
+            "distributed systems",
+            "event sourcing",
+            "gcp",
+            "git",
+            "github",
+            "grafana",
+            "idempotency patterns",
+            "jaeger",
+            "javascript/typescript",
+            "jira",
+            "kafka",
+            "message queues",
+            "microservices architecture",
+            "prometheus",
+            "protocol buffers",
+            "real-time processing",
+            "redis",
+            "terraform"
+        ],
+        "Extra (False Positives/Noise)": [
+            "foundation",
+            "javascript",
+            "processing",
+            "typescript"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "stripe",
+            "wise",
+            "cloudflare",
+            "jane street"
+        ],
+        "Missed": [
+            "imperial college london",
+            "university of cambridge",
+            "paymentvault",
+            "txnreplay",
+            "distributedledger",
+            "qcon london & goto conferences",
+            "open payments community foundation"
+        ],
+        "All Extracted Entities": [
+            "stripe",
+            "wise (formerly transferwise)",
+            "12min",
+            "cloudflare",
+            "tickets by 64%",
+            "jane street"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": false,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Email",
+            "email": "alejandro.ruiz.martinez@gmail.com"
+        },
+        "Expected": {
+            "name": "Alejandro Ruiz-Martinez",
+            "email": "alejandro.ruiz.martinez@gmail.com"
+        }
+    }
+}

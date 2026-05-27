@@ -1,0 +1,84 @@
+{
+    "Skills": {
+        "Matched": [
+            "aws",
+            "clickhouse",
+            "docker",
+            "go",
+            "java",
+            "kotlin",
+            "kubernetes",
+            "postgresql",
+            "python",
+            "scala",
+            "sql"
+        ],
+        "Missed (False Negatives)": [
+            "airflow",
+            "apache beam",
+            "apache flink",
+            "apache kafka",
+            "confluence",
+            "datadog",
+            "debezium",
+            "gcp",
+            "git",
+            "grafana",
+            "jira",
+            "prometheus",
+            "redis",
+            "spark streaming",
+            "terraform"
+        ],
+        "Extra (False Positives/Noise)": [
+            "bootstrap",
+            "processing",
+            "rocksdb"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "datadog",
+            "stripe",
+            "wise",
+            "thoughtworks"
+        ],
+        "Missed": [
+            "imperial college london",
+            "university of amsterdam",
+            "flowsync",
+            "rivertelemetry",
+            "pipelinesync",
+            "apache kafka community",
+            "data engineering europe conference"
+        ],
+        "All Extracted Entities": [
+            "datadog",
+            "refreshes serving 15k+ customers",
+            "paths",
+            "companies (800+ github stars)",
+            "stripe",
+            "model serving with <120ms latency",
+            "capacity per cluster",
+            "wise (transferwise)",
+            "stream processors",
+            "teams",
+            "8min",
+            "thoughtworks",
+            "reusable abstractions",
+            "100% (from 8/quarter to 0)"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": true,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Arjun Patel",
+            "email": "arjun.patel@gmail.com"
+        },
+        "Expected": {
+            "name": "Arjun Patel",
+            "email": "arjun.patel@gmail.com"
+        }
+    }
+}

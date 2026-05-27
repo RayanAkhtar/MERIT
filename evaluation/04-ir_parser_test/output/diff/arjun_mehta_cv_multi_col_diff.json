@@ -1,0 +1,100 @@
+{
+    "Skills": {
+        "Matched": [
+            "c++",
+            "cassandra",
+            "docker",
+            "go",
+            "grpc",
+            "java",
+            "kubernetes",
+            "postgresql",
+            "python",
+            "rust",
+            "scala"
+        ],
+        "Missed (False Negatives)": [
+            "apache flink",
+            "apache kafka",
+            "buffers",
+            "datadog",
+            "elasticsearch",
+            "etcd",
+            "git",
+            "gitlab ci/cd",
+            "grafana",
+            "jaeger",
+            "new relic",
+            "paxos",
+            "prometheus",
+            "protocol",
+            "raft",
+            "redis",
+            "terraform",
+            "zookeeper"
+        ],
+        "Extra (False Positives/Noise)": [
+            "c",
+            "clickhouse",
+            "processing",
+            "webassembly"
+        ]
+    },
+    "Experience": {
+        "Matched": [
+            "eth zurich",
+            "stripe",
+            "cloudflare"
+        ],
+        "Missed": [
+            "imperial college london",
+            "wise",
+            "consensusdb",
+            "shardmaster",
+            "latticetrace",
+            "replicasync",
+            "distributedsystems.fyi",
+            "vldb & acm sigmod"
+        ],
+        "All Extracted Entities": [
+            "arjun mehta",
+            "stripe",
+            "senior backend engineer (distributed systems)",
+            "\u25c6 contact",
+            "and achieved 99.999% uptime",
+            "arjun.mehta@outlook.com",
+            "arjunmehta",
+            "\u2325",
+            "directly enabling new real-time product features",
+            "\u2318 https",
+            "cloudflare",
+            "staff backend engineer",
+            "\u25c6 education",
+            "systems)",
+            "thesis on consensus algorithms achieved",
+            "services",
+            "98.7% byzantine fault tolerance;",
+            "published in ieee transactions on",
+            "parallel and distributed systems with 127",
+            "server",
+            "citations",
+            "across $140b+ in monthly transaction volume",
+            "eth zurich",
+            "bsc computer science",
+            "completed internship on sharded intervention",
+            "database optimization reducing query"
+        ]
+    },
+    "Contact Info": {
+        "Name Correct": false,
+        "Email Correct": true,
+        "Extracted": {
+            "name": "Arjun Mehta Stripe",
+            "email": "arjun.mehta@outlook.com"
+        },
+        "Expected": {
+            "name": "Arjun Mehta",
+            "email": "arjun.mehta@outlook.com"
+        }
+    }
+}
