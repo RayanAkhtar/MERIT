@@ -1,7 +1,7 @@
 \section{Human-Machine Alignment}
 \label{sec:human-machine-alignment}
 
-The previous rank-based accuracy metrics measured the performance of MERIT's against specific adversarial candidates
+The previous rank-based accuracy metrics measured the performance of MERIT against specific adversarial candidates
 with simplistic synthetic data. This was performed in order to demonstrate significant changes in rank orderings based 
 on the candidates' persona. In this section, we will instead have recruiters rank a set of realistic synthetic candidates
 in order to evaluate the overall performance of MERIT's scoring system against a fixed expert consensus.
@@ -52,7 +52,7 @@ while the underlying coefficients are recorded in Table~\ref{tab:spearman-study-
 \begin{table}[htbp]
     \centering
     \caption[Study~07: Spearman $\rho$ (High Discrimination Cohort)]{Spearman Correlation Coefficients for the High Discrimination Cohort.
-    This cohort comprises of candidates with different seniorities and career paths, testing MERIT's ability to distinguish between relevant and 
+    This cohort comprises candidates with different seniorities and career paths, testing MERIT's ability to distinguish between relevant and 
     completely irrelevant candidates for a specific role. MERIT (Full) achieves the highest $\rho$ among engines in this cohort ($p = 0.0251$) and also
     the highest Spearman correlation coefficient of $0.6970$.}
     \label{tab:spearman-study-07}
@@ -78,13 +78,13 @@ confirms that the top human pick (Moinecha Ramos-Horta) is ranked first by MERIT
 
 The next study will be a seniority-bias stress test to find the best fit for an intern backend engineer. Here, our recruiters
 are more likely to rank interns higher than seniors due to the junior nature of the role. Usually more experienced candidates would
-get ranked lower, due to a perceived assumption that they are overqualified for the role. This nuance, goes unaddressed by all four
+get ranked lower, due to a perceived assumption that they are overqualified for the role. This nuance goes unaddressed by all four
 engines since this is a rare edge-case in real-world scenarios. It is not often that a senior candidate would apply for an intern role.
 
 \begin{table}[htbp]
     \centering
     \caption[Study~08: Spearman $\rho$ (seniority bias)]{Spearman correlation coefficients for the Seniority Bias Cohort.
-    This cohort comprises of candidates only with different levels of seniority, but for the same role. We test MERIT's ability to distinguish between
+    This cohort comprises candidates only with different levels of seniority, but for the same role. We test MERIT's ability to distinguish between
     senior and junior candidates for the same role, under the premise of no significantly contradictory evidence between the CV and other data sources.
     MERIT (CV Only) and MERIT (Full) tie at $\rho = -0.5152$ ($p = 0.1276$).
     Modern AI ATS shows the strongest inverse correlation ($\rho = -0.8061$, $p = 0.0049$).}
@@ -103,7 +103,7 @@ engines since this is a rare edge-case in real-world scenarios. It is not often 
 
 For this cohort, the synthetic GitHub and LinkedIn profiles are intentionally designed to align with the given candidate's CV.
 None of the profiles introduce contradictory evidence. MERIT (Full) raises the absolute scores of candidates, but still preserves the same rank orderings as MERIT (CV Only)
-due to this aligninment of evidence. This does not lead to the conclusion that multi-source fusion is ineffective, but rather that multi-source fusion is discriminatory
+due to this alignment of evidence. This does not lead to the conclusion that multi-source fusion is ineffective, but rather that multi-source fusion is discriminatory
 upon the presence of contradictory evidence.
 
 Inspecting the rankings (found in \texttt{evaluation/08-spearman\_seniority\_bias\_audit/output/detailed\_rankings.csv}), 
@@ -124,13 +124,13 @@ any other sources of information (LinkedIn, GitHub) to ensure a fair comparison.
 As shown in Table~\ref{tab:spearman-study-09}, the traditional ATS achieves the 
 strongest alignment with the expert consensus, while MERIT (Full) achieves the second highest alignment. It is worth noting the
 vast difference in alignment between MERIT (CV Only) and MERIT (Full), which is a clear indication that the additional sources of information
-are doing substantial work to keep full MERIT in the same broad ordering as experts. The presense of external evidence can help to 
+are doing substantial work to keep full MERIT in the same broad ordering as experts. The presence of external evidence can help to 
 act as a tie-breaker when the CV-only scores are too close to call.
 
 \begin{table}[htbp]
     \centering
     \caption[Study~09: Spearman $\rho$ (peer competition)]{Spearman correlation coefficients for the Peer Competition Cohort.
-    This cohort comprises of candidates with similar seniorities and career paths, testing MERIT's ability to distinguish between
+    This cohort comprises candidates with similar seniorities and career paths, testing MERIT's ability to distinguish between
     candidates with similar qualifications for the same role. MERIT (Full) achieves the second highest alignment with the expert consensus at $\rho = 0.6242$ ($p = 0.0537$).
     The traditional ATS achieves the strongest alignment with the expert consensus at $\rho = 0.7939$ ($p = 0.0061$).
     Modern AI ATS shows the weakest alignment with the expert consensus at $\rho = 0.2364$ ($p = 0.5109$).}
@@ -156,7 +156,7 @@ the expert consensus and put forward a strong case for the use of additional sou
 \subsection{Study 10: Signal Dissonance}
 \label{subsec:study-10-spearman-dissonance}
 
-The next study is a cherry-picked failure case to highlight the achilles heel of MERIT (Full). Note that the setup for this study
+The next study is a cherry-picked failure case to highlight the Achilles' heel of MERIT (Full). Note that the setup for this study
 is almost identical to Study~07, with the key difference being the introduction of conflicting signals between the CV and 
 external evidence. This is done to induce high dissonance between the public-repository evidence and CV narrative, corrupting
 the ability of MERIT (Full) to correctly rank the candidates.
@@ -165,13 +165,13 @@ Table~\ref{tab:spearman-study-10} shows that MERIT (Full) achieves a
 near-total loss of rank alignment with the expert consensus, with a $\rho$ of 0.0061 and a $p$-value of 0.987. By using 
 the exact same setup as Study~07, but with the introduction of conflicting external signals, we are able to pinpoint the 
 failure of MERIT to one specific vulnerability: \emph{the introduction of contradictory multi-source evidence}. This sends a 
-clear message to the reader that MERIT (Full) can only perform as good as the quality of the evidence it is given.
+clear message to the reader that MERIT (Full) can only perform as well as the quality of the evidence it is given.
 
 
 \begin{table}[htbp]
     \centering
     \caption[Study~10: Spearman $\rho$ (signal dissonance)]{Spearman correlation coefficients for the Signal Dissonance Cohort.
-    This cohort comprises of candidates with similar seniorities and career paths, but with conflicting signals between the CV and external evidence.
+    This cohort comprises candidates with similar seniorities and career paths, but with conflicting signals between the CV and external evidence.
     MERIT (Full) diverges significantly from the expert list, with a $\rho$ of $0.0061$ and a $p$-value of $0.987$.
     The traditional ATS achieves the strongest alignment with the expert consensus at $\rho = 0.5515$ ($p = 0.0984$).
     Modern AI ATS shows the weakest alignment with the expert consensus at $\rho = 0.2848$ ($p = 0.4250$).}
@@ -199,8 +199,8 @@ the multi-source pillar of MERIT collapses and is unable to make confident and a
 
 Across the four studies, no single engine dominates every scenario, which is expected, given the nature of the studies and 
 the different scenarios they are designed to test. MERIT (Full) delivers the best statistically supported agreement
-in high-discrimination scenarios, but can collapse under adversarial dissonance. Its key to note that MERIT's multi-source
-pillar is dependent on the quality of evidence provided, and relies upon candidate's to provide accurate and consistent evidence.
+in high-discrimination scenarios, but can collapse under adversarial dissonance. It's key to note that MERIT's multi-source
+pillar is dependent on the quality of evidence provided, and relies upon candidates to provide accurate and consistent evidence.
 
 While candidates are free to provide contradictory evidence, in a real-world scenario, this is unlikely to happen, as it is unreasonable
 to provide contradictory evidence on their CV and public-repository evidence. If candidates have inconsistent narratives between their 

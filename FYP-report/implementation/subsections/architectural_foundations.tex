@@ -4,7 +4,7 @@
 \definecolor{CoolGrey}{RGB}{158, 161, 162}    % Neutral Grey
 
 \section{High-Level System Design}
-The architecture of MERIT is designed to address the "Black-Box" nature of traditional
+The architecture of MERIT is designed to address the ``Black-Box'' nature of traditional
 recruitment systems. It is partitioned into three core pipeline stages:
 \textbf{Data Extraction and Job Configuration}, \textbf{Multi-Source Evidence Fusion}, and
 \textbf{Explainable Interpretation}. Figure \ref{fig:high_level_arch} illustrates how
@@ -16,10 +16,10 @@ the recruiter interacts with the three stages of MERIT.
 \subsection{Rationale}
 MERIT employs a decoupled microservice architecture to separate the
 concerns of data ingestion, job configuration, and the presentation of results.
-We used Flask (Python) as a backend for data ingestion and fusion due to its rich ecosystem
-of python libraries such as NLTK, Spacy, and Scikit-learn.
-To ensure fast, prototyping and development, we used TypeScript for the frontend, 
-with React and Next.js for the UI. Note that our choice of tech stack is not mandatory, it is 
+We used Flask (Python) as the backend for data ingestion and fusion due to its rich ecosystem
+of Python libraries such as NLTK, spaCy, and Scikit-learn.
+To ensure fast prototyping and development, we used TypeScript for the frontend, 
+with React and Next.js for the UI. Note that our choice of tech stack is not mandatory; it is 
 just a recommendation for fast, scalable and maintainable development.
 
 A relational PostgreSQL store (via Supabase) was selected to enforce data integrity,
@@ -27,8 +27,8 @@ ensuring that every ranked result is linked via foreign keys to a specific,
 immutable recruiter configuration.
 
 \subsection{Reliability \& Scalability}
-While prototyping MERIT, we encounntered many major obstacles that provided 
-significant obstacles to the development of the system. Below, are the two 
+While prototyping MERIT, we encountered many major obstacles
+during the development of the system. Below, are the two 
 most significant challenges that we faced:
 
 \subsubsection{The N+1 Query Bottleneck}
@@ -41,8 +41,8 @@ a large candidate pool, which will be almost always the case in real-world
 applications.
 
 \subsubsection{Global Error Handling}
-Due to the lack of type safety in python, we encountered numerous runtime errors throughout prototyping.
-One of the most significant challenges we faces was in the parsing of unstructured data (CVs and JDs).
+Due to the lack of type safety in Python, we encountered numerous runtime errors throughout prototyping.
+One of the most significant challenges we faced was in the parsing of unstructured data (CVs and JDs).
 Our approach to overcome this was in the form of the introduction of global Flask middleware to
-intercept any exceptions throughout the backend pipeline. Followiung this up with strict JSON schema validation ensures
+intercept any exceptions throughout the backend pipeline. Following this up with strict JSON schema validation ensures
 that only verified signals enter the multi-source fusion engine. This helped ensure the integrity of the explainability layer.

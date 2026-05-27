@@ -3,7 +3,7 @@
 Following the identification of systemic biases and cognitive limitations in the traditional technical recruitment process, this chapter explores the technical frameworks designed to automate and standardise candidate evaluation.
 The analysis starts off with a review of the current state-of-the-art in Applicant Tracking Systems (ATS), categorising them based on their underlying logic.
 By examining the limitations of these systems, specifically their lack of transparency, as well as reliance on a single source of data, this chapter establishes a technical requirement for multi-source explainable architectures.
-This technical foundation justifies the multimodal, evidence-driven design of MERIT as an essential advancement in the field of automated technical recruitment.
+This technical foundation justifies the multimodal, evidence-driven design of MERIT~\cite{merit_repo} as an essential advancement in the field of automated technical recruitment.
 
 \input{background/subsections/automated_screening.tex}
 
@@ -21,11 +21,11 @@ To improve contextual relevance, the system integrates Retrieval-Augmented Gener
 
 In their evaluation, the authors compare the AI-generated candidate scores with ratings by human HR professionals on a dataset of anonymised resumes.
 The results demonstrate that the multi-agent RAG-LLM system achieved strong agreement with human judgements and 
-outperform simpler baselines, indicating its potential to replicate, and perhaps improve on, the traditional screening workflows at scale.
+outperformed simpler baselines, indicating its potential to replicate, and perhaps improve on, the traditional screening workflows at scale.
 
 However, a significant limitation remains: while the architecture is more flexible than rule-based ATS, the 
 evaluation still relies on a predetermined set of scoring dimensions (skills, experience, education, background and summary), 
-each of which have fixed weights.
+each of which has fixed weights.
 The fixed dimensionality hinders the system's ability to accurately reflect role-specific priorities, unique 
 project requirements, unconventional career paths, or evolving technical criteria that may fall outside of standard categories.
 As a result, the framework struggles to fully capture the diversities and nuances inherent in real-world hiring.

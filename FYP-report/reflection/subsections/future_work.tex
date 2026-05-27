@@ -40,10 +40,11 @@ Pillar~1, as shown in prior sections, is significantly limited by layout-driven 
 Extensibility built on mis-extracted skills may propagate error into every downstream rank.
 
 \subsubsection{Layout-robust Parsing}
-Benchmark-driven resume models (such as ResumeBench \cite{emnlp2025resumebench}) should replace or augment 
-our current coordinate-based extraction \textit{pdfminer} \cite{pdfminer}, with an evaluation arm that mirrors
-Study~04 on live applicant PDFs, as opposed to template-only corpora. The acceptance criterion should be explicit,
-multi-column experience recall within a fixed margin of single-column performance before fusion is trusted on CV text alone.
+Future work for MERIT should firstly be the integration of a more robust resume model, such as ResumeBench \cite{emnlp2025resumebench}
+that should replace our current coordinate-based extraction \texttt{pdfminer} \cite{pdfminer}. For the evaluation, we should 
+conduct a study similar to Study~04, but on real applicant PDFs as opposed to synthetic candidates to accurately assess the 
+real-world nuances of candidate resumes. On a similar note, the skills dictionary should be updated with a source similar to
+Devicon, but covering tooling and other such skills that would be applicable to the world of technical recruitment.
 
 \subsubsection{Role Intelligence}
 Study~13's cross-role IDF interference suggests that we should maintain separate corpora per role family (backend, frontend, data, etc.)
@@ -59,21 +60,21 @@ accurate metric suggestions that reflect sub-domain requirements rather than fre
 
 \subsubsection{Motivation}
 Study~10 demonstrates that MERIT has the capability to fail completely when presented with a batch full of candidates 
-that have drastically conflicting evidence. While this is a rare occurance, it is a clear indication that MERIT's multi-source pillar
+that have drastically conflicting evidence. While this is a rare occurrence, it is a clear indication that MERIT's multi-source pillar
 is not robust enough to handle conflicting evidence. Fusion without safeguards is worse than CV-only screening.
 
 \subsubsection{Evaluation Cohorts}
-Fusion and Shapley studies use sparse LinkedIn personas to isolate the CV--Github contrast. A replication with fullo
+Fusion and Shapley studies use sparse LinkedIn personas to isolate the CV--GitHub contrast. A replication with fully
 populated LinkedIn profiles should be conducted before generalising source-attribution results to production,
-where LinkedIn often duplicated, but also corrects, CV claims.
+where LinkedIn often duplicates, but also corrects, CV claims.
 
 \subsubsection{Product Behaviour}
 
-The dashboard should surface explicit conflictions, such as when a candidate's CV asserts seniority in Java,
+The dashboard should surface explicit conflicts, such as when a candidate's CV asserts seniority in Java,
 but their GitHub profile shows zero Java commits in the past year. There should be the application of confidence
 gating. When inter-source variance exceeds a threshold, the engine should prompt for human review, rather than 
 produce an expected score from the beta distribution we use. Integrity checks such as the ones in Study~06 should be evolved
-with new gaming patterns, such as candidate's attempting to have multiple accounts on different platforms, tailored to 
+with new gaming patterns, such as candidates attempting to have multiple accounts on different platforms, tailored to 
 different industries and roles.
 
 \subsection{Explainability at Scale}
@@ -97,8 +98,8 @@ dynamic coalition generation replacing static source lists.
 
 \subsubsection{Blind and Contestable UI}
 Future HCI work should test blind mode once engine scores are masked to ensure fairness. We must also counterbalance the 
-stage order too, as well as using independant panels. Explainability should default to highlighting conflict and uncertainty,
-rather then only positive skill bars. This way, glass-box mode encourages calibrated scepticism, rather than give recruiters
+stage order too, as well as using independent panels. Explainability should default to highlighting conflict and uncertainty,
+rather than only positive skill bars. This way, glass-box mode encourages calibrated scepticism, rather than giving recruiters
 an excuse to fall upon automation bias.
 
 

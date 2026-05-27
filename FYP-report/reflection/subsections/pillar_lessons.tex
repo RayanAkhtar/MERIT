@@ -9,12 +9,13 @@ It is not a list of features, but rather a record of design decisions and the re
 \subsection{Pillar 1: Treat ingestion as lossy}
 \label{sec:pillar1-reflection}
 
-Study~04 reveals the reasoning behind this, more specifically, the fact that coordinate-based PDF extraction often comes with
-a wide variety of flaws and a margin for error. No two CVs are the same, and even aspects such as formatting can greatly 
-affect the accuracy of extraction. No amount of dictionary skill matching can overcome lost employment blocks. Thus, we 
-must treat unstructured data ingestion as lossy, and provide a control surface for recruiters to manually override the engine's decisions.
-In this case, we considered LinkedIn as a fallback for corrupted CV text, not as optional enrichment, a design choice that only became fully
-clear once parsing was audited.
+As we saw in Study~04, there are two main sources of loss when it comes to ingestion. Firstly, a parser
+that fails to account for variances in CV formats will often fail to provide a fair and thorough assessment of a candidate
+when they later get scored against a job description. This is evidently noticed in the difference in parsing
+for names and experience between single-column and multi-column layouts. Secondly, a dictionary that is not comprehensive 
+enough will also fail to extract all the skills that a candidate has to offer, once again, unfairly penalising candidates
+that are not on the basis of merit. LinkedIn can help serve as a fallback for potentially missed CV experience while GitHub
+can help serve as a fallback for potentially missed CV skills.
 
 \subsection{Pillar 2: Missing data $\neq$ low skill}
 \label{sec:pillar2-reflection}

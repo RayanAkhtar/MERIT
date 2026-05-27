@@ -9,7 +9,7 @@ fairer, more reliable technical screenings compared to single-source rigid black
 The motivation was to move beyond CV-only screening, with its parsing fragility, self-report bias and opaque
 automated rankings. Instead we pivot towards demonstrated evidence and recruiter-visible scoring. MERIT achieved
 this as a working end-to-end prototype (from ingestion, to scoring, to explainability) and as an evaluation 
-program of fifteen traceable studies. Given the evidence in Chapter~\ref{ch:evaluation}, the answer is a 
+program of fifteen traceable studies~\cite{merit_repo}. Given the evidence in Chapter~\ref{ch:evaluation}, the answer is a 
 qualified yes for research-prototype feasibility, however, a clear no for autonomous production deployment, as
 mentioned in Section~\ref{sec:future-work-roadmap}.
 
@@ -17,10 +17,10 @@ To anchor this judgement, consider the high-discrimination cohort of Study~07 ($
 expert rank agreement ($\rho = 0.697$, $p = 0.025$) and recovered candidates whom CV-only 
 baselines discarded when GitHub demonstrated role-relevant work (Jordan Smith, Study~01B). However, we should
 still note that under deliberate CV--GitHub dissonance, MERIT goes strongly against the expert consensus (Study~10).
-MERIT, therefore, changes who is surfaced in favourable conditions, it does not yet guarantee correct ranking in all conditions.
+MERIT, therefore, changes who is surfaced in favourable conditions; it does not yet guarantee correct ranking in all conditions.
 
 MERIT is best used as an \textbf{auditable screening assistant}, in which recruiters inspect per-source evidence, treat
-ranks as hypothesis, and override the engine's decisions where necessary. It may fail when treated as an oracle,
+ranks as hypotheses, and override the engine's decisions where necessary. It may fail when treated as an oracle,
 especially under conflicting sources, missing GitHub history, and role contexts that the metric model does not encode.
 
 

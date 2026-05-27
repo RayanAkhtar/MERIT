@@ -9,9 +9,11 @@ the significance of the structural layout of the CV on the parser's accuracy.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.95\textwidth]{../evaluation/04-ir_parser_test/output/ir_parser_accuracy.png}
-    \caption[Study~04: CV parser accuracy by layout]{Study~04 CV parser accuracy by layout. We have a total of 
-    30 CVs in this study. There is a 50/50 split between single-column and multi-column layouts. Note the significant
-    disparity between the two layouts for the experience recall metric, highlighting the structural vulnerability of the parser.}
+    \caption[Study~04: CV parser accuracy by layout]{Study~04 CV parser accuracy by layout ($N=30$, 15 single-column, 15 multi-column).
+    Skill metrics are identical across layouts, since dictionary-based regex matching is unaffected by column structure.
+    The key structural vulnerability is \textbf{name detection}, which drops from 53.3\% (single-column) to 13.3\% (multi-column)
+    as coordinate-based text extraction interleaves column content, destroying the first-line name assumption.
+    Email extraction remains robust at 100\% for both layouts.}
     \label{fig:cv_parser_accuracy}
 \end{figure}
 

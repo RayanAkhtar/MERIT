@@ -2,7 +2,7 @@
 Once candidate data and a job description have been extracted and combined in a configuration, we can then proceed to
 the execution stage. In this stage, we compute signals for each metric. This can be done in two different ways
 depending on whether the metric is baseline or extensible. Both metrics may take into account multiple data sources,
-computing up to one signal per data source per metric. If this is the case, we perform bayesian fusion to compute a single
+computing up to one signal per data source per metric. If this is the case, we perform Bayesian fusion to compute a single
 score. Once each metric has been reduced to a single value, we then undergo a weighted average of all the metrics
 to compute the final (match) score. Figure \ref{fig:schema_overview} shows how we can use a candidate's
 profile alongside a job description to produce a final score.
@@ -19,16 +19,16 @@ they are directly inferred from the Job Description. An example of an extensible
 may be "Python", which would ideally measure the candidate's skill level, or usage of the programming language. By combining these
 two classes of metrics, we are able to produce a holistic, yet highly targeted evaluation of a candidate.
 
-For both classes of metrics, the system may take into account multiple data sources. Some of these sources may self-reported
+For both classes of metrics, the system may take into account multiple data sources. Some of these sources may be self-reported
 (such as CV and LinkedIn) while other sources may be evidence-driven (such as GitHub). After reducing these signals to a single score,
 we perform a weighted average of all the metrics to compute the final (match) score.
 
 \subsection{Semantic Skill Matching}
 \label{subsec:semantic-skill-matching}
 
-One of the biggest issues with keyword-matching screening systems lies in their ridgidity.
-Suppose a candidate applied to a role where "SQL" is required, however, the candidate only uses
-"PostgrSQL" or "Postgres" in their CV. This candidate would likely achieve a zero for the "SQL" metric.
+One of the biggest issues with keyword-matching screening systems lies in their rigidity.
+Suppose a candidate applied to a role where ``SQL'' is required, however, the candidate only uses
+``PostgreSQL'' or ``Postgres'' in their CV. This candidate would likely achieve a zero for the ``SQL'' metric.
 This is where semantic skill matching (or bridging) comes in. When there are no exact matches,
 we perform a cosine similarity operation, using the \textit{SentenceTransformers} library with the 
 \textit{all-MiniLM-L6-v2} model. We selected this model due to its efficiency and accuracy regarding
@@ -44,7 +44,7 @@ similarity.
 To be considered as a semantic bridge, there must be a cosine similarity score of $\geq 0.50$ between
 the extensible metric and the skill mentioned in the candidate CV. This threshold was determined 
 through iterative testing. The threshold is permissive enough to match terms such as "SQL" and "PostgreSQL",
-while also remaining strict enough to reject other, unrelated terms such as "Python" and "JavaScript".
+while also remaining strict enough to reject other, unrelated terms such as ``Python'' and ``JavaScript''.
 Whenever there is a semantic bridge, we also pass this information to the frontend to let the recruiter know
 of both extensible metric, as well as the skill that was bridged against it, to ensure full transparency.
 This way, in the event of a false-positive, the recruiter can easily identify and correct it.
@@ -72,10 +72,10 @@ loss grows with longer periods of non-use \cite{arthur1998}. Industry research p
 become outdated far more quickly than they once did \cite{ibm2019skillsgap,wef2020futurejobs}. Traditional ATS platforms fail to account for this since
 there is often no significant evidence to uncover when the candidate last used the skill in question.
 
-MERIT attepts to overcome this issue through the addition of an exponential skill decay model for extensible metrics (e.g. "Python").
+MERIT attempts to overcome this issue through the addition of an exponential skill decay model for extensible metrics (e.g.\ ``Python'').
 We apply this to the GitHub signal, as it is the most reliable signal for demonstrating evidence of a candidate's skill.
 For other signals, it is usually harder to find a point to start the decay from, but for GitHub, we can determine it from the last
-point of significant activity. In our backend, we get the repositories' language distribution, spread it across it's active years and use that
+point of significant activity. In our backend, we get the repositories' language distribution, spread it across its active years and use that
 to calculate the last point of significant activity, using that year as the start of the decay. Subtracting this value from the current
 date nets us with the $\Delta t$ value in the decay formula:
 
@@ -110,13 +110,13 @@ proficiency in. MERIT splits these into two different forms of evidence, \textbf
 This form of evidence is commonly found in CVs and LinkedIn profiles due to the user being responsible
 for their own claims. This is the only form of evidence usually considered by ATS scoring engines, making
 these systems biased towards candidates who are able to present their skills in a better light. Self-embellishment
-if often never punished, as it is difficult to verify, but this is where the beauty of MERIT comes into play,
+is often never punished, as it is difficult to verify, but this is where the beauty of MERIT comes into play,
 with its second form of evidence.
 
 \textbf{Demonstrated Evidence} refers to evidence derived from auditable, historical actions. In our case, this is 
 specifically GitHub repositories. For example, a candidate is likely to claim Python proficiency on their CV for 
 a job application, however, this claim can be challenged by the presence of this skill on their GitHub repositories.
-Demonstrated evidence is significantly harder to game as it required a candidate to actually use it as part of 
+Demonstrated evidence is significantly harder to game as it requires a candidate to actually use it as part of 
 their own projects or daily work.
 
 This formal separation of evidence is key to MERIT's "Evidence-based evaluation" ethos, and will 
@@ -140,12 +140,12 @@ data source as independent evidence updating a Beta Distribution. We parameteris
 
 The contribution of each source $s$ to the final score of that metric is given by its raw signal $\sigma_s \in [0, 1]$ and its reliability weight $w_s$.
 Evidence-based data sources are often assigned a higher weight due to MERIT's emphasis on evidence-based screening. To encourage candidates to
-use evidence-based sources while avoiding harsh penalisation, we enforce a "Signal Cap" for sources that provide claimed evidence.
+use evidence-based sources while avoiding harsh penalisation, we enforce a ``Signal Cap'' for sources that provide claimed evidence.
 We then map these signals to the evidence parameters as follows:
 \begin{equation}
   \alpha_s = w_s \sigma_s + \epsilon_s, \quad \beta_s = w_s (1 - \sigma_s) + \epsilon_s
 \end{equation}
-where $\epsilon_s = 0.01(1 - w_s)$ represents a symmetric uncertainty term. The reason for the inclusion of $\epsilon_s$ is to emulate inject noise for
+where $\epsilon_s = 0.01(1 - w_s)$ represents a symmetric uncertainty term. The reason for the inclusion of $\epsilon_s$ is to inject noise for
 low-confidence sources to produce wider, more uncertain distributions. This stops the distribution from becoming narrow unless this candidate has the
 evidence to support their claims (since high-confidence sources provide more concentrated signals.)
 
@@ -162,7 +162,7 @@ The final posterior distribution is:
   P(\theta \mid \text{Evidence}) \sim \text{Beta}(\alpha_{total}, \beta_{total})
 \end{equation}
 
-This probabilistic approach provides a robust framework for modeling uncertainty and resolving conflicts between
+This probabilistic approach provides a robust framework for modelling uncertainty and resolving conflicts between
 different evidence sources. For a verified signal, if a candidate has claimed evidence on a CV (low weight) and also
 possesses the demonstrated evidence to back it up, such as on GitHub (high weight), then the resulting distribution will
 skew towards a high probability of the candidate possessing the skill, with low variance. On the other hand, if a skill is listed
@@ -213,17 +213,10 @@ string derivations, source confidence coefficients, and temporal decay penalties
 
 
 Listing~\ref{lst:payload_schema} in 
-Appendix~\ref{appendix:implementation_listings} demonstrates
-this architecture in practice. By exposing this data in a candidate's report, we are able to justify the
+Appendix~\ref{appendix:implementation_listings} demonstrates a truncated representation of this
+architecture in practice. By exposing this data in a candidate's report, we are able to justify the
 score for a given candidate. We can see how each data source contributed for a given metric, and to what extent.
-We can see how bayesian fusion was applied with these contributions to produce a per-metric score. From there,
+We can see how Bayesian Fusion was applied with these contributions to produce a per-metric score. From there,
 we can see how the metrics are weighted according to priority in order to produce a final match score. By showing
 every stage in detail, we are finally able to provide recruiters with the tools to challenge and interrogate the score,
-rather than just accepting the score as a black-box.
-
-
-demonstrates 
-a truncated representation of this
-architecture. By exposing this data through the system's "Insight" panel in the
-frontend, MERIT transforms a binary hiring decision into a defensible, auditable
-decision that recruiters are able to challenge and interrogate.
+rather than just accepting it as a black-box.

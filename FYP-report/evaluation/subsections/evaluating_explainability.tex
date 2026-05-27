@@ -12,9 +12,9 @@ recruiters.
 \subsection{Study 11: Shapley Value Verification}
 \label{subsec:study-11-shapley-verification}
 
-To ensure our source-level attributions are mathematically source, we shall formally evaluate the implementation against three of
-the four axioms of cooperative game theory. For our settings, we denote the candidate's final match score as the "winning" of the game,
-and the implemented data sources (GitHub, LinkedIn, CV) as the "players" ($N = \{CV, GitHub, LinkedIn\}$)
+To ensure our source-level attributions are mathematically sound, we shall formally evaluate the implementation against three of
+the four axioms of cooperative game theory. For our settings, we denote the candidate's final match score as the ``winning'' of the game,
+and the implemented data sources (GitHub, LinkedIn, CV) as the ``players'' ($N = \{CV, GitHub, LinkedIn\}$).
 
 Our Shapley values are verified using our cohort of 10 candidates. We use the same 10 candidates from the previous section.
 
@@ -49,7 +49,7 @@ Our Shapley values are verified using our cohort of 10 candidates. We use the sa
           \begin{equation}
               \text{If } v(S \cup \{i\}) = v(S) \quad \forall S \subseteq N \setminus \{i\}, \quad \text{then } \phi_i(v) = 0
           \end{equation}
-          We verify this by analyzing candidates with completely blank or missing profiles on specific channels
+          We verify this by analysing candidates with completely blank or missing profiles on specific channels
           (e.g., Ghost Gary, who lacks any public GitHub or LinkedIn footprint), verifying that their attributions are exactly zero.
 
     \item \textbf{Axiom 4: Additivity (Per-Metric Efficiency).} If a game is represented as the sum of independent sub-games
@@ -102,8 +102,8 @@ in Table~\ref{tab:shapley-verification}.
           therefore proving the mathematical validity of the engine's zero-baseline guarantee.
 
     \item \textbf{Null Player Verification:} Consider Ghost Gary, a candidate who has empty, but verified, LinkedIn and GitHub profiles.
-          This results in $\phi_{LinkedIn} = 0.0000$ and $\phi_{GitHub} = 0.0000$. This result highlights that sources which provide no
-          marginal evidence shall not receive any source attribution, therefore satisfying Axiom 3 (the Null Player axiom).
+          This results in $\phi_{LinkedIn} = 0.0000$ and $\phi_{GitHub} = 0.0000$. This result highlights that, if a source provides no
+          marginal evidence, it shall not receive any source attribution. This satisfies Axiom 3, the Null Player axiom.
 
     \item \textbf{Determinism Verification:} Over 5 repeated executions, the maximum observed drift in any candidate's Shapley value
           was exactly $0.00 \times 10^0$. This confirms that the XAI engine is perfectly deterministic, which is mathematically 
@@ -113,7 +113,7 @@ in Table~\ref{tab:shapley-verification}.
           across all candidate-metric pairs (e.g., matching the exact Python or Go individual scores).
 \end{itemize}
 
-\subsubsection{Key XAI Insights: The Power of Negative Attribution}
+\subsubsection{Key XAI Insights}
 
 The source-level attribution breakdown for each candidate is in Figure~\ref{fig:shapley-attribution-breakdown}
 (Appendix~\ref{appendix:shapley-charts}), which illustrates how the Glass-Box 
@@ -131,7 +131,7 @@ triggers an identity mismatch penalty, leading to a drop in the overall score. A
 penalty is also passed on to the frontend to be visualised and investigated to ensure actual intent of malice, allowing the
 recruiter to make an informed decision.
 
-Another core finding is, like before, Jordan Smith. As shown in previous studies, Jordan Smith is a 'hidden gem' candidate,
+Another core finding is, like before, Jordan Smith. As shown in previous studies, Jordan Smith is a ``hidden gem'' candidate,
 usually scoring poorly in CV-only evaluation, however scoring highly when GitHub is included. The evidence of this can be
 shown by his CV contribution of $\phi_{CV} = 0.103$, while his GitHub contribution is $\phi_{GitHub} = 0.410$. This enables
 recruiters to instantly see that Jordan's high overall score is backed by demonstrated evidence, rather than just self-reported
@@ -143,7 +143,7 @@ MERIT can function effectively even with limited data. It also highlights that L
 secondary source of evidence for inaccurate parsing of unstructured data (CVs), rather than a primary source of evidence.
 Conceptually, we wished to highlight the core architectural distinction between the role of claimed evidence (CVs and LinkedIn)
 and demonstrated evidence (GitHub). Both CVs and LinkedIn profiles typically represent the same self-reported, claimed evidence,
-and are authored by the candidate themself. They are subject to the same faking, exaggerations and keyword-stuffing behaviours.
+and are authored by the candidate themselves. They are subject to the same faking, exaggerations and keyword-stuffing behaviours.
 As a result, LinkedIn data was often neglected in this study, since there is little need to enforce the same signals in LinkedIn
 which would already be present in the synthetic data created for these personas. Contrasting to this, GitHub represents the
 independent, demonstrated evidence, providing us with means to calculate the complexity of a candidate's code, their language
@@ -153,7 +153,7 @@ the importance of additional evidence sources to create a holistic picture of a 
 \begin{table}[htbp]
     \centering
     \caption[Study~11: Aggregate Shapley by source]{ Study~11: Shapley attributions per source for the ten-candidate cohort in \ref{tab:shapley-verification}.
-    The shares sum positive $\phi_i$ only, excluding the negative GitHub penalty from the pie's demoninator to avoid the potential for zero division,
+    The shares sum positive $\phi_i$ only, excluding the negative GitHub penalty from the pie's denominator to avoid the potential for zero division,
     for future evaluation runs.}
     \label{tab:shapley-source-dominance}
     \vspace{1.5ex}
@@ -231,7 +231,7 @@ We present the quantitative results of this trial in Table~\ref{tab:hci-trial-re
 
 \begin{table}[htbp]
     \centering
-    \caption[Study~14: HCI pilot results]{ Quantitative results of Study~14, with $N = 5 Evaluators$. Decisions are split into shortlisted and rejected decisions ($S$ and $R$ respectively).
+    \caption[Study~14: HCI pilot results]{ Quantitative results of Study~14, with $N = 5$ evaluators. Decisions are split into shortlisted and rejected decisions ($S$ and $R$ respectively).
     Decision Reversal Rate (DRR) refers to a Stage 1 decision that was later reversed in Stage 2 after being presented with the Glass-Box scorecard.
     Confidence follows the 5-point Likert scale (1 = Not Confident, 5 = Extremely Confident)}
     \label{tab:hci-trial-results}
@@ -255,9 +255,9 @@ none are confirmed at inferential strength given $N=5$. We detail the results be
 \subsection*{Quantitative Results}
 
 \subsubsection{Decision Calibration (Hypothesis 1)}
-During the first stage, we can see the issue of the "resume black hole", all 5 candidates rejected Yusuf Nilsson
+During the first stage, we can see the issue of the ``resume black hole'': all 5 evaluators rejected Yusuf Nilsson
 due to his low tenure (1 year of experience on CV). However, upon transitioning to stage 2, we see that 4/5 evaluators
-(80\% DRR) reversed their decision, recognising his valuable github contributions. Recruiter $R_2$ chose to
+(80\% DRR) reversed their decision, recognising his valuable GitHub contributions. Recruiter $R_2$ chose to
 maintain the rejection, noting that the JD strictly required 3+ years of experience regardless
 of technical strength. This illustrates how human decision-makers calibrate system outputs with non-quantifiable
 operational constraints.
@@ -301,28 +301,28 @@ friction of automated screening.
 
 One of the technical recruiters ($R_1$) noted:
 \begin{quote}
-    \textit{"Traditionally, ATS scores are black boxes. We either trust them blindly or ignore them completely. Seeing exactly
+    \textit{``Traditionally, ATS scores are black boxes. We either trust them blindly or ignore them completely. Seeing exactly
         how much GitHub contributed versus self-reported CV claims completely changed how I assessed Yusuf Nilsson. It gave me
-        the confidence to shortlist a candidate I would have normally filtered out within seconds."}
+        the confidence to shortlist a candidate I would have normally filtered out within seconds.''}
 \end{quote}
 
 Professional Recruiter $R_2$ added a comment reflecting realistic operational friction:
 \begin{quote}
-    \textit{"While the Glass-Box scorecard shows he has elite technical skills verified by public code, our client's visa
-        requirements strictly mandate a minimum of 3 years of professional tenure. I cannot shortlist him."}
+    \textit{``While the Glass-Box scorecard shows he has elite technical skills verified by public code, our client's visa
+        requirements strictly mandate a minimum of 3 years of professional tenure. I cannot shortlist him.''}
 \end{quote}
 
 Similarly, MEng Student Peer $P_3$ noted:
 \begin{quote}
-    \textit{"The keyword stuffing warning is a serious red flag, but the resume still claims senior Go and Kubernetes
-        experience. I will keep him shortlisted for a brief technical phone screen to probe his actual knowledge."}
+    \textit{``The keyword stuffing warning is a serious red flag, but the resume still claims senior Go and Kubernetes
+        experience. I will keep him shortlisted for a brief technical phone screen to probe his actual knowledge.''}
 \end{quote}
 
 Technical Recruiter $R_1$ added regarding the identity mismatch veto:
 \begin{quote}
-    \textit{"The second I saw the red 'Identity Mismatch Veto' flag on Aaron's profile, it was an immediate reject. In our
+    \textit{``The second I saw the red `Identity Mismatch Veto' flag on Aaron's profile, it was an immediate reject. In our
         job, honesty is everything. If the software shows you've linked a GitHub account that is active under a completely
-        different name, there is no point looking any further. It saved me a lot of wasted phone screening time."}
+        different name, there is no point looking any further. It saved me a lot of wasted phone screening time.''}
 \end{quote}
 
 Collectively, these results provide formative support for MERIT's explainability pillar. Study~11 confirms theoretical consistency. 

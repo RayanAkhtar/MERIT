@@ -2,23 +2,21 @@
 \label{sec:objectives-retrospective}
 
 MERIT's original motivation was to pivot technical recruitment away from a single self-reported data source (CV), and instead
-towards demonstrated, multi-source evidence with transparent scoring. The initial intenttions also included the leveraging of extensible metrics, 
+towards demonstrated, multi-source evidence with transparent scoring. The initial intentions also included the leveraging of extensible metrics, 
 data fusion and glass-box explainability to combat the many limitations of rigid Black-Box ATS systems that often lack flexibility, 
 transparency and auditability. Chapter~\ref{ch:evaluation} tested each pillar, and the pattern below is that 
 strengths and weaknesses appear together, not in isolation. Where we may observe a strength in one area of the pillar, it is often
-accompanied one or more weaknesses to the same pillar, or potentially other pillars.
+accompanied by one or more weaknesses to the same pillar, or potentially other pillars.
 
 \subsubsection{Pillar 1 (Extensible evaluation)}
 
 \textbf{Worked:} Recruiter-configurable weights, semantic skill matching and JD-driven metric priorities that align relatively
 well with expert consensus. Linear single-column CVs parse well enough for downstream scoring.
 
-\textbf{Failed:} Overall CV skill $F_1$ is 57.34\%; multi-column layouts collapse experience recall to 16.67\%, and JD skill $F_1$ is 40.81\%.
-Extensibility is somewhat real, but often configured on mis-read documents. This is a \emph{control surface}, not a trustworthy 
-parser (Section~\ref{subsec:study-04}).
-
-
-
+\textbf{Failed:} Overall CV skill $F_1$ is 49.4\%, driven by a limited dictionary that is only scoped to 
+programming languages and web frameworks from Devicon. Multi-column layouts also fail when it comes to 
+name detection, falling from 53.3\% to 13.3\%, and the JD skill $F_1$ is 40.81\%. Extensibility is
+real, but often configured on mis-read documents. 
 
 \subsubsection{Pillar 2 (Multi-source fusion)}
 
@@ -38,7 +36,7 @@ Fusion is strongly dependent on the presence of strong, reliable evidence that i
 \textbf{Worked:} Shapley axioms hold where applicable (Study~11), negative attributions make penalties legible, Study~14
 shows recruiters overturning bad shortlists upon evidence of fraud or stuffing in a formative pilot ($N=5$; mean SUS 81.5).
 
-\textbf{Failed:} Poor scalability of explainability, with an $\approx 5.6\times$ due to the introduction of Shapley values for each candidate.
+\textbf{Failed:} Poor scalability of explainability, with an $\approx 5.6\times$ slowdown due to the introduction of Shapley values for each candidate.
 With more data sources, the cost of explainability scales as $O(2^n)$, making it impractical for a significant number of data sources. Blind mode
 still intentionally exposes engine scores and tier labels, which could be considered as a form of bias. Transparent breakdowns can instead anchor
 automation bias rather than eliminate it (Section~\ref{subsec:construct-validity}).
@@ -46,7 +44,7 @@ automation bias rather than eliminate it (Section~\ref{subsec:construct-validity
 \subsubsection{Overall} 
 Algorithms are never perfect, the key to a good hiring process is to use them as a tool to help recruiters make better decisions, 
 rather than as a replacement for human judgement. MERIT leveraged multi-source evidence to help recruiters consider evidence that candidates
-typically provide in their CVs, rather than letting candidate effort's go unrewarded. It is not perfect, but it is a step in the right direction.
+typically provide in their CVs, rather than letting candidates' efforts go unrewarded. It is not perfect, but it is a step in the right direction.
 The main design takeaways are that extensibility is real, but built on a lossy ingestion layer, multi-source fusion is powerful but not monotonic,
 and explainability is a double-edged sword. The evaluation and deployment limits are that MERIT is not perfect, and it is not ready for production deployment.
 

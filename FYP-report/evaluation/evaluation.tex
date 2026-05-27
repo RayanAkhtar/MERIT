@@ -2,25 +2,25 @@
 \label{ch:evaluation}
 
 This chapter presents the results of the rigorous mathematical, computational, and human trials conducted
-to validate the MERIT architecture. The evaluation suite is designed to test the system's functionality
-and validate its three core pillars: Extensibility, Multi-Source Fusion, and Explainability.
+to validate the MERIT architecture. First, we will evaluate whether the three pillars of MERIT are working as intended.
+From there, we continue with a series of human trials to evaluate its usability in real-world scenarios. From there,
+we then test the system's fairness and computational scalability, both spacetime and runtime. Finally, we conclude with
+a discussion of the many threats to validity towards both the generation and interpretation of the results throughout
+this chapter.
 
 \subsection*{Codebase Traceability \& Evaluation Mapping}
 To ensure transparency and auditability, our evaluation structure maintains a one-to-one mapping with the
-active implementation files and subdirectories. This is located within the github repository's \textit{/evaluation/}
-directory. In this chapter, we will refer to a distinct study with a numerical prefix. This prefix correlates directly
-to the prefix of the study within the evaluation directory. For example, Study 04 (Information Retrieval
-Parser Accuracy) corresponds to the \texttt{04-ir\_parser\_test/} directory.
+active implementation files and subdirectories. This is located within the project repository's \textit{evaluation/}
+directory~\cite{merit_repo}. In this chapter, we will refer to a distinct study with a numerical prefix. This prefix correlates directly
+to the prefix of the study within the evaluation directory. For example, Study 04 would be found in the \texttt{04-ir\_parser\_test/} directory
+due to the $04$ prefix.
 
-Rather than presenting the studies in numerical order, we will instead present them in the logical order of the
-MERIT pipeline. This allows us to build up the results section in a logical, bottom-up manner. We will first test MERIT's
-ingestion, extensibility, and dynamic metric extraction foundation, followed by its core scoring and multi-source fusion
-engine (comprising temporal decay, source and algorithmic ablations, and conflict resolution). Finally, we test the
-explainability layer through game-theoretic checks and recruiter trials. We then evaluate human-machine expert alignment
-through Spearman's correlation, conclude with fairness and computational rigour, and discuss threats to validity. This ensures
-that the reader can follow the evaluation in a logical order, building up a comprehensive understanding of the system.
 
-\textbf{Figures.} Numeric results are presented in the main chapter as tables where possible. 
+Note that while the numbering of the studies is in terms of their implementation, we alter the order in which
+we present these studies in order to display the results and findings in a logical, bottom-up manner that is
+easier to follow. 
+
+Numeric results are presented in the main chapter as tables where possible. 
 Bar charts, pie charts, and other large figures are deferred to the appendix and cited inline.
 
 \input{evaluation/subsections/foundational_accuracy.tex}

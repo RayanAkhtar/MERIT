@@ -1,4 +1,5 @@
 \section{Stage 1: Data Extraction and Job Configuration}
+\label{sec:stage1-extraction}
 The first stage of the MERIT pipeline focuses on \textit{Data Extraction} and \textit{Job Configuration}.
 Here, we translate unstructured job requirements into a structured, weighted mathematically-backed profile.
 Rather than requiring recruiters to manually define every skill and priority, MERIT leverages automated extraction
@@ -9,36 +10,62 @@ job setup.
 
 
 \subsection{Ingestion \& Normalisation}
+\label{subsec:ingestion-normalisation}
 The first step in this stage is the ingestion and normalisation of heterogeneous data sources.
 As shown in Figure \ref{fig:extraction_flow}, 
 MERIT has the capability to parse both unstructured and structured data sources. In this 
 case, the unstructured data sources are the CVs and JDs, while the structured data sources 
 are the GitHub and LinkedIn API endpoints. This layer performs canonical skill mapping 
 to ensure that signals from different sources can be compared within a unified schema.
+Custom parsing scripts in \texttt{backend/core/parsers} ingest, sanitise, and extract key entities from unstructured PDFs.
 
 \input{implementation/high_level_system_design/extraction_layer_diagram.tex}
 
+\subsubsection{PDF Text Extraction and Cleaning}
+MERIT uses the Python libraries \texttt{pdfplumber} and \texttt{pdfminer} \cite{pdfminer} to extract text from CV and JD PDFs.
+These tools often leave parsing noise and unwanted characters, so the raw text is sanitised by removing null bytes
+(\texttt{\textbackslash u0000}) and redundant whitespace before downstream extraction.
+
+\subsubsection{Identity, Contact, and Profile Links}
+To extract candidate identities, the first 500 characters of a CV are processed by spaCy's English NER pipeline
+(\texttt{en\_core\_web\_sm}) \cite{spacy2020}. Names are taken from entities labelled \texttt{PERSON},
+email addresses are extracted with Python's \texttt{re} library, and phone numbers with the \texttt{phonenumbers} library.
+Where CVs contain profile URLs, GitHub and LinkedIn usernames are resolved by matching against each platform's domain.
+
 \subsection{Skill Extraction \& Preprocessing}
 
-For MERIT's ingestion stage, we tend to follow a similar approach to that of other existing ATS systems.
+For MERIT's ingestion stage, we follow a similar approach to that of other existing ATS systems.
 The main part we would like to point out is the extraction of technical skills from both JDs and CVs.
-To do this, we build a dcitionary of $\approx 500$ technical langauges and frameworks, statically available as 
-\textit{skills\_data.json}. This data is updated periodically with a script from the devicon dataset to ensure
-that it stays up to date with the latest technologies. Once the dictionary is build, we perform regex matching on
-the text to identify exact matches to the skill (ensuring that "C++" does not match "C") to prevent false positives.
-During this stage, we also group variations of the same skill (for example, "JS" and "JavaScript") to prevent inaccuracies
+We maintain a dictionary of $\approx 420$ technical languages and frameworks, statically available as
+\textit{skills\_data.json}. This data is updated periodically with a script that scrapes the Devicon dataset to ensure
+that it stays up to date with the latest technologies. 
+
+We must note that Devicon is not comprehensive enough to cover all of the skills that a candidate may have.
+Devicon is limited to programming languages and also frameworks, but fails to include observability tooling,
+infrastructure tools and productivity software. The result of this is that skills such as Terraform, Kafka, Prometheus, and
+Jira will not be matched even if they appear in a CV, nor will they be considered when setting weights for a job.
+This limitation is noted in Section~\ref{subsec:study-04}.
+Once we have the dictionary built, we perform case-insensitive regex matching
+with strict word boundaries (\texttt{\textbackslash b}) so that, for example, ``C++'' does not match ``C'' and ``R'' does not match within ``Ruby''.
+During this stage, we also group variations of the same skill (for example, ``JS'' and ``JavaScript'') to prevent inaccuracies
 later on during the scoring stage, and alternate names when creating job match configurations, reducing unnecessary clutter.
+
+\subsubsection{Heuristic Section Segmentation}
+During the parsing of CVs, we attempt to segment the text blocks into common sections, such as experience, education and projects.
+We do this by identifying commonly used section headings (e.g.\ ``Experience'', ``Education'', ``Projects''). We also use common
+delimiters to split text blocks and bullet points, allowing us to extract the roles, companies and institutions. We also use
+regular expressions to extract date ranges as well.
 
 \subsection{Dynamic Metric Weighting}
 Another key innovation towards the extensibility of MERIT lies in the inference of skill importance
 when setting weights during the configuration stage. This is achieved through the application of a
 modified Term Frequency-Inverse Document Frequency (TF-IDF) approach. This aligns with foundational
 Information Retrieval theory \cite{sparckjones1972idf}, which establishes that skills with a high
-Inverse Document Frequency (IDF) are significantly more "informative" for distinguishing specific
+Inverse Document Frequency (IDF) are significantly more ``informative'' for distinguishing specific
 job roles than universally common terms.
 
 We calculate the TF-IDF scores based on both the job description, as well as the market corpus.
-The \textbf{Term Frequency (TF)}, or "Job Intensity," reflects the employer's subjective emphasis
+The \textbf{Term Frequency (TF)}, or ``Job Intensity'', reflects the employer's subjective emphasis
 and is calculated as:
 
 \begin{equation}
@@ -47,7 +74,7 @@ and is calculated as:
 
 Where $f_{s, J}$ is the number of times skill $s$ is mentioned in the job description
 $J$, and $\sum w_k$ is the total word count of the document. Simultaneously, the \textbf{Inverse Document Frequency (IDF)},
-or "Market Scarcity," is calculated as:
+or ``Market Scarcity'', is calculated as:
 
 \begin{equation}
     IDF(s, D) = \log\left(\frac{N}{1 + df(s)}\right) + 1
@@ -61,7 +88,7 @@ $W_s$ for each skill is the product of these two components:
     W_s = TF(s, J) \times IDF(s, D)
 \end{equation}
 
-For each configured job, we compute the $W_s$ scores for each skill, this may also commonly referred to as an extensible metric.
+For each configured job, we compute the $W_s$ scores for each skill; this may also be commonly referred to as an extensible metric.
 These raw scores are the product of the TF and IDF scores for each skill. From here, we then min-max normalise the scores
 to the range $[1.0, 5.0]$ with one decimal place. Higher values mean stronger emphasis on that skill for the given job.
 If a JD mentions both a common skill (e.g.\ ``Python'') and a rarer one (e.g.\ ``Jupyter''), the rarer term tends toward 

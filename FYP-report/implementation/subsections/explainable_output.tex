@@ -1,53 +1,53 @@
 \section{Stage 3: Explainable and Auditable Rankings}
 The last stage of MERIT takes place once we have finished computing metrics for all of the candidates in the job configuration.
 In this stage, we translate the complex internal mathematical states into transparent human-readable audit trails, as well as
-simple visualisations to aid readability and understanding. MERIT aim of being a glass-box recruitment depends upon this stage,
+simple visualisations to aid readability and understanding. MERIT's aim of being a glass-box recruitment system depends upon this stage,
 as we need to ensure that recruiters are not just given a final score, but also the quantitative reasoning behind that score to either
 trust, or even challenge candidate scores. We aid this by also providing probabilistic confidence scoring, applying Cooperative Game
 Theory for data source contributions both to the candidate's final score, as well as to their individual metrics.
 
 \subsection{Metric Confidence}
 As mentioned in the previous chapter, Bayesian Evidence Fusion not only provides an expected value, but also a variance, in other words,
-the certainty of that candidate's score. Two candidates may have a similar expected score for a metrics, but could have vastly different
+the certainty of that candidate's score. Two candidates may have a similar expected score for a metric, but could have vastly different
 levels of confidence due to the sources of information for that metric. For example, one candidate may have verified signals across multiple
 sources, while another candidate may only have a single, unverified claim from a low-trust source. It is important that a recruiter is able
 to know of this, and in a simple manner.
 
 We defined how variance is computed in section 4.3.4. We build upon this by now computing the confidence interval for that candidate's score.
 Firstly, we calculate the standard deviation as $\sigma = \sqrt{\text{Var}(\theta)}$ to quantify this uncertainty. In our implementation of
-MERIT, we avoid displaying confidence intervals to avoid cognitive overload for the recruiter. Instead, we express our confidence in a candidates
-score by outputting a label: "High Confidence", "Medium Confidence", or "Low Confidence".
+MERIT, we avoid displaying confidence intervals to avoid cognitive overload for the recruiter. Instead, we express our confidence in a candidate's
+score by outputting a label: ``High Confidence'', ``Medium Confidence'', or ``Low Confidence''.
 
-We define "High Confidence" as a standard deviation $\sigma < 0.20$, "Medium Confidence" as $0.20 \le \sigma < 0.35$, and
-"Low Confidence" as $\sigma \ge 0.35$.
+We define ``High Confidence'' as a standard deviation $\sigma < 0.20$, ``Medium Confidence'' as $0.20 \le \sigma < 0.35$, and
+``Low Confidence'' as $\sigma \ge 0.35$.
 
 By outputting intuitive labels, rather than raw intervals, recruiters can quickly scan whether a candidate's score is
 backed by a variety of strong evidence.
 
 
 \subsection{Data Source Attribution}
-While Bayesian Evidence Fusion and confidence scoring addresses the problem of understanding a candidate's proficiencies, we must address
+While Bayesian Evidence Fusion and confidence scoring address the problem of understanding a candidate's proficiencies, we must address
 the biggest disadvantage of this approach. Bayesian Evidence Fusion, at its core, is an aggregation mechanic that fuses multiple signals
 together. We lose key information about the impact of each data source on that metric's final score. We cannot tell if a candidate got a high
-score due to one very strong signal, or due to many weak signals. This is a problem that shatters the "Glass-box" goal of merit, so its vital
+score due to one very strong signal, or due to many weak signals. This is a problem that shatters the ``Glass-Box'' goal of MERIT, so it's vital
 that we address this.
 
-In a true "Glass-Box" system, recruiters must be able to understand the reasoning behind the scores, whether this was driven by demonstrated
-evidence or claimed evidence. To solve this, turn towards cooperative game theory, namely Shapley values. When data sources contain
+In a true ``Glass-Box'' system, recruiters must be able to understand the reasoning behind the scores, whether this was driven by demonstrated
+evidence or claimed evidence. To solve this, we turn towards cooperative game theory, namely Shapley values. When data sources contain
 overlapping or redundant signals, naive percentage breakdowns fail to accurately share credit amongst data sources. Shapley values
-overcome this through a mathematically rigorous method of fairly distributing the total "payoff" (the candidates score) amongst the
-cooperating "players" (the data sources).
+overcome this through a mathematically rigorous method of fairly distributing the total ``payoff'' (the candidate's score) amongst the
+cooperating ``players'' (the data sources).
 
 In MERIT's current implementation, we currently only support three data sources: CV, GitHub, and LinkedIn
 ($N = \{\text{CV}, \text{GitHub}, \text{LinkedIn}\}$, $n = 3$). The value $v(S)$ of a coalition of sources is the score that we achieve
-when the candidate is evaluated using only the data from those sources, with non-coalition sources strictly masked. In other words, If we want
-to compute the value of the coalition of sources {CV, GitHub}, we first take a candidate and provide the system with
+when the candidate is evaluated using only the data from those sources, with non-coalition sources strictly masked. In other words, if we want
+to compute the value of the coalition of sources \{CV, GitHub\}, we first take a candidate and provide the system with
 their CV and GitHub. We then run the MERIT evaluation pipeline, but with the LinkedIn source strictly masked. This
 means that any claims or signals coming from the LinkedIn profile will not be considered. The output of this
-evaluation is the value of the coalition {CV, GitHub} for that candidate.
+evaluation is the value of the coalition \{CV, GitHub\} for that candidate.
 
 For the set of sources $N$, the number of possible coalitions is $2^n$. In our case, we have $2^3 = 8$ possible coalitions.
-To arrive at the shapley value $\phi_i$ for a single source $i$, we must sum the marginal contributions
+To arrive at the Shapley value $\phi_i$ for a single source $i$, we must sum the marginal contributions
 of that source across all coalitions that it is a part of, weighted by the size of the coalition. This can be
 computed by the following equation:
 
@@ -75,7 +75,7 @@ or rejected from an ATS, both candidates, as well as the recruiters have no insi
 neither party can learn from this interaction, or challenge the claims that the system makes.
 
 It is for this reason that MERIT implements the principle of \textit{contestability}. Recruiters are not presented with
-a "black-box" score, instead, they are given the specific evidence signals used to derive that score through a comprehensive
+a ``black-box'' score; instead, they are given the specific evidence signals used to derive that score through a comprehensive
 audit trail. This way, we can not only provide rankings (like all other ATS systems), but explain the quantitative
 reasoning behind them. This end-to-end transparency allows a human-in-the-loop to identify and override potential
 algorithmic edge cases, ensuring that the final decision remains human-centric and auditable.
@@ -87,8 +87,8 @@ this logic. For a complete, step-by-step visual breakdown of the Verification Au
 (including temporal decay and Bayesian fusion), please refer to Appendix \ref{appendix:math_trail}. This explicitly demonstrates
 how the level of confidence is derived, along with the Shapley Values for each data source.
 
-This "Glass-Box" approach attempts to bridge the gap between complex probabilistic mathematics and practical recruitment
-workflows, transforming a binary hiring decision into a defensible and interrogate-able process.
+This ``Glass-Box'' approach attempts to bridge the gap between complex probabilistic mathematics and practical recruitment
+workflows, transforming a binary hiring decision into a defensible and interrogable process.
 
 
 \subsection{Relative Cohort Normalisation}
@@ -101,12 +101,12 @@ baseline metrics.
 In order to achieve dynamic cohort normalisation, MERIT undergoes a two-pass approach. During the first pass of this stage, the backend
 calculates the raw, absolute metrics for every candidate in the batch (such as Years of Experience, or Total GitHub repositories). Then
 we aggregate these results to identify cohort maximums. In the second pass, we rerun the scoring engine, normalising candidate metrics against
-the batch maximums. This approach, while not runtime efficient for extremely large datasets, ensures that MERIT's ranking remain adaptive
+the batch maximums. This approach, while not runtime efficient for extremely large datasets, ensures that MERIT's rankings remain adaptive
 to the competitive landscape, rather than an arbitrary baseline.
 
 \subsection{Glass-Box Dashboard}
 Understandably, presenting the raw JSON \textit{results\_payload} is unreasonable due to it being inherently unscalable and poor UX.
-We will briefly go over the main features of our Next.js frontend to create an intuitive, visual "Glass-Box" dashboard.
+We will briefly go over the main features of our Next.js frontend to create an intuitive, visual ``Glass-Box'' dashboard.
 
 The first feature is probabilistic confidence labels, derived from the standard deviation $\sigma$ of the Beta distribution mentioned
 in the previous chapter. We map $\sigma$ to a traffic-light badge system (Green for High, Amber for Medium, Red for Low),
@@ -114,10 +114,10 @@ allowing recruiters to instantly scan the reliability of a candidate's metric at
 more so when it comes to extensible metrics, where there is more uncertainty due to the ambiguity of how such metrics may be defined,
 and calculated.
 
-Another key innovation towards the UX of merit is the "Insights" panel. When viewing the ranking tables of a candidate, recruiters can open
-a "report" for them, which will provide them with an overlay of, not only the candidate's score, but also how it was calculated. The metric's
+Another key innovation towards the UX of MERIT is the ``Insights'' panel. When viewing the ranking tables of a candidate, recruiters can open
+a ``report'' for them, which will provide them with an overlay of, not only the candidate's score, but also how it was calculated. The metric's
 calculation is also provided as a human-readable string, which can be used to understand the logic behind the score. To further aid transparency,
-any penalisations such as (such as Squatting) are also flagged to the user to highlight the negative impact of such actions on the candidate's score.
+any penalisations (such as Squatting) are also flagged to the user to highlight the negative impact of such actions on the candidate's score.
 To ensure full auditability, we also provide views of each candidate's extracted data sources, so that recruiters can cross-check the audit trail.
 It is also possible to view skillsets that may have not been considered by the scoring engine, for example, a configuration may have had Python
 as a metric, but the candidate may have Jupyter Notebook listed in their GitHub section of this view. If the semantic bridge mechanic fails to 
@@ -139,8 +139,8 @@ catch this, the recruiter would be able to still observe this data and potential
     \includegraphics[width=0.95\textwidth]{implementation/screenshots/metric_insights_panel.png}
     \caption[Metric Insights panel (Python)]{The expanded Insights panel for a specific metric (Python). This is a candidate-specific
     breakdown of the candidate's final score, detailing per-metric values as well as the confidence level of that metric. This view
-    presents a medium confidence score, as given by the amber traffic light color. It is possible to view the audit trail to view per-source
-    breakdowns of the score, as well as how bayesian fusion was applied to the score, along with a Shapley Value breakdown as well.
+    presents a medium confidence score, as given by the amber traffic light colour. It is possible to view the audit trail to view per-source
+    breakdowns of the score, as well as how Bayesian fusion was applied to the score, along with a Shapley Value breakdown as well.
     Relative, actionable advice is also provided to the recruiter to improve the candidate's score, or note why a candidate failed to achieve 
     a higher score.}
     \label{fig:insights_dashboard}

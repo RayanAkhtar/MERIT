@@ -1,50 +1,16 @@
 \section{Evaluating Pillar 1: Extensibility}
 \label{sec:foundational-ingestion-extensibility}
 
-In real-world applications, the performance of MERIT is heavily dependent on the accuracy of its information
-retrieval (IR) layer, also referred to as the ingestion and extraction pipeline. This layer is responsible
-for parsing structured and unstructured candidate documents and job descriptions. For this evaluation, we
-focus primarily on unstructured data formats (PDF-based CVs and JDs), as structured profile feeds
-(such as raw LinkedIn or GitHub JSON payloads) present trivial extraction tasks that do not require
-layout-based parsing.
 
-Our evaluation consists of two separate audits measuring the accuracy of information retrieval for CVs
-and JDs, respectively. Both studies compare the system's extraction outputs against human-verified
-ground-truth datasets, evaluating a total of 30 CVs (balanced across diverse layouts) and 15 JDs.
-Per-document score distributions are in Appendix~\ref{appendix:ingestion-charts}, 
-summary tables remain below.
-
-\subsection{Ingestion Methodology}
-The ingestion layer implements custom parsing scripts located in \texttt{/backend/core/parsers}. These
-scripts ingest, sanitise, and extract key entities from unstructured PDF files through the following
-pipeline:
-
-\subsubsection{Text Extraction and Sanitisation}
-For both CVs and JDs, raw text and embedded hyperlinks are extracted using the Python libraries
-\texttt{pdfplumber} and \texttt{pdfminer} \cite{pdfminer}. The extracted raw text is then sanitised by
-removing null bytes (\texttt{\textbackslash u0000}) and redundant whitespace characters.
-
-\subsubsection{Named Entity Recognition \& Contact Parsing}
-To extract candidate identities, the first 500 characters of the document are processed by spaCy's
-English NER pipeline (\texttt{en\_core\_web\_sm}) \cite{spacy2020}. Candidate names are identified by
-matching the \texttt{PERSON} entity label. Email addresses are extracted using targeted regular expressions,
-while phone numbers are validated and normalised using Google's \texttt{phonenumbers} library. Professional
-links are matched against LinkedIn and GitHub domains, falling back to heuristic username matching patterns
-where explicit URLs are absent.
-
-\subsubsection{Dictionary-Based Skill Extraction}
-Skills are identified using a dictionary-based matching engine that references a local index file,
-\textit{skills\_data.json}. This file is dynamically updated via an automated ingestion script that scrapes
-Devicon, a comprehensive community database of developer technology names and logos. Case-insensitive matches
-are performed using regular expressions. To prevent false positive matches, strict word boundaries are enforced
-using the \texttt{\textbackslash b} regex metacharacter. This ensures, for example, that the programming language
-"R" is not falsely matched within the text token "Ruby".
-
-\subsubsection{Heuristic Section Segmentation}
-When parsing CVs, the extraction engine segments the document text by identifying commonly used section
-headings (e.g., 'Experience', 'Education', 'Projects'). Bullet points and text blocks are split along common
-delimits (pipes, colons, and commas) to extract roles, companies, and institutions, while regular expressions
-extract and normalise temporal date ranges.
+In order for a screening system to be effective, it requires data to be ingested in a way that is accurate and reliable.
+Therefore, the first area that we will evaluate is MERIT's ingestion layer, to ensure that it is reliable enough to
+parse unstructured documents, specifically CVs and JDs. We do not consider structured data sources such as LinkedIn and GitHub
+since there is no need to parse them, as they are already in a structured format. We begin with two studies, 
+one for CVs and one for JDs, to evaluate the accuracy of the ingestion layer. Both studies compare the system's extraction 
+outputs against human-verified ground-truth datasets, evaluating a total of 30 CVs (balanced across diverse layouts) and 15 JDs.
+To finish the evaluation of this section, we then consider how well the metric priority predictions align with that
+of a panel of recruiters. Throughout the evaluation, we present data in a tabular format; for graphical representations of the 
+results displayed in this section, please refer to Appendix~\ref{appendix:ingestion-charts}.
 
 \subsection{Evaluation Metrics}
 \label{subsec:mathematical-metrics}
@@ -82,24 +48,27 @@ Experience Recall ($R_{exp}$) is thus:
 \end{equation}
 
 \subsubsection{Identity and Metadata Matching}
-For the identity matches of both candidate CVs and JDs, we care about exact matches, so we do not compute
-precision and recall, but rather a match rate. For candidate CVs, we evaluate name and email matches as
-exact binary matches, we do the same for job titles in JDs. However, for the company name of the JD, we
-perform a partial containment indicator, checking to see if the ground truth label is a substring of the
-extracted label.
+When it comes to the extraction of identity for both CVs and JDs, we only consider the exact matches, since
+metrics such as precision and recall are not applicable in that case. For CVs we do this for both name and 
+email addresses. For the JD, while we do perform a similar operation, we are less strict with the matching,
+it is considered a match if the ground truth label is a substring of the extracted label to account for the 
+difficulty of matching the company name exactly in JDs.
 
 \subsection{Study 04: CV Ingestion Accuracy}
 \label{subsec:study-04}
 
-We evaluate the CV parser on a pool of 30 candidate CVs, covering common LaTeX templates, corporate two-page
-documents and also multi-column layouts, structured as a perfectly balanced comparative set of 15
-single-column and 15 multi-column profiles. The compiled results of this evaluation are presented
-in Table \ref{tab:cv_parser_results}.
-
+We evaluate the CV parser on a pool of 30 candidate CVs structured as a perfectly balanced
+comparative set of 15 single-column and 15 multi-column profiles, spanning a range of seniority
+levels and technical roles. Note that the single-column and multi-column datasets both have
+the same content for a given candidate, the only differing factor is the layout of the CV.
+This is important to note since the layout of the CV can have an impact on the accuracy of the parser.
+The ground truth for each candidate was crafted independently from the raw PDF, and verified by the author of this report
+to ensure that it is accurate and complete.
+Table~\ref{tab:cv_parser_results} presents the compiled results.
 
 \begin{table}[htbp]
     \centering
-    \caption[Study~04: CV ingestion by layout]{Study 04: Breakdown of CV Ingestion Accuracy Metrics by Layout Type ($N=30$). 
+    \caption[Study~04: CV ingestion by layout]{Study 04: Breakdown of CV Ingestion Accuracy Metrics by Layout Type ($N=30$).
     There is a 50/50 split between single-column and multi-column CVs.}
     \label{tab:cv_parser_results}
     \begin{tabularx}{\textwidth}{
@@ -111,12 +80,12 @@ in Table \ref{tab:cv_parser_results}.
         \hline
         \textbf{Metric Type}         & \textbf{Single-Column (Linear) [$N=15$]} & \textbf{Multi-Column [$N=15$]} & \textbf{Overall Mean [$N=30$]} \\
         \hline
-        Skill Extraction Precision   & 77.77\%                                  & 63.37\%                        & 70.57\%                        \\
-        Skill Extraction Recall      & 55.85\%                                  & 44.49\%                        & 50.17\%                        \\
-        Skill Extraction $F_1$-Score & 64.58\%                                  & 50.10\%                        & 57.34\%                        \\
-        Experience Recall            & 100.00\%                                 & 16.67\%                        & 58.33\%                        \\
-        Name Match Rate              & 60.00\%                                  & 73.33\%                        & 66.67\%                        \\
-        Email Match Rate             & 100.00\%                                 & 66.67\%                        & 83.33\%                        \\
+        Skill Extraction Precision   & 69.6\%                                   & 69.6\%                         & 69.6\%                         \\
+        Skill Extraction Recall      & 38.6\%                                   & 38.6\%                         & 38.6\%                         \\
+        Skill Extraction $F_1$-Score & 49.4\%                                   & 49.4\%                         & 49.4\%                         \\
+        Experience Recall            & 34.3\%                                   & 44.7\%                         & 39.5\%                         \\
+        Name Match Rate              & 53.3\%                                   & 13.3\%                         & 33.3\%                         \\
+        Email Match Rate             & 100.0\%                                  & 100.0\%                        & 100.0\%                        \\
         \hline
     \end{tabularx}
 \end{table}
@@ -124,31 +93,46 @@ in Table \ref{tab:cv_parser_results}.
 The distribution of individual scores across the template pool is plotted in
 Figure~\ref{fig:cv_parser_accuracy} (Appendix~\ref{appendix:ingestion-charts}).
 
-\subsubsection{Qualitative Analysis \& Parsing Volatility}
-This audit reveals a major structural insight that explains the average performance metrics and the
-volatility observed in the per-document distribution (Figure~\ref{fig:cv_parser_accuracy}).
+\subsubsection{Qualitative Analysis}
 
-The structural layout of the CV will significantly affect the performance of the parser, a layout
-vulnerability that has been recently formalised in large-scale multi-template resume parsing benchmarks
-such as \textit{ResumeBench} \cite{emnlp2025resumebench}. It is critical to note the difference of
-83.33\% in Experience Recall between single-column and multi-column CVs for this parser specifically.
-This occurs because underlying PDF text extractors (such as \texttt{pdfminer} \cite{pdfminer}) extract
-characters based on spatial coordinates, merging horizontally adjacent text blocks into single, interleaved
-text strings. By combining these horizontal columns, the parser's line-by-line section segmentation
-heuristics fail completely, generating severe false negatives. This structural fragility of parsing
-unstructured PDF data provides a strong, primary technical justification for integrating structured,
-schema-validated profile sources (such as a standardised LinkedIn profile) to deterministically bypass
-coordinates extraction errors.
+We have four key findings from this study, each with different root causes.
 
-In real-world recruitment applications, commercial Applicant Tracking Systems (ATS) suffer from the
-same structural parsing failures due to their reliance on standard spatial PDF-parsing libraries. It is
-for this reason that job candidates are universally advised in popular employment guides to use simple,
-single-column linear CV templates \cite{marr2019, kelly2021}. This formatting constraint introduces a
-profound, systemic bias: automated screening engines inadvertently filter out highly qualified candidates
-simply because their visually rich or modern multi-column CV designs confuse the parser. As highlighted
-by algorithmic hiring policy reviews \cite{raghavan2020mitigating}, this selection pressure does not
-represent a fair or accurate representation of candidate capability, but rather a technical bias towards
-candidates with simple, linear templates—favoring "ATS-friendly" formatting over genuine professional merit.
+The first finding is that skill extraction is not hindered by the layout of a CV, but rather the dictionary that it is 
+using to identify the skills. We can observe this as both layouts achieve the same precision, recall and F1-score ($69.6\%$, $38.6\%$ and $49.4\%$ respectively).
+The source that we collect skills from, Devicon, catalogues programming languages as well as frameworks, however, it completely
+ignores categories that are common on real engineering CVs. One such example is tooling for observability, such as Prometheus and Grafana.
+The precision indicates that what is found is correct for the most part, but the limiting issue is the dictionary we use, rather than the 
+logic of our extraction process. This finding is consistent with resume-parsing benchmarks such as ResumeBench \cite{emnlp2025resumebench}.
+
+Another important observation is that the detection of candidate name drops sharply under multi-column layouts.
+There is a 40\% drop between single-column and multi-column layouts when it comes to identifying the candidate name.
+In a typical single-column layout, candidate name is generally the first item in the CV, at the top of the document.
+However, for multi-column layouts, this is often not the case. This is a clear example of structural failure in the 
+ingestion layer due to our parser having simplistic heuristics for name extraction.
+
+We also find that email extraction is fully robust, achieving a 100\% match rate across both layout types,
+confirming that our regex-based extraction process is not hindered by the layout of the candidate CV.
+
+Finally, we end with counterintuitive results for experience extraction, noting that experience recall rises from
+34.3\% in single-column layouts to 44.7\% in multi-column layouts. The structural difference between the two layouts
+is definitely the reason, however, initially it was not clear why it was higher in the multi-column layout. Further
+inspection leads us to believe that the reason is due to Single-Column layouts presenting experience as inline, with
+multiple pieces of information on the same line, separated by a pipe character, or other delimiters. This must
+be parsed as a single unit before we can isolate details such as the employer name and the role. Multi-column
+layouts tend to have less width due to the introduction of more columns, so candidates tend to have these details on
+separate lines. This actually makes it easier for the parser to isolate details, which could suggest why multi-column
+layouts have better recall for experience compared to single-column layouts.
+
+CVs are unstructured documents, and as such, there is a need for structured, schema-based data sources to be able
+to account for parsing errors that may arise from CV ingestion (such as a LinkedIn profile). In real-world
+applications, it is likely that commercial Applicant Tracking Systems (ATS) suffer from the same structural
+parsing failures that we have observed in our study. The black-box nature of these screening systems would 
+make it difficult for recruiters to know if this is actually the case for why a candidate receives a low score.
+It is for this reason that candidates are strongly advised to use simple, single-column templates \cite{marr2019, kelly2021}.
+In turn this uncovers a systemic bias: automated screening systems penalise highly qualified candidates if the
+layout of their CV confuses the parser. Algorithmic hiring policy reviews \cite{raghavan2020mitigating} 
+have also highlighted this issue, that these screening systems favour ``ATS-friendly'' formatting over 
+actual professional merit.
 
 
 \subsection{Study 05: Job Description Accuracy}
@@ -184,7 +168,7 @@ Unlike CVs, which serve as concise professional summaries, Job Descriptions (JDs
 marketing-oriented documents designed to attract candidates. As a result, they are often dense with corporate
 boilerplate, such as institutional missions, values, wellness benefits, and equal opportunity clauses.
 This structural noise significantly degrades parsing accuracy. Because section headings are frequently
-styled with generic tags (e.g., 'About Us' or 'Who We Are'), the parser struggles to isolate core technical
+styled with generic tags (e.g.\ ``About Us'' or ``Who We Are''), the parser struggles to isolate core technical
 qualifications from general corporate copy. This lexical contamination is directly reflected in the metrics,
 driving a low Skill Recall of 34.13\% and restricting Skill Precision to 60.02\%, as the extraction engine
 fails to separate critical technology requirements from marketing jargon.
@@ -192,10 +176,10 @@ fails to separate critical technology requirements from marketing jargon.
 The most striking result in the JD audit is the company name match rate, which collapses to a mere
 6.67\% (successful on only 1 out of 15 documents). A deep-dive error analysis reveals that this failure
 is primarily structural rather than semantic: employers rarely represent company names in machine-readable
-plain text within document headers. Instead, corporate identities are typically embedded as images.
-Because text extractors like \texttt{pdfminer} cannot extract alphanumeric tokens from embedded images,
-the parser is forced to rely on the unstructured "About Us" section. Consequently, if the employer's
-name is omitted from this section, or referred to via generic pronouns (e.g., "we", "our company"), the
+plain text within document headers. Companies often represent their name as their logo, or a brand image, rather than
+plaintext. Because text extractors like \texttt{pdfminer} cannot extract alphanumeric tokens from embedded images,
+the parser is forced to rely on the unstructured ``About Us'' section. Consequently, if the employer's
+name is omitted from this section, or referred to via generic pronouns (e.g.\ ``we'', ``our company''), the
 metadata extraction fails entirely. In the context of the broader MERIT architecture, however, this
 extraction bottleneck is non-critical, as identifying the employer name from the JD is a convenience
 feature rather than a core functional requirement. This metric will have no impact on the overall
@@ -206,7 +190,8 @@ ranking of candidates.
 \subsection{Study 13: Metric Prediction vs Recruiter Alignment}
 \label{subsec:study-13-metric-prediction}
 
-While Studies~04 and~05 test skill \emph{extraction}, Study~13 evaluates whether TF-IDF \emph{priority} suggestions align with recruiters.
+The previous two studies evaluate the extraction side of the extensibility pillar. In this study, we will now evaluate the weighting (or priority)
+side of the pillar, measuring up TF-IDF suggestions against recruiter consensus to see how well our engine's predictions align with real-world recruiters.
 We test \textbf{H1} (positive Spearman $\rho$ within each role) and \textbf{H2} (low MAE versus consensus on MERIT's 1--5 scale,
 where 1 = essential and 5 = optional).
 
@@ -238,51 +223,59 @@ TF-IDF suggestions using exact match, MAE, and Spearman $\rho$. Charts are in Ap
     \end{tabularx}
 \end{table}
 
-Table~\ref{tab:study-13-metric-alignment} shows that TF-IDF is not well calibrated as an 
-automatic 1--5 default. Alignment is role-dependent: junior frontend performs best, senior ML worst, and lead DevOps sits between the two. 
-Aggregate $\rho = 0.25$ is positive but not significant at $\alpha = 0.05$.
+As shown in Table~\ref{tab:study-13-metric-alignment}, TF-IDF is not well
+calibrated for exact matches. We can see that none of the roles manage $\geq 50\%$ for the exact match rate between 
+TF-IDF and recruiter consensus. However, we can observe that in most cases, Spearman $\rho$ is positive, showing some
+alignment between the TF-IDF predictions and the recruiter consensus. This is a good sign, as it 
+indicates that the TF-IDF predictions are generally in the right direction, but not necessarily a perfect match.
 
 Of the 27 skill--role pairs, eight achieve exact agreement and a further nine differ by only one Likert band (63\% within $\pm 1$).
-These near-misses show that the engine can be directionally useful, but it is not safe as a silent default. The largest gaps include
-Python on the senior ML hold-out (consensus P-1, TF-IDF P-5): Python appears in many role templates in the pooled corpus, so global IDF
-treats it as common for that vacancy even though recruiters rated it essential. Similar headline failures appear for the PhD/MSc
-education line and CUDA on the same hold-out.
+The near misses show that our metric predictions should be treated as reasonable guidance, rather than simply a default value.
 
-\subsubsection{Limitations and implications}
+
+\subsubsection{Limitations and their Implications}
 \label{subsubsec:study-13-limitations}
 
 This is a pilot study ($N = 4$ evaluators, $n = 27$ pairs), and the results are not generalisable to the wider market.
-Due to the constraints of the project, we could not run a larger panel or ingest a longitudinal corpus of real JDs within scope.
+We are not able to conduct a larger panel study due to the time and resource constraints of this project.
 
-Another limitation is cross-role IDF interference. Take Python as an example: it is common across many domains in our pooled corpus,
-so IDF can down-rank it on a senior ML hold-out even when recruiters treat it as essential. The same pooling effect can mis-rank
-role-specific requirements in niche hiring (e.g.\ quantitative development, where Python may be a differentiator rather than baseline
-noise) because document frequency is shared across unrelated templates.
+Another limitation is due to the way we create the corpus, or rather, the fact that we only use one corpus for all TF-IDF calculations.
+Due to this, we encounter cross-role IDF interference. To take an example, let's consider Python, a language used in many different roles such
+as backend development, machine learning, data science and more. Since Python is common in these roles, it will inevitably be in a significant
+proportion of job descriptions and, as a result, we would have a high IDF score, regardless of the role, making it seem like Python is 
+always a common skill. This down-ranks Python on the metric predictions, regardless of the role.
 
-Participants were also not asked to spread ratings evenly across P-1--P-5, whereas TF-IDF applies per-JD min--max normalisation and
-tends to stretch suggestions across the band. Recruiters instead polarised toward P-1/P-2 for headline skills and P-4/P-5 for hygiene
-requirements, with little use of P-3. That mismatch can depress exact-match rate and $\rho$ without invalidating the pilot, it is a
+In this study, we also did not ask our participants to spread their ratings evenly between the 1 and 5 scale. Compare this to TF-IDF
+which has an in-built min--max normalisation to the range $[1.0, 5.0]$ which ensures a relatively even distribution of these ratings.
+This disparity in rating distribution is likely to play a role in our evaluation results, particularly the exact match rate. 
+That mismatch can depress exact-match rate and $\rho$ without invalidating the pilot; it is a
 comparison caveat we report alongside the within-$\pm 1$ band counts above. Cross-study validity threats are summarised in
 Section~\ref{sec:threats-to-validity}.
 
-To conclude, we believe \textbf{H1} is only partly supported and \textbf{H2} is not met. The pilot supports treating TF-IDF as
-suggestions with mandatory human overrides, rather than silent defaults. Further work could stratify IDF by role family and study how
-recruiters distribute priorities without forcing an even spread across the Likert scale.
-
+To conclude, we believe \textbf{H1} is only partly supported and \textbf{H2} is not met. 
+The main takeaway from this study is that we should treat the priorities generated by TF-IDF as a guidance, rather than the
+optimal metrics for their job configuration. To ensure this, we allow for overrides by recruiters on the frontend if they 
+disagree with the TF-IDF predictions.
 
 \subsection{Downstream Mitigation}
 \label{subsec:downstream-mitigation}
 
-These quantitative findings empirically justify two of the three core architectural pillars of the MERIT system.
+These quantitative findings empirically justify two of MERIT's three core architectural pillars.
 
 \subsubsection{Multi-Source Fusion (Pillar 2)}
-As shown from the CV parser's evaluation, unstructured data extraction is often noisy, leading to
-incomplete skill extraction. Through providing structured data sources (such as LinkedIn and GitHub data),
-high-skill candidates can still be successfully considered within MERIT, even if their CVs are poorly formatted.
+
+The recall of 38.6\% means that CV-only screening will often miss the majority of a candidate's technical competencies
+under the Devicon dictionary. The drawbacks of a dictionary-based approach are clearly visible here, as well as the 
+reliance on a single source of truth for areas such as skill extraction. By ingesting other sources into candidate
+scoring (such as GitHub repository language statistics and LinkedIn skill endorsements), MERIT can recover 
+skills that the CV parser may have failed to recognise. 
+
 
 \subsubsection{Glass-Box Explainability (Pillar 3)}
-The high volatility of heuristic parsing (evident in Appendix~\ref{appendix:ingestion-charts}) underscores the risk of relying on automated screening platforms
-that operate as black boxes. By displaying detailed, interactive candidate reports that show exactly
-where every matching skill was extracted and how it was verified, MERIT equips recruiters to immediately
-audit, correct, and override parsing discrepancies. This transparency ensures highly valid hiring
-decisions despite the persistent limitations of automated document parsing.
+The issues presented above would often fail to be surfaced to recruiters in typical black-box scoring systems.
+This highlights the need for a system that can surface these parsing failures to recruiters. The addition of 
+MERIT's explainability layer achieves this by providing in-depth reviews of both the candidate's original 
+data, as well as what MERIT was able to extract from it. This ensures that recruiters are able to audit and alter
+their decisions based on the information that MERIT was able to gather. For example, a recruiter may observe that
+a metric, such as Python, may not have been extracted from the candidate CV due to a parser error. The recruiter would
+then be able to either observe the original CV to challenge the claim, or perhaps consider other data sources.

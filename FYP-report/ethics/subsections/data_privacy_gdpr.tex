@@ -13,7 +13,7 @@ MERIT also stores, and displays data such as profile pictures and university nam
 may be masked in Blind Mode, it is still being stored in the backend database. This data is likely to hint at background characteristics,
 which employers must not discriminate on. To encourage this behaviour, Blind Mode is set to be enabled by default, and it is the recruiter's
 own choice if they wish to disable it. If MERIT is to be used in the hiring process, employers should publish a clear privacy notice, only 
-collecting the data that is necessary for the hiring pprocess, encrypt data and also have a deletion date, and also sign agreements with
+collecting the data that is necessary for the hiring process, encrypt data and also have a deletion date, and also sign agreements with
 third-party hosts. Data gathered for this process should not be reused elsewhere without a separate legal basis.
 
 Article~22 of the GDPR limits fully automated rejections unless appropriate safeguards exist \cite{eu_gdpr_2016}.
@@ -31,9 +31,9 @@ informed consent for FYP testing (purpose explained, data stored securely and no
 For this FYP, any data in the evaluation was either synthetic, anonymised, or from the author themself. We had contacted a maximum of 30
 individuals who gave informed consent for FYP testing, giving consent for the use of their CV, as well as Linkedin and GitHub profiles,
 where available. Results are stored in Supabase, not published, and the API key is stored in local environment variables to ensure
-security. While consent makes research more reasonable, it does not make scraping acceptible under LinkedIn's terms of service. Apify is not 
+security. While consent makes research more reasonable, it does not make scraping acceptable under LinkedIn's terms of service. Apify is not 
 an appropriate way to scrape LinkedIn profiles in production, and would lead to legal issues. Alongside this, real deployment would require privacy 
-impact assessments as well as processes in place for access, correction and deletion requests \cite{ico_employment_2023}. MERIT is build
+impact assessments as well as processes in place for access, correction and deletion requests \cite{ico_employment_2023}. MERIT is built
 with sensible defaults such as structured storage, Blind Mode, explainable scores, and a decision-support approach. However, meeting the 
 law still depends on how the employer runs the process. 
 

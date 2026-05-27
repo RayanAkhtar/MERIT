@@ -3,8 +3,9 @@
 
 The previous sections covered the accuracy of MERIT, its fusion logic, explainability and also its alignment with human experts.
 We now move on to the last stage of our evaluation by testing the fairness, security against adversarial inputs and computational 
-scalability of MERIT. Refer to Appendix~\ref{appendix:fairness-scalability-charts} for 
-and \ref{appendix:bias-anonymisation-charts} for the charts associated with this section.
+scalability of MERIT. Refer to Appendix~\ref{appendix:fairness-scalability-charts} 
+and Appendix~\ref{appendix:bias-anonymisation-charts} 
+for the charts associated with this section.
 
 \subsection{Study 15: Bias Mitigation}
 \label{subsec:bias-mitigation-efficacy}
@@ -52,7 +53,7 @@ No multi-source evidence was presented to the participants, and the scores were 
 was never changed. No evaluator saw both Visible and Blind UI on the same candidates.
 
 \paragraph{Design rationale.}
-This protocol aims to test the blind redaction on singly-profile reviews, disallowing them from seeing that 
+This protocol aims to test the blind redaction on single-profile reviews, disallowing them from seeing that 
 candidate's rank in the batch. Post-hoc analysis does compare the human shortlist rates against the MERIT ranks, 
 but those ranks were not displayed during the session. We would not allow the evaluators to view the 
 cohort rankings to avoid potential bias or memory effects. The between-subjects design removes the effect of 
@@ -209,14 +210,14 @@ forms of identity squatting. As shown, CV-only is unchanged, and fusion only add
 There is a $20$ point difference between two identical candidates, highlighting that a candidate's score can be significantly impacted by MERIT if they attempt to game 
 the system. Since both candidates have the same CV-only score, the difference is solely due to the Integrity Engine.
 
-Another successful response to a  scenario is the \textbf{Stale} scenario, in which a candidate attempts to game the system by updating their CV to appear more 
+Another successful response to a scenario is the \textbf{Stale} scenario, in which a candidate attempts to game the system by updating their CV to appear more 
 skilled than they are, but their public-repository evidence is still outdated. As shown, CV-only is unchanged, and fusion only adds an insignificant uplift of $+2.9$. 
 Relative to the honest candidate, the score is reduced by $-11.9$ points, highlighting that outdated skills are not fully rewarded once GitHub is included.
 In this case, it is important to note that they are not penalised, but rather that the effects of Bayesian Fusion update the Beta Distribution to reflect the lower
 signal strength from GitHub.
 
 \textbf{Ghost} is also another response that we believe to be successful, in which a candidate attempts to game the system by keyword stuffing their CV 
-while also providing a public-repository that contradicts their claims. As shown, CV-only partially penalised due to the keyword-stuffing. What is more important
+while also providing a public-repository that contradicts their claims. As shown, CV-only is partially penalised due to the keyword-stuffing. What is more important
 lies in the $\Delta_{\mathrm{honest\_fusion}}$ score, which is $-15.0$. This is due to the Bayesian Fusion updating the Beta Distribution to reflect the lower
 signal strength from GitHub as they are unable to provide evidence of their skills.
 
@@ -227,20 +228,20 @@ simply keyword stuffing their CV. As shown, CV-only is increased by $+14.7$ poin
 This is due to the Bayesian Fusion updating the Beta Distribution to reflect the low signal strength from the candidate's GitHub profile.
 
 \textbf{Documented failure modes.}
-The biggest failure with the Integrity Engine, namely, the \textbf{Smart Squatter} scenario. In this case, the candidate was able to bypass the integrity engine by
+The biggest failure with the Integrity Engine is the \textbf{Smart Squatter} scenario. In this case, the candidate was able to bypass the integrity engine by
 finding a GitHub portfolio that matches the candidate's name, is able to pass the fuzzy name-match, and is able to score a high score when evaluated against that
 specific JD. This is a rare scenario in the real-world, but it is important to note that it is possible.
 
 Another impractical failure scenario is the \textbf{Gamer} scenario, in which a candidate attempts to game the system through the manipulation of public-repository metrics.
 In this scenario, the candidate successfully achieves a high GitHub score ($\Delta_{\mathrm{fusion}} = +23.1$). In this case, the candidate was able to successfully trick 
-the system into thinking that they were recently active in particular metrics required for the role. This highlights a critical flaw in the way we calcualte the year to 
+the system into thinking that they were recently active in particular metrics required for the role. This highlights a critical flaw in the way we calculate the year to 
 project temporal skill decay.
 
 
 \subsubsection{Study 06 takeaway}
 The integrity engine is able to detect and penalise most forms of realistic adversarial attacks, such as keyword stuffing, identity squatting, and repository gaming.
 Note that the majority of failure modes are edge-cases that take significant effort to achieve, and are not expected to be a major concern in the real-world.
-For example, lets consider the \textbf{Smart Squatter} scenario. For a single role, lets assume the malicious candidate wishes to squat a GitHub portfolio. First,
+For example, let's consider the \textbf{Smart Squatter} scenario. For a single role, let's assume the malicious candidate wishes to squat a GitHub portfolio. First,
 they would need to find portfolios that would likely score high on MERIT, which is a relatively trivial task, but is still considered a significant effort.
 From here, the actor would need to find a name that is close enough to bypass the fuzzy name-match, this is likely not a guaranteed success due to the rarity of
 full names that match. This effort would technically work, but in the real-world, where a candidate applies to a vast array of jobs with different metrics, 
@@ -354,6 +355,6 @@ MERIT Full scores the largest measured batch size ($N = 500$) in under $5$ secon
 Introducing Shapley values introduces a $\approx 5.6 \times$ runtime increase with three sources ($2^3 = 8$ coalitions), this is due to the overhead of the
 shapley value computations. The exponential cost is in the number of evidence sources, not the cohort size. The biggest risk to merit is if many data sources
 are introduced. In a real-world context, this isn't a significant concern, but it is important to note that this could become a potential risk if the recruitment
-process decides to introduce more data sources to the screening process. The memory overhead of MERIT is shown to be quite negligable after accounting for this, 
-as through the difference in RSS growth between MERIT Explainable between $N = 10$ and $N = 500$ is only $22.7MB$. This is a relatively small amount of memory, 
+process decides to introduce more data sources to the screening process. The memory overhead of MERIT is shown to be quite negligible after accounting for this, 
+as seen in the difference in RSS growth between MERIT Explainable between $N = 10$ and $N = 500$, which is only 22.7\,MB. This is a relatively small amount of memory, 
 and is likely to be negligible in the context of a production system.

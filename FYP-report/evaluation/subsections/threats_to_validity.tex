@@ -16,12 +16,23 @@ Construct validity refers to the extent to which the metrics and instruments use
 measure the research questions that are being investigated.
 
 \textbf{Self-Defined Ground Truth and Researcher-Authored Personas.}
-Most studies rely on ground truth being authored by myself. For example the parser labels and synthetic JSON profiles
-and sabotaged GitHub payloads. This presents the risk of confirmation bias, where evaluation data may inadvertently encode
-the behaviours that the ending was designed to exhibit. We aim to mitigate this through intentionally including deliberate
-failure cases to avoid the unintentional cherry-picking of successful cases. The key example of this is Study~10, where we 
-deliberately sabotage GitHub payloads to deliberately contradict the CV narrative to show the flaws of MERIT (Full). Note that
-we do not claim independent external validation of ground truth datasets due to the constraints of the project.
+Most studies rely on ground truth authored by myself: synthetic JSON profiles and sabotaged GitHub payloads. This presents
+the risk of confirmation bias, where evaluation data may inadvertently encode the behaviours the engine was designed to exhibit.
+We aim to mitigate this through intentionally including deliberate failure cases, the key example being Study~10, where
+GitHub payloads are deliberately sabotaged to contradict the CV narrative.
+We do not claim independent external validation of the remaining ground truth datasets due to the time and resource constraints 
+of the project.
+
+\textbf{Skills Dictionary Coverage Limiting Skill Recall Interpretation (Study~04).}
+In Study~04, we have a skill recall of 38.6\%, which is quite low, we miss 61.4\% of the ground truth skills, meaning that
+we underrepresent a candidate's full skillset when we parse their CV. We primarily believed this to be a parser error, however,
+after further inspection, we were able to pin this error to a dictionary coverage issue. We use Devicon to generate the
+JSON of skills to search for in a CV and JD, however, this source is not comprehensive enough to cover the different areas
+of skills that a candidate may present on their CV. Devicon is limited to programming languages and frameworks, but fails
+to include other forms of tooling. The poor skill recall performance therefore, should not be interpreted as a parser error,
+but instead, it should be treated as a limitation of the dictionary that we use to search for skills in a CV.
+Extending the dictionary before replicating Study~04 would help to improve the skill recall performance, however, we did not
+make this change as part of the project to prevent the use of a hardcoded dictionary. 
 
 \textbf{Proxy Metrics for Recruitment Quality.}
 The evaluation measures parser F1-scores, rank correlations, shortlist rates, SUS and batch latency. Note how these metrics
@@ -86,11 +97,11 @@ than explainability alone.
 
 \textbf{Adversarial Scenario Construction.}
 Study~06 clones a baseline `Honest Candidate' across eight different personas, cleanly isolating perturbation effects. However, it does
-not account attack sophistication across a real applicant pool. The residual failures, such as the `Smart Squatter' and `Gamer' scenarios,
+not account for attack sophistication across a real applicant pool. The residual failures, such as the `Smart Squatter' and `Gamer' scenarios,
 are documented as high-effort edge cases, but their base rate in live hiring is unknown.
 
 \textbf{Cherry-Picked Failure and Success Cases.}
-Studies~01 and ~10 both include intentionally engineered failure and success narratives in order to aid explaination. However, such
+Studies~01 and ~10 both include intentionally engineered failure and success narratives in order to aid explanation. However, such
 narratives may shadow the general pattern of the engine's performance, and as such, they may not be representative of the general population.
 Please refer to Section~\ref{subsec:study-10-spearman-dissonance} and 
 Section~\ref{subsec:study-01a-algorithmic-ablation} for more details.
@@ -101,19 +112,28 @@ Section~\ref{subsec:study-01a-algorithmic-ablation} for more details.
 External validity covers the extent to which our findings may be generalised beyond the conditions of these studies.
 
 \textbf{Small Cohort Sizes and Discrete Outcomes.}
-Due to the small cohort sized of $n=10$ candidates per JD, the Spearman rank correlation coefficient $\rho$ is quite volatile,
+Due to the small cohort sizes of $n=10$ candidates per JD, the Spearman rank correlation coefficient $\rho$ is quite volatile,
 and $p$-values are also sensitive to one rank swap. Because of this, we cannot make any claims about the generalisability of the results.
 In a similar vein, Study~15 employs $n=4$ evaluators per arm, and four candidates, so shortlist rates move in 25\% steps, and
 cannot support most claims. Study~14's $N=5$ and Study 13's $N=4$ cannot represent global recruiter populations.
 
+\textbf{Template Confound in Experience Recall (Study~04).}
+During the ingestion study (Section~\ref{subsec:study-04}),
+we observe a counterintuitive finding that experience recall is higher for multi-column CVs compared to 
+single-column CVs (44.7\% vs. 34.3\%). This is likely a result of the specific set of templates we used to
+generate the multi-column CVs, as evidenced by the fact that two of the fifteen multi-column candidates
+(Alexa Petrovskaya and Karim El Sayed) had an experience recall of 0 despite the previous trend. The benefit
+highlighted in the study is template-specific and should not be generalised beyond the template family
+evaluated in this study.
+
 \textbf{Open-Source and Public-Evidence Bias.}
-MERIT's multi-source pillar benefits from the use of public evidence, such as public GitHub respositories and LinkedIn profiles.
-Candiates such as Carl Corp introduce a `Proprietary Data Gap' (Section~\ref{subsec:study-01b-data-source-ablation}) 
+MERIT's multi-source pillar benefits from the use of public evidence, such as public GitHub repositories and LinkedIn profiles.
+Candidates such as Carl Corp introduce a `Proprietary Data Gap' (Section~\ref{subsec:study-01b-data-source-ablation}) 
 due to the lack of public evidence. Candidates in this situation may be unfairly penalised relative to juniors with active GitHub
 histories, introducing a structural bias toward open-source visibility that may correlate with access to candidate data.
 
 \textbf{Evaluation--Production Gap.}
-Benchmarking measures do not account for the latencies of PDF upload, network I/O, rate-limited API calls to GitHub/Linkedin
+Benchmarking measures do not account for the latencies of PDF upload, network I/O, rate-limited API calls to GitHub/LinkedIn
 and database persistence. Production deployments on shared servers or containers are likely to differ from the 
 isolated subprocess RSS on the author's desktop workstation.
 
@@ -128,8 +148,8 @@ whether the methods used are appropriate.
 \textbf{Spearman's Rank Correlation as the Primary Metric.}
 
 The usage of Spearman $\rho$ measures the monotonic agreement with expert ordering. It does not measure the calibration of 
-match percentages, nor the magniture of the rank swaps. Engines with a similar $\rho$ may produce significantly different score 
-spreads. Therefore, we report $\rho$ alongside the detailed rankings available in the GitHub repository this project is stored in,
+match percentages, nor the magnitude of the rank swaps. Engines with a similar $\rho$ may produce significantly different score 
+spreads. Therefore, we report $\rho$ alongside the detailed rankings available in the project repository~\cite{merit_repo},
 to allow for inspection, rather than treating the spearman correlation coefficient alone as sufficient.
 
 \textbf{Interpretation of Negative Correlations (Study~08).}
@@ -137,7 +157,7 @@ The negative $\rho$ under the intern JD stress test (Section~\ref{subsec:study-0
 indicates misalignment rather than sampling noise. We do not claim seniority-aware hiring without explicit policy rules.
 
 \textbf{Incomplete Empirical Validation of Shapley Axioms.}
-Study~11 verifies the axions of efficiency, null-player, additivity and determinism on ten synthetic profiles. The axiom of symmetry,
+Study~11 verifies the axioms of efficiency, null-player, additivity and determinism on ten synthetic profiles. The axiom of symmetry,
 however, is omitted since the `players' of this cooperative game are intentionally heterogeneous. Negative GitHub attributions,
 such as Vince Vault, are mathematically valid in the game we study, however, they could be cognitively surprising.
 
@@ -172,9 +192,9 @@ For the benchmark studies (Studies~02--03), MERIT is shown to remain within sub-
 capabilities of MERIT (all sources and full explainability). The overall pattern of runtime and memory overhead is still
 enough to support a feasibility argument for batch screening.
 
-We do not claim that MERIT is fairness-certified, nor do we with to present it as a fully autonomous hiring authority.
+We do not claim that MERIT is fairness-certified, nor do we wish to present it as a fully autonomous hiring authority.
 Future work would be needed to address these limitations, such as counterbalanced HCI trials, larger independent recruiter panels,
 repeated benchmarks with variance reporting, end-to-end PDF ingestion tests, and field studies linking MERIT outputs to interview
-and hire outcomes. MERIT is best described as an \textbf{auditable screening assistant}. It's purpose is to help recruiters
+and hire outcomes. MERIT is best described as an \textbf{auditable screening assistant}. Its purpose is to help recruiters
 inspect evidence and override the engine if needed, rather than replacing human judgement outright.
 

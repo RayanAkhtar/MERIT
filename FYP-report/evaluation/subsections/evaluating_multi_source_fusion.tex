@@ -28,7 +28,7 @@ Validity implications are in Section~\ref{subsec:internal-validity}.
 \label{subsec:study-08-skill-decay}
 
 All humans are prone to skill degradation over time. For a technical role, if you are not frequently working with a
-specific technology, your expertise will naturally get "rusty" the longer you are removed from it. For candidates, we
+specific technology, your expertise will naturally get ``rusty'' the longer you are removed from it. For candidates, we
 consider the technical skill of a candidate $S(t)$ to be a function of time $t$ (in years) since the skill was
 last actively practised.
 \begin{equation}
@@ -114,7 +114,7 @@ with a strong reliability of ($c_2 = 0.9$). Felix has provided a signal that str
 Due to this, the model updates the $\beta$ parameter from $0.1$ to $1.006$, while $\alpha$ remains at $0.606$.
 This leads to the match score decreasing from $0.852$ to $0.376$, highlighting that the model correctly penalises a
 contradictory signal. Another key observation is that the uncertainty also increases from $0.271$ to $0.300$,
-analysing that the model correctly captures the increased uncertainty in the presence of contradictory evidence.
+showing that the model correctly captures the increased uncertainty in the presence of contradictory evidence.
 
 It is important to note here that the penalisation applied due to Bayesian conflict resolution is not intended to be
 significant, since it may be the case that Felix may not have publicly available evidence of their skills due to the
@@ -189,14 +189,16 @@ professional footprint).
 
 For the CV-Only baseline, the introduction of the keyword-stuffing audit penalises Buzz Ward's stuffed CV, but also
 highlights a critical structural limitation: without secondary evidence, screening models struggle to differentiate
-between genuine high-density expertise and adversarial optimization, occasionally penalising valid CVs. By transitioning
-to the Full MERIT engine, the introduction of Bayesian Evidence Factors (BEFs) resolves this tension—allowing the
-system to verify assertions against empirical external signals and insulate candidates from parsing noise.
+between genuine high-density expertise and adversarial optimisation, occasionally penalising valid CVs. 
+When we enable the full capabilities of MERIT, we are able to resolve these issues through Bayesian Evidence Fusion (BEF). 
+This allows the system to verify or challenge claims made by the candidate, further mitigating the issue of adversarial optimisation
+unless they have the demonstrated evidence to back it up.
 
 Crucially, while analysing ordinal rank displacements highlights the recruiter's sorting experience, evaluating the
 cardinal score adjustments ($\Delta$) between the CV-Only baseline and the Full MERIT multi-source configuration reveals
-the true mechanistic sensitivity of the Bayesian fusion engine. Ordinal rankings can obscure the magnitude and conviction
-of the engine's adjustments. For instance, Sam Old's rank shift is modest (+2 rank displacement, moving from \#7 to \#5),
+the true mechanistic sensitivity of the Bayesian fusion engine. 
+Since ordinal rankings only measure the relative position of one candidate to another, we end up disregarding the size of the 
+shift in score. For instance, Sam Old's rank shift is modest (+2 rank displacement, moving from \#7 to \#5),
 yet his cardinal score rises by $+13.8\%$, representing a high-conviction verification of his inactive competencies that was
 previously penalised by single-source temporal decay. Similarly, Jordan Smith's transition shows an extraordinary cardinal
 leap of $+53.8\%$ (from $10.5\%$ to $64.3\%$), mathematically capturing the breakthrough potential of a junior candidate whose
@@ -206,14 +208,15 @@ Conversely, the fusion engine successfully limits or penalises unverified or adv
 receives a negligible cardinal shift of $+0.7\%$, while Vince Vault experiences a negative cardinal shift of $-12.6\%$
 ($33.2\% \to 20.6\%$), representing the heavy evidence conflict penalty applied under validation failures. The specific
 data-source mechanics driving these individual shifts are detailed in Section~\ref{subsec:study-01b-data-source-ablation}.
-Figure~\ref{fig:rank-displacement-successes} (Appendix~\ref{appendix:rank_displacement}) traces the highlighted cases discussed above.
+Figure~\ref{fig:rank-displacement-successes} (Appendix~\ref{appendix:rank_displacement}) 
+traces the highlighted cases discussed above, as well as the overall rank displacement trajectories for each candidate.
 
 \subsection{Study 01B: Multi-Source Data Ablation}
 \label{subsec:study-01b-data-source-ablation}
 
 This study will cover the critical trade-offs present in a system that doesn't just follow claimed evidence but also takes
-into account demonstrated evidence. MERIT aims to increase the amount of information to take into account for candidate evaluation
-by considering LinkedIn and Github alongside CVs.
+into account demonstrated evidence. More specifically, we will see cases where it is beneficial to the system to consider 
+multiple sources of evidence, as well as cases where it can penalise candidates unfairly due to the accessibility of their data.
 
 \subsubsection{Systemic Success: The Discovery of Jordan Smith}
 
@@ -223,19 +226,20 @@ formal experience, whose sparse resume is automatically discarded by both tradit
 What is not mentioned on Jordan's CV, however, is his extensive work that is publicly available on his GitHub account, demonstrating
 significant technical expertise in both Java and TypeScript, two key technologies in the JD for this study.
 
-Once we consider this candidate with MERIT's full capabilities, namely GitHub, Jordan jumps from \textbf{Rank \#10} to \textbf{Rank \#2}.
-The job description that prioritises the use of both Java and TypeScript now takes into account, and values, the evidence that a candidate
-has to show for themself, and in this case, Jordan has the most demonstrated evidence among the candidate batch. By shifting the
-evaluation paradigm from unverified skills towards verified demonstratable evidence, we see that MERIT is able to prevent valid
-candidates from being lost in the traditional "Resume Black Hole."
+Once we account for both LinkedIn and GitHub signals in MERIT (Full), we see that Jordan rises from Rank \#10 to Rank \#2. We are able
+to see that his proficiencies in both Java and TypeScript align well with the requirements of the JD.
+Jordan has the most demonstrated evidence among the candidate batch, and MERIT (Full) is the only engine that is able to discover this,
+and reward him accordingly. By shifting the evaluation paradigm from unverified skills towards verified demonstrable evidence, 
+we see that MERIT is able to prevent valid candidates from being lost in the traditional ``Resume Black Hole'' despite being a 
+candidate that is quite fit for the role.
 
-\subsubsection{Systemic Limitation: The "Proprietary Data Gap" for Carl Corp}
+\subsubsection{Systemic Limitation: The ``Proprietary Data Gap'' for Carl Corp}
 However, the introduction of multi-source evaluation does come with its own set of trade-offs.
-The achilles heel of this approach is that merit is \textbf{heavily dependent} on the accessibility of a candidate's data.
-In this case, we point out Carl Corp, a candidate who's data on GitHub is essentially empty, since most of his commits are towards
+The fatal weakness of MERIT's multi-source evaluation is that it is dependent on the accessibility of a candidate's data.
+For example, let's consider Carl Corp, a candidate whose data on GitHub is essentially empty, since most of his commits are towards
 private repositories. As a result, he scores low for GitHub signals, and is unable to demonstrate his expertise in the programming languages
 required by the JD. This results in a fall from Rank \#2 to Rank \#10 between the Modern AI ATS and Full MERIT evaluations.
-This "Propriety Data Gap" is a critical limitation of MERIT that will significantly, and unfairly hinder candidates that are not able
+This ``Proprietary Data Gap'' is a critical limitation of MERIT that will significantly, and unfairly, hinder candidates that are not able
 to share their evidence of code, and will unfairly advantage candidates who have less experience but are able to share their code.
 This represents a key trade-off in the design of MERIT. While we are now able to avoid some forms of bias due to the multi-source nature
 of the system, we are now introducing a new form of bias based on the accessibility of a candidate's data. This raises the question of
@@ -253,7 +257,7 @@ Vince Vault is a candidate who claims a strong 10 years of experience as a Lead 
 Java expert. This will provide an interesting case study into the effectiveness of MERIT's integrity resolution mechanisms.
 Here, Vince boasts excessive skills, scoring exceptionally well in a Traditional ATS (\textbf{Rank \#1}) and Modern AI ATS
 (\textbf{Rank \#4}). However, it could be the case that Vince is actually experienced in C\#, and upon hearing about Java and C\# being
-similar programming languages, he decides to try and game the system by applying to this role as a "Java expert."
+similar programming languages, he decides to try and game the system by applying to this role as a ``Java expert''.
 
 To prevent GitHub from identifying his proficiencies in C\# and not Java, Vince instead looks for an opportunity to find a candidate who
 demonstrates proficiencies in Java, and instead provides a link to someone else's GitHub profile. This is a serious case of identity
@@ -264,6 +268,6 @@ Vince's CV-Only score is $33.2\%$, and although the squatted GitHub profile temp
 of the $20\%$ veto drags his final score to $20.6\%$, dropping his rank from Rank \#4 to Rank \#9. This ensures that, on the backend side,
 MERIT is successfully able to identify and penalise candidates who try to game the system.
 
-It is important to note that this is a rare edge case, it is not very common for candidates to engage in this type of fraud.
+It is important to note that this is a rare edge case; it is not very common for candidates to engage in this type of fraud.
 However, it is important to consider this edge case in the design of MERIT, as it is a potential threat to the integrity
 of the system.
