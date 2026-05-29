@@ -112,6 +112,10 @@ def main() -> None:
 
         run_script(study_path, script)
 
+        if folder == "10-spearman_signal_dissonance_failure_case":
+            spearman_charts = os.path.join(root_dir, "spearman_charts")
+            run_script(spearman_charts, "generate_combined_chart.py")
+
     print("\n" + "=" * 60)
     print("ALL EVALUATIONS COMPLETE (Studies 01--15)")
     print("=" * 60)

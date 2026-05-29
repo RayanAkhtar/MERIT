@@ -31,6 +31,133 @@ def load_csv_data(filepath):
                 }
     return data
 
+PERSONA_STYLES = {
+    'Alex Rivers': {'colour': '#003E74', 'label': 'The Verifiable Elite'},
+    'Buzz Ward': {'colour': '#D50032', 'label': 'The Keyword Stuffer'},
+    'Jordan Smith': {'colour': '#00853F', 'label': 'The Hidden Gem'},
+    'Sam Old': {'colour': '#E87722', 'label': 'The Stale Pro'},
+    'Carl Corp': {'colour': '#5D295F', 'label': 'The Corporate Giant'},
+    'Ghost Gary': {'colour': '#4A4A4A', 'label': 'The Unverified Ghost'},
+    'Felix Vance': {'colour': '#C41E3A', 'label': 'The Identity Mismatch'},
+    'Vince Vault': {'colour': '#7B1FA2', 'label': 'The Squatter'},
+    'Fiona Frost': {'colour': '#8B4513', 'label': 'The Evidence of Absence'},
+    'Kim Junior': {'colour': '#558B2F', 'label': 'The High-Potential Junior'},
+}
+
+
+def _nudge_label_positions(positions, min_gap=0.32):
+    """Spread overlapping endpoint labels while staying close to true rank."""
+    adjusted = list(positions)
+    for i in range(1, len(adjusted)):
+        if adjusted[i] - adjusted[i - 1] < min_gap:
+            adjusted[i] = adjusted[i - 1] + min_gap
+    overflow = adjusted[-1] - 10.5
+    if overflow > 0:
+        adjusted = [p - overflow for p in adjusted]
+    underflow = 0.5 - adjusted[0]
+    if underflow > 0:
+        adjusted = [p + underflow for p in adjusted]
+    return adjusted
+
+
+def plot_bump_chart_all_candidates(title, filename, baseline, ai, cv_only, merit_full):
+    """
+    Classic bump chart: ordinal rank (y) across four discrete scoring configurations (x).
+    All candidates shown at full opacity with endpoint labels at the first and last stage.
+    """
+    output_dir = os.path.join(os.path.dirname(__file__), 'output')
+    os.makedirs(output_dir, exist_ok=True)
+
+    stages = ['Traditional ATS', 'Modern AI ATS', 'MERIT (CV-Only)', 'MERIT (Full)']
+    candidates = list(baseline.keys())
+    x = np.arange(len(stages))
+
+    fig, ax = plt.subplots(figsize=(22, 13), dpi=300)
+    fig.patch.set_facecolor('white')
+
+    sorted_candidates = sorted(
+        candidates,
+        key=lambda c: merit_full.get(c, {'rank': 11})['rank'],
+        reverse=True,
+    )
+
+    series = []
+    for cand in sorted_candidates:
+        ranks = [
+            baseline.get(cand, {'rank': 11})['rank'],
+            ai.get(cand, {'rank': 11})['rank'],
+            cv_only.get(cand, {'rank': 11})['rank'],
+            merit_full.get(cand, {'rank': 11})['rank'],
+        ]
+        style = PERSONA_STYLES.get(cand, {'colour': '#666666', 'label': ''})
+        series.append((cand, ranks, style['colour'], style['label']))
+
+    for stage_x in x:
+        ax.axvline(stage_x, color='#E8E8E8', linewidth=1.2, zorder=0)
+
+    for cand, ranks, colour, _ in series:
+        ax.plot(
+            x, ranks,
+            color=colour,
+            linewidth=3.0,
+            solid_capstyle='round',
+            zorder=5,
+            marker='o',
+            markersize=9,
+            markerfacecolor=colour,
+            markeredgecolor='white',
+            markeredgewidth=1.8,
+        )
+
+    left_order = sorted(series, key=lambda item: item[1][0])
+    right_order = sorted(series, key=lambda item: item[1][-1])
+
+    left_positions = _nudge_label_positions([ranks[0] for _, ranks, _, _ in left_order])
+    right_positions = _nudge_label_positions(
+        [ranks[-1] for _, ranks, _, _ in right_order],
+        min_gap=0.42,
+    )
+
+    for (cand, _, colour, persona_label), ly in zip(left_order, left_positions):
+        ax.text(
+            -0.12, ly, cand,
+            va='center', ha='right',
+            color=colour, fontweight='bold', fontsize=11,
+            clip_on=False,
+        )
+
+    for (cand, _, colour, persona_label), ry in zip(right_order, right_positions):
+        display_text = f"{cand}\n({persona_label})" if persona_label else cand
+        ax.text(
+            len(stages) - 1 + 0.12, ry, display_text,
+            va='center', ha='left',
+            color=colour, fontweight='bold', fontsize=10, linespacing=1.2,
+            clip_on=False,
+        )
+
+    ax.set_ylim(10.6, 0.4)
+    ax.set_xlim(-1.2, len(stages) - 1 + 1.4)
+    ax.set_xticks(x)
+    ax.set_xticklabels(stages, fontsize=14, fontweight='bold', color='#111111')
+    ax.set_yticks(range(1, 11))
+    ax.set_yticklabels([f'Rank {i}' for i in range(1, 11)], color='#666666', fontsize=11)
+    ax.set_ylabel('Ordinal rank (1 = highest)', fontsize=12, color='#444444', labelpad=12)
+    ax.grid(True, axis='y', color='#F0F0F0', linestyle='-', linewidth=1.0, zorder=0)
+
+    plt.title(title, fontsize=22, pad=40, fontweight='bold', color='#000000')
+
+    for spine in ['top', 'right', 'left']:
+        ax.spines[spine].set_visible(False)
+    ax.spines['bottom'].set_color('#CCCCCC')
+    ax.spines['bottom'].set_linewidth(1.2)
+
+    plt.tight_layout(pad=3.0)
+    png_path = os.path.join(output_dir, filename)
+    plt.savefig(png_path, dpi=300, bbox_inches='tight')
+    plt.close()
+    print(f"[SUCCESS] {filename} generated.")
+
+
 def plot_rank_displacement_chart(title, focus_candidates, filename, baseline, ai, cv_only, merit_full):
     """
     generates a bump chart visualising the rank displacement for a subset of personas
@@ -46,19 +173,8 @@ def plot_rank_displacement_chart(title, focus_candidates, filename, baseline, ai
     fig, ax = plt.subplots(figsize=(20, 12), dpi=300)
     fig.patch.set_facecolor('white')
     
-    # using imperial college london palette for the primary personas
-    persona_styles = {
-        'Alex Rivers': {'colour': '#003E74', 'label': 'The Verifiable Elite'},
-        'Buzz Ward': {'colour': '#D50032', 'label': 'The Keyword Stuffer'},
-        'Jordan Smith': {'colour': '#00853F', 'label': 'The Hidden Gem'},
-        'Sam Old': {'colour': '#E87722', 'label': 'The Stale Pro'},
-        'Carl Corp': {'colour': '#5D295F', 'label': 'The Corporate Giant'},
-        'Ghost Gary': {'colour': '#4A4A4A', 'label': 'The Unverified Ghost'},
-        'Felix Vance': {'colour': '#FF0000', 'label': 'The Identity Mismatch'},
-        'Vince Vault': {'colour': '#9C27B0', 'label': 'The Squatter'},
-        'Fiona Frost': {'colour': '#800000', 'label': 'The Evidence of Absence'},
-        'Kim Junior': {'colour': '#8BC34A', 'label': 'The High-Potential Junior'}
-    }
+    persona_styles = PERSONA_STYLES
+
     
     x = np.arange(len(stages))
     left_labels = []
@@ -147,7 +263,13 @@ def generate_evaluation_visualisations():
 
     all_names = list(baseline.keys())
     
-    # holistic view of all personas
+    plot_bump_chart_all_candidates(
+        "Study 01A: Rank Bump Chart (All Candidates)",
+        "rank_displacement_bump_chart.png",
+        baseline, ai, cv_only, merit_full,
+    )
+
+    # holistic view of all personas (legacy highlight-style chart)
     plot_rank_displacement_chart("Holistic Results: Systemic Rank Displacement", all_names, "rank_displacement_holistic.png", baseline, ai, cv_only, merit_full)
     
     # highlighting candidates where multi-source fusion worked best

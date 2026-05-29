@@ -12,12 +12,14 @@ They work by parsing resumes into structured fields, such as skills, education, 
 From here, explicit, pre-defined rules are applied in order to screen candidates.
 Recruiters often configure keyword lists, required skill thresholds, boolean queries and knockout conditions (e.g., minimum degree requirements and years of experience).
 
-Due to their consistency and predictability, employers may leverage rule-based systems to screen candidates. Unlike other systems, there is a 
-lack of subjective bias present in a system that has clearly defined rules \cite{bogen2018}.
+Due to their consistency and predictability, employers may leverage rule-based systems to screen candidates. 
+By applying explicit, pre-defined criteria uniformly, such systems avoid the intuitive, subjective judgments that 
+often influence human reviewers \cite{highhouse2008stubborn}.
 
 The reason these systems are not commonly used however, is due to the limit of standardisation of CV formats.
-These systems will struggle with non-standard CV formats, leading to parsing errors that disproportionately impact 
-early-career applicants as well as those from non-traditional backgrounds \cite{vanesch2019}.
+These systems will struggle with non-standard CV formats, leading to parsing errors \cite{emnlp2025resumebench}.
+Candidates with unconventional layouts or career paths are therefore more likely to be scored poorly for formatting 
+reasons rather than skill.
 Along with this, these systems are vulnerable to keyword-gaming, a practice where applicants strategically insert 
 repeated or irrelevant terms to artificially inflate their match scores \cite{marr2019}.
 The failure to recognise all possible CV formats and lack of semantic understanding also leads to the system being unable
@@ -38,7 +40,7 @@ There is also the improved ability in matching candidates who used varied phrasi
 Despite the improvements, many issues still persist, especially with interpretation.
 These systems usually misinterpret contextual details as well as ambiguous language within a resume.
 The lack of sophistication also may lead to them overlooking crucial nuances such as depth of a skill, the quality of a candidate’s experience, as well as specific evidence of measurable impact.
-Due to this, the limitations often result in misclassification, estimating that approximately 75\% of CVs are filtered out before reaching a human recruiter, often incorrectly identifying qualified candidates as unsuitable matches \cite{kelly2021}.
+Due to this, the limitations often result in misclassification: employer surveys report that more than 90\% use applicant-tracking or recruitment-management systems to filter or rank candidates, and 88--94\% of employers say qualified applicants are screened out when they fail to match job-description criteria exactly \cite{fuller2021hiddenworkers}.
 
 \subsection{AI-Assisted ATS}
 This form of ATS leverage machine learning models that have been trained on historical hiring data to predict candidate-job fit.
@@ -51,7 +53,7 @@ Their strengths include higher matchmaking accuracy, as well as the ability to d
 
 However, there are also many challenges faced by AI-Assisted ATS systems too.
 Firstly, algorithmic bias is a notable issue where models inherit and reproduce historical patterns of gender, ethnic or institutional preference found in past hiring data \cite{raghavan2020,bogen2018}.
-This issue is made worse with feedback loops, as systems that consistently prioritise specific candidate profiles may continue to further these traits even as a company’s strategic needs change \cite{holstein2019}.
+This issue is made worse with feedback loops, as systems that consistently prioritise specific candidate profiles may continue to further these traits even as a company's strategic needs change \cite{raghavan2020}.
 
 Furthermore, the “black box” nature of these systems lead to low transparency, as there is often little explanation for ranking and rejecting decisions, undermining both the candidate trust as well as compliance with fair-hiring guidelines.
 Another significant issue lies in over-generalisation, where these models are often trained on broad datasets, prioritising generic markers over role-specific expertise.

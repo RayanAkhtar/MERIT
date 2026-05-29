@@ -140,7 +140,7 @@ highly contradictory signals from sources of high confidence.
 \label{subsec:study-01a-algorithmic-ablation}
 
 To evaluate the benefits and drawbacks of MERIT's multi-source fusion model, we will compare it against three other baseline screening engines.
-The first is \textbf{Traditional ATS}, an in-repository keyword-matching baseline representing CV screening logic typical of rule-based ATS products \cite{vanesch2019}; it scores candidates solely on the count of matching keywords in their CV.
+The first is \textbf{Traditional ATS}, an in-repository keyword-matching baseline representing CV screening logic typical of rule-based ATS products \cite{raghavan2020}; it scores candidates solely on the count of matching keywords in their CV.
 The second is \textbf{Modern AI ATS}, an in-repository semantic baseline representing CV-only screening typical of AI-assisted ATS products; it computes cosine
 similarities between CV embeddings and Job Description (JD) embeddings using a Sentence-BERT (SBERT) model \cite{reimers2019sentence}.
 Neither baseline is a commercial ATS platform. We also run \textbf{MERIT (CV Only)} on CV data alone, and \textbf{MERIT (Full)}, which considers all sources of
@@ -156,7 +156,7 @@ Table~\ref{tab:algorithmic-ablation}.
     \centering
     \caption[Study~01A: Algorithmic benchmark rankings]{ Algorithmic Benchmarking and Candidate Rankings for 10 personas across four different scoring engines. $\delta\%$ represents
     the score gain/loss between the CV-Only and Full MERIT configurations, highlighting the effect of multi-source fusion on different personas. 
-    Refer to Figure~\ref{fig:rank-displacement-successes} (Appendix~\ref{appendix:rank_displacement}) for the complete rank displacement trajectories.
+    Refer to Figure~\ref{fig:rank-displacement-bump-chart} (Appendix~\ref{appendix:rank_displacement}) for the rank bump chart across all personas.
     Note that scores have been normalised on a scale of 0 to 100\% where appropriate.}
     \label{tab:algorithmic-ablation}
     \vspace{1.5ex}
@@ -208,8 +208,8 @@ Conversely, the fusion engine successfully limits or penalises unverified or adv
 receives a negligible cardinal shift of $+0.7\%$, while Vince Vault experiences a negative cardinal shift of $-12.6\%$
 ($33.2\% \to 20.6\%$), representing the heavy evidence conflict penalty applied under validation failures. The specific
 data-source mechanics driving these individual shifts are detailed in Section~\ref{subsec:study-01b-data-source-ablation}.
-Figure~\ref{fig:rank-displacement-successes} (Appendix~\ref{appendix:rank_displacement}) 
-traces the highlighted cases discussed above, as well as the overall rank displacement trajectories for each candidate.
+Figure~\ref{fig:rank-displacement-bump-chart} (Appendix~\ref{appendix:rank_displacement})
+traces the rank trajectories of all ten personas, including the cases discussed above.
 
 \subsection{Study 01B: Multi-Source Data Ablation}
 \label{subsec:study-01b-data-source-ablation}

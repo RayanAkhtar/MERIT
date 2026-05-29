@@ -1,26 +1,16 @@
-\chapter{Rank Displacement Trajectories (Study 01A, 01B)}
+\chapter{Rank Bump Chart (Study 01A)}
 \label{appendix:rank_displacement}
 
-This appendix displays the graphic representations of candidate ranks among the four scoring configurations
-(Traditional ATS, Modern AI ATS, CV-Only MERIT, and Full MERIT). This is for the 10-candidate cohort that we evaluate in
-study 01.
-
-
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.95\textwidth]{../evaluation/01-comparative_study/output/rank_displacement_successes.png}
-    \caption[Study~01A: Selected rank trajectories]{Study~01A: selected rank trajectories for the key candidates
-    of the 10 candidate cohort. We highlight the candidates that are discussed the most in Section~\ref{subsec:study-01a-algorithmic-ablation}
-    for better visual clarity. The scores are tabulated in Table~\ref{tab:algorithmic-ablation}.}
-    \label{fig:rank-displacement-successes}
-\end{figure}
+This appendix is the graphical representation of Table~\ref{tab:algorithmic-ablation}..
+It is a bump chart presenting the ordinal rank shifts for all ten candidates across the four scoring configurations.
+Note that this is not a continuous chart, but rather a discrete chart, lines are used to connect the same candidate between
+configurations and do not imply intermediate ranks, nor do they imply a continuous ranking system.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.92\textwidth]{../evaluation/01-comparative_study/output/rank_displacement_holistic.png}
-    \caption[Study~01A: Full rank displacement]{Study~01A: full rank displacement across all ten candidate personas.
-    This chart is provided for completeness, refer to Figure~\ref{fig:rank-displacement-successes} 
-    for the selected rank trajectories.}
-    \label{fig:rank-displacement-holistic}
+    \includegraphics[width=0.95\textwidth]{../evaluation/01-comparative_study/output/rank_displacement_bump_chart.png}
+    \caption[Study~01A: Rank bump chart (all candidates)]{Study~01A: bump chart of ordinal rank for ten candidates across four
+    scoring configurations. Rank 1 is the highest rank, most compatible with the job description while rank 10 is the lowest 
+    rank, deeming the candidate as the worst fit for a job.}
+    \label{fig:rank-displacement-bump-chart}
 \end{figure}
