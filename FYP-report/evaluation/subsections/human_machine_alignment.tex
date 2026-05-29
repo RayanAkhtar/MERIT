@@ -106,7 +106,7 @@ None of the profiles introduce contradictory evidence. MERIT (Full) raises the a
 due to this alignment of evidence. This does not lead to the conclusion that multi-source fusion is ineffective, but rather that multi-source fusion is discriminatory
 upon the presence of contradictory evidence.
 
-Inspecting the rankings (found in \texttt{evaluation/08-spearman\_seniority\_bias\_audit/output/detailed\_rankings.csv}), 
+Inspecting the rankings (found in \texttt{detailed\_rankings.csv}), 
 the human-preferred intern profile (Vincent Germain, human rank~1) is ranked quite low across all scoring engines.
 On the other hand, principal/staff CVs score higher, highlighting the gap between MERIT's current weighting and this
 scenario's ``potential over title'' consensus. The outcome of this is quite valuable as an honest stress test, as opposed 
@@ -147,8 +147,7 @@ act as a tie-breaker when the CV-only scores are too close to call.
     \end{tabular}
 \end{table}
 
-We can observe tight score clustering in the rankings 
-(found in \texttt{evaluation/09-spearman\_peer\_competition/output/detailed\_rankings.csv}), which explains the weak 
+We can observe tight score clustering in the rankings, which explains the weak 
 CV-only $\rho$. The additional sources of information are able to act as a tie-breaker when the CV-only scores are too close to call.
 While this case doesn't highlight MERIT (Full) as the best performing engine, it is still able to achieve a strong alignment with
 the expert consensus and put forward a strong case for the use of additional sources of information to help with tie-breaking.
@@ -188,7 +187,7 @@ clear message to the reader that MERIT (Full) can only perform as well as the qu
     \end{tabular}
 \end{table}
 
-In the detailed rankings (found in \texttt{evaluation/10-spearman\_signal\_dissonance\_failure\_case/output/detailed\_rankings.csv}),
+In the detailed rankings,
 we can see that the worst-pick candidate (Jude Washington, human rank~10) is promoted to the top spot by MERIT (Full), while the 
 top-pick candidate (Moinecha Ramos-Horta, human rank~1) is dropped to the second spot. This was an intentional design choice to
 make the failure case more obvious and easier to understand. We clearly show that if the data sources are contradictory, 

@@ -16,6 +16,15 @@
 \setlength{\marginparwidth}{2cm}
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{xurl} % break long paths/URLs in text mode (used by \texttt below)
+\urlstyle{tt}
+\DeclareRobustCommand{\texttt}[1]{%
+  \ifmmode
+    \mathtt{#1}%
+  \else
+    \nolinkurl{#1}%
+  \fi
+}
 \usepackage{graphicx}
 \usepackage{tabularx} 
 \usepackage{tikz}
@@ -26,6 +35,7 @@
 \usepackage[most]{tcolorbox}
 \usepackage{enumitem}
 \usepackage{titlesec}
+\usepackage{etoolbox}
 
 % Global List Spacing Optimisations
 \setlist[itemize]{noitemsep, topsep=3pt, parsep=0pt, partopsep=0pt, itemsep=2pt}
@@ -37,6 +47,9 @@
 \titlespacing*{\chapter}{0pt}{-25pt}{15pt}
 \titlespacing*{\section}{0pt}{12pt}{6pt}
 \titlespacing*{\subsection}{0pt}{10pt}{5pt}
+
+% titlesec keeps \chaptername as "Chapter" after \appendix unless we patch it
+\apptocmd{\appendix}{\renewcommand{\chaptername}{Appendix}}{}{}
 
 % Modern Code Palette
 \definecolor{codebackground}{RGB}{248, 249, 250}
@@ -95,6 +108,7 @@
 \author{Rayan Akhtar}
 
 \begin{document}
+\pagenumbering{roman}
 \input{title/title.tex}
 
 \begin{abstract}
@@ -110,6 +124,9 @@
 \listoffigures
 \listoftables
 
+\cleardoublepage
+\pagenumbering{arabic}
+\setcounter{page}{1}
 \input{introduction/introduction.tex}
 \input{background/background.tex}
 \input{literature_review/literature_review.tex}
@@ -118,12 +135,10 @@
 \input{ethics/ethics.tex}
 \input{reflection/reflection.tex}
 \input{conclusion/conclusion.tex}
-\input{appendix/appendix.tex}
 
 \bibliographystyle{vancouver}
 \bibliography{bibs/introduction,bibs/background,bibs/implementation,bibs/evaluation,bibs/ethics,bibs/merit}
 
-
-\input{declarations/declarations.tex}
+\input{appendix/appendix.tex}
 
 \end{document}
