@@ -177,6 +177,15 @@ def generate_plots(history, output_dir):
         ax2.text(bar.get_x() + bar.get_width()/2., height + 0.01,
                  f'σ={height:.3f}', ha='center', va='bottom', fontsize=10, fontweight='bold')
 
+    eval_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    report_charts = os.path.join(eval_root, "report_charts")
+    if report_charts not in sys.path:
+        sys.path.insert(0, report_charts)
+    from plot_style import add_panel_label  # noqa: E402
+
+    add_panel_label(ax1, "a")
+    add_panel_label(ax2, "b")
+
     plt.tight_layout()
     plt.savefig(os.path.join(output_dir, "fusion_convergence_detailed.png"), dpi=150)
     plt.close(fig2)

@@ -25,4 +25,7 @@ Where:
 By calculating these values, MERIT can explicitly state the contribution of each data source to the final match score.
 In other words, it is possible to determine whether a candidate got a high score due to self-reported claims on their CV, or from evidence-based metrics from a source, such as GitHub.
 This level of transparency is critical for mitigating algorithmic bias and providing defensible hiring decisions.
-By building on the SHAP (Shapley Additive Explanations) framework \cite{lundberg2017unified}, MERIT ensures that its source-level attribution remains mathematically consistent and locally accurate.
+By building on the SHAP (Shapley Additive Explanations) framework \cite{lundberg2017unified}, MERIT applies 
+the same Shapley formalism at the data-source level to attribute each coalition's marginal contribution to the 
+final score. Note that Lundberg and Lee developed this approach to explain individual model predictions, whereas 
+MERIT applies it across data-source coalitions.

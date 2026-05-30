@@ -112,9 +112,87 @@ def main() -> None:
 
         run_script(study_path, script)
 
+        if folder == "02-runtime_study":
+            report_charts = os.path.join(root_dir, "report_charts")
+            subprocess.run(
+                [sys.executable, "generate_report_charts.py", "--only", "runtime"],
+                cwd=report_charts,
+                check=True,
+            )
+
+        if folder == "03-spacetime_study":
+            report_charts = os.path.join(root_dir, "report_charts")
+            subprocess.run(
+                [sys.executable, "generate_report_charts.py", "--only", "spacetime"],
+                cwd=report_charts,
+                check=True,
+            )
+            subprocess.run(
+                [sys.executable, "generate_report_charts.py", "--only", "scalability"],
+                cwd=report_charts,
+                check=True,
+            )
+
+        if folder == "05-jd_parser_test":
+            report_charts = os.path.join(root_dir, "report_charts")
+            subprocess.run(
+                [sys.executable, "generate_report_charts.py", "--only", "ingestion"],
+                cwd=report_charts,
+                check=True,
+            )
+
+        if folder == "06-adversarial_test":
+            report_charts = os.path.join(root_dir, "report_charts")
+            subprocess.run(
+                [sys.executable, "generate_report_charts.py", "--only", "adversarial"],
+                cwd=report_charts,
+                check=True,
+            )
+
         if folder == "10-spearman_signal_dissonance_failure_case":
-            spearman_charts = os.path.join(root_dir, "spearman_charts")
-            run_script(spearman_charts, "generate_combined_chart.py")
+            report_charts = os.path.join(root_dir, "report_charts")
+            subprocess.run(
+                [sys.executable, "generate_report_charts.py", "--only", "spearman"],
+                cwd=report_charts,
+                check=True,
+            )
+
+        if folder == "11-shapley_verification":
+            report_charts = os.path.join(root_dir, "report_charts")
+            subprocess.run(
+                [sys.executable, "generate_report_charts.py", "--only", "shapley"],
+                cwd=report_charts,
+                check=True,
+            )
+
+        if folder == "13-dynamic_tf_idf_recruiter_validation":
+            report_charts = os.path.join(root_dir, "report_charts")
+            subprocess.run(
+                [
+                    sys.executable,
+                    "generate_report_charts.py",
+                    "--only",
+                    "study13_scatter_heatmap",
+                ],
+                cwd=report_charts,
+                check=True,
+            )
+
+        if folder == "14-hci_trial":
+            report_charts = os.path.join(root_dir, "report_charts")
+            subprocess.run(
+                [sys.executable, "generate_report_charts.py", "--only", "hci"],
+                cwd=report_charts,
+                check=True,
+            )
+
+        if folder == "15-bias_anonymisation_audit":
+            report_charts = os.path.join(root_dir, "report_charts")
+            subprocess.run(
+                [sys.executable, "generate_report_charts.py", "--only", "bias"],
+                cwd=report_charts,
+                check=True,
+            )
 
     print("\n" + "=" * 60)
     print("ALL EVALUATIONS COMPLETE (Studies 01--15)")

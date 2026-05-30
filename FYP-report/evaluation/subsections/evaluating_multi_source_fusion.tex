@@ -66,8 +66,8 @@ Go, and would experience a ramp-up period in the initial months.
 \label{subsec:study-12-bayesian-conflict-resolution}
 
 In the previous section, we demonstrated that MERIT employs a Bayesian evidence fusion model with Beta
-distribution conjugate priors \cite{gelman2013bayesian} to resolve conflicting signals across unstructured and structured data channels
-without resorting to ad-hoc heuristics. Here, we will evaluate the empirical correctness of this model.
+distribution conjugate priors to resolve conflicting signals across unstructured and structured data channels
+without resorting to ad-hoc heuristics, in line with standard Beta--Bernoulli updating \cite{gelman2013bayesian}. Here, we will evaluate the empirical correctness of this model.
 
 We initialise our model with the following priors:
 \begin{equation}
@@ -76,12 +76,11 @@ We initialise our model with the following priors:
 
 To verify the correctness of this model, we shall run a step-by-step mathematical walkthrough for a candidate
 \textbf{Felix Vance} for the extensible requirement of Java, as defined in Table~\ref{tab:bayesian-walkthrough}.
+Parameter convergence is plotted in Figure~\ref{fig:bayesian-fusion-convergence} (Appendix~\ref{appendix:bayesian-fusion-charts}).
 
 \begin{table}[htbp]
     \centering
-    \caption[Study~12: Bayesian parameter shifts (Felix Vance)]{Bayesian Parameter Shifts for Felix Vance, demonstrating the effects of contradictory 
-    evidence on the expected value and uncertainty. The convergence of these parameter updates are visualised in
-        Figure~\ref{fig:bayesian-fusion-convergence} (Appendix~\ref{appendix:bayesian-fusion-charts}).}
+    \caption[Study~12: Bayesian parameter shifts (Felix Vance)]{Study~12: Bayesian parameter shifts for Felix Vance (Java).}
     \label{tab:bayesian-walkthrough}
     \vspace{1.5ex}
     \begin{tabular}{l|c|c|c|c|c|c}
@@ -148,16 +147,15 @@ evidence.
 
 The complete ranking outcomes, as well as the normalised candidate scores across these four models are detailed in
 Table~\ref{tab:algorithmic-ablation}.
+Percentages are on a 0--100 scale where applicable; the \textbf{Fusion Shift} column is the score change from MERIT (CV Only) to MERIT (Full).
+Ordinal rank shifts across all ten personas are in Figure~\ref{fig:rank-displacement-bump-chart} (Appendix~\ref{appendix:rank_displacement}).
 
 
 
 
 \begin{table}[htbp]
     \centering
-    \caption[Study~01A: Algorithmic benchmark rankings]{ Algorithmic Benchmarking and Candidate Rankings for 10 personas across four different scoring engines. $\delta\%$ represents
-    the score gain/loss between the CV-Only and Full MERIT configurations, highlighting the effect of multi-source fusion on different personas. 
-    Refer to Figure~\ref{fig:rank-displacement-bump-chart} (Appendix~\ref{appendix:rank_displacement}) for the rank bump chart across all personas.
-    Note that scores have been normalised on a scale of 0 to 100\% where appropriate.}
+    \caption[Study~01A: Algorithmic benchmark rankings]{Study~01A: rankings and scores across four screening engines ($N=10$ personas).}
     \label{tab:algorithmic-ablation}
     \vspace{1.5ex}
     \small
@@ -209,7 +207,7 @@ receives a negligible cardinal shift of $+0.7\%$, while Vince Vault experiences 
 ($33.2\% \to 20.6\%$), representing the heavy evidence conflict penalty applied under validation failures. The specific
 data-source mechanics driving these individual shifts are detailed in Section~\ref{subsec:study-01b-data-source-ablation}.
 Figure~\ref{fig:rank-displacement-bump-chart} (Appendix~\ref{appendix:rank_displacement})
-traces the rank trajectories of all ten personas, including the cases discussed above.
+traces the rank trajectories of all ten personas (rank~1 = best fit for the JD), including the cases discussed above.
 
 \subsection{Study 01B: Multi-Source Data Ablation}
 \label{subsec:study-01b-data-source-ablation}

@@ -61,10 +61,7 @@ to a data source, and inform the recruiter whether a candidate's score was drive
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.95\textwidth]{implementation/screenshots/shapley_source_breakdown.png}
-    \caption[Source Influence Breakdown panel]{ A visualisation of the candidate's profile and score breakdown upon running
-    a configuration. For this candidate, we can observe the Shapley Values for each data source in the top-left panel.
-    This breakdown can be used to understand the core basis of a candidate's score, whether it was driven by demonstrated evidence, 
-    or claimed evidence.}
+    \caption[Source Influence Breakdown panel]{Source influence breakdown with per-source Shapley values.}
     \label{fig:shapley_attribution}
 \end{figure}
 
@@ -110,13 +107,15 @@ We will briefly go over the main features of our Next.js frontend to create an i
 
 The first feature is probabilistic confidence labels, derived from the standard deviation $\sigma$ of the Beta distribution mentioned
 in the previous chapter. We map $\sigma$ to a traffic-light badge system (Green for High, Amber for Medium, Red for Low),
-allowing recruiters to instantly scan the reliability of a candidate's metric at a glance. The significance of these labels is highlighted
+allowing recruiters to instantly scan the reliability of a candidate's metric at a glance.
+Non-critical penalties (e.g.\ keyword stuffing) show an amber icon on the ranking table; critical penalties (e.g.\ identity squatting) show a red warning. The significance of these labels is highlighted
 more so when it comes to extensible metrics, where there is more uncertainty due to the ambiguity of how such metrics may be defined,
 and calculated.
 
 Another key innovation towards the UX of MERIT is the ``Insights'' panel. When viewing the ranking tables of a candidate, recruiters can open
 a ``report'' for them, which will provide them with an overlay of, not only the candidate's score, but also how it was calculated. The metric's
-calculation is also provided as a human-readable string, which can be used to understand the logic behind the score. To further aid transparency,
+calculation is also provided as a human-readable string, which can be used to understand the logic behind the score.
+The panel links to the full audit trail (per-source signals, Bayesian fusion, and Shapley breakdown) and surfaces actionable guidance where scores are limited. To further aid transparency,
 any penalisations (such as Squatting) are also flagged to the user to highlight the negative impact of such actions on the candidate's score.
 To ensure full auditability, we also provide views of each candidate's extracted data sources, so that recruiters can cross-check the audit trail.
 It is also possible to view skillsets that may have not been considered by the scoring engine, for example, a configuration may have had Python
@@ -127,21 +126,13 @@ catch this, the recruiter would be able to still observe this data and potential
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.95\textwidth]{implementation/screenshots/candidate_rankings_dashboard.png}
-    \caption[Intelligence Report dashboard]{The Intelligence Report dashboard, showing the candidate rankings for a given configuration.
-    Recruiters are able to view and query the candidate rankings, alongside confidence badges, visible upon opening a given candidate's report.
-    Where a candidate is subject to a non-critical penalty (such as Keyword Stuffing), an amber traffic light icon will be presented to the recruiter as
-    shown in the screenshot. In the event of a critical penalty (such as Identity Squatting), a red warning icon will be presented to the recruiter.}
+    \caption[Intelligence Report dashboard]{Intelligence Report ranking dashboard for a configuration.}
     \label{fig:candidate_rankings}
 \end{figure}
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.95\textwidth]{implementation/screenshots/metric_insights_panel.png}
-    \caption[Metric Insights panel (Python)]{The expanded Insights panel for a specific metric (Python). This is a candidate-specific
-    breakdown of the candidate's final score, detailing per-metric values as well as the confidence level of that metric. This view
-    presents a medium confidence score, as given by the amber traffic light colour. It is possible to view the audit trail to view per-source
-    breakdowns of the score, as well as how Bayesian fusion was applied to the score, along with a Shapley Value breakdown as well.
-    Relative, actionable advice is also provided to the recruiter to improve the candidate's score, or note why a candidate failed to achieve 
-    a higher score.}
+    \caption[Metric Insights panel (Python)]{Metric Insights panel (example: Python) with confidence badge and audit trail.}
     \label{fig:insights_dashboard}
 \end{figure}

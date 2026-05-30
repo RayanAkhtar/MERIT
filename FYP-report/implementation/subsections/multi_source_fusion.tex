@@ -5,7 +5,8 @@ depending on whether the metric is baseline or extensible. Both metrics may take
 computing up to one signal per data source per metric. If this is the case, we perform Bayesian fusion to compute a single
 score. Once each metric has been reduced to a single value, we then undergo a weighted average of all the metrics
 to compute the final (match) score. Figure \ref{fig:schema_overview} shows how we can use a candidate's
-profile alongside a job description to produce a final score.
+profile alongside a job description to produce a final score: candidates from multiple sources are grouped into a batch,
+paired with an extracted job description to form a configuration, and each configuration run stores an immutable past result.
 
 
 \input{implementation/high_level_system_design/relational_schema_diagram.tex}
@@ -48,6 +49,8 @@ while also remaining strict enough to reject other, unrelated terms such as ``Py
 Whenever there is a semantic bridge, we also pass this information to the frontend to let the recruiter know
 of both extensible metric, as well as the skill that was bridged against it, to ensure full transparency.
 This way, in the event of a false-positive, the recruiter can easily identify and correct it.
+For extensible CV metrics, a direct string match (e.g.\ ``SQL'') yields a lexical signal; otherwise cosine similarity
+against extracted skills is used (e.g.\ bridging ``PostgreSQL'' to ``SQL''), as summarised in Figure~\ref{fig:semantic_skill_scoring}.
 
 
 \input{implementation/high_level_system_design/semantic_skill_scoring_diagram.tex}

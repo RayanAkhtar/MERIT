@@ -78,13 +78,14 @@ As expected, MERIT Full scores are unchanged by Blind Mode (UI-only redaction): 
 
 \subsubsection{Quantitative results}
 Table~\ref{tab:bias-audit-summary} reports how often each candidate was shortlisted in each arm ($n = 4$ evaluators per arm). 
-Figure~\ref{fig:bias-shortlist-rates} and Figure~\ref{fig:bias-blind-uplift} (Appendix~\ref{appendix:bias-anonymisation-charts}) 
-plot the same data. Table~\ref{tab:bias-disparity-metrics} summarises the prestige proxy gap used for H1.
+Figure~\ref{fig:bias-combined} 
+(panels a--b, Appendix~\ref{appendix:bias-anonymisation-charts}) 
+plots the same data. Table~\ref{tab:bias-disparity-metrics} 
+summarises the prestige proxy gap used for H1.
 
 \begin{table}[htbp]
     \centering
-    \caption[Study~15: Blind Mode shortlist rates]{Blind Mode audit summary (Study~15, between-subjects: $n = 4$ per UI arm, 4 candidates). Rates are the
-    fraction of evaluators in that arm who shortlisted the profile.}
+    \caption[Study~15: Blind Mode shortlist rates]{Study~15: shortlist rates by candidate and UI arm ($n = 4$ per arm).}
     \label{tab:bias-audit-summary}
     \vspace{1.5ex}
     \small
@@ -102,7 +103,7 @@ plot the same data. Table~\ref{tab:bias-disparity-metrics} summarises the presti
 
 \begin{table}[htbp]
     \centering
-    \caption[Study~15: Aggregate disparity metrics]{Study~15: Aggregate disparity metrics (Study~15, between-subjects). High Prestige: Riko and Aisling. Mid/Low Prestige: Vincent and Jude.}
+    \caption[Study~15: Aggregate disparity metrics]{Study~15: prestige proxy gap (high: Riko, Aisling; mid/low: Vincent, Jude).}
     \label{tab:bias-disparity-metrics}
     \vspace{1.5ex}
     \small
@@ -168,18 +169,18 @@ match percentage of 49.8\%. We have the following scenarios:
 
 Each scenario is scored by both the CV-only and Full MERIT engines. 
 Results are exported to \texttt{output/multi\_source\_adversarial\_matrix.csv}. 
-Table~\ref{tab:adversarial-matrix} summarises the scores. 
-Figures~\ref{fig:adversarial-cv-vs-full} and~\ref{fig:adversarial-robustness} 
-(Appendix~\ref{appendix:fairness-scalability-charts}) compare CV-only versus 
-Full MERIT per scenario and report deviation from the honest baseline.
+Table~\ref{tab:adversarial-matrix} summarises the scores.
+$\Delta_{\mathrm{honest\_cv}}$ is CV-only minus the honest CV-only score; $\Delta_{\mathrm{fusion}}$ is Full minus CV-only on the same row;
+$\Delta_{\mathrm{honest\_fusion}}$ is Full minus the honest Full score 
+(panel~b of Figure~\ref{fig:adversarial-combined}).
+Figure~\ref{fig:adversarial-combined} 
+(panels a--b, Appendix~\ref{appendix:fairness-scalability-charts}) 
+compares CV-only (grey) versus
+Full MERIT (blue) per scenario and reports deviation from the honest Full baseline (49.8\%, dashed line).
 
 \begin{table}[htbp]
     \centering
-    \caption[Study~06: Adversarial robustness matrix]{ Study~06: Adversarial robustness matrix for Study~06, all candidates share the same \textbf{Honest candidate} baseline.
-    $\Delta_{\mathrm{honest\_cv}}$ is each scenario's CV-only score minus the honest CV-only score.
-    $\Delta_{\mathrm{fusion}}$ is Full MERIT minus CV-only on the same row.
-    $\Delta_{\mathrm{honest\_fusion}}$ is each scenario's Full MERIT score minus the honest Full score.
-    Figure~\ref{fig:adversarial-robustness} visualises $\Delta_{\mathrm{honest\_fusion}}$ with annotations for each scenario.}
+    \caption[Study~06: Adversarial robustness matrix]{Study~06: adversarial robustness vs.\ honest baseline (49.8\% Full).}
     \label{tab:adversarial-matrix}
     \vspace{1.5ex}
     \footnotesize
@@ -262,12 +263,14 @@ GPU acceleration. Results measure the scoring engine only. It does not account f
 
 \subsubsection{Time complexity and latency (Study 02)}
 All engines run in $O(N)$ time complexity, with each additional candidate adding roughly the same amount of work, however, with different constant factors.
-Table~\ref{tab:runtime-results} and Figure~\ref{fig:runtime-complexity} summarise these results. For graphical
-representations of the data, please refer to Appendix~\ref{appendix:fairness-scalability-charts}.
+Table~\ref{tab:runtime-results} 
+and Figure~\ref{fig:runtime-combined} 
+(panel~a) summarise these results. Normalised latency is in panel~b of the same 
+figure (Appendix~\ref{appendix:fairness-scalability-charts}).
 
 \begin{table}[htbp]
     \centering
-    \caption[Study~02: Batch ranking latency]{Study~02: Batch ranking latency for Study~02, with wall-clock seconds to score an entire cohort of size $N$.}
+    \caption[Study~02: Batch ranking latency]{Study~02: batch ranking latency (seconds) vs.\ cohort size $N$.}
     \label{tab:runtime-results}
     \vspace{1.5ex}
     \small
@@ -298,12 +301,15 @@ the effects of multi-source fusion relatively minimal.
 \subsubsection{Space complexity and memory footprint (Study 03)}
 Study~03 separates \textbf{static engine footprint} (model and interpreter load at initialisation) from 
 \textbf{operational batch overhead} (incremental RSS growth while scoring a batch, after garbage collection). 
-Table~\ref{tab:engine-load} and Table~\ref{tab:spacetime-batch} summarise \texttt{output/engine\_load\_costs.csv} and 
-\texttt{output/spacetime\_results.csv}; Figure~\ref{fig:spacetime-composite} (Appendix~\ref{appendix:fairness-scalability-charts}) visualises both.
+Table~\ref{tab:engine-load} and Table~\ref{tab:spacetime-batch} 
+summarise \texttt{output/engine\_load\_costs.csv} and 
+\texttt{output/spacetime\_results.csv}. Figure~\ref{fig:scalability-combined} 
+(panels~c--d; Appendix~\ref{appendix:fairness-scalability-charts}) 
+visualises both.
 
 \begin{table}[htbp]
     \centering
-    \caption[Study~03: Static memory footprint]{Study~03: Static engine memory footprint for Study~03, measured in a fresh subprocess in megabytes (MB).}
+    \caption[Study~03: Static memory footprint]{Study~03: static engine memory footprint (MB).}
     \label{tab:engine-load}
     \vspace{1.5ex}
     \small
@@ -320,9 +326,7 @@ Table~\ref{tab:engine-load} and Table~\ref{tab:spacetime-batch} summarise \textt
 
 \begin{table}[htbp]
     \centering
-    \caption[Study~03: Incremental batch memory]{Study~03: Incremental batch memory overhead for Study~03, 
-    measured after \texttt{gc.collect()} with the engine already loaded in megabytes (MB).
-    Same engine ordering as Table~\ref{tab:runtime-results}.}
+    \caption[Study~03: Incremental batch memory]{Study~03: incremental batch memory overhead (MB) after \texttt{gc.collect()}.}
     \label{tab:spacetime-batch}
     \vspace{1.5ex}
     \small

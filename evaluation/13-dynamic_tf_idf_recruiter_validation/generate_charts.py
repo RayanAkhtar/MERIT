@@ -12,8 +12,14 @@ from typing import Any, Dict, List, Tuple
 
 import matplotlib.pyplot as plt
 import numpy as np
+import sys
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+EVAL_ROOT = os.path.dirname(SCRIPT_DIR)
+REPORT_CHARTS_DIR = os.path.join(EVAL_ROOT, "report_charts")
+if REPORT_CHARTS_DIR not in sys.path:
+    sys.path.insert(0, REPORT_CHARTS_DIR)
+from plot_style import add_panel_label  # noqa: E402
 OUTPUT_DIR = os.path.join(SCRIPT_DIR, "output")
 PER_SKILL_CSV = os.path.join(OUTPUT_DIR, "per_skill_results.csv")
 REPORT_JSON = os.path.join(OUTPUT_DIR, "evaluation_report.json")
@@ -252,26 +258,8 @@ def chart_scatter(rows: List[Dict[str, Any]]) -> None:
         zorder=3,
     )
 
-    disclaimer = (
-        "Note: Each point = one skill on one hold-out (n = 27).  "
-        "Y = median of four blinded Likert ratings (1–5);  X = TF-IDF on the same UI scale.\n"
-        "Ratings are integers only—±0.1 jitter separates overlapping points.\n"
-        "Suffixes (e.g. Python (ML)) indicate the job role, not a distinct skill name."
-    )
-    fig.text(
-        0.5,
-        0.03,
-        disclaimer,
-        ha="center",
-        va="bottom",
-        fontsize=7.5,
-        color="#37474f",
-        linespacing=1.25,
-        bbox=dict(boxstyle="round,pad=0.45", facecolor="#fafafa", edgecolor="#cfd8dc", alpha=0.95),
-    )
-
-    fig.subplots_adjust(bottom=0.16)
-    plt.savefig(os.path.join(OUTPUT_DIR, "study13_consensus_vs_tfidf_scatter.png"), dpi=300)
+    plt.tight_layout()
+    plt.savefig(os.path.join(OUTPUT_DIR, "study13_consensus_vs_tfidf_scatter.png"), dpi=300, bbox_inches="tight")
     plt.close()
 
 
@@ -382,7 +370,9 @@ def chart_top_misalignments(rows: List[Dict[str, Any]], n_top: int = 12) -> None
             color="#37474f",
         )
 
-    fig.suptitle("Study 13: consensus vs TF-IDF — gaps and agreements", fontweight="bold", fontsize=11, y=0.98)
+    fig.suptitle("Study 13: consensus vs TF-IDF (gaps and agreements)", fontweight="bold", fontsize=11, y=0.98)
+    add_panel_label(ax_gap, "a")
+    add_panel_label(ax_agree, "b")
     fig.subplots_adjust(left=0.2, right=0.96, top=0.92, bottom=0.08)
     plt.savefig(os.path.join(OUTPUT_DIR, "study13_top_misalignments.png"), dpi=300)
     plt.close()

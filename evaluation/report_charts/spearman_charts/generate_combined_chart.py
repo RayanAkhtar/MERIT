@@ -6,12 +6,17 @@ Reads spearman_results.csv from each study output directory (produced by spearma
 from __future__ import annotations
 
 import os
+import sys
 
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 
-EVAL_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+REPORT_CHARTS_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, REPORT_CHARTS_DIR)
+from plot_style import add_panel_label  # noqa: E402
+
+EVAL_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "output")
 
 ENGINE_ORDER = [
@@ -61,54 +66,77 @@ def _load_results(study_folder: str) -> pd.DataFrame:
     return df.sort_values("Engine")
 
 
-def _plot_panel(ax, results_df: pd.DataFrame, title: str, panel_label: str) -> None:
-    sns.barplot(
-        x="Engine",
-        y="Spearman Rho",
-        hue="Engine",
-        data=results_df,
-        palette=ENGINE_COLORS,
-        order=ENGINE_ORDER,
-        hue_order=ENGINE_ORDER,
-        legend=False,
-        width=0.92,
-        ax=ax,
+def _plot_panel(
+    ax,
+    results_df: pd.DataFrame,
+    title: str,
+    panel_label: str,
+    *,
+    show_ylabel: bool,
+    show_xticklabels: bool,
+) -> None:
+    x_pos = list(range(len(ENGINE_ORDER)))
+    values = results_df.set_index("Engine").reindex(ENGINE_ORDER)["Spearman Rho"].tolist()
+    bars = ax.bar(
+        x_pos,
+        values,
+        width=0.78,
+        color=ENGINE_COLORS,
+        align="center",
+        edgecolor="white",
+        linewidth=0.6,
     )
 
-    for patch in ax.patches:
+    for patch in bars:
         height = patch.get_height()
+        offset = 7 if height >= 0 else -7
+        va = "bottom" if height >= 0 else "top"
         ax.annotate(
             f"{height:.3f}",
             (patch.get_x() + patch.get_width() / 2.0, height),
             ha="center",
-            va="center",
-            xytext=(0, 7),
+            va=va,
+            xytext=(0, offset),
             textcoords="offset points",
-            fontsize=9,
+            fontsize=8,
             fontweight="bold",
         )
 
-    ax.set_title(f"({panel_label}) {title}", fontsize=11, fontweight="bold", pad=8)
-    ax.set_ylabel("Spearman's ρ", fontsize=10)
+    ax.set_title(title, fontsize=10, fontweight="bold", pad=6)
+    add_panel_label(ax, panel_label)
+    ax.set_ylabel("Spearman's ρ" if show_ylabel else "")
     ax.set_xlabel("")
     ax.set_ylim(-1.05, 1.05)
     ax.axhline(0, color="black", linewidth=0.7)
-    ax.tick_params(axis="x", rotation=25, labelsize=8)
-    ax.tick_params(axis="y", labelsize=9)
+    ax.set_xticks(x_pos)
+    if show_xticklabels:
+        ax.set_xticklabels(ENGINE_ORDER, rotation=30, ha="right")
+    else:
+        ax.set_xticklabels([])
+    ax.tick_params(axis="x", labelsize=7.5)
+    ax.tick_params(axis="y", labelsize=8)
     ax.grid(True, axis="y", color="#F0F0F0", linewidth=0.8)
 
 
 def generate_combined_chart() -> str:
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-    fig, axes = plt.subplots(2, 2, figsize=(14, 9), dpi=300)
+    fig, axes = plt.subplots(2, 2, figsize=(10, 10.8), dpi=300, sharey=True)
     fig.patch.set_facecolor("white")
     sns.set_style("whitegrid")
 
     combined_rows = []
-    for study, ax in zip(STUDIES, axes.flat):
+    for idx, (study, ax) in enumerate(zip(STUDIES, axes.flat)):
+        row, col = divmod(idx, 2)
         results_df = _load_results(study["folder"])
-        _plot_panel(ax, results_df, study["title"], study["panel"])
+        _plot_panel(
+            ax,
+            results_df,
+            study["title"],
+            study["panel"],
+            show_ylabel=(col == 0),
+            show_xticklabels=(row == 1),
+        )
         for _, row in results_df.iterrows():
             combined_rows.append(
                 {
@@ -120,7 +148,10 @@ def generate_combined_chart() -> str:
                 }
             )
 
-    fig.tight_layout(h_pad=2.8, w_pad=1.6)
+    for ax in axes.flat:
+        ax.set_box_aspect(1.05)
+
+    fig.subplots_adjust(left=0.09, right=0.98, top=0.96, bottom=0.15, hspace=0.38, wspace=0.10)
 
     chart_path = os.path.join(OUTPUT_DIR, "spearman_combined_chart.png")
     plt.savefig(chart_path, dpi=300, bbox_inches="tight")

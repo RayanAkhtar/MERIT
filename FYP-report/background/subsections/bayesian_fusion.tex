@@ -22,7 +22,7 @@ The parameters of the distribution are updated based on the type of evidence dis
     \item \textbf{Beta ($\beta$):} Represents "failure" signals, noise, or uncertainty (e.g., skill decay over time, lack of evidence for a self-reported claim).
 \end{itemize}
 
-The fused score (Match Score) is calculated as the mean of the distribution \cite{gelman2013bayesian}:
+The fused score (Match Score) is calculated as the mean of the distribution:
 \begin{equation}
     E[X] = \frac{\alpha}{\alpha + \beta}
 \end{equation}
@@ -36,4 +36,5 @@ The confidence level is calculated as the variance of the distribution:
 A key advantage of this framework is the ability to quantify \textit{uncertainty} through the variance of the distribution. 
 As more evidence is gathered, the distribution narrows, increasing the confidence in the assessment. 
 This allows MERIT to flag candidates with "High Confidence" vs. "Low Confidence" labels, providing the recruiter with a measure of how much to trust the automated ranking. 
-By utilising the conjugate prior properties of the Beta distribution, MERIT can efficiently update its beliefs as new data sources are ingested.
+By utilising the conjugate prior properties of the Beta distribution, MERIT can efficiently update its beliefs as new data sources are ingested, 
+following standard Beta--Bernoulli updating \cite{gelman2013bayesian}.

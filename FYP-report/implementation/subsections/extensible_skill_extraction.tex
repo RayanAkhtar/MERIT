@@ -15,14 +15,15 @@ The first step in this stage is the ingestion and normalisation of heterogeneous
 As shown in Figure \ref{fig:extraction_flow}, 
 MERIT has the capability to parse both unstructured and structured data sources. In this 
 case, the unstructured data sources are the CVs and JDs, while the structured data sources 
-are the GitHub and LinkedIn API endpoints. This layer performs canonical skill mapping 
-to ensure that signals from different sources can be compared within a unified schema.
+are the GitHub and LinkedIn API endpoints. Unstructured PDFs and structured API payloads are 
+decomposed into a unified, queryable schema. This layer performs canonical skill mapping 
+to ensure that signals from different sources can be compared within that schema.
 Custom parsing scripts in \texttt{backend/core/parsers} ingest, sanitise, and extract key entities from unstructured PDFs.
 
 \input{implementation/high_level_system_design/extraction_layer_diagram.tex}
 
 \subsubsection{PDF Text Extraction and Cleaning}
-MERIT uses the Python libraries \texttt{pdfplumber} and \texttt{pdfminer} \cite{pdfminer} to extract text from CV and JD PDFs.
+MERIT uses the Python libraries \texttt{pdfplumber} and \texttt{pdfminer} \cite{pdfplumber,pdfminer} to extract text from CV and JD PDFs.
 These tools often leave parsing noise and unwanted characters, so the raw text is sanitised by removing null bytes
 (\texttt{\textbackslash u0000}) and redundant whitespace before downstream extraction.
 
@@ -81,7 +82,7 @@ or ``Market Scarcity'', is calculated as:
 \end{equation}
 
 Where $N$ is the total number of job descriptions in our market corpus $D$, and $df(s)$ is the
-number of documents containing skill $s$ \cite{bastian2014linkedin}. The final significance score
+number of documents containing skill $s$. The final significance score
 $W_s$ for each skill is the product of these two components:
 
 \begin{equation}
@@ -92,7 +93,9 @@ For each configured job, we compute the $W_s$ scores for each skill; this may al
 These raw scores are the product of the TF and IDF scores for each skill. From here, we then min-max normalise the scores
 to the range $[1.0, 5.0]$ with one decimal place. Higher values mean stronger emphasis on that skill for the given job.
 If a JD mentions both a common skill (e.g.\ ``Python'') and a rarer one (e.g.\ ``Jupyter''), the rarer term tends toward 
-the top of the band unless the common skill is repeatedly mentioned in the JD. The market corpus $D$ is populated from
+the top of the band unless the common skill is repeatedly mentioned in the JD. In a similar fashion to large-scale skill inference from 
+professional documents \cite{bastian2014linkedin}, we also use corpus-level skill frequency to help distinguish role-specific requirements. 
+The market corpus $D$ is populated from
 historical job descriptions held in Supabase (or alternatively could be populated from an offline corpus, such as during evaluation).
 Note that the performance of TF-IDF is dependent on the market corpus, and as such, if the market corpus is not representative of 
 the current market, the performance of TF-IDF will be affected. This allows MERIT to keep up to date with the current market, and to be 

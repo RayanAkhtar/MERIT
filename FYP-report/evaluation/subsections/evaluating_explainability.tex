@@ -69,13 +69,11 @@ Our Shapley values are verified using our cohort of 10 candidates. We use the sa
 \subsubsection{Quantitative Verification Results}
 After implementing the source attribution features, we ran our suite of quantitative tests to verify that the
 attribution engine satisfied the core axioms of game theory. The quantitative results for Axioms 1, 3, and 4 are provided
-in Table~\ref{tab:shapley-verification}.
+in Table~\ref{tab:shapley-verification} ($\sum \phi_i = v(N)$ within floating-point tolerance; negative $\phi_i$ occur when a source triggers a penalty, e.g.\ GitHub identity mismatch).
 
 \begin{table}[htbp]
     \centering
-    \caption[Study~11: Shapley verification]{The sum of all source attributions ($\sum \phi_i$) matching the grand coalition match score
-    $v(N)$ within floating-point tolerance ($\Delta < 10^{-6}$) to account for precision errors. Note that negative Shapley values are present,
-    noting Vince Vault's penalisation for an identity mismatch on GitHub.}
+    \caption[Study~11: Shapley verification]{Study~11: per-candidate Shapley verification ($\sum \phi_i = v(N)$).}
     \label{tab:shapley-verification}
     \vspace{1.5ex}
     \small
@@ -115,8 +113,8 @@ in Table~\ref{tab:shapley-verification}.
 
 \subsubsection{Key XAI Insights}
 
-The source-level attribution breakdown for each candidate is in Figure~\ref{fig:shapley-attribution-breakdown}
-(Appendix~\ref{appendix:shapley-charts}), which illustrates how the Glass-Box 
+The source-level attribution breakdown for each candidate is in Figure~\ref{fig:shapley-combined}
+(panel~a, Appendix~\ref{appendix:shapley-charts}), which illustrates how the Glass-Box 
 scorecard surfaces drivers behind each score.
 
 A key finding from this study was the presence of negative attributions within the candidate's source attributions. In the context
@@ -152,9 +150,7 @@ the importance of additional evidence sources to create a holistic picture of a 
 
 \begin{table}[htbp]
     \centering
-    \caption[Study~11: Aggregate Shapley by source]{ Study~11: Shapley attributions per source for the ten-candidate cohort in \ref{tab:shapley-verification}.
-    The shares sum positive $\phi_i$ only, excluding the negative GitHub penalty from the pie's denominator to avoid the potential for zero division,
-    for future evaluation runs.}
+    \caption[Study~11: Aggregate Shapley by source]{Study~11: aggregate positive Shapley shares by source.}
     \label{tab:shapley-source-dominance}
     \vspace{1.5ex}
     \small
@@ -168,8 +164,9 @@ the importance of additional evidence sources to create a holistic picture of a 
 \end{table}
 
 Across the cohort, demonstrated GitHub evidence supplies a large share of positive attribution despite sparse 
-LinkedIn personas. This is shown in Table~\ref{tab:shapley-source-dominance} and Figure~\ref{fig:shapley-source-dominance} 
-(Appendix~\ref{appendix:shapley-charts}).
+LinkedIn personas. This is shown in Table~\ref{tab:shapley-source-dominance} and Figure~\ref{fig:shapley-combined}
+(panel~b, Appendix~\ref{appendix:shapley-charts}).
+Share percentages sum positive $\phi_i$ only, excluding negative GitHub penalties from the denominator.
 
 \subsection{Study 14: HCI Trial}
 \label{subsec:hci-trial-protocol}
@@ -226,14 +223,17 @@ as the basis for synthesising these candidates:
     \item \textbf{Aaron Mohammed} (Identity Squatter - claims deep Java/Go systems expertise on CV, squatted GitHub)
 \end{itemize}
 
-We present the quantitative results of this trial in Table~\ref{tab:hci-trial-results}. Decision-reversal, confidence-shift, and SUS distributions are in Appendix~\ref{appendix:hci-trial-charts} (Figures~\ref{fig:hci-decision-reversals}--\ref{fig:hci-sus-distribution}). Raw session data are in \texttt{evaluation/14-hci\_trial/}.
+We present the quantitative results of this trial in Table~\ref{tab:hci-trial-results}.
+Stage~1 and Stage~2 counts use $S$ (shortlist) and $R$ (reject); \textbf{DRR} is the fraction of Stage~1 decisions reversed after the Glass-Box scorecard.
+Confidence uses a 5-point Likert scale (1 = not confident, 5 = extremely confident).
+Decision-reversal, confidence-shift, and SUS distributions are in Figure~\ref{fig:hci-combined}
+(panels a--c, Appendix~\ref{appendix:hci-trial-charts}). 
+Raw session data are in \texttt{evaluation/14-hci\_trial/}.
 
 
 \begin{table}[htbp]
     \centering
-    \caption[Study~14: HCI pilot results]{ Quantitative results of Study~14, with $N = 5$ evaluators. Decisions are split into shortlisted and rejected decisions ($S$ and $R$ respectively).
-    Decision Reversal Rate (DRR) refers to a Stage 1 decision that was later reversed in Stage 2 after being presented with the Glass-Box scorecard.
-    Confidence follows the 5-point Likert scale (1 = Not Confident, 5 = Extremely Confident)}
+    \caption[Study~14: HCI pilot results]{Study~14: HCI pilot results ($N = 5$ evaluators).}
     \label{tab:hci-trial-results}
     \vspace{1.5ex}
     \small
@@ -292,7 +292,7 @@ acquaintance bias among peers). We therefore report this as descriptive evidence
 \subsubsection{Usability (Hypothesis 3)}
 To evaluate the usability of MERIT's glass-box architecture, we followed the standard System Usability Scale (SUS) survey \cite{brooke1996sus}.
 MERIT achieved an average SUS score of \textbf{81.50} out of 100, with individual scores ranging from 77.5 to 85.0.
-According to the Bangor et al. acceptability scale, this corresponds to an ``Excellent'' rating (Grade A) at face value.
+According to the Bangor et al. adjective rating scale for SUS scores \cite{bangor2009_sus}, this corresponds to a ``Good'' rating (Grade B) at face value.
 With $N=5$, it indicates interface feasibility only, not product-market validation (Section~\ref{subsec:construct-validity}).
 
 \subsubsection{Qualitative Trust \& Feedback Analysis}

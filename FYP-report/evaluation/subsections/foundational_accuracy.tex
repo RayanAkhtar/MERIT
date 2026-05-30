@@ -68,8 +68,7 @@ Table~\ref{tab:cv_parser_results} presents the compiled results.
 
 \begin{table}[htbp]
     \centering
-    \caption[Study~04: CV ingestion by layout]{Study 04: Breakdown of CV Ingestion Accuracy Metrics by Layout Type ($N=30$).
-    There is a 50/50 split between single-column and multi-column CVs.}
+    \caption[Study~04: CV ingestion by layout]{Study~04: CV ingestion accuracy by layout ($N=30$).}
     \label{tab:cv_parser_results}
     \begin{tabularx}{\textwidth}{
             >{\raggedright\arraybackslash\hsize=1.4\hsize}X
@@ -91,7 +90,7 @@ Table~\ref{tab:cv_parser_results} presents the compiled results.
 \end{table}
 
 The distribution of individual scores across the template pool is plotted in
-Figure~\ref{fig:cv_parser_accuracy} (Appendix~\ref{appendix:ingestion-charts}).
+Figure~\ref{fig:ingestion-combined} (panel~a, Appendix~\ref{appendix:ingestion-charts}).
 
 \subsubsection{Qualitative Analysis}
 
@@ -128,12 +127,12 @@ to account for parsing errors that may arise from CV ingestion (such as a Linked
 applications, it is likely that commercial Applicant Tracking Systems (ATS) suffer from the same structural
 parsing failures that we have observed in our study. The black-box nature of these screening systems would 
 make it difficult for recruiters to know if this is actually the case for why a candidate receives a low score.
-It is for this reason that candidates are strongly advised to use simple, single-column templates \cite{marr2019}.
+It is for this reason that candidates are strongly advised to use simple, single-column templates, as discussed in practitioner ATS guidance \cite{marr2019}.
 Recruitment-management systems also tend to discard applicants who fail to mirror job-description keywords and criteria \cite{fuller2021hiddenworkers}.
 In turn this uncovers a systemic bias: automated screening systems penalise highly qualified candidates if the
 layout of their CV confuses the parser. Algorithmic hiring policy reviews \cite{raghavan2020} 
-have also highlighted this issue, that these screening systems favour ``ATS-friendly'' formatting over 
-actual professional merit.
+have also highlighted that opaque screening workflows can encourage parser-friendly CV formatting over 
+verifiable competence, which is consistent with the parsing failures we observed.
 
 
 \subsection{Study 05: Job Description Accuracy}
@@ -141,11 +140,11 @@ actual professional merit.
 The JD parser was evaluated in a similar manner, with a total of 15 job descriptions across different software
 engineering roles to ensure a wide range of formats and technical requirements. The compiled mean results
 are summarised in Table~\ref{tab:jd_parser_results}, the per-document distribution is in
-Figure~\ref{fig:jd_parser_accuracy} (Appendix~\ref{appendix:ingestion-charts}).
+Figure~\ref{fig:ingestion-combined} (panel~b, Appendix~\ref{appendix:ingestion-charts}).
 
 \begin{table}[htbp]
     \centering
-    \caption[Study~05: JD extraction accuracy]{Study 05: Mean Job Description Extraction Accuracy Metrics ($N=15$)}
+    \caption[Study~05: JD extraction accuracy]{Study~05: mean JD extraction accuracy ($N=15$).}
     \label{tab:jd_parser_results}
     \begin{tabularx}{\textwidth}{X c c}
         \hline
@@ -204,12 +203,14 @@ job title or role family.
 
 Our study includes four evaluators (two recruiters and two academic peers) rating study-controlled skill lists under a blind protocol
 (JD and metrics are shown, but TF-IDF suggestions are hidden). Consensus is the median of the four integer ratings. We compare this to
-TF-IDF suggestions using exact match, MAE, and Spearman $\rho$. Charts are in Appendix~\ref{appendix:metric-prediction-charts}.
+TF-IDF suggestions using exact match, MAE, and Spearman $\rho$. Charts are in Appendix~\ref{appendix:metric-prediction-charts}:
+hold-out metrics, a side-by-side consensus-vs.-TF-IDF scatter and Senior ML rater-weight heatmap, per-role dumbbell plots (blue = TF-IDF, gold = consensus),
+and largest misalignments.
 
 \subsubsection{Results}
 \begin{table}[htbp]
     \centering
-    \caption[Study~13: TF-IDF vs consensus]{Study~13 (pilot): TF-IDF vs evaluator consensus with three hold-out roles, $N = 4$ evaluators, $n = 27$ skill--role pairs.}
+    \caption[Study~13: TF-IDF vs consensus]{Study~13: TF-IDF vs.\ consensus ($N=4$, $n=27$ skill--role pairs).}
     \label{tab:study-13-metric-alignment}
     \begin{tabularx}{\textwidth}{l c c c c}
         \hline

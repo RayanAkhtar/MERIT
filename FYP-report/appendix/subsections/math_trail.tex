@@ -8,34 +8,27 @@ complete logic behind how the strength of each data source is calculated, and th
 each source when later performing Bayesian Evidence Fusion. This trail also accounts for heuristic decay,
 batch normalisation and also the display of Shapley Values to inform the recruiter whether our score 
 was driven by demonstrated evidence, or claimed evidence.
+Phase~0--1 shows per-source strength and GitHub-only skill decay (not applied to self-reported timelines).
+Phase~2 updates Beta parameters from signal strength and trust, then computes Shapley attributions.
+Phase~3 reports the fused expected score, variance, and a High/Medium/Low confidence band.
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.85\textwidth]{implementation/screenshots/math_trail_phase_0_1.png}
-    \caption[Math Audit Trail: Phases 0 \& 1 (Data Source Strength \& Skill Decay)]{Phase 0 and Phase 1 of the Math Audit Trail 
-    for the Python metric (extensible metric derived from a JD). The calculations for the strength of each data source are shown,
-    and skill decay is applied specifically to the GitHub source. Note that we do not perform this operation for self-reported data
-    to account for potential stretching of the timeline for projects.}
+    \caption[Math trail: Phases 0--1]{Math audit trail: source strength and skill decay (Phases 0--1).}
     \label{fig:audit_trail_phase_1}
 \end{figure}
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.85\textwidth]{implementation/screenshots/math_trail_phase_2.png}
-    \caption[Math Audit Trail: Phase 2 (Bayesian fusion \& Shapley Values)]{Phade 2 of the Math Audit Trail for the 
-    Python metric. This phase dispplays the Bayesian Evidence Fusion process as well as shapley value calculations.
-    For bayesian fusion, we use the strength of the signal $Str$ and the trust value of the signal $Tr$ to update
-    the alpha and beta parameters of the Beta distribution. We compute Shapley Values for each data source to determine
-    the contribution of each source to the final score.}
+    \caption[Math trail: Phase 2]{Math audit trail: Bayesian fusion and Shapley values (Phase 2).}
     \label{fig:audit_trail_phase_2}
 \end{figure}
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.85\textwidth]{implementation/screenshots/math_trail_phase_3.png}
-    \caption[Math Audit Trail: Phase 3 (Confidence Level \& Final Score)]{Phase 3 of the Math Audit Trail for the 
-    Python metric. Here, we use the Beta distribution to display both the match score (expected value) as well
-    as our confidence in that score (variance). For the confidence level, we use bounds to group variance into three 
-    categories: "High Confidence", "Medium Confidence", and "Low Confidence".}
+    \caption[Math trail: Phase 3]{Math audit trail: fused score, variance and confidence band (Phase 3).}
     \label{fig:audit_trail_phase_3}
 \end{figure}

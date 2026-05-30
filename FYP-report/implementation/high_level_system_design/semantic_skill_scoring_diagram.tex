@@ -71,10 +71,6 @@
 
     \end{tikzpicture}%
     }
-    \caption[Stage~2: semantic skill bridging]{Semantic skill bridging during the scoring of
-    extensible metrics for the CV. If we see a direct match on an extensible metric (E.g. "SQL"),
-    we have a lexical CV signal, similar to keyword matching. If there is not a direct match (E.g. "PostgreSQL"),
-    we perform cosine similarity between the skills we have extracted, and the metric in the configuration.
-    If there is a match ($\geq 0.50$), then there is a valid semantic bridge, and we then update the CV metric signal.}
+    \caption[Stage~2: semantic skill bridging]{Lexical and semantic bridging for extensible CV metrics.}
     \label{fig:semantic_skill_scoring}
 \end{figure}

@@ -17,10 +17,10 @@ on, not only the job description, but also the fluctuating trends in the technic
 
 \subsection*{The Multi-Source Verification Gap}
 The majority of ATS, even those built upon modern LLMs remain dependent on the self-reported claims within a CV.
-This "single-source dependency" presents information asymmetry, embellishment and other forms of bias that make 
-recruitment processes unreliable \cite{highhouse2008stubborn}. Currently, selecting the right candidate for a role is often a case of 
-candidates exaggerating their skills and experiences on their CV, as well as tailoring it to match the keywords
-in the job description to pass through ATS filters. While there is research on the potential of using external signals
+Research shows that these documents can contain unreliable self-representations due to intentional embellishment, omission, 
+or fabrication \cite{henle2019_resume_fraud,dunning2004}. Due to this single-source dependency, screening often relies on claims 
+that are difficult to verify, while candidates may also tailor their CVs to match the keywords in a job description in order to 
+pass through ATS filters \cite{fuller2021hiddenworkers}. While there is research on the potential of using external signals
 from sources such as GitHub \cite{montandon2021_roles}, existing approaches mainly infer coarse technical-role labels from repository metadata,
 rather than verifying CV claims with traceable, multi-source evidence of competence. Due to this, there is a need for a system that can
 cross-reference CV claims against observable evidence from external data sources that are harder to forge and embellish.
