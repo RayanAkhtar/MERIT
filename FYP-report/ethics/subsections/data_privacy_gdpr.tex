@@ -1,39 +1,47 @@
 \section{Data Privacy \& GDPR}
+\label{sec:ethics-legal-societal}
+MERIT handles personal hiring data, the sections below summarise UK GDPR obligations as well as the ethical limitations of
+the prototype along with it's wider effects on technical hiring. We build upon the safeguards in Section~\ref{sec:bias-mitigation-safeguards}
+and the evaluation in Chapter~\ref{ch:evaluation}.
+
+
+
+\subsection{Data Privacy \& GDPR}
 \label{sec:data-privacy-gdpr}
 
-If MERIT is to be deployed and used for real hiring in the UK, it would fall under the data-protection law (UK GDPR) \cite{uk_dpa_2018}.
+If MERIT is to be deployed and used for real hiring in the UK, it would fall under data-protection law (UK GDPR) \cite{uk_dpa_2018}.
 MERIT stores sensitive PII such as names, contact details and CV content (which in itself contains PII).
-Alongside this, it stores LinkedIn content, GitHub activity, which could be considered personal data.
+Alongside this, it stores LinkedIn content and GitHub activity, which could be considered personal data.
 Alongside this, we also store generated outputs such as the match score, Shapley breakdowns and fraud flags.
 In production, the employer using this system would be legally responsible for this data, rather than the author of MERIT themself.
-Hiring teams usually rely on a contract law, or some form of business need to process applications, here, candidates must be asked for 
+Hiring teams usually rely on contract law, or some form of business need to process applications. Here, candidates must be asked for
 consent to process their data \cite{ico_employment_2023}.
 
-MERIT also stores, and displays data such as profile pictures and university names, which may be considered personal data. While this
-may be masked in Blind Mode, it is still being stored in the backend database. This data is likely to hint at background characteristics,
-which employers must not discriminate on. To encourage this behaviour, Blind Mode is set to be enabled by default, and it is the recruiter's
-own choice if they wish to disable it. If MERIT is to be used in the hiring process, employers should publish a clear privacy notice, only 
-collecting the data that is necessary for the hiring process, encrypt data and also have a deletion date, and also sign agreements with
-third-party hosts. Data gathered for this process should not be reused elsewhere without a separate legal basis.
+MERIT also stores and displays data such as profile pictures and university names, which may be considered personal data. While this
+may be masked in Blind Mode, it is still stored in the backend database. This data is likely to hint at background characteristics,
+which employers must not discriminate on. To encourage appropriate behaviour, Blind Mode is enabled by default, and it is the recruiter's
+own choice if they wish to disable it. If MERIT is to be used in the hiring process, employers should publish a clear notice of what 
+data is being collected, how it will be used and encrypted. There will also need to be a deletion date, and agreements with any third-party 
+hosts. There also should be options for candidates to opt-out of the data collection and use, and any data gathered for this process
+should not be reused elsewhere, without further consent.
 
-Article~22 of the GDPR limits fully automated rejections unless appropriate safeguards exist \cite{eu_gdpr_2016}.
-It is for this reason that MERIT is designed to be a decision-support tool as opposed to an autonomous screening tool.
-A recruiter should still review outcomes (Section~\ref{sec:fairness-computational-rigour}), 
-with the option to challenge a score and a record when humans override the ranking. Public GitHub and LinkedIn pages still fall under
-the GDPR as personal data, especially since these profiles often store full names, email addresses, phone numbers and other contact details.
+Article~22 of the GDPR protects individuals from decisions made entirely by algorithms without human intervention, giving candidates
+the right to not be subject to a decision based solely on automated processing if that decision produces legal effects or significantly 
+impacts them \cite{eu_gdpr_2016}. The outcome of a candidate screen is most certainly a significant effect on a candidate's future, and thus, we should 
+never rely on MERIT as an autonomous screening tool. MERIT is designed to be a decision-support tool first and foremost, and a recruiter
+is encouraged to review outcomes, which is why we have the pillar of explainability. We provide recruiters the tools to challenge
+out algorithmically-generated scores. Public GitHub and LinkedIn pages still fall under GDPR as personal data aswell, since
+these profiles store full names, email addresses, phone numbers and other such contact details.
 
-One other key consideration is in the scraping of LinkedIn profiles. We currently use the Apify actor \texttt{harvestapi/linkedin-profile-scraper} 
-to scrape LinkedIn profiles. This is a third-party service that fetches profiles when given a URL. While this is a convenient way to scrape LinkedIn 
-profiles, it is not a compliant way to do so. In production, a system should use the official LinkedIn API, or licensed data feeds, rather than 
-Apify-style collection. We have also limited the ingestion of LinkedIn profiles to at most 30 profiles, all belonging to people known to the author who gave 
-informed consent for FYP testing (purpose explained, data stored securely and not published in the repository). 
+During the development of MERIT, we collected data from 30 candidate profiles, which were obtained through consent from the individuals involved.
+These candidates gave consent for their CV, GitHub and LinkedIn profiles to be used for the evaluation of MERIT. Candidates also gave consent
+for their data to be used as a basis for the synthetic evaluation dataset. Note that while consent makes this research more reasonable,
+it does not justify the use of Apify scraping for production. Deployments and real-world usage of the prototype must use licensed LinkedIn
+APIs. Alongside this, there must be privacy impact assessments, and also subject access and deletion processes \cite{ico_employment_2023}.
 
-For this FYP, any data in the evaluation was either synthetic, anonymised, or from the author themself. We had contacted a maximum of 30
-individuals who gave informed consent for FYP testing, giving consent for the use of their CV, as well as Linkedin and GitHub profiles,
-where available. Results are stored in Supabase, not published, and the API key is stored in local environment variables to ensure
-security. While consent makes research more reasonable, it does not make scraping acceptable under LinkedIn's terms of service. Apify is not 
-an appropriate way to scrape LinkedIn profiles in production, and would lead to legal issues. Alongside this, real deployment would require privacy 
-impact assessments as well as processes in place for access, correction and deletion requests \cite{ico_employment_2023}. MERIT is built
-with sensible defaults such as structured storage, Blind Mode, explainable scores, and a decision-support approach. However, meeting the 
-law still depends on how the employer runs the process. 
 
+For FYP testing we used the Apify actor \texttt{harvestapi/linkedin-profile-scraper} on at most 30 profiles from contacts who gave informed consent.
+Evaluation data were otherwise synthetic or anonymised, stored in Supabase with API keys in local environment variables only.
+Note that consent makes research more reasonable, but it does not make Apify-style collection acceptable for production.
+Deployments should use licensed LinkedIn APIs, privacy impact assessments, and subject access and deletion processes \cite{ico_employment_2023}.
+Legal compliance still depends on how the employer operates the tool.

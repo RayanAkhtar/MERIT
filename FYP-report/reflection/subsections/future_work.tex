@@ -1,128 +1,90 @@
 \section{Future Work}
 \label{sec:future-work-roadmap}
 
-The suggested future work follows from the evaluation gaps listed in earlier sections, we order these suggestions by their
-potential for both hiring harm and deployability. They are not ordered by implementation convenience, and instead
-focus on the most impactful changes that would help MERIT to be a more useful tool for recruiters.
-
-
+The suggested future work follows from the evaluation gaps listed in earlier sections. We order these suggestions by their potential for
+both hiring harm and deployability. They are not ordered by implementation convenience. Instead we focus on the changes that would help
+MERIT to be a more useful tool for recruiters.
 
 \subsection{Evidence Ecosystem \& Missing-Data Fairness}
 \label{subsec:future-evidence-ecosystem}
 
-\subsubsection{Motivation}
-As shown in Study~01B, we have that multi-source fusion rescues strong candidates that have weak CVs, but we
-also see the same logic punishing engineers whose best work is private. MERIT swaps one bias for another, in this case
-we see the introduction of open-source visibility bias.
+As shown earlier, the introduction of multi-source fusion can both help and hinder candidates, leading to an open-source visibility bias.
+Chapter~\ref{sec:data-sources} already argues for platforms such as LeetCode, HackerRank, and Stack Overflow as signals
+to evaluate candidate competency. A natural extension is a plug-in ingestion interface that normalises each API into MERIT's evidence schema. 
+Coding platforms are particularly valuable for candidates with sparse GitHub histories but strong competition or assessment records.
 
-\subsubsection{Additional Sources}
-Chapter~\ref{sec:data-sources} already argues for platforms such as LeetCode, HackerRank,
-and Stack Overflow and complementary proficiency signals. A natural extension is a plug-in ingestion interface
-that normalises each API into MERIT's evidence schema. Coding platforms are particularly valuable for candidates 
-with sparse GitHub histories, but strong contest or assessment records. We could also use the platform's data on 
-attempted questions to infer a candidate's proficiency in a given language or problem domain.
-
-\subsubsection{Missing Data Policy}
-A good missing data policy could be to distinguish three states per source: \emph{present-positive}, 
-\emph{present-negative/conflicting}, and \emph{unknown}. An empty data source (such as an empty GitHub profile)
-should never tank a candidate's score, but should instead be down-weighted to avoid significant penalties.
-Private-repository contributions could be supported through signed attestations or verified employer 
-metadata rather than public commit counts only. Suggestions such as the following could prevent MERIT
-from penalising candidates such as Carl Corp.
-
-
+The introduction of a policy to split demonstrated evidence into three separated signals would help to mitigate the open-source visibility bias.
+We could have present-positive, present-negative/conflicting, and unknown signals to show if a candidate has evidence of a skill, evidence of a conflicting skill, 
+or no evidence of a skill respectively. If carefully engineered, this would help to mitigate the open-source visibility bias, and avoid
+penalising candidates for having missing data (such as an empty GitHub profile).
 
 \subsection{Robust Ingestion \& Role Intelligence}
 \label{subsec:future-ingestion}
 
-\subsubsection{Motivation}
-Pillar~1, as shown in prior sections, is significantly limited by layout-driven PDF failures, as well as JD noise.
-Extensibility built on mis-extracted skills may propagate error into every downstream rank.
+Pillar~1 is currently hindered by the accuracy of the ingestion layer, specifically towards unstructured data parsing.
+Rather than an in-house solution, we should consider relying on a more robust model that has been trained on a large dataset of CVs and JDs.
+For example, ResumeBench \cite{emnlp2025resumebench}, could replace our current coordinate-based extraction with \texttt{pdfminer} \cite{pdfminer}, 
+and is a promising model for this purpose. For evaluation, we should conduct a study similar to Study~04, but on real applicant PDFs
+as opposed to synthetic candidates, to assess the real-world nuances of candidate resumes. We should also consider an extensible approach to 
+the skills dictionary beyond just Devicon, to allow for the extraction of tooling and other skills that are common on technical CVs aside 
+from programming languages and frameworks.
 
-\subsubsection{Layout-robust Parsing}
-Future work for MERIT should firstly be the integration of a more robust resume model, such as ResumeBench \cite{emnlp2025resumebench}
-that should replace our current coordinate-based extraction \texttt{pdfminer} \cite{pdfminer}. For the evaluation, we should 
-conduct a study similar to Study~04, but on real applicant PDFs as opposed to synthetic candidates to accurately assess the 
-real-world nuances of candidate resumes. On a similar note, the skills dictionary should be updated with a source similar to
-Devicon, but covering tooling and other such skills that would be applicable to the world of technical recruitment.
 
-\subsubsection{Role Intelligence}
 Study~13's cross-role IDF interference suggests that we should maintain separate corpora per role family (backend, frontend, data, etc.)
-so that common languages (such as Python) can appear as valuable in roles where it is not the status quo. Skill families should be 
-distinguishing, for example, React front-end from Node back-end under a shared ``JavaScript'' label. This would allow for more 
-accurate metric suggestions that reflect sub-domain requirements rather than frequency in a pooled corpus.
+so that common languages (such as Python) can appear as valuable in roles where they are not the status quo. 
 
-
+It would also be beneficial to group skillsets into families, such as frontend, backend, etc. This would allow for better predictions
+when performing TF-IDF calculations. For example, if the corpus for backend presents ``JavaScript'' as common, while the corpus for
+machine learning presents the language as rare, we should have different IDF values for each. This would help to eliminate this cross-role interference,
+and allow for more accurate metric suggestions.
 
 
 \subsection{Fusion \& Conflict Handling}
 \label{subsec:future-fusion}
 
-\subsubsection{Motivation}
-Study~10 demonstrates that MERIT has the capability to fail completely when presented with a batch full of candidates 
-that have drastically conflicting evidence. While this is a rare occurrence, it is a clear indication that MERIT's multi-source pillar
-is not robust enough to handle conflicting evidence. Fusion without safeguards is worse than CV-only screening.
+Study~10 demonstrates that MERIT can fail completely when presented with a batch full of candidates that have drastically conflicting evidence.
+While this is a rare occurrence, it is a clear indication that MERIT's multi-source pillar is not yet robust enough to handle conflicting evidence.
+Fusion without safeguards is worse than CV-only screening.
 
-\subsubsection{Evaluation Cohorts}
-Fusion and Shapley studies use sparse LinkedIn personas to isolate the CV--GitHub contrast. A replication with fully
-populated LinkedIn profiles should be conducted before generalising source-attribution results to production,
-where LinkedIn often duplicates, but also corrects, CV claims.
+Fusion and Shapley studies use sparse LinkedIn personas to isolate the CV--GitHub contrast. A replication with fully populated LinkedIn profiles
+should be conducted before generalising source-attribution results to production, where LinkedIn often duplicates but also corrects CV claims.
 
-\subsubsection{Product Behaviour}
-
-The dashboard should surface explicit conflicts, such as when a candidate's CV asserts seniority in Java,
-but their GitHub profile shows zero Java commits in the past year. There should be the application of confidence
-gating. When inter-source variance exceeds a threshold, the engine should prompt for human review, rather than 
-produce an expected score from the beta distribution we use. Integrity checks such as the ones in Study~06 should be evolved
-with new gaming patterns, such as candidates attempting to have multiple accounts on different platforms, tailored to 
-different industries and roles.
+The current implementation of MERIT's evaluation layer does not surface conflicting evidence to the recruiter outside of keyword stuffing and 
+identity squatting. If a candidate were to be penalised for a missing LinkedIn profile, but their GitHub profile shows strong evidence of the same skill,
+the recruiter should be able to see this and investigate further, rather than just be presented with a low score, which they would likely not challenge
+due to automation bias. Research should be conducted to determine the best way to surface conflicting evidence to the recruiter, and to determine
+the threshold at which a candidate should be prompted for human review. Research into potential gaming patterns should also be conducted to
+anticipate such behaviours, and to develop a more robust system to handle them.
 
 \subsection{Explainability at Scale}
 \label{subsec:future-explainability-scale}
 
-\subsubsection{Motivation}
 The current implementation of data-source attribution is accurate, but costly to compute at scale.
-While the cost does not scale beyond a linear scale for candidates, we cannot say the same for the way MERIT 
-scales with the number of data sources. The $O(2^n)$ complexity is a critical limitation and a topic for future work.
-Alongside this, the hard-coded permutations in our code base will need accounting for if the above suggestion is implemented 
-(LeetCode, HackerRank, Stack Overflow, etc.). It is infeasible and inappropriate to hard-code permutations for all possible 
-combinations of sources in a real-world context, however, for the purposes of this project, we believe it to suffice due
-to the small number of sources we currently support.
+While cost scales roughly linearly with the number of candidates, we cannot say the same for the number of data sources.
+The $O(2^n)$ complexity is a critical limitation and a topic for future work.
+Alongside this, the hard-coded permutations in our codebase will need to be revisited if we add platforms such as LeetCode, HackerRank, or Stack Overflow.
+It is infeasible to hard-code permutations for all possible combinations of sources in a real-world context. For this project, the small number of
+sources we support was sufficient.
 
+For $n \ge 5$, we should migrate to Monte Carlo or a similar approximation technique to compute Shapley values.
+Recruiters rarely need full, exact attributions on every applicant, perhaps only on shortlists. A dual-mode architecture would not be a bad
+consideration, with rank-only mode for bulk batches and full audit trails for the top-$k$ candidates, with dynamic coalition generation replacing
+static source lists.
 
-\subsubsection{Approximation and Caching}
-For $n \ge 5$, we should migrate to Monte Carlo, or a similar approximation technique to compute the Shapley values.
-Recruiters rarely need full, exact attributions on every applicant, perhaps only on shortlists. A dual-mode architecture would
-not be a bad consideration, with rank-only mode for bulk batches, and audit properly for the top-$k$ candidates, with
-dynamic coalition generation replacing static source lists.
-
-\subsubsection{Blind and Contestable UI}
-Future HCI work should test blind mode once engine scores are masked to ensure fairness. We must also counterbalance the 
-stage order too, as well as using independent panels. Explainability should default to highlighting conflict and uncertainty,
-rather than only positive skill bars. This way, glass-box mode encourages calibrated scepticism, rather than giving recruiters
-an excuse to fall upon automation bias.
-
-
+Future HCI work should test Blind Mode once engine scores are masked to ensure fairness. We must also counterbalance the stage order in Study~14,
+as well as using independent panels. Explainability should default to highlighting conflict and uncertainty, rather than only positive skill bars.
+This way, glass-box mode encourages calibrated scepticism, rather than giving recruiters an excuse to rely on automation bias.
 
 \subsection{Validation Beyond the Prototype}
 \label{subsec:future-validation}
 
-\subsubsection{Motivation}
-While the parser $F_1$, Spearman~$\rho$, and SUS show the prototype behaves as designed, this does not claim improved hire
-quality. Deployment claims require evidence backed by outcome-linked evidence.
+While parser $F_1$, Spearman~$\rho$, and SUS show the prototype behaves as designed, this does not claim improved hire quality.
+MERIT requires evidence that is outcome-linked to demonstrate its effectiveness in the hiring process, as well as its ease of use for recruiters.
 
-\subsubsection{Field Studies}
-The step of largest value that we could take is a longitudinal study that links MERIT rankings to interview
-pass rates, offer acceptance, and (where ethically and legally permissible), early on-the-job performance.
-A small pilot with one hiring partner, pre-registered hypothesis and blinded human review would 
-allow MERIT to move away from architecture validation and instead towards recruitment science.
+A longitudinal study that is able to link MERIT rankings to interview pass rates and early job performance would be a valuable addition
+to the evaluation of MERIT as a technical recruitment tool. 
 
-\subsubsection{Rigorous Usability and Benchmarks}
-Study~14's HCI trial is a good starting point for usability and confidence calibration. We should also consider
-using larger independent recruiter panels, as well as repeated Studies~02--03 with variance bands across hardware.
-We should also compare against commercial ATS APIs under identical inputs where licensing allows. All such work
-must operate within GDPR constraints on personal hiring data (Section~\ref{sec:data-privacy-gdpr}).
-
-Until these steps exist, MERIT should remain as an auditable assistant that helps recruiters
-inspect evidence and challenge the engine where necessary. Once again, we reiterate that MERIT is not a 
-fairness-certified or hire-optimising product.
+While Study~14 is a good point to start at when it comes to the testing of usability and confidence calibration, we should turn 
+towards larger recruiter panels to ensure that the results are generalisable to the wider population of recruiters. Furthering this
+point, we should also repeat the memory and runtime benchmarks from Studies~02--03 to ensure that the results are consistent across different hardware
+once accounting for the potential variance in hardware and language runtime. 

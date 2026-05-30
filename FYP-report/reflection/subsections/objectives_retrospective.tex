@@ -1,51 +1,36 @@
 \section{Objectives vs.\ Outcomes}
 \label{sec:objectives-retrospective}
 
-MERIT's original motivation was to pivot technical recruitment away from a single self-reported data source (CV), and instead
-towards demonstrated, multi-source evidence with transparent scoring. The initial intentions also included the leveraging of extensible metrics, 
-data fusion and glass-box explainability to combat the many limitations of rigid Black-Box ATS systems that often lack flexibility, 
-transparency and auditability. Chapter~\ref{ch:evaluation} tested each pillar, and the pattern below is that 
-strengths and weaknesses appear together, not in isolation. Where we may observe a strength in one area of the pillar, it is often
-accompanied by one or more weaknesses to the same pillar, or potentially other pillars.
+We initially designed MERIT with the intention to picot technical recruitment towards demonstrated, multi-source evidence in an attempt
+to combat reliance on a singular self-reported data source that is often subject to parsing errors and embellishment. The key contributions
+to meet our objectives were extensible metrics, data fusion and glass-box explainability to combat the core limitations of the current
+state of ATS systems. We will now cover the strengths and weaknesses of our approach to each of the three pillars.
 
-\subsubsection{Pillar 1 (Extensible evaluation)}
+\subsection{Pillar 1: Extensible evaluation}
 
-\textbf{Worked:} Recruiter-configurable weights, semantic skill matching and JD-driven metric priorities that align relatively
+\textbf{Worked:} Recruiter-configurable weights, semantic skill matching, and JD-driven metric priorities that align relatively
 well with expert consensus. Linear single-column CVs parse well enough for downstream scoring.
 
-\textbf{Failed:} Overall CV skill $F_1$ is 49.4\%, driven by a limited dictionary that is only scoped to 
-programming languages and web frameworks from Devicon. Multi-column layouts also fail when it comes to 
-name detection, falling from 53.3\% to 13.3\%, and the JD skill $F_1$ is 40.81\%. Extensibility is
-real, but often configured on mis-read documents. 
+\textbf{Failed:} Overall CV skill $F_1$ is 49.4\%, driven by a limited dictionary scoped only to programming languages and web frameworks from Devicon.
+Multi-column layouts also fail when it comes to name detection, falling from 53.3\% to 13.3\%, and the JD skill $F_1$ is 40.81\%.
+Extensibility is real, but it is often configured on mis-read documents.
 
-\subsubsection{Pillar 2 (Multi-source fusion)}
+\subsection{Pillar 2: Multi-source fusion}
 
-\textbf{Worked:} Study~01B helps to recover hidden talent (Jordan Smith, rank~\#10 $\rightarrow$~\#2), Study~07 gives the 
-best observed expert Spearman alignment from MERIT in one cohort ($\rho = 0.697$, $n=10$, exploratory), Study~01A shows large cardinal shifts when 
-evidence validates or contradicts claims ($+53.8\%$ / $-12.6\%$).
+\textbf{Worked:} Study~01B helps to recover hidden talent (Jordan Smith, rank~\#10 $\rightarrow$~\#2). Study~07 gives the best observed expert
+Spearman alignment from MERIT in one cohort ($\rho = 0.697$, $n=10$, exploratory). Study~01A shows large cardinal shifts when evidence validates
+or contradicts claims ($+53.8\%$ / $-12.6\%$).
 
-\textbf{Failed:} Carl Corp is penalised for empty GitHub despite significant tenure. Study~10 shows
-that MERIT fails when presented with batch-wide contradictory evidence. Studies~08--09 show that
-no engine wins every hiring context (Section~\ref{subsec:spearman-synthesis}).
+\textbf{Failed:} Carl Corp is penalised for empty GitHub despite significant tenure. Study~10 shows that MERIT fails when presented with
+batch-wide contradictory evidence. Studies~08--09 show that no engine wins every hiring context (Section~\ref{subsec:spearman-synthesis}).
 Fusion is strongly dependent on the presence of strong, reliable evidence that is accessible.
 
+\subsection{Pillar 3: Glass-box explainability}
 
+\textbf{Worked:} Shapley axioms hold where applicable (Study~11), negative attributions make penalties legible, and Study~14 shows recruiters
+overturning bad shortlists upon evidence of fraud or stuffing in a formative pilot ($N=5$, mean SUS 81.5).
 
-\subsubsection{Pillar 3 (Glass-box explainability)}
-
-\textbf{Worked:} Shapley axioms hold where applicable (Study~11), negative attributions make penalties legible, Study~14
-shows recruiters overturning bad shortlists upon evidence of fraud or stuffing in a formative pilot ($N=5$; mean SUS 81.5).
-
-\textbf{Failed:} Poor scalability of explainability, with an $\approx 5.6\times$ slowdown due to the introduction of Shapley values for each candidate.
-With more data sources, the cost of explainability scales as $O(2^n)$, making it impractical for a significant number of data sources. Blind mode
-still intentionally exposes engine scores and tier labels, which could be considered as a form of bias. Transparent breakdowns can instead anchor
+\textbf{Failed:} Explainability scales poorly, with an $\approx 5.6\times$ slowdown due to the introduction of Shapley values for each candidate.
+With more data sources, the cost of explainability scales as $O(2^n)$, making it impractical for a large number of sources. Blind Mode still
+intentionally exposes engine scores and tier labels, which could be considered a form of bias. Transparent breakdowns can instead anchor
 automation bias rather than eliminate it (Section~\ref{subsec:construct-validity}).
-
-\subsubsection{Overall} 
-Algorithms are never perfect, the key to a good hiring process is to use them as a tool to help recruiters make better decisions, 
-rather than as a replacement for human judgement. MERIT leveraged multi-source evidence to help recruiters consider evidence that candidates
-typically provide in their CVs, rather than letting candidates' efforts go unrewarded. It is not perfect, but it is a step in the right direction.
-The main design takeaways are that extensibility is real, but built on a lossy ingestion layer, multi-source fusion is powerful but not monotonic,
-and explainability is a double-edged sword. The evaluation and deployment limits are that MERIT is not perfect, and it is not ready for production deployment.
-
-

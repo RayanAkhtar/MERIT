@@ -1,19 +1,19 @@
 \section{Evaluation Scope \& Deployment Limits}
 \label{sec:scope-deployment}
 
-The conclusions made in the sections above are subject to the following constraints, which are detailed in Section~\ref{sec:threats-to-validity}.
+Now we will cover the constraints that may affect both the evaluation and deployment of MERIT.
 
-\textbf{Evidence base.} For the sake of demonstration, evaluations include synthetic personas and labels that were
-engineered by the author to exhibit specific behaviours.  Adversarial cases (Studies~06, 10) and failure studies (Studies~01, 08) 
-mitigate cherry-picking, but do not replace independent ground truth or hire-outcome validation.
+The first constraint lies in the evidence we use, which almost entirely consists of synthetic personas and labels which were engineered by the author
+to highlight a subset of specific behaviours for the purpose of a thorough evaluation. In cases such as the adversarial and spearman studies, we attempt
+to avoid cherry-picking for success by also cherry-picking for failure. Note that we are not able to use real-world data for the evaluation due to 
+the lack of access to real-world data and the need to anonymise the data.
 
-\textbf{Comparators and benchmarks.} The Traditional and Modern AI ATS baselines are not commercial products, and are not open-source alternatives.
-They are both baselines under identical local inputs. Studies~02--03 are single-run on one workstation.
+Alongside this, the engines that we use are not commercial products, nor are they open-source alternatives. They are manually created engines,
+designed to emulate the scoring logic of commercial products and open-source alternatives under an identical input. Also note that benchmark data
+was generated only from the author's workstation, and as such, the exact values are subject to change, based on both the hardware and language runtime.
 
+The final constraint is that MERIT is research-grade. It should never be considered for immediate deployment, with the most significant
+blocker being the implementation of LinkedIn ingestion. We must reimplement the ingestion logic to use LinkedIn's official API, rather than the current
+prototype which uses Apify's API.
 
-\textbf{Prototype readiness.} 
-MERIT is research-grade, not production-ready. It is hard-coded to three sources, and consent-limited live LinkedIn ingestion.
-N+1 queries are acceptable only at tested batch sizes, and there is no end-to-end live PDF evaluation. The safest deployment mode would
-require the removal of LinkedIn ingestion, as well as human-in-the-loop screening, especially when GitHub profiles are empty, or sources disagree.
-Refer to Sections~\ref{sec:data-privacy-gdpr}--\ref{sec:societal-impact} for more details.
-
+Any further deployment legal, ethical and societal constraints are covered in Section~\ref{sec:ethics-legal-societal}.

@@ -1,29 +1,24 @@
-\section{Ethical AI \& Hiring}
+\subsection{Ethical AI \& Hiring}
 \label{sec:ethical-ai-hiring}
 
-As we have seen in previous sections, Automated Screening Tools (ATS) have the potential to repeat old biases, hide candidate 
-outcomes, and also encourage candidates to game the system \cite{bogen2018,raghavan2020,fabris2025fairness}. Most ATS products
-are labelled as ``black boxes'', meaning that there is little transparency into the decision-making process. MERIT, on the 
-other hand shows why a score was produced. The open question however, is whether recruiters leverage this transparency to ensure 
-fairness, or only use it to defend a decision that they had already intended on making.
+As we have seen in previous sections, automated screening tools can reproduce historical bias, hide candidate outcomes, and encourage
+candidates to game the system \cite{bogen2018,raghavan2020,fabris2025fairness}. Most ATS products are described as black boxes, meaning that
+there is little transparency into the decision-making process. MERIT, on the other hand, shows why a score was produced. The open question,
+however, is whether recruiters use this transparency to ensure fairness, or only to defend a decision they had already intended to make.
 
-In Study~14, we observed that the visibility of the Glass-Box breakdown impacted behaviour. Recruiters overturned shortlists
-when evidence of keyword stuffing and identity squatting were spotted. Note that in the case of identity squatting, recruiters would
-reject candidates not on the basis of their skills, but rather on evidence of dishonesty. While this is a positive outcome, we must also
-note that we cannot be certain that recruiters would have overturned the shortlist without the Glass-Box breakdown. As stated in Study~15,
-match scores are intentionally provided in Blind Mode, however, this could introduce some bias. Similarly, the inclusion of the tier labels
-of the candidate's academic institution could still introduce some bias.
+In Study~14, we observed that the visibility of the Glass-Box breakdown impacted behaviour. Recruiters overturned shortlists when evidence
+of keyword stuffing and identity squatting was spotted. In the case of identity squatting, recruiters would reject candidates not on the basis
+of their skills, but rather on evidence of dishonesty. We must also note that we cannot be certain that recruiters would have overturned
+those shortlists without the Glass-Box breakdown. As stated in Study~15, match scores are intentionally provided in Blind Mode, however this
+could introduce some bias. Similarly, the inclusion of tier labels for academic institutions could still introduce bias.
 
-The Integrity Engine aided in blocking most simple cheats, as evident in Study~06, though clever gaming of activity metrics and rare name-match
-identity squatting are still possible, and valid concerns should be raised when using MERIT in the hiring process. Study~15 was also 
-informative on the effectiveness of Blind Mode in reducing bias. We were able to observe that unfair biases were mitigated through 
-the design choices made in MERIT. This suggests a fairer first look, but not a proof of fairness across gender or ethnicity. 
-Note that Bertrand and Mullainathan's field experiments documented name-based discrimination in hiring callbacks \cite{bertrand2004}, 
-while Study~15 did not test those protected characteristics directly.
+The Integrity Engine aided in blocking most simple cheats, as evident in Study~06, though clever gaming of activity metrics and rare
+identity-squat bypasses are still possible. Study~15 was also informative on the effectiveness of Blind Mode in reducing bias. We were able
+to observe that unfair biases were mitigated through the design choices made in MERIT. This suggests a fairer first look, but not a proof of
+fairness across gender or ethnicity. Note that Bertrand and Mullainathan's field experiments documented name-based discrimination in hiring
+callbacks \cite{bertrand2004}, while Study~15 did not test those protected characteristics directly.
 
-MERIT's evidence-first approach leads to the system being more biased towards candidates who have public work samples, such as GitHub.
-This is evident in Study~01b, where Jordan Smith, a candidate who is usually penalised by CV-only systems, is uplifted when GitHub is included.
-However, this also leads to cases such as Carl Corp, where proprietary data is penalised. This presents a core trade-off that pillar 2 presents,
-in a system where we reward demonstrated evidence, we penalise candidates who have no public work samples.
-
-
+MERIT's evidence-first approach means the system is more biased towards candidates who have public work samples, such as GitHub.
+This is evident in Study~01B, where Jordan Smith is usually penalised by CV-only systems but uplifted when GitHub is included.
+However, this also leads to cases such as Carl Corp, where proprietary data is penalised. In a system where we reward demonstrated evidence,
+we may penalise candidates who have no public work samples. Section~\ref{sec:societal-impact} summarises the main risks and mitigations.
