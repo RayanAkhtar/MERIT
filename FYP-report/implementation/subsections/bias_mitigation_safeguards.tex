@@ -14,11 +14,9 @@ score.
 
 \subsubsection{Keyword Stuffing}
 Keyword stuffing is a common threat in automated CV screenings, where candidates often attempt to inflate their
-scores by repeating job related buzzwords. MERIT implements penalisations for repeated keywords once it is 
-above a particular threshold. Refer to Listing~\ref{lst:stuffing_logic} in 
-Appendix~\ref{appendix:implementation_listings} for the implementation details.
-Currently, this threshold is set to 5 occurrences of a keyword in a CV, with light penalties for each additional 
-occurrence so as not to significantly penalise the candidate if it is within reason. Note that penalties only apply to the 
+scores by repeating job related buzzwords. MERIT penalises repeated keywords once occurrences exceed a configurable
+threshold (currently five per keyword in a CV), applying a 5\% score reduction per additional repetition up to a
+60\% cap on the total stuffing penalty so as not to severely punish candidates who repeat terms within reason. Note that penalties only apply to the 
 CV signal, so in the current state of MERIT, it would be possible to recover from keyword stuffing penalisations if a 
 candidate is able to demonstrate strong evidence of their claims in other sources.
 

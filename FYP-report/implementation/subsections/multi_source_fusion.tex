@@ -202,9 +202,8 @@ metadata (such as the top candidate and score) for rapid batch retrieval without
 re-processing the full evaluation payload.
 
 The payload is a final product of the execution stage. Its structure ensures that every high-level score is
-backed by the granular source-specific evidence that it's comprised of. The schema consists of three main layers,
-as illustrated in Figure \ref{fig:schema_overview}:
-
+backed by the granular source-specific evidence that it's comprised of. The \texttt{results\_payload} schema
+consists of three main layers, as follows.
 
 The first layer is the highest level layer, the aggregation layer, which contains the overall score and the
 calculation summary, providing a high-level overview and the global weighted
@@ -214,12 +213,8 @@ Bayesian parameters ($\alpha, \beta$) and its fused score where necessary. The t
 which is the lowest level layer, found within \texttt{source\_details}. This contains the specific
 string derivations, source confidence coefficients, and temporal decay penalties applied to individual signals.
 
-
-Listing~\ref{lst:payload_schema} in 
-Appendix~\ref{appendix:implementation_listings} demonstrates a truncated representation of this
-architecture in practice. By exposing this data in a candidate's report, we are able to justify the
-score for a given candidate. We can see how each data source contributed for a given metric, and to what extent.
-We can see how Bayesian Fusion was applied with these contributions to produce a per-metric score. From there,
-we can see how the metrics are weighted according to priority in order to produce a final match score. By showing
-every stage in detail, we are finally able to provide recruiters with the tools to challenge and interrogate the score,
-rather than just accepting it as a black-box.
+By exposing this structured data in a candidate's report, we justify the score for a given candidate: recruiters
+can see how each data source contributed for a given metric, how Bayesian fusion combined those contributions into
+a per-metric score, and how metrics are weighted by job priority to produce the final match score. Presenting every
+stage in this form gives recruiters the means to challenge and interrogate the score rather than accepting it as
+a black box; Appendix~\ref{appendix:math_trail} shows a representative end-to-end audit trail in the UI.
