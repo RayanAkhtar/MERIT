@@ -11,12 +11,12 @@
 This section evaluates both the mathematical and empirical validity of MERIT's multi-source model.
 To ensure a rigorous evaluation, we will proceed, once again, with a bottom-up evaluation. We will start with a study on the
 algorithmic sensitivity with skill decay. From there, we will move on to evaluate Bayesian fusion, and how the model deals
-with conflicting signals for a specific metric in a configuration. Then, we will proceed to an algorithmic ablation study;
+with conflicting signals for a specific metric in a configuration. Then, we will proceed to an algorithmic ablation study,
 here, we will run four scoring engines against the same candidate pool and JD: a \textbf{Traditional ATS} baseline (keyword-based CV screening),
 a \textbf{Modern AI ATS} baseline (semantic CV screening), MERIT with only CV signals, and MERIT with all sources.
 When referring to ``all'' sources, we specifically refer to the integration of GitHub and LinkedIn signals.
 With the same engine setup and candidate pool, we will then proceed with a data ablation study, where we will point out the success and failure cases of the model.
-The labels \textbf{Traditional ATS} and \textbf{Modern AI ATS} denote in-repository CV screening baselines that replicate scoring logic typical of rule-based and AI-assisted Applicant Tracking Systems (ATS); they are not proprietary commercial products. MERIT is evaluated as a separate multimodal screening system.
+The labels \textbf{Traditional ATS} and \textbf{Modern AI ATS} denote in-repository CV screening baselines that replicate scoring logic typical of rule-based and AI-assisted Applicant Tracking Systems (ATS), they are not proprietary commercial products. MERIT is evaluated as a separate multimodal screening system.
 
 These studies assume that candidate CVs were successfully extracted without error. These evaluations run on emulated, 
 synthetic candidate JSON profiles created to systematically test specific edge cases, bypassing the PDF extraction layer 
@@ -66,22 +66,20 @@ Go, and would experience a ramp-up period in the initial months.
 \subsection{Study 12: Bayesian Conflict Resolution}
 \label{subsec:study-12-bayesian-conflict-resolution}
 
-In the previous section, we demonstrated that MERIT employs a Bayesian evidence fusion model with Beta
-distribution conjugate priors to resolve conflicting signals across unstructured and structured data channels
-without resorting to ad-hoc heuristics, in line with standard Beta--Bernoulli updating \cite{gelman2013bayesian}. Here, we will evaluate the empirical correctness of this model.
+The reasoning for MERIT's multi-source fusion layer is to be able to reward candidates who are able to demonstrate their skills 
+with publicly available evidence. This is particularly important for extensible metrics, where said metric is tied directly
+to the job description that it was derived from. We believe it to be essential to reward candidates who can prove that they are
+fit for the role, rather than just claim to be fit for it. In this study, we verify the Beta-Bernoulli conjugate updating 
+implementation \cite{gelman2013bayesian} with two controlled hypothetical profiles on the same extensible metric. The first
+represents a claims-only candidate, while the second represents a demonstration-only candidate. Both candidates achieve the 
+maximum score available for the signals that correspond to the category of evidence (claimed or demonstrated).
 
-We initialise our model with the following priors:
-\begin{equation}
-    \alpha_0 = 0.1, \quad \beta_0 = 0.1
-\end{equation}
-
-To verify the correctness of this model, we shall run a step-by-step mathematical walkthrough for a candidate
-\textbf{Felix Vance} for the extensible requirement of Java, as defined in Table~\ref{tab:bayesian-walkthrough}.
-Parameter convergence is plotted in Figure~\ref{fig:bayesian-fusion-convergence} (Appendix~\ref{appendix:bayesian-fusion-charts}).
+In this walkthrough, the maximum signal that signals which are claims-only can achieve is $0.8$, while the maximum signal for demonstration-only signals
+is uncapped at $1.0$. We start from priors $\alpha_0 = \beta_0 = 0.1$, and the step-by-step walkthrough is given in Table~\ref{tab:bayesian-walkthrough}.
 
 \begin{table}[htbp]
     \centering
-    \caption[Study~12: Bayesian parameter shifts (Felix Vance)]{Study~12: Bayesian parameter shifts for Felix Vance (Java).}
+    \caption[Study~12: Claims walkthrough]{Study~12: Step-by-step fusion for the claims-without-demonstration profile.}
     \label{tab:bayesian-walkthrough}
     \small
     \setlength{\tabcolsep}{5pt}
@@ -89,66 +87,60 @@ Parameter convergence is plotted in Figure~\ref{fig:bayesian-fusion-convergence}
         \hline
         \textbf{Step} ($i$) & $s_i$ & $c_i$ & $\alpha$ & $\beta$ & \textbf{Score} & $\sigma$ \\ \hline
         0. Prior            & ---   & ---   & 0.100 & 0.100 & 0.500 & 0.456 \\
-        1. CV               & 1.000 & 0.500 & 0.605 & 0.105 & 0.852 & 0.271 \\
-        2. GitHub           & 0.000 & 0.900 & 0.606 & 1.006 & 0.376 & 0.300 \\
-        3. LinkedIn         & 0.800 & 0.200 & 0.774 & 1.054 & 0.423 & 0.294 \\ \hline
+        1. CV               & 0.800 & 0.500 & 0.505 & 0.205 & 0.711 & 0.347 \\
+        2. GitHub           & 0.000 & 0.900 & 0.506 & 1.106 & 0.314 & 0.287 \\
+        3. LinkedIn         & 0.800 & 0.200 & 0.674 & 1.154 & 0.369 & 0.287 \\ \hline
     \end{tabular}
 \end{table}
 
-This walkthrough demonstrates three core behaviours of the model.
+Step-by-step parameter commentary for the claims scenario is in Appendix~\ref{appendix:bayesian-fusion-walkthrough}.
+Note that we only present the walkthrough for the claims-only case, skipping the demonstration-only case for brevity.
+Table~\ref{tab:bayesian-scenario-comparison} summarises the contrast between the two profiles,
+and Figure~\ref{fig:bayesian-fusion-convergence} (Appendix~\ref{appendix:bayesian-fusion-charts}) plots both trajectories.
 
-\subsubsection{Strong Signal Handling (CV Assertion)}
-Felix's CV explicitly states proficiencies in Java, earning a strong positive signal of ($s_1 = 1.0$) for the CV signal.
-This signal has a moderate reliability of ($c_1 = 0.5$) as it is self-reported, and has not been verified by any other source.
-In this first step, we observe that the model correctly interprets the strong positive signal of $1.0$ from the CV,
-increasing the $\alpha$ parameter from $0.1$ to $0.605$, while $\beta$ updates to $0.105$.
-As a result, the match score, once merged with the CV signal, jumps from $0.5$ to $0.852$, highlighting that a strong signal
-is rewarded accordingly. It is also vital to note that the uncertainty also decreases from $0.456$ to $0.271$, due to the
-inclusion of some, albeit weak, evidence.
+\begin{table}[htbp]
+    \centering
+    \caption[Study~12: Claims vs.\ demonstration]{Study~12: Hypothetical claims-only vs.\ demonstration-only profiles (extensible metric).}
+    \label{tab:bayesian-scenario-comparison}
+    \small
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{l|ccc|cc}
+        \hline
+        \textbf{Scenario} & $s_{\mathrm{CV}}$ & $s_{\mathrm{GH}}$ & $s_{\mathrm{LI}}$ &
+        \textbf{Final} & $\sigma$ \\ \hline
+        Claims, no demonstration & 0.8 & 0.0 & 0.8 & 0.369 & 0.287 \\
+        Demonstration, no claims   & 0.0 & 1.0 & 0.0 & 0.555 & 0.296 \\ \hline
+    \end{tabular}
+\end{table}
 
-\subsubsection{Conflicting Signal Handling (GitHub)}
-This is where the beauty of the Bayesian evidence model comes into play. Felix's GitHub language history features no
-evidence of them ever working with Java; however, there is a strong indication of them working with C++ (a language that is not on the Job Description). Here, there is
-a strong contradictory signal between the CV and the GitHub profile. Felix has a ($s_2 = 0.0$) for Java, for a data source
-with a strong reliability of ($c_2 = 0.9$). Felix has provided a signal that strongly disagrees with his claims on his CV.
-Due to this, the model updates the $\beta$ parameter from $0.1$ to $1.006$, while $\alpha$ remains at $0.606$.
-This leads to the match score decreasing from $0.852$ to $0.376$, highlighting that the model correctly penalises a
-contradictory signal. Another key observation is that the uncertainty also increases from $0.271$ to $0.300$,
-showing that the model correctly captures the increased uncertainty in the presence of contradictory evidence.
+At the GitHub step (Table~\ref{tab:bayesian-walkthrough}, row~2, Figure~\ref{fig:bayesian-fusion-convergence}), the two profiles diverge sharply. The demonstration-only candidate reaches $0.624$, while the claims-only candidate falls to $0.314$, a gap of 31 percentage points. This reflects the higher source confidence assigned to demonstrated GitHub evidence ($c_{\mathrm{GH}} = 0.9$), and the fact that a zero GitHub signal actively contradicts the CV claim rather than leaving it unchallenged.
 
-It is important to note here that the penalisation applied due to Bayesian conflict resolution is not intended to be
-significant, since it may be the case that Felix may not have publicly available evidence of their skills due to the
-nature of their work. It could be likely that Felix is a software engineer, and the projects he has worked on are proprietary,
-and therefore not publicly available.
+For the claims-only profile, a capped CV assertion ($s_1 = 0.8$, $c_1 = 0.5$) initially lifts the score from $0.500$ to $0.711$. This is
+broadly the sort of outcome a CV-only screening pipeline might produce. After GitHub contradicts the claim, the score drops to $0.314$, and a
+further LinkedIn endorsement ($s_3 = 0.8$, $c_3 = 0.2$) only recovers it to $0.369$. Additional self-report cannot substitute for missing
+public work samples.
 
-\subsubsection{LinkedIn Signal Confirmation}
-
-In step 3, Felix has a relatively strong signal from LinkedIn ($s_3 = 0.8$) with a relatively low confidence ($c_3 = 0.2$).
-This step is less important than the previous steps, however, we will provide it to show the robustness of the model.
-Here, the parameters update to $\alpha = 0.774, \beta = 1.054$, leading to a fused score of $0.423$ with an
-uncertainty of $0.294$ due to there being more claim-based evidence of potential understanding of Java.
-
-We provide a low confidence here because LinkedIn is considered a social media platform, where candidates may often
-inflate their skills in order to appear more attractive to potential employers. Also, unlike the one-page restriction applied
-to a CV, there are no restrictions applied to the number of skills a candidate can list on their LinkedIn profile.
-
-This worked example mathematically demonstrates that MERIT's Bayesian evidence fusion model does not just apply a simple
-weighted average, or ignore conflicts. Instead, it captures, tracks and scales the uncertainty in the presence of
-highly contradictory signals from sources of high confidence.
+The demonstration-only profile follows the reverse pattern. An empty CV ($s_{\mathrm{CV}} = 0$) briefly pulls the score down to $0.148$
+before GitHub ingestion, after which strong demonstrated evidence lifts it to $0.624$ and the final fused score settles at $0.555$. When we
+enable multi-source fusion in this way, MERIT rewards verifiable work and does not treat self-report as sufficient when repositories
+contradict it. This bias towards demonstrated evidence is intentional. Self-reported CVs are embellished frequently, and a system that
+treated claimed and demonstrated signals equally would be straightforward to game. MERIT is therefore designed to favour candidates who
+can back up their skills with public work, while still recording uncertainty (rather than a hard rejection) when a candidate has no
+demonstrated evidence to show.
 
 \subsection{Study 01A: Algorithmic Ablation}
 \label{subsec:study-01a-algorithmic-ablation}
 
 To evaluate the benefits and drawbacks of MERIT's multi-source fusion model, we will compare it against three other baseline screening engines.
-The first is \textbf{Traditional ATS}, an in-repository keyword-matching baseline representing CV screening logic typical of rule-based ATS products \cite{raghavan2020}; it scores candidates solely on the count of matching keywords in their CV.
-The second is \textbf{Modern AI ATS}, an in-repository semantic baseline representing CV-only screening typical of AI-assisted ATS products; it computes cosine
+The first is \textbf{Traditional ATS}, an in-repository keyword-matching baseline representing CV screening logic typical of rule-based ATS products \cite{raghavan2020}, it scores candidates solely on the count of matching keywords in their CV.
+The second is \textbf{Modern AI ATS}, an in-repository semantic baseline representing CV-only screening typical of AI-assisted ATS products, it computes cosine
 similarities between CV embeddings and Job Description (JD) embeddings using a Sentence-BERT (SBERT) model \cite{reimers2019sentence}.
 Neither baseline is a commercial ATS platform. We also run \textbf{MERIT (CV Only)} on CV data alone, and \textbf{MERIT (Full)}, which considers all sources of
 evidence.
 
 The complete ranking outcomes, as well as the normalised candidate scores across these four models are detailed in
 Table~\ref{tab:algorithmic-ablation}.
-Percentages are on a 0--100 scale where applicable; the \textbf{Fusion Shift} column is the score change from MERIT (CV Only) to MERIT (Full).
+Percentages are on a 0--100 scale where applicable, the \textbf{Fusion Shift} column is the score change from MERIT (CV Only) to MERIT (Full).
 Ordinal rank shifts across all ten personas are in Figure~\ref{fig:rank-displacement-bump-chart} (Appendix~\ref{appendix:rank_displacement}).
 
 \begin{table}[H]
@@ -263,6 +255,6 @@ Vince's CV-Only score is $33.2\%$, and although the squatted GitHub profile temp
 of the $20\%$ veto drags his final score to $20.6\%$, dropping his rank from Rank \#4 to Rank \#9. This ensures that, on the backend side,
 MERIT is successfully able to identify and penalise candidates who try to game the system.
 
-It is important to note that this is a rare edge case; it is not very common for candidates to engage in this type of fraud.
+It is important to note that this is a rare edge case, it is not very common for candidates to engage in this type of fraud.
 However, it is important to consider this edge case in the design of MERIT, as it is a potential threat to the integrity
 of the system.

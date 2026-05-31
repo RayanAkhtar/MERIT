@@ -1,75 +1,21 @@
 \section{Evaluating Pillar 3: Glass-Box Explainability \& HCI}
 \label{sec:evaluating-explainability}
 
-This section evaluates the practical utility of MERIT's explainability pillar. It also covers the mathematical correctness
-as well as the deterministic behaviour of the explainability engine to ensure transparency and trust in the screening system. As
-explained in Section~\ref{sec:explainable-ai-shapley}, MERIT employs game theory, specifically Shapley values, to provide
-source-level attribution to each metric, as well as each candidate. We verify that the axioms of game theory are satisfied,
-with a methodological justification regarding the symmetry axiom. Following this, we describe a human-computer
-interaction (HCI) user trial conducted to evaluate the usability and decision-making impact of MERIT's explainability layer on professional
-recruiters.
+This section evaluates the practical utility of MERIT's explainability pillar: mathematical correctness of 
+Shapley attributions and the HCI impact of the Glass-Box layer on recruiters.
 
 \subsection{Study 11: Shapley Value Verification}
 \label{subsec:study-11-shapley-verification}
 
-To ensure our source-level attributions are mathematically sound, we shall formally evaluate the implementation against three of
-the four axioms of cooperative game theory. For our settings, we denote the candidate's final match score as the ``winning'' of the game,
-and the implemented data sources (GitHub, LinkedIn, CV) as the ``players'' ($N = \{CV, GitHub, LinkedIn\}$).
-
-Our Shapley values are verified using our cohort of 10 candidates. We use the same 10 candidates from the previous section.
-
-\subsubsection{Game-Theoretic Axioms and Verification Methodology}
-\begin{enumerate}
-    \item \textbf{Axiom 1: Efficiency.} The sum of all source attributions ($\phi_i(v)$) must exactly equal the
-          difference between the value of the grand coalition $v(N)$ (the full match score) and the empty coalition $v(\emptyset)$.
-          \begin{equation}
-              \sum_{i \in N} \phi_i(v) = v(N) - v(\emptyset)
-          \end{equation}
-
-          Since the candidate's empty coalition score is guaranteed to be zero by the system's zero-baseline rule ($v(\emptyset) = 0$),
-          we must have that the attributions sum exactly to the candidate's final match score. That is, $\phi_{CV} +
-              \phi_{GitHub} + \phi_{LinkedIn} = v(N)$.
-
-    \item \textbf{Axiom 2: Symmetry.} If two sources $i$ and $j$ make identical marginal contributions to all
-          possible sub-coalitions, they must receive identical attributions:
-          \begin{equation}
-              \text{If } v(S \cup \{i\}) = v(S \cup \{j\}) \quad \forall S \subseteq N \setminus \{i, j\}, \quad \text{then } \phi_i(v) = \phi_j(v)
-          \end{equation}
-
-          MERIT's players were designed to contribute to a candidate's final match score in distinct ways. Some data sources
-          are leveraged as they are structured representations of a candidate's professional history (LinkedIn and CV).
-          Other data sources are leveraged for their representations of a candidate's technical skills and expertise
-          (GitHub). Because of this, two real sources will never have identical marginal contributions to all
-          possible coalitions. Therefore, the symmetry axiom is not tested in this evaluation because our
-          heterogeneous players (CV, GitHub, and LinkedIn) contribute to candidate scores in fundamentally different
-          ways, making symmetric marginal contributions impossible.
-
-    \item \textbf{Axiom 3: Null Player (Dummy Player).} A source that contributes zero marginal value to all possible
-          coalitions must receive an attribution of exactly zero:
-          \begin{equation}
-              \text{If } v(S \cup \{i\}) = v(S) \quad \forall S \subseteq N \setminus \{i\}, \quad \text{then } \phi_i(v) = 0
-          \end{equation}
-          We verify this by analysing candidates with completely blank or missing profiles on specific channels
-          (e.g., Ghost Gary, who lacks any public GitHub or LinkedIn footprint), verifying that their attributions are exactly zero.
-
-    \item \textbf{Axiom 4: Additivity (Per-Metric Efficiency).} If a game is represented as the sum of independent sub-games
-          ($v + w$), the attributions must sum additively: $\phi_i(v + w) = \phi_i(v) + \phi_i(w)$.
-          Because MERIT calculates overall candidate scores by aggregating multiple individual skill and role metrics, we
-          verify this property at the granular level. For each active metric $m$, the sum of per-metric Shapley values across
-          sources must equal the grand coalition score for that specific metric:
-          $\sum_{i \in N} \phi_{m, i} = v_m(N)$.
-
-    \item \textbf{Extended Computational Property: Determinism.} The attribution engine must produce identical Shapley
-          values across repeated executions under identical input data. We test this by running the scoring and attribution
-          routine 5 times for the entire cohort. Because $N=3$ data sources permits exact, analytical calculation rather than
-          stochastic Monte Carlo sampling, the maximum observed drift is expected to be exactly zero.
-\end{enumerate}
-
+To ensure source-level attributions are mathematically sound, we verify Efficiency, Null Player, Additivity (per-metric), and Determinism 
+on ten synthetic personas ($N = \{\text{CV}, \text{GitHub}, \text{LinkedIn}\}$). Symmetry is omitted because these sources contribute through 
+heterogeneous scoring paths and cannot produce identical marginal contributions in practice (Section~\ref{sec:explainable-ai-shapley}). 
+With three sources, Shapley values are computed analytically (exact, not Monte Carlo).
 
 \subsubsection{Quantitative Verification Results}
-After implementing the source attribution features, we ran our suite of quantitative tests to verify that the
-attribution engine satisfied the core axioms of game theory. The quantitative results for Axioms 1, 3, and 4 are provided
-in Table~\ref{tab:shapley-verification} ($\sum \phi_i = v(N)$ within floating-point tolerance; negative $\phi_i$ occur when a source triggers a penalty, e.g.\ GitHub identity mismatch).
+Table~\ref{tab:shapley-verification} reports per-candidate results 
+($\sum \phi_i = v(N)$ within floating-point tolerance, negative $\phi_i$ occur when a source triggers a penalty, 
+e.g.\ GitHub identity mismatch).
 
 \begin{table}[htbp]
     \centering
@@ -77,46 +23,31 @@ in Table~\ref{tab:shapley-verification} ($\sum \phi_i = v(N)$ within floating-po
     \label{tab:shapley-verification}
     \vspace{1.5ex}
     \small
-    \setlength{\tabcolsep}{6pt}
-    \begin{tabularx}{\textwidth}{@{}%
-        >{\centering\arraybackslash\hsize=1.25\hsize}X|
-        >{\centering\arraybackslash\hsize=0.95\hsize}X|
-        >{\centering\arraybackslash\hsize=0.95\hsize}X|
-        >{\centering\arraybackslash\hsize=0.95\hsize}X|
-        >{\centering\arraybackslash\hsize=0.95\hsize}X|
-        >{\centering\arraybackslash\hsize=0.95\hsize}X|
-        >{\centering\arraybackslash\hsize=1.05\hsize}X|
-        >{\centering\arraybackslash\hsize=0.85\hsize}X@{}}
+    \setlength{\tabcolsep}{7pt}
+    \begin{tabular}{l|ccc|cc}
         \hline
-        \textbf{Candidate Name} & $\phi_{CV}$ & $\phi_{GitHub}$ & $\phi_{LinkedIn}$ & $\Sigma \phi_i$ & $v(N)$ & $\Delta$ & \textbf{Status} \\ \hline
-        Alex Rivers & +0.3107 & +0.4607 & +0.0087 & 0.7800 & 0.7800 & $0.00 \times 10^{0}$ & PASS \\
-        Buzz Ward & +0.3545 & 0.0000 & +0.0075 & 0.3620 & 0.3620 & $0.00 \times 10^{0}$ & PASS \\
-        Carl Corp & +0.1635 & 0.0000 & +0.0155 & 0.1790 & 0.1790 & $0.00 \times 10^{0}$ & PASS \\
-        Felix Vance & +0.3735 & +0.0660 & +0.0075 & 0.4470 & 0.4470 & $0.00 \times 10^{0}$ & PASS \\
-        Fiona Frost & +0.2660 & +0.0660 & +0.0080 & 0.3400 & 0.3400 & $0.00 \times 10^{0}$ & PASS \\
-        Ghost Gary & +0.2940 & 0.0000 & 0.0000 & 0.2940 & 0.2940 & $0.00 \times 10^{0}$ & PASS \\
-        Jordan Smith & +0.1028 & +0.5288 & +0.0113 & 0.6430 & 0.6430 & $0.00 \times 10^{0}$ & PASS \\
-        Kim Junior & +0.1340 & +0.2550 & 0.0000 & 0.3890 & 0.3890 & $0.00 \times 10^{0}$ & PASS \\
-        Sam Old & +0.1648 & +0.1878 & +0.0153 & 0.3680 & 0.3680 & $0.00 \times 10^{0}$ & PASS \\
-        Vince Vault & +0.2652 & -0.0708 & +0.0117 & 0.2060 & 0.2060 & $0.00 \times 10^{0}$ & PASS \\ \hline
-    \end{tabularx}
+        \textbf{Candidate} & $\phi_{\mathrm{CV}}$ & $\phi_{\mathrm{GH}}$ & $\phi_{\mathrm{LI}}$ & $\sum \phi_i$ & $v(N)$ \\ \hline
+        Alex Rivers   & +0.3107 & +0.4607 & +0.0087 & 0.7800 & 0.7800 \\
+        Buzz Ward     & +0.3545 &  0.0000 & +0.0075 & 0.3620 & 0.3620 \\
+        Carl Corp     & +0.1635 &  0.0000 & +0.0155 & 0.1790 & 0.1790 \\
+        Felix Vance   & +0.3735 & +0.0660 & +0.0075 & 0.4470 & 0.4470 \\
+        Fiona Frost   & +0.2660 & +0.0660 & +0.0080 & 0.3400 & 0.3400 \\
+        Ghost Gary    & +0.2940 &  0.0000 &  0.0000 & 0.2940 & 0.2940 \\
+        Jordan Smith  & +0.1028 & +0.5288 & +0.0113 & 0.6430 & 0.6430 \\
+        Kim Junior    & +0.1340 & +0.2550 &  0.0000 & 0.3890 & 0.3890 \\
+        Sam Old       & +0.1648 & +0.1878 & +0.0153 & 0.3680 & 0.3680 \\
+        Vince Vault   & +0.2652 & $-$0.0708 & +0.0117 & 0.2060 & 0.2060 \\ \hline
+    \end{tabular}
 \end{table}
 
 \begin{itemize}
-    \item \textbf{Efficiency Verification:} For all 10 candidates, the maximum absolute delta $\Delta = |\sum \phi_i - v(N)|$
-          was within floating-point tolerance ($< 10^{-6}$), confirming perfect efficiency. No phantom scores were present,
-          therefore proving the mathematical validity of the engine's zero-baseline guarantee.
+    \item \textbf{Efficiency:} For all 10 candidates, $\sum \phi_i = v(N)$ within floating-point tolerance (Table~\ref{tab:shapley-verification}).
 
-    \item \textbf{Null Player Verification:} Consider Ghost Gary, a candidate who has empty, but verified, LinkedIn and GitHub profiles.
-          This results in $\phi_{LinkedIn} = 0.0000$ and $\phi_{GitHub} = 0.0000$. This result highlights that, if a source provides no
-          marginal evidence, it shall not receive any source attribution. This satisfies Axiom 3, the Null Player axiom.
+    \item \textbf{Null player:} Ghost Gary receives $\phi_{\text{GitHub}} = \phi_{\text{LinkedIn}} = 0$ on empty channels.
 
-    \item \textbf{Determinism Verification:} Over 5 repeated executions, the maximum observed drift in any candidate's Shapley value
-          was exactly $0.00 \times 10^0$. This confirms that the XAI engine is perfectly deterministic, which is mathematically 
-          guaranteed since exact, analytical calculations are performed rather than stochastic Monte Carlo approximations.
+    \item \textbf{Determinism:} Five repeated runs produced zero drift (exact analytical Shapley, not Monte Carlo).
 
-    \item \textbf{Per-Metric Efficiency:} Per-metric Shapley sums matched the grand coalition metric scores with 100\% accuracy
-          across all candidate-metric pairs (e.g., matching the exact Python or Go individual scores).
+    \item \textbf{Per-metric efficiency:} Per-metric Shapley sums matched grand-coalition metric scores across all candidate--metric pairs.
 \end{itemize}
 
 \subsubsection{Key XAI Insights}
@@ -143,18 +74,9 @@ shown by his CV contribution of $\phi_{CV} = 0.103$, while his GitHub contributi
 recruiters to instantly see that Jordan's high overall score is backed by demonstrated evidence, rather than just self-reported
 resume claims.
 
-It is worth pointing out that LinkedIn profiles for candidate personas were intentionally designed with highly sparse, or blank,
-profile data. This was done to highlight the difference between claimed and demonstrated evidence, and to show that
-MERIT can function effectively even with limited data. It also highlights that LinkedIn profiles should be used as a
-secondary source of evidence for inaccurate parsing of unstructured data (CVs), rather than a primary source of evidence.
-Conceptually, we wished to highlight the core architectural distinction between the role of claimed evidence (CVs and LinkedIn)
-and demonstrated evidence (GitHub). Both CVs and LinkedIn profiles typically represent the same self-reported, claimed evidence,
-and are authored by the candidate themselves. They are subject to the same faking, exaggerations and keyword-stuffing behaviours.
-As a result, LinkedIn data was often neglected in this study, since there is little need to enforce the same signals in LinkedIn
-which would already be present in the synthetic data created for these personas. Contrasting to this, GitHub represents the
-independent, demonstrated evidence, providing us with means to calculate the complexity of a candidate's code, their language
-utilisation as well as project history. MERIT is designed to expose this which cannot be falsified, therefore pointing out
-the importance of additional evidence sources to create a holistic picture of a candidate.
+It is worth noting that LinkedIn profiles were kept sparse in this cohort to stress-test CV-versus-GitHub contrast rather 
+than duplicate claimed evidence, see Section~\ref{subsec:construct-validity}. 
+GitHub supplies the independent, demonstrated signal that recruiters can inspect on the scorecard.
 
 \begin{table}[htbp]
     \centering
@@ -180,7 +102,7 @@ Share percentages sum positive $\phi_i$ only, excluding negative GitHub penaltie
 \label{subsec:hci-trial-protocol}
 
 Study 11 mathematically confirms that the explainable AI (XAI) engine is consistent, and explains the practical utility
-of these innovations. However, we are yet to demonstrate the human-facing elements of the XAI engine; this is addressed by Study 14. 
+of these innovations. However, we are yet to demonstrate the human-facing elements of the XAI engine, this is addressed by Study 14. 
 Since the purpose of our XAI engine is to be integrated into a front-end application, we must measure how
 MERIT's "Glass-Box" design influences recruiter behaviour, builds cognitive trust, and mitigates any potential biases.
 
@@ -216,7 +138,7 @@ They are also asked to rate their confidence, along with an explanation of how t
 \subsubsection{Key Quantitative Metrics and Empirical Results}
 This pilot user trial includes 5 participants, consisting of 2 professional recruiters ($R_1, R_2$) with extensive experience in
 software development talent acquisition, and 3 technical peers ($P_1, P_2, P_3$), representing MEng Computing
-students at Imperial College London; three of these peers were acquainted with the author. 
+students at Imperial College London, three of these peers were acquainted with the author. 
 These participants are familiar with the technical recruitment process and have undergone multiple technical projects and internships. 
 Given $N=5$, we treat this as a formative pilot and report descriptive statistics, inferential tests are 
 exploratory only (Section~\ref{sec:threats-to-validity}).
@@ -232,7 +154,7 @@ as the basis for synthesising these candidates:
 \end{itemize}
 
 We present the quantitative results of this trial in Table~\ref{tab:hci-trial-results}.
-Stage~1 and Stage~2 counts use $S$ (shortlist) and $R$ (reject); \textbf{DRR} is the fraction of Stage~1 decisions reversed after the Glass-Box scorecard.
+Stage~1 and Stage~2 counts use $S$ (shortlist) and $R$ (reject), \textbf{DRR} is the fraction of Stage~1 decisions reversed after the Glass-Box scorecard.
 Confidence uses a 5-point Likert scale (1 = not confident, 5 = extremely confident).
 Decision-reversal, confidence-shift, and SUS distributions are in Figure~\ref{fig:hci-combined}
 (panels a--c, Appendix~\ref{appendix:hci-trial-charts}). 
@@ -307,7 +229,7 @@ With $N=5$, it indicates interface feasibility only, not product-market validati
 The justifications presented by our evaluators can be found in \texttt{evaluation/14-hci\_trial/test\_data/responses.json}. As shown, there are
 alignments with the quantitative results in Table~\ref{tab:hci-trial-results}. Take the evaluator
 that still shortlisted Robert Todd after the keyword-stuffing alert. Despite what is considered a ``serious red flag'' by $P_3$, they still plan to 
-``keep him shortlisted'' for a brief phone screen. Note how the implementation of the glass-box not only introduces contenstability with the 
+``keep him shortlisted'' for a brief phone screen. Note how the implementation of the glass-box not only introduces contestability with the 
 scores presented, but also offers recruiters the means to investigate claims made by candidates in better detail where evidence may be missing.
 
 Meanwhile, other penalties such as identity squatting are treated as decisive when malicious dishonesty is surfaced. In the case of Aaron Mohammed,

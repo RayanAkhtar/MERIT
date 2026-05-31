@@ -1,18 +1,34 @@
 \chapter{Bayesian Fusion Convergence (Study 12)}
 \label{appendix:bayesian-fusion-charts}
 
-Figure for the Bayesian Evidence Fusion convergence for Felix Vance with the Java metric. Here, we plot
-both the expected value as well as the variance of the beta distribution, highlighting the initial convergance
-upon ingestion of a strong CV signal. Note the divergence following the ingestion of a weak, conflicting github signal.
-Note both a lower expected value and higher variance due to this. The table for this graphic can be found in 
-Table~\ref{tab:bayesian-walkthrough}.
+Step-by-step parameter commentary for Study~12 (Section~\ref{subsec:study-12-bayesian-conflict-resolution}; Tables~\ref{tab:bayesian-scenario-comparison} and~\ref{tab:bayesian-walkthrough}).
 
+\subsection{Step-by-Step Walkthrough}
+\label{appendix:bayesian-fusion-walkthrough}
+
+\textbf{Step 1: CV assertion.}\ We start from a sparse prior ($\alpha_0 = \beta_0 = 0.1$, score $0.500$), with repeated CV 
+mentions leading to a strong signal ($s_1 = 0.8$, $c_1 = 0.5$), lifting the score to $0.711$ ($\alpha = 0.505$, $\beta = 0.205$, 
+$\sigma$: $0.456 \rightarrow 0.347$). On CV text alone, the candidate looks like a strong match, and this would usually be 
+the outcome of a CV-only screening pipeline.
+
+\textbf{Step 2: GitHub contradiction.}\ Zero GitHub signal ($s_2 = 0.0$, $c_2 = 0.9$) pulls the score to $0.314$ 
+($\beta = 1.106$). A confident verifiable contradiction overrides the CV claim. Proprietary work without public 
+repos records uncertainty rather than a hard rejection. Alternatively, could be a candidate who has demonstrated evidence
+for other skills, but not the one in question.
+
+\textbf{Step 3: LinkedIn endorsement.}\ Claimed LinkedIn ($s_3 = 0.8$, $c_3 = 0.2$) nudges the score to $0.369$ 
+only. Self-report cannot replace demonstrated evidence. Given frequent CV embellishment, MERIT intentionally 
+favours candidates who can show public work.
+
+\textbf{Demonstration-only profile.}\ For brevity, we skip the demonstration-only profile, we have ($s_1 = 0.0$, $c_1 = 0.5$; $s_2 = 1.0$, $c_2 = 0.9$; $s_3 = 0.0$, $c_3 = 0.2$). 
+With no CV mention, the score dips to $0.148$ then rises to $0.624$ after 
+GitHub ($s_{\mathrm{GH}} = 1.0$), settling at $0.555$. Despite more self-reported text, the claims-only profile 
+finishes 19 points lower ($0.369$). See Table~\ref{tab:bayesian-scenario-comparison} 
+and the right column of Figure~\ref{fig:bayesian-fusion-convergence} for the demonstration-only profile.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.95\textwidth]{../evaluation/12-conflict_resolution/output/fusion_convergence_detailed.png}
-    \caption[Study~12: Fusion convergence]{Study~12: Beta fusion convergence for Felix Vance (Java).
-    (a)~fused score and uncertainty by evidence step.
-    (b)~standard deviation by step.}
+    \includegraphics[width=\textwidth,height=0.30\textheight,keepaspectratio]{../evaluation/12-conflict_resolution/output/fusion_convergence_detailed.png}
+    \caption[Study~12: Fusion convergence]{Study~12: Beta fusion for claims-only (left) vs.\ demonstration-only (right) profiles; top panels = fused score, bottom panels = $\sigma$ by step.}
     \label{fig:bayesian-fusion-convergence}
 \end{figure}

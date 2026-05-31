@@ -2,7 +2,7 @@
 Run all fifteen MERIT evaluation studies (01--15) in numerical order.
 
 Study 01 runs four comparative engines via run_all_studies.py.
-Studies 07--10 share prepare_spearman_data.py and sabotage_study_10.py prep steps.
+Studies 07--10 use committed CV/GitHub/LinkedIn fixtures under each study's test_data/.
 Study 13 expects corpus/ and hold-out JSON; build scripts run if the corpus is missing.
 """
 from __future__ import annotations
@@ -38,7 +38,6 @@ _STREAM_STUDIES: dict[tuple[str, str], str] = {
     ),
 }
 
-SPEARMAN_PREP = ("prepare_spearman_data.py", "sabotage_study_10.py")
 STUDY_13_CORPUS = os.path.join("corpus", "corpus_descriptions.json")
 STUDY_13_BUILD = ("build_market_corpus.py", "build_test_dataset.py")
 
@@ -84,13 +83,6 @@ def _ensure_study_13_assets(study_path: str) -> None:
         run_script(study_path, script)
 
 
-def _run_spearman_prep(root_dir: str) -> None:
-    print("\n" + "-" * 40)
-    print("Preparing Spearman test data (Studies 07--10)...")
-    for script in SPEARMAN_PREP:
-        subprocess.run([sys.executable, os.path.join(root_dir, script)], check=True)
-
-
 def main() -> None:
     root_dir = os.path.dirname(os.path.abspath(__file__))
     print("=" * 60)
@@ -103,9 +95,6 @@ def main() -> None:
             raise FileNotFoundError(f"Missing study directory: {study_path}")
         if not os.path.isfile(os.path.join(study_path, script)):
             raise FileNotFoundError(f"Missing entry script {script} in {study_path}")
-
-        if folder == "07-spearman_high_discrimination":
-            _run_spearman_prep(root_dir)
 
         if folder == "13-dynamic_tf_idf_recruiter_validation":
             _ensure_study_13_assets(study_path)

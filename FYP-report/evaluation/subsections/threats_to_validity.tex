@@ -23,16 +23,9 @@ GitHub payloads are deliberately sabotaged to contradict the CV narrative.
 We do not claim independent external validation of the remaining ground truth datasets due to the time and resource constraints 
 of the project.
 
-\textbf{Skills Dictionary Coverage Limiting Skill Recall Interpretation (Study~04).}
-In Study~04, we have a skill recall of 38.6\%, which is quite low, we miss 61.4\% of the ground truth skills, meaning that
-we underrepresent a candidate's full skillset when we parse their CV. We primarily believed this to be a parser error, however,
-after further inspection, we were able to pin this error to a dictionary coverage issue. We use Devicon to generate the
-JSON of skills to search for in a CV and JD, however, this source is not comprehensive enough to cover the different areas
-of skills that a candidate may present on their CV. Devicon is limited to programming languages and frameworks, but fails
-to include other forms of tooling. The poor skill recall performance therefore, should not be interpreted as a parser error,
-but instead, it should be treated as a limitation of the dictionary that we use to search for skills in a CV.
-Extending the dictionary before replicating Study~04 would help to improve the skill recall performance, however, we did not
-make this change as part of the project to prevent the use of a hardcoded dictionary. 
+\textbf{Skills Dictionary Coverage (Study~04).}
+Study~04's skill recall (38.6\%) reflects Devicon dictionary scope (programming languages and web frameworks only), 
+not parser failure. See Section~\ref{subsec:study-04} for the full error analysis.
 
 \textbf{Proxy Metrics for Recruitment Quality.}
 The evaluation measures parser F1-scores, rank correlations, shortlist rates, SUS and batch latency. Note how these metrics
@@ -54,19 +47,9 @@ For example, evaluators may have been more likely to shortlist candidates with h
 in the results.
 
 \textbf{Stress-Testing CV--GitHub Contrast.}
-MERIT is designed to treat LinkedIn as a supplemental source alongside the CV. LinkedIn arrives as structured API data, so it is not subject to
-the same PDF parsing errors as CVs (Studies~04--05). When a CV is incomplete or parsed incorrectly, LinkedIn can help recover claimed skills and
-employment history without repeating the extraction pipeline. That said, LinkedIn is still self-reported evidence, much like the resume. GitHub is
-different, as it reflects demonstrated work in public repositories.
-
-In Studies~06 and~07--10, we did not use ``full'' LinkedIn personas (rich history, endorsements, and skills mirroring the CV). The cohorts rely on
-clean synthetic CV JSON, so there is no parser failure for LinkedIn to fix, and a dense profile would mostly repeat claims already in the resume.
-We therefore kept LinkedIn sparse on purpose, to stress-test the contrast we cared about: CV narrative against GitHub evidence, without a second
-copy of the same self-report diluting the signal. We still included minimal LinkedIn fields so the three-source pipeline and Study~11 Shapley
-decomposition remain valid (for example, null-player checks), but this is not the same as recruiters reviewing a complete LinkedIn profile in
-production. We should be careful when generalising fusion and Shapley results from these studies to live hiring where LinkedIn is fully populated
-(Section~\ref{subsec:study-11-shapley-verification}).
-
+Studies~06--10 use sparse LinkedIn personas by design to isolate CV-versus-GitHub contrast rather than 
+repeat self-reported CV claims. Note that production deployments with fully populated LinkedIn may behave differently. 
+Rationale and Shapley implications are discussed in Section~\ref{subsec:study-11-shapley-verification}.
 
 \textbf{Usability and Trust Instruments (Study~14).}
 The HCI study is discussed in Section~\ref{subsec:hci-trial-protocol},

@@ -49,7 +49,7 @@ while also remaining strict enough to reject other, unrelated terms such as ``Py
 Whenever there is a semantic bridge, we also pass this information to the frontend to let the recruiter know
 of both extensible metric, as well as the skill that was bridged against it, to ensure full transparency.
 This way, in the event of a false-positive, the recruiter can easily identify and correct it.
-For extensible CV metrics, a direct string match (e.g.\ ``SQL'') yields a lexical signal; otherwise cosine similarity
+For extensible CV metrics, a direct string match (e.g.\ ``SQL'') yields a lexical signal, otherwise cosine similarity
 against extracted skills is used (e.g.\ bridging ``PostgreSQL'' to ``SQL''), as summarised in Figure~\ref{fig:semantic_skill_scoring}.
 
 
@@ -217,4 +217,4 @@ By exposing this structured data in a candidate's report, we justify the score f
 can see how each data source contributed for a given metric, how Bayesian fusion combined those contributions into
 a per-metric score, and how metrics are weighted by job priority to produce the final match score. Presenting every
 stage in this form gives recruiters the means to challenge and interrogate the score rather than accepting it as
-a black box; Appendix~\ref{appendix:math_trail} shows a representative end-to-end audit trail in the UI.
+a black box. Appendix~\ref{appendix:math_trail} shows a representative end-to-end audit trail in the UI.

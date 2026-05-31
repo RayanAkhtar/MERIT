@@ -1,8 +1,8 @@
 \section{Bayesian Evidence Fusion}
 
-A key challenge in developing MERIT will be to address the uncertaity in conflicting signals that arise from handling multi-source candidate data.
+A key challenge in developing MERIT will be to address the uncertainty in conflicting signals that arise from handling multi-source candidate data.
 MERIT employs a probabilistic framework based on Bayesian Evidence Fusion to address this challenge.
-This is in contrast to traditional-rule based systems that rely on single sources of information.
+This is in contrast to traditional rule-based systems that rely on single sources of information.
 By leveraging multiple sources, MERIT is able to provide a thorough "Glass-Box" assessment to separate the estimated ability from the certainty of that estimate.
 
 \subsection*{The Beta Distribution Model}
@@ -13,7 +13,7 @@ This is key to providing an extensible, modular architecture that allows for the
 When we calculate the beta distribution for a metric, we can expect the following:
 \begin{enumerate}
     \item \textbf{The Match Score:} The expected value (mean) of the distribution, providing the most likely estimate of a candidate's skill level.
-    \item \textbf{The Confidence Level:} The spread (variance) of the distribution; a narrow distribution (low variance) signifies high confidence in the data, while a wide distribution (high variance) indicates a lack of evidence or conflicting signals.
+    \item \textbf{The Confidence Level:} The spread (variance) of the distribution, a narrow distribution (low variance) signifies high confidence in the data, while a wide distribution (high variance) indicates a lack of evidence or conflicting signals.
 \end{enumerate}
 
 The parameters of the distribution are updated based on the type of evidence discovered:

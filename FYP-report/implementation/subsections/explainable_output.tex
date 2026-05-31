@@ -72,7 +72,7 @@ or rejected from an ATS, both candidates, as well as the recruiters have no insi
 neither party can learn from this interaction, or challenge the claims that the system makes.
 
 It is for this reason that MERIT implements the principle of \textit{contestability}. Recruiters are not presented with
-a ``black-box'' score; instead, they are given the specific evidence signals used to derive that score through a comprehensive
+a ``black-box'' score, instead, they are given the specific evidence signals used to derive that score through a comprehensive
 audit trail. This way, we can not only provide rankings (like all other ATS systems), but explain the quantitative
 reasoning behind them. This end-to-end transparency allows a human-in-the-loop to identify and override potential
 algorithmic edge cases, ensuring that the final decision remains human-centric and auditable.
@@ -108,7 +108,7 @@ We will briefly go over the main features of our Next.js frontend to create an i
 The first feature is probabilistic confidence labels, derived from the standard deviation $\sigma$ of the Beta distribution mentioned
 in the previous chapter. We map $\sigma$ to a traffic-light badge system (Green for High, Amber for Medium, Red for Low),
 allowing recruiters to instantly scan the reliability of a candidate's metric at a glance.
-Non-critical penalties (e.g.\ keyword stuffing) show an amber icon on the ranking table; critical penalties (e.g.\ identity squatting) show a red warning. The significance of these labels is highlighted
+Non-critical penalties (e.g.\ keyword stuffing) show an amber icon on the ranking table, critical penalties (e.g.\ identity squatting) show a red warning. The significance of these labels is highlighted
 more so when it comes to extensible metrics, where there is more uncertainty due to the ambiguity of how such metrics may be defined,
 and calculated.
 

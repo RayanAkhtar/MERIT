@@ -1,3 +1,8 @@
+"""One-off utility to build Study 10 dissonance fixtures from Study 07 GitHub/LinkedIn.
+
+Not invoked by run_all_evaluations.py — Study 10 test_data/ is committed with sabotage
+already applied. Run manually only if you regenerate Study 10 supplementary data from scratch.
+"""
 import json
 import os
 import shutil
