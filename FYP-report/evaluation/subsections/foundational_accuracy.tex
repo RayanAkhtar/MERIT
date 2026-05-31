@@ -21,15 +21,13 @@ and the extracted data for our three core categories (skills, experience and ide
 \subsubsection{Skill Set Metrics}
 Given $S_E$ as the set of extracted skills and $S_{GT}$ as the set of ground truth skills, we can
 formulate the precision ($P_{skills}$), recall ($R_{skills}$), and F1-score ($F1_{skills}$) as follows:
-\begin{equation}
-    P_{skills} = \frac{|S_E \cap S_{GT}|}{|S_E|}
-\end{equation}
-\begin{equation}
-    R_{skills} = \frac{|S_E \cap S_{GT}|}{|S_{GT}|}
-\end{equation}
-\begin{equation}
-    F1_{skills} = \frac{2 \cdot P_{skills} \cdot R_{skills}}{P_{skills} + R_{skills}}
-\end{equation}
+{\small
+\begin{align}
+    P_{skills}  &= \frac{|S_E \cap S_{GT}|}{|S_E|}, &
+    R_{skills}  &= \frac{|S_E \cap S_{GT}|}{|S_{GT}|}, &
+    F1_{skills} &= \frac{2 P_{skills} R_{skills}}{P_{skills} + R_{skills}}
+\end{align}
+}
 
 \subsubsection{Experience Recall}
 For experience extraction, we mainly care about recall, since if we miss an experience, we might miss out on a
@@ -70,23 +68,20 @@ Table~\ref{tab:cv_parser_results} presents the compiled results.
     \centering
     \caption[Study~04: CV ingestion by layout]{Study~04: CV ingestion accuracy by layout ($N=30$).}
     \label{tab:cv_parser_results}
-    \begin{tabularx}{\textwidth}{
-            >{\raggedright\arraybackslash\hsize=1.4\hsize}X
-            >{\centering\arraybackslash\hsize=0.86\hsize}X
-            >{\centering\arraybackslash\hsize=0.86\hsize}X
-            >{\centering\arraybackslash\hsize=0.88\hsize}X
-        }
+    \merittablesize
+    \setlength{\tabcolsep}{6pt}
+    \begin{tabular}{l|c|c|c}
         \hline
-        \textbf{Metric Type}         & \textbf{Single-Column (Linear) [$N=15$]} & \textbf{Multi-Column [$N=15$]} & \textbf{Overall Mean [$N=30$]} \\
+        \textbf{Metric} & \textbf{Single-col.\ ($N{=}15$)} & \textbf{Multi-col.\ ($N{=}15$)} & \textbf{Overall ($N{=}30$)} \\
         \hline
-        Skill Extraction Precision   & 69.6\%                                   & 69.6\%                         & 69.6\%                         \\
-        Skill Extraction Recall      & 38.6\%                                   & 38.6\%                         & 38.6\%                         \\
-        Skill Extraction $F_1$-Score & 49.4\%                                   & 49.4\%                         & 49.4\%                         \\
-        Experience Recall            & 34.3\%                                   & 44.7\%                         & 39.5\%                         \\
-        Name Match Rate              & 53.3\%                                   & 13.3\%                         & 33.3\%                         \\
-        Email Match Rate             & 100.0\%                                  & 100.0\%                        & 100.0\%                        \\
+        Skill Extraction Precision   & 69.6\%  & 69.6\%  & 69.6\%  \\
+        Skill Extraction Recall      & 38.6\%  & 38.6\%  & 38.6\%  \\
+        Skill Extraction $F_1$-Score & 49.4\%  & 49.4\%  & 49.4\%  \\
+        Experience Recall            & 34.3\%  & 44.7\%  & 39.5\%  \\
+        Name Match Rate              & 53.3\%  & 13.3\%  & 33.3\%  \\
+        Email Match Rate             & 100.0\% & 100.0\% & 100.0\% \\
         \hline
-    \end{tabularx}
+    \end{tabular}
 \end{table}
 
 The distribution of individual scores across the template pool is plotted in
@@ -146,17 +141,19 @@ Figure~\ref{fig:ingestion-combined} (panel~b, Appendix~\ref{appendix:ingestion-c
     \centering
     \caption[Study~05: JD extraction accuracy]{Study~05: mean JD extraction accuracy ($N=15$).}
     \label{tab:jd_parser_results}
-    \begin{tabularx}{\textwidth}{X c c}
+    \merittablesize
+    \setlength{\tabcolsep}{6pt}
+    \begin{tabular}{l|l|r}
         \hline
-        \textbf{Metric Type}           & \textbf{Evaluation Focus}        & \textbf{Mean Score / Accuracy Rate} \\
+        \textbf{Metric} & \textbf{Evaluation focus} & \textbf{Mean (\%)} \\
         \hline
-        Skill Requirements Precision   & Target skill relevance           & 60.02\%                             \\
-        Skill Requirements Recall      & Target skill coverage            & 34.13\%                             \\
-        Skill Requirements $F_1$-Score & Overall requirement fidelity     & 40.81\%                             \\
-        Job Title Match Rate           & Role identification accuracy     & 46.67\%                             \\
-        Company Match Rate             & Employer identification accuracy & 6.67\%                              \\
+        Skill Requirements Precision   & Target skill relevance       & 60.02\% \\
+        Skill Requirements Recall      & Target skill coverage        & 34.13\% \\
+        Skill Requirements $F_1$-Score & Overall requirement fidelity & 40.81\% \\
+        Job Title Match Rate           & Role identification        & 46.67\% \\
+        Company Match Rate             & Employer identification    & 6.67\%  \\
         \hline
-    \end{tabularx}
+    \end{tabular}
 \end{table}
 
 \subsubsection{Qualitative Analysis \& Strategic Ingestion Failure Cases}
@@ -212,17 +209,19 @@ and largest misalignments.
     \centering
     \caption[Study~13: TF-IDF vs consensus]{Study~13: TF-IDF vs.\ consensus ($N=4$, $n=27$ skill--role pairs).}
     \label{tab:study-13-metric-alignment}
-    \begin{tabularx}{\textwidth}{l c c c c}
+    \merittablesize
+    \setlength{\tabcolsep}{6pt}
+    \begin{tabular}{l|c|c|c|c}
         \hline
-        \textbf{Hold-out role} & \textbf{Skills rated} & \textbf{Exact match} & \textbf{MAE} & \textbf{Spearman $\rho$} \\
+        \textbf{Hold-out role} & \textbf{Skills} & \textbf{Exact match} & \textbf{MAE} & \textbf{Spearman $\rho$} \\
         \hline
         Junior Frontend (React) & 9  & 44.4\% & 0.78 & 0.52 \\
         Senior ML Engineer       & 8  & 25.0\% & 1.88 & $-0.45$ \\
         Lead DevOps / Platform   & 10 & 20.0\% & 1.20 & 0.40 \\
         \hline
-        \textbf{Aggregate} ($n=27$) & 27 & 29.6\% & 1.26 & 0.25 \\
+        \textbf{Aggregate} ($n{=}27$) & 27 & 29.6\% & 1.26 & 0.25 \\
         \hline
-    \end{tabularx}
+    \end{tabular}
 \end{table}
 
 As shown in Table~\ref{tab:study-13-metric-alignment}, TF-IDF is not well

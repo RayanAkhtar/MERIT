@@ -26,7 +26,17 @@
   \fi
 }
 \usepackage{graphicx}
-\usepackage{tabularx} 
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{float}
+
+% Evaluation table helpers (used across evaluation/*.tex and ethics/*.tex)
+\newcommand{\merittablesize}{\small}
+\newenvironment{merittabular}[1]{%
+  \begin{tabular}{#1}%
+}{%
+  \end{tabular}%
+}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta, positioning, shapes.geometric, shadows, bending, fit, backgrounds}
 \setlength{\parindent}{0pt}

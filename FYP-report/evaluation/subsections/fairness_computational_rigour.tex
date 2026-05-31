@@ -89,16 +89,14 @@ summarises the prestige proxy gap used for H1.
     \label{tab:bias-audit-summary}
     \vspace{1.5ex}
     \small
-    \resizebox{\textwidth}{!}{%
-        \begin{tabular}{l|c|c|c|c}
-            \hline
-            \textbf{Candidate} & \textbf{MERIT (\%)} & \textbf{Visible arm (\%)} & \textbf{Blind arm (\%)} & \textbf{$\Delta$ (pp)} \\ \hline
-            Riko Al-Tayer      & 60.9 & 100.0 & 75.0 & $-$25.0 \\
-            Aisling Hunt       & 36.7 & 25.0  & 75.0 & +50.0 \\
-            Vincent Germain    & 31.1 & 0.0   & 75.0 & +75.0 \\
-            Jude Washington    & 39.9 & 25.0  & 50.0 & +25.0 \\ \hline
-        \end{tabular}%
-    }
+    \begin{tabular}{l|c|c|c|c}
+        \hline
+        \textbf{Candidate} & \textbf{MERIT (\%)} & \textbf{Visible (\%)} & \textbf{Blind (\%)} & \textbf{$\Delta$ (pp)} \\ \hline
+        Riko Al-Tayer      & 60.9 & 100.0 & 75.0 & $-$25.0 \\
+        Aisling Hunt       & 36.7 & 25.0  & 75.0 & +50.0 \\
+        Vincent Germain    & 31.1 & 0.0   & 75.0 & +75.0 \\
+        Jude Washington    & 39.9 & 25.0  & 50.0 & +25.0 \\ \hline
+    \end{tabular}
 \end{table}
 
 \begin{table}[htbp]
@@ -274,17 +272,16 @@ figure (Appendix~\ref{appendix:fairness-scalability-charts}).
     \label{tab:runtime-results}
     \vspace{1.5ex}
     \small
-    \resizebox{\textwidth}{!}{%
-        \begin{tabular}{r|c|c|c|c|c}
-            \hline
-            \textbf{$N$} & \textbf{Traditional ATS (s)} & \textbf{Modern AI ATS (s)} & \textbf{MERIT CV-Only (s)} & \textbf{MERIT Full (s)} & \textbf{MERIT Explainable (s)} \\ \hline
-            10  & 0.0035  & 4.50   & 0.095 & 0.107 & 0.528 \\
-            50  & 0.0127  & 21.86  & 0.471 & 0.486 & 2.678 \\
-            100 & 0.0231  & 43.70  & 0.916 & 0.983 & 5.521 \\
-            200 & 0.0489  & 88.05  & 1.797 & 1.976 & 10.92 \\
-            500 & 0.1059  & 219.29 & 4.579 & 4.808 & 26.79 \\ \hline
-        \end{tabular}%
-    }
+    \setlength{\tabcolsep}{6pt}
+    \begin{tabular}{r|c|c|c|c|c}
+        \hline
+        \textbf{$N$} & \textbf{Trad. ATS} & \textbf{Mod. AI ATS} & \textbf{MERIT CV} & \textbf{MERIT Full} & \textbf{MERIT Expl.} \\ \hline
+        10  & 0.0035  & 4.50   & 0.095 & 0.107 & 0.528 \\
+        50  & 0.0127  & 21.86  & 0.471 & 0.486 & 2.678 \\
+        100 & 0.0231  & 43.70  & 0.916 & 0.983 & 5.521 \\
+        200 & 0.0489  & 88.05  & 1.797 & 1.976 & 10.92 \\
+        500 & 0.1059  & 219.29 & 4.579 & 4.808 & 26.79 \\ \hline
+    \end{tabular}
 \end{table}
 
 At the largest batch size ($N = 500$), we can observe that Modern AI ATS requires $\approx$219.3 seconds to score the batch,
@@ -301,46 +298,28 @@ the effects of multi-source fusion relatively minimal.
 \subsubsection{Space complexity and memory footprint (Study 03)}
 Study~03 separates \textbf{static engine footprint} (model and interpreter load at initialisation) from 
 \textbf{operational batch overhead} (incremental RSS growth while scoring a batch, after garbage collection). 
-Table~\ref{tab:engine-load} and Table~\ref{tab:spacetime-batch} 
-summarise \texttt{output/engine\_load\_costs.csv} and 
-\texttt{output/spacetime\_results.csv}. Figure~\ref{fig:scalability-combined} 
+Table~\ref{tab:study03-memory} summarises \texttt{output/engine\_load\_costs.csv} (static row) and 
+\texttt{output/spacetime\_results.csv} (batch rows). Figure~\ref{fig:scalability-combined} 
 (panels~c--d; Appendix~\ref{appendix:fairness-scalability-charts}) 
 visualises both.
 
 \begin{table}[htbp]
     \centering
-    \caption[Study~03: Static memory footprint]{Study~03: static engine memory footprint (MB).}
-    \label{tab:engine-load}
+    \caption[Study~03: Engine memory]{Study~03: engine memory (MB). Top row: static load at initialisation; remaining rows: incremental batch overhead after \texttt{gc.collect()} (not cumulative with static load).}
+    \label{tab:study03-memory}
     \vspace{1.5ex}
     \small
-    \begin{tabular}{l|c}
+    \setlength{\tabcolsep}{6pt}
+    \begin{tabular}{l|c|c|c|c|c}
         \hline
-        \textbf{Engine} & \textbf{Static Load (MB)} \\ \hline
-        Traditional ATS   & 0.10 \\
-        Modern AI ATS     & 396.2 \\
-        MERIT CV-Only     & 366.3 \\
-        MERIT Full        & 367.1 \\
-        MERIT Explainable & 367.2 \\ \hline
+        \textbf{$N$ / init.} & \textbf{Trad. ATS} & \textbf{Mod. AI ATS} & \textbf{MERIT CV-Only} & \textbf{MERIT Full} & \textbf{MERIT Expl.} \\ \hline
+        \textit{init.} & 0.10 & 396.2 & 366.3 & 367.1 & 367.2 \\ \hline
+        10  & 0.01 & 114.3 & 54.4 & 54.5 & 53.5 \\
+        50  & 0.02 & 115.8 & 56.6 & 56.8 & 56.5 \\
+        100 & 0.03 & 116.6 & 58.7 & 58.8 & 59.3 \\
+        200 & 0.04 & 120.1 & 64.1 & 64.1 & 64.5 \\
+        500 & 0.10 & 120.6 & 73.5 & 74.9 & 76.2 \\ \hline
     \end{tabular}
-\end{table}
-
-\begin{table}[htbp]
-    \centering
-    \caption[Study~03: Incremental batch memory]{Study~03: incremental batch memory overhead (MB) after \texttt{gc.collect()}.}
-    \label{tab:spacetime-batch}
-    \vspace{1.5ex}
-    \small
-    \resizebox{\textwidth}{!}{%
-        \begin{tabular}{r|c|c|c|c|c}
-            \hline
-            \textbf{$N$} & \textbf{Traditional ATS (MB)} & \textbf{Modern AI ATS (MB)} & \textbf{MERIT CV-Only (MB)} & \textbf{MERIT Full (MB)} & \textbf{MERIT Explainable (MB)} \\ \hline
-            10  & 0.01 & 114.3 & 54.4 & 54.5 & 53.5 \\
-            50  & 0.02 & 115.8 & 56.6 & 56.8 & 56.5 \\
-            100 & 0.03 & 116.6 & 58.7 & 58.8 & 59.3 \\
-            200 & 0.04 & 120.1 & 64.1 & 64.1 & 64.5 \\
-            500 & 0.10 & 120.6 & 73.5 & 74.9 & 76.2 \\ \hline
-        \end{tabular}%
-    }
 \end{table}
 
 Under isolated subprocess measurement, static load is negligible for Traditional ATS (\textbf{0.1~MB}) but dominated 

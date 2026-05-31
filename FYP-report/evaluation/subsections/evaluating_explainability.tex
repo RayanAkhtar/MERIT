@@ -77,21 +77,29 @@ in Table~\ref{tab:shapley-verification} ($\sum \phi_i = v(N)$ within floating-po
     \label{tab:shapley-verification}
     \vspace{1.5ex}
     \small
-    \setlength{\tabcolsep}{5pt}
-    \begin{tabular}{l|c|c|c|c|c|c|c}
+    \setlength{\tabcolsep}{6pt}
+    \begin{tabularx}{\textwidth}{@{}%
+        >{\centering\arraybackslash\hsize=1.25\hsize}X|
+        >{\centering\arraybackslash\hsize=0.95\hsize}X|
+        >{\centering\arraybackslash\hsize=0.95\hsize}X|
+        >{\centering\arraybackslash\hsize=0.95\hsize}X|
+        >{\centering\arraybackslash\hsize=0.95\hsize}X|
+        >{\centering\arraybackslash\hsize=0.95\hsize}X|
+        >{\centering\arraybackslash\hsize=1.05\hsize}X|
+        >{\centering\arraybackslash\hsize=0.85\hsize}X@{}}
         \hline
-        \textbf{Candidate Name} & $\phi_{CV}$ & $\phi_{GitHub}$ & $\phi_{LinkedIn}$ & $\Sigma \phi_i$ & $v(N)$ & $\Delta$             & \textbf{Status} \\ \hline
-        Alex Rivers             & +0.4432     & +0.2952         & +0.0087           & 0.7470          & 0.7470 & $0.00 \times 10^{0}$ & PASS            \\
-        Buzz Ward               & +0.4845     & 0.0000          & +0.0075           & 0.4920          & 0.4920 & $0.00 \times 10^{0}$ & PASS            \\
-        Carl Corp               & +0.1635     & 0.0000          & +0.0155           & 0.1790          & 0.1790 & $0.00 \times 10^{0}$ & PASS            \\
-        Felix Vance             & +0.4805     & +0.0660         & +0.0075           & 0.5540          & 0.5540 & $0.00 \times 10^{0}$ & PASS            \\
-        Fiona Frost             & +0.2660     & +0.0660         & +0.0080           & 0.3400          & 0.3400 & $0.00 \times 10^{0}$ & PASS            \\
-        Ghost Gary              & +0.4010     & 0.0000          & 0.0000            & 0.4010          & 0.4010 & $0.00 \times 10^{0}$ & PASS            \\
-        Jordan Smith            & +0.1030     & +0.4095         & +0.0115           & 0.5240          & 0.5240 & $0.00 \times 10^{0}$ & PASS            \\
-        Kim Junior              & +0.1880     & +0.0490         & 0.0000            & 0.2370          & 0.2370 & $0.00 \times 10^{0}$ & PASS            \\
-        Sam Old                 & +0.1648     & +0.1878         & +0.0153           & 0.3680          & 0.3680 & $0.00 \times 10^{0}$ & PASS            \\
-        Vince Vault             & +0.4257     & -0.0708         & +0.0112           & 0.3660          & 0.3660 & $0.00 \times 10^{0}$ & PASS            \\ \hline
-    \end{tabular}
+        \textbf{Candidate Name} & $\phi_{CV}$ & $\phi_{GitHub}$ & $\phi_{LinkedIn}$ & $\Sigma \phi_i$ & $v(N)$ & $\Delta$ & \textbf{Status} \\ \hline
+        Alex Rivers & +0.4432 & +0.2952 & +0.0087 & 0.7470 & 0.7470 & $0.00 \times 10^{0}$ & PASS \\
+        Buzz Ward & +0.4845 & 0.0000 & +0.0075 & 0.4920 & 0.4920 & $0.00 \times 10^{0}$ & PASS \\
+        Carl Corp & +0.1635 & 0.0000 & +0.0155 & 0.1790 & 0.1790 & $0.00 \times 10^{0}$ & PASS \\
+        Felix Vance & +0.4805 & +0.0660 & +0.0075 & 0.5540 & 0.5540 & $0.00 \times 10^{0}$ & PASS \\
+        Fiona Frost & +0.2660 & +0.0660 & +0.0080 & 0.3400 & 0.3400 & $0.00 \times 10^{0}$ & PASS \\
+        Ghost Gary & +0.4010 & 0.0000 & 0.0000 & 0.4010 & 0.4010 & $0.00 \times 10^{0}$ & PASS \\
+        Jordan Smith & +0.1030 & +0.4095 & +0.0115 & 0.5240 & 0.5240 & $0.00 \times 10^{0}$ & PASS \\
+        Kim Junior & +0.1880 & +0.0490 & 0.0000 & 0.2370 & 0.2370 & $0.00 \times 10^{0}$ & PASS \\
+        Sam Old & +0.1648 & +0.1878 & +0.0153 & 0.3680 & 0.3680 & $0.00 \times 10^{0}$ & PASS \\
+        Vince Vault & +0.4257 & -0.0708 & +0.0112 & 0.3660 & 0.3660 & $0.00 \times 10^{0}$ & PASS \\ \hline
+    \end{tabularx}
 \end{table}
 
 \begin{itemize}
@@ -237,16 +245,15 @@ Raw session data are in \texttt{evaluation/14-hci\_trial/}.
     \label{tab:hci-trial-results}
     \vspace{1.5ex}
     \small
-    \resizebox{\textwidth}{!}{%
-        \begin{tabular}{l|c|c|c|c|c|c}
-            \hline
-            \textbf{Candidate}   & \splithead{Stage 1 Decision}{(Control)} & \splithead{Stage 2 Decision}{(Treatment)} & \splithead{Reversal Rate}{(DRR)} & \splithead{Avg. $C_{\text{Stage 1}}$}{(1--5)} & \splithead{Avg. $C_{\text{Stage 2}}$}{(1--5)} & \splithead{Confidence Delta}{($\Delta C$)} \\ \hline
-            Moinecha Ramos-Horta & $5S$ / $0R$                             & $5S$ / $0R$                               & 0.0\%                            & 3.80                                          & 4.60                                          & +0.80                                      \\
-            Yusuf Nilsson        & $0S$ / $5R$                             & $4S$ / $1R$                               & 80.0\%                           & 4.20                                          & 4.80                                          & +0.60                                      \\
-            Robert Todd          & $4S$ / $1R$                             & $1S$ / $4R$                               & 75.0\%                           & 3.60                                          & 4.40                                          & +0.80                                      \\
-            Aaron Mohammed       & $3S$ / $2R$                             & $0S$ / $5R$                               & 100.0\%                          & 3.20                                          & 4.80                                          & +1.60                                      \\ \hline
-        \end{tabular}%
-    }
+    \setlength{\tabcolsep}{5pt}
+    \begin{tabular}{l|c|c|c|c|c|c}
+        \hline
+        \textbf{Candidate}   & \textbf{Stage 1 (ctrl)} & \textbf{Stage 2 (trt)} & \textbf{DRR} & \textbf{$C_1$ (1--5)} & \textbf{$C_2$ (1--5)} & \textbf{$\Delta C$} \\ \hline
+        Moinecha Ramos-Horta & $5S$ / $0R$            & $5S$ / $0R$            & 0.0\%        & 3.80                    & 4.60                    & +0.80                 \\
+        Yusuf Nilsson        & $0S$ / $5R$            & $4S$ / $1R$            & 80.0\%       & 4.20                    & 4.80                    & +0.60                 \\
+        Robert Todd          & $4S$ / $1R$            & $1S$ / $4R$            & 75.0\%       & 3.60                    & 4.40                    & +0.80                 \\
+        Aaron Mohammed       & $3S$ / $2R$            & $0S$ / $5R$            & 100.0\%      & 3.20                    & 4.80                    & +1.60                 \\ \hline
+    \end{tabular}
 \end{table}
 
 This pilot provides directional support for all three hypotheses under realistic hiring constraints, 
@@ -295,35 +302,19 @@ MERIT achieved an average SUS score of \textbf{81.50} out of 100, with individua
 According to the Bangor et al. adjective rating scale for SUS scores \cite{bangor2009_sus}, this corresponds to a ``Good'' rating (Grade B) at face value.
 With $N=5$, it indicates interface feasibility only, not product-market validation (Section~\ref{subsec:construct-validity}).
 
-\subsubsection{Qualitative Trust \& Feedback Analysis}
-The qualitative feedback gathered from the evaluators highlighted how MERIT's explainability layer resolves the standard
-friction of automated screening.
+\subsubsection{Qualitative themes}
 
-One of the technical recruiters ($R_1$) noted:
-\begin{quote}
-    \textit{``Traditionally, ATS scores are black boxes. We either trust them blindly or ignore them completely. Seeing exactly
-        how much GitHub contributed versus self-reported CV claims completely changed how I assessed Yusuf Nilsson. It gave me
-        the confidence to shortlist a candidate I would have normally filtered out within seconds.''}
-\end{quote}
+The justifications presented by our evaluators can be found in \texttt{evaluation/14-hci\_trial/test\_data/responses.json}. As shown, there are
+alignments with the quantitative results in Table~\ref{tab:hci-trial-results}. Take the evaluator
+that still shortlisted Robert Todd after the keyword-stuffing alert. Despite what is considered a ``serious red flag'' by $P_3$, they still plan to 
+``keep him shortlisted'' for a brief phone screen. Note how the implementation of the glass-box not only introduces contenstability with the 
+scores presented, but also offers recruiters the means to investigate claims made by candidates in better detail where evidence may be missing.
 
-Professional Recruiter $R_2$ added a comment reflecting realistic operational friction:
-\begin{quote}
-    \textit{``While the Glass-Box scorecard shows he has elite technical skills verified by public code, our client's visa
-        requirements strictly mandate a minimum of 3 years of professional tenure. I cannot shortlist him.''}
-\end{quote}
+Meanwhile, other penalties such as identity squatting are treated as decisive when malicious dishonesty is surfaced. In the case of Aaron Mohammed,
+recruiter $R_1$ states that this is an ``immediate reject'' due to the ``Identity Mismatch Veto'' penalty upon seeing that the GitHub account's
+full name does not match the candidate's name. Passing off another's work as one's own is a serious breach of honesty and integrity, and is often 
+not a good fit for company culture. 
 
-Similarly, MEng Student Peer $P_3$ noted:
-\begin{quote}
-    \textit{``The keyword stuffing warning is a serious red flag, but the resume still claims senior Go and Kubernetes
-        experience. I will keep him shortlisted for a brief technical phone screen to probe his actual knowledge.''}
-\end{quote}
-
-Technical Recruiter $R_1$ added regarding the identity mismatch veto:
-\begin{quote}
-    \textit{``The second I saw the red `Identity Mismatch Veto' flag on Aaron's profile, it was an immediate reject. In our
-        job, honesty is everything. If the software shows you've linked a GitHub account that is active under a completely
-        different name, there is no point looking any further. It saved me a lot of wasted phone screening time.''}
-\end{quote}
-
-Collectively, these results provide formative support for MERIT's explainability pillar. Study~11 confirms theoretical consistency. 
-This pilot suggests the layer may aid practical, human-in-the-loop review, but a larger recruiter panel is needed before stronger claims.
+The responses point towards cases in which automation bias can be challenged by a recruiter's human judgement. While this study confirms the 
+theoretical success of the Glass-Box design, we must note that this is a pilot study. Studies with a larger recruiter panel would be needed
+before stronger claims can be made.

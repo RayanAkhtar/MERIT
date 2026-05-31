@@ -6,6 +6,7 @@
 \newcommand{\splitcand}[2]{\begin{tabular}[c]{@{}l@{}}#1 \\ #2\end{tabular}}
 \newcommand{\splitdesc}[2]{\begin{tabular}[c]{@{}l@{}}#1 \\ #2\end{tabular}}
 \newcommand{\splitcell}[2]{\begin{tabular}[c]{@{}c@{}}\##1 \\ (#2)\end{tabular}}
+\newcommand{\rankscore}[2]{\##1\ (#2)}
 
 This section evaluates both the mathematical and empirical validity of MERIT's multi-source model.
 To ensure a rigorous evaluation, we will proceed, once again, with a bottom-up evaluation. We will start with a study on the
@@ -82,15 +83,15 @@ Parameter convergence is plotted in Figure~\ref{fig:bayesian-fusion-convergence}
     \centering
     \caption[Study~12: Bayesian parameter shifts (Felix Vance)]{Study~12: Bayesian parameter shifts for Felix Vance (Java).}
     \label{tab:bayesian-walkthrough}
-    \vspace{1.5ex}
-    \begin{tabular}{l|c|c|c|c|c|c}
+    \small
+    \setlength{\tabcolsep}{5pt}
+    \begin{tabular}{l|cccccc}
         \hline
-        \splithead{Evidence Step}{($i$)} & \splithead{Strength}{($s_i$)} & \splithead{Confidence}{($c_i$)} & \splithead{Alpha}{($\alpha$)} & \splithead{Beta}{($\beta$)} & \splithead{Fused}{Score} & \splithead{Uncertainty}{($\sigma$)} \\[1.5ex] \hline
-        0. Prior                         & ---                           & ---                             & 0.100                         & 0.100                       & 0.500                    & 0.456                               \\[1.5ex]
-        1. CV (Self-Report)              & 1.000                         & 0.500                           & 0.605                         & 0.105                       & 0.852                    & 0.271                               \\[1.5ex]
-        2. GitHub (Conflict)             & 0.000                         & 0.900                           & 0.606                         & 1.006                       & 0.376                    & 0.300                               \\[1.5ex]
-        3. LinkedIn (Endorse)            & 0.800                         & 0.200                           & 0.774                         & 1.054                       & 0.423                    & 0.294                               \\[1.5ex]
-        \hline
+        \textbf{Step} ($i$) & $s_i$ & $c_i$ & $\alpha$ & $\beta$ & \textbf{Score} & $\sigma$ \\ \hline
+        0. Prior            & ---   & ---   & 0.100 & 0.100 & 0.500 & 0.456 \\
+        1. CV               & 1.000 & 0.500 & 0.605 & 0.105 & 0.852 & 0.271 \\
+        2. GitHub           & 0.000 & 0.900 & 0.606 & 1.006 & 0.376 & 0.300 \\
+        3. LinkedIn         & 0.800 & 0.200 & 0.774 & 1.054 & 0.423 & 0.294 \\ \hline
     \end{tabular}
 \end{table}
 
@@ -150,31 +151,27 @@ Table~\ref{tab:algorithmic-ablation}.
 Percentages are on a 0--100 scale where applicable; the \textbf{Fusion Shift} column is the score change from MERIT (CV Only) to MERIT (Full).
 Ordinal rank shifts across all ten personas are in Figure~\ref{fig:rank-displacement-bump-chart} (Appendix~\ref{appendix:rank_displacement}).
 
-
-
-
-\begin{table}[htbp]
+\begin{table}[H]
     \centering
     \caption[Study~01A: Algorithmic benchmark rankings]{Study~01A: rankings and scores across four screening engines ($N=10$ personas).}
     \label{tab:algorithmic-ablation}
     \vspace{1.5ex}
     \small
-    \setlength{\tabcolsep}{2.5pt}
-    \begin{tabularx}{\textwidth}{l|l|c|c|c|c|c}
+    \setlength{\tabcolsep}{3.5pt}
+    \begin{tabular}{l|l|c|c|c|c|c}
         \hline
-        \textbf{Candidate}        & \textbf{Profile Characterisation}           & \splithead{Trad. ATS}{{(\%)}} & \splithead{Modern AI}{{(\%)}} & \splithead{CV-Only}{{(\%)}} & \splithead{Full MERIT}{{(\%)}} & \splithead{Fusion Shift}{{($\Delta$\%)}} \\[2.5ex] \hline
-        \splitcand{Alex}{Rivers}  & \splitdesc{Verifiable Elite}{Developer}     & \splitcell{5}{55.0}           & \splitcell{1}{86.4}           & \splitcell{1}{40.3}         & \splitcell{1}{78.0}            & +37.7                                    \\[3.5ex]
-        \splitcand{Felix}{Vance}  & \splitdesc{Identity Mismatch}{(Java/C++)}   & \splitcell{3}{60.0}           & \splitcell{6}{60.0}           & \splitcell{2}{37.4}         & \splitcell{3}{44.7}            & +7.3                                     \\[3.5ex]
-        \splitcand{Jordan}{Smith} & \splitdesc{Hidden Gem}{(1-Year Experience)} & \splitcell{10}{3.0}           & \splitcell{9}{20.0}           & \splitcell{10}{10.5}        & \splitcell{2}{64.3}            & \textbf{+53.8}                           \\[3.5ex]
-        \splitcand{Buzz}{Ward}    & \splitdesc{Adversarial}{Keyword Stuffer}    & \splitcell{2}{64.0}           & \splitcell{5}{60.0}           & \splitcell{3}{35.5}         & \splitcell{6}{36.2}            & +0.7                                     \\[3.5ex]
-        \splitcand{Ghost}{Gary}   & \splitdesc{Unverified}{Assertions Only}     & \splitcell{4}{60.0}           & \splitcell{7}{60.0}           & \splitcell{5}{29.4}         & \splitcell{8}{29.4}            & 0.0                                      \\[3.5ex]
-        \splitcand{Sam}{Old}      & \splitdesc{Stale Professional}{(Inactive)}  & \splitcell{6}{55.0}           & \splitcell{8}{60.0}           & \splitcell{7}{23.0}         & \splitcell{5}{36.8}            & +13.8                                    \\[3.5ex]
-        \splitcand{Vince}{Vault}  & \splitdesc{High-Tenure}{Core Developer}     & \splitcell{1}{70.0}           & \splitcell{4}{68.4}           & \splitcell{4}{33.2}         & \splitcell{9}{20.6}            & \textbf{-12.6}                           \\[3.5ex]
-        \splitcand{Fiona}{Frost}  & \splitdesc{Evidence of Absence}{(React)}    & \splitcell{8}{40.0}           & \splitcell{3}{68.4}           & \splitcell{6}{26.6}         & \splitcell{7}{34.0}            & +7.4                                     \\[3.5ex]
-        \splitcand{Kim}{Junior}   & \splitdesc{Entry-Level}{High Potential}     & \splitcell{9}{11.5}           & \splitcell{10}{19.2}          & \splitcell{9}{13.4}         & \splitcell{4}{38.9}            & +25.5                                    \\[3.5ex]
-        \splitcand{Carl}{Corp}    & \splitdesc{Closed-Source}{Corporate Giant}  & \splitcell{7}{40.0}           & \splitcell{2}{69.0}           & \splitcell{8}{17.1}         & \splitcell{10}{17.9}           & +0.8                                     \\[3.5ex]
-        \hline
-    \end{tabularx}
+        \textbf{Candidate} & \textbf{Profile} & \textbf{Trad. (\%)} & \textbf{Mod. AI (\%)} & \textbf{CV (\%)} & \textbf{Full (\%)} & \textbf{$\Delta$ (\%)} \\ \hline
+        Alex Rivers        & Verified elite    & \rankscore{5}{55.0}  & \rankscore{1}{86.4}  & \rankscore{1}{40.3}  & \rankscore{1}{78.0}  & +37.7 \\
+        Felix Vance        & Identity~mismatch & \rankscore{3}{60.0}  & \rankscore{6}{60.0}  & \rankscore{2}{37.4}  & \rankscore{3}{44.7}  & +7.3 \\
+        Jordan Smith       & Hidden gem        & \rankscore{10}{3.0}  & \rankscore{9}{20.0}  & \rankscore{10}{10.5} & \rankscore{2}{64.3}  & \textbf{+53.8} \\
+        Buzz Ward          & Keyword~stuffer   & \rankscore{2}{64.0}  & \rankscore{5}{60.0}  & \rankscore{3}{35.5}  & \rankscore{6}{36.2}  & +0.7 \\
+        Ghost Gary         & Unverified        & \rankscore{4}{60.0}  & \rankscore{7}{60.0}  & \rankscore{5}{29.4}  & \rankscore{8}{29.4}  & 0.0 \\
+        Sam Old            & Stale profile     & \rankscore{6}{55.0}  & \rankscore{8}{60.0}  & \rankscore{7}{23.0}  & \rankscore{5}{36.8}  & +13.8 \\
+        Vince Vault        & High-tenure       & \rankscore{1}{70.0}  & \rankscore{4}{68.4}  & \rankscore{4}{33.2}  & \rankscore{9}{20.6}  & \textbf{-12.6} \\
+        Fiona Frost        & Skill absence     & \rankscore{8}{40.0}  & \rankscore{3}{68.4}  & \rankscore{6}{26.6}  & \rankscore{7}{34.0}  & +7.4 \\
+        Kim Junior         & Entry-level       & \rankscore{9}{11.5}  & \rankscore{10}{19.2} & \rankscore{9}{13.4}  & \rankscore{4}{38.9}  & +25.5 \\
+        Carl Corp          & Closed-source     & \rankscore{7}{40.0}  & \rankscore{2}{69.0}  & \rankscore{8}{17.1}  & \rankscore{10}{17.9} & +0.8 \\ \hline
+    \end{tabular}
 \end{table}
 
 The results demonstrate how the layering of scoring configurations systematically neutralises adversarial manipulation
