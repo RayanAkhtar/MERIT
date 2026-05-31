@@ -276,22 +276,22 @@ figure (Appendix~\ref{appendix:fairness-scalability-charts}).
     \begin{tabular}{r|c|c|c|c|c}
         \hline
         \textbf{$N$} & \textbf{Trad. ATS} & \textbf{Mod. AI ATS} & \textbf{MERIT CV} & \textbf{MERIT Full} & \textbf{MERIT Expl.} \\ \hline
-        10  & 0.0035  & 4.50   & 0.095 & 0.107 & 0.528 \\
-        50  & 0.0127  & 21.86  & 0.471 & 0.486 & 2.678 \\
-        100 & 0.0231  & 43.70  & 0.916 & 0.983 & 5.521 \\
-        200 & 0.0489  & 88.05  & 1.797 & 1.976 & 10.92 \\
-        500 & 0.1059  & 219.29 & 4.579 & 4.808 & 26.79 \\ \hline
+        10  & 0.003  & 4.33   & 0.090 & 0.092 & 0.513 \\
+        50  & 0.012  & 21.14  & 0.435 & 0.465 & 2.588 \\
+        100 & 0.026  & 42.18  & 0.890 & 0.963 & 5.169 \\
+        200 & 0.040  & 85.03  & 1.789 & 1.862 & 10.48 \\
+        500 & 0.088  & 212.62 & 4.409 & 4.842 & 26.06 \\ \hline
     \end{tabular}
 \end{table}
 
-At the largest batch size ($N = 500$), we can observe that Modern AI ATS requires $\approx$219.3 seconds to score the batch,
-meanwhile MERIT Full with Shapley explainability requires $\approx$26.8 seconds to score the batch. This means that MERIT, even 
-with the explainability layer, runs $\approx 8.18$ times faster than Modern AI ATS at this scale. It is important to note the overhead
-of the explainability layer too, which is $\approx 5.57$ times slower than MERIT Full (with no explainability). This result is to be expected
+At the largest batch size ($N = 500$), we can observe that Modern AI ATS requires $\approx$212.6 seconds to score the batch,
+meanwhile MERIT Full with Shapley explainability requires $\approx$26.1 seconds to score the batch. This means that MERIT, even 
+with the explainability layer, runs $\approx 8.16$ times faster than Modern AI ATS at this scale. It is important to note the overhead
+of the explainability layer too, which is $\approx 5.38$ times slower than MERIT Full (with no explainability). This result is to be expected
 due to the overhead of the shapley value computations. Currently with $3$ sources, we need to compute $2^3 = 8$ coalitions, which is a relatively small number.
 However, as we add more sources, it is important to note that this approximate slowdown will increase. More specifically, for $N$ sources, we need to compute $2^N$ coalitions, 
 which is a factorial increase in the number of computations. This is a critical limitation of the current implementation, and is a topic for future work.
-Another key observation is the difference in runtime between MERIT CV-Only and MERIT Full. With a batch of 500, we only see a $0.229$ second difference, making
+Another key observation is the difference in runtime between MERIT CV-Only and MERIT Full. With a batch of 500, we only see a $0.433$ second difference, making
 the effects of multi-source fusion relatively minimal.
 
 
@@ -313,31 +313,31 @@ visualises both.
     \begin{tabular}{l|c|c|c|c|c}
         \hline
         \textbf{$N$ / init.} & \textbf{Trad. ATS} & \textbf{Mod. AI ATS} & \textbf{MERIT CV-Only} & \textbf{MERIT Full} & \textbf{MERIT Expl.} \\ \hline
-        \textit{init.} & 0.10 & 396.2 & 366.3 & 367.1 & 367.2 \\ \hline
-        10  & 0.01 & 114.3 & 54.4 & 54.5 & 53.5 \\
-        50  & 0.02 & 115.8 & 56.6 & 56.8 & 56.5 \\
-        100 & 0.03 & 116.6 & 58.7 & 58.8 & 59.3 \\
-        200 & 0.04 & 120.1 & 64.1 & 64.1 & 64.5 \\
-        500 & 0.10 & 120.6 & 73.5 & 74.9 & 76.2 \\ \hline
+        \textit{init.} & 0.10 & 398.0 & 367.1 & 367.5 & 367.7 \\ \hline
+        10  & 0.02 & 113.0 & 54.4 & 54.5 & 53.8 \\
+        50  & 0.03 & 116.7 & 56.3 & 56.7 & 56.7 \\
+        100 & 0.05 & 118.5 & 58.8 & 59.1 & 59.4 \\
+        200 & 0.06 & 119.7 & 63.3 & 63.5 & 65.0 \\
+        500 & 0.12 & 119.1 & 73.9 & 74.6 & 76.5 \\ \hline
     \end{tabular}
 \end{table}
 
 Under isolated subprocess measurement, static load is negligible for Traditional ATS (\textbf{0.1~MB}) but dominated 
-by transformer-backed stacks for Modern AI ATS (\textbf{396.2~MB}) and MERIT (\textbf{366--367~MB}), reflecting SBERT 
+by transformer-backed stacks for Modern AI ATS (\textbf{398.0~MB}) and MERIT (\textbf{367--368~MB}), reflecting SBERT 
 and backend registry materialisation on the warmup score---still modest in absolute terms for a desktop deployment. 
 At batch scale, Traditional ATS remains near zero; Modern AI ATS holds a near-flat incremental footprint 
-($\approx$\textbf{114--121~MB}) from embedding workspaces. MERIT configurations scale roughly linearly with cohort size 
-(\textbf{54~MB} at $N = 10$ to \textbf{76~MB} at $N = 500$) because the harness retains per-candidate audit payloads; 
+($\approx$\textbf{113--120~MB}) from embedding workspaces. MERIT configurations scale roughly linearly with cohort size 
+(\textbf{54~MB} at $N = 10$ to \textbf{77~MB} at $N = 500$) because the harness retains per-candidate audit payloads;
 Explainable is highest at large $N$. Multi-source fusion adds little RSS over CV-Only, however, the explainability layer is the 
 main memory premium within MERIT.
 
 
 \subsubsection{Studies 02 \& 03 takeaway}
 Batch latency can be observed to scale linearly with $N$ for all engines, where $N$ refers to the number of candidates in a batch.
-MERIT Full scores the largest measured batch size ($N = 500$) in under $5$ seconds, whereas Modern AI ATS requires $\approx$219 seconds to score the same batch.
-Introducing Shapley values introduces a $\approx 5.6 \times$ runtime increase with three sources ($2^3 = 8$ coalitions), this is due to the overhead of the
+MERIT Full scores the largest measured batch size ($N = 500$) in under $5$ seconds, whereas Modern AI ATS requires $\approx$213 seconds to score the same batch.
+Introducing Shapley values introduces a $\approx 5.4 \times$ runtime increase with three sources ($2^3 = 8$ coalitions), this is due to the overhead of the
 shapley value computations. The exponential cost is in the number of evidence sources, not the cohort size. The biggest risk to merit is if many data sources
 are introduced. In a real-world context, this isn't a significant concern, but it is important to note that this could become a potential risk if the recruitment
 process decides to introduce more data sources to the screening process. The memory overhead of MERIT is shown to be quite negligible after accounting for this, 
-as seen in the difference in RSS growth between MERIT Explainable between $N = 10$ and $N = 500$, which is only 22.7\,MB. This is a relatively small amount of memory, 
+as seen in the difference in RSS growth between MERIT Explainable between $N = 10$ and $N = 500$, which is only 22.7\,MB. This is a relatively small amount of memory,
 and is likely to be negligible in the context of a production system.

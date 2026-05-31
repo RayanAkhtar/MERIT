@@ -55,7 +55,7 @@ we purposely create contradictory evidence for Study~07 to test the robustness o
         Traditional ATS & 0.5515 ($p{=}0.098$) & $-$0.6606 ($p{=}0.038$) & \textbf{0.7939 ($p{=}0.006$)} & \textbf{0.5515 ($p{=}0.098$)} \\
         Modern AI ATS   & 0.2848 ($p{=}0.425$) & $-$0.8061 ($p{=}0.005$) & 0.2364 ($p{=}0.511$) & 0.2848 ($p{=}0.425$) \\
         MERIT (CV Only) & 0.5152 ($p{=}0.128$) & \textbf{$-$0.5152 ($p{=}0.128$)} & 0.0909 ($p{=}0.803$) & 0.5152 ($p{=}0.128$) \\
-        MERIT (Full)    & \textbf{0.6970} ($p{=}0.025$) & \textbf{$-$0.5152 ($p{=}0.128$)} & 0.6242 ($p{=}0.054$) & 0.0061 ($p{=}0.987$) \\
+        MERIT (Full)    & \textbf{0.7333} ($p{=}0.016$) & \textbf{$-$0.5152 ($p{=}0.128$)} & 0.7212 ($p{=}0.019$) & 0.0909 ($p{=}0.803$) \\
         \hline
     \end{tabular}
 \end{table}
@@ -71,8 +71,8 @@ support MERIT's design: CV-level semantics without job-specific weighting and wi
 still disagree with expert judgement in specialised technical screening.
 
 \textbf{Study 07 (high discrimination).}
-MERIT (Full) achieves the strongest expert alignment ($\rho=0.697$, $p=0.025$), outperforming Traditional ATS ($\rho=0.552$),
-MERIT (CV Only) ($\rho=0.515$), and the semantic baseline ($\rho=0.285$). Adding GitHub and LinkedIn raises $\rho$ from 0.515 to 0.697
+MERIT (Full) achieves the strongest expert alignment ($\rho=0.733$, $p=0.016$), outperforming Traditional ATS ($\rho=0.552$),
+MERIT (CV Only) ($\rho=0.515$), and the semantic baseline ($\rho=0.285$). Adding GitHub and LinkedIn raises $\rho$ from 0.515 to 0.733
 when supplementary evidence agrees with the CV.
 
 \textbf{Study 08 (seniority bias).}
@@ -84,7 +84,7 @@ multi-source fusion does not consider nuanced scenarios such as overqualified ca
 
 \textbf{Study 09 (peer competition).}
 \label{subsec:study-09-spearman-peer}
-Traditional ATS aligns best with $\rho=0.794$, followed by MERIT (Full) with $\rho=0.624$. Note the difference in $\rho$ between
+Traditional ATS aligns best with $\rho=0.794$, followed by MERIT (Full) with $\rho=0.721$ ($p=0.019$). Note the difference in $\rho$ between
 MERIT (Full) and MERIT (CV Only), which is due to the addition of GitHub and LinkedIn evidence that helps differentiate candidates
 when CVs are similar. Multi-source fusion can help to act as a tie-breaker when solely CVs are insufficient.
 
