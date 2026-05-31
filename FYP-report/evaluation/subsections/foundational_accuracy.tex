@@ -1,7 +1,8 @@
 \section{Evaluating Pillar 1: Extensibility}
 \label{sec:foundational-ingestion-extensibility}
 
-
+This section addresses \textbf{RQ1}: whether JD-driven, recruiter-configurable metrics 
+and reliable ingestion can support downstream scoring.
 In order for a screening system to be effective, it requires data to be ingested in a way that is accurate and reliable.
 Therefore, the first area that we will evaluate is MERIT's ingestion layer, to ensure that it is reliable enough to
 parse unstructured documents, specifically CVs and JDs. We do not consider structured data sources such as LinkedIn and GitHub
@@ -9,8 +10,9 @@ since there is no need to parse them, as they are already in a structured format
 one for CVs and one for JDs, to evaluate the accuracy of the ingestion layer. Both studies compare the system's extraction 
 outputs against human-verified ground-truth datasets, evaluating a total of 30 CVs (balanced across diverse layouts) and 15 JDs.
 To finish the evaluation of this section, we then consider how well the metric priority predictions align with that
-of a panel of recruiters. Throughout the evaluation, we present data in a tabular format, for graphical representations of the 
-results displayed in this section, please refer to Appendix~\ref{appendix:ingestion-charts}.
+of a panel of recruiters, testing whether TF-IDF-derived priorities avoid the fixed-coefficient rigidity criticised in prior work 
+by Gugnani, Misra and Lo et al.~\cite{gugnani2020,lo2025aihiring}. Graphical representations for this section are 
+in Appendix~\ref{appendix:ingestion-charts}.
 
 \subsection{Evaluation Metrics}
 \label{subsec:mathematical-metrics}
@@ -125,9 +127,7 @@ make it difficult for recruiters to know if this is actually the case for why a 
 It is for this reason that candidates are strongly advised to use simple, single-column templates, as discussed in practitioner ATS guidance \cite{marr2019}.
 Recruitment-management systems also tend to discard applicants who fail to mirror job-description keywords and criteria \cite{fuller2021hiddenworkers}.
 In turn this uncovers a systemic bias: automated screening systems penalise highly qualified candidates if the
-layout of their CV confuses the parser. Algorithmic hiring policy reviews \cite{raghavan2020} 
-have also highlighted that opaque screening workflows can encourage parser-friendly CV formatting over 
-verifiable competence, which is consistent with the parsing failures we observed.
+layout of their CV confuses the parser, consistent with the parsing failures we observed.
 
 
 \subsection{Study 05: Job Description Accuracy}
@@ -187,8 +187,9 @@ ranking of candidates.
 \subsection{Study 13: Metric Prediction vs Recruiter Alignment}
 \label{subsec:study-13-metric-prediction}
 
-The previous two studies evaluate the extraction side of the extensibility pillar. In this study, we will now evaluate the weighting (or priority)
-side of the pillar, measuring up TF-IDF suggestions against recruiter consensus to see how well our engine's predictions align with real-world recruiters.
+The previous two studies evaluate the extraction side of the extensibility pillar. In this study, we evaluate the weighting (or priority)
+side of RQ1: whether TF-IDF-derived metric priorities adapt to role-specific JDs more flexibly than the fixed coefficient schemes criticised in prior work.
+We measure TF-IDF suggestions against recruiter consensus to see how well our engine's predictions align with real-world recruiters.
 We test \textbf{H1} (positive Spearman $\rho$ within each role) and \textbf{H2} (low MAE versus consensus on MERIT's 1--5 scale,
 where 1 = essential and 5 = optional).
 

@@ -8,6 +8,21 @@ We cover construct validity, internal validity, external validity and conclusion
 studies, we attempt to provide evidence of the systemic behaviour of MERIT's architecture, whilst also maintaining 
 transparency regarding the limitations of these studies.
 
+\subsection{Comparison to Prior Evaluation Designs}
+\label{subsec:prior-eval-comparison}
+
+Compared to the closest related evaluation work, this chapter prioritises controlled tests of MERIT's design over full field realism.
+Lo et al.~\cite{lo2025aihiring} evaluate end-to-end agreement on anonymised real resumes with an HR panel. This reflects how hiring 
+teams use screening tools in practice, however, it does not expose multi-source conflict resolution or test against in-repository ATS baselines.
+Montandon et al.~\cite{montandon2021_roles} use a labelled GitHub dataset to infer technical roles. MERIT instead uses persona-based 
+claim--evidence scenarios to check whether CV claims match external evidence, rather than assigning coarse role labels.
+Gugnani and Misra~\cite{gugnani2020} train corpus-wide embeddings with fixed scoring coefficients. We instead run ablations to see 
+whether evidence-aware fusion improves agreement with expert rankings beyond a SBERT CV-only semantic baseline~\cite{reimers2019sentence}.
+These choices are intentional. Synthetic stress tests and in-repository baselines support internal validity for RQ2--RQ3 
+(Section~\ref{subsec:eval-design-rqs}). Studies~14--15 add directional evidence on 
+transparency and proxy debiasing through bounded human pilots. Note that we do not treat these pilots as proof that MERIT would 
+generalise in live hiring workflows.
+
 
 \subsection{Construct Validity}
 \label{subsec:construct-validity}
@@ -111,6 +126,8 @@ evaluated in this study.
 
 \textbf{Open-Source and Public-Evidence Bias.}
 MERIT's multi-source pillar benefits from the use of public evidence, such as public GitHub repositories and LinkedIn profiles.
+Our literature anchor for supplementary evidence is Montandon et al.'s GitHub role-inference work~\cite{montandon2021_roles}.
+LinkedIn's integration in MERIT is prototype-specific, it was not evaluated against a comparable published baseline.
 Candidates such as Carl Corp introduce a `Proprietary Data Gap' (Section~\ref{subsec:study-01b-data-source-ablation}) 
 due to the lack of public evidence. Candidates in this situation may be unfairly penalised relative to juniors with active GitHub
 histories, introducing a structural bias toward open-source visibility that may correlate with access to candidate data.

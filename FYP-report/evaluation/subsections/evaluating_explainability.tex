@@ -1,12 +1,19 @@
 \section{Evaluating Pillar 3: Glass-Box Explainability \& HCI}
 \label{sec:evaluating-explainability}
 
-This section evaluates the practical utility of MERIT's explainability pillar: mathematical correctness of 
-Shapley attributions and the HCI impact of the Glass-Box layer on recruiters.
+This section addresses \textbf{RQ3}: whether Shapley attributions and a glass-box recruiter interface 
+improve auditability and decision calibration relative to black-box scores.
+Policy reviews document a transparency deficit in algorithmic hiring~\cite{bogen2018,raghavan2020}. 
+Study~11 applies the coalition Shapley formalism from explainable ML~\cite{lundberg2017unified} at the 
+data-source level (Section~\ref{sec:explainable-ai-shapley}).
+We evaluate mathematical correctness of Shapley attributions and the HCI impact of the Glass-Box layer on recruiters.
 
 \subsection{Study 11: Shapley Value Verification}
 \label{subsec:study-11-shapley-verification}
 
+MERIT applies the Shapley formalism at the data-source coalition level 
+(Section~\ref{sec:explainable-ai-shapley}), distinct from feature-level SHAP 
+explanations for individual model predictions~\cite{lundberg2017unified}.
 To ensure source-level attributions are mathematically sound, we verify Efficiency, Null Player, Additivity (per-metric), and Determinism 
 on ten synthetic personas ($N = \{\text{CV}, \text{GitHub}, \text{LinkedIn}\}$). Symmetry is omitted because these sources contribute through 
 heterogeneous scoring paths and cannot produce identical marginal contributions in practice (Section~\ref{sec:explainable-ai-shapley}). 
@@ -101,8 +108,11 @@ Share percentages sum positive $\phi_i$ only, excluding negative GitHub penaltie
 \subsection{Study 14: HCI Trial}
 \label{subsec:hci-trial-protocol}
 
-Study 11 mathematically confirms that the explainable AI (XAI) engine is consistent, and explains the practical utility
-of these innovations. However, we are yet to demonstrate the human-facing elements of the XAI engine, this is addressed by Study 14. 
+Study 11 mathematically confirms that the explainable AI (XAI) engine is consistent, Study 14 evaluates the human-facing 
+glass-box design against the transparency deficit identified in algorithmic hiring reviews~\cite{bogen2018,raghavan2020}.
+Lo et al.~\cite{lo2025aihiring} report HR agreement on generated scores, but their published evaluation does not include a 
+before/after test of whether recruiters reverse shortlist decisions once explanations are shown. Our Decision Reversal 
+Rate (DRR) metric targets that gap.
 Since the purpose of our XAI engine is to be integrated into a front-end application, we must measure how
 MERIT's "Glass-Box" design influences recruiter behaviour, builds cognitive trust, and mitigates any potential biases.
 

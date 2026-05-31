@@ -2,9 +2,12 @@
 \label{sec:human-machine-alignment}
 
 The studies previously presented included adversarial personas to stress-test rank shifts based on
-specific candidate characteristics, aiming for a broad range of scenarios. Here, we compare the ranking of
-the engines used previously against four synthetic cohorts ($n=10$ each) using Spearman rank correlation ($\rho$)
-as before. 
+specific candidate characteristics, aiming for a broad range of scenarios. Here, we compare engine rankings 
+against four synthetic cohorts ($n=10$ each) using Spearman rank correlation ($\rho$), following Lo et al.'s~\cite{lo2025aihiring} 
+precedent of comparing automated screening output with HR expert judgements, extended here with ATS baselines and multi-source 
+ablations (Table~\ref{tab:eval-literature-traceability}).
+Spearman $\rho$ measures rank agreement with our expert panel only, it does not establish predictive validity against 
+job performance, for which structured assessments such as work-sample tests remain the stronger evidence base~\cite{schmidt1998}.
 Figure~\ref{fig:spearman-studies-combined} (Appendix~\ref{appendix:spearman-charts}) plots the same coefficients.
 
 \subsection{Methodology}

@@ -10,10 +10,11 @@ for the charts associated with this section.
 \subsection{Study 15: Bias Mitigation}
 \label{subsec:bias-mitigation-efficacy}
 
-The previous sections established that MERIT is able to accurately rank candidates based on their CV and public-repository evidence.
-It is also able to explain its decisions, and align with human experts. We now move on to the fairness of MERIT, by testing 
-its ability to mitigate bias and anonymise candidate data. In this study (\texttt{15-bias\_anonymisation\_audit/}), we will be testing 
-the efficacy of Blind Mode, a UI feature which redacts PII and other sensitive information from the candidate's data. Blind Mode
+Manual screening is prone to intuitive, non-merit heuristics~\cite{highhouse2008stubborn}.
+Study~15 tests whether Blind Mode reduces reliance on \emph{proxy} markers (prestige halo, intern titles, visible layout) rather than 
+protected-characteristic fairness, it is a UI debiasing pilot, not a fairness certificate.
+In this study (\texttt{15-bias\_anonymisation\_audit/}), we test the efficacy of Blind Mode, a UI feature which redacts PII and other 
+sensitive information from the candidate's data. Blind Mode
 also standardises the layout of the candidate's data, including the CV to ensure a fair comparison between candidates, devoid
 of any visual bias.
 
@@ -145,6 +146,11 @@ checks, and it is not proof of demographic fairness.
 \subsection{Study 06: Adversarial Stress Testing}
 \label{subsec:study-06-adversarial}
 
+Practitioner guidance documents keyword optimisation and layout gaming against ATS filters~\cite{marr2019,fuller2021hiddenworkers}, 
+and personnel research documents intentional resume misrepresentation~\cite{henle2019_resume_fraud}.
+Study~06 does not replicate those field studies, instead it stress-tests whether MERIT's integrity and fusion layers respond when 
+synthetic personas emulate those attack patterns (keyword stuffing, metric inflation, identity squatting).
+
 This study provides a small-scale evaluation of MERIT's reaction to a base candidate that has been duplicated with 
 different perturbations to simulate different real-world scenarios and adversarial attacks. All candidates in this test are 
 a copy of the same base candidate, \textbf{Honest Candidate}, and the perturbed candidate's name is often derived from
@@ -248,6 +254,11 @@ this would be impractical. In our example, we consider GitHub portfolios, but th
 
 \subsection{Studies 02 \& 03: Scalability \& Performance Benchmarks}
 \label{subsec:studies-02-03-scalability}
+
+Studies~02 and~03 sit outside Table~\ref{tab:eval-literature-traceability}. They 
+assess deployment feasibility (latency and memory at batch scale) rather than whether MERIT closes the extensibility, multi-source, 
+or transparency gaps from Section~\ref{sec:relevance-to-merit}.
+We benchmark only against our in-repository engine variants.
 
 The two studies benchmark the performance and scalability of the engines, benchmarking both runtime and spacetime complexity.
 We perform the benchmarks for cohorts of size $N \in \{10, 50, 100, 200, 500\}$ against the Traditional ATS, Modern AI ATS,

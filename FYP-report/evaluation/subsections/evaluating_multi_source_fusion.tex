@@ -8,11 +8,13 @@
 \newcommand{\splitcell}[2]{\begin{tabular}[c]{@{}c@{}}\##1 \\ (#2)\end{tabular}}
 \newcommand{\rankscore}[2]{\##1\ (#2)}
 
-This section evaluates both the mathematical and empirical validity of MERIT's multi-source model.
-To ensure a rigorous evaluation, we will proceed, once again, with a bottom-up evaluation. We will start with a study on the
-algorithmic sensitivity with skill decay. From there, we will move on to evaluate Bayesian fusion, and how the model deals
-with conflicting signals for a specific metric in a configuration. Then, we will proceed to an algorithmic ablation study,
-here, we will run four scoring engines against the same candidate pool and JD: a \textbf{Traditional ATS} baseline (keyword-based CV screening),
+This section evaluates both the mathematical and empirical validity of MERIT's multi-source model under \textbf{RQ2}.
+Montandon et al.~\cite{montandon2021_roles} treat GitHub as a supplementary hiring signal rather than a sole criterion
+for a candidate's skills. MERIT extends that principle by fusing CV claims with corroborating or contradicting repository evidence.
+CV embellishment and self-report bias motivate favouring demonstrated over claimed signals~\cite{henle2019_resume_fraud,dunning2004}.
+To ensure a rigorous evaluation, we proceed bottom-up: skill decay sensitivity, Bayesian conflict resolution, algorithmic ablation 
+against literature-motivated ATS baselines, and a multi-source data ablation.
+We run four scoring engines against the same candidate pool and JD: a \textbf{Traditional ATS} baseline (keyword-based CV screening),
 a \textbf{Modern AI ATS} baseline (semantic CV screening), MERIT with only CV signals, and MERIT with all sources.
 When referring to ``all'' sources, we specifically refer to the integration of GitHub and LinkedIn signals.
 With the same engine setup and candidate pool, we will then proceed with a data ablation study, where we will point out the success and failure cases of the model.
@@ -28,6 +30,9 @@ Validity implications are in Section~\ref{subsec:internal-validity}.
 \subsection{Study 08: Algorithmic Sensitivity and Skill Decay}
 \label{subsec:study-08-skill-decay}
 
+Prior research on skill retention shows that unused workplace skills deteriorate over time~\cite{arthur1998}.
+Study~08 tests whether MERIT's decay parameter produces sensible rank separation between actively used and stale skills.
+This does not calibrate $\lambda$ against Arthur et al.'s effect sizes.
 All humans are prone to skill degradation over time. For a technical role, if you are not frequently working with a
 specific technology, your expertise will naturally get ``rusty'' the longer you are removed from it. For candidates, we
 consider the technical skill of a candidate $S(t)$ to be a function of time $t$ (in years) since the skill was
@@ -70,7 +75,8 @@ The reasoning for MERIT's multi-source fusion layer is to be able to reward cand
 with publicly available evidence. This is particularly important for extensible metrics, where said metric is tied directly
 to the job description that it was derived from. We believe it to be essential to reward candidates who can prove that they are
 fit for the role, rather than just claim to be fit for it. In this study, we verify the Beta-Bernoulli conjugate updating 
-implementation \cite{gelman2013bayesian} with two controlled hypothetical profiles on the same extensible metric. The first
+implementation \cite{gelman2013bayesian} with two controlled hypothetical profiles on the same extensible metric, motivated by the need to down-weight self-reported CV claims that personnel research shows are frequently embellished~\cite{henle2019_resume_fraud,dunning2004}.
+The first
 represents a claims-only candidate, while the second represents a demonstration-only candidate. Both candidates achieve the 
 maximum score available for the signals that correspond to the category of evidence (claimed or demonstrated).
 
@@ -132,9 +138,9 @@ demonstrated evidence to show.
 \label{subsec:study-01a-algorithmic-ablation}
 
 To evaluate the benefits and drawbacks of MERIT's multi-source fusion model, we will compare it against three other baseline screening engines.
-The first is \textbf{Traditional ATS}, an in-repository keyword-matching baseline representing CV screening logic typical of rule-based ATS products \cite{raghavan2020}, it scores candidates solely on the count of matching keywords in their CV.
-The second is \textbf{Modern AI ATS}, an in-repository semantic baseline representing CV-only screening typical of AI-assisted ATS products, it computes cosine
-similarities between CV embeddings and Job Description (JD) embeddings using a Sentence-BERT (SBERT) model \cite{reimers2019sentence}.
+The first is \textbf{Traditional ATS}, an in-repository keyword-matching baseline representing the keyword-matching ATS category in Section~\ref{sec:automated-screening}; it scores candidates solely on the count of matching keywords in their CV.
+The second is \textbf{Modern AI ATS}, an in-repository semantic baseline representing the AI-assisted ATS category in Section~\ref{sec:automated-screening}; it computes cosine
+similarities between CV embeddings and Job Description (JD) embeddings using Sentence-BERT (SBERT)~\cite{reimers2019sentence}.
 Neither baseline is a commercial ATS platform. We also run \textbf{MERIT (CV Only)} on CV data alone, and \textbf{MERIT (Full)}, which considers all sources of
 evidence.
 
@@ -173,6 +179,9 @@ successfully exploits keyword-density screening. Under the semantic Modern AI AT
 evaluates conceptual alignment (elevating Alex Rivers to \#1 and deprioritising Buzz Ward to \#5), yet remains highly
 vulnerable to unverified assertions (incorrectly elevating Carl Corp to \#2 despite a total lack of verifiable
 professional footprint).
+
+Read against prior work, the Traditional ATS baseline instantiates the keyword-matching category reviewed in Section~\ref{sec:automated-screening}; the Modern AI ATS baseline implements semantic CV--JD similarity with SBERT~\cite{reimers2019sentence}, the same embedding family used in many AI-assisted matchers, whereas Gugnani and Misra~\cite{gugnani2020} train corpus-specific document embeddings with fixed scoring coefficients rather than this baseline architecture.
+Montandon et al.~\cite{montandon2021_roles} infer coarse technical roles from GitHub metadata; MERIT (Full) instead fuses claim-level CV signals with corroborating or contradicting repository evidence rather than substituting a role classifier.
 
 For the CV-Only baseline, the introduction of the keyword-stuffing audit penalises Buzz Ward's stuffed CV, but also
 highlights a critical structural limitation: without secondary evidence, screening models struggle to differentiate

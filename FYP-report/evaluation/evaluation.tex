@@ -1,27 +1,102 @@
 \chapter{Evaluation}
 \label{ch:evaluation}
 
-This chapter presents the results of the rigorous mathematical, computational, and human trials conducted
-to validate the MERIT architecture. First, we will evaluate whether the three pillars of MERIT are working as intended.
-From there, we continue with a series of human trials to evaluate its usability in real-world scenarios. From there,
-we then test the system's fairness and computational scalability, both spacetime and runtime. Finally, we conclude with
-a discussion of the many threats to validity towards both the generation and interpretation of the results throughout
-this chapter.
+This chapter evaluated whether MERIT actually addresses the three gaps that were pointed out
+earlier in Section~\ref{sec:relevance-to-merit}. 
+Each of MERIT's pillars maps to a research question (RQ), which is derived from the literature
+review earlier. Our studies are presented bottom-up (Ingestion $\rightarrow$ Fusion $\rightarrow$ 
+Explainability $\rightarrow$ Human Alignment $\rightarrow$ Fairness and Scalability). Note that
+this may disagree with the numerical prefixes of the studies in the repository, which follow the 
+implementation order instead. Graphical representations of the studies are deferred to the appendix, 
+and also cited inline.
 
-\subsection*{Codebase Traceability \& Evaluation Mapping}
-To ensure transparency and auditability, our evaluation structure maintains a one-to-one mapping with the
-active implementation files and subdirectories. This is located within the project repository's \textit{evaluation/}
-directory~\cite{merit_repo}. In this chapter, we will refer to a distinct study with a numerical prefix. This prefix correlates directly
-to the prefix of the study within the evaluation directory. For example, Study 04 would be found in the \texttt{04-ir\_parser\_test/} directory
-due to the $04$ prefix.
+\subsection{Evaluation Design and Research Questions}
+\label{subsec:eval-design-rqs}
 
+\textbf{RQ1 (Extensibility):} Can JD-driven, configurable metrics and reliable document ingestion
+aid in the scoring of candidates? Gugnani, Misra and Lo et al.~\cite{gugnani2020,lo2025aihiring} criticise
+the rigidity of scoring, as well as its constraints to fixed-dimension scoring. Resume parsing benchmarks,
+such as ResumeBench~\cite{emnlp2025resumebench} also document layout-driven extraction failures that
+can bound any downstream metric system.
 
-Note that while the numbering of the studies is in terms of their implementation, we alter the order in which
-we present these studies in order to display the results and findings in a logical, bottom-up manner that is
-easier to follow. 
+\textbf{RQ2 (Multi-source):} Does evidence-aware multi-source fusion improve ranking over
+CV-only baselines when public work samples support or contradict self-reported claims? Here, we extend
+the work of Montandon et al.~\cite{montandon2021_roles} by considering other signals, specifically
+GitHub to address unreliable claims present on a candidate's CV~\cite{henle2019_resume_fraud,dunning2004}.
 
-Numeric results are presented in the main chapter as tables where possible. 
-Bar charts, pie charts, and other large figures are deferred to the appendix and cited inline.
+\textbf{RQ3 (Transparency):} Can glass-box explainability and transparency aid decision calibration relative
+to that of a black-box system? We aim to address the transparency deficits that are documented in 
+modern algorithmic hiring reviews~\cite{bogen2018,raghavan2020}. We also apply the coalition Shapley
+formalism from explainable ML~\cite{lundberg2017unified} at the data-source level (Section~\ref{sec:explainable-ai-shapley}).
+
+We map each RQ to prior work along with the associated studies and primary metrics to answer these RQs (Table~\ref{tab:eval-literature-traceability}).
+We also report criteria that we use to determine the success of each RQ. Note that our success criteria are not
+derived from literature, and are instead internal targets, since many results are directional due to the small sample size
+in our evaluation. Both the Traditional ATS and Modern AI ATS baselines are simplified in-repository proxies
+for the keyword-matching and AI-assisted ATS categories mentioned earlier in Section~\ref{sec:automated-screening}.
+Expert-consensus rankings follow from Lo et al.'s~\cite{lo2025aihiring} evaluation paradigm of comparing automated
+scores with HR judgement. High Spearman $\rho$ measures the agreement with that panel, but cannot be 
+generalised due to the sample size.
+
+\begin{table}[htbp]
+    \centering
+    \caption[Literature-to-evaluation traceability]{Literature-to-evaluation traceability: research questions, 
+    prior work, studies, and success criteria. Study~08 tests temporal skill decay~\cite{arthur1998}, grouped 
+    under RQ2 as an integrity sub-test. Study~15 tests UI proxy debiasing~\cite{highhouse2008stubborn}, not 
+    Shapley attributions. Studies~02,~03, and~06 are engineering or adversarial supplements 
+    (Section~\ref{sec:fairness-computational-rigour}).}
+    \label{tab:eval-literature-traceability}
+    \footnotesize
+    \renewcommand{\arraystretch}{1.45}
+    \setlength{\tabcolsep}{6pt}
+    \setlength{\extrarowheight}{2pt}
+    \def\tabularxcolumn#1{m{#1}}%
+    \begin{tabularx}{\textwidth}{@{}%
+        >{\centering\arraybackslash}m{0.8cm}
+        >{\centering\arraybackslash\hsize=1.05\hsize}X
+        >{\centering\arraybackslash}m{1.9cm}
+        >{\centering\arraybackslash\hsize=1.0\hsize}X
+        >{\centering\arraybackslash\hsize=0.95\hsize}X @{}}
+        \hline
+        \textbf{RQ} & \textbf{Gap / prior work} & \textbf{Studies} & \textbf{Primary metrics} & \textbf{Success criterion} \\
+        \hline
+        RQ1 &
+        Gugnani/Lo rigid weighting, ResumeBench parsing &
+        04, 05, 13 &
+        Skill $F_1$, name match, $\rho$ vs.\ recruiters &
+        Parsing $\geq 80\%$, metric alignment exploratory \\
+        RQ2 &
+        Montandon supplementary GitHub, CV self-report bias &
+        {\renewcommand{\arraystretch}{1}%
+        \begin{tabular}[c]{@{}c@{}}08, 12, 01A/B, \\[-0.35ex] 07--10\end{tabular}} &
+        Rank shift, Bayesian walkthrough, Spearman $\rho$ &
+        $\rho \geq 0.7$ vs.\ experts (directional) \\
+        RQ3 &
+        Bogen/Raghavan transparency deficit, Lundberg Shapley &
+        11, 14, 15 &
+        Axiom checks, DRR, SUS, prestige gap &
+        SUS $\geq 4$/5, blind gap compression \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+Our evaluation takes inspiration from software-engineering experimentation~\cite{wohlin_threats}
+through construct isolation, where we use synthetic JSON personas to isolate scoring logic from 
+the parsing noise of the ingestion engine.
+We also take inspiration from Lo et al.'s~\cite{lo2025aihiring} evaluation paradigm, where they 
+anonymise real resumes with an HR panel to evaluate the agreement between automated scores and HR judgement.
+MERIT follows a related approach, where we create synthetic profiles based on real candidate data,
+and then evaluate the agreement between the automated scores and HR judgement.
+Threats to validity, including this design trade-off, are discussed in 
+Section~\ref{sec:threats-to-validity}.
+
+\subsection{Codebase Traceability}
+\label{subsec:eval-codebase-traceability}
+
+Each study maintains a one-to-one mapping with a prefixed subdirectory under \texttt{evaluation/} 
+in the project repository~\cite{merit_repo} (e.g.\ Study~04 $\leftrightarrow$ \texttt{04-ir\_parser\_test/}).
+The sole exception is Study~01, which is split into two sub-studies (01A and 01B) due to the depth of the 
+evaluation.
 
 \input{evaluation/subsections/foundational_accuracy.tex}
 \input{evaluation/subsections/evaluating_multi_source_fusion.tex}
