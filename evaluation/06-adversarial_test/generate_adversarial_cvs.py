@@ -104,11 +104,15 @@ def generate_adversaries():
     inflater_li = anonymize_record(raw_li, "The Inflater")
 
     # 9. SMART SQUATTER (Name Injection Bypass)
-    # By including the target's full name as a prefix, the ratio stays above 0.7
-    smart_squatter_cv = anonymize_record(raw_cv, "Rayan Akhtar Smith")
-    smart_squatter_gh = copy.deepcopy(raw_gh) 
-    smart_squatter_gh["name"] = "Rayan Akhtar"
-    smart_squatter_li = anonymize_record(raw_li, "Rayan Akhtar Smith")
+    # CV adds a suffix to the squatted profile name so gh_name is a substring of cv_name (ratio >= 0.7)
+    smart_squatter_cv = anonymize_record(raw_cv, "Alex Rivers Smith")
+    smart_squatter_gh = copy.deepcopy(raw_gh)
+    smart_squatter_gh["name"] = "Alex Rivers"
+    smart_squatter_li = anonymize_record(raw_li, "Alex Rivers Smith")
+    if smart_squatter_cv.get("raw_cv_text"):
+        smart_squatter_cv["raw_cv_text"] = smart_squatter_cv["raw_cv_text"].replace(
+            "Rayan Akhtar", "Alex Rivers Smith", 1
+        )
 
 
     out_cv = os.path.join(current_dir, "test_data/cvs")
