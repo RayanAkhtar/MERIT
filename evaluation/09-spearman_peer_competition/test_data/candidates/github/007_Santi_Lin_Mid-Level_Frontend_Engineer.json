@@ -1,14 +1,14 @@
 {
-  "total_stars": 35,
-  "total_forks": 1,
-  "repo_count": 8,
+  "total_stars": 31,
+  "total_forks": 10,
+  "repo_count": 5,
   "featured_projects": [
     {
       "name": "production-service-core",
-      "stars": 21,
-      "forks": 0,
+      "stars": 18,
+      "forks": 5,
       "languages_distribution": {
-        "JavaScript": 1451,
+        "JavaScript": 752,
         "HTML": 200,
         "CSS": 100
       },
@@ -18,11 +18,11 @@
   "language_history": [
     {
       "year": "2024",
-      "JavaScript": 420
+      "JavaScript": 220
     },
     {
       "year": "2025",
-      "JavaScript": 1451,
+      "JavaScript": 752,
       "HTML": 200,
       "CSS": 100
     },

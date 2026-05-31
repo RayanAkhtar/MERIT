@@ -1,14 +1,14 @@
 {
-  "total_stars": 36,
-  "total_forks": 1,
-  "repo_count": 5,
+  "total_stars": 38,
+  "total_forks": 7,
+  "repo_count": 8,
   "featured_projects": [
     {
       "name": "production-service-core",
-      "stars": 21,
-      "forks": 0,
+      "stars": 22,
+      "forks": 3,
       "languages_distribution": {
-        "Kotlin": 2108,
+        "Kotlin": 4727,
         "Java": 1000
       },
       "lines": 50000
@@ -17,11 +17,11 @@
   "language_history": [
     {
       "year": "2024",
-      "Java": 1528
+      "Java": 1924
     },
     {
       "year": "2025",
-      "Kotlin": 2108,
+      "Kotlin": 4727,
       "Java": 1000
     },
     {

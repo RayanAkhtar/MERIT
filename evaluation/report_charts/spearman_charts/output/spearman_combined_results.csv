@@ -2,7 +2,7 @@ Study,Engine,Spearman Rho,P-Value,Candidate Count
 07,Traditional ATS,0.5515,0.0984,10
 07,Modern AI ATS,0.2848,0.425,10
 07,MERIT (CV Only),0.5152,0.1276,10
-07,MERIT (Full),0.7455,0.0133,10
+07,MERIT (Full),0.7333,0.0158,10
 08,Traditional ATS,-0.6606,0.0376,10
 08,Modern AI ATS,-0.8061,0.0049,10
 08,MERIT (CV Only),-0.5152,0.1276,10
@@ -10,8 +10,8 @@ Study,Engine,Spearman Rho,P-Value,Candidate Count
 09,Traditional ATS,0.7939,0.0061,10
 09,Modern AI ATS,0.2364,0.5109,10
 09,MERIT (CV Only),0.0909,0.8028,10
-09,MERIT (Full),0.5515,0.0984,10
+09,MERIT (Full),0.7212,0.0186,10
 10,Traditional ATS,0.5515,0.0984,10
 10,Modern AI ATS,0.2848,0.425,10
 10,MERIT (CV Only),0.5152,0.1276,10
-10,MERIT (Full),0.0182,0.9602,10
+10,MERIT (Full),0.0909,0.8028,10
