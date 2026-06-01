@@ -9,6 +9,8 @@ This technical foundation justifies the multimodal, evidence-driven design of ME
 
 Researchers have explored a variety of methods for aiding technical recruitment, particularly in the area of automated screening.
 MERIT will focus on three representative strands of work that have helped to influence its design.
+A further strand of contemporaneous GitHub-centric screening is summarised later in this chapter for comparison 
+only (Section~\ref{sec:contrastive-github-hiring}).
 
 \section{Multi-Agent LLM Architectures for Explainable Screening}
 There have been a variety of approaches when it comes to the automation of CV screening. One recent example is Lo et al.\ \cite{lo2025aihiring}, 
@@ -58,6 +60,29 @@ provide explainable or justifiable reasoning for why a candidate was predicted t
 Regardless of these limitations, the paper motivates MERIT to treat GitHub as a supplementary signal beyond the CV.
 MERIT will not adopt this classifier directly, but will integrate GitHub to corroborate or
 challenge a candidate's claims on their CV.
+
+\section{Evidence-Based Screening from GitHub Activity}
+\label{sec:contrastive-github-hiring}
+
+Recent research also argues that hiring should move beyond keyword-based automated resume parsers (ARPs) towards
+evidence drawn from open-source work. Here, we consider Vaishampayan et al.\ \cite{vaishampayan2025_gitmeter},
+who posit that GitHub-supported resume matching can surface signals that are harder to fake, such as
+code quality and technology use. The authors introduce GitMeter, a tool that mines public repositories with
+heuristic approaches to approximate the candidate's ``core'' code to limit computational overhead. GitMeter was evaluated in
+a user study ($n=20$) with developers and recruiters, reporting stakeholder willingness to incorporate repository evidence into shortlisting.
+
+Kumar et al.\ \cite{kumar2025_evidence_hiring} build on the GitMeter work of Vaishampayan et al.\ \cite{vaishampayan2025_gitmeter},
+extending it with broader language analysis (for example through CodeQL), plagiarism and AI-detection tooling,
+and enrichment from academic profiles. However, both studies still centre verification on public GitHub activity, rather than fusing CV claims, repository evidence,
+and professional profiles with explainable and traceable conflict resolution across sources. Neither study reports
+recruiter-configurable, job-description-driven metric weights or per-source Shapley attributions of an overall score.
+
+Note that this line of work was identified after MERIT's specification and implementation, and was not used
+to derive the requirements, architecture, or evaluation reported in this dissertation. It is summarised here to
+compare and contrast with MERIT's approach to evidence-based screening. MERIT cross-references CV, GitHub, and LinkedIn through Bayesian evidence fusion and exposes audit trails and source attributions for contestability~\cite{lundberg2017unified}, but does not implement CodeQL or dedicated plagiarism detectors; Chapter~\ref{ch:evaluation} instead tests adversarial personas such as keyword stuffing and identity squatting.
+
+Regardless of these differences, both approaches share the motivation that hiring pipelines should move beyond
+surface-level keyword matching towards evidence that is harder to fabricate on a CV alone.
 
 \section{Semantic Embedding for Latent Skill Extraction}
 Research aimed at improving job-candidate matching has also moved beyond keyword-based methods.

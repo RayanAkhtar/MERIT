@@ -36,7 +36,7 @@ In a true ``Glass-Box'' system, recruiters must be able to understand the reason
 evidence or claimed evidence. To solve this, we turn towards cooperative game theory, namely Shapley values. When data sources contain
 overlapping or redundant signals, naive percentage breakdowns fail to accurately share credit amongst data sources. Shapley values
 overcome this through a mathematically rigorous method of fairly distributing the total ``payoff'' (the candidate's score) amongst the
-cooperating ``players'' (the data sources).
+cooperating ``players'' (the data sources) \cite{shapley1953, lundberg2017unified}.
 
 In MERIT's current implementation, we currently only support three data sources: CV, GitHub, and LinkedIn
 ($N = \{\text{CV}, \text{GitHub}, \text{LinkedIn}\}$, $n = 3$). The value $v(S)$ of a coalition of sources is the score that we achieve
@@ -102,6 +102,7 @@ the batch maximums. This approach, while not runtime efficient for extremely lar
 to the competitive landscape, rather than an arbitrary baseline.
 
 \subsection{Glass-Box Dashboard}
+\label{subsec:glass-box-dashboard}
 Understandably, presenting the raw JSON \textit{results\_payload} is unreasonable due to it being inherently unscalable and poor UX.
 We will briefly go over the main features of our Next.js frontend to create an intuitive, visual ``Glass-Box'' dashboard.
 
@@ -115,24 +116,24 @@ and calculated.
 Another key innovation towards the UX of MERIT is the ``Insights'' panel. When viewing the ranking tables of a candidate, recruiters can open
 a ``report'' for them, which will provide them with an overlay of, not only the candidate's score, but also how it was calculated. The metric's
 calculation is also provided as a human-readable string, which can be used to understand the logic behind the score.
-The panel links to the full audit trail (per-source signals, Bayesian fusion, and Shapley breakdown) and surfaces actionable guidance where scores are limited. To further aid transparency,
-any penalisations (such as Squatting) are also flagged to the user to highlight the negative impact of such actions on the candidate's score.
+The panel links to the full audit trail (per-source signals, Bayesian fusion, and Shapley breakdown) and surfaces actionable 
+guidance where scores are limited.
+Figure~\ref{fig:glass-box-dashboards} shows the ranking table with confidence 
+badges and the per-metric Insights overlay (full-size screenshots in Appendix~\ref{appendix:glass-box-ui}).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.48\textwidth,height=0.34\textheight,keepaspectratio]{implementation/screenshots/candidate_rankings_dashboard.png}%
+    \hfill
+    \includegraphics[width=0.48\textwidth,height=0.34\textheight,keepaspectratio]{implementation/screenshots/metric_insights_panel.png}
+    \caption[Glass-Box dashboard]{Glass-Box dashboard: Intelligence Report ranking table with confidence badges 
+    (left) and Metric Insights panel for Python with audit trail (right). 
+    Appendix~\ref{appendix:glass-box-ui} provides full-size versions.}
+    \label{fig:glass-box-dashboards}
+\end{figure}
+
+To further aid transparency, any penalisations (such as Squatting) are also flagged to the user to highlight the negative impact of such actions on the candidate's score.
 To ensure full auditability, we also provide views of each candidate's extracted data sources, so that recruiters can cross-check the audit trail.
 It is also possible to view skillsets that may have not been considered by the scoring engine, for example, a configuration may have had Python
 as a metric, but the candidate may have Jupyter Notebook listed in their GitHub section of this view. If the semantic bridge mechanic fails to 
 catch this, the recruiter would be able to still observe this data and potentially change their decision after accounting for this information.
-
-
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=0.95\textwidth]{implementation/screenshots/candidate_rankings_dashboard.png}
-    \caption[Intelligence Report dashboard]{Intelligence Report ranking dashboard for a configuration.}
-    \label{fig:candidate_rankings}
-\end{figure}
-
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=0.95\textwidth]{implementation/screenshots/metric_insights_panel.png}
-    \caption[Metric Insights panel (Python)]{Metric Insights panel (example: Python) with confidence badge and audit trail.}
-    \label{fig:insights_dashboard}
-\end{figure}

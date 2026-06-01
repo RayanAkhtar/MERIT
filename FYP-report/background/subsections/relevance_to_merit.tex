@@ -9,7 +9,6 @@ These limitations are the direct motivators for the design and implementation of
 Existing platforms often operate on static, hardcoded role classifications and fixed scoring dimensions. 
 As noted by Gugnani and Misra \cite{gugnani2020}, rigid scoring systems hinder the 
 ability to adapt to the nuanced requirements of diverse engineering roles. 
-Current systems are unable to adapt to the ever evolving needs of the tech industry.
 The relevance of a given language or framework can change drastically from year to year, and often, these
 systems are unable to adapt based on the changing perception of the recruiter market. 
 As a result, there is a need for a system that is able to dynamically adapt its evaluation criteria based 
@@ -23,7 +22,11 @@ or fabrication \cite{henle2019_resume_fraud,dunning2004}. Due to this single-sou
 that are difficult to verify, while candidates may also tailor their CVs to match the keywords in a job description in order to 
 pass through ATS filters \cite{fuller2021hiddenworkers}. While there is research on the potential of using external signals
 from sources such as GitHub \cite{montandon2021_roles}, existing approaches mainly infer coarse technical-role labels from repository metadata,
-rather than verifying CV claims with traceable, multi-source evidence of competence. Due to this, there is a need for a system that can
+rather than verifying CV claims with traceable, multi-source evidence of competence.
+More recent GitHub-centric screening proposals~\cite{kumar2025_evidence_hiring,vaishampayan2025_gitmeter} 
+(summarised in Section~\ref{sec:contrastive-github-hiring}) also 
+move beyond CV keywords, but remain centred on repository analysis rather than configurable fusion across CV, 
+GitHub, and LinkedIn with explicit source attribution. Therefore, there is a need for a system that can
 cross-reference CV claims against observable evidence from external data sources that are harder to forge and embellish.
 This system must be able to resolve conflicts between these sources to establish a verifiable "ground truth" for a given 
 candidate's competence.

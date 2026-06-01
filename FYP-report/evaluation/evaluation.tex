@@ -14,7 +14,7 @@ and also cited inline.
 \label{subsec:eval-design-rqs}
 
 \textbf{RQ1 (Extensibility):} Can JD-driven, configurable metrics and reliable document ingestion
-aid in the scoring of candidates? Gugnani, Misra and Lo et al.~\cite{gugnani2020,lo2025aihiring} criticise
+aid in the scoring of candidates? Gugnani and Misra~\cite{gugnani2020} and Lo et al.~\cite{lo2025aihiring} criticise
 the rigidity of scoring, as well as its constraints to fixed-dimension scoring. Resume parsing benchmarks,
 such as ResumeBench~\cite{emnlp2025resumebench} also document layout-driven extraction failures that
 can bound any downstream metric system.
@@ -38,11 +38,109 @@ Expert-consensus rankings follow from Lo et al.'s~\cite{lo2025aihiring} evaluati
 scores with HR judgement. High Spearman $\rho$ measures the agreement with that panel, but cannot be 
 generalised due to the sample size.
 
-\begin{table}[htbp]
+Our evaluation takes inspiration from software-engineering experimentation~\cite{wohlin_threats}
+through construct isolation, where we use synthetic JSON personas to isolate scoring logic from 
+the parsing noise of the ingestion engine.
+We also take inspiration from Lo et al.'s~\cite{lo2025aihiring} evaluation paradigm, where they 
+anonymise real resumes with an HR panel to evaluate the agreement between automated scores and HR judgement.
+MERIT follows a related approach, where we create synthetic profiles based on real candidate data,
+and then evaluate the agreement between the automated scores and HR judgement.
+Threats to validity, including this design trade-off, are discussed in 
+Section~\ref{sec:threats-to-validity}.
+
+
+Against the internal criteria in Table~\ref{tab:eval-literature-traceability} (below), 
+we do not treat every study as a pass.
+Study~14 meets the SUS target; Study~07 meets the directional $\rho \geq 0.7$ criterion for MERIT (Full) in 
+one cohort ($\rho = 0.733$);
+ingestion (Studies~04--05) falls short of parsing $\geq 80\%$; and several Spearman cohorts, especially 
+Studies~08 and~10, fall below $\rho = 0.7$.
+Outcomes by pillar are summarised in Section~\ref{sec:objectives-retrospective}.
+
+\subsection{Codebase Traceability}
+\label{subsec:eval-codebase-traceability}
+
+Each study maintains a one-to-one mapping with a prefixed subdirectory under \texttt{evaluation/} 
+in the project repository~\cite{merit_repo} (e.g.\ Study~04 $\leftrightarrow$ \texttt{04-ir\_parser\_test/}).
+The sole exception is Study~01, which is split into two sub-studies (01A and 01B) due to the depth of the 
+evaluation.
+
+\begin{table}[H]
+    \centering
+    \caption[Evaluation study catalogue]{Evaluation study catalogue (repository prefixes in Section~\ref{subsec:eval-codebase-traceability}; Study~01 split as 01A/01B). Studies~02,~03, and~06 are engineering supplements. Skill decay is in Section~\ref{subsec:study-08-skill-decay}, not a separate repo study.}
+    \label{tab:eval-study-catalogue}
+    \footnotesize
+    \renewcommand{\arraystretch}{1.28}
+    \setlength{\tabcolsep}{5pt}
+    \setlength{\extrarowheight}{1pt}
+    \def\tabularxcolumn#1{m{#1}}%
+    \begin{tabularx}{\textwidth}{@{}%
+        >{\centering\arraybackslash}m{0.65cm}
+        >{\centering\arraybackslash\hyphenpenalty=10000\exhyphenpenalty=10000}m{2.1cm}
+        >{\centering\arraybackslash}X
+        >{\centering\arraybackslash}m{0.48cm} @{}}
+        \hline
+        \textbf{No.} & \textbf{Name} & \textbf{Purpose} & \textbf{RQ} \\
+        \hline
+        \hyperref[subsec:study-01a-algorithmic-ablation]{01A} & Engine ablation &
+        Test Full vs.\ CV-only MERIT and ATS baselines on ten personas. &
+        2 \\
+        \hyperref[subsec:study-01b-data-source-ablation]{01B} & Source ablation &
+        Locate when GitHub/LinkedIn corroboration lifts or penalises fusion vs.\ CV-only on the 01A pool. &
+        2 \\
+        \hyperref[subsec:studies-02-03-scalability]{02} & Runtime &
+        Confirm batch latency is deployable across $N$ (engineering supplement). &
+        --- \\
+        \hyperref[subsec:studies-02-03-scalability]{03} & Memory &
+        Confirm memory use is deployable across $N$ (engineering supplement). &
+        --- \\
+        \hyperref[subsec:study-04]{04} & CV parser &
+        Bound CV extraction error before any downstream scoring uses parsed fields. &
+        1 \\
+        \hyperref[subsec:study-05]{05} & JD parser &
+        Bound JD extraction before JD-driven, TF-IDF metric configuration. &
+        1 \\
+        \hyperref[subsec:study-06-adversarial]{06} & Adversarial &
+        Stress fusion and integrity under stuffing, fraud, and gaming (RQ2 supplement). &
+        --- \\
+        \hyperref[subsec:study-07-spearman-high-discrimination]{07} & High disc. &
+        Expert $\rho$: does Full MERIT lead when aligned multi-source evidence separates fit? &
+        2 \\
+        \hyperref[subsec:study-08-spearman-seniority]{08} & Seniority &
+        Expert $\rho$: do engines (incl.\ fusion) over-rank seniority on an intern JD? &
+        2 \\
+        \hyperref[subsec:study-09-spearman-peer]{09} & Peer comp. &
+        Expert $\rho$: does fusion break peer ties when CVs alone are ambiguous? &
+        2 \\
+        \hyperref[subsec:study-10-spearman-dissonance]{10} & Dissonance &
+        Expert $\rho$: does fusion fail when GitHub/LinkedIn contradict the CV? &
+        2 \\
+        \hyperref[subsec:study-11-shapley-verification]{11} & Shapley &
+        Validate glass-box source attributions satisfy Shapley axioms. &
+        3 \\
+        \hyperref[subsec:study-12-bayesian-conflict-resolution]{12} & Bayes fusion &
+        Verify Beta--Bernoulli fusion weights demonstration over bare claims. &
+        2 \\
+        \hyperref[subsec:study-13-metric-prediction]{13} & TF-IDF &
+        Test whether TF-IDF metric priorities match recruiter consensus. &
+        1 \\
+        \hyperref[subsec:hci-trial-protocol]{14} & HCI pilot &
+        Test whether glass-box explanations shift recruiter decisions and trust. &
+        3 \\
+        \hyperref[subsec:bias-mitigation-efficacy]{15} & Blind Mode &
+        Test whether Blind Mode reduces proxy-driven shortlisting in the UI. &
+        3 \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+
+\begin{table}[H]
     \centering
     \caption[Literature-to-evaluation traceability]{Literature-to-evaluation traceability: research questions, 
-    prior work, studies, and success criteria. Study~08 tests temporal skill decay~\cite{arthur1998}, grouped 
-    under RQ2 as an integrity sub-test. Study~15 tests UI proxy debiasing~\cite{highhouse2008stubborn}, not 
+    prior work, studies, and success criteria (study definitions in Table~\ref{tab:eval-study-catalogue}).
+    Temporal skill decay~\cite{arthur1998} is analysed in Section~\ref{subsec:study-08-skill-decay} alongside the RQ2 fusion studies.
+    Study~15 tests UI proxy debiasing~\cite{highhouse2008stubborn}, not
     Shapley attributions. Studies~02,~03, and~06 are engineering or adversarial supplements 
     (Section~\ref{sec:fairness-computational-rigour}).}
     \label{tab:eval-literature-traceability}
@@ -68,7 +166,7 @@ generalised due to the sample size.
         RQ2 &
         Montandon supplementary GitHub, CV self-report bias &
         {\renewcommand{\arraystretch}{1}%
-        \begin{tabular}[c]{@{}c@{}}08, 12, 01A/B, \\[-0.35ex] 07--10\end{tabular}} &
+        \begin{tabular}[c]{@{}c@{}}12, 01A/B, \\[-0.35ex] 07--10\end{tabular}} &
         Rank shift, Bayesian walkthrough, Spearman $\rho$ &
         $\rho \geq 0.7$ vs.\ experts (directional) \\
         RQ3 &
@@ -80,23 +178,7 @@ generalised due to the sample size.
     \end{tabularx}
 \end{table}
 
-Our evaluation takes inspiration from software-engineering experimentation~\cite{wohlin_threats}
-through construct isolation, where we use synthetic JSON personas to isolate scoring logic from 
-the parsing noise of the ingestion engine.
-We also take inspiration from Lo et al.'s~\cite{lo2025aihiring} evaluation paradigm, where they 
-anonymise real resumes with an HR panel to evaluate the agreement between automated scores and HR judgement.
-MERIT follows a related approach, where we create synthetic profiles based on real candidate data,
-and then evaluate the agreement between the automated scores and HR judgement.
-Threats to validity, including this design trade-off, are discussed in 
-Section~\ref{sec:threats-to-validity}.
 
-\subsection{Codebase Traceability}
-\label{subsec:eval-codebase-traceability}
-
-Each study maintains a one-to-one mapping with a prefixed subdirectory under \texttt{evaluation/} 
-in the project repository~\cite{merit_repo} (e.g.\ Study~04 $\leftrightarrow$ \texttt{04-ir\_parser\_test/}).
-The sole exception is Study~01, which is split into two sub-studies (01A and 01B) due to the depth of the 
-evaluation.
 
 \input{evaluation/subsections/foundational_accuracy.tex}
 \input{evaluation/subsections/evaluating_multi_source_fusion.tex}

@@ -77,9 +77,10 @@ there is often no significant evidence to uncover when the candidate last used t
 
 MERIT attempts to overcome this issue through the addition of an exponential skill decay model for extensible metrics (e.g.\ ``Python'').
 We apply this to the GitHub signal, as it is the most reliable signal for demonstrating evidence of a candidate's skill.
-For other signals, it is usually harder to find a point to start the decay from, but for GitHub, we can determine it from the last
-point of significant activity. In our backend, we get the repositories' language distribution, spread it across its active years and use that
-to calculate the last point of significant activity, using that year as the start of the decay. Subtracting this value from the current
+For other signals, it is usually harder to find a point to start the decay from, but for GitHub, we can determine it from the candidate's historical commits.
+In our backend, we extract the repository's language distribution and compute a volume-weighted average across its active years.
+This calculates the candidate's effective ``center of mass'' for that skill, which is far more robust against candidates pushing tiny, 
+superficial commits to legacy repositories to simulate recent activity. Subtracting this weighted year from the current
 date nets us with the $\Delta t$ value in the decay formula:
 
 \begin{equation}
@@ -152,7 +153,7 @@ where $\epsilon_s = 0.01(1 - w_s)$ represents a symmetric uncertainty term. The 
 low-confidence sources to produce wider, more uncertain distributions. This stops the distribution from becoming narrow unless this candidate has the
 evidence to support their claims (since high-confidence sources provide more concentrated signals.)
 
-We select the Beta distribution since it is the conjugate prior for Bernoulli-distributed evidence. This means that the resulting posterior
+We select the Beta distribution since it is the conjugate prior for Bernoulli-distributed evidence \cite{gelman2013bayesian}. This means that the resulting posterior
 update still remains a Beta distribution. This allows for additive evidence integration, which is, not only computationally more efficient,
 but also extensible for an arbitrary set of data sources $S$. This aligns with the "Extensibility" goal of MERIT. The updates to the Beta
 distribution are given by:

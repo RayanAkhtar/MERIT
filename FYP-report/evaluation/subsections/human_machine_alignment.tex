@@ -78,6 +78,8 @@ MERIT (Full) achieves the strongest expert alignment ($\rho=0.733$, $p=0.016$), 
 MERIT (CV Only) ($\rho=0.515$), and the semantic baseline ($\rho=0.285$). Adding GitHub and LinkedIn raises $\rho$ from 0.515 to 0.733
 when supplementary evidence agrees with the CV.
 
+\textbf{Outcome:} Meets the directional $\rho \geq 0.7$ criterion for MERIT (Full) in this cohort ($\rho = 0.733$, $p = 0.016$).
+
 \textbf{Study 08 (seniority bias).}
 \label{subsec:study-08-spearman-seniority}
 All engines fail to align with the expert consensus, achieving a negative $\rho$, ranking the principal/staff CVs above 
@@ -85,11 +87,15 @@ the intuitive junior candidate. Here, the impact of multi-source fusion is minim
 magnitude to each candidate relatively equally, leading to no rank changes. This is a stress test to show that 
 multi-source fusion does not consider nuanced scenarios such as overqualified candidates.
 
+\textbf{Outcome:} Does not meet $\rho \geq 0.7$ for any engine (MERIT Full $\rho = -0.515$); seniority-bias stress test failed.
+
 \textbf{Study 09 (peer competition).}
 \label{subsec:study-09-spearman-peer}
 Traditional ATS aligns best with $\rho=0.794$, followed by MERIT (Full) with $\rho=0.721$ ($p=0.019$). Note the difference in $\rho$ between
 MERIT (Full) and MERIT (CV Only), which is due to the addition of GitHub and LinkedIn evidence that helps differentiate candidates
 when CVs are similar. Multi-source fusion can help to act as a tie-breaker when solely CVs are insufficient.
+
+\textbf{Outcome:} MERIT (Full) meets $\rho \geq 0.7$ ($\rho = 0.721$) but does not lead the column (Traditional ATS $\rho = 0.794$); directional support for fusion as a tie-breaker only.
 
 \textbf{Study 10 (signal dissonance).}
 \label{subsec:study-10-spearman-dissonance}
@@ -100,6 +106,8 @@ for the best performing candidates. This scenario demonstrates that multi-source
 however, note that it is uncommon for a candidate to intentionally contradict their CV with public repository evidence.
 This case was selected to show that fusion performance is dependent on the quality of the evidence that it is supplied with,
 it will underperform when sources present contradictory evidence.
+
+\textbf{Outcome:} Does not meet $\rho \geq 0.7$ for MERIT (Full) ($\rho \approx 0.09$); deliberate adversarial failure under contradictory supplementary evidence.
 
 \subsection{Synthesis}
 \label{subsec:spearman-synthesis}
