@@ -34,6 +34,10 @@ We also report criteria that we use to determine the success of each RQ. Note th
 derived from literature, and are instead internal targets, since many results are directional due to the small sample size
 in our evaluation. Both the Traditional ATS and Modern AI ATS baselines are simplified in-repository proxies
 for the keyword-matching and AI-assisted ATS categories mentioned earlier in Section~\ref{sec:automated-screening}.
+We do not implement a rule-based ATS baseline, the category is knockout-oriented and does not produce ranked, 
+pool-wide scores comparable across candidates. Our studies instead require rankings 
+(Spearman $\rho$), so we compare MERIT only against the two ranking-oriented CV-screening paradigms above. 
+We do not believe this to be a significant threat to validity due the similarities between Keyword-Matching and Rule-Based ATS systems.
 Expert-consensus rankings follow from Lo et al.'s~\cite{lo2025aihiring} evaluation paradigm of comparing automated
 scores with HR judgement. High Spearman $\rho$ measures the agreement with that panel, but cannot be 
 generalised due to the sample size.

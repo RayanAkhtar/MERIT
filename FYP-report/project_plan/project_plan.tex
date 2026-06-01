@@ -1,7 +1,7 @@
 \chapter{Project Plan}
 
 \section{Project Expectations}
-The main objective is to design and implement a multimodal screening system for recruiters, where this entails combining multiple data sources to see more details into a candidate and evaluate their technical proficiencies. 
+The main objective is to design and implement a multi-source screening system for recruiters, where this entails combining multiple data sources to see more details into a candidate and evaluate their technical proficiencies. 
 Extensibility will also be a core focus so that additional data sources can be added with minimal development.
 For the initial implementation, there will attempts to support CVs as well as LinkedIn and GitHub profiles.
 
@@ -39,7 +39,7 @@ The following features are valuable extensions, however, they are not required f
   \hline
   Now - Mid February & System architecture + core data ingestion & Finalise architecture, implement CV parsing. Also begin LinkedIn and GitHub parsing \\
   \hline
-  Mid February - Mid March & Multimodal Ingestion complete + basic scoring engine & Finish LinkedIn and GitHub implementation and implement initial scoring logic with metric customisation \\
+  Mid February - Mid March & multi-source Ingestion complete + basic scoring engine & Finish LinkedIn and GitHub implementation and implement initial scoring logic with metric customisation \\
   \hline
   Mid March - Mid April & UI development + Data Display & Table-based UI with sorting, filtering, and togglable data sources \\
   \hline
@@ -54,6 +54,6 @@ The following features are valuable extensions, however, they are not required f
 \section{Fallback Positions}
 
 If the system architecture and core ingestion takes longer than expected, there will not be an integration of LinkedIn.
-For the multimodal ingestion and basic scoring, if time does not permit, there will be a fallback on a fixed scoring template rather than allowing for custom metrics.
+For the multi-source ingestion and basic scoring, if time does not permit, there will be a fallback on a fixed scoring template rather than allowing for custom metrics.
 If the UI development encounters delays, there will be a fallback to a minimal, non-filterable table view.
 Extensions will also not be considered if time does not allow for it.

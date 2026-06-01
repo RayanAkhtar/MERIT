@@ -18,7 +18,12 @@ We run four scoring engines against the same candidate pool and JD: a \textbf{Tr
 a \textbf{Modern AI ATS} baseline (semantic CV screening), MERIT with only CV signals, and MERIT with all sources.
 When referring to ``all'' sources, we specifically refer to the integration of GitHub and LinkedIn signals.
 With the same engine setup and candidate pool, we will then proceed with a data ablation study, where we will point out the success and failure cases of the model.
-The labels \textbf{Traditional ATS} and \textbf{Modern AI ATS} denote in-repository CV screening baselines that replicate scoring logic typical of rule-based and AI-assisted Applicant Tracking Systems (ATS), they are not proprietary commercial products. MERIT is evaluated as a separate multimodal screening system.
+The labels \textbf{Traditional ATS} and \textbf{Modern AI ATS} denote in-repository CV screening baselines 
+that proxy keyword-matching and AI-assisted Applicant Tracking Systems (ATS) respectively, they are not 
+proprietary commercial products.
+We omit a rule-based baseline because that category is knockout-oriented and does not rank candidates 
+(Section~\ref{sec:automated-screening}).
+MERIT is evaluated as a separate multi-source screening system.
 
 These studies assume that candidate CVs were successfully extracted without error. These evaluations run on emulated, 
 synthetic candidate JSON profiles created to systematically test specific edge cases, bypassing the PDF extraction layer 
