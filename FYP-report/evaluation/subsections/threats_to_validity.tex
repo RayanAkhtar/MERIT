@@ -36,7 +36,9 @@ the risk of confirmation bias, where evaluation data may inadvertently encode th
 We aim to mitigate this through intentionally including deliberate failure cases, the key example being Study~10, where
 GitHub payloads are deliberately sabotaged to contradict the CV narrative.
 We do not claim independent external validation of the remaining ground truth datasets due to the time and resource constraints 
-of the project.
+of the project. Furthermore, evaluating on real applicant tracking data was impossible due to strict GDPR and PII constraints. 
+Synthetic isolation was therefore the only ethically viable way to thoroughly test the mathematical bounds of the Bayesian and 
+Shapley engines without compromising candidate privacy.
 
 \textbf{Skills Dictionary Coverage (Study~04).}
 Study~04's skill recall (38.6\%) reflects Devicon dictionary scope (programming languages and web frameworks only), 

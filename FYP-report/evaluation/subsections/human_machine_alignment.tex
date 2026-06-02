@@ -26,9 +26,10 @@ We use \texttt{scipy.stats.spearmanr} to compute the $\rho$ and two-sided $p$-va
 ($n=10$), a single rank swap can move $\rho$ sharply, for a similar reason, the $p$-values are exploratory. To reiterate,
 the engines we include are the \textbf{Traditional ATS} (keyword CV baseline), \textbf{Modern AI ATS} (a minimal in-repository
 semantic baseline: SBERT skill matching plus experience weighting on CV text only), \textbf{MERIT (CV Only)}, and \textbf{MERIT (Full)}
-(CV plus GitHub and LinkedIn). Neither ATS baseline is a commercial product, however, the Modern AI baseline models one stage of AI-assisted
-screening and may understate vendor systems that combine semantics with richer skill inference and historical data
-(Section~\ref{subsec:internal-validity}).
+(CV plus GitHub and LinkedIn). Neither ATS baseline is a commercial product. The Modern AI baseline models one stage of AI-assisted
+screening and serves as a minimal proxy. We acknowledge that real-world commercial platforms (e.g., Eightfold or Workday) likely employ
+much more sophisticated proprietary parsing and semantic matching than our baseline suggests, which may understate their true capabilities 
+when comparing against MERIT (Section~\ref{subsec:internal-validity}).
 
 \subsection{Spearman Studies 07--10}
 \label{subsec:study-07-spearman-high-discrimination}
@@ -63,6 +64,9 @@ we purposely create contradictory evidence for Study~07 to test the robustness o
     \end{tabular}
 \end{table}
 
+\textbf{Note:} Due to the micro-cohort size ($n=10$), $p$-values are highly volatile and provided for transparency only,  
+they do not imply statistical significance. We should not draw any conclusions about the generalisability of the results based on the $p$-values.
+
 Table~\ref{tab:spearman-studies-combined} compares each engine's ordering against 
 expert consensus, rather than measuring absolute hiring quality. Across all four cohorts, the Modern AI ATS baseline 
 achieves a lower $\rho$ than Traditional ATS. In Study~07, semantic matching on CV text alone can rank generically senior or 
@@ -86,6 +90,10 @@ All engines fail to align with the expert consensus, achieving a negative $\rho$
 the intuitive junior candidate. Here, the impact of multi-source fusion is minimal, since multi-source fusion adds 
 magnitude to each candidate relatively equally, leading to no rank changes. This is a stress test to show that 
 multi-source fusion does not consider nuanced scenarios such as overqualified candidates.
+\footnote{Note that the $\rho$ value of $-0.5152$ is exactly the inverse of the $0.5152$ observed in Studies~07 and 10. 
+This is not a clerical error, but a pure mathematical coincidence. Due to the small cohort size of $n=10$, the Spearman 
+correlation can only take on highly quantised fractions (in this case, $\pm17/33 \approx \pm0.51515$). The sum of squared 
+rank differences happened to be exactly 80 in Study~07, and 250 in Study~08.}
 
 \textbf{Outcome:} Does not meet $\rho \geq 0.7$ for any engine (MERIT Full $\rho = -0.515$); seniority-bias stress test failed.
 

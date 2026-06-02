@@ -22,12 +22,19 @@ penalising candidates for having missing data (such as an empty GitHub profile).
 \label{subsec:future-ingestion}
 
 Pillar~1 is currently hindered by the accuracy of the ingestion layer, specifically towards unstructured data parsing.
-Rather than an in-house solution, we should consider relying on a more robust model that has been trained on a large dataset of CVs and JDs.
-For example, ResumeBench \cite{emnlp2025resumebench}, could replace our current coordinate-based extraction with \texttt{pdfminer} \cite{pdfminer}, 
-and is a promising model for this purpose. For evaluation, we should conduct a study similar to Study~04, but on real applicant PDFs
-as opposed to synthetic candidates, to assess the real-world nuances of candidate resumes. We should also consider an extensible approach to 
-the skills dictionary beyond just Devicon, to allow for the extraction of tooling and other skills that are common on technical CVs aside 
-from programming languages and frameworks.
+The reliance on basic heuristics and regular expressions alongside \texttt{pdfplumber} \cite{pdfminer} resulted in 
+fragile extraction, particularly for multi-column layouts where name match rates fell to 13.3\%. To address this 
+in a future iteration, we should replace our current coordinate-based extraction with a multimodal architecture 
+designed for spatial document understanding. Integrating an open-source model such as LayoutLM or a Vision-Language 
+Model (VLM) would allow the ingestion engine to comprehend the structural layout of a CV rather than just its raw text stream.
+Given the performance of such models on benchmarks like ResumeBench \cite{emnlp2025resumebench}, we could 
+theoretically expect our skill extraction $F_1$ score to improve from 49.4\% to well over 85\%, providing a 
+significantly more robust foundation for the downstream Bayesian and Shapley calculations.
+
+For evaluation, we should conduct a study similar to Study~04, but on real applicant PDFs as opposed to synthetic 
+candidates, to assess the real-world nuances of candidate resumes. We should also consider an extensible approach 
+to the skills dictionary beyond just Devicon, to allow for the extraction of tooling and other skills that are common 
+on technical CVs aside from programming languages and frameworks.
 
 
 Study~13's cross-role IDF interference suggests that we should maintain separate corpora per role family (backend, frontend, data, etc.)
