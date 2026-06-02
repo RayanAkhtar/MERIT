@@ -1,0 +1,46 @@
+\section{Evidence outside of the CV}
+\label{sec:lit-multi-source}
+
+As mentioned earlier, most commercial ATS platforms and the majority of research literature still rely
+on a self-reported CV as the only source of evidence for a candidate. Research on resume fraud and embellishment
+is well documented~\cite{henle2019_resume_fraud,dunning2004}, meanwhile employer surveys report that qualified
+applicants are screened out when they do not match the job-description wording verbatim~\cite{fuller2021hiddenworkers}.
+While approaches such as keyword-matching and semantic analysis can rank candidates, it never truly
+questions whether the candidate actually has the skills they claim to have.
+
+Montandon et al.~\cite{montandon2021_roles} explore the use of GitHub as a supplementary source of evidence,
+rather than only the CV. They leverage GitHub profiles and repository metadata in order to infer a 
+total of six different technical roles. They use programming language usage, descriptions and bios
+to train a supervised machine learning model to classify the role of a candidate. The result of this is 
+an aggregate precision of 0.88 and an area under the curve (AUC) of 0.89. The labelled set is comprised
+of 2,284 developers, with language features being the most discriminative signal.
+For most roles, especially DevOps and mobile, the recall is weaker. Authors treat the classifier as a 
+supplementary hiring signal rather than a sole criterion understandably, since this would be a very rigid 
+approach to screening.
+
+The approach still remains limited. Profile text is matched with regex-style cues, vulnerable to 
+self-report bias, also, public activity may not reflect candidates who work in private repositories.
+Alongside this, role labels are fixed and coarse, rather than JD-configurable, and finally predictions
+are not cross-checked against the CV, and neither are they explained in auditable terms.
+Regardless of this, the study motivated the treatment of GitHub as a supplementary source of evidence,
+rather than just being an isolated label among a fixed set of roles.
+
+Recent work pushes further away from the CV-only dependency, exploring the use of GitHub as a supplementary 
+source of evidence. First, we review Vaishampayan et al.~\cite{vaishampayan2025_gitmeter}, who develop GitMeter.
+Their system mines public repositories to discover essential candidate data such as technology use and code quality.
+Their user study of 20 stakeholders reports that they are willing to use repository evidence in shortlisting,
+highlighting the potential of repository evidence in hiring decisions. Later, Kumar et al.~\cite{kumar2025_evidence_hiring}
+extend this line of work with broad language analysis (through CodeQL), plagiarism and AI-detection tooling.
+They also enrich the data with academic profiles, providing a more comprehensive view of a candidate's skills and experience.
+
+\label{sec:contrastive-github-hiring}
+While their work moved beyond the CV-only limitation, it now completely disregards the CV as a source of evidence
+altogether. Neither work reports recruiter-configurable, job-description-driven metric weights or per-source attributions
+of an overall score. This work was identified after the specification and implementation of MERIT, however, we
+still include it for comparison and to highlight the gap that MERIT is designed to solve. Note that we did not
+use this work to derive the requirements, architecture or evaluation in this dissertation.
+
+The gap that motivates MERIT's multi-source pillar is therefore not merely ``add GitHub,'' but \emph{verify} 
+CV claims with heterogeneous evidence, quantify uncertainty when sources disagree, and rank candidates on a common scale.
+
+\input{background/subsections/bayesian_fusion.tex}

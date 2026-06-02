@@ -1,118 +1,20 @@
 \chapter{Related Work \& Technical Foundations}
 
 After gaining an understanding of the cognitive limitations and biases present in traditional technical recruitment,
-we now turn towards the frameworks designed to automate candidate evaluation. The chapter starts with a focus on
-the current state-of-the-art in Applicant Tracking Systems (ATS), categorising based of the scoring system's underlying
-logic. Through the examination of these systems, we uncover the limitations of their current approach, justifying
-the need for an extensible, multi-source scnoring system that is also explainable and transparent. The technical 
-foundations point towards MERIT~\cite{merit_repo} as a possible solution to the problems identified.
+we now turn towards the frameworks designed to automate candidate evaluation.
+The chapter first categorises the various Applicant Tracking Systems (ATS) based on the logic of their scoring
+engines. From here, we review prior work thematically across the three strands that can map to the limitations that MERIT
+is designed to solve. We cover the ideas of extensibility (Section~\ref{sec:lit-extensibility}), 
+multi-source verification (Section~\ref{sec:lit-multi-source}), 
+and transparency and explainability (Section~\ref{sec:lit-transparency}).
+The ideas also cover important technical foundations that will be used to support our design ideas in
+Chapter~\ref{ch:implementation}. Finally, the chapter closes with
+an overview, summarising how these three areas motivate MERIT~\cite{merit_repo}.
 
 \input{background/subsections/automated_screening.tex}
 
-Researchers have explored a variety of methods for aiding technical recruitment, particularly in the area of automated screening.
-MERIT will focus on three representative strands of work that have helped to influence its design.
-A further strand of contemporaneous GitHub-centric screening is summarised later in this chapter for comparison 
-only (Section~\ref{sec:contrastive-github-hiring}).
-
-\section{Multi-Agent LLM Architectures for Explainable Screening}
-There have been a variety of approaches when it comes to the automation of CV screening. One recent example is Lo et al.\ \cite{lo2025aihiring}, 
-who describe in an arXiv preprint a multi-agent LLM architecture that splits the screening process into four distinct 
-stages: resume-extraction, evaluation, summarisation and score-formatting. The authors take a modular approach to the screening process,
-ensuring a clear separation of concerns between the different stages of the screening process.
-
-To improve contextual relevance, the system integrates Retrieval-Augmented Generation (RAG) within the evaluator agent,
- enabling the use of external knowledgeable sources (such as certifications and university rankings) rather than relying solely on the content of the CV itself.
-
-In their evaluation, the authors compare the AI-generated candidate scores with ratings by human HR professionals on a dataset of anonymised resumes.
-The results demonstrate that the multi-agent RAG-LLM system achieved strong agreement with human judgements and 
-outperformed simpler baselines, indicating its potential to replicate, and perhaps improve on, the traditional screening workflows at scale.
-
-However, a significant limitation remains: while the architecture is more flexible than rule-based ATS, the 
-evaluation still relies on a predetermined set of scoring dimensions (skills, experience, education, background and summary), 
-each of which has fixed weights.
-The fixed dimensionality hinders the system's ability to accurately reflect role-specific priorities, unique 
-project requirements, unconventional career paths, or evolving technical criteria that may fall outside of standard categories.
-As a result, the framework struggles to fully capture the diversities and nuances inherent in real-world hiring.
-
-To conclude, while the paper suggests that LLM-based modular screening is feasible and 
-can approximate human performance, it is still challenged with balancing benchmarked consistency with adaptive, 
-context-sensitive evaluation.
-
-\section{Technical Role Inference from Open-Source Contributions}
-
-Research also demonstrated the merits of going beyond the CV to understand a potential candidate's technical background.
-In this case, we consider Montandon et al.\ \cite{montandon2021_roles}. The authors propose a supervised machine learning
-approach to infer six technical roles through the usage of GitHub profiles and project metadata (e.g.\ programming languages,
-repository descriptions and short bios). The authors constructed a manually labelled dataset of roughly 2{,}284 developers to
-train and evaluate several classification models. Their best models report an aggregate precision of 0.88 and an AUC of 0.89,
-with programming language features being the most discriminatory factor in this classification process.
-Note that recall is weaker for some roles, most particularly for DevOps and mobile.
-
-The authors of this paper believe that this approach should be considered a supplementary hiring signal rather than
-the sole criterion for hiring, and understandably so. However, the study remains quite limited for recruitment
-screening in a few ways that are relevant to this project. The first limitation concerns regex matching of
-profile text, which is prone to self-report bias. Public GitHub activity may also not reflect a candidate's skill set,
-especially for candidates who contribute primarily to private repositories. Alongside this, the role classifications
-lack refinement, and are far too coarse and fixed, lacking the extensibility required for a system that needs to
-process candidates from a variety of different roles and specialisations. The misclassifications that the authors
-report also highlight how reliance on only repository-language signals can misinterpret a developer's specialisation.
-This work does not cross-check other sources of data, such as the CV, for external evidence, and nor does it
-provide explainable or justifiable reasoning for why a candidate was predicted to hold a particular role.
-
-Regardless of these limitations, the paper motivates MERIT to treat GitHub as a supplementary signal beyond the CV.
-MERIT will not adopt this classifier directly, but will integrate GitHub to corroborate or
-challenge a candidate's claims on their CV.
-
-\section{Evidence-Based Screening from GitHub Activity}
-\label{sec:contrastive-github-hiring}
-
-Recent research also argues that hiring should move beyond keyword-based automated resume parsers (ARPs) towards
-evidence drawn from open-source work. Here, we consider Vaishampayan et al.\ \cite{vaishampayan2025_gitmeter},
-who posit that GitHub-supported resume matching can surface signals that are harder to fake, such as
-code quality and technology use. The authors introduce GitMeter, a tool that mines public repositories with
-heuristic approaches to approximate the candidate's ``core'' code to limit computational overhead. GitMeter was evaluated in
-a user study ($n=20$) with developers and recruiters, reporting stakeholder willingness to incorporate repository evidence into shortlisting.
-
-Kumar et al.\ \cite{kumar2025_evidence_hiring} build on the GitMeter work of Vaishampayan et al.\ \cite{vaishampayan2025_gitmeter},
-extending it with broader language analysis (for example through CodeQL), plagiarism and AI-detection tooling,
-and enrichment from academic profiles. However, both studies still centre verification on public GitHub activity, rather than fusing CV claims, repository evidence,
-and professional profiles with explainable and traceable conflict resolution across sources. Neither study reports
-recruiter-configurable, job-description-driven metric weights or per-source Shapley attributions of an overall score.
-
-Note that this line of work was identified after MERIT's specification and implementation, and was not used
-to derive the requirements, architecture, or evaluation reported in this dissertation. It is summarised here to
-compare and contrast with MERIT's approach to evidence-based screening. MERIT cross-references CV, GitHub, and LinkedIn through Bayesian evidence fusion and exposes audit trails and source attributions for contestability~\cite{lundberg2017unified}, but does not implement CodeQL or dedicated plagiarism detectors; Chapter~\ref{ch:evaluation} instead tests adversarial personas such as keyword stuffing and identity squatting.
-
-Regardless of these differences, both approaches share the motivation that hiring pipelines should move beyond
-surface-level keyword matching towards evidence that is harder to fabricate on a CV alone.
-
-\section{Semantic Embedding for Latent Skill Extraction}
-Research aimed at improving job-candidate matching has also moved beyond keyword-based methods.
-Gugnani and Misra \cite{gugnani2020} propose a system that identifies both the explicit and implicit skills 
-from job descriptions by combining traditional NLP techniques with large-scale document embeddings.
-The authors of this research leveraged approximately one million job postings to train a vector embedding model that
-attempts to capture the semantic relationships between the job description, and the skills required for that role.
-It attempts to uncover hidden, context-dependent skills that the recruiter may not have originally considered, allowing
-for the screening process to have more differentiating capabilities with regards to candidate evaluation.
-
-
-A core limitation of this research, however, ties in with the rigid nature of the scoring system.
-The candidate-job matching relies on a fixed set of weightings, consistently prioritising explicit 
-skills and integrating similarity, frequency, and implicit-skill penalties according to predefined 
-coefficients. The rigid scoring system limits its adaptability across roles that vary in how skills are expressed, be it implicit, or explicit.
-Also, the quality and reliability of inferred skills are tightly coupled to the representativeness 
-of the training corpus, meaning that gaps and biases in the job posting can influence recommendations.
-
-Despite these constraints, the study effectively shows how document-level semantic models can 
-complement manual and keyword-based extraction approaches, enhancing the detection of latent skills. 
-It also highlights the challenges in designing scoring mechanisms that remain flexible across diverse occupations.
-As automated job recommendation systems increasingly rely on inferred competencies, this shows 
-the importance of developing adaptive, domain-sensitive models that are capable of capturing the 
-variations in how industries emphasise or omit particular skills.
-
-
-\input{background/subsections/bayesian_fusion.tex}
-\input{background/subsections/shapley_values.tex}
-\input{background/subsections/semantic_embeddings.tex}
+\input{literature_review/subsections/thematic_extensibility.tex}
+\input{literature_review/subsections/thematic_multi_source.tex}
+\input{literature_review/subsections/thematic_transparency.tex}
 
 \input{background/subsections/relevance_to_merit.tex}

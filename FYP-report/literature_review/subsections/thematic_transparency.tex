@@ -1,0 +1,17 @@
+\section{Transparency and Explainability}
+\label{sec:lit-transparency}
+
+The introduction of NLP-based screening has paved the way to a more accurate assessment of candidate skill in
+many cases, however, this is at the cost of interpretability. Reviews of these algorithmic hiring systems describe
+this as a ``transparency deficit''~\cite{bogen2018}. Often, recruiters are left with scores or ranks, with little 
+to no significant justification, significantly reducing trust in the system and also introducing
+issues with fair-hiring compliance~\cite{raghavan2020,bogen2018}. The introduction of AI-assisted ATS systems
+worsens this issue further since rankings are produced by opaque models trained on historical hiring data.
+
+Lo et al.~\cite{lo2025aihiring} aim to cross this gap when they separate the CV screening process into modular LLM stages.
+They make the pipeline inspectable stage-by-stage, and report agreement with human HR ratings on anonymised resumes.
+However, this modularity does not attribute the final score to specific evidence sources. Transparency in
+hiring requires both understandable stages as well as attributable contributions from each source of evidence
+to the outcome.
+
+\input{background/subsections/shapley_values.tex}

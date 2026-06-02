@@ -1,0 +1,44 @@
+\section{Configurable and JD-Driven Screening}
+\label{sec:lit-extensibility}
+
+The majority of ATS platforms still view screening as a static matching problem, using the same dimensions
+and weightings across roles, even when job descriptions place emphasis on different skills, tech stacks
+and seniority levels. This has led to research on automated job-candidate matching, pivoting towards
+a richer representation of skills, however, this has not relaxed the rigidity of the scoring system.
+
+We begin with Gugnani and Misra~\cite{gugnani2020}, who extract both explicit and implicit skills from JDs through
+large-scale document embeddings, achieving this through the training of a vector embedding model. The dataset consists
+of roughly one million job postings and aims to capture the semantic relationships between a role and its
+required competencies. This helps to surface skills that a recruiter may have not listed explicitly.
+While this does improve the differentiation of skills, the issue still persists that the matcher relies on
+a fixed set of weightings. Explicit skills, similarity, frequency, and implicit-skill penalties are combined
+through hardcoded coefficients. It is evident that adaptability across occupations is bounded by the 
+training corpus and also the chosen scoring formula. It is not influenced by the recruiter's job description
+or priorities for a particular hire.
+
+A different approach is taken by Lo et al.~\cite{lo2025aihiring}, who split CV screening into modular LLM stages.
+The stages are as follows: resume extraction, evaluation, summarisation, and score formatting.
+They integrate retrieval-augmented generation (RAG) to allow the evaluator to draw on external knowledge such
+as certifications and university rankings, rather than just the CV alone.
+
+Their evaluation study shows that the pipeline achieves a strong agreement with expert judgement, outperforming 
+simpler baselines, leading to the conclusion that modular LLM workflows can approximate human screening.
+The issue however, is that evaluation dimensions remain rigid, with the following fixed metrics:
+skills, experience, education, background, and summary. Note that these metrics also have fixed weights,
+furthering the rigidity of the scoring system. This limits the ability for the scoring system to adapt to
+role-specific priorities, alternative career paths and criteria that fall outside of the standard.
+
+Together, the studies show that both semantic and LLM-based screening have the capacity to improve accuracy and 
+relevance, but still fail to address the extensibility problem. There is no answer to which metrics matter for 
+a particular role, nor do they suggest weights based off the context of the job description.
+
+We review the work of Karen Sparck Jones~\cite{sparckjones1972idf}, who proposed Term Frequency-Inverse 
+Document Frequency (TF-IDF) as a way to rank the importance of terms within a document. Here, TF-IDF ranks
+the importance of a term based off its appearance within a document compared to its appearance throughout a 
+corpus of documents. If a term is emphasised heavily in a document relative to the corpus, it will receive a 
+higher ranking due to its rarity within the corpus. In a similar fashion, commonly used terms are down-weighted
+due to their abundance within the corpus. In a similar fashion to large-scale skill inference from professional 
+documents~\cite{bastian2014linkedin}, corpus-level frequency has been used to separate role-specific 
+requirements from generic boilerplate. This approach is adapted and applied to MERIT later during Chapter~\ref{ch:implementation}.
+
+\input{background/subsections/semantic_embeddings.tex}
