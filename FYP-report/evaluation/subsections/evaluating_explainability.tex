@@ -15,7 +15,7 @@ MERIT applies the Shapley formalism at the data-source coalition level
 explanations for individual model predictions~\cite{lundberg2017unified}.
 To ensure source-level attributions are mathematically sound, we verify Efficiency, Null Player, Additivity (per-metric), and Determinism 
 on ten synthetic personas ($N = \{\text{CV}, \text{GitHub}, \text{LinkedIn}\}$). We intentionally omit the axiom of Symmetry since source
-contributions for MERIT are hetrogenous by design, and therefore cannot produce identical marginal contributions in practice.
+contributions for MERIT are heterogeneous by design, and therefore cannot produce identical marginal contributions in practice.
 
 \subsubsection{Quantitative Verification Results}
 Table~\ref{tab:shapley-verification} reports per-candidate results 
@@ -64,7 +64,7 @@ One key finding from this study is visible in the GitHub Shapley value for Vince
 In the context of cooperative game theory, this would occur when the introduction of a player leads to a reduction in the overall coalition's
 winnings. For MERIT, this would occur when the introduction of a source leads to a fall in that candidate's match score. In this case,
 it was due to the introduction of malicious intent via identity squatting, leading to a significant penalty being applied to the candidate's score.
-Since Felix only provided false evidence for the GitHub source, negative attributions were focused there, rather than on LinkedIn or CV.
+Since Vince only provided false evidence for the GitHub source, negative attributions were focused there, rather than on LinkedIn or CV.
 This penalty is then able to be presented to the recruiter to show that a candidate is allegedly claiming evidence that they do not have.
 It is now the recruiter's responsibility to investigate the engine further to see if the fuzzy match failed due to actual intent of
 malice, or due to a false positive.
@@ -102,8 +102,7 @@ Shapley values.
 We can observe that in this cohort, CV evidence dominates the overall score, contributing to 59.6\% of the overall score of 
 the candidates. This is followed by demonstrated GitHub evidence, contributing to 38.4\% of the overall score.
 While LinkedIn evidence is present, it contributes to only 2.1\% of the overall score, indicating that it is not a significant
-factor in the candidate's score. Note the margin for error since we only consider positive $\phi_i$ for the denominator (we exclude 
-the negative GitHub attribution from Felix Vance).
+factor in the candidate's score. Note the margin for error since we only consider positive $\phi_i$ for the denominator (we exclude the negative GitHub attribution from Vince Vault).
 
 \subsection{Study 14: HCI Trial}
 \label{subsec:hci-trial-protocol}
