@@ -27,7 +27,7 @@ backed by a variety of strong evidence.
 
 \subsection{Data Source Attribution}
 While Bayesian Evidence Fusion and confidence scoring address the problem of understanding a candidate's proficiencies, we must address
-the biggest disadvantage of this approach. Bayesian Evidence Fusion, at its core, is an aggregation mechanic that fuses multiple signals
+the biggest disadvantage of this approach. Bayesian Evidence Fusion, at its core, is an aggregation mechanism that fuses multiple signals
 together. We lose key information about the impact of each data source on that metric's final score. We cannot tell if a candidate got a high
 score due to one very strong signal, or due to many weak signals. This is a problem that shatters the ``Glass-Box'' goal of MERIT, so it's vital
 that we address this.
@@ -38,51 +38,44 @@ overlapping or redundant signals, naive percentage breakdowns fail to accurately
 overcome this through a mathematically rigorous method of fairly distributing the total ``payoff'' (the candidate's score) amongst the
 cooperating ``players'' (the data sources) \cite{shapley1953, lundberg2017unified}.
 
-In MERIT's current implementation, we currently only support three data sources: CV, GitHub, and LinkedIn
-($N = \{\text{CV}, \text{GitHub}, \text{LinkedIn}\}$, $n = 3$). The value $v(S)$ of a coalition of sources is the score that we achieve
-when the candidate is evaluated using only the data from those sources, with non-coalition sources strictly masked. In other words, if we want
-to compute the value of the coalition of sources \{CV, GitHub\}, we first take a candidate and provide the system with
-their CV and GitHub. We then run the MERIT evaluation pipeline, but with the LinkedIn source strictly masked. This
-means that any claims or signals coming from the LinkedIn profile will not be considered. The output of this
-evaluation is the value of the coalition \{CV, GitHub\} for that candidate.
-
-For the set of sources $N$, the number of possible coalitions is $2^n$. In our case, we have $2^3 = 8$ possible coalitions.
-To arrive at the Shapley value $\phi_i$ for a single source $i$, we must sum the marginal contributions
-of that source across all coalitions that it is a part of, weighted by the size of the coalition. This can be
-computed by the following equation:
+MERIT's implementation currently supports three sources of evidence. This is the candidate CV, GitHub and LinkedIn, therefore, we 
+have $n = 3$ data sources. We create a set of all possible coalitions of data sources, computing the value of each coalition, 
+denoted as $v(S)$ for a given subset of data sources $S$. For a set of sources $N$, we have $2^n$ possible coalitions, where $n$
+refers to the number of data sources. In our case, this means $2^3 = 8$ possible coalitions. To compute the shapley value $\phi_i$
+for a given source $i$, we sum the marginal contributions of that source across all of the coalitions that it is a part of.
+Formally, this is given by the following equation:
 
 \begin{equation}
     \phi_i = \sum_{S \subseteq N \setminus \{i\}} \frac{|S|! (n - |S| - 1)!}{n!} [v(S \cup \{i\}) - v(S)]
 \end{equation}
 
+The left side of the equation is the combinatorial weighting factor, which is the number of ways to choose $i$ sources from $n$ sources.
+The right side of the equation is the marginal contribution of the source $i$ to the coalition $S$.
 By calculating $\phi_i$ for both individual metrics, as well as the final score, MERIT is able to attribute every score
 to a data source, and inform the recruiter whether a candidate's score was driven by demonstrated evidence, or claimed evidence.
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.95\textwidth]{implementation/screenshots/shapley_source_breakdown.png}
-    \caption[Source Influence Breakdown panel]{Source influence breakdown with per-source Shapley values.}
+    \caption[Source Influence Breakdown panel]{Source influence breakdown with Shapley values per data source. In this figure,
+    we show shapley breakdown for the final match score. Shapley values for a specific metric can be viewed by clicking the ``View Math Trail''
+    button}
     \label{fig:shapley_attribution}
 \end{figure}
 
 
 \subsection{Algorithmic Contestability}
-ATS platforms are often criticised for their lack of transparency and auditability. When a candidate is given a low score,
-or rejected from an ATS, both candidates, as well as the recruiters have no insight as to why that was the case. Due to this,
-neither party can learn from this interaction, or challenge the claims that the system makes.
+MERIT also follows the principle of algorithmic contestability to further combat the black-box nature of these platforms.
+We provide the specific evidence signals that were used to derive the score, this means that the full mathematical 
+trail is provided to the recruiter to ensure that they can understand the reasoning behind the score. This in-depth
+transparency is a focus of MERIT to allow recruiters to identity and override any algorithmic edge cases, or perhaps
+see why a candidate got a penalisation, rather than letting this penalty go unnoticed. We ensure that the final decision
+remains auditable, and aim to mitigate algorithmic bias.
 
-It is for this reason that MERIT implements the principle of \textit{contestability}. Recruiters are not presented with
-a ``black-box'' score, instead, they are given the specific evidence signals used to derive that score through a comprehensive
-audit trail. This way, we can not only provide rankings (like all other ATS platforms), but explain the quantitative
-reasoning behind them. This end-to-end transparency allows a human-in-the-loop to identify and override potential
-algorithmic edge cases, ensuring that the final decision remains human-centric and auditable.
-
-During stage 2 of MERIT (the execution phase), our backend constructs a \texttt{calculation\_summary} along with detailed
-metric breakdowns to populate the \texttt{results\_payload}. For each evaluated skill or heuristic, we provide a full
-breakdown of the score, from the extracted signals, to the Bayesian Evidence Fusion process. The system explicitly documents
-this logic. For a complete, step-by-step visual breakdown of the Verification Audit for a specific metric
-(including temporal decay and Bayesian fusion), please refer to Appendix \ref{appendix:math_trail}. This explicitly demonstrates
-how the level of confidence is derived, along with the Shapley Values for each data source.
+The previous stage of MERIT (the execution phase) constructs both a \texttt{calculation\_summary} as well as a \texttt{results\_payload}.
+For each metric, we provide the full breakdown, explicitly documenting every calculation that was performed to derive the score,
+along with brief explanations for each step. Please refer to Appendix \ref{appendix:math_trail} 
+for a complete step-by-step visualisation of the audit trail of an extensible metric.
 
 This ``Glass-Box'' approach attempts to bridge the gap between complex probabilistic mathematics and practical recruitment
 workflows, transforming a binary hiring decision into a defensible and interrogable process.
@@ -92,7 +85,7 @@ workflows, transforming a binary hiring decision into a defensible and interroga
 Another common flaw with algorithmic scoring is the absence of relative context. A candidate with a year of experience may seem
 weak on paper, but would be considered exceptional if the majority of the applicant pool had little to no experience. However, due
 to this, the candidate would likely be undervalued if the system does not correctly highlight the difference in experience between
-the candidate and the rest of the pool. To address this, MERIT also implements a dynamic cohort normalisation mechanic for the majority of
+the candidate and the rest of the pool. To address this, MERIT also implements a dynamic cohort normalisation mechanism for the majority of
 baseline metrics.
 
 In order to achieve dynamic cohort normalisation, MERIT undergoes a two-pass approach. During the first pass of this stage, the backend
@@ -135,5 +128,5 @@ badges and the per-metric Insights overlay (full-size screenshots in Appendix~\r
 To further aid transparency, any penalisations (such as Squatting) are also flagged to the user to highlight the negative impact of such actions on the candidate's score.
 To ensure full auditability, we also provide views of each candidate's extracted data sources, so that recruiters can cross-check the audit trail.
 It is also possible to view skillsets that may have not been considered by the scoring engine, for example, a configuration may have had Python
-as a metric, but the candidate may have Jupyter Notebook listed in their GitHub section of this view. If the semantic bridge mechanic fails to 
+as a metric, but the candidate may have Jupyter Notebook listed in their GitHub section of this view. If the semantic bridge mechanism fails to 
 catch this, the recruiter would be able to still observe this data and potentially change their decision after accounting for this information.

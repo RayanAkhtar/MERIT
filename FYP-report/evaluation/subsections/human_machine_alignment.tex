@@ -1,23 +1,45 @@
 \section{Human-Machine Alignment}
 \label{sec:human-machine-alignment}
 
-The studies previously presented included adversarial personas to stress-test rank shifts based on
-specific candidate characteristics, aiming for a broad range of scenarios. Here, we compare engine rankings 
-against four synthetic cohorts ($n=10$ each) using Spearman rank correlation ($\rho$), following Lo et al.'s~\cite{lo2025aihiring} 
-precedent of comparing automated screening output with HR expert judgements, extended here with ATS baselines and multi-source 
-ablations (Table~\ref{tab:eval-literature-traceability}).
-Spearman $\rho$ measures rank agreement with our expert panel only, it does not establish predictive validity against 
-job performance, for which structured assessments such as work-sample tests remain the stronger evidence base~\cite{schmidt1998}.
-Figure~\ref{fig:spearman-studies-combined} (Appendix~\ref{appendix:spearman-charts}) plots the same coefficients.
+Study~01 in section~\ref{subsec:study-01-comparative-ablation} 
+included simplistic adversarial personas to stress-test rank shifts on specific candidate characteristics to see
+how each engine treats their specific nuances when it comes to candidate selection. Candidates were not designed to
+be representative of a real-world candidate. Here we use synthetic cohorts built from realistic candidate profiles and compare
+engine rankings against recruiter consensus, using the same baselines as Study~01.
+
+We compare these engine rankings across four synthetic cohorts of size 10, using the Spearman rank correlation coefficient ($\rho$).
+This follows Lo et al.'s~\cite{lo2025aihiring} comparison of automated screening output against human reference rankings. We extend
+this with ATS baselines and multi-source scoring. Spearman $\rho$ measures agreement between two orderings only, not hiring quality.
+For graphical representations of the results, refer to Figure~\ref{fig:spearman-studies-combined} 
+in Appendix~\ref{appendix:spearman-charts}.
+
 
 \subsection{Methodology}
 \label{subsec:spearman-method}
 
-Each study pairs a set of ten synthetic candidates with a job description, ensuring that the candidate has 
-a CV with supplementary evidence that agrees with the candidate's profile. The sole exception to this is Study~10,
-where we purposely create contradictory evidence to test the robustness of the fusion engine. Similar to the earlier
-studies, rank~1 is the best fit, and for each engine, we still produce score-based ordering and compute the $\rho$ against
-the expert consensus.
+Each study pairs a set of ten synthetic candidates with a job description.
+For automated scoring, the cohort includes GitHub and LinkedIn signals where the study design requires them, 
+and supplementary evidence agrees with each candidate's profile except in Study~10, where we purposely create 
+contradictory GitHub evidence to test fusion robustness.
+Recruiter consensus, however, is formed from CV PDFs only (see below).
+Similar to the earlier studies, rank~1 is the best fit.
+
+\textbf{Recruiter consensus protocol.}
+The reference order for each cohort was produced by the same four professional technical recruiters ($R_1$--$R_4$) across Studies~07--10.
+Each recruiter independently reviewed the role JD and an anonymised bundle of ten candidate CV PDFs.
+They did not receive GitHub or LinkedIn profiles, only the material a recruiter would typically see at CV-screening stage.
+
+We aggregated the four lists as follows.
+First, we computed each candidate's mean rank across recruiters (lower is better).
+When two or more candidates tied on mean rank, we used the lower median rank.
+Any remaining ties were resolved by panel discussion until all four recruiters agreed on the final order.
+The resulting order is stored in \texttt{human\_rankings.txt} and summarised in \texttt{reasoning.md} under each 
+study directory in \texttt{evaluation/}.
+We refer to this as expert consensus in the results below.
+Spearman $\rho$ measures how closely each engine matches that CV-only recruiter consensus.
+Engines may use additional GitHub and LinkedIn signals (MERIT Full), so agreement is not expected to be perfect in every cohort.
+
+For each engine we produce a score-based ordering and compute $\rho$ against the recruiter consensus ranking.
 \begin{equation}
     \rho = 1 - \frac{6 \sum_i (h_i - e_i)^2}{n(n^2 - 1)} .
 \end{equation}
@@ -70,8 +92,8 @@ they do not imply statistical significance. We should not draw any conclusions a
 Table~\ref{tab:spearman-studies-combined} compares each engine's ordering against 
 expert consensus, rather than measuring absolute hiring quality. Across all four cohorts, the Modern AI ATS baseline 
 achieves a lower $\rho$ than Traditional ATS. In Study~07, semantic matching on CV text alone can rank generically senior or 
-broadly technical profiles above candidates who are a stronger domain fit for the backend role. In Study~09, where recruiters 
-ranked on CV information only, keyword overlap tracks expert ordering more closely among near-peer applicants. We should not 
+broadly technical profiles above candidates who are a stronger domain fit for the backend role. In Study~09, where CVs are 
+near-peer and hard to separate, keyword overlap tracks recruiter ordering more closely among applicants. We should not 
 interpret this as proof that semantic screening is always inferior to keyword screening, since our Modern AI baseline is a
 simplified in-repository model and does not replicate the richer pipelines used in commercial AI-assisted ATS. However, the pattern does
 support MERIT's design: CV-level semantics without job-specific weighting and without verifiable external evidence can 
@@ -79,8 +101,9 @@ still disagree with expert judgement in specialised technical screening.
 
 \textbf{Study 07 (high discrimination).}
 MERIT (Full) achieves the strongest expert alignment ($\rho=0.733$, $p=0.016$), outperforming Traditional ATS ($\rho=0.552$),
-MERIT (CV Only) ($\rho=0.515$), and the semantic baseline ($\rho=0.285$). Adding GitHub and LinkedIn raises $\rho$ from 0.515 to 0.733
-when supplementary evidence agrees with the CV.
+MERIT (CV Only) ($\rho=0.515$), and the semantic baseline ($\rho=0.285$).
+Recruiters ranked from CV PDFs alone, while MERIT (Full) also ingests GitHub and LinkedIn, raising $\rho$ from 0.515 to 0.733 
+when that supplementary evidence agrees with the CV.
 
 \textbf{Outcome:} Meets the directional $\rho \geq 0.7$ criterion for MERIT (Full) in this cohort ($\rho = 0.733$, $p = 0.016$).
 
@@ -100,15 +123,17 @@ rank differences happened to be exactly 80 in Study~07, and 250 in Study~08.}
 \textbf{Study 09 (peer competition).}
 \label{subsec:study-09-spearman-peer}
 Traditional ATS aligns best with $\rho=0.794$, followed by MERIT (Full) with $\rho=0.721$ ($p=0.019$). Note the difference in $\rho$ between
-MERIT (Full) and MERIT (CV Only), which is due to the addition of GitHub and LinkedIn evidence that helps differentiate candidates
-when CVs are similar. Multi-source fusion can help to act as a tie-breaker when solely CVs are insufficient.
+MERIT (Full) and MERIT (CV Only), which is due to GitHub and LinkedIn evidence available to the engine but not shown to recruiters.
+Multi-source fusion can act as a tie-breaker when CV PDFs alone are insufficient.
 
 \textbf{Outcome:} MERIT (Full) meets $\rho \geq 0.7$ ($\rho = 0.721$) but does not lead the column (Traditional ATS $\rho = 0.794$); directional support for fusion as a tie-breaker only.
 
 \textbf{Study 10 (signal dissonance).}
 \label{subsec:study-10-spearman-dissonance}
 The failure of MERIT (Full) is presented through the replication of Study~07, only with the intentional sabotage of
-GitHub candidate evidence to contradict the CV narrative presented for a given candidate. This deliberate failure was 
+GitHub candidate evidence to contradict the CV narrative presented for a given candidate.
+Recruiter consensus is unchanged from Study~07 because the CV PDFs are identical and recruiters never saw the sabotaged GitHub payloads.
+This deliberate failure was 
 orchestrated to maximise benefits of multi-source fusion for the worst performing candidates while minimising benefits
 for the best performing candidates. This scenario demonstrates that multi-source fusion can be vulnerable to data poisoning,
 however, note that it is uncommon for a candidate to intentionally contradict their CV with public repository evidence.

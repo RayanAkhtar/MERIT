@@ -13,15 +13,15 @@ well with expert consensus. Linear single-column CVs parse well enough for downs
 
 \textbf{Failed:} Overall CV skill $F_1$ is 49.4\%, driven by a limited dictionary scoped only to programming languages and web frameworks from Devicon.
 Multi-column layouts also fail when it comes to name detection, falling from 53.3\% to 13.3\%, and the JD skill $F_1$ is 40.81\%.
-Extensibility is real, but it is often configured on mis-read documents, confirming ResumeBench's documented parsing 
+Extensibility is real, but it is often configured on misread documents, confirming ResumeBench's documented parsing 
 fragility~\cite{emnlp2025resumebench} and Gugnani and Misra's~\cite{gugnani2020} concern that fixed, corpus-bound 
 scoring limits role adaptability.
 
 \subsection{Pillar 2: Multi-source fusion}
 
-\textbf{Worked:} Study~01B helps to recover hidden talent (Jordan Smith, rank~\#10 $\rightarrow$~\#2). Study~07 gives the best observed expert
-Spearman alignment from MERIT in one cohort ($\rho = 0.733$, $n=10$, exploratory). Study~01A shows large cardinal shifts when evidence validates
-or contradicts claims ($+53.8\%$ / $-12.6\%$), partially validating Montandon et al.'s~\cite{montandon2021_roles} supplementary-GitHub hypothesis.
+\textbf{Worked:} Study~01 helps to recover hidden talent (Jordan Smith, rank~\#10 $\rightarrow$~\#2) and penalise fraud when GitHub ownership is checked
+(Vince Vault, rank~\#4 $\rightarrow$~\#9). Study~07 gives the best observed expert Spearman alignment from MERIT in one cohort ($\rho = 0.733$, $n=10$,
+exploratory), partially validating Montandon et al.'s~\cite{montandon2021_roles} supplementary-GitHub hypothesis.
 
 \textbf{Failed:} Carl Corp is penalised for empty GitHub despite significant tenure, reproducing Montandon et al.'s~\cite{montandon2021_roles} 
 limitation when public repositories are absent.

@@ -10,19 +10,15 @@ for the charts associated with this section.
 \subsection{Study 15: Bias Mitigation}
 \label{subsec:bias-mitigation-efficacy}
 
-Manual screening is prone to intuitive, non-merit heuristics~\cite{highhouse2008stubborn}.
-Study~15 tests whether Blind Mode reduces reliance on \emph{proxy} markers (prestige halo, intern titles, visible layout) rather than 
-protected-characteristic fairness, it is a UI debiasing pilot, not a fairness certificate.
-In this study (\texttt{15-bias\_anonymisation\_audit/}), we test the efficacy of Blind Mode, a UI feature which redacts PII and other 
-sensitive information from the candidate's data. Blind Mode
-also standardises the layout of the candidate's data, including the CV to ensure a fair comparison between candidates, devoid
-of any visual bias.
 
-The aim of this study is to test whether Blind Mode on MERIT's per-candidate Intelligence Report popup reduces the reliance
-on visible proxy markers, compared to the default presentation that exposes the candidate's CV and PII. Evaluators did
-not see the four-candidate ranking overlay (closing the popup would have revealed it). They did still see each candidate's match score and 
-Glass-Box breakdown in the popup. We use a between-subjects design so each evaluator only sees one UI condition and is not affected by 
-an earlier visible review of the same people. Two hypotheses guide the pilot:
+Manual screening is prone to bias and heuristics as mentioned in Section~\ref{sec:background-manual-screening}.
+Study~15 evaluates whether our Blind Mode interface alters recruiter decisions, specifically reducing the reliance on proxy markers such
+as (prestige, layout and titles). This is a UI debiasing pilot study, it is not a fairness certificate.
+Throughout the study, candidates did not see the ranks for the candidate's, but they did see criterion such as match score and 
+Glass-Box breakdown. We follow the between-subjects design, making sure that evaluators only see one UI condition, making sure that
+recruiter perception is not affected by a previous visible review of the same people.
+
+This pilot study is guided by the following hypotheses:
 
 \begin{itemize}
     \item \textbf{H1 (Proxy-gap compression):} The shortlist-rate gap between prestige-high and prestige-mid/low proxy groups 
@@ -33,33 +29,24 @@ an earlier visible review of the same people. Two hypotheses guide the pilot:
 
 
 \subsubsection{Experimental protocol}
-In our experiment, we have four recruiters ($r1$, $r2$, $r3$, $r4$) and four peer evaluators ($p1$, $p2$, $p3$, $p4$). 
-The participants in this study were in a different panel from Study~14, so they have no prior participation, or interaction with
-MERIT. Evaluators were assigned in balanced blocks to ensure a fair comparison (2 recruiters and 2 peers per block).
+For this study, we have a total of eight participants, four recruiters, and four peer evaluators, denoted as $rn$ and $pn$ respectively.
+We have two phases to the study, so to ensure fairness we split participants into two blocks that each contain two recruiters and two peers.
 
 \begin{itemize}
     \item \textbf{Block 1: Visible arm} ($n = 4$, B1 $\in$ \{\textbf{R1, R2, P1, P2}\}): Intelligence Report popup with Blind Mode 
     \textbf{off} (names, employers, institutions, titles, standard layout).
-    \item \textbf{Block 2: Blind arm} ($n = 4$, B2 $\in$ \{\textbf{R3, R4, P3, P4}\}): same popup with Blind Mode \textbf{on by default} 
+    \item \textbf{Block 2: Blind arm} ($n = 4$, B2 $\in$ \{\textbf{R3, R4, P3, P4}\}): same popup with Blind Mode \textbf{on} 
     (candidate identifiers, redacted institutions with tier retained, neutralised skill layout. 
     Section~\ref{sec:bias-mitigation-safeguards}).
 \end{itemize}
 
-For fairness, all participants reviewed the same four profiles in a fixed order against the Intern Backend Engineer JD from 
-Study~07. We only present recruiters with the per-candidate Intelligence Report popup, ensuring that the ranking overlay 
-is not visible to them. Within the popup, however, each candidate's MERIT match score and Glass-Box skill breakdown remained 
-visible in both arms. This is a constraint of the product, rather than an intentional protocol choice. After viewing this popup, 
-evaluators were prompted to record their decision (Shortlist/Reject), confidence (1--5), and a brief justification.
-No multi-source evidence was presented to the participants, and the scores were identical across arms, in other words, the engine
-was never changed. No evaluator saw both Visible and Blind UI on the same candidates.
-
-\paragraph{Design rationale.}
-This protocol aims to test the blind redaction on single-profile reviews, disallowing them from seeing that 
-candidate's rank in the batch. Post-hoc analysis does compare the human shortlist rates against the MERIT ranks, 
-but those ranks were not displayed during the session. We would not allow the evaluators to view the 
-cohort rankings to avoid potential bias or memory effects. The between-subjects design removes the effect of 
-visible-then-blind memory on the same evaluator. We have that $n = 4$ per arm due to the limited number of participants,
-this increases the variance of the results, but we are still able to draw relatively reliable conclusions. Results are directional only.
+In this study, all participants review the same four profiles in a fixed order against the Intern Backend Engineer JD from Study~07.
+We always hide the ranking page from evaluators, only showing the report popup. Due to our intentional design choices, match scores,
+audit trails and confidence scores are always visible in the popup. After viewing the popup, evaluators record their decision (Shortlist/Reject),
+and also their confidence in that decision (1--5) alongside a brief justification. We do not present evidence beyond the CV. No
+evaluator saw both Visible and Blind Mode on the same candidate to prevent memory effects.
+We have that $n = 4$ per arm due to the limited number of participants, this increases the variance of the results, 
+but we are still able to draw relatively reliable conclusions. Results are directional only due to this small sample size.
 
 \subsubsection{Cohort design}
 Synthetic candidates were selected from Studies~07 and~08, with no overlap with the Study~14 set 
@@ -116,27 +103,19 @@ summarises the prestige proxy gap used for H1.
     \end{tabular}
 \end{table}
 
-\paragraph{Visible arm ($n = 4$).}
-Riko was shortlisted by all four evaluators (100\%). Vincent received no shortlists (0\%): recruiters cited his intern title, 
-short tenure, and a corrupted PDF header on the visible CV. Aisling and Jude each received one shortlist (25\%). In this arm, 
-decisions clearly followed visible prestige cues (university names, employer logos) and job titles more than backend-intern fit.
+\paragraph{Visible arm}
+All of the evaluators shortlist Riko, and all recruiters reject Vincent, noting his short tenure and corrupted header.
+Aisling and Jude each receive one shortlist decision. In the visible arm, it is strongly suggested that decisions are
+led by visible cues such as university names, employer logos and job titles, as opposed to the candidate-job fit.
 
-\paragraph{Blind arm ($n = 4$).}
-\textbf{H1} is supported in direction: the prestige gap fell from 50~pp to 12.5~pp (Table~\ref{tab:bias-disparity-metrics}), 
-mainly because Vincent (0\% $\rightarrow$ 75\%) and Aisling (25\% $\rightarrow$ 75\%) were shortlisted far more often. 
-\textbf{H2} is strongest for Vincent and Aisling---the profiles most penalised by visible layout and titles. Riko dropped to 
-75\% (3/4): one recruiter rejected him as overqualified for an intern role even though he had the highest MERIT score. Jude 
-rose to 50\% (2/4) once employers were hidden and skill bullets were easier to read. Blind Mode did not make everyone agree 
-with MERIT's ordering, it changed \emph{who} got a fair first look when names and schools were removed.
-
-\subsubsection{Qualitative themes}
-Facilitator notes (\texttt{responses.txt}) match the table. In the visible arm, evaluators mentioned firm logos, school names, and 
-``intern'' labels. In the blind arm, they referred to skill lists and whether the person fit the intern JD. Match scores and 
-breakdowns were always shown in the popup (Section~\ref{subsec:construct-validity}), so recruiters could still lean on MERIT's number.
-The four-candidate ranking overlay was never shown.
-
-\subsubsection{Limitations}
-This pilot ($n = 4$ per arm) supports directional trends only, not inferential statistics, see Section~\ref{sec:threats-to-validity}.
+\paragraph{Blind arm}
+The prestige gap falls from 50pp to 12.5pp, as shown in Table~\ref{tab:bias-disparity-metrics}.
+The two candidates leading this change are Vincent (0\% $\rightarrow$ 75\%) and Aisling (25\% $\rightarrow$ 75\%), as they were shortlisted
+more often due to the hidden prestige cues. This supports H1 (Proxy-gap compression). HE is also addressed through these two candidates,
+since they were also often penalised for visible layout and titles. Another interesting observation is that, similar to Section~\ref{subsec:study-08-spearman-seniority},
+overqualification is still a factor to consider, since Riko was rejected by a recruiter for this very reason. Blind Mode does not
+make everyone agree with MERIT's ordering, and it shouldn't be expected to. Blind Mode is designed to change who gets a fair first look
+once we hide the names of employers and academic institutions.
 
 \subsubsection{Study 15 takeaway}
 Blind Mode is useful as a first-pass safeguard, it reduces obvious proxy bias in this pilot and helps profiles like 
@@ -144,7 +123,8 @@ Vincent get considered when titles and formatting had put them at a disadvantage
 checks, and it is not proof of demographic fairness.
 
 \textbf{Outcome:} Directionally meets the blind gap-compression criterion (prestige gap 50~pp $\rightarrow$ 12.5~pp).
-Formative pilot only ($n = 4$ per arm), not inferential proof of fairness.
+Formative pilot only ($n = 4$ per arm), not inferential proof of fairness. It supports the direction of results, but that is not
+guarantee of fairness, see Section~\ref{sec:threats-to-validity} for further clarification.
 
 \subsection{Study 06: Adversarial Stress Testing}
 \label{subsec:study-06-adversarial}
@@ -263,14 +243,15 @@ assess deployment feasibility (latency and memory at batch scale) rather than wh
 or transparency gaps from Section~\ref{sec:relevance-to-merit}.
 We benchmark only against our in-repository engine variants.
 
-The two studies benchmark the performance and scalability of the engines, benchmarking both runtime and spacetime complexity.
-We perform the benchmarks for cohorts of size $N \in \{10, 50, 100, 200, 500\}$ against the Traditional ATS, Modern AI ATS,
-MERIT (CV-Only), MERIT (Full without explainability), and MERIT (Full with explainability). Study~02 initialises each engine once
-and then runs wall-clock batch time. Study~03 separates the static load at initialisation from the incremental batch overhead from
-candidates to separate setup and operational overheads. Benchmarks were run on Windows~11 (AMD Ryzen~7 7800X3D, Python~3.11.9).
-Scoring is CPU-bound and excludes the costs of PDF ingestion, API calls and network latency from interactions with the supabase
-database. Tables~\ref{tab:runtime-results} and~\ref{tab:study03-memory} present
-the results, for a graphical representation, see Appendix~\ref{appendix:fairness-scalability-charts}.
+
+The runtime and spacetime studies are performed for cohorts of size $N \in \{10, 50, 100, 200, 500\}$ against the two baselines (Traditional and Modern AI),
+as well as three variants of MERIT (CV-Only, Full without explainability, Full with explainability). In study~02, we initialise each
+engine once and then measure the wall-clock time for each engine under each cohort size. For study~03, we separate the initialisation 
+cost from the incremental batch overhead per candidate. We run these benchmarks on Windows~11 (AMD Ryzen~7 7800X3D, Python~3.11.9).
+Scoring is a purely CPU-bound operation, we do not leverage GPU acceleration or other hardware accelerations. We also do not
+account for costs such as PDF ingestion, API calls and network latency from the interactions with our Supabase database.
+The results are presented in Table~\ref{tab:runtime-results} and~\ref{tab:study03-memory}, 
+for a graphical representation, see Appendix~\ref{appendix:fairness-scalability-charts}.
 
 \begin{table}[htbp]
     \centering

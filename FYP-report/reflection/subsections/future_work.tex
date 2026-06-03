@@ -9,7 +9,7 @@ MERIT to be a more useful tool for recruiters.
 \label{subsec:future-evidence-ecosystem}
 
 As shown earlier, the introduction of multi-source fusion can both help and hinder candidates, leading to an open-source visibility bias.
-Chapter~\ref{sec:data-sources} already argues for platforms such as LeetCode, HackerRank, and Stack Overflow as signals
+Section~\ref{sec:data-sources} already argues for platforms such as LeetCode, HackerRank, and Stack Overflow as signals
 to evaluate candidate competency. A natural extension is a plug-in ingestion interface that normalises each API into MERIT's evidence schema. 
 Coding platforms are particularly valuable for candidates with sparse GitHub histories but strong competition or assessment records.
 
@@ -22,7 +22,7 @@ penalising candidates for having missing data (such as an empty GitHub profile).
 \label{subsec:future-ingestion}
 
 Pillar~1 is currently hindered by the accuracy of the ingestion layer, specifically towards unstructured data parsing.
-The reliance on basic heuristics and regular expressions alongside \texttt{pdfplumber} \cite{pdfminer} resulted in 
+The reliance on basic heuristics and regular expressions alongside \texttt{pdfplumber} \cite{pdfplumber} resulted in 
 fragile extraction, particularly for multi-column layouts where name match rates fell to 13.3\%. To address this 
 in a future iteration, we should replace our current coordinate-based extraction with a multimodal architecture 
 designed for spatial document understanding. Integrating an open-source model such as LayoutLM or a Vision-Language 
@@ -91,7 +91,7 @@ MERIT requires evidence that is outcome-linked to demonstrate its effectiveness 
 A longitudinal study that is able to link MERIT rankings to interview pass rates and early job performance would be a valuable addition
 to the evaluation of MERIT as a technical recruitment tool. 
 
-While Study~14 is a good point to start at when it comes to the testing of usability and confidence calibration, we should turn 
+While Study~14 is a good starting point for testing usability and confidence calibration, we should turn 
 towards larger recruiter panels to ensure that the results are generalisable to the wider population of recruiters. Furthering this
 point, we should also repeat the memory and runtime benchmarks from Studies~02--03 to ensure that the results are consistent across different hardware
 once accounting for the potential variance in hardware and language runtime. 

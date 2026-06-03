@@ -1,202 +1,214 @@
 \section{Threats to Validity}
 \label{sec:threats-to-validity}
 
-The evaluation in this chapter is designed to be both comprehensive and rigorous, however, no empirical study
-is without its limitations. In this section, we cover any threats to validity that may affect the validity of
-our results. Following the established taxonomy of Wohlin et al.~\cite{wohlin_threats}, we follow the same categorisations.
-We cover construct validity, internal validity, external validity and conclusion validity. Across these fifteen evaluation 
-studies, we attempt to provide evidence of the systemic behaviour of MERIT's architecture, whilst also maintaining 
-transparency regarding the limitations of these studies.
-
-\subsection{Comparison to Prior Evaluation Designs}
-\label{subsec:prior-eval-comparison}
-
-Compared to the closest related evaluation work, this chapter prioritises controlled tests of MERIT's design over full field realism.
-Lo et al.~\cite{lo2025aihiring} evaluate end-to-end agreement on anonymised real resumes with an HR panel. This reflects how hiring 
-teams use screening tools in practice, however, it does not expose multi-source conflict resolution or test against in-repository ATS baselines.
-Montandon et al.~\cite{montandon2021_roles} use a labelled GitHub dataset to infer technical roles. MERIT instead uses persona-based 
-claim--evidence scenarios to check whether CV claims match external evidence, rather than assigning coarse role labels.
-Gugnani and Misra~\cite{gugnani2020} train corpus-wide embeddings with fixed scoring coefficients. We instead run ablations to see 
-whether evidence-aware fusion improves agreement with expert rankings beyond a SBERT CV-only semantic baseline~\cite{reimers2019sentence}.
-These choices are intentional. Synthetic stress tests and in-repository baselines support internal validity for RQ2--RQ3 
-(Section~\ref{subsec:eval-design-rqs}). Studies~14--15 add directional evidence on 
-transparency and proxy debiasing through bounded human pilots. Note that we do not treat these pilots as proof that MERIT would 
-generalise in live hiring workflows.
-
+In previous sections of this chapter, we address our research questions (RQ1--RQ3) 
+(Section~\ref{subsec:eval-design-rqs})
+with twelve targeted studies. The other three studies are used to evaluate the fairness, 
+security and computational scalability of MERIT. Like any other evaluation, we need to consider that these
+results are subject to threats that can detract from any of the claims that we make. We list these threats
+according to the works of Wohlin et al.~\cite{wohlin_threats}. More specifically, we have the following forms of
+validity to which we need to consider threats: construct, internal, external and conclusion validity.
+In this section, we state what each metric can, and cannot, support. 
 
 \subsection{Construct Validity}
 \label{subsec:construct-validity}
 
-Construct validity refers to the extent to which the metrics and instruments used in the evaluation studies genuinely
-measure the research questions that are being investigated.
+The first form of validity is that of construct validity, which refers to the extent
+to which the metrics and instruments we use actually measure the research questions we claim to address.
 
-\textbf{Self-Defined Ground Truth and Researcher-Authored Personas.}
-Most studies rely on ground truth authored by myself: synthetic JSON profiles and sabotaged GitHub payloads. This presents
-the risk of confirmation bias, where evaluation data may inadvertently encode the behaviours the engine was designed to exhibit.
-We aim to mitigate this through intentionally including deliberate failure cases, the key example being Study~10, where
-GitHub payloads are deliberately sabotaged to contradict the CV narrative.
-We do not claim independent external validation of the remaining ground truth datasets due to the time and resource constraints 
-of the project. Furthermore, evaluating on real applicant tracking data was impossible due to strict GDPR and PII constraints. 
-Synthetic isolation was therefore the only ethically viable way to thoroughly test the mathematical bounds of the Bayesian and 
-Shapley engines without compromising candidate privacy.
+\textbf{Synthetic ground truth.}
+Some of our studies, specifically Studies~01, and 07--10, use synthetic ground truth data in the form of
+JSON profiles and CV PDFs. Due to the nature of this data being created by the author, it is subject to
+confirmation bias, the evaluation data we synthesise may unintentionally be authored to exhibit the
+behaviours that we claim to test for, essentially cherry-picking the data to support our claims.
+We aim to reduce the effect of confirmation bias by deliberately including cases that are designed to
+fail for our system to provide a more robust evaluation. One study worth pointing out is the Signal
+Dissonance study (Study~10), where we purposely create contradictory multi-source evidence to 
+contradict the CV. None of our synthetic data is externally validated, and we do not use
+real-world data due to GDPR and PII constraints. The controlled personas and synthetic data
+were, therefore, the most ethical way to stress-test our system without the risk of exposing real candidates,
+while maintaining reproducibility, since we include the data in the GitHub repository.
 
-\textbf{Skills Dictionary Coverage (Study~04).}
-Study~04's skill recall (38.6\%) reflects Devicon dictionary scope (programming languages and web frameworks only), 
-not parser failure. See Section~\ref{subsec:study-04} for the full error analysis.
+\textbf{Proxy metrics and the gap between ingestion and scoring.}
+Throughout our studies, we report metrics such as parser F$_1$, Spearman $\rho$, shortlist rates, SUS, and more.
+These metrics are not hire outcomes, nor interview pass rates or offer acceptance rates. Because of this, we
+cannot claim that MERIT ``improves hiring outcomes''. A high Spearman $\rho$ or narrow Blind Mode prestige gap
+cannot be interpreted as MERIT improving these decisions, however, we can still observe the nuanced behaviour
+of our system and draw specific conclusions about the behaviour of our system. Due to the small sample size,
+we cannot generalise the results to a larger population.
 
-\textbf{Proxy Metrics for Recruitment Quality.}
-The evaluation measures parser F1-scores, rank correlations, shortlist rates, SUS and batch latency. Note how these metrics
-are not downstream hiring outcomes such as interview pass rates and offer acceptance. A high Spearman $\rho$ or a narrow
-Blind Mode prestige gap does not indicate that MERIT (Full) is able to improve hiring decisions. We would need to perform
-field trials with outcome labels to actually assess the effectiveness of MERIT (Full) in improving hiring decisions.
+Another thread is that our Human-Machine Alignment studies (Study~07--10) use pre-parsed JSON data that assumes
+perfect ingestion of data. In our RQ1 studies, we show that ingestion is not perfect, even under authored synthetic data,
+therefore end-to-end MERIT behavior may differ from what we observe in these studies as they do not account for parser noise.
 
-\textbf{Prestige Proxies Versus Demographic Fairness.}
-For Study~15, we test the fairness of Blind Mode through layout standardisation, redaction of names, employers and academic institutions,
-while still retaining the tier labels. It is critical to note that the redaction of some fields, such as names, can help to ensure
-fairness, however, other fields, such as employers and academic institutions, are not protected characteristics. Therefore, 
-the redaction of these fields does not guarantee fairness. Blind Mode must not be read as a fairness certificate.
+\textbf{Study-specific construct threats (01, 04--05, 06--11, 13--15).}
+Study~01 and 06--10 intentionally use sparse LinkedIn personas to stress test the
+contrast between a CV's claimed evidence and GitHub's demonstrated evidence. LinkedIn as a data source is considered
+supplementary to a CV profile to account for parser error. However, since we assume perfect ingestion of data, we do not
+need LinkedIn to fill in the gaps, therefore we can still observe the behaviour of our system without the need for LinkedIn
+(Section~\ref{subsec:study-01-comparative-ablation}, 
+Section~\ref{sec:human-machine-alignment}).
 
-\textbf{Automation Bias and Visible Engine Scores (Study~15).}
-As mentioned in Section~\ref{subsec:bias-mitigation-efficacy}, we did
-not mask the engine scores and glass-box breakdowns in the Blind Mode arm. This means that evaluators may 
-have anchored on the engine scores and glass-box breakdowns rather than re-deriving judgments from redacted text alone.
-For example, evaluators may have been more likely to shortlist candidates with high engine scores, which could lead to a bias
-in the results.
+Study~04's skill recall does not reflect parser failure alone, it reflects the dictionary scope of the Devicon dataset
+(Section~\ref{subsec:study-04}).
+Study~05 bounds how much we can trust JD-driven metric configuration when JD extraction is imperfect (Section~\ref{subsec:study-05}).
+Study~13 employs a single global corpus for all TF-IDF calculations, meaning that the results suffer
+from cross-role IDF interference. The study also suffers from uneven distribution of scores from the participants who
+help in the generation of the ground truth. Since TF-IDF aims for a fairly even distribution of scores, we depress
+the $\rho$ because of these decisions (Section~\ref{subsubsec:study-13-limitations}).
 
-\textbf{Stress-Testing CV--GitHub Contrast.}
-Studies~06--10 use sparse LinkedIn personas by design to isolate CV-versus-GitHub contrast rather than 
-repeat self-reported CV claims. Note that production deployments with fully populated LinkedIn may behave differently. 
-Rationale and Shapley implications are discussed in Section~\ref{subsec:study-11-shapley-verification}.
-
-\textbf{Usability and Trust Instruments (Study~14).}
-The HCI study is discussed in Section~\ref{subsec:hci-trial-protocol},
-SUS here, indicates the prototype's feasibility, rather than product-market validation.
+The SUS scores generated from Study~14 indicate prototype feasibility, they are 
+not product-market validation (Section~\ref{subsec:hci-trial-protocol}).
+Blind Mode standardises layout, redacts names, employers and institutions, but it keeps tier labels due to its
+usage in the scoring pipeline. Because of this, Study~15 does not guarantee demographic fairness.
+We do not mask engine scores in Blind Mode, so evaluators may have anchored on match percentages for shortlist decisions (Section~\ref{subsec:bias-mitigation-efficacy}).
+Blind Mode must not be interpreted as a fairness certificate.
 
 \subsection{Internal Validity}
 \label{subsec:internal-validity}
-Internal validity concerns whether the observed results are genuinely caused by the independent variables under study, 
-rather than by confounding factors.
 
-\textbf{Simulated Baseline Systems.}
-The ``Modern AI ATS'' and ``Traditional ATS'' baselines serve as comparators to MERIT (Full) and MERIT (CV-Only). They are
-not proprietary commercial products, nor open-source alternatives. They are both in-repository baselines under identical local inputs.
-Reported speed-ups (e.g.\ $\approx 46\times$ at $N=500$) compare algorithm families upon the author's workstation. As such, it does
-not account for vendor SLAs, API latency, or managed-cloud deployments. Traditional ATS is keyword-counting only and may understate
-modern vendor semantic features.
+Internal validity concerns whether the observed results are caused by the variables 
+under study, rather than by confounding factors.
 
-\textbf{Single-Run and Single-Machine Benchmarks.}
-Studies~02--03 record one wall-clock and memory sweep per configuration on a single consistent development workstation. The specifications
-of this workstation are discussed in Section~\ref{subsec:studies-02-03-scalability}. Note
-that there are no confidence intervals, cross-hardware replication and repeated trials. There is a likelihood of shifts in terms of 
-absolute seconds or MB figures on rerun. We deem these shifts to be relatively insignificant due to the general pattern of runtime and
-memory overhead being relatively consistent across the different configurations.
+\textbf{In-repository baselines and benchmarks.}
+The baselines in our studies (Traditional ATS and Modern AI ATS) are in-repository implementations that aim to
+proxy the keyword-matching and AI-assisted ATS categories mentioned earlier in Section~\ref{sec:automated-screening}.
+They are not commercial products, nor do they replicate the full complexity or sophistication of the real-world ATS systems.
+The keyword baseline may produce lower scores than the semantic baseline in real-world ATS systems.
+The Modern AI baseline uses SBERT to compute cosine similarities between CV embeddings and JD embeddings, real world
+ATS systems may employ more sophisticated models which would likely produce better results.
+Reported baseline statistics for runtime and spacetime compare the algorithm families on the author's workstation.
+Our baselines do not account for factors such as API latency, PDF ingestion, and network I/O.
+Studies~02--03 only record single runs on a workstation without confidence intervals (Section~\ref{subsec:studies-02-03-scalability}).
+Scores are likely to vary from run to run, however, the general pattern will remain stable across 
+configurations under identical hardware and software.
 
-\textbf{Fixed HCI Protocol Order (Study~14).}
-In the HCI study, Stage~1 always precedes Stage~2, and as such, the reversals and confidence gains may partly reflect order effects rather
-than explainability alone.
 
-\textbf{Adversarial Scenario Construction.}
-Study~06 clones a baseline `Honest Candidate' across eight different personas, cleanly isolating perturbation effects. However, it does
-not account for attack sophistication across a real applicant pool. The residual failures, such as the `Smart Squatter' and `Gamer' scenarios,
-are documented as high-effort edge cases, but their base rate in live hiring is unknown.
-
-\textbf{Cherry-Picked Failure and Success Cases.}
-Studies~01 and ~10 both include intentionally engineered failure and success narratives in order to aid explanation. However, such
-narratives may shadow the general pattern of the engine's performance, and as such, they may not be representative of the general population.
-Please refer to Section~\ref{subsec:study-10-spearman-dissonance} and 
-Section~\ref{subsec:study-01a-algorithmic-ablation} for more details.
+\textbf{Protocol and scenario design.}
+As noted under construct validity, our engines use pre-parsed JSON for evaluation, here we note
+that the rank shifts do not account for ingestion errors, they do not validate the full PDF upload pipeline.
+Also, Study~14 always runs the first stage of the pipeline before the second, so the reversals and confidence
+gains might be influenced by order effects, rather than just explainability.
+Study~06 clones one honest baseline and perturbs it with eight different scenarios. This cleanly isolates
+each perturbation, but it does not tell us how often such attacks appear in real candidate pools (Section~\ref{subsec:study-06-adversarial}).
+Studies~01 and~10 intentionally include engineered success and failure narratives to aid explanation 
+(Sections~\ref{subsec:study-01-comparative-ablation}, 
+\ref{subsec:study-10-spearman-dissonance}).
 
 \subsection{External Validity}
 \label{subsec:external-validity}
 
-External validity covers the extent to which our findings may be generalised beyond the conditions of these studies.
+This form of validity revolves around determining the extent to which these findings can be generalised to the wider population,
+beyond the conditions of these studies.
 
-\textbf{Small Cohort Sizes and Discrete Outcomes.}
-Due to the small cohort sizes of $n=10$ candidates per JD, the Spearman rank correlation coefficient $\rho$ is quite volatile,
-and $p$-values are also sensitive to one rank swap. Because of this, we cannot make any claims about the generalisability of the results.
-In a similar vein, Study~15 employs $n=4$ evaluators per arm, and four candidates, so shortlist rates move in 25\% steps, and
-cannot support most claims. Study~14's $N=5$ and Study 13's $N=4$ cannot represent global recruiter populations.
+\textbf{Sample size and controlled scope.}
 
-\textbf{Template Confound in Experience Recall (Study~04).}
-During the ingestion study (Section~\ref{subsec:study-04}),
-we observe a counterintuitive finding that experience recall is higher for multi-column CVs compared to 
-single-column CVs (44.7\% vs. 34.3\%). This is likely a result of the specific set of templates we used to
-generate the multi-column CVs, as evidenced by the fact that two of the fifteen multi-column candidates
-(Alexa Petrovskaya and Karim El Sayed) had an experience recall of 0 despite the previous trend. The benefit
-highlighted in the study is template-specific and should not be generalised beyond the template family
-evaluated in this study.
+The cohort sizes for Studies~07--10 are small, more specifically, 10 candidates per cohort. Due to this
+both the $\rho$ and $p$-values are volatile, and we cannot draw any conclusions about the generalisability 
+of the results based on the $p$-values.
+Studies~13--15 involve small panels of $N = 4$--$5$ participants, thus it cannot support a generalisation
+at the population level.
+In our evaluations, we often prioritise controlled ablation over field realism
+since we want to isolate the behaviour of our system from the noise of the real world.
+Synthetic stress tests and in-repository baselines help us isolate MERIT's
+inner mechanisms, however, they do not replicate live ATS workflows, nor real hiring outcomes.
 
-\textbf{Open-Source and Public-Evidence Bias.}
-MERIT's multi-source pillar benefits from the use of public evidence, such as public GitHub repositories and LinkedIn profiles.
-Our literature anchor for supplementary evidence is Montandon et al.'s GitHub role-inference work~\cite{montandon2021_roles}.
-LinkedIn's integration in MERIT is prototype-specific, it was not evaluated against a comparable published baseline.
-Candidates such as Carl Corp introduce a `Proprietary Data Gap' (Section~\ref{subsec:study-01b-data-source-ablation}) 
-due to the lack of public evidence. Candidates in this situation may be unfairly penalised relative to juniors with active GitHub
-histories, introducing a structural bias toward open-source visibility that may correlate with access to candidate data.
-
-\textbf{Evaluation--Production Gap.}
-Benchmarking measures do not account for the latencies of PDF upload, network I/O, rate-limited API calls to GitHub/LinkedIn
-and database persistence. Production deployments on shared servers or containers are likely to differ from the 
-isolated subprocess RSS on the author's desktop workstation.
-
+\textbf{Templates, evidence, and deployment.}
+Study~04's multi-column layouts follow a specific template family, they do not reflect the
+full diversity of multi-column layouts in the real world. MERIT's multi-source pillar rewards
+public LinkedIn and GitHub signals in the majority of cases, therefore, we cannot generalise 
+the results to the full population of candidates. Our integration of LinkedIn is not deployment-ready,
+we need to benchmark it against an official LinkedIn API to be able to generalise the results.
+Candidates without public evidence (Carl Corp, Section~\ref{subsec:study-01-comparative-ablation})
+are often disadvantaged relative to juniors that have visible open-source histories.
+Benchmarking doesn't account for the latency introduced by API calls, PDF ingestion, Network I/O, and database persistence.
+The measurements we collect are not representative of production latency and memory usage.
 
 \subsection{Conclusion Validity}
 \label{subsec:conclusion-validity}
 
-Conclusion validity assesses the extent to which the conclusions drawn from the data are justified. We also consider
-whether the methods used are appropriate.
+Conclusion validity addresses whether the conclusions we draw from our data are actually justified
+by our choice of method and metrics.
 
+\textbf{Spearman $\rho$ as the primary alignment metric.}
 
-\textbf{Spearman's Rank Correlation as the Primary Metric.}
+Spearman $\rho$ is a measurement of monotonic agreement against another ordering. It cannot measure
+the calibration of match percentages, nor can it measure the magnitude of individual rank swaps.
+Our engines may produce similar $\rho$ values, but they may produce significantly different score spreads.
+We include the full rankings and scores for each engine in the project repository~\cite{merit_repo}, rather than
+treating correlation coefficients alone as enough evidence. Studies~07--10 have recruiters rank only CV PDFs, 
+while MERIT (Full) has access to GitHub and LinkedIn data. Spearman $\rho$ therefore reflects protocol
+asymmetry along with engine quality (Section~\ref{subsec:spearman-method}).
+The negative $\rho$ in Study~08 is due to engine misalignment under an intern JD, not sampling noise.
+Our engine does not account for, nor claim seniority-aware hiring unless we introduce explicit policy rules
+to account for this.
 
-The usage of Spearman $\rho$ measures the monotonic agreement with expert ordering. It does not measure the calibration of 
-match percentages, nor the magnitude of the rank swaps. Engines with a similar $\rho$ may produce significantly different score 
-spreads. Therefore, we report $\rho$ alongside the detailed rankings available in the project repository~\cite{merit_repo},
-to allow for inspection, rather than treating the spearman correlation coefficient alone as sufficient.
+\textbf{Shapley verification and multiple studies.}
+In Study~11, we verify efficiency, null-player, additivity, and determinism on a set of ten candidate profiles.
+We intentionally leave out the axiom of symmetry since sources are heterogeneous by design (Section~\ref{subsec:study-11-shapley-verification}).
+The negative GitHub attribution for Vince Vault is mathematically valid in our evaluation, however it
+may be considered as a cognitive surprise to recruiters.
 
-\textbf{Interpretation of Negative Correlations (Study~08).}
-The negative $\rho$ under the intern JD stress test (Section~\ref{subsec:study-08-spearman-seniority}) 
-indicates misalignment rather than sampling noise. We do not claim seniority-aware hiring without explicit policy rules.
+We run fifteen studies on overlapping personas and engines, which creates a risk of selectively emphasising supportive
+results, even if we document failures explicitly.
+The chapter should not be read as a meta-analysis with pooled effect sizes.
 
-\textbf{Incomplete Empirical Validation of Shapley Axioms.}
-Study~11 verifies the axioms of efficiency, null-player, additivity and determinism on ten synthetic profiles. The axiom of symmetry,
-however, is omitted since the `players' of this cooperative game are intentionally heterogeneous. Negative GitHub attributions,
-such as Vince Vault, are mathematically valid in the game we study, however, they could be cognitively surprising.
-
-
-\textbf{Multiple Comparisons Across Studies.}
-We have conducted fifteen studies on overlapping personas and engines. This presents the risk of researcher degrees of freedom,
-where the researcher may selectively emphasise supportive studies and document failures. We present failure modes explicitly to 
-counter narrative cherry-picking, but the chapter should not be read as a meta-analysis with pooled effect sizes.
-
-\subsection{Mitigations \& Bounded Claims}
+\subsection{Bounded Claims}
 \label{subsec:validity-mitigations}
 
-Despite the limitations we note above, this chapter still provides convergent evidence about how MERIT behaves under controlled
-data. We cannot treat this as a proof of production readiness, however, we can frame three bounded claims that follow directly from
-the studies.
-
-\textbf{The use of evidence.}
-In the emulated JSON cohorts (Studies~01, 06, 07--10), MERIT's multi-source fusion and integrity checks are shown to move 
-rankings in directions that match the design's intent. An example of this is Jordan Smith, a candidate who is usually penalised 
-by CV-only systems, however, is uplifted when GitHub is included. Another example is the lowering of scores when presented with
-evidence that contradicts the candidate's claims.
+Despite the limitations we note in this section, the chapter still provides convergent directional evidence under
+controlled data.
+We therefore frame three bounded claims, one per research question.
+Each claim states what the evaluation supports under our internal criteria (Table~\ref{tab:eval-literature-traceability}), and what it does not.
 
 
-\textbf{Glass-Box and Blind Mode affordances.}
-In the HCI studies (Studies~14--15), both the Glass-Box overlay, as well as Blind Mode can influence the recruiter's behaviour,
-as well as their stated confidence. We treat these as formative findings only, given the convenience samples and visible match scores
-in the popup for Blind Mode.
+\textbf{RQ1 (Extensibility).}
+Studies~04--05 allow us to claim that PDF ingestion is usable, but below the $\geq 80\%$ parsing target.
+Skill recall is bounded by the scope of the Devicon dataset (38.6\%). Other metrics from this study are
+influenced by layout sensitivity, especially for names on multi-column CVs (Section~\ref{subsec:study-04}).
+Study~13 shows that TF-IDF metric priorities align with recruiter judgement directionally (aggregate $\rho = 0.25$), 
+presenting exploratory evidence only (Section~\ref{subsubsec:study-13-limitations}).
 
 
-\textbf{Prototype operability.}
-For the benchmark studies (Studies~02--03), MERIT is shown to remain within sub-minute targets for $N \le 500$ with the full
-capabilities of MERIT (all sources and full explainability). The overall pattern of runtime and memory overhead is still
-enough to support a feasibility argument for batch screening.
+\textbf{RQ2 (Multi-source fusion).}
+Study~12 confirms that Beta--Bernoulli fusion favours demonstrated evidence over self-reported claims (Section~\ref{subsec:study-12-bayesian-conflict-resolution}).
+Studies~01 and~06 show rank and score shifts that match design intent for hidden talent, fraud and
+adversarial personas (Sections~\ref{subsec:study-01-comparative-ablation} and~\ref{subsec:study-06-adversarial}).
+Studies~07--10 show that MERIT (Full) meets the directional $\rho \geq 0.7$ criterion in Studies~07 and~09,
+however, this is not the case in Studies~08 or~10, and it does not lead every cohort column (Section~\ref{subsec:spearman-synthesis}).
+We claim that multi-source fusion and integrity checks can improve alignment with expert ordering when
+supplementary evidence agrees with the CV. We do not claim that MERIT (Full) replaces keyword or semantic
+baselines in all hiring contexts, nor that it can perform well when candidates have no public evidence.
+We cannot claim that MERIT works well when presented with batch-wide contradictory evidence, nor can we
+claim MERIT can perform well when presented with nuances such as overqualification (Section~\ref{subsec:study-08-spearman-seniority}).
 
-We do not claim that MERIT is fairness-certified, nor do we wish to present it as a fully autonomous hiring authority.
-Future work would be needed to address these limitations, such as counterbalanced HCI trials, larger independent recruiter panels,
-repeated benchmarks with variance reporting, end-to-end PDF ingestion tests, and field studies linking MERIT outputs to interview
-and hire outcomes. MERIT is best described as an \textbf{auditable screening assistant}. Its purpose is to help recruiters
-inspect evidence and override the engine if needed, rather than replacing human judgement outright.
+\textbf{RQ3 (Explainability and Transparency).}
+Study~11 verifies the mathematical correctness of the Shapley values, and shows 
+that they satisfy the efficiency, null-player, additivity, and determinism axioms on synthetic profiles (Section~\ref{subsec:study-11-shapley-verification}).
+Negative GitHub attributions are also mathematically valid in that formulation.
+Study~14 meets the SUS target in our pilot ($N=5$, mean SUS 81.5), and we observe decision reversals
+throughout the study, presenting directional evidence for glass-box feasibility (Section~\ref{subsec:hci-trial-protocol}).
+Study~15 shows directional compression of prestige-driven shortlist gaps in the UI (50~pp to 12.5~pp), but it is not
+proof of demographic fairness due to the small-scale pilot (Section~\ref{subsec:bias-mitigation-efficacy}).
+We claim that our transparency makes penalties and uplifts contestable for recruiters, but we do not 
+claim that it removes automation bias since visible engine scores and tier labels can still anchor 
+evaluators rather than eliminate bias (Section~\ref{subsec:construct-validity}).
 
+\textbf{Supplementary: Feasibility and Security.}
+Studies~02--03 both support deployment feasibility from a scalability and performance perspective under
+three data sources. We can claim that MERIT's Shapley explainability layer is usable, but it is not cost-free at scale.
+It is scalable with candidate size, but not with the number of data sources.
+Study~06 shows that adversarial perturbations can be used to stress test the integrity of the system, and that
+the system is able to detect and respond to the majority of these perturbations. We do not claim that MERIT
+defends against all adversarial attacks, nor can we claim that it is a fair hiring system.
+
+\textbf{Final Claims.}
+MERIT is not fairness-certified and should not be considered as a fully autonomous hiring authority.
+Future work requires counterbalanced HCI trials to account for order effects.
+To make stronger claims, MERIT needs larger independent recruiter panels, repeated benchmarks with variance reporting
+on various hardware and language configurations. MERIT would also need end-to-end PDF ingestion tests as well as 
+field studies that can link MERIT rankings to interview, hire and performance outcomes.
+
+MERIT is best described as an \textbf{auditable screening assistant}, where its purpose is
+to help recruiters inspect evidence. Decisions should not be treated as the final decision, but rather as a hypothesis
+to be tested and challenged by the recruiter.

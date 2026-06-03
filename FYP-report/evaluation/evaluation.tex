@@ -1,7 +1,7 @@
 \chapter{Evaluation}
 \label{ch:evaluation}
 
-This chapter evaluated whether MERIT actually addresses the three gaps that were pointed out
+This chapter evaluates whether MERIT actually addresses the three gaps that were pointed out
 earlier in Section~\ref{sec:relevance-to-merit}. 
 Each of MERIT's pillars maps to a research question (RQ), which is derived from the literature
 review earlier. Our studies are presented bottom-up (Ingestion $\rightarrow$ Fusion $\rightarrow$ 
@@ -14,20 +14,21 @@ and also cited inline.
 \label{subsec:eval-design-rqs}
 
 \textbf{RQ1 (Extensibility):} Can JD-driven, configurable metrics and reliable document ingestion
-aid in the scoring of candidates? Gugnani and Misra~\cite{gugnani2020} and Lo et al.~\cite{lo2025aihiring} criticise
+aid candidate scoring? Gugnani and Misra~\cite{gugnani2020} and Lo et al.~\cite{lo2025aihiring} criticise
 the rigidity of scoring, as well as its constraints to fixed-dimension scoring. Resume parsing benchmarks,
 such as ResumeBench~\cite{emnlp2025resumebench} also document layout-driven extraction failures that
 can bound any downstream metric system.
 
-\textbf{RQ2 (Multi-source):} Does evidence-aware multi-source fusion improve ranking over
+\textbf{RQ2 (Multi-source):} Does evidence-aware multi-source fusion improve candidate ranking over
 CV-only baselines when public work samples support or contradict self-reported claims? Here, we extend
 the work of Montandon et al.~\cite{montandon2021_roles} by considering other signals, specifically
 GitHub to address unreliable claims present on a candidate's CV~\cite{henle2019_resume_fraud,dunning2004}.
 
-\textbf{RQ3 (Transparency):} Can glass-box explainability and transparency aid decision calibration relative
-to that of a black-box system? We aim to address the transparency deficits that are documented in 
+\textbf{RQ3 (Transparency):} Can glass-box explainability and transparency aid recruiter decision calibration relative
+to that of a black-box system? This RQ aims to address the transparency deficits that are documented in 
 modern algorithmic hiring reviews~\cite{bogen2018,raghavan2020}. We also apply the coalition Shapley
-formalism from explainable ML~\cite{lundberg2017unified} at the data-source level (Section~\ref{sec:explainable-ai-shapley}).
+formalism from explainable ML~\cite{lundberg2017unified} at the data-source level 
+(Section~\ref{sec:explainable-ai-shapley}).
 
 We map each RQ to prior work along with the associated studies and primary metrics to answer these RQs (Table~\ref{tab:eval-literature-traceability}).
 We also report criteria that we use to determine the success of each RQ. Note that our success criteria are not
@@ -37,10 +38,11 @@ for the keyword-matching and AI-assisted ATS categories mentioned earlier in Sec
 We do not implement a rule-based ATS baseline, the category is knockout-oriented and does not produce ranked, 
 pool-wide scores comparable across candidates. Our studies instead require rankings 
 (Spearman $\rho$), so we compare MERIT only against the two ranking-oriented CV-screening paradigms above. 
-We do not believe this to be a significant threat to validity due the similarities between Keyword-Matching and Rule-Based ATS systems.
-Expert-consensus rankings follow from Lo et al.'s~\cite{lo2025aihiring} evaluation paradigm of comparing automated
-scores with HR judgement. High Spearman $\rho$ measures the agreement with that panel, but cannot be 
-generalised due to the sample size.
+We do not believe this to be a significant threat to validity due to the similarities between Keyword-Matching and Rule-Based ATS systems.
+For Studies~07--10, expert-consensus rankings were produced by the same four-recruiter panel described in Section~\ref{subsec:spearman-method},
+who reviewed CV PDFs only,
+following Lo et al.'s~\cite{lo2025aihiring} paradigm of comparing automated scores with HR judgement.
+High Spearman $\rho$ measures agreement with that consensus, but cannot be generalised due to the sample size.
 
 Our evaluation takes inspiration from software-engineering experimentation~\cite{wohlin_threats}
 through construct isolation, where we use synthetic JSON personas to isolate scoring logic from 
@@ -66,12 +68,12 @@ Outcomes by pillar are summarised in Section~\ref{sec:objectives-retrospective}.
 
 Each study maintains a one-to-one mapping with a prefixed subdirectory under \texttt{evaluation/} 
 in the project repository~\cite{merit_repo} (e.g.\ Study~04 $\leftrightarrow$ \texttt{04-ir\_parser\_test/}).
-The sole exception is Study~01, which is split into two sub-studies (01A and 01B) due to the depth of the 
-evaluation.
 
 \begin{table}[H]
     \centering
-    \caption[Evaluation study catalogue]{Evaluation study catalogue (repository prefixes in Section~\ref{subsec:eval-codebase-traceability}; Study~01 split as 01A/01B). Studies~02,~03, and~06 are engineering supplements. Skill decay is in Section~\ref{subsec:study-08-skill-decay}, not a separate repo study.}
+    \caption[Evaluation study catalogue]{Evaluation study catalog, prefixing each study by order of
+    implementation. Studies~02, ~03 and~06 are engineering or RQ supplements, 
+    they do not contribute to an RQ's success criteria.}
     \label{tab:eval-study-catalogue}
     \footnotesize
     \renewcommand{\arraystretch}{1.28}
@@ -86,53 +88,50 @@ evaluation.
         \hline
         \textbf{No.} & \textbf{Name} & \textbf{Purpose} & \textbf{RQ} \\
         \hline
-        \hyperref[subsec:study-01a-algorithmic-ablation]{01A} & Engine ablation &
-        Test Full vs.\ CV-only MERIT and ATS baselines on ten personas. &
-        2 \\
-        \hyperref[subsec:study-01b-data-source-ablation]{01B} & Source ablation &
-        Locate when GitHub/LinkedIn corroboration lifts or penalises fusion vs.\ CV-only on the 01A pool. &
+        \hyperref[subsec:study-01-comparative-ablation]{01} & Comparative ablation &
+        Compare four engines on 10 personas and analyse fusion rank shifts. &
         2 \\
         \hyperref[subsec:studies-02-03-scalability]{02} & Runtime &
-        Confirm batch latency is deployable across $N$ (engineering supplement). &
+        Check runtime stays practical as $N$ grows (engineering supplement). &
         --- \\
         \hyperref[subsec:studies-02-03-scalability]{03} & Memory &
-        Confirm memory use is deployable across $N$ (engineering supplement). &
+        Check memory stays practical as $N$ grows (engineering supplement). &
         --- \\
         \hyperref[subsec:study-04]{04} & CV parser &
-        Bound CV extraction error before any downstream scoring uses parsed fields. &
+        Measure CV parsing error before scoring. &
         1 \\
         \hyperref[subsec:study-05]{05} & JD parser &
-        Bound JD extraction before JD-driven, TF-IDF metric configuration. &
+        Measure JD parsing error before TF-IDF configuration. &
         1 \\
         \hyperref[subsec:study-06-adversarial]{06} & Adversarial &
-        Stress fusion and integrity under stuffing, fraud, and gaming (RQ2 supplement). &
+        Stress-test fusion and integrity against stuffing, fraud, and gaming (RQ2 supplement). &
         --- \\
         \hyperref[subsec:study-07-spearman-high-discrimination]{07} & High disc. &
-        Expert $\rho$: does Full MERIT lead when aligned multi-source evidence separates fit? &
+        Expert $\rho$: does MERIT Full lead when sources agree? &
         2 \\
         \hyperref[subsec:study-08-spearman-seniority]{08} & Seniority &
-        Expert $\rho$: do engines (incl.\ fusion) over-rank seniority on an intern JD? &
+        Expert $\rho$: do engines over-rank seniority for an intern JD? &
         2 \\
         \hyperref[subsec:study-09-spearman-peer]{09} & Peer comp. &
-        Expert $\rho$: does fusion break peer ties when CVs alone are ambiguous? &
+        Expert $\rho$: does fusion break ties when CVs are similar? &
         2 \\
         \hyperref[subsec:study-10-spearman-dissonance]{10} & Dissonance &
-        Expert $\rho$: does fusion fail when GitHub/LinkedIn contradict the CV? &
+        Expert $\rho$: does fusion fail when sources contradict the CV? &
         2 \\
         \hyperref[subsec:study-11-shapley-verification]{11} & Shapley &
-        Validate glass-box source attributions satisfy Shapley axioms. &
+        Check glass-box source attributions satisfy Shapley axioms. &
         3 \\
         \hyperref[subsec:study-12-bayesian-conflict-resolution]{12} & Bayes fusion &
-        Verify Beta--Bernoulli fusion weights demonstration over bare claims. &
+        Check Beta--Bernoulli fusion favours demonstrated evidence over claims. &
         2 \\
         \hyperref[subsec:study-13-metric-prediction]{13} & TF-IDF &
-        Test whether TF-IDF metric priorities match recruiter consensus. &
+        Check whether TF-IDF priorities match recruiter consensus. &
         1 \\
         \hyperref[subsec:hci-trial-protocol]{14} & HCI pilot &
-        Test whether glass-box explanations shift recruiter decisions and trust. &
+        Check whether glass-box explanations change recruiter decisions and trust. &
         3 \\
         \hyperref[subsec:bias-mitigation-efficacy]{15} & Blind Mode &
-        Test whether Blind Mode reduces proxy-driven shortlisting in the UI. &
+        Check whether Blind Mode reduces proxy-driven shortlisting in the UI. &
         3 \\
         \hline
     \end{tabularx}
@@ -143,7 +142,8 @@ evaluation.
     \centering
     \caption[Literature-to-evaluation traceability]{Literature-to-evaluation traceability: research questions, 
     prior work, studies, and success criteria (study definitions in Table~\ref{tab:eval-study-catalogue}).
-    Temporal skill decay~\cite{arthur1998} is analysed in Section~\ref{subsec:study-08-skill-decay} alongside the RQ2 fusion studies.
+    Temporal skill decay~\cite{arthur1998} is analysed in Section~\ref{subsec:study-08-skill-decay} as an 
+    RQ2 supporting analysis alongside the fusion studies.
     Study~15 tests UI proxy debiasing~\cite{highhouse2008stubborn}, not
     Shapley attributions. Studies~02,~03, and~06 are engineering or adversarial supplements 
     (Section~\ref{sec:fairness-computational-rigour}).}
@@ -170,14 +170,14 @@ evaluation.
         RQ2 &
         Montandon supplementary GitHub, CV self-report bias &
         {\renewcommand{\arraystretch}{1}%
-        \begin{tabular}[c]{@{}c@{}}12, 01A/B, \\[-0.35ex] 07--10\end{tabular}} &
+        \begin{tabular}[c]{@{}c@{}}12, 01, \\[-0.35ex] 07--10\end{tabular}} &
         Rank shift, Bayesian walkthrough, Spearman $\rho$ &
         $\rho \geq 0.7$ vs.\ experts (directional) \\
         RQ3 &
         Bogen/Raghavan transparency deficit, Lundberg Shapley &
         11, 14, 15 &
         Axiom checks, DRR, SUS, prestige gap &
-        SUS $\geq 4$/5, blind gap compression \\
+        SUS $\geq 80$/100, blind gap compression \\
         \hline
     \end{tabularx}
 \end{table}

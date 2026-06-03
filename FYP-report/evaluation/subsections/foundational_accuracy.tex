@@ -57,13 +57,11 @@ difficulty of matching the company name exactly in JDs.
 \subsection{Study 04: CV Ingestion Accuracy}
 \label{subsec:study-04}
 
-We evaluate the CV parser on a pool of 30 candidate CVs structured as a perfectly balanced
-comparative set of 15 single-column and 15 multi-column profiles, spanning a range of seniority
-levels and technical roles. Note that the single-column and multi-column datasets both have
-the same content for a given candidate, the only differing factor is the layout of the CV.
-This is important to note since the layout of the CV can have an impact on the accuracy of the parser.
-The ground truth for each candidate was crafted independently from the raw PDF, and verified by the author of this report
-to ensure that it is accurate and complete.
+We first evaluate the accuracy of the CV parser, extractive candidate data from 15 single-column CVs. We also
+replicate this data across 15 multi-column CVs, ensuring that the content is the same for a given candidate,
+to also evaluate the impact of a CV's layout on the accuracy of the parser. The CV's are designed to be diverse
+in nature, across different roles and seniority levels. We craft a ground truth dataset for each candidate,
+with the author verifying the accuracy and completeness of these JSON payloads.
 Table~\ref{tab:cv_parser_results} presents the compiled results.
 
 \begin{table}[htbp]
@@ -160,9 +158,6 @@ Figure~\ref{fig:ingestion-combined} (panel~b, Appendix~\ref{appendix:ingestion-c
 
 \subsubsection{Qualitative Analysis \& Strategic Ingestion Failure Cases}
 
-
-
-
 Unlike CVs, which serve as concise professional summaries, Job Descriptions (JDs) are inherently
 marketing-oriented documents designed to attract candidates. As a result, they are often dense with corporate
 boilerplate, such as institutional missions, values, wellness benefits, and equal opportunity clauses.
@@ -172,41 +167,37 @@ qualifications from general corporate copy. This lexical contamination is direct
 driving a low Skill Recall of 34.13\% and restricting Skill Precision to 60.02\%, as the extraction engine
 fails to separate critical technology requirements from marketing jargon.
 
-The most striking result in the JD audit is the company name match rate, which collapses to a mere
-6.67\% (successful on only 1 out of 15 documents). A deep-dive error analysis reveals that this failure
-is primarily structural rather than semantic: employers rarely represent company names in machine-readable
-plain text within document headers. Companies often represent their name as their logo, or a brand image, rather than
-plaintext. Because text extractors like \texttt{pdfminer} cannot extract alphanumeric tokens from embedded images,
-the parser is forced to rely on the unstructured ``About Us'' section. Consequently, if the employer's
-name is omitted from this section, or referred to via generic pronouns (e.g.\ ``we'', ``our company''), the
-metadata extraction fails entirely. In the context of the broader MERIT architecture, however, this
-extraction bottleneck is non-critical, as identifying the employer name from the JD is a convenience
-feature rather than a core functional requirement. This metric will have no impact on the overall
-ranking of candidates.
+The most notable observation within this evaluation is the poor performance of company name extraction, with a match rate
+of 6.67\%, only successfully extracting one of the fifteen JD company names. The reason for this is structural, rather than 
+semantics. Employers often represent company names in text that is not easily extractable by a parser, for example, they
+represent their name as a logo or image. Text extractors (in our case, pdfminer) cannot extract this textual information from
+an image, and is therefore forced to rely on the ``About Us section''. If the name is not present in this section, or 
+referred to via generic pronouns (such as ``Our company''). then the extraction process fails. Fortunately, this is a non-critical
+bottleneck, since the only usage of this metric is for the recruiter to know the company name, and not for the scoring process.
+It is a convenience feature rather than a core functional requirement.
 
 \textbf{Outcome:} Does not meet parsing $\geq 80\%$ (skill $F_1 = 40.81\%$).
-Employer extraction is non-critical for ranking, but JD skill recall still limits RQ1 metric configuration.
+While employer extraction is not critical for ranking, the JD skill recall still fails to meet RQ1's success criteria.
 
 \subsection{Study 13: Metric Prediction vs Recruiter Alignment}
 \label{subsec:study-13-metric-prediction}
 
-The previous two studies evaluate the extraction side of the extensibility pillar. In this study, we evaluate the weighting (or priority)
-side of RQ1: whether TF-IDF-derived metric priorities adapt to role-specific JDs more flexibly than the fixed coefficient schemes criticised in prior work.
-We measure TF-IDF suggestions against recruiter consensus to see how well our engine's predictions align with real-world recruiters.
+While the past two studies evaluate MERIT's extraction, this study instead evaluates the weighting side of RQ1. We
+aim to test whether TF-IDF derived metric priorities are able to align with expert consensus, as opposed to merely
+having a fixed coefficient scheme.
 We test \textbf{H1} (positive Spearman $\rho$ within each role) and \textbf{H2} (low MAE versus consensus on MERIT's 1--5 scale,
 where 1 = essential and 5 = optional).
 
 \subsubsection{Method}
-For the generation of the market corpus, we leverage Tonic.ai to generate $N = 100$ synthetic JDs. This provides a relatively realistic
-dataset to aid the computation of IDF. Three hold-outs are excluded from this corpus (Junior Frontend/React, Senior ML, Lead DevOps/Platform)
-so that IDF is not biased toward the skills under test. We use one pooled document-frequency table, in other words, we do not partition the corpus by
-job title or role family.
+When generating the market corpus, we employ Tonic.ai to synthesise a dataset of 100 JDs, providing a relatively realistic
+dataset to aid in this evaluation. We have three hold-outs which are excluded from the generation of the corpus, that being a Junior 
+Frontend, senior ML and Lead DevOps role. This is to prevent TF-IDF from being biased towards these roles. We have one global corpus,
+we do not partition by seniority nor by role family.
 
-Our study includes four evaluators (two recruiters and two academic peers) rating study-controlled skill lists under a blind protocol
-(JD and metrics are shown, but TF-IDF suggestions are hidden). Consensus is the median of the four integer ratings. We compare this to
-TF-IDF suggestions using exact match, MAE, and Spearman $\rho$. Charts are in Appendix~\ref{appendix:metric-prediction-charts}:
-hold-out metrics, a side-by-side consensus-vs.-TF-IDF scatter and Senior ML rater-weight heatmap, per-role dumbbell plots (blue = TF-IDF, gold = consensus),
-and largest misalignments.
+On the testing side, we have two recruiters and two academic peers who are tasked with weighting the metrics given a JD. We intentionally
+hide the suggestions that TF-IDF would have suggested to ensure fairness. Our consensus is determined by the median of these ratings, and 
+we compare these results to TF-IDF suggestions, calculating the exact match, mean absolute error (MAE) and Spearman $\rho$.
+The graphical representations for this study are available in Appendix~\ref{appendix:metric-prediction-charts}.
 
 \subsubsection{Results}
 \begin{table}[htbp]

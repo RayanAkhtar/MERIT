@@ -186,25 +186,17 @@ which only provide claimed evidence. However, this is not strict enough to entir
 who may not have evidence to back it up.
 
 
-
-
-
 \subsection{Glass-Box Payload}
-The majority of modern ATS platforms receive criticism for being black-box in nature. It is often unclear to recruiters exactly
-how a candidate was ranked, nor can it delve into the specific metrics that contributed to a candidate's final score. 
-MERIT's attempt to address this core problem is through returning a JSON payload that functions as a mathematical audit trail.
-We show the full scoring process for a given metric, from the raw data being extracted, to the temporal decay applied to
-demonstrated evidence signals, to the Bayesian Fusion process. Where penalties are applied (such as keyword stuffing), they
-are also raised as well. 
-We also store a lightweight \texttt{summary\_data} object\footnote{The \texttt{summary\_data} field is a lightweight UI-optimisation
-  feature designed to populate recruiter dashboards without the network latency of fetching the complete, multi-megabyte
-  \texttt{results\_payload}.}, which contains high-level
-metadata (such as the top candidate and score) for rapid batch retrieval without
-re-processing the full evaluation payload.
+The recent innovations in ATS platforms, as mentioned in the previous chapter, have neglected explainability, turning towards
+black-box approaches. Recruiters are often left without reasoning towards how a candidate was ranked, they are unable to delve 
+into the metrics that contribute to the candidate's score. MERIT's approach to address this is through a JSON payload that
+can function as a mathematical audit trail. For any given metric, MERIT will show the full scoring process for uit, from data extraction,
+to temporal decay, to Bayesian Fusion, where relevant. When penalties, such as keyword stuffing, are applied, they are also raised in
+this audit trail for recruiters to investigate futher. 
 
-The payload is a final product of the execution stage. Its structure ensures that every high-level score is
-backed by the granular source-specific evidence that it's comprised of. The \texttt{results\_payload} schema
-consists of three main layers, as follows.
+This payload is generated during the execution stage and is structured to ensure that the metrics that recruiters
+initially observe can be broken down into its constituent parts. The payload schema consists of three main layers,
+each layer gets more granular as we go down the hierarchy.
 
 The first layer is the highest level layer, the aggregation layer, which contains the overall score and the
 calculation summary, providing a high-level overview and the global weighted
@@ -218,4 +210,5 @@ By exposing this structured data in a candidate's report, we justify the score f
 can see how each data source contributed for a given metric, how Bayesian fusion combined those contributions into
 a per-metric score, and how metrics are weighted by job priority to produce the final match score. Presenting every
 stage in this form gives recruiters the means to challenge and interrogate the score rather than accepting it as
-a black box. Appendix~\ref{appendix:math_trail} shows a representative end-to-end audit trail in the UI.
+a black box. Appendix~\ref{appendix:math_trail} shows a representative 
+end-to-end audit trail in the UI.
