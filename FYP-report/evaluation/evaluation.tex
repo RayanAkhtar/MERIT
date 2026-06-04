@@ -56,14 +56,12 @@ Section~\ref{sec:threats-to-validity}.
 
 
 Against the internal criteria in Table~\ref{tab:eval-literature-traceability} (below), 
-we do not treat every study as a pass.
-Study~14 meets the SUS target; Study~07 meets the directional $\rho \geq 0.7$ criterion for MERIT (Full) in 
-one cohort ($\rho = 0.733$);
-ingestion (Studies~04--05) falls short of parsing $\geq 80\%$; and several Spearman cohorts, especially 
-Studies~08 and~10, fall below $\rho = 0.7$.
+we do not treat every study as a pass. Study~14 meets the SUS target and Study~07 meets the directional $\rho \geq 0.7$ criterion for MERIT (Full).
+However, failures are also documented: Studies~04--05 fall short of parsing $\geq 80\%$ and Spearman cohorts for Studies~08 and~10, 
+fall below $\rho = 0.7$.
 Outcomes by pillar are summarised in Section~\ref{sec:objectives-retrospective}.
 
-\subsection{Codebase Traceability}
+\subsection{Evaluation Study Mapping}
 \label{subsec:eval-codebase-traceability}
 
 Each study maintains a one-to-one mapping with a prefixed subdirectory under \texttt{evaluation/} 
@@ -71,9 +69,9 @@ in the project repository~\cite{merit_repo} (e.g.\ Study~04 $\leftrightarrow$ \t
 
 \begin{table}[H]
     \centering
-    \caption[Evaluation study catalogue]{Evaluation study catalog, prefixing each study by order of
-    implementation. Studies~02, ~03 and~06 are engineering or RQ supplements, 
-    they do not contribute to an RQ's success criteria.}
+    \caption[Evaluation study catalogue]{Mapping of each study to a specific research question (RQ) and 
+    purpose. Studies~02, ~03 and~06 are engineering supplements to either show proof of concept, or provide 
+    benchmarking data.}
     \label{tab:eval-study-catalogue}
     \footnotesize
     \renewcommand{\arraystretch}{1.28}

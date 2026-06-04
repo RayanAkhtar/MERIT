@@ -27,9 +27,24 @@ for both audit trails and source-level attribution in Section~\ref{sec:lit-trans
 MERIT applies Shapley values at the source level~\cite{lundberg2017unified} alongside glass-box
 outputs so that recruiters can see not only the score, but also why, and which source(s) contributed to that score.
 
-\subsection*{The MERIT Approach}
+\subsection*{MERIT's Approach}
+\label{subsec:merit-approach}
+
 These gaps are closed by MERIT through three core innovations. The first is extensible, JD-driven metric configuration.
 The second is multi-source fusion across CV, GitHub and LinkedIn. The third is explainable scoring with source attributions and audit trails.
+To the best of our knowledge, there is no prior published system that targets technical recruitment this way, combining all three of these components
+in one architecture. The three components in question are:
+
+\begin{enumerate}[label=(\roman*)]
+    \item JD-driven, configurable metric extraction with suggested priorities via TF-IDF weighting.
+    \item Bayesian Beta--Bernoulli fusion across CV, GitHub and LinkedIn that separates claimed evidence from demonstrated evidence.
+    \item Source-level Shapley attribution with glass-box audit trails.
+\end{enumerate}
+
+The technical components of these three innovations are well established in the literature~\cite{sparckjones1972idf, gelman2013bayesian, lundberg2017unified}.
+Prior work often relaxes at least one of these constraints at a time (Sections~\ref{sec:lit-extensibility},~\ref{sec:lit-multi-source}, and~\ref{sec:lit-transparency}).
+MERIT's contribution lies in the combination of the three components into a single, coherent architecture
+that addresses all three gaps simultaneously.
 
 Later, we also evaluate whether we addressed these gaps in Chapter~\ref{ch:evaluation}, 
 and to what extent we were able to address them. We introduce three research questions (RQ1--RQ3) to evaluate this.

@@ -60,8 +60,8 @@ We present a summary of our findings in Table~\ref{tab:spearman-studies-combined
 Study~07 includes a high-discrimination cohort for a full-stack backend engineer role, where candidates are diverse in 
 terms of previous experience and seniority. Study~08 is a seniority-bias test, where all candidates are qualified for an 
 intern backend engineer role, but they are of differing seniority. Study~09 is a peer competition test, where
-candidates are of the same seniority but different engineering specialties. Study~10 is a signal dissonance case where
-we purposely create contradictory evidence for Study~07 to test the robustness of the fusion engine.
+candidates are of the same seniority but different engineering specialties. Study~10 is a signal dissonance case that replicates Study~07 with
+deliberately contradictory GitHub evidence to test the robustness of the fusion engine.
 
 \begin{table}[htbp]
     \centering
@@ -88,16 +88,6 @@ we purposely create contradictory evidence for Study~07 to test the robustness o
 
 \textbf{Note:} Due to the micro-cohort size ($n=10$), $p$-values are highly volatile and provided for transparency only,  
 they do not imply statistical significance. We should not draw any conclusions about the generalisability of the results based on the $p$-values.
-
-Table~\ref{tab:spearman-studies-combined} compares each engine's ordering against 
-expert consensus, rather than measuring absolute hiring quality. Across all four cohorts, the Modern AI ATS baseline 
-achieves a lower $\rho$ than Traditional ATS. In Study~07, semantic matching on CV text alone can rank generically senior or 
-broadly technical profiles above candidates who are a stronger domain fit for the backend role. In Study~09, where CVs are 
-near-peer and hard to separate, keyword overlap tracks recruiter ordering more closely among applicants. We should not 
-interpret this as proof that semantic screening is always inferior to keyword screening, since our Modern AI baseline is a
-simplified in-repository model and does not replicate the richer pipelines used in commercial AI-assisted ATS. However, the pattern does
-support MERIT's design: CV-level semantics without job-specific weighting and without verifiable external evidence can 
-still disagree with expert judgement in specialised technical screening.
 
 \textbf{Study 07 (high discrimination).}
 MERIT (Full) achieves the strongest expert alignment ($\rho=0.733$, $p=0.016$), outperforming Traditional ATS ($\rho=0.552$),

@@ -32,8 +32,8 @@ in Section~\ref{subsec:internal-validity}.
 \label{subsec:study-08-skill-decay}
 
 Prior research on skill retention shows that unused workplace skills deteriorate over time~\cite{arthur1998}.
-This supporting analysis tests whether MERIT's decay parameter produces sensible rank separation 
-between actively used and stale skills.
+The purpose of this study is to test whether skill decay is able to provide a large enough separation between a 
+candidate's active and stale skills to be able to rank them appropriately.
 This does not calibrate $\lambda$ against Arthur et al.'s effect sizes.
 \begin{equation}
     S(t) = S_0 \cdot e^{-\lambda t}
@@ -41,9 +41,7 @@ This does not calibrate $\lambda$ against Arthur et al.'s effect sizes.
 Here, $S_0$ is the initial unweighted skill score and $\lambda$ is the decay constant. In MERIT, $\lambda \approx 0.25$
 (half-life $t_{1/2} \approx 2.77$ years, see Section~\ref{subsec:skill-decay-modelling}). 
 For two otherwise identical profiles (active vs.\ stale), a 6-year stale signal yields $S(6) = S_0 e^{-0.25 \cdot 6} \approx 0.223S_0$, 
-so the stale signal retains about 22.3\% of the active value. This is sufficient for directional sensitivity, 
-and we treat it as supporting evidence only.
-
+so the stale signal retains about 22.3\% of the active value. The results should be seen as directional, rather than quantitative.
 
 \subsection{Study 12: Bayesian Conflict Resolution}
 \label{subsec:study-12-bayesian-conflict-resolution}
@@ -91,8 +89,8 @@ and Figure~\ref{fig:bayesian-fusion-convergence} (Appendix~\ref{appendix:bayesia
         \hline
         \textbf{Scenario} & $s_{\mathrm{CV}}$ & $s_{\mathrm{GH}}$ & $s_{\mathrm{LI}}$ &
         \textbf{Final} & $\sigma$ \\ \hline
-        Claims, no demonstration & 0.8 & 0.0 & 0.8 & 0.369 & 0.287 \\
-        Demonstration, no claims   & 0.0 & 1.0 & 0.0 & 0.555 & 0.296 \\ \hline
+        Claimed only, no demonstration & 0.8 & 0.0 & 0.8 & 0.369 & 0.287 \\
+        Demonstrated only, no claims   & 0.0 & 1.0 & 0.0 & 0.555 & 0.296 \\ \hline
     \end{tabular}
 \end{table}
 
@@ -104,12 +102,10 @@ further LinkedIn endorsement ($s_3 = 0.8$, $c_3 = 0.2$) only recovers it to $0.3
 public work samples.
 
 The demonstration-only profile follows the reverse pattern. An empty CV ($s_{\mathrm{CV}} = 0$) briefly pulls the score down to $0.148$
-before GitHub ingestion, after which strong demonstrated evidence lifts it to $0.624$ and the final fused score settles at $0.555$. When we
-enable multi-source fusion in this way, MERIT rewards verifiable work and does not treat self-report as sufficient when repositories
-contradict it. This bias towards demonstrated evidence is intentional. Self-reported CVs are embellished frequently, and a system that
-treated claimed and demonstrated signals equally would be straightforward to game. MERIT is therefore designed to favour candidates who
-can back up their skills with public work, while still recording uncertainty (rather than a hard rejection) when a candidate has no
-demonstrated evidence to show.
+before GitHub ingestion, after which strong demonstrated evidence lifts it to $0.624$ and the final fused score settles at $0.555$. MERIT
+rewards demonstrated evidence over claimed evidence, and this is an intentional design choice. Self-reported CVs are prone to embellishment,
+while demonstrated evidence is harder to game, and requires a candidate to actually use the skill in their own projects or daily work.
+The system favours candidates who can back up their skills with public work, while recording uncertainty when there is a lack of evidence.
 
 \subsection{Study 01: Comparative Engine and Source Ablation}
 \label{subsec:study-01-comparative-ablation}
@@ -124,11 +120,10 @@ It computes cosine similarities between CV embeddings and Job Description (JD) e
 Neither baseline is a commercial ATS platform.
 We also run \textbf{MERIT (CV Only)} on CV data alone, and \textbf{MERIT (Full)}, which considers CV, GitHub, and LinkedIn evidence.
 
-The ordinal rankings across the four engines are in Table~\ref{tab:algorithmic-ablation} (rank~1 = best fit for the JD).
-The \textbf{Fusion shift} column records how each candidate's rank changes from MERIT (CV Only) to MERIT (Full).
-A positive value means the candidate moved up the list toward rank~1.
-Figure~\ref{fig:rank-displacement-bump-chart} (Appendix~\ref{appendix:rank_displacement}) plots the same trajectories.
-Three personas below illustrate when fusion helps, when it harms, and when integrity checks catch fraud.
+We can observe the rankings of the engines in Table~\ref{tab:algorithmic-ablation}, where rank~1 is considered the best
+candidate--job fit and rank~10 the worst. The \textbf{Fusion shift} column records how each candidate's rank changes from MERIT (CV Only) to MERIT (Full).
+See Figure~\ref{fig:rank-displacement-bump-chart} (Appendix~\ref{appendix:rank_displacement}) for a bump-chart visualisation.
+
 
 \begin{table}[H]
     \centering
@@ -154,47 +149,46 @@ Three personas below illustrate when fusion helps, when it harms, and when integ
     \end{tabular}
 \end{table}
 
-Across the four engines, Traditional ATS favours keyword density and tenure (Vince Vault \#1, Buzz Ward \#2).
-Modern AI ATS ranks Alex Rivers at \#1 and moves Buzz Ward down to \#5, but still places Carl Corp at \#2 from CV semantics alone.
-Jordan Smith remains at \#10 under MERIT (CV Only) and rises to \#2 under MERIT (Full), the largest fusion shift in the cohort ($+8$ ranks).
+In the table, we can observe how the Traditional ATS prioritises keyword density and tenure (Vince Vault \#1 and Buzz Ward \#2),
+while the Modern AI ATS prioritises CV semantics behind the keywords, rather than blindly prioritising density (Alex Rivers \#1 and Buzz Ward \#5).
+Similar behaviour can be observed for CV-only MERIT, but note the lack of focus on tenure, specifically Carl Corp (\#2 $\rightarrow$ \#8 from Modern AI ATS to CV-only MERIT).
+For MERIT (Full), we can observe that the multi-source data for Jordan Smith and Kim Junior are recognised, leading to rank shifts of +8 and +5 respectively.
 
 \subsubsection{Jordan Smith: hidden gem}
 
-Jordan Smith is a junior developer with only one year of formal experience on his CV.
-Traditional ATS and Modern AI ATS rank him \#10 and \#9 respectively because they consider CV text alone.
-What is not mentioned on his CV, however, is extensive public work on GitHub in Java and TypeScript, two core technologies in the study JD.
+The key finding from this study is from the hidden gem persona, Jordan Smith. The candidate is a low-tenure developer, only having
+a year of formal experience on his CV, but has a strong GitHub presence that he has not mentioned well on his CV. While this is not a common scenario,
+we mainly highlight this to show the cases where a candidate may not present themselves in an ATS-friendly manner, leading to them being overlooked by these engines.
 
-Under MERIT (Full), Jordan rises from rank \#10 to rank \#2.
-He has the strongest demonstrated evidence in the batch, and MERIT (Full) is the only engine that rewards it.
-By shifting from unverified claims towards verifiable work samples, MERIT can surface candidates who would otherwise be lost in the
-traditional ``Resume Black Hole''~\cite{fuller2021hiddenworkers}.
+MERIT (Full)'s integration of multi-source data allows the engine to take his extensive GitHub data into account, noting his public work in both Java and TypeScript,
+two highly weighted skills in the JD. Due to the candidate having a significant amount of evidence compared to his peers, he is able to rise from rank \#10 to rank \#2.
+This candidate is a clear example of how MERIT can reveal candidates who may be overlooked by current state-of-the-art single-source ATS engines that often
+fall into the ``Resume Black Hole''~\cite{fuller2021hiddenworkers}.
 
 \subsubsection{Carl Corp: proprietary data gap}
 
-Carl Corp illustrates the cost of depending on public evidence.
-Most of his commits are in private repositories, so his GitHub profile is essentially empty.
-He receives weak GitHub signals and cannot demonstrate the programming languages required by the JD.
-Under MERIT (Full) he falls from rank \#2 (Modern AI ATS) to rank \#10.
+MERIT is a system that thrives on the presence of public data, candidates are encouraged to showcase their best work on their public profiles.
+Carl Corp is a candidate who presents a trade-off that MERIT must face, that being candidates who are not able to publicly showcase their work.
+Due to the candidate's commits being in private repositories, we are unable to determine his true skill set, leading to him being implicitly penalised by the engine,
+since he is not able to benefit from the multi-source fusion layer to its full potential. Under MERIT (Full), he falls from rank \#2 to rank \#10.
 
-This ``Proprietary Data Gap'' can unfairly hinder candidates who cannot share code publicly, while favouring juniors with active open-source
-histories.
-MERIT therefore introduces a trade-off between verifiable screening and accessibility of evidence.
+Here, we present a ``Proprietary Data Gap'' scenario, showing that MERIT is more likely to favour a junior with public work, over an experienced candidate
+with private data. MERIT trades off verifiable evidence for the accessibility of such evidence.
 
 \subsubsection{Vince Vault: identity squatting}
 \label{subsubsec:identity-mismatch-resolution}
 
-When MERIT ingests multiple sources, candidates may try to game the system with false evidence.
-We refer to this as \textbf{identity squatting}.
+Due to the difficulty of gaming demonstrated evidence, MERIT prepares for the possibility of candidates who may
+attempt to pass off another's work as their own. We refer to this act as ``identity squatting''.
+In our study, we present Vince Vault as a candidate who performs this malicious action. Vince is a candidate who claims
+ten years of experience and also an expert in Java, but it is likely that he is unable to show this evidence through his own public work.
+Because of this, the candidate, in this scenario, submits a link to another candidate's GitHub account so that their demonstrated work
+supports his application. Traditional ATS and Modern AI ATS do not consider multi-source data, only relying on his CV claims, as such, 
+he is able to rank highly on both engines. The same observation can be made for MERIT (CV Only), where he is able to rank highly on CV text alone.
 
-Vince Vault is a fraudulent persona used to test this case.
-On his CV he claims ten years of experience as a Lead Software Architect and presents himself as a Java expert.
-He does not have a genuine Java portfolio on his own GitHub.
-Instead, he submits a link to another candidate's GitHub account so that their demonstrated work appears to support his application.
-Traditional ATS ranks him \#1 and Modern AI ATS ranks him \#4 because neither engine verifies ownership of the linked repository.
+Once we account for multi-source data, MERIT (Full) detects a name difference between the candidate's CV and GitHub account, specifically, the GitHub
+account belongs to another individual, ``Alice Smith''. The Integrity Engine penalises this mismatch, leading to Vince Vault falling from rank \#4 to rank \#9
+between MERIT (CV Only) and MERIT (Full). To ensure fairness, we surface this information to the recruiter, providing the full names associated with the data sources
+to the user to investigate further.
 
-MERIT (CV Only) still ranks Vince at \#4 on CV text alone.
-Under MERIT (Full), the Integrity Layer compares the name on the CV with the GitHub account metadata, detects the mismatch, and applies a flat veto penalty.
-His rank falls to \#9.
-Buzz Ward shows a smaller but related pattern: he drops from rank \#3 to rank \#6 when GitHub does not corroborate his stuffed CV claims.
-
-Identity squatting is rare in practice, but it is an important edge case for any multi-source screening design.
+Identity squatting is rare in practice, but it is an important edge case to consider to ensure the integrity of the system.

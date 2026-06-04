@@ -34,11 +34,13 @@ extend this line of work with broad language analysis (through CodeQL), plagiari
 They also enrich the data with academic profiles, providing a more comprehensive view of a candidate's skills and experience.
 
 \label{sec:contrastive-github-hiring}
-While their work moved beyond the CV-only limitation, it now completely disregards the CV as a source of evidence
-altogether. Neither work reports recruiter-configurable, job-description-driven metric weights or per-source attributions
-of an overall score. This work was identified after the specification and implementation of MERIT, however, we
-still include it for comparison and to highlight the gap that MERIT is designed to solve. Note that we did not
-use this work to derive the requirements, architecture or evaluation in this dissertation.
+While their work moves beyond the CV-only limitation, GitMeter~\cite{vaishampayan2025_gitmeter} augments resume matching with GitHub
+evidence rather than replacing the CV altogether. Kumar et al.~\cite{kumar2025_evidence_hiring} push further towards GitHub-centric
+assessment enriched with academic profiles. Neither approach fuses CV, GitHub, and LinkedIn per metric with traceable conflict resolution,
+nor do they report recruiter-configurable, job-description-driven metric weights or per-source attributions of an overall score.
+This work was identified after the specification and implementation of MERIT, however, we still include it for comparison and to
+highlight the gap that MERIT is designed to solve. Note that we did not use this work to derive the requirements, architecture or
+evaluation in this dissertation.
 
 The gap that motivates MERIT's multi-source pillar is therefore not merely ``add GitHub,'' but \emph{verify} 
 CV claims with heterogeneous evidence, quantify uncertainty when sources disagree, and rank candidates on a common scale.

@@ -171,8 +171,8 @@ The most notable observation within this evaluation is the poor performance of c
 of 6.67\%, only successfully extracting one of the fifteen JD company names. The reason for this is structural, rather than 
 semantics. Employers often represent company names in text that is not easily extractable by a parser, for example, they
 represent their name as a logo or image. Text extractors (in our case, pdfminer) cannot extract this textual information from
-an image, and is therefore forced to rely on the ``About Us section''. If the name is not present in this section, or 
-referred to via generic pronouns (such as ``Our company''). then the extraction process fails. Fortunately, this is a non-critical
+an image, it is therefore forced to rely on the ``About Us'' section. If the name is not present in this section, or 
+referred to via generic pronouns (such as ``Our company''). Then the extraction process fails. Fortunately, this is a non-critical
 bottleneck, since the only usage of this metric is for the recruiter to know the company name, and not for the scoring process.
 It is a convenience feature rather than a core functional requirement.
 

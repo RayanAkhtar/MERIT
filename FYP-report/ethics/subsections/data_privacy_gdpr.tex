@@ -35,3 +35,20 @@ including permission to use their data as a basis for synthetic evaluation perso
 environment variables only. Consent makes this research more reasonable, but it does not make Apify-style collection acceptable for production:
 deployments should use licensed LinkedIn APIs, privacy impact assessments, and subject access and deletion processes \cite{ico_employment_2023}.
 Legal compliance still depends on how the employer operates the tool.
+
+\subsection{UK employment law and AI governance}
+\label{sec:uk-ai-governance}
+
+If employers are to use MERIT within the UK, they must be aware of the Equality Act~2010~\cite{uk_equality_act_2010}.
+There is a prohibition on indirect discrimination on protected characteristics such as gender, race and age. MERIT's scoring engine
+does not discriminate on these characteristics, and Blind Mode is enabled by default to mask this information, however, it is the
+employer's choice if they wish to disable Blind Mode. While we do have a study for measuring prestige-proxy bias, it does not
+constitute the equality impact assessment that would be required for such a tool before we could deploy it to production.
+
+The ICO's employment guidance~\cite{ico_employment_2023} expects both transparency as well as human oversight when it comes to the 
+use of AI in hiring. The UK does not have a specific overarching AI act, but rather has sector-led approaches to this regulation,
+rather than an omnibus statute (like the EU AI Act \cite{eu_ai_act_2024}). While MERIT's glass-box audit trail defaults to Blind
+Mode to protect PII, the prototype still lacks representative dataset governance and the previously mentioned impact assessment.
+\footnote{Note that if MERIT were used to screen candidates who are
+based in the EU, Regulation (EU) 2024/1689 (the EU Artificial Intelligence Act) would also apply, and Annex~III classifies recruitment
+screening as high-risk~\cite{eu_ai_act_2024}. This report focuses only on UK deployment.}

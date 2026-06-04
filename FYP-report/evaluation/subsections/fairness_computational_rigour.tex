@@ -245,7 +245,7 @@ We benchmark only against our in-repository engine variants.
 
 
 The runtime and spacetime studies are performed for cohorts of size $N \in \{10, 50, 100, 200, 500\}$ against the two baselines (Traditional and Modern AI),
-as well as three variants of MERIT (CV-Only, Full without explainability, Full with explainability). In study~02, we initialise each
+as well as three variants of MERIT (CV-Only, Full without explainability, Full with explainability). In Study~02, we initialise each
 engine once and then measure the wall-clock time for each engine under each cohort size. For study~03, we separate the initialisation 
 cost from the incremental batch overhead per candidate. We run these benchmarks on Windows~11 (AMD Ryzen~7 7800X3D, Python~3.11.9).
 Scoring is a purely CPU-bound operation, we do not leverage GPU acceleration or other hardware accelerations. We also do not
