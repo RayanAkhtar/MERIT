@@ -18,7 +18,7 @@ Firstly, we calculate the standard deviation as $\sigma = \sqrt{\text{Var}(\thet
 MERIT, we avoid displaying confidence intervals to avoid cognitive overload for the recruiter. Instead, we express our confidence in a candidate's
 score by outputting a label: ``High Confidence'', ``Medium Confidence'', or ``Low Confidence''.
 
-We define ``High Confidence'' as a standard deviation $\sigma < 0.20$, ``Medium Confidence'' as $0.20 \le \sigma < 0.35$, and
+We define ``High Confidence'' as a standard deviation $\sigma < 0.275$, ``Medium Confidence'' as $0.275 \le \sigma < 0.35$, and
 ``Low Confidence'' as $\sigma \ge 0.35$.
 
 By outputting intuitive labels, rather than raw intervals, recruiters can quickly scan whether a candidate's score is
@@ -54,7 +54,7 @@ The right side of the equation is the marginal contribution of the source $i$ to
 By calculating $\phi_i$ for both individual metrics, as well as the final score, MERIT is able to attribute every score
 to a data source, and inform the recruiter whether a candidate's score was driven by demonstrated evidence, or claimed evidence.
 
-\begin{figure}[htpb]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.95\textwidth]{implementation/screenshots/shapley_source_breakdown.png}
     \caption[Source Influence Breakdown panel]{Source influence breakdown with Shapley values per data source. In this figure,

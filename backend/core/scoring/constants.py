@@ -64,7 +64,7 @@ SCORING_CONSTANTS = {
             }
         },
         "THRESHOLDS": {
-            "HIGH": 0.2,       # std_dev below this is High Confidence
+            "HIGH": 0.275,     # std_dev below this is High Confidence
             "MEDIUM": 0.35      # std_dev below this is Medium Confidence
         },
         "PRIORS": {

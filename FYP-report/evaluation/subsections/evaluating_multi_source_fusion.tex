@@ -8,7 +8,7 @@
 \newcommand{\splitcell}[2]{\begin{tabular}[c]{@{}c@{}}\##1 \\ (#2)\end{tabular}}
 \newcommand{\rankonly}[1]{\##1}
 
-This section evaluates the MERIT's multi-source fusion model, directly addressing RQ2. To ensure a thorough
+This section evaluates MERIT's multi-source fusion model, directly addressing RQ2. To ensure a thorough
 evaluation, we proceed from the bottom up. We first demonstrate how skill decay can affect a candidate's score, 
 from there, we then test the Bayesian Fusion process, evaluating the effects of conflict resolution and 
 testing to see whether MERIT does reward demonstrated evidence over claimed evidence. From there, we conduct
@@ -55,7 +55,7 @@ The first
 represents a claims-only candidate, while the second represents a demonstration-only candidate. Both candidates achieve the 
 maximum score available for the signals that correspond to the category of evidence (claimed or demonstrated).
 
-In this walkthrough, the maximum signal that signals which are claims-only can achieve is $0.8$, while the maximum signal for demonstration-only signals
+In this walkthrough, the maximum signal that claims-only sources can achieve is $0.8$, while the maximum signal for demonstration-only signals
 is uncapped at $1.0$. We start from priors $\alpha_0 = \beta_0 = 0.1$, and the step-by-step walkthrough is given in Table~\ref{tab:bayesian-walkthrough}.
 
 \begin{table}[htbp]
