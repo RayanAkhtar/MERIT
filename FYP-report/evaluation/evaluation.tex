@@ -13,22 +13,7 @@ and also cited inline.
 \subsection{Evaluation Design and Research Questions}
 \label{subsec:eval-design-rqs}
 
-\textbf{RQ1 (Extensibility):} Can JD-driven, configurable metrics and reliable document ingestion
-aid candidate scoring? Gugnani and Misra~\cite{gugnani2020} and Lo et al.~\cite{lo2025aihiring} criticise
-the rigidity of scoring, as well as its constraints to fixed-dimension scoring. Resume parsing benchmarks,
-such as ResumeBench~\cite{emnlp2025resumebench} also document layout-driven extraction failures that
-can bound any downstream metric system.
-
-\textbf{RQ2 (Multi-source):} Does evidence-aware multi-source fusion improve candidate ranking over
-CV-only baselines when public work samples support or contradict self-reported claims? Here, we extend
-the work of Montandon et al.~\cite{montandon2021_roles} by considering other signals, specifically
-GitHub to address unreliable claims present on a candidate's CV~\cite{henle2019_resume_fraud,dunning2004}.
-
-\textbf{RQ3 (Transparency):} Can glass-box explainability and transparency aid recruiter decision calibration relative
-to that of a black-box system? This RQ aims to address the transparency deficits that are documented in 
-modern algorithmic hiring reviews~\cite{bogen2018,raghavan2020}. We also apply the coalition Shapley
-formalism from explainable ML~\cite{lundberg2017unified} at the data-source level 
-(Section~\ref{sec:explainable-ai-shapley}).
+Our evaluation design is driven by the three formal research questions (RQ1--RQ3) established at the conclusion of our literature review (Section~\ref{sec:relevance-to-merit}). To briefly summarise, these questions evaluate MERIT's extensibility against rigid baselines, its multi-source fusion capabilities in the presence of conflicting candidate evidence, and the efficacy of its glass-box transparency for human decision calibration.
 
 We map each RQ to prior work along with the associated studies and primary metrics to answer these RQs (Table~\ref{tab:eval-literature-traceability}).
 We also report criteria that we use to determine the success of each RQ. Note that our success criteria are not
@@ -66,12 +51,12 @@ Outcomes by pillar are summarised in Section~\ref{sec:objectives-retrospective}.
 
 Each study maintains a one-to-one mapping with a prefixed subdirectory under \texttt{evaluation/} 
 in the project repository~\cite{merit_repo} (e.g.\ Study~04 $\leftrightarrow$ \texttt{04-ir\_parser\_test/}).
+Table~\ref{tab:eval-study-catalogue} details the purpose of each study. 
+Note that Studies~02, ~03 and~06 are engineering supplements to either show proof of concept, or provide benchmarking data.
 
 \begin{table}[H]
     \centering
-    \caption[Evaluation study catalogue]{Mapping of each study to a specific research question (RQ) and 
-    purpose. Studies~02, ~03 and~06 are engineering supplements to either show proof of concept, or provide 
-    benchmarking data.}
+    \caption[Evaluation study catalogue]{Mapping of each study to a specific research question (RQ) and purpose.}
     \label{tab:eval-study-catalogue}
     \footnotesize
     \renewcommand{\arraystretch}{1.28}
@@ -135,16 +120,11 @@ in the project repository~\cite{merit_repo} (e.g.\ Study~04 $\leftrightarrow$ \t
     \end{tabularx}
 \end{table}
 
+Table~\ref{tab:eval-literature-traceability} demonstrates how our literature review gaps tie directly into our evaluation studies and their success criteria. Within this mapping, temporal skill decay~\cite{arthur1998} is analysed in Section~\ref{subsec:study-08-skill-decay} as an RQ2 supporting analysis alongside the fusion studies. Additionally, Study~15 tests UI proxy debiasing~\cite{highhouse2008stubborn} rather than Shapley attributions, while Studies~02,~03, and~06 serve as engineering or adversarial supplements (Section~\ref{sec:fairness-computational-rigour}).
 
 \begin{table}[H]
     \centering
-    \caption[Literature-to-evaluation traceability]{Literature-to-evaluation traceability: research questions, 
-    prior work, studies, and success criteria (study definitions in Table~\ref{tab:eval-study-catalogue}).
-    Temporal skill decay~\cite{arthur1998} is analysed in Section~\ref{subsec:study-08-skill-decay} as an 
-    RQ2 supporting analysis alongside the fusion studies.
-    Study~15 tests UI proxy debiasing~\cite{highhouse2008stubborn}, not
-    Shapley attributions. Studies~02,~03, and~06 are engineering or adversarial supplements 
-    (Section~\ref{sec:fairness-computational-rigour}).}
+    \caption[Literature-to-evaluation traceability]{Literature-to-evaluation traceability: mapping research questions to prior work, studies, and success criteria.}
     \label{tab:eval-literature-traceability}
     \footnotesize
     \renewcommand{\arraystretch}{1.45}

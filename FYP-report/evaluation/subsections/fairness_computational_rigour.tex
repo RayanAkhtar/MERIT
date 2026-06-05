@@ -273,14 +273,14 @@ for a graphical representation, see Appendix~\ref{appendix:fairness-scalability-
 
 \begin{table}[htbp]
     \centering
-    \caption[Study~03: Engine memory]{Study~03: engine memory (MB). Top row: static load at initialisation, remaining rows: incremental batch overhead after \texttt{gc.collect()} (not cumulative with static load).}
+    \caption[Study~03: Engine memory]{Study~03: engine memory (MB). \textit{init.}\,=\,initialisation (static load at startup); remaining rows ($N$): incremental batch overhead after \texttt{gc.collect()} (not cumulative with static load).}
     \label{tab:study03-memory}
     \vspace{1.5ex}
     \small
     \setlength{\tabcolsep}{6pt}
-    \begin{tabular}{l|c|c|c|c|c}
+    \begin{tabular}{r|c|c|c|c|c}
         \hline
-        \textbf{$N$ / init.} & \textbf{Trad. ATS} & \textbf{Mod. AI ATS} & \textbf{MERIT CV-Only} & \textbf{MERIT Full} & \textbf{MERIT Expl.} \\ \hline
+        \textbf{$N$} & \textbf{Trad. ATS} & \textbf{Mod. AI ATS} & \textbf{MERIT CV} & \textbf{MERIT Full} & \textbf{MERIT Expl.} \\ \hline
         \textit{init.} & 0.10 & 398.0 & 367.1 & 367.5 & 367.7 \\ \hline
         10  & 0.02 & 113.0 & 54.4 & 54.5 & 53.8 \\
         50  & 0.03 & 116.7 & 56.3 & 56.7 & 56.7 \\

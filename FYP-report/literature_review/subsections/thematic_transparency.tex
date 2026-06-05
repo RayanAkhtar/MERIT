@@ -1,4 +1,4 @@
-\section{Transparency and Explainability}
+\section{Stage 3: Explainable and Auditable Rankings}
 \label{sec:lit-transparency}
 
 The introduction of NLP-based screening has paved the way to a more accurate assessment of candidate skill in
@@ -8,12 +8,14 @@ to no significant justification, significantly reducing trust in the system and 
 issues with fair-hiring compliance~\cite{raghavan2020,bogen2018}. The introduction of AI-assisted ATS systems
 worsens this issue further since rankings are produced by opaque models trained on historical hiring data.
 
+\subsection{Inspectability in LLM Pipelines}
 Lo et al.~\cite{lo2025aihiring} aim to cross this gap when they separate the CV screening process into modular LLM stages.
 They make the pipeline inspectable stage-by-stage, and report agreement with human HR ratings on anonymised resumes.
 However, this modularity does not attribute the final score to specific evidence sources. Transparency in
 hiring requires both understandable stages as well as attributable contributions from each source of evidence
 to the outcome.
 
+\subsection{Local Model-Agnostic Explanations}
 The broader explainability literature offers techniques that are relevant when we design MERIT's glass-box layer.
 Ribeiro et al.~\cite{ribeiro2016lime} introduce LIME (Local Interpretable Model-Agnostic Explanations), which approximates
 a black-box prediction with a locally faithful linear model. In recruitment, this could show which CV keywords pushed a score
@@ -21,6 +23,7 @@ up or down. However, LIME attributions are local and can change across perturbat
 explain \emph{features}, not \emph{sources of evidence}, so a recruiter might learn that ``Python'' mattered, but not whether that
 came from a CV claim, GitHub commits, or a LinkedIn endorsement.
 
+\subsection{Counterfactual Explanations}
 Wachter et al.~\cite{wachter2017counterfactual} argue instead for counterfactual explanations, namely the closest
 ``what would have changed my outcome'' statement for the affected individual. In hiring, that might mean telling a rejected
 candidate that higher GitHub activity in the past year would have changed the shortlist decision. Counterfactuals can be
@@ -28,13 +31,16 @@ actionable for candidates, however, they are hard to make plausible when evidenc
 facts such as past employment dates cannot be revised. They also note that GDPR Article~22 requires human intervention and
 contestation rather than a legally binding duty to open the internal logic of the model~\cite{wachter2017counterfactual}.
 
-Dodge et al.~\cite{dodge2019explaining} show that the content of an explanation can shift evaluators' fairness judgements,
-echoing the concern raised by Bogen and Rieke~\cite{bogen2018}: showing reasoning does not automatically produce fair outcomes
-if the underlying model or data were biased. For MERIT, transparency must therefore be paired with the ability to contest and
-override algorithmic outputs, not merely read them.
+\subsection{The Impact of Explanations on Fairness}
+Dodge et al.~\cite{dodge2019explaining} highlight the importance of explanations, especially how the wording of an explanation is able
+to shift an evaluator's fairness judgement, this concern is also repeated by Bogen and Rieke~\cite{bogen2018}, who 
+argue that showing reasoning does not always produce fair outcomes, especially when the model or data that were employed were biased.
+Rather than providing just explanations, MERIT provides full transparency, to allow recruiters to contest the information
+when needed, rather than blindly trust an explanation.
 
-Together, these lines of work motivate MERIT's use of Shapley values at the data-source level~\cite{lundberg2017unified},
-alongside a glass-box audit trail. Rather than local feature surrogates, we attribute the final score to CV, GitHub, and LinkedIn
-coalitions. Rather than counterfactuals alone, we surface the full calculation so recruiters can audit each stage of the pipeline.
+\subsection{Motivation for Shapley Values}
+The works in this section strongly support MERIT's choice of integrating Shapley values into the prototype~\cite{lundberg2017unified}
+along with glass-box audit trails. We attribute the final score to CV, GitHub and LinkedIn coalitions, and also surface the 
+full mathematical trail for each metric so that recruiters can audit each stage of the pipeline, rather than trust an explanation.
 
 \input{background/subsections/shapley_values.tex}

@@ -66,21 +66,36 @@ While the sequence and steps taken often vary due to organisation size and matur
 
 
 \subsubsection{Recruiter Screen}
-In most organisations, the hiring process will begin with the recruiter reviewing a candidate's CV in order to determine their alignment with the role's requirements. 
-This step is almost universal; in HackerRank's 2018 Developer Skills survey, 81\% of hiring managers reported relying primarily on r{\'e}sum{\'e}s at the first stage of technical recruiting \cite{hackerrank2018skills}. 
-Candidates are often suggested to provide additional sources such as LinkedIn, GitHub and personal websites, however, research shows that these sources are rarely reviewed consistently. 
-Although many employers claim to value portfolios such as GitHub, 80\% of small companies and 66\% of large companies in HackerRank's 2018 survey reported doing so, in practice, the initial screening mostly relies on CVs \cite{hackerrank2018skills}. 
-Academic research also highlights that early-stage reviewers rely mainly on CVs and institutional cues as opposed to external behaviour evidence \cite{moore2023}.
+The hiring process for most organisations often starts off with a brief review of a candidate's CV to filter out 
+candidates that are not suitable for the role. This is often performed by a recruiter or a hiring manager.
+There has been a recent shift towards AI-driven pre-screening due to the rise in candidate applications, this
+pre-screen is aimed to reduce the number of candidates that even make it to the first human review stage of the hiring process.
+This significantly reduces applicant volumes, allowing for a more focused screening process, however, it is often at the cost
+of algorithmic bias and opaque decision-making being introduced into the process.
+
+Regardless of whether the process is a screen or a pre-screen, the CV itself is still the primary document evaluated.
+However, industry research suggests that companies are becoming dissatisfied with typical CV data, such as past job titles
+and educational prestige, when it comes to technical recruitment. It is noted that the industry is shifting towards skill-based
+assessments to verify a candidate's competencies \cite{hackerrank2024skills}. Candidates are encouraged to provide their
+GitHub URL as part of their application, however, research shows that this data is often reviewed inconsistently
+during early stages, instead relying mainly on CVs as opposed to external behaviour evidence \cite{moore2023}.
 
 \subsubsection{Online Behavioural Assessment} 
 Larger enterprises commonly have an additional behavioural assessment, often in the form of a game, or a recorded interview, where candidates are prompted to record their response to common interview questions. 
-These tools, while uncommon in typical technical hiring pipelines, are more established in large-enterprise pre-screening: among Fortune 500 firms, 20\% already use asynchronous pre-recorded video interviews, with a further 17\% planning to adopt them, assessing dimensions such as communication style that are difficult to infer from a CV alone \cite{ithaka2018_assessment}. 
+Increasingly, these asynchronous video interviews are being augmented or fully driven by AI. Platforms employing machine learning 
+algorithms can analyse a candidate's tone of voice, facial expressions, pacing, and keyword usage to algorithmically assess their 
+personality and cultural fit. 
+These tools, while uncommon in typical technical hiring pipelines, are more established in large-enterprise pre-screening: 
+among Fortune 500 firms, 20\% already use asynchronous pre-recorded video interviews, with a further 17\% planning to adopt 
+them, assessing dimensions such as communication style that are difficult to infer from a CV alone \cite{ithaka2018_assessment}. 
 Smaller companies, however, rarely adopt such methods due to cost, limited perceived value and candidate-dropout risk.
 
 \subsubsection{Online Technical Assessment}
 Online technical assessments (commonly referred to as OAs) are core to the hiring process for many organisations. 
 OAs often take place on platforms such as HackerRank and CodeSignal, and often focus on Data Structures and Algorithms (DSA). 
-Industry surveys show that online technical assessments remain central to hiring pipelines: CoderPad's 2025 survey reports that 24.5\% of employers use asynchronous technical tests and 49.8\% use live coding interviews \cite{coderpad2025techhiring}, and CodeSignal highlights continued growth in standardised early-stage technical evaluations \cite{codesignal2023}.
+Industry surveys show that online technical assessments remain central to hiring pipelines: CoderPad's 2025 survey reports 
+that 24.5\% of employers use asynchronous technical tests and 49.8\% use live coding interviews \cite{coderpad2025techhiring}, 
+and CodeSignal highlights continued growth in standardised early-stage technical evaluations \cite{codesignal2023}.
 
 \subsubsection{Live Behavioural Interview}
 Live behavioural interviews are a common stage in technical recruitment, often conducted by HR or hiring managers to assess a candidate's cultural fit, communication skills and motivations for the role and company.
@@ -103,7 +118,10 @@ They argue that these assignments provide a better benchmark for the candidate's
 
 \subsubsection{Work Sample Review}
 Many employers like to also use real-world evidence, such as GitHub repositories, open-source commits and portfolio projects to assess a candidate's ability to build software. 
-When portfolios are available, HackerRank's 2018 survey found that 80\% of small companies and 66\% of large companies place higher value on GitHub or similar portfolio evidence \cite{hackerrank2018skills}. 
+This data is often a critical differentiator, as it is able to separate a candidate's claims from their actual abilities.
+Historical data highlight that the majority of firms (80\% of small and 66\% of large firms) place high value on portfolio evidence,
+such as GitHub \cite{hackerrank2018skills}. Recent reports also come to a similar conclusion, that verified technical 
+assessments are essential in addressing the limitations of traditional CVs \cite{hackerrank2024skills}.
 However, this is often done later in the pipeline due to the time and expertise required for evaluation. 
 Academic literature shows that work-sample tests are one of the highest-validity predictors of job performance (validity coefficient of 0.54) \cite{schmidt1998}, significantly outperforming CV-based assessments.
 

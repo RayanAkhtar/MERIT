@@ -30,27 +30,40 @@ outputs so that recruiters can see not only the score, but also why, and which s
 \subsection*{MERIT's Approach}
 \label{subsec:merit-approach}
 
-These gaps are closed by MERIT through three core innovations. The first is extensible, JD-driven metric configuration.
-The second is multi-source fusion across CV, GitHub and LinkedIn. The third is explainable scoring with source attributions and audit trails.
-To the best of our knowledge, there is no prior published system that targets technical recruitment this way, combining all three of these components
-in one architecture. The three components in question are:
+These gaps are closed by MERIT through three core innovations. The first is extensible, 
+JD-driven metric configuration with suggested priorities via TF-IDF weighting. The second 
+is Bayesian Beta--Bernoulli multi-source fusion across CV, GitHub and LinkedIn that 
+separates claimed evidence from demonstrated evidence. The third is explainable scoring 
+through source-level Shapley attribution and glass-box audit trails. 
 
-\begin{enumerate}[label=(\roman*)]
-    \item JD-driven, configurable metric extraction with suggested priorities via TF-IDF weighting.
-    \item Bayesian Beta--Bernoulli fusion across CV, GitHub and LinkedIn that separates claimed evidence from demonstrated evidence.
-    \item Source-level Shapley attribution with glass-box audit trails.
-\end{enumerate}
+To the best of our knowledge, there is no prior published system that targets technical 
+recruitment this way, combining all three of these components in one architecture. The 
+technical components of these three innovations are well established in the 
+literature~\cite{sparckjones1972idf, gelman2013bayesian, lundberg2017unified}. Prior 
+work often relaxes at least one of these constraints at a time (Sections~\ref{sec:lit-extensibility},~\ref{sec:lit-multi-source}, and~\ref{sec:lit-transparency}). 
+MERIT's contribution lies in the combination of the three components into a single, 
+coherent architecture that addresses all three gaps simultaneously.
 
-The technical components of these three innovations are well established in the literature~\cite{sparckjones1972idf, gelman2013bayesian, lundberg2017unified}.
-Prior work often relaxes at least one of these constraints at a time (Sections~\ref{sec:lit-extensibility},~\ref{sec:lit-multi-source}, and~\ref{sec:lit-transparency}).
-MERIT's contribution lies in the combination of the three components into a single, coherent architecture
-that addresses all three gaps simultaneously.
+To evaluate whether MERIT successfully addresses these gaps, we formalise three core 
+research questions (RQs) that guide the evaluation in Chapter~\ref{ch:evaluation}:
 
-Later, we also evaluate whether we addressed these gaps in Chapter~\ref{ch:evaluation}, 
-and to what extent we were able to address them. We introduce three research questions (RQ1--RQ3) to evaluate this.
-The first research question (RQ1) aims to evaluate whether we can support adaptive scoring through JD-driven, 
-recruiter-configurable metrics and reliable ingestion. The next research question (RQ2) tests whether 
-the introduction of multi-source fusion can improve rankings over CV-only baselines when 
-public work supports or contradicts the claims made on a candidate's CV. The final research question (RQ3) 
-checks whether we can improve decision calibration when given a glass-box interface to the scoring system that
-features source-level attributions and audit trails.
+\begin{itemize}
+    \item \textbf{RQ1 (Extensibility):} Can JD-driven, configurable metrics and 
+    reliable document ingestion aid candidate scoring? Gugnani and Misra~\cite{gugnani2020} 
+    and Lo et al.~\cite{lo2025aihiring} criticise the rigidity of scoring, as well as its 
+    constraints to fixed-dimension scoring. Resume parsing benchmarks, such as 
+    ResumeBench~\cite{emnlp2025resumebench} also document layout-driven extraction 
+    failures that can bound any downstream metric system.
+    
+    \item \textbf{RQ2 (Multi-source):} Does evidence-aware multi-source fusion improve 
+    candidate ranking over CV-only baselines when public work samples support or contradict 
+    self-reported claims? Here, we extend the work of Montandon et al.~\cite{montandon2021_roles} 
+    by considering other signals, specifically GitHub, to address unreliable claims present 
+    on a candidate's CV~\cite{henle2019_resume_fraud,dunning2004}.
+    
+    \item \textbf{RQ3 (Transparency):} Can glass-box explainability and transparency aid 
+    recruiter decision calibration relative to that of a black-box system? This RQ aims 
+    to address the transparency deficits that are documented in modern algorithmic hiring 
+    reviews~\cite{bogen2018,raghavan2020}. We also apply the coalition Shapley formalism 
+    from explainable ML~\cite{lundberg2017unified} at the data-source level.
+\end{itemize}

@@ -200,6 +200,11 @@ we compare these results to TF-IDF suggestions, calculating the exact match, mea
 The graphical representations for this study are available in Appendix~\ref{appendix:metric-prediction-charts}.
 
 \subsubsection{Results}
+As shown in Table~\ref{tab:study-13-metric-alignment}, TF-IDF is not well
+calibrated for exact matches. We can see that none of the roles manage $\geq 50\%$ for the exact match rate between 
+TF-IDF and recruiter consensus. However, we can observe that in most cases, Spearman $\rho$ is positive, showing some
+alignment between the TF-IDF predictions and the recruiter consensus. This is a good sign, as it 
+indicates that the TF-IDF predictions are generally in the right direction, but not necessarily a perfect match.
 \begin{table}[htbp]
     \centering
     \caption[Study~13: TF-IDF vs consensus]{Study~13: TF-IDF vs.\ consensus ($N=4$, $n=27$ skill--role pairs).}
@@ -218,12 +223,6 @@ The graphical representations for this study are available in Appendix~\ref{appe
         \hline
     \end{tabular}
 \end{table}
-
-As shown in Table~\ref{tab:study-13-metric-alignment}, TF-IDF is not well
-calibrated for exact matches. We can see that none of the roles manage $\geq 50\%$ for the exact match rate between 
-TF-IDF and recruiter consensus. However, we can observe that in most cases, Spearman $\rho$ is positive, showing some
-alignment between the TF-IDF predictions and the recruiter consensus. This is a good sign, as it 
-indicates that the TF-IDF predictions are generally in the right direction, but not necessarily a perfect match.
 
 Of the 27 skill--role pairs, eight achieve exact agreement and a further nine differ by only one Likert band (63\% within $\pm 1$).
 The near misses show that our metric predictions should be treated as reasonable guidance, rather than simply a default value.
