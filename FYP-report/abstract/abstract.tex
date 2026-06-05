@@ -1,29 +1,31 @@
-In recent years, technical recruitment has seen a significant increase in terms of applicant volumes.
-Due to this rise in the number of applications, the cognitive demands of finding a suitable candidate have
-increased. This has led to more cognitively demanding Curriculum Vitae (CV) reviews, as well as the adoption of automated screening
-tools to process a large volume of individuals. The current state-of-the-art of automated screening is rigid,
-black-box and also dependent on the CV as the sole source of information. This report presents \textbf{M.E.R.I.T}
-(Multi-source Employment Ranking \& Insight Tool), referred to as MERIT throughout the rest of this report.
-MERIT is a prototype screening framework that supplements a candidate's CV with evidence from multiple sources,
-provides flexible metrics based on the Job Description (JD), and also provides glass-box explanations for a candidate's ranking.
+Over the past few years, there has been a rapid increase in the number of technical roles globally, leading to intensified competition
+among candidates and increasing the volume of applicants that recruiters must screen. The resulting pressure on recruiters from this
+candidate pool has placed strain on Curriculum Vitae (CV) reviews. This has resulted in a shift towards automated screening tools to
+process large batches of candidates. However, the current state-of-the-art automated screening systems remain rigid, opaque, and dependent
+on the CV as a sole source of information.
 
-MERIT's design is split into three core concepts, tying into the three stages of a screening pipeline.
-The first core concept is \emph{extensible} metric extraction, aiming to allow recruiters to list their own 
-metrics based off the JD, targeting the ingestion stage of the screening pipeline. The next stage we target is
-the scoring process itself, where we explore \emph{multi-source} fusion, combining multiple sources of information
-to provide a detailed view of a candidate. Finally, once we have computed match scores for each candidate,
-we provide \emph{explainable} scoring, to give more transparent and interpretable explanations for why a 
-candidate was given a certain rank by our system.
+This report presents \textbf{M.E.R.I.T} (Multi-source Employment Ranking \& Insight Tool), a customisable prototype multi-source
+screening system designed to modernise technical recruitment by moving beyond this single-source dependency. MERIT supplements a
+candidate's CV with evidence from alternative sources such as GitHub and LinkedIn, with GitHub forming the primary evaluated source in
+this work. The system computes flexible metrics that are derived directly from the Job Description (JD), and provides glass-box
+explanations for its candidate rankings to allow recruiters to challenge the rankings, rather than succumb to automation bias. To the
+best of our knowledge, no prior published system targets technical recruitment by combining extensible JD-driven weighting, multi-source
+fusion, and explainable scoring in one auditable architecture.
 
-The results demonstrate that multi-source fusion has the capacity to recover qualified candidates who may
-have been overlooked by CV-only baselines when public work samples strongly support claimed skills. This is evidenced
-by the highest observed expert rank correlation in one high-discrimination cohort (Study~07, $n=10$, Spearman $\rho = 0.733$, $p < 0.05$).
-Results also point towards the effectiveness of explainability, with a formative glass-box pilot ($N=5$) indicating recruiters overturn
-misleading shortlists when weak evidence or dishonest behaviour is revealed. Through our evaluation, we also observe the limitations of MERIT,
-specifically parsing errors and noise, stemming from the unstructured nature of CVs and JDs. We also uncover how multi-source fusion often
-penalises empty data sources, and can also deviate from expert orderings under adversarial multi-source conflict.
+The system's architecture is built around three key concepts, each of which ties into the stages of a screening pipeline. The first stage
+is the ingestion stage, where MERIT introduces \emph{extensible} metric extraction and weighting, providing recruiters with the tooling
+to define their own priorities for a particular job. The next stage is the scoring process, where MERIT leverages \emph{multi-source}
+fusion to build an in-depth profile of the candidate, highlighting any alignments or contradictions between the candidate's self-reported
+information and the evidence from the alternative sources. In the last stage, recruiters would often be met with raw numbers, with no
+explanation or justification for the score. Instead, MERIT explores \emph{explainable} scoring, offering transparent audit trails and
+source-level attribution to allow recruiters to understand the score, as well as the reasoning behind it.
 
-Therefore, MERIT is best characterised as an \textbf{auditable screening assistant} 
-for human-in-the-loop review, rather than a fairness-certified or autonomous hiring authority.
+Our evaluation highlights MERIT's capacity to recover qualified candidates that are often overlooked by CV-only screening systems,
+especially where self-reported CV text understates demonstrated public work, as in hidden-gem profiles where rank shifts of up to eight
+places were observed once GitHub evidence was fused. MERIT's ability to separate candidates on the basis of role-relevant demonstrated
+evidence is also presented through a Spearman correlation of $\rho = 0.733$ between MERIT (Full) and recruiter consensus in one
+high-discrimination cohort ($n = 10$, exploratory). In addition, a small-scale pilot study supports the feasibility of the system, with
+evidence of recruiters reversing their decisions when presented with fraud alerts, keyword stuffing, or stronger demonstrated evidence.
 
-
+MERIT is presented in this report as an \textbf{auditable screening assistant} designed with the intent of supporting recruiters in their
+decision-making process, rather than a fairness-certified or fully autonomous hiring authority.
