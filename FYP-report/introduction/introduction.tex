@@ -54,11 +54,11 @@ selection bias, directly justifying the need to supplement traditional CVs with 
 
 
 The vulnerabilities to single-source evaluation, the presence of bias, and the threat of self-embellishment all point towards
-the need for a multi-source, adaptable and explainable system that can assess technical skills while mitigating bias. High-validity 
+the need for a multi-source, extensible and explainable system that can assess technical skills while mitigating bias. High-validity 
 selection methods have been shown to improve employee performance and productivity, leading to measurable economic and organisational 
 benefits \cite{schmidt1998}. An accurate, rigorous early-stage screening process is therefore critical to reduce the likelihood of a bad hire.
 
-MERIT addresses these issues through the combination of traditional CV data with verified behavioural and proficiency-based
+MERIT addresses these issues through the combination of traditional CV data with structured and demonstrated
 evidence from multiple sources, such as GitHub and LinkedIn. By focusing on observable performance and providing transparent,
 explainable justifications for its rankings, MERIT aims to reduce bias, improve reliability, and aid evidence-based
 decision-making in technical recruitment.
@@ -75,12 +75,12 @@ distinction throughout the report: \textit{pillars} represent our conceptual imp
 while \textit{stages} refer to the sequential phases of the software's execution.
 
 \subsubsection{Pillar 1: Extensibility \& Customisable Evaluation}
-The first pillar aims to establish a dynamic, recruitment-aligned foundation by inferring screening metrics as well as target skills
+The first pillar aims to establish a dynamic, recruitment-aligned foundation by inferring screening metrics as well as suggested weightings
 directly from the job descriptions. Rather than applying a simple one-size-fits-all template, MERIT instead allows recruiters to 
-rely on insights suggested by the model based on current recruitment data, however it is up to the recruiter to accept these metrics,
+rely on insights suggested by the model based on current recruitment data, however it is up to the recruiter to accept these weightings,
 or to choose their own. This customisable metric extraction layer ensures flexibility within the technical hiring domain, while still
-ensuring that MERIT is specific enough to capture the metrics that would be necessary for most technical professions, providing a 
-highly flexible baseline for candidate ranking.
+ensuring that MERIT is specific enough to capture the skills that would be necessary for most technical professions, providing a 
+highly flexible baseline for candidate screening.
 
 \subsubsection{Pillar 2: Multi-Source Evidence Fusion}
 The second pillar of MERIT aims to address the majority of the aforementioned issues. Firstly, it attempts to overcome the 
@@ -94,13 +94,13 @@ integration of a structured data source such as LinkedIn, we can provide supplem
 event of malformed CV parsing.
 
 By taking both of these factors into consideration, as well as the application of temporal skill decay and multi-source conflict
-resolution, MERIT mitigates the impact of resume exaggerations as well as missing information, to help capture a more holistic
-view of a candidate and their technical proficiency.
+resolution, MERIT mitigates the impact of resume exaggerations as well as missing information, helping to capture a more holistic
+view of a candidate's technical proficiency.
 
 \subsubsection{Pillar 3: The Explainability Layer}
 The final pillar revolves around trust, auditability and transparency, to combat the limitations of black-box screening systems.
 MERIT abandons unexplained, arbitrary numerical grading that lacks significance in order to ensure that recruiters can truly
-understand why a candidate was given a certain rank by MERIT. One of the main contributions of this pillar is the audit trail
+understand why a candidate was given a certain score by MERIT. One of the main contributions of this pillar is the audit trail
 generation, providing a transparent and traceable explanation behind candidate scoring. This contribution is supplemented with
 the addition of game-theoretic scoring through Shapley values in order to provide a more fair and accurate assessment of a candidate's abilities.
 We pair these contributions with an interactive dashboard, clear visualisation, and also candidate anonymisation to reduce the risk

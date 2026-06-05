@@ -80,8 +80,8 @@ deliberately contradictory GitHub evidence to test the robustness of the fusion 
         \hline
         Traditional ATS & 0.5515 ($p{=}0.098$) & $-$0.6606 ($p{=}0.038$) & \textbf{0.7939 ($p{=}0.006$)} & \textbf{0.5515 ($p{=}0.098$)} \\
         Modern AI ATS   & 0.2848 ($p{=}0.425$) & $-$0.8061 ($p{=}0.005$) & 0.2364 ($p{=}0.511$) & 0.2848 ($p{=}0.425$) \\
-        MERIT (CV Only) & 0.5152 ($p{=}0.128$) & \textbf{$-$0.5152 ($p{=}0.128$)} & 0.0909 ($p{=}0.803$) & 0.5152 ($p{=}0.128$) \\
-        MERIT (Full)    & \textbf{0.7333} ($p{=}0.016$) & \textbf{$-$0.5152 ($p{=}0.128$)} & 0.7212 ($p{=}0.019$) & 0.0909 ($p{=}0.803$) \\
+        MERIT (CV Only) & 0.5152 ($p{=}0.128$) & \textbf{$-$0.5030 ($p{=}0.138$)} & 0.0909 ($p{=}0.803$) & 0.5152 ($p{=}0.128$) \\
+        MERIT (Full)    & \textbf{0.7333} ($p{=}0.016$) & \textbf{$-$0.5030 ($p{=}0.138$)} & 0.7212 ($p{=}0.019$) & 0.0909 ($p{=}0.803$) \\
         \hline
     \end{tabular}
 \end{table}
@@ -103,12 +103,8 @@ All engines fail to align with the expert consensus, achieving a negative $\rho$
 the intuitive junior candidate. Here, the impact of multi-source fusion is minimal, since multi-source fusion adds 
 magnitude to each candidate relatively equally, leading to no rank changes. This is a stress test to show that 
 multi-source fusion does not consider nuanced scenarios such as overqualified candidates.
-\footnote{Note that the $\rho$ value of $-0.5152$ is exactly the inverse of the $0.5152$ observed in Studies~07 and 10. 
-This is not a clerical error, but a pure mathematical coincidence. Due to the small cohort size of $n=10$, the Spearman 
-correlation can only take on highly quantised fractions (in this case, $\pm17/33 \approx \pm0.51515$). The sum of squared 
-rank differences happened to be exactly 80 in Study~07, and 250 in Study~08.}
 
-\textbf{Outcome:} Does not meet $\rho \geq 0.7$ for any engine (MERIT Full $\rho = -0.515$); seniority-bias stress test failed.
+\textbf{Outcome:} Does not meet $\rho \geq 0.7$ for any engine (MERIT Full $\rho = -0.503$); seniority-bias stress test failed.
 
 \textbf{Study 09 (peer competition).}
 \label{subsec:study-09-spearman-peer}
