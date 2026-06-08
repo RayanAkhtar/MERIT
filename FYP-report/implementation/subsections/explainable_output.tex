@@ -7,13 +7,14 @@ trust, or even challenge candidate scores. We aid this by also providing probabi
 Theory for data source contributions both to the candidate's final score, as well as to their individual metrics.
 
 \subsection{Metric Confidence}
-As mentioned in the previous chapter, Bayesian Evidence Fusion not only provides an expected value, but also a variance, in other words,
+As mentioned in the previous section, Bayesian Evidence Fusion not only provides an expected value, but also a variance, in other words,
 the certainty of that candidate's score. Two candidates may have a similar expected score for a metric, but could have vastly different
 levels of confidence due to the sources of information for that metric. For example, one candidate may have verified signals across multiple
 sources, while another candidate may only have a single, unverified claim from a low-trust source. It is important that a recruiter is able
 to know of this, and in a simple manner.
 
-We defined how variance is computed in section 4.3.4. We build upon this by now computing the confidence interval for that candidate's score.
+We defined how variance is computed in Section~\ref{subsec:bayesian-fusion}. We build upon this by now computing 
+the confidence interval for that candidate's score.
 Firstly, we calculate the standard deviation as $\sigma = \sqrt{\text{Var}(\theta)}$ to quantify this uncertainty. In our implementation of
 MERIT, we avoid displaying confidence intervals to avoid cognitive overload for the recruiter. Instead, we express our confidence in a candidate's
 score by outputting a label: ``High Confidence'', ``Medium Confidence'', or ``Low Confidence''.
@@ -95,7 +96,7 @@ Understandably, presenting the raw JSON \textit{results\_payload} is unreasonabl
 We will briefly go over the main features of our Next.js frontend to create an intuitive, visual ``Glass-Box'' dashboard.
 
 The first feature is probabilistic confidence labels, derived from the standard deviation $\sigma$ of the Beta distribution mentioned
-in the previous chapter. We map $\sigma$ to a traffic-light badge system (Green for High, Amber for Medium, Red for Low),
+in the previous section. We map $\sigma$ to a traffic-light badge system (Green for High, Amber for Medium, Red for Low),
 allowing recruiters to instantly scan the reliability of a candidate's metric at a glance.
 Non-critical penalties (e.g.\ keyword stuffing) show an amber icon on the ranking table, critical penalties (e.g.\ identity squatting) show a red warning. The significance of these labels is highlighted
 more so when it comes to extensible metrics, where there is more uncertainty due to the ambiguity of how such metrics may be defined,

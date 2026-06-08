@@ -58,7 +58,7 @@ email addresses. As explored in the background section, such details can lead to
 When Blind Mode is active, MERIT redacts all PII alongside proxy variables for protected characteristics, such as profile pictures and institutional names. 
 Note that in blind mode, we still show both the candidate rank and match score. While this is an intentional design choice, we must note that
 this can introduce automation bias, a situation where the recruiter may anchor on the engine scores and glass-box breakdowns rather than 
-re-evaluating their own judgments from redacted text alone.
+re-evaluating their own judgement from redacted text alone.
 
 Our way of implementing blind mode is to create a custom React component \textit{renderRedactedText} which 
 wraps sensitive strings. More specifically, our system anonymises:
