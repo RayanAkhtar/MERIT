@@ -11,9 +11,11 @@ Study~11 charts (Section~\ref{subsec:study-11-shapley-verification}, Tables~\ref
 \end{figure}
 
 \section*{Per-Metric Efficiency Verification}
-Table~\ref{tab:per-metric-shapley-verification} demonstrates the per-metric efficiency of the Shapley layer for two randomly selected candidates (Jordan Smith and Felix Vance). As established in Section~\ref{subsec:study-11-shapley-verification}, the efficiency axiom dictates that the sum of the source attributions must perfectly equal the final evaluated score. In these breakdowns, we show that this axiom holds strictly true not only for the candidate's global aggregate score, but for every individual granular metric evaluated by the system.
-
-Notably, Jordan Smith achieves a peak metric score of $0.910$ for both the React and Java requirements, driven entirely by GitHub ($\phi_{\mathrm{GH}} = 0.910$). While the theoretical ``full-evidence'' profile converges to a ceiling of $0.861$ (as demonstrated in Appendix~\ref{appendix:bayesian-fusion-charts}), that ceiling assumes the presence of CV and LinkedIn signals. Because self-claim sources are bounded by a maximum signal of $s=0.8$, they inject a permanent degree of doubt mass (adding to the $\beta$ parameter in the Beta distribution) which mathematically caps the upper bound. Because Jordan Smith had zero CV or LinkedIn claims for these specific skills, his score relied purely on demonstrated evidence ($s=1.0$), allowing him to bypass the self-claim penalty and pierce the theoretical full-evidence ceiling. However, this is an intended feature of the system rather than a flaw: by relying on a single evidence source, Jordan fundamentally retains a higher uncertainty standard deviation ($\sigma$) compared to a multi-source candidate, and his narrow focus results in scoring $0.000$ in several other metrics (such as AWS and Spring Boot), naturally balancing his global aggregate score.
+Table~\ref{tab:per-metric-shapley-verification} presents
+the per-metric efficiency of the Shapley layer for evidence-first versus claims-first candidates, Jordan Smith and Felix Vance respectively.
+As we establish in Section~\ref{subsec:study-11-shapley-verification}, the efficiency
+axiom states that the sum of the source attributions must be perfectly equal to the final evaluated score. These breakdowns
+show that the axiom holds not only for the candidate's global score, but also for every individual granular metric provided by MERIT.
 
 \begin{table}[htbp]
     \centering
