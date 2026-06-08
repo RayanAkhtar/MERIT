@@ -13,21 +13,21 @@ deployment.
 To anchor this judgement, consider the high-discrimination cohort of Study~07 ($n=10$), where MERIT achieved the highest observed expert rank agreement
 ($\rho = 0.733$, $p = 0.016$) and recovered candidates whom CV-only baselines discarded when GitHub demonstrated role-relevant work (Jordan Smith, Study~01).
 However, we should still note that under deliberate CV and GitHub dissonance, MERIT goes strongly against the expert consensus (Study~10).
-MERIT therefore changes who is surfaced in favourable conditions. It does not yet guarantee correct ranking in all conditions.
+While MERIT successfully changes who is surfaced under favourable conditions, it does not guarantee a correct ranking in all scenarios.
 The main value of the system is that it gives recruiters evidence they can inspect and challenge, rather than a single score to accept without question.
 
-MERIT is intended to be used as an auditable screening assistant. Recruiters are expected to inspect the evidence provided by MERIT, treat the 
-ranks as hypotheses, and not as the final decision. Treating MERIT as an oracle is not recommended, not only because of the potential for automation
-bias, but also due to it being close to violating Article~22 of the GDPR, which states that individuals should not be subject to a decision
+MERIT is intended to be used as an auditable screening assistant. Recruiters are expected to inspect the evidence provided by the system, treat the 
+ranks as hypotheses, and not as the final decision. Interpreting MERIT as an oracle is not recommended, not only because of the potential for automation
+bias, but also due to it being close to violating Article~22 of the GDPR. To reiterate, this article states that individuals should not be subject to a decision
 made entirely by an algorithm without human intervention \cite{eu_gdpr_2016}.
 
-When it comes to the three pillars, extensibility and explainability are implemented and partially validated, however, this depends on 
-both the ingestion's scale and quality. The multi-source fusion pillar has been shown to be a strong differentiator where public evidence is
-available. However, it introduces open-source visibility bias when candidates lack public evidence.
+Regarding the three pillars, extensibility and explainability are implemented and partially validated. The multi-source fusion pillar has been shown 
+to be a strong differentiator where public evidence is available, but it introduces open-source visibility bias when candidates lack public evidence.
+Ultimately, the system's real-world effectiveness remains heavily dependent on both the ingestion's scale and quality.
 
-In our project we were able to validate the feasibility of the prototype by using skill-extraction $F_1$, Spearman~$\rho$, and usability scores as indicators.
+We validated the feasibility of the prototype by using skill-extraction $F_1$, Spearman~$\rho$, and usability scores as indicators.
 However, we must note that these scores cannot serve as proof of improved hire quality, as they are not outcome-linked.
 
-Taken together, MERIT meets its FYP aim of designing and validating a multi-source screening architecture.
-While MERIT is not ready for deployment or real-world usage, we have designed a foundation for multi-source explainable screening.
-If constraints and limitations are to be addressed, MERIT could pivot towards a more production-ready system.
+Taken together, MERIT successfully meets its core objective of designing and validating a multi-source screening architecture.
+While the current prototype is not yet ready for real-world deployment, it establishes a strong foundation for multi-source, explainable screening.
+By addressing the technical and ethical constraints identified in this research, future work can pivot MERIT from a research prototype into a robust, production-ready system.

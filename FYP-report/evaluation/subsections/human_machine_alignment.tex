@@ -5,7 +5,7 @@ Study~01 in Section~\ref{subsec:study-01-comparative-ablation}
 included simplistic adversarial personas to stress-test rank shifts on specific candidate characteristics to see
 how each engine treats their specific nuances when it comes to candidate selection. Candidates were not designed to
 be representative of a real-world candidate. Here we use synthetic cohorts built from realistic candidate profiles and compare
-engine rankings against recruiter consensus, using the same baselines as Study~01.
+engine rankings against recruiter consensus, using the same baselines as Study~01. Consequently, Studies~07--10 serve as the final human-centric evaluation for \textbf{RQ2 (Multi-Source Fusion)}, determining whether the ranking output of the engine actually aligns with expert human judgement.
 
 We compare these engine rankings across four synthetic cohorts of size 10, using the Spearman rank correlation coefficient ($\rho$).
 This follows Lo et al.'s~\cite{lo2025aihiring} comparison of automated screening output against human reference rankings. We extend
@@ -21,8 +21,8 @@ Each study pairs a set of ten synthetic candidates with a job description.
 For automated scoring, the cohort includes GitHub and LinkedIn signals where the study design requires them, 
 and supplementary evidence agrees with each candidate's profile except in Study~10, where we purposely create 
 contradictory GitHub evidence to test fusion robustness.
-Recruiter consensus, however, is formed from CV PDFs only (see below).
-Similar to the earlier studies, rank~1 is the best fit.
+Recruiter consensus, however, is formed from CV PDFs only.
+To reiterate, rank~1 is the best fit for a candidate.
 
 \textbf{Recruiter consensus protocol.}
 The reference order for each cohort was produced by the same four professional technical recruiters ($R_1$--$R_4$) across Studies~07--10.
@@ -30,7 +30,7 @@ Each recruiter independently reviewed the role JD and an anonymised bundle of te
 They did not receive GitHub or LinkedIn profiles, only the material a recruiter would typically see at CV-screening stage.
 
 We aggregated the four lists as follows.
-First, we computed each candidate's mean rank across recruiters (lower is better).
+First, we computed each candidate's mean rank across recruiters.
 When two or more candidates tied on mean rank, we used the lower median rank.
 Any remaining ties were resolved by panel discussion until all four recruiters agreed on the final order.
 The resulting order is stored in \texttt{human\_rankings.txt} and summarised in \texttt{reasoning.md} under each 
@@ -39,19 +39,14 @@ We refer to this as expert consensus in the results below.
 Spearman $\rho$ measures how closely each engine matches that CV-only recruiter consensus.
 Engines may use additional GitHub and LinkedIn signals (MERIT Full), so agreement is not expected to be perfect in every cohort.
 
-For each engine we produce a score-based ordering and compute $\rho$ against the recruiter consensus ranking.
+For each engine we produce a score-based ordering and compute $\rho$ against the recruiter consensus ranking:
 \begin{equation}
-    \rho = 1 - \frac{6 \sum_i (h_i - e_i)^2}{n(n^2 - 1)} .
+    \rho = 1 - \frac{6 \sum_i (h_i - e_i)^2}{n(n^2 - 1)} ,
 \end{equation}
+where $h_i$ is the human expert consensus rank for candidate $i$, $e_i$ is the automated engine rank for candidate $i$, and $n$ is the total number of candidates in the cohort ($n=10$).
 
 We use \texttt{scipy.stats.spearmanr} to compute the $\rho$ and two-sided $p$-values. Note that due to the small sample size
-($n=10$), a single rank swap can move $\rho$ sharply, for a similar reason, the $p$-values are exploratory. To reiterate,
-the engines we include are the \textbf{Traditional ATS} (keyword CV baseline), \textbf{Modern AI ATS} (a minimal in-repository
-semantic baseline: SBERT skill matching plus experience weighting on CV text only), \textbf{MERIT (CV Only)}, and \textbf{MERIT (Full)}
-(CV plus GitHub and LinkedIn). Neither ATS baseline is a commercial product. The Modern AI baseline models one stage of AI-assisted
-screening and serves as a minimal proxy. We acknowledge that real-world commercial platforms (e.g., Eightfold or Workday) likely employ
-much more sophisticated proprietary parsing and semantic matching than our baseline suggests, which may understate their true capabilities 
-when comparing against MERIT (Section~\ref{subsec:internal-validity}).
+($n=10$), a single rank swap can move $\rho$ sharply, for a similar reason, the $p$-values are exploratory. To reiterate, the engines evaluated here are the same four baselines established in Study~01 (Section~\ref{subsec:study-01-comparative-ablation}).
 
 \subsection{Spearman Studies 07--10}
 \label{subsec:study-07-spearman-high-discrimination}
@@ -69,20 +64,20 @@ deliberately contradictory GitHub evidence to test the robustness of the fusion 
     \label{tab:spearman-studies-combined}
     \small
     \setlength{\tabcolsep}{4pt}
-    \begin{tabular}{l|c|c|c|c}
-        \hline
+    \begin{tabular}{l c c c c}
+        \toprule
         \textbf{Engine} &
         \textbf{Study 07} &
         \textbf{Study 08} &
         \textbf{Study 09} &
         \textbf{Study 10} \\
         & High disc. & Seniority & Peer & Dissonance \\
-        \hline
+        \midrule
         Traditional ATS & 0.5515 ($p{=}0.098$) & $-$0.6606 ($p{=}0.038$) & \textbf{0.7939 ($p{=}0.006$)} & \textbf{0.5515 ($p{=}0.098$)} \\
         Modern AI ATS   & 0.2848 ($p{=}0.425$) & $-$0.8061 ($p{=}0.005$) & 0.2364 ($p{=}0.511$) & 0.2848 ($p{=}0.425$) \\
         MERIT (CV Only) & 0.5152 ($p{=}0.128$) & \textbf{$-$0.5030 ($p{=}0.138$)} & 0.0909 ($p{=}0.803$) & 0.5152 ($p{=}0.128$) \\
         MERIT (Full)    & \textbf{0.7333} ($p{=}0.016$) & \textbf{$-$0.5030 ($p{=}0.138$)} & 0.7212 ($p{=}0.019$) & 0.0909 ($p{=}0.803$) \\
-        \hline
+        \bottomrule
     \end{tabular}
 \end{table}
 
@@ -104,7 +99,7 @@ the intuitive junior candidate. Here, the impact of multi-source fusion is minim
 magnitude to each candidate relatively equally, leading to no rank changes. This is a stress test to show that 
 multi-source fusion does not consider nuanced scenarios such as overqualified candidates.
 
-\textbf{Outcome:} Does not meet $\rho \geq 0.7$ for any engine (MERIT Full $\rho = -0.503$); seniority-bias stress test failed.
+\textbf{Outcome:} Does not meet $\rho \geq 0.7$ for any engine (MERIT Full $\rho = -0.503$), seniority-bias stress test failed.
 
 \textbf{Study 09 (peer competition).}
 \label{subsec:study-09-spearman-peer}
@@ -112,7 +107,7 @@ Traditional ATS aligns best with $\rho=0.794$, followed by MERIT (Full) with $\r
 MERIT (Full) and MERIT (CV Only), which is due to GitHub and LinkedIn evidence available to the engine but not shown to recruiters.
 Multi-source fusion can act as a tie-breaker when CV PDFs alone are insufficient.
 
-\textbf{Outcome:} MERIT (Full) meets $\rho \geq 0.7$ ($\rho = 0.721$) but does not lead the column (Traditional ATS $\rho = 0.794$); directional support for fusion as a tie-breaker only.
+\textbf{Outcome:} MERIT (Full) meets $\rho \geq 0.7$ ($\rho = 0.721$) but does not lead the column (Traditional ATS $\rho = 0.794$), directional support for fusion as a tie-breaker only.
 
 \textbf{Study 10 (signal dissonance).}
 \label{subsec:study-10-spearman-dissonance}
@@ -126,7 +121,7 @@ however, note that it is uncommon for a candidate to intentionally contradict th
 This case was selected to show that fusion performance is dependent on the quality of the evidence that it is supplied with,
 it will underperform when sources present contradictory evidence.
 
-\textbf{Outcome:} Does not meet $\rho \geq 0.7$ for MERIT (Full) ($\rho \approx 0.09$); deliberate adversarial failure under contradictory supplementary evidence.
+\textbf{Outcome:} Does not meet $\rho \geq 0.7$ for MERIT (Full) ($\rho \approx 0.09$), deliberate adversarial failure under contradictory supplementary evidence.
 
 \subsection{Synthesis}
 \label{subsec:spearman-synthesis}

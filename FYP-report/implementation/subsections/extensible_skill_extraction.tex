@@ -25,7 +25,7 @@ Custom parsing scripts in \texttt{backend/core/parsers} ingest, sanitise, and ex
 \subsubsection{PDF Text Extraction and Cleaning}
 MERIT uses the Python libraries \texttt{pdfplumber} and \texttt{pdfminer} \cite{pdfplumber,pdfminer} to extract text from CV and JD PDFs.
 These tools often leave parsing noise and unwanted characters, so the raw text is sanitised by removing null bytes
-(\texttt{\textbackslash u0000}) and redundant whitespace before downstream extraction.
+(\verb|\u0000|) and redundant whitespace before downstream extraction.
 
 \subsubsection{Identity, Contact, and Profile Links}
 To extract candidate identities, the first 500 characters of a CV are processed by spaCy's English NER pipeline
@@ -42,32 +42,42 @@ We maintain a dictionary of $\approx 420$ technical languages and frameworks, st
 that it stays up to date with the latest technologies. 
 
 We must note that Devicon is not comprehensive enough to cover all of the skills that a candidate may have.
-Devicon is limited to programming languages and also frameworks, but fails to include observability tooling,
+Devicon is limited to programming languages and also frameworks, it does not include observability tooling,
 infrastructure tools and productivity software. The result of this is that skills such as Terraform, Kafka, Prometheus, and
 Jira will not be matched even if they appear in a CV, nor will they be considered when setting weights for a job.
 This limitation is noted in Section~\ref{subsec:study-04}.
 Once we have the dictionary built, we perform case-insensitive regex matching
-with strict word boundaries (\texttt{\textbackslash b}) so that, for example, ``C++'' does not match ``C'' and ``R'' does not match within ``Ruby''.
+with strict word boundaries (\verb|\b|) so that, for example, ``C++'' does not match ``C'', and ``R'' does not match with ``Ruby''.
 During this stage, we also group variations of the same skill (for example, ``JS'' and ``JavaScript'') to prevent inaccuracies
 later on during the scoring stage, and alternate names when creating job match configurations, reducing unnecessary clutter.
 
-\subsubsection{Heuristic Section Segmentation}
-During the parsing of CVs, we attempt to segment the text blocks into common sections, such as experience, education and projects.
-We do this by identifying commonly used section headings (e.g.\ ``Experience'', ``Education'', ``Projects''). We also use common
-delimiters to split text blocks and bullet points, allowing us to extract the roles, companies and institutions. We also use
-regular expressions to extract date ranges as well.
+\subsection{Baseline vs. Extensible Metrics}
+The metrics in MERIT can be categorised into two different kinds: baseline and extensible.
+\textbf{Baseline Metrics} are pre-defined metrics that are common to all configurations, and typically follow the industry-standard
+heuristics. For example, a candidate's education level is a universal factor in technical recruitment that can be assessed
+independently of the specific job requirements. \textbf{Extensible Metrics}, on the other hand, are job-specific metrics, in other words,
+they are directly inferred from the Job Description. An example of an extensible metric for a typical "Machine Learning Engineer"
+may be "Python", which would ideally measure the candidate's skill level for that programming language. By combining these
+two classes of metrics, we are able to produce a holistic, yet highly targeted evaluation of a candidate.
+
+For both classes of metrics, the system may take into account multiple data sources. Some of these sources may be self-reported
+(such as CV and LinkedIn) while other sources may be evidence-driven (such as GitHub). After reducing these signals to a single score,
+we perform a weighted average of all the metrics to compute the final (match) score. Note that it is possible for recruiters to add,
+edit, or remove any metrics during the configuration stage, we provide an exhaustive list of metrics, but this does not mean that
+the user is obligated to use all of them.
 
 \subsection{Dynamic Metric Weighting}
-Another key innovation towards the extensibility of MERIT lies in the inference of skill importance
+A key addition towards the extensibility of MERIT lies in the inference of skill importance
 when setting weights during the configuration stage. This is achieved through the application of a
 modified Term Frequency-Inverse Document Frequency (TF-IDF) approach. This aligns with foundational
-Information Retrieval theory \cite{sparckjones1972idf}, which establishes that skills with a high
-Inverse Document Frequency (IDF) are significantly more ``informative'' for distinguishing specific
-job roles than universally common terms.
+Information Retrieval theory \cite{sparckjones1972idf}, which establishes that rare terms are
+significantly more ``informative'' for distinguishing documents than universally common ones.
+We adapt the original TF-IDF formula to the recruitment domain, where the market corpus is the
+set of all job descriptions in our database. MERIT posits that skills with a high IDF
+are highly discriminative for specific job roles.
 
-We calculate the TF-IDF scores based on both the job description, as well as the market corpus.
-The \textbf{Term Frequency (TF)}, or ``Job Intensity'', reflects the employer's subjective emphasis
-and is calculated as:
+In our adaptation of TF-IDF, the \textbf{Term Frequency (TF)}, or ``Job Intensity'', reflects the employer's subjective emphasis
+on a skill and is calculated as the number of times the skill is mentioned in the job description divided by the total word count of the document.
 
 \begin{equation}
     TF(s, J) = \frac{f_{s, J}}{\sum_{k \in J} w_k}
@@ -89,29 +99,80 @@ $W_s$ for each skill is the product of these two components:
     W_s = TF(s, J) \times IDF(s, D)
 \end{equation}
 
-For each configured job, we compute the $W_s$ scores for each skill; this may also be commonly referred to as an extensible metric.
-These raw scores are the product of the TF and IDF scores for each skill. From here, we then min-max normalise the scores
-to the range $[1.0, 5.0]$ with one decimal place. Higher values mean stronger emphasis on that skill for the given job.
-If a JD mentions both a common skill (e.g.\ ``Python'') and a rarer one (e.g.\ ``Jupyter''), the rarer term tends toward 
-the top of the band unless the common skill is repeatedly mentioned in the JD. In a similar fashion to large-scale skill inference from 
-professional documents \cite{bastian2014linkedin}, we also use corpus-level skill frequency to help distinguish role-specific requirements. 
-The market corpus $D$ is populated from
-historical job descriptions held in Supabase (or alternatively could be populated from an offline corpus, such as during evaluation).
+For each configured job, we compute the $W_s$ scores for each extensible metric.
+These raw scores are the product of the TF and IDF scores. From here, we then min-max normalise the scores to the range $[1.0, 5.0]$ 
+with one decimal place. Higher values mean stronger emphasis on that skill for the given job. If a JD mentions both a common skill 
+(e.g.\ ``Python'') and a rarer one (e.g.\ ``Jupyter''), 
+the rarer term tends toward the top of the band unless the common skill is repeatedly mentioned in the JD. In a similar fashion to 
+large-scale skill inference from professional documents \cite{bastian2014linkedin}, we also use corpus-level skill frequency to help 
+distinguish role-specific requirements. The market corpus $D$ is populated from
+historical job descriptions held in Supabase (or alternatively could be populated from an offline corpus, such as during our evaluation studies).
 Note that the performance of TF-IDF is dependent on the market corpus, and as such, if the market corpus is not representative of 
 the current market, the performance of TF-IDF will be affected. This allows MERIT to keep up to date with the current market, and to be 
 extensible to any technical domain.
 
 
 \subsection{Target Metric Weights}
-Weights should never be fixed, TF-IDF is merely a suggestion based off the market corpus. As such, we also allow recruiters
+Weights should never be fixed, especially when using TF-IDF, which is merely a suggestion based on the market corpus. As such, we also allow recruiters
 to manually adjust the weights of the skills on the job. This is achieved through the use of a 5-point Likert scale, where
 1 = essential and 5 = almost optional. This choice is supported by psychometric research on rating-scale length 
-\cite{lozano2008effect, coelho2007choice}. Note it is possible to completely disregard a metric as well if the recruiter does 
-not wish to include that metric in the candidate matching process. Note weightings in the backend and frontend are inverses
-due to the way that Likert scales correlate to the target weights, as such, in the backend, higher weights mean more significant
+\cite{lozano2008effect, coelho2007choice}. As mentioned earlier, it is possible to completely disregard a metric if the recruiter does 
+not wish to include it in the candidate matching process. Note weightings in the backend and frontend are inverses
+due to the way that Likert scales correlate to the target weights. In the backend, higher weights mean more significant
 for that skill on that job, while in the frontend, lower weights mean more significant. Simply put, the frontend weights are given
 by the formula:
 \begin{equation}
-    P_{\text{UI}} = \max\left(1,\; \min\left(5,\; \mathrm{round}(6 - \texttt{suggested\_weight})\right)\right).
+    P_{\text{UI}} = \max\left(1,\; \min\left(5,\; \mathrm{round}(6 - W_s)\right)\right).
 \end{equation}
-Thus the strongest skill on a JD ($5.0$) is shown as P-1 and the weakest ($1.0$) as P-5.
+Thus the strongest skill on a JD ($5.0$) is shown as P-1 and the weakest ($1.0$) as P-5. The bounding functions provide defensive 
+programming at the UI boundary, guaranteeing the priority remains within the valid 1--5 Likert scale even if the backend returns anomalous scores.
+
+\subsection{Candidate Sourcing and Extraction}
+
+\subsubsection{Heuristic Section Segmentation}
+During the parsing of CVs, we attempt to segment the text blocks into common sections, such as experience, education and projects.
+We do this by identifying commonly used section headings (e.g.\ ``Experience'', ``Education'', ``Projects''). We also use common
+delimiters to split text blocks and bullet points, allowing us to extract the roles, companies and institutions. For date
+ranges, we use regular expressions to identify start and end dates. Once extracted, these date strings
+are removed from the raw text to ensure the extracted entity titles remain clean.
+
+\subsubsection{Structured API Ingestion}
+While CV parsing is a key part of candidate extraction, it is not the only source we consider. We also ingest supplementary data from other sources
+that are present within the candidate's CV. Similar to how we extract email addresses from the CV via regex, we perform the same process for URLs, 
+grouping them by the data source that they belong to. Given that a URL is supported by MERIT, we would then locate the candidate profile on that source,
+using a relevant API endpoint, and then fetch the data from that source. The current iteration of MERIT supports LinkedIn and GitHub.
+
+Unlike the text parsing required for CVs, API endpoints are structured and often quite clean to handle. For LinkedIn, we extract and destructure
+the nested JSON objects containing candidate employment history, education and certifications. We also consider details such as the candidate's connections,
+projects and other relevant information. 
+
+For GitHub, the process is far more in-depth. One such example is the construction of a candidate's language distribution timeline. To do this,
+we pull the raw byte counts for each programming language for the candidate's repositories and then multiply it by the candidate's overall contribution ratio.
+This step is performed to isolate the candidate's personal contribution to that repository (especially if it is a team project). From here, we distribute the bytes
+evenly across the repository's active years. To turn bytes into lines of code (LOC), we divide the byte count by the average number of characters per line 
+(80 characters per line) as per the PEP-8 standard. This standard is applied regardless of the programming language, to maintain a consistent baseline.
+Note that the true line lengths will vary, especially since some languages are more verbose than others. Our calculation is an approximation, rather
+than an exact count. Now that we have the line count per year for each programming language, we have provided the users with tools to look
+beyond self-reported claims as we now have technical evidence that is much harder to fabricate. The reason for building this timeline is to be able to  
+calculate temporal skill decay for the candidate's skills later on in Stage 2 (Section~\ref{subsec:skill-decay-modelling}).
+
+It is worth noting that there is a method to extract the metadata per-commit. However, this is infeasible in practice, even for a single candidate.
+If we were to query the endpoint for all of a candidate's commits, the payload would exclude the diff tree, meaning we cannot use this method to directly compute 
+LOC for a given language per-commit. We would instead need to send an API request for each commit SHA, then parse the diff tree to compute the LOC for that commit,
+also keep a running tally for both additions and deletions. We would also need to build a converter from file extension to programming language
+if we were to attempt this. Assuming the converter is complete, and the absence of API rate limits, this could be considered viable for accurately computing
+LOC per language; however, this is not the case. This means that we would need to send thousands of API calls per candidate, which is not feasible. 
+Our simpler approach trades off some accuracy in the real LOC count for a significantly faster and more scalable solution.
+
+The extensible metrics engine is conceptually designed to handle technical skills, which involves frameworks, cloud platforms and tooling; however, the current
+prototype bounds its tracking only to programming languages. This is an intentional design choice driven by both the GitHub API and the fact that MERIT is
+a prototype framework, not a production-ready system. GitHub only provides a native \texttt{/languages} endpoint; it does not provide an API for frameworks.
+To accurately track framework usage, such as \textit{React.js}, MERIT would need to recursively fetch and parse different file types such as \texttt{package.json} and \texttt{pom.xml}.
+While this addition would have brought value to MERIT, we sufficiently demonstrate the feasibility of the system with only programming languages. We therefore leave
+the addition of framework tracking for future work. Consequently, for the remainder of this report, any reference to an \textit{extensible metric} can be assumed to refer to a programming language unless explicitly stated otherwise.
+
+\subsection{Configuration Formulation}
+When we finish extracting candidate data, we create a batch in the database, storing the user-provided batch name and the candidate IDs.
+Later in MERIT, we can then pair a batch of candidates with a job description to create a configuration, where the user will be prompted to
+either select the TF-IDF weights for each metric, or manually adjust the weights for each metric. From here, they can run the configuration to
+compute the scores and rankings of our candidates.

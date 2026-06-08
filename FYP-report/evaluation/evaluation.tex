@@ -4,11 +4,8 @@
 This chapter evaluates whether MERIT actually addresses the three gaps that were pointed out
 earlier in Section~\ref{sec:relevance-to-merit}. 
 Each of MERIT's pillars maps to a research question (RQ), which is derived from the literature
-review earlier. Our studies are presented bottom-up (Ingestion $\rightarrow$ Fusion $\rightarrow$ 
-Explainability $\rightarrow$ Human Alignment $\rightarrow$ Fairness and Scalability). Note that
-this may disagree with the numerical prefixes of the studies in the repository, which follow the 
-implementation order instead. Graphical representations of the studies are deferred to the appendix, 
-and also cited inline.
+review earlier. Rather than grouping sections strictly by RQ, our evaluation is structured sequentially to mirror the pipeline architecture presented in the Implementation chapter (Ingestion $\rightarrow$ Fusion $\rightarrow$ Explainability $\rightarrow$ Human Alignment $\rightarrow$ Fairness and Scalability). Note that
+this structural flow may disagree with the numerical prefixes of the studies in the repository, which follow the chronological order in which they were originally developed. Graphical representations of the studies are deferred to the appendix, and also cited inline.
 
 \section{Evaluation Overview}
 \label{sec:eval-overview}
@@ -25,12 +22,10 @@ in our evaluation. Both the Traditional ATS and Modern AI ATS baselines are simp
 for the keyword-matching and AI-assisted ATS categories mentioned earlier in Section~\ref{sec:automated-screening}.
 We do not implement a rule-based ATS baseline, the category is knockout-oriented and does not produce ranked, 
 pool-wide scores comparable across candidates. Our studies instead require rankings 
-(Spearman $\rho$), so we compare MERIT only against the two ranking-oriented CV-screening paradigms above. 
-We do not believe this to be a significant threat to validity due to the similarities between Keyword-Matching and Rule-Based ATS systems.
-For Studies~07--10, expert-consensus rankings were produced by the same four-recruiter panel described in Section~\ref{subsec:spearman-method},
+(Spearman $\rho$), so we compare MERIT only against the two ranking-oriented CV-screening paradigms above. We acknowledge that real-world commercial platforms (e.g., Eightfold or Workday) likely employ much more sophisticated proprietary parsing and semantic matching than our baselines suggest, which may understate their true capabilities when comparing against MERIT (Section~\ref{sec:threats-to-validity}).
+For our human-machine alignment studies, expert-consensus rankings were produced by the same four-recruiter panel described in Section~\ref{subsec:spearman-method},
 who reviewed CV PDFs only,
 following Lo et al.'s~\cite{lo2025aihiring} paradigm of comparing automated scores with HR judgement.
-High Spearman $\rho$ measures agreement with that consensus, but cannot be generalised due to the sample size.
 
 Our evaluation takes inspiration from software-engineering experimentation~\cite{wohlin_threats}
 through construct isolation, where we use synthetic JSON personas to isolate scoring logic from 
@@ -43,11 +38,7 @@ Threats to validity, including this design trade-off, are discussed in
 Section~\ref{sec:threats-to-validity}.
 
 
-Against the internal criteria in Table~\ref{tab:eval-literature-traceability} (below), 
-we do not treat every study as a pass. Study~14 meets the SUS target and Study~07 meets the directional $\rho \geq 0.7$ criterion for MERIT (Full).
-However, failures are also documented: Studies~04--05 fall short of parsing $\geq 80\%$ and Spearman cohorts for Studies~08 and~10, 
-fall below $\rho = 0.7$.
-Outcomes by pillar are summarised in Section~\ref{sec:objectives-retrospective}.
+
 
 \subsection{Evaluation Study Mapping}
 \label{subsec:eval-codebase-traceability}
@@ -69,11 +60,11 @@ Note that Studies~02, ~03 and~06 are engineering supplements to either show proo
     \begin{tabularx}{\textwidth}{@{}%
         >{\centering\arraybackslash}m{0.65cm}
         >{\centering\arraybackslash\hyphenpenalty=10000\exhyphenpenalty=10000}m{2.1cm}
-        >{\centering\arraybackslash}X
+        >{\raggedright\arraybackslash}X
         >{\centering\arraybackslash}m{0.48cm} @{}}
-        \hline
+        \toprule
         \textbf{No.} & \textbf{Name} & \textbf{Purpose} & \textbf{RQ} \\
-        \hline
+        \midrule
         \hyperref[subsec:study-01-comparative-ablation]{01} & Comparative ablation &
         Compare four engines on 10 personas and analyse fusion rank shifts. &
         2 \\

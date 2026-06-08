@@ -80,34 +80,32 @@
 
         % Flows: Convergence into Config
         \draw [arrow] (t_jd.south) -- ++(0,-0.4) -| (t_conf.north)
-        node[pos=0.05, right, font=\tiny\bfseries] {1}
-        node[pos=0.95, right, font=\tiny\bfseries, xshift=1.2cm, yshift=0.1cm] {N};
+        node[pos=0.05, right=0.1cm, font=\tiny\bfseries] {1}
+        node[pos=0.95, right=0.1cm, font=\tiny\bfseries] {N};
 
         \draw [arrow] (t_batch.south) -- ++(0,-0.4) -| (t_conf.north)
-        node[pos=0.05, left, font=\tiny\bfseries] {1}
-        node[pos=0.95, left, font=\tiny\bfseries, xshift=-1.2cm, yshift=0.1cm] {N};
+        node[pos=0.05, left=0.1cm, font=\tiny\bfseries] {1}
+        node[pos=0.95, left=0.1cm, font=\tiny\bfseries] {N};
 
         \draw [arrow] (t_conf) -- (t_res)
-        node[pos=0.1, left, font=\tiny\bfseries] {1}
-        node[pos=0.9, left, font=\tiny\bfseries] {1};
+        node[pos=0.25, left=0.1cm, font=\tiny\bfseries] {1}
+        node[pos=0.9, left=0.1cm, font=\tiny\bfseries] {1};
 
         % Input Flow: Candidate into Batch
         \draw [arrow] (t_cand.north) |- (t_batch.west)
-        node[pos=0.1, left, font=\tiny\bfseries] {N}
-        node[pos=0.9, above, font=\tiny\bfseries] {1};
+        node[pos=0.1, left=0.1cm, font=\tiny\bfseries] {N}
+        node[pos=0.9, above=0.1cm, font=\tiny\bfseries] {1};
 
         % Internal Identity Relationships
         \draw [arrow] (t_gh.east) -- ++(0.4,0) |- (t_cand.west)
-        node[pos=0.1, above, font=\tiny\bfseries] {1}
-        node[pos=0.9, above, font=\tiny\bfseries] {1};
+        node[pos=0.05, above=0.2cm, font=\tiny\bfseries] {1};
 
         \draw [arrow] (t_li.east) -- (t_cand.west)
-        node[pos=0.1, above, font=\tiny\bfseries] {1}
-        node[pos=0.9, above, font=\tiny\bfseries] {1};
+        node[pos=0.3, above=0.1cm, font=\tiny\bfseries] {1}
+        node[pos=0.9, above=0.1cm, font=\tiny\bfseries] {1};
 
         \draw [arrow] (t_edu.east) -- ++(0.4,0) |- (t_cand.west)
-        node[pos=0.1, above, font=\tiny\bfseries] {N}
-        node[pos=0.9, above, font=\tiny\bfseries] {1};
+        node[pos=0.05, above=0.1cm, xshift=0.15cm, font=\tiny\bfseries] {N};
 
     \end{tikzpicture}
     \caption[Relational schema overview]{Relational schema: sources, batches, configurations, and stored runs.}

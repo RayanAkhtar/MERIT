@@ -11,37 +11,40 @@
 This section evaluates MERIT's multi-source fusion model, directly addressing RQ2. To ensure a thorough
 evaluation, we proceed from the bottom up. We first demonstrate how skill decay can affect a candidate's score, 
 from there, we then test the Bayesian Fusion process, evaluating the effects of conflict resolution and 
-testing to see whether MERIT does reward demonstrated evidence over claimed evidence. From there, we conduct
-an algorithmic study against baseline ATS scoring engines to compare alignment to expert decisions. Finally,
-we show the other half of this study, where we evaluate how MERIT handles the different personas used in that
-study.
-For studies involving ATS scoring engines, we specifically refer to four scoring engines. We have: a \textbf{Traditional ATS}
-baseline (Keyword-Based), a \textbf{Modern AI ATS} baseline (Semantic-Based), a \textbf{MERIT (CV Only)} baseline (CV-Only), 
-and a \textbf{MERIT (Full)} baseline (CV-Only, GitHub, LinkedIn). The baselines are not commercial products, they are
-in-repository baselines that proxy keyword-matching and AI-assisted ATS systems. Note that we intentionally omit
-rule-based engines as they are knockout-oriented, they do not rank candidates. 
+testing to see whether MERIT rewards demonstrated evidence over claimed evidence. From there, we conduct
+an algorithmic study against baseline ATS scoring engines to compare alignment to expert decisions.
 
-Our studies are performed in isolation, meaning that we consider the successful extraction of candidate CV data.
-To ensure this, we manufacture synthetic candidate JSON profiles to test various scenarios and edge cases.
-This allows us to isolate the multi-source fusion and other engines from parsing noise. The pre-requisite of perfect
-extraction allows us to ensure a clean mathematical baseline. This way, we can verify actual scoring logic, temporal decay
-and conflict resolution are able to be demonstrated and evaluated as intended. The validity implications for this are detailed
+For studies involving ATS scoring engines, we specifically refer to four scoring engines. We have a \textbf{Traditional ATS}
+baseline that replicated the keyword-matching system mentioned in Section~\ref{sec:automated-screening}. We also include a 
+\textbf{Modern AI ATS} baseline that replicated the AI-assisted system mentioned in that section. For the evaluation
+we also separate MERIT into two engines, one that only considers CV data, and one that considers all implemented
+data sources (CV, GitHub, LinkedIn) to isolate the impact of the multi-source fusion layer.
+
+The baselines are not commercial products, they are in-repository baselines that proxy keyword-matching and AI-assisted 
+ATS systems. We intentionally omit rule-based engines as they are knockout-oriented, they do not rank candidates. 
+
+We isolate the scoring logic by assuming perfect data extraction, using synthetic candidate JSON profiles. 
+This removes parsing noise, establishing a clean mathematical baseline to accurately evaluate scoring logic, 
+temporal decay, and conflict resolution. The validity implications for this are detailed
 in Section~\ref{subsec:internal-validity}.
 
 \subsection{Skill-Decay Sensitivity Analysis (RQ2 Supplement)}
 \label{subsec:study-08-skill-decay}
 
-Prior research on skill retention shows that unused workplace skills deteriorate over time~\cite{arthur1998}.
-The purpose of this study is to test whether skill decay is able to provide a large enough separation between a 
-candidate's active and stale skills to be able to rank them appropriately.
-This does not calibrate $\lambda$ against Arthur et al.'s effect sizes.
-\begin{equation}
-    S(t) = S_0 \cdot e^{-\lambda t}
-\end{equation}
-Here, $S_0$ is the initial unweighted skill score and $\lambda$ is the decay constant. In MERIT, $\lambda \approx 0.25$
-(half-life $t_{1/2} \approx 2.77$ years, see Section~\ref{subsec:skill-decay-modelling}). 
-For two otherwise identical profiles (active vs.\ stale), a 6-year stale signal yields $S(6) = S_0 e^{-0.25 \cdot 6} \approx 0.223S_0$, 
-so the stale signal retains about 22.3\% of the active value. The results should be seen as directional, rather than quantitative.
+Prior research on skill retention shows that unused workplace skills deteriorate over time~\cite{arthur1998}. 
+The purpose of this study is to test whether our modelled skill decay provides a large enough mathematical 
+separation between a candidate's active and stale skills to rank them appropriately. 
+
+While this analysis does not strictly calibrate the decay constant ($\lambda$) against Arthur et al.'s empirical 
+effect sizes, it models retention using the exponential decay curve defined in Equation~\ref{eq:exponential_decay}. 
+Here, $S_0$ is the initial unweighted skill score and $\lambda$ is the decay constant. 
+
+In MERIT, we set $\lambda \approx 0.25$ (yielding a half-life of $t_{1/2} \approx 2.77$ years, see 
+Section~\ref{subsec:skill-decay-modelling}). To illustrate this 
+sensitivity: for two otherwise identical profiles (active vs.\ stale), a 6-year stale signal yields 
+$S(6) = S_0 e^{-0.25 \cdot 6} \approx 0.223 S_0$. Because the stale signal retains only 22.3\% of its active 
+value, it creates a clear ranking separation. Consequently, the outcomes of this study should be seen as 
+directional rather than strictly quantitative.
 
 \subsection{Study 12: Bayesian Conflict Resolution}
 \label{subsec:study-12-bayesian-conflict-resolution}
@@ -50,78 +53,97 @@ The reasoning for MERIT's multi-source fusion layer is to be able to reward cand
 with publicly available evidence. This is particularly important for extensible metrics, where said metric is tied directly
 to the job description that it was derived from. We believe it to be essential to reward candidates who can prove that they are
 fit for the role, rather than just claim to be fit for it. In this study, we verify the Beta-Bernoulli conjugate updating 
-implementation \cite{gelman2013bayesian} with two controlled hypothetical profiles on the same extensible metric, motivated by the need to down-weight self-reported CV claims that personnel research shows are frequently embellished~\cite{henle2019_resume_fraud,dunning2004}.
-The first
-represents a claims-only candidate, while the second represents a demonstration-only candidate. Both candidates achieve the 
-maximum score available for the signals that correspond to the category of evidence (claimed or demonstrated).
+implementation \cite{gelman2013bayesian} by contrasting a claims-only candidate against a demonstration-only candidate on the same extensible 
+metric, motivated by the need to down-weight self-reported CV claims that personnel research shows are frequently 
+embellished~\cite{henle2019_resume_fraud,dunning2004}. We also evaluate full-evidence and zero-evidence bounds to establish the 
+mathematical ceiling and floor of the scoring engine.
 
 In this walkthrough, the maximum signal that claims-only sources can achieve is $0.8$, while the maximum signal for demonstration-only signals
-is uncapped at $1.0$. We start from priors $\alpha_0 = \beta_0 = 0.1$, and the step-by-step walkthrough is given in Table~\ref{tab:bayesian-walkthrough}.
+is uncapped at $1.0$. We start from priors $\alpha_0 = \beta_0 = 0.1$, and the step-by-step walkthrough for these two core profiles is given in Table~\ref{tab:bayesian-walkthrough}.
 
 \begin{table}[htbp]
     \centering
-    \caption[Study~12: Claims walkthrough]{Study~12: Step-by-step fusion for the claims-without-demonstration profile.}
+    \caption[Study~12: Claims vs.\ demonstration walkthrough]{Study~12: Step-by-step fusion for the two core profiles.}
     \label{tab:bayesian-walkthrough}
     \small
     \setlength{\tabcolsep}{5pt}
-    \begin{tabular}{l|cccccc}
-        \hline
-        \textbf{Step} ($i$) & $s_i$ & $c_i$ & $\alpha$ & $\beta$ & \textbf{Score} & $\sigma$ \\ \hline
+    \begin{tabular}{l c c c c c c}
+        \toprule
+        \textbf{Step} ($i$) & $s_i$ & $c_i$ & $\alpha$ & $\beta$ & \textbf{Score} & $\sigma$ \\ \midrule
+        \multicolumn{7}{c}{\textbf{Claimed only, no demonstration}} \\ \midrule
         0. Prior            & ---   & ---   & 0.100 & 0.100 & 0.500 & 0.456 \\
         1. CV               & 0.800 & 0.500 & 0.505 & 0.205 & 0.711 & 0.347 \\
         2. GitHub           & 0.000 & 0.900 & 0.506 & 1.106 & 0.314 & 0.287 \\
-        3. LinkedIn         & 0.800 & 0.200 & 0.674 & 1.154 & 0.369 & 0.287 \\ \hline
+        3. LinkedIn         & 0.800 & 0.200 & 0.674 & 1.154 & 0.369 & 0.287 \\ \midrule
+        \multicolumn{7}{c}{\textbf{Demonstrated only, no claims}} \\ \midrule
+        0. Prior            & ---   & ---   & 0.100 & 0.100 & 0.500 & 0.456 \\
+        1. CV               & 0.000 & 0.500 & 0.105 & 0.605 & 0.148 & 0.271 \\
+        2. GitHub           & 1.000 & 0.900 & 1.006 & 0.606 & 0.624 & 0.300 \\
+        3. LinkedIn         & 0.000 & 0.200 & 1.014 & 0.814 & 0.555 & 0.296 \\ \bottomrule
     \end{tabular}
 \end{table}
 
-Step-by-step parameter commentary for the claims scenario is in Appendix~\ref{appendix:bayesian-fusion-walkthrough}.
-Note that we only present the walkthrough for the claims-only case, skipping the demonstration-only case for brevity.
-Table~\ref{tab:bayesian-scenario-comparison} summarises the contrast between the two profiles,
-and Figure~\ref{fig:bayesian-fusion-convergence} (Appendix~\ref{appendix:bayesian-fusion-charts}) plots both trajectories.
+Step-by-step parameter commentary for these core scenarios is in Appendix~\ref{appendix:bayesian-fusion-walkthrough}.
+Table~\ref{tab:bayesian-scenario-comparison} subsequently summarises the final scores of these profiles alongside the empirical ceiling and floor bounds.
+Figure~\ref{fig:bayesian-fusion-convergence} (Appendix~\ref{appendix:bayesian-fusion-charts}) plots the step-by-step trajectories of the two core scenarios.
 
 \begin{table}[htbp]
     \centering
-    \caption[Study~12: Claims vs.\ demonstration]{Study~12: Hypothetical claims-only vs.\ demonstration-only profiles (extensible metric).}
+    \caption[Study~12: Claims vs.\ demonstration]{Study~12: Hypothetical claims vs.\ demonstration profiles, bounded by full and zero evidence.}
     \label{tab:bayesian-scenario-comparison}
     \small
     \setlength{\tabcolsep}{4pt}
-    \begin{tabular}{l|ccc|cc}
-        \hline
+    \begin{tabular}{l c c c c c}
+        \toprule
         \textbf{Scenario} & $s_{\mathrm{CV}}$ & $s_{\mathrm{GH}}$ & $s_{\mathrm{LI}}$ &
-        \textbf{Final} & $\sigma$ \\ \hline
+        \textbf{Final} & $\sigma$ \\ \midrule
+        Full evidence (Max claims and demonstration) & 0.8 & 1.0 & 0.8 & 0.861 & 0.206 \\
+        Demonstrated only, no claims   & 0.0 & 1.0 & 0.0 & 0.555 & 0.296 \\
         Claimed only, no demonstration & 0.8 & 0.0 & 0.8 & 0.369 & 0.287 \\
-        Demonstrated only, no claims   & 0.0 & 1.0 & 0.0 & 0.555 & 0.296 \\ \hline
+        Zero evidence (No claims, no demonstration) & 0.0 & 0.0 & 0.0 & 0.062 & 0.144 \\ \bottomrule
     \end{tabular}
 \end{table}
 
-At the GitHub step (Table~\ref{tab:bayesian-walkthrough}, row~2, Figure~\ref{fig:bayesian-fusion-convergence}), the two profiles diverge sharply. The demonstration-only candidate reaches $0.624$, while the claims-only candidate falls to $0.314$, a gap of 31 percentage points. This reflects the higher source confidence assigned to demonstrated GitHub evidence ($c_{\mathrm{GH}} = 0.9$), and the fact that a zero GitHub signal actively contradicts the CV claim rather than leaving it unchallenged.
+\textbf{The divergence point.} At the GitHub step (Table~\ref{tab:bayesian-walkthrough}, row~2, 
+Figure~\ref{fig:bayesian-fusion-convergence}), the two core profiles diverge sharply. The 
+demonstration-only candidate reaches $0.624$, while the claims-only candidate falls to $0.314$, a gap of 31 percentage points. This 
+reflects the higher source confidence assigned to demonstrated GitHub evidence ($c_{\mathrm{GH}} = 0.9$), and the fact that a zero 
+GitHub signal actively contradicts the CV claim rather than leaving it unchallenged.
 
-For the claims-only profile, a capped CV assertion ($s_1 = 0.8$, $c_1 = 0.5$) initially lifts the score from $0.500$ to $0.711$. This is
-broadly the sort of outcome a CV-only screening pipeline might produce. After GitHub contradicts the claim, the score drops to $0.314$, and a
+\textbf{The claims-only penalty.} For the claims-only profile, a capped CV assertion ($s_1 = 0.8$, $c_1 = 0.5$) initially lifts the score from $0.500$ to $0.711$. This is
+broadly the sort of outcome a CV-only screening pipeline might produce. If the candidate had simply not linked a GitHub profile (a missing source), 
+the fusion engine would stop here and their score would remain at $0.711$, successfully avoiding unfair penalisation for lacking an open-source presence. 
+However, because they linked a GitHub profile that contained no evidence for this specific metric, the zero signal actively contradicts the CV's claim. After GitHub contradicts the claim, the score crashes to $0.314$, and a
 further LinkedIn endorsement ($s_3 = 0.8$, $c_3 = 0.2$) only recovers it to $0.369$. Additional self-report cannot substitute for missing
 public work samples.
 
-The demonstration-only profile follows the reverse pattern. An empty CV ($s_{\mathrm{CV}} = 0$) briefly pulls the score down to $0.148$
+\textbf{The demonstration reward.} The demonstration-only profile follows the reverse pattern. An empty CV ($s_{\mathrm{CV}} = 0$) briefly pulls the score down to $0.148$
 before GitHub ingestion, after which strong demonstrated evidence lifts it to $0.624$ and the final fused score settles at $0.555$. MERIT
 rewards demonstrated evidence over claimed evidence, and this is an intentional design choice. Self-reported CVs are prone to embellishment,
 while demonstrated evidence is harder to game, and requires a candidate to actually use the skill in their own projects or daily work.
 The system favours candidates who can back up their skills with public work, while recording uncertainty when there is a lack of evidence.
 
+\textbf{Deterring strategic omission.} One might ask whether a candidate could ``game'' the system by intentionally withholding a 
+data source (like GitHub) to avoid the risk of a low signal contradicting their CV. However, because MERIT caps the strength and 
+lowers the confidence of self-reported sources, a candidate who omits demonstrated evidence artificially ceilings their maximum 
+possible score for that metric (and potentially all others). While their score will not actively crash, they leave the door wide 
+open for other candidates with verified public work to easily surpass them in the final rankings. This inherently deters the strategic omission of data sources.
+
 \subsection{Study 01: Comparative Engine and Source Ablation}
 \label{subsec:study-01-comparative-ablation}
 
 To evaluate the benefits and drawbacks of MERIT's multi-source fusion model, we compare it against three other baseline screening engines on
-the same ten synthetic personas (\texttt{evaluation/01-comparative\_study/}).
-The first is \textbf{Traditional ATS}, an in-repository keyword-matching baseline representing the keyword-matching ATS category in
+ten synthetic personas (\texttt{evaluation/01-comparative\_study/}).
+The first is \textbf{Traditional ATS}, an in-repository engine that replicates the keyword-matching ATS category in
 Section~\ref{sec:automated-screening}.
 It scores candidates solely on the count of matching keywords in their CV.
-The second is \textbf{Modern AI ATS}, an in-repository semantic baseline representing the AI-assisted ATS category in Section~\ref{sec:automated-screening}.
+The second is \textbf{Modern AI ATS}, an in-repository engine that replicates the AI-assisted ATS category.
 It computes cosine similarities between CV embeddings and Job Description (JD) embeddings using Sentence-BERT (SBERT)~\cite{reimers2019sentence}.
-Neither baseline is a commercial ATS platform.
-We also run \textbf{MERIT (CV Only)} on CV data alone, and \textbf{MERIT (Full)}, which considers CV, GitHub, and LinkedIn evidence.
+To reiterate, neither baseline is a commercial ATS platform.
+We also run \textbf{MERIT (CV Only)} which only considers CV data, and \textbf{MERIT (Full)} which considers all implemented data sources.
 
 We can observe the rankings of the engines in Table~\ref{tab:algorithmic-ablation}, where rank~1 is considered the best
-candidate--job fit and rank~10 the worst. The \textbf{Fusion shift} column records how each candidate's rank changes from MERIT (CV Only) to MERIT (Full).
+candidate--job fit and rank~10 the worst. The fusion shift column records how each candidate's rank changes from MERIT (CV Only) to MERIT (Full).
 See Figure~\ref{fig:rank-displacement-bump-chart} (Appendix~\ref{appendix:rank_displacement}) for a bump-chart visualisation.
 
 
@@ -133,9 +155,9 @@ See Figure~\ref{fig:rank-displacement-bump-chart} (Appendix~\ref{appendix:rank_d
     \vspace{1.5ex}
     \small
     \setlength{\tabcolsep}{5pt}
-    \begin{tabular}{l|l|c|c|c|c|c}
-        \hline
-        \textbf{Candidate} & \textbf{Profile} & \textbf{Trad.} & \textbf{Mod. AI} & \textbf{CV} & \textbf{Full} & \textbf{Fusion shift} \\ \hline
+    \begin{tabular}{l l c c c c c}
+        \toprule
+        \textbf{Candidate} & \textbf{Profile} & \textbf{Trad.} & \textbf{Mod. AI} & \textbf{CV} & \textbf{Full} & \textbf{Fusion shift} \\ \midrule
         Alex Rivers        & Verified elite    & \rankonly{5}  & \rankonly{1}  & \rankonly{1}  & \rankonly{1}  & 0 \\
         Felix Vance        & Identity~mismatch & \rankonly{3}  & \rankonly{6}  & \rankonly{2}  & \rankonly{3}  & $-$1 \\
         Jordan Smith       & Hidden gem        & \rankonly{10} & \rankonly{9}  & \rankonly{10} & \rankonly{2}  & \textbf{+8} \\
@@ -145,7 +167,7 @@ See Figure~\ref{fig:rank-displacement-bump-chart} (Appendix~\ref{appendix:rank_d
         Vince Vault        & High-tenure Fraud & \rankonly{1}  & \rankonly{4}  & \rankonly{4}  & \rankonly{9}  & \textbf{$-$5} \\
         Fiona Frost        & Skill absence     & \rankonly{8}  & \rankonly{3}  & \rankonly{6}  & \rankonly{7}  & $-$1 \\
         Kim Junior         & Entry-level       & \rankonly{9}  & \rankonly{10} & \rankonly{9}  & \rankonly{4}  & +5 \\
-        Carl Corp          & Closed-source     & \rankonly{7}  & \rankonly{2}  & \rankonly{8}  & \rankonly{10} & $-$2 \\ \hline
+        Carl Corp          & Closed-source     & \rankonly{7}  & \rankonly{2}  & \rankonly{8}  & \rankonly{10} & $-$2 \\ \bottomrule
     \end{tabular}
 \end{table}
 
@@ -154,9 +176,7 @@ while the Modern AI ATS prioritises CV semantics behind the keywords, rather tha
 Similar behaviour can be observed for CV-only MERIT, but note the lack of focus on tenure, specifically Carl Corp (\#2 $\rightarrow$ \#8 from Modern AI ATS to CV-only MERIT).
 For MERIT (Full), we can observe that the multi-source data for Jordan Smith and Kim Junior are recognised, leading to rank shifts of +8 and +5 respectively.
 
-\subsubsection{Jordan Smith: hidden gem}
-
-The key finding from this study is from the hidden gem persona, Jordan Smith. The candidate is a low-tenure developer, only having
+\textbf{Jordan Smith: hidden gem.} The key finding from this study is from the hidden gem persona, Jordan Smith. The candidate is a low-tenure developer, only having
 a year of formal experience on his CV, but has a strong GitHub presence that he has not mentioned well on his CV. While this is not a common scenario,
 we mainly highlight this to show the cases where a candidate may not present themselves in an ATS-friendly manner, leading to them being overlooked by these engines.
 
@@ -165,26 +185,22 @@ two highly weighted skills in the JD. Due to the candidate having a significant 
 This candidate is a clear example of how MERIT can reveal candidates who may be overlooked by current state-of-the-art single-source ATS engines that often
 fall into the ``Resume Black Hole''~\cite{fuller2021hiddenworkers}.
 
-\subsubsection{Carl Corp: proprietary data gap}
-
-MERIT is a system that thrives on the presence of public data, candidates are encouraged to showcase their best work on their public profiles.
+\textbf{Carl Corp: proprietary data gap.} MERIT is a system that thrives on the presence of public data, candidates are encouraged to showcase their best work on their public profiles.
 Carl Corp is a candidate who presents a trade-off that MERIT must face, that being candidates who are not able to publicly showcase their work.
-Due to the candidate's commits being in private repositories, we are unable to determine his true skill set, leading to him being implicitly penalised by the engine,
+Due to the candidate's commits being in private repositories, we are unable to determine his true skill set, leading to him being down-weighted by the engine,
 since he is not able to benefit from the multi-source fusion layer to its full potential. Under MERIT (Full), he falls from rank \#2 to rank \#10.
 
 Here, we present a ``Proprietary Data Gap'' scenario, showing that MERIT is more likely to favour a junior with public work, over an experienced candidate
 with private data. MERIT trades off verifiable evidence for the accessibility of such evidence.
 
-\subsubsection{Vince Vault: identity squatting}
-\label{subsubsec:identity-mismatch-resolution}
-
-Due to the difficulty of gaming demonstrated evidence, MERIT prepares for the possibility of candidates who may
+\textbf{Vince Vault: identity squatting.}\label{subsubsec:identity-mismatch-resolution} Due to the difficulty of gaming demonstrated evidence, MERIT prepares for the possibility of candidates who may
 attempt to pass off another's work as their own. We refer to this act as ``identity squatting''.
 In our study, we present Vince Vault as a candidate who performs this malicious action. Vince is a candidate who claims
 ten years of experience and also an expert in Java, but it is likely that he is unable to show this evidence through his own public work.
-Because of this, the candidate, in this scenario, submits a link to another candidate's GitHub account so that their demonstrated work
-supports his application. Traditional ATS and Modern AI ATS do not consider multi-source data, only relying on his CV claims, as such, 
-he is able to rank highly on both engines. The same observation can be made for MERIT (CV Only), where he is able to rank highly on CV text alone.
+Because of this, the candidate, in this scenario, submits a link to another candidate's GitHub account so that someone else's demonstrated work can support
+his application. Traditional ATS and Modern AI ATS do not consider multi-source data, only relying on his CV claims, as such, 
+he is able to rank highly on both engines by simply claiming to have the skills. The same observation can be made for MERIT (CV Only), 
+where he is able to rank highly on CV text alone.
 
 Once we account for multi-source data, MERIT (Full) detects a name difference between the candidate's CV and GitHub account, specifically, the GitHub
 account belongs to another individual, ``Alice Smith''. The Integrity Engine penalises this mismatch, leading to Vince Vault falling from rank \#4 to rank \#9

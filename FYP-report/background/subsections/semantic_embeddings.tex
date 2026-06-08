@@ -1,8 +1,3 @@
-\subsection*{Semantic Intelligence and Vector Embeddings}
-
-MERIT leverages the transition from traditional lexical analysis to semantic intelligence to evaluate the technical expertise of a candidate.
-Earlier generations of ATS relied on "keyword matching", however, MERIT will leverage Large Language Models (LLMs) and vector embeddings to build relationships between programming languages and technical frameworks.
-
 \subsection*{Lexical vs. Semantic Analysis}
 Traditional lexical methods operate on the principle of exact character matching. 
 These methods are often efficient for identifying rare terms, such as a unique framework.
@@ -15,7 +10,7 @@ This allows the system to understand that these terms are conceptually related, 
 
 \subsection*{Vector Similarity Measures}
 The similarity between a candidate's technical profile ($\mathbf{C}$) and the job requirements ($\mathbf{J}$) is calculated using measures such as Cosine Similarity:
-\begin{equation}
+\begin{equation} \label{eq:cosine_similarity}
     \text{similarity} = \cos(\theta) = \frac{\mathbf{C} \cdot \mathbf{J}}{\|\mathbf{C}\| \|\mathbf{J}\|}
 \end{equation}
 

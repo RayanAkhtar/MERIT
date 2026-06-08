@@ -14,7 +14,7 @@ In this section, we state what each metric can, and cannot, support.
 \label{subsec:construct-validity}
 
 The first form of validity is that of construct validity, which refers to the extent
-to which the metrics and instruments we use actually measure the research questions we claim to address.
+to which the metrics and instruments we use measure the research questions we claim to address.
 
 \textbf{Synthetic ground truth.}
 Some of our studies, specifically Studies~01, and 07--10, use synthetic ground truth data in the form of
@@ -27,7 +27,7 @@ Dissonance study (Study~10), where we purposely create contradictory multi-sourc
 contradict the CV. None of our synthetic data is externally validated, and we do not use
 real-world data due to GDPR and PII constraints. The controlled personas and synthetic data
 were, therefore, the most ethical way to stress-test our system without the risk of exposing real candidates,
-while maintaining reproducibility, since we include the data in the GitHub repository.
+while maintaining reproducibility since we include the data in the GitHub repository.
 
 \textbf{Proxy metrics and the gap between ingestion and scoring.}
 Throughout our studies, we report metrics such as parser F$_1$, Spearman $\rho$, shortlist rates, SUS, and more.
@@ -37,7 +37,7 @@ cannot be interpreted as MERIT improving these decisions, however, we can still 
 of our system and draw specific conclusions about the behaviour of our system. Due to the small sample size,
 we cannot generalise the results to a larger population.
 
-Another thread is that our Human-Machine Alignment studies (Study~07--10) use pre-parsed JSON data that assumes
+Another threat is that our Human-Machine Alignment studies (Study~07--10) use pre-parsed JSON data that assumes
 perfect ingestion of data. In our RQ1 studies, we show that ingestion is not perfect, even under authored synthetic data,
 therefore end-to-end MERIT behaviour may differ from what we observe in these studies as they do not account for parser noise.
 
@@ -57,11 +57,11 @@ from cross-role IDF interference. The study also suffers from uneven distributio
 help in the generation of the ground truth. Since TF-IDF aims for a fairly even distribution of scores, we depress
 the $\rho$ because of these decisions (Section~\ref{subsubsec:study-13-limitations}).
 
-In Study~14, the SUS scores that we produce cannot be interpreted as proof of usability; the sample size is too small
+In Study~14, the SUS scores that we produce cannot be interpreted as proof of usability, the sample size is too small
 to draw any conclusions about ease of use, and we would need a larger, more diverse participant pool to ensure reliability (Section~\ref{subsec:hci-trial-protocol}).
 While Blind Mode does redact and anonymise most PII data, we do still retain the tier labels for a candidate's
 university. We do not guarantee true fairness towards demographics, retaining a small amount of institutional bias even in Blind Mode.
-We also retain match scores, which may also be anchored against by the participants of the study. We cannot pass off the results of this
+We also retain match scores, which may also be anchored by the participants of the study. We cannot pass off the results of this
 study as proof of fairness.
 
 \subsection{Internal Validity}
@@ -73,21 +73,30 @@ under study, rather than by confounding factors.
 \textbf{In-repository baselines and benchmarks.}
 The baselines in our studies (Traditional ATS and Modern AI ATS) are in-repository implementations that aim to
 proxy the keyword-matching and AI-assisted ATS categories mentioned earlier in Section~\ref{sec:automated-screening}.
+We do not implement a rule-based ATS baseline since it is knockout-oriented rather than ranking-oriented. 
+We do not believe this to be a significant threat to validity due to the similarities between Keyword-Matching and Rule-Based ATS systems.
 They are not commercial products, nor do they replicate the full complexity or sophistication of the real-world ATS systems.
 The keyword baseline may produce lower scores than the semantic baseline in real-world ATS systems.
-The Modern AI baseline uses SBERT to compute cosine similarities between CV embeddings and JD embeddings; real-world
+The Modern AI baseline uses SBERT to compute cosine similarities between CV embeddings and JD embeddings, however, real-world
 ATS systems may employ more sophisticated models which would likely produce better results.
 Reported baseline statistics for runtime and spacetime compare the algorithm families on the author's workstation.
 Our baselines do not account for factors such as API latency, PDF ingestion, and network I/O.
-Studies~02--03 only record single runs on a workstation without confidence intervals (Section~\ref{subsec:studies-02-03-scalability}).
-Scores are likely to vary from run to run, however, the general pattern will remain stable across 
-configurations under identical hardware and software.
+Studies~02--03 only record single runs on a workstation without confidence intervals (Section~\ref{subsec:studies-02-03-scalability}),
+scores are likely to vary from run to run, however, the general pattern will remain stable across configurations under identical hardware and software.
 
+\textbf{Algorithmic hyperparameters and weighting.}
+MERIT is a customisable engine, recruiters are allowed to adjust the weights of the metrics to suit their needs.
+For the purposes of this evaluation, we set the weights to reflect our interpretation of an evidence-first
+engine, we weighted metrics such as languages and projects higher than education and experience.
+These weights are not empirically validated. Since candidate rankings are sensitive to these hyperparameters,
+both the score gaps and rank shifts are only valid for the specific weights used in this evaluation. A different
+set of weights would likely alter the magnitude of the rank shifts observed, for example, Carl Corp would 
+rank higher if we weighted experience above languages and projects.
 
 \textbf{Protocol and scenario design.}
 As noted under construct validity, our engines use pre-parsed JSON for evaluation, here we note
 that the rank shifts do not account for ingestion errors, they do not validate the full PDF upload pipeline.
-Also, Study~14 always runs the first stage of the pipeline before the second, so the reversals and confidence
+Also, Study~14 always runs the black-box stage before the glass-box stage, the reversals and confidence
 gains might be influenced by order effects, rather than just explainability.
 Study~06 clones one honest baseline and perturbs it with eight different scenarios. This cleanly isolates
 each perturbation, but it does not tell us how often such attacks appear in real candidate pools (Section~\ref{subsec:study-06-adversarial}).
@@ -128,7 +137,6 @@ The measurements we collect are not representative of production latency and mem
 Here, we address whether or not the conclusions that we draw from our data align with our choice of methods and metrics.
 
 \textbf{Spearman $\rho$ as the primary alignment metric.}
-
 Spearman $\rho$ is a measurement of monotonic agreement against another ordering. It cannot measure
 the calibration of match percentages, nor can it measure the magnitude of individual rank swaps.
 Our engines may produce similar $\rho$ values, but they may produce significantly different score spreads.
@@ -145,7 +153,6 @@ In Study~11, we verify efficiency, null-player, additivity, and determinism on a
 We intentionally leave out the axiom of symmetry since sources are heterogeneous by design (Section~\ref{subsec:study-11-shapley-verification}).
 The negative GitHub attribution for Vince Vault is mathematically valid in our evaluation, however it
 may be considered as a cognitive surprise to recruiters.
-
 MERIT is evaluated across fifteen studies, each designed to test a specific aspect of the system's behaviour.
 Due to the number of studies, and because several reuse the same personas and engines, there is a risk that we emphasise
 supportive outcomes when we summarise the chapter, even when the individual study still documents failures such as Study~08
@@ -154,8 +161,8 @@ and Study~10. We do not pool results into one combined effect size, therefore th
 \subsection{Bounded Claims}
 \label{subsec:validity-mitigations}
 
-We frame many threats to validity throughout this section, however, this chapter still provides significant directional evidence
-under controlled data. We will organise our claims into three sets to tie them back to our research questions (RQs).
+We have outlined many threats to validity throughout this chapter, however, 
+the evaluation still provides significant directional evidence under controlled data.
 
 \textbf{RQ1 (Extensibility).}
 Studies~04--05 allow us to claim that PDF ingestion is usable, but below the $\geq 80\%$ parsing target.
@@ -169,17 +176,16 @@ RQ1 therefore does not meet the parsing $\geq 80\%$ target in Table~\ref{tab:eva
 \textbf{RQ2 (Multi-source fusion).}
 Study~12 allows us to claim that our multi-source fusion layer favours demonstrated evidence over self-reported claims.
 Study~01 shows that, given sufficient supplementary evidence, the system can surface hidden talent and penalise fraud when ownership is checked.
-Study~06 stress-tests integrity and fusion under adversarial perturbations; MERIT responds to several attack patterns, however it does not defend against
+Study~06 stress-tests integrity and fusion under adversarial perturbations, MERIT responds to several attack patterns, however it does not defend against
 every scenario (Section~\ref{subsec:study-06-adversarial}).
 Studies~07--10 show that MERIT (Full) meets the directional $\rho \geq 0.7$ criterion in Studies~07 and~09,
 however, this is not the case in Studies~08 or~10, and it does not lead every cohort column (Section~\ref{subsec:spearman-synthesis}).
 RQ2 therefore does not meet the $\rho \geq 0.7$ criterion across all Spearman cohorts in Table~\ref{tab:eval-literature-traceability}.
-When supplementary evidence agrees with the CV, we claim that fusion can improve alignment with expert ordering in cases where CV text alone is
-insufficient to separate candidates.
+When supplementary evidence agrees with the CV, we claim that fusion can improve alignment with expert ordering.
 We do not claim that MERIT can replace other screening systems in all hiring contexts, nor that it performs well when candidates have little to no public evidence.
-MERIT performs poorly under batch-wide contradictory evidence (Study~10), however individual conflicting signals can still shift scores and rankings,
-for example when GitHub contradicts inflated CV claims (Studies~01, 06, and~12).
-We cannot claim that MERIT works well when presented with nuances such as overqualification (Section~\ref{subsec:study-08-spearman-seniority}).
+MERIT performs poorly under batch-wide contradictory evidence (Study~10).
+We cannot claim that MERIT works well when presented with nuances in the hiring process such as the concept of overqualification 
+(Section~\ref{subsec:study-08-spearman-seniority}).
 
 \textbf{RQ3 (Explainability and Transparency).}
 Study~11 verifies the mathematical correctness of the Shapley values, and shows 

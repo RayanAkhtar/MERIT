@@ -7,18 +7,16 @@ for brevity. According to Jobscan's 2022 entry, we have that 97\% of large firms
 While there are no statistics on the adoption of small to medium-sized firms, it is reasonable to assume that
 most organisations use ATS platforms to some extent due to the scalability and efficiency benefits they provide.
 
-ATS platforms can be categorised in various ways, but in our report we will categorise them based off the underlying
+ATS platforms can be categorised in various ways, but in our report we will categorise them based on the underlying
 logic of the scoring system. More specifically, we have Rule-Based, Keyword-Matching, and AI-Assisted ATS.
 
 \subsection{Rule-Based ATS}
-Rule-Based ATS refer to systems that focus on explicit, pre-defined rules or criteria in order to 
+Rule-Based ATS systems refer to platforms that focus on explicit, pre-defined rules or criteria in order to 
 screen candidates. Recruiters often configure such systems with keyword lists, required thresholds for
 skills, education and experience, and other boolean queries. As such, these systems are knockout in
 nature. Either a candidate satisfies every rule, or they are filtered out. It is important to note that
 such systems do not provide a match score, nor do they rank candidates, instead recruiters are presented with
-pass/fail shortlists. 
-
-Due to their consistency and predictability, employers may leverage rule-based systems to screen candidates. 
+pass/fail shortlists. Due to their consistency and predictability, employers may leverage rule-based systems to screen candidates. 
 By applying explicit, pre-defined criteria uniformly, such systems avoid the intuitive, subjective judgments that 
 often influence human reviewers \cite{highhouse2008stubborn}.
 
@@ -37,12 +35,14 @@ but instead due to the system's inability to recognise the candidate's skills.
 
 \subsection{Keyword-Matching ATS}
 This version of ATS is a middle ground between the previously mentioned rule-based approach, and the upcoming AI-driven version.
-This form still relied on keyword matching, but also incorporated better NLP-based parsing to recognise linguistic variations and identify skills even when phrased differently (e.g., “managed projects” → “project management”).
-These systems offer limited semantic understanding, able to recognise that related job titles or synonyms carry similar meanings.
+This form relies heavily on exact keyword matching and basic tokenisation. While some commercial versions may incorporate basic 
+NLP-based parsing to recognise simple linguistic variations, such as standardising acronyms, they still offer limited
+semantic understanding. They act more as advanced string-matching systems rather than engines that can understand the 
+context of a candidate's experience.
+Unlike rule-based knockouts, these systems typically assign match scores and rank candidates across the applicant pool rather than returning pass/fail shortlists alone.
 
-Their strengths are mainly that there is increased flexibility and better extraction accuracy.
-There is also the improved ability in matching candidates who used varied phrasing, and also an increase in
-the transparency of the system compared to the AI-driven systems, since much of the logic is still rule-based.
+Their strengths are mainly that they are simpler to implement and offer an increase in the transparency of the system compared 
+to AI-driven systems, since much of the logic is still tied to explicit keyword counts.
 
 Due to the simplicity of the system, it is often subject to misinterpretation issues, often failing to recognise
 contextual details and ambiguous language within a CV. They also may overlook crucial nuances such as depth of skill,
@@ -53,13 +53,14 @@ of them believe that qualified applicants are screened out when they fail to mat
 exactly \cite{fuller2021hiddenworkers}.
 
 \subsection{AI-Assisted ATS}
-AI-Assisted ATS comprise machine learning models that train on previous hiring data to
-predict candidate-job fit. The system does not follow that of its predecessors, instead
-inferring relationships between the skills, roles and qualifications that led to
-successful hires in the past.
+AI-Assisted ATS comprise machine learning models, often leveraging transformers and Large Language Models (LLMs), 
+to predict candidate-job fit. The system does not follow that of its predecessors, instead inferring semantic 
+relationships between skills, roles and qualifications. Furthermore, many commercial versions will train on previous 
+hiring data to learn which traits led to successful hires in the past.
+Like keyword-matching ATS, they score and rank candidates across the applicant pool rather than applying knockout filters alone.
 
-Due to this, the systems employ vector-embeddings and semantic search to evaluate whether
-a candidate is similar to other successful candidates for that role. They also take advantage
+Due to this, the systems employ vector-embeddings and semantic search to evaluate whether a candidate is a strong 
+match for the job description, or whether they are similar to other successful candidates for that role. They also take advantage
 of predictive scoring models that learn from recruiter usage patterns to refine the scoring system,
 picking up on hidden non-obvious signals that may be missed by traditional keyword-matching systems.
 
@@ -75,7 +76,7 @@ The potential for further discrimination is also present due to the feedback loo
 if these employers continue to favour candidates with these specific traits.
 
 Furthermore, the “black box” nature of these systems leads to low transparency, as there 
-is often little explanation for ranking and rejecting decisions, undermining both the 
+is often little explanation for ranking and rejecting decisions, undermining both 
 candidate trust as well as compliance with fair-hiring guidelines.
 Another significant issue lies in over-generalisation, where these models are often 
 trained on broad datasets, prioritising generic markers over role-specific expertise.

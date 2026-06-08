@@ -16,8 +16,8 @@ to train a supervised machine learning model to classify the role of a candidate
 an aggregate precision of 0.88 and an area under the curve (AUC) of 0.89. The labelled set is comprised
 of 2,284 developers, with language features being the most discriminative signal.
 For most roles, especially DevOps and mobile, the recall is weaker. Authors treat the classifier as a 
-supplementary hiring signal rather than a sole criterion understandably, since this would be a very rigid 
-approach to screening.
+supplementary hiring signal rather than a sole criterion, understandably, since this would be a very rigid 
+screening system if it were the only measure.
 
 The approach still remains limited. Profile text is matched with regex-style cues, vulnerable to 
 self-report bias, also, public activity may not reflect candidates who work in private repositories.
@@ -40,9 +40,6 @@ While their work moves beyond the CV-only limitation, GitMeter~\cite{vaishampaya
 evidence rather than replacing the CV altogether. Kumar et al.~\cite{kumar2025_evidence_hiring} push further towards GitHub-centric
 assessment enriched with academic profiles. Neither approach fuses CV, GitHub, and LinkedIn per metric with traceable conflict resolution,
 nor do they report recruiter-configurable, job-description-driven metric weights or per-source attributions of an overall score.
-This work was identified after the specification and implementation of MERIT, however, we still include it for comparison and to
-highlight the gap that MERIT is designed to solve. Note that we did not use this work to derive the requirements, architecture or
-evaluation in this dissertation.
 
 \subsection{The Requirement for Evidence Verification}
 The gap that motivates MERIT's multi-source pillar is therefore not merely ``add GitHub,'' but \emph{verify} 

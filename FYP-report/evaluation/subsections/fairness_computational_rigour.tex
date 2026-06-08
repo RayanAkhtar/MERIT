@@ -3,7 +3,7 @@
 
 The previous sections covered the accuracy of MERIT, its fusion logic, explainability and also its alignment with human experts.
 We now move on to the last stage of our evaluation by testing the fairness, security against adversarial inputs and computational 
-scalability of MERIT. Refer to Appendix~\ref{appendix:fairness-scalability-charts} 
+scalability of MERIT. Notably, the bias mitigation evaluation (Study~15) presented here serves as the final component of our RQ3 analysis, addressing the debiasing effects of the UI. Refer to Appendix~\ref{appendix:fairness-scalability-charts} 
 and Appendix~\ref{appendix:bias-anonymisation-charts} 
 for the charts associated with this section.
 
@@ -20,46 +20,35 @@ recruiter perception is not affected by a previous visible review of the same pe
 
 This pilot study is guided by the following hypotheses:
 
-\begin{itemize}
-    \item \textbf{H1 (Proxy-gap compression):} The shortlist-rate gap between prestige-high and prestige-mid/low proxy groups 
-    will be smaller in the Blind arm than in the Visible arm.
-    \item \textbf{H2 (Title and layout debiasing):} Candidates penalised by intern titles, noisy parsing, or role-skewed visible 
-    layout (e.g. Vincent) will have higher shortlist rates in the Blind arm, with MERIT scores held constant.
-\end{itemize}
+\textbf{H1 (Proxy-gap compression):} The shortlist-rate gap between prestige-high and prestige-mid/low proxy groups will be smaller in the Blind arm than in the Visible arm.
+
+\textbf{H2 (Title and layout debiasing):} Candidates penalised by intern titles, noisy parsing, or role-skewed visible layout (e.g. Vincent) will have higher shortlist rates in the Blind arm, with MERIT scores held constant.
 
 
 \subsubsection{Experimental protocol}
-For this study, we have a total of eight participants, four recruiters, and four peer evaluators, denoted as $rn$ and $pn$ respectively.
+For this study, we have a total of eight participants (four recruiters and four peer evaluators denoted as $RN$ and $PN$ respectively, where $N \in \{1, 2, 3, 4\}$).
 We have two phases to the study, so to ensure fairness we split participants into two blocks that each contain two recruiters and two peers.
 
-\begin{itemize}
-    \item \textbf{Block 1: Visible arm} ($n = 4$, B1 $\in$ \{\textbf{R1, R2, P1, P2}\}): Intelligence Report popup with Blind Mode 
-    \textbf{off} (names, employers, institutions, titles, standard layout).
-    \item \textbf{Block 2: Blind arm} ($n = 4$, B2 $\in$ \{\textbf{R3, R4, P3, P4}\}): same popup with Blind Mode \textbf{on} 
-    (candidate identifiers, redacted institutions with tier retained, neutralised skill layout. 
-    Section~\ref{sec:bias-mitigation-safeguards}).
-\end{itemize}
+\textbf{Block 1: Visible arm} ($n = 4$, B1 $\in$ \{\textbf{R1, R2, P1, P2}\}): Intelligence Report popup with Blind Mode \textbf{off} (names, employers, institutions, titles, standard layout).
+
+\textbf{Block 2: Blind arm} ($n = 4$, B2 $\in$ \{\textbf{R3, R4, P3, P4}\}): same popup with Blind Mode enabled (candidate identifiers, redacted institutions with tier retained, neutralised skill layout. Section~\ref{sec:bias-mitigation-safeguards}).
 
 In this study, all participants review the same four profiles in a fixed order against the Intern Backend Engineer JD from Study~07.
 We always hide the ranking page from evaluators, only showing the report popup. Due to our intentional design choices, match scores,
 audit trails and confidence scores are always visible in the popup. After viewing the popup, evaluators record their decision (Shortlist/Reject),
 and also their confidence in that decision (1--5) alongside a brief justification. We do not present evidence beyond the CV. No
 evaluator saw both Visible and Blind Mode on the same candidate to prevent memory effects.
-We have that $n = 4$ per arm due to the limited number of participants; this increases the variance of the results, 
-but we are still able to draw relatively reliable conclusions. Results are directional only due to this small sample size.
+We have that $n = 4$ per arm due to the limited number of participants, which increases the variance of the results
+but allows us to draw relatively reliable conclusions. Results are directional only due to the small sample size.
 
 \subsubsection{Cohort design}
 Synthetic candidates were selected from Studies~07 and~08, with no overlap with the Study~14 set 
 (Moinecha Ramos-Horta, Yusuf Nilsson, Robert Todd, Aaron Mohammed):
 \begin{itemize}
-    \item \textbf{Aisling Hunt} (Study~07) --- junior data scientist, UC Berkeley, feminine name and gendered 
-    extracurricular signals on the visible CV.
-    \item \textbf{Vincent Germain} (Study~08) --- intern backend engineer, human rank~1 in Study~08 but intern title 
-    and corrupted PDF header on the visible view.
-    \item \textbf{Riko Al-Tayer} (Study~08) --- senior engineer, Cambridge/Imperial/Stripe pedigree (prestige-halo 
-    risk, overqualified for an intern JD).
-    \item \textbf{Jude Washington} (Study~07) --- junior iOS developer, Berkeley education but unknown employers 
-    (TechFlow, Momentum), and a mobile-first visible layout.
+    \item \textbf{Aisling Hunt} (Study~07) --- junior data scientist, UC Berkeley, feminine name and gendered extracurricular signals on the visible CV.
+    \item \textbf{Vincent Germain} (Study~08) --- intern backend engineer, human rank~1 in Study~08 but intern title and corrupted PDF header on the visible view.
+    \item \textbf{Riko Al-Tayer} (Study~08) --- senior engineer, Cambridge/Imperial/Stripe pedigree (prestige-halo risk, overqualified for an intern JD).
+    \item \textbf{Jude Washington} (Study~07) --- junior iOS developer, Berkeley education but unknown employers (TechFlow, Momentum), and a mobile-first visible layout.
 \end{itemize}
 
 As expected, MERIT Full scores are unchanged by Blind Mode (UI-only redaction): Riko (60.9\%) $>$ Jude (39.9\%) $>$ Aisling (36.7\%) $>$ Vincent (31.1\%).
@@ -77,13 +66,13 @@ summarises the prestige proxy gap used for H1.
     \label{tab:bias-audit-summary}
     \vspace{1.5ex}
     \small
-    \begin{tabular}{l|c|c|c|c}
-        \hline
-        \textbf{Candidate} & \textbf{MERIT (\%)} & \textbf{Visible (\%)} & \textbf{Blind (\%)} & \textbf{$\Delta$ (pp)} \\ \hline
+    \begin{tabular}{l c c c c}
+        \toprule
+        \textbf{Candidate} & \textbf{MERIT (\%)} & \textbf{Visible (\%)} & \textbf{Blind (\%)} & \textbf{$\Delta$ (pp)} \\ \midrule
         Riko Al-Tayer      & 60.9 & 100.0 & 75.0 & $-$25.0 \\
         Aisling Hunt       & 36.7 & 25.0  & 75.0 & +50.0 \\
         Vincent Germain    & 31.1 & 0.0   & 75.0 & +75.0 \\
-        Jude Washington    & 39.9 & 25.0  & 50.0 & +25.0 \\ \hline
+        Jude Washington    & 39.9 & 25.0  & 50.0 & +25.0 \\ \bottomrule
     \end{tabular}
 \end{table}
 
@@ -93,13 +82,13 @@ summarises the prestige proxy gap used for H1.
     \label{tab:bias-disparity-metrics}
     \vspace{1.5ex}
     \small
-    \begin{tabular}{l|c|c}
-        \hline
-        \textbf{Metric} & \textbf{Visible arm} & \textbf{Blind arm} \\ \hline
+    \begin{tabular}{l c c}
+        \toprule
+        \textbf{Metric} & \textbf{Visible arm} & \textbf{Blind arm} \\ \midrule
         Evaluators (recruiters / peers) & 2 / 2 & 2 / 2 \\
         Mean shortlist rate --- prestige-high group (\%) & 62.5 & 75.0 \\
         Mean shortlist rate --- prestige-mid/low group (\%) & 12.5 & 62.5 \\
-        Prestige gap (high minus mid/low, pp) & 50.0 & 12.5 \\ \hline
+        Prestige gap (high minus mid/low, pp) & 50.0 & 12.5 \\ \bottomrule
     \end{tabular}
 \end{table}
 
@@ -113,7 +102,7 @@ The prestige gap falls from 50pp to 12.5pp, as shown in Table~\ref{tab:bias-disp
 The two candidates leading this change are Vincent (0\% $\rightarrow$ 75\%) and Aisling (25\% $\rightarrow$ 75\%), as they were shortlisted
 more often due to the hidden prestige cues. This supports H1 (Proxy-gap compression). H2 is also addressed through these two candidates,
 since they were also often penalised for visible layout and titles. Another interesting observation is that, similar to Section~\ref{subsec:study-08-spearman-seniority},
-overqualification is still a factor to consider, since Riko was rejected by a recruiter for this very reason. Blind Mode does not
+overqualification is still a factor to consider since Riko was rejected by a recruiter for this very reason. Blind Mode does not
 make everyone agree with MERIT's ordering, and it shouldn't be expected to. Blind Mode is designed to change who gets a fair first look
 once we hide the names of employers and academic institutions.
 
@@ -123,7 +112,7 @@ Vincent get considered when titles and formatting had put them at a disadvantage
 checks, and it is not proof of demographic fairness.
 
 \textbf{Outcome:} Directionally meets the blind gap-compression criterion (prestige gap 50~pp $\rightarrow$ 12.5~pp).
-Formative pilot only ($n = 4$ per arm), not inferential proof of fairness. It supports the direction of results, but that is not
+Formative pilot only ($n = 4$ per arm), not inferential proof of fairness. It supports the direction of results, but that is not a
 guarantee of fairness, see Section~\ref{sec:threats-to-validity} for further clarification.
 
 \subsection{Study 06: Adversarial Stress Testing}
@@ -140,18 +129,14 @@ a copy of the same base candidate, \textbf{Honest Candidate}, and the perturbed 
 the scenario or attack they represent. \textbf{Honest Candidate} is a junior software engineer with a strong CV and a fair 
 match percentage of 49.8\%. We have the following scenarios:
 \begin{itemize}
-    \item \textbf{Ghost}: A candidate that has keyword stuffed their public-repository to appear more skilled than they are.
-    \item \textbf{Fraud}: A candidate that has inflated their skills to appear more skilled than they are.
-    \item \textbf{Stale}: A candidate that has updated their CV to appear more skilled than they are, but their public-repository evidence is still outdated.
-    \item \textbf{Gamer}: A candidate that has manipulated their CV and public-repository to appear more actively engaged in particular metrics.
-    \item \textbf{Squatter}: A candidate that has squatted the name of another candidate to appear more skilled than they are. 
-    In this case, the candidate was caught by MERIT's Integrity Layer.
-    \item \textbf{Smart Squatter}: A candidate that has injected the name of another candidate to appear more skilled than they are.
-    In this case, the candidate was able to bypass the Integrity Layer by finding an appropriate name that would pass the identity audit,
-    bypassing the fuzzy name-match. Note that this is a rare scenario in the real-world.
-    \item \textbf{Shadow}: A candidate that has no public-repository evidence to support their claims (as opposed to Ghost,
-    who mainly has contradictory evidence, but still has some evidence).
-    \item \textbf{Inflater}: A candidate that has inflated their repository metrics to appear more skilled than they are.
+    \item \textbf{Ghost}: Keyword stuffs their CV, but provides a public repository that contradicts their claims.
+    \item \textbf{Fraud}: Inflates their CV claims.
+    \item \textbf{Stale}: Provides outdated public-repository evidence.
+    \item \textbf{Gamer}: Manipulates their CV and public-repository to artificially boost specific metrics.
+    \item \textbf{Squatter}: Squats the name of another candidate. Caught by MERIT's Integrity Layer.
+    \item \textbf{Smart Squatter}: Squats the name of another candidate. Fuzzy name-match failed to detect the attack.
+    \item \textbf{Shadow}: Provides no public-repository evidence to support their claims (as opposed to Ghost, who has contradictory evidence).
+    \item \textbf{Inflater}: Inflates their repository metrics only for one language with high LOC, and completely disregards others.
 \end{itemize}
 
 Each scenario is scored by both the CV-only and Full MERIT engines. 
@@ -172,9 +157,9 @@ Full MERIT (blue) per scenario and reports deviation from the honest Full baseli
     \vspace{1.5ex}
     \footnotesize
     \resizebox{\textwidth}{!}{%
-        \begin{tabular}{l|l|>{\centering\arraybackslash}c|>{\centering\arraybackslash}c|>{\centering\arraybackslash}c|>{\centering\arraybackslash}c|>{\centering\arraybackslash}c}
-            \hline
-            \textbf{Scenario} & \textbf{Persona} & \textbf{CV (\%)} & \textbf{$\Delta_{\mathrm{honest\_cv}}$} & \textbf{Full (\%)} & \textbf{$\Delta_{\mathrm{fusion}}$} & \textbf{$\Delta_{\mathrm{honest\_fusion}}$} \\ \hline
+        \begin{tabular}{l l >{\centering\arraybackslash}c >{\centering\arraybackslash}c >{\centering\arraybackslash}c >{\centering\arraybackslash}c >{\centering\arraybackslash}c}
+            \toprule
+            \textbf{Scenario} & \textbf{Persona} & \textbf{CV (\%)} & \textbf{$\Delta_{\mathrm{honest\_cv}}$} & \textbf{Full (\%)} & \textbf{$\Delta_{\mathrm{fusion}}$} & \textbf{$\Delta_{\mathrm{honest\_fusion}}$} \\ \midrule
             Honest            & Honest Candidate   & 29.6 & $+0.0$ & 49.8 & $+20.2$ & $+0.0$ \\
             Ghost             & The Ghost          & 26.7 & $-2.9$ & 34.8 & $+8.1$  & $-15.0$ \\
             Fraud             & The Fraud          & 44.3 & $+14.7$ & 47.4 & $+3.1$  & $-2.4$ \\
@@ -183,7 +168,7 @@ Full MERIT (blue) per scenario and reports deviation from the honest Full baseli
             Squatter          & Vince Vault        & 29.6 & $+0.0$  & 29.8 & $+0.2$  & $-20.0$ \\
             Smart Squatter    & Alex Rivers Smith  & 29.6 & $+0.0$  & 49.8 & $+20.2$ & $+0.0$ \\
             Shadow            & The Shadow         & 29.6 & $+0.0$  & 30.4 & $+0.8$  & $-19.4$ \\
-            Inflater          & The Inflater       & 29.6 & $+0.0$  & 46.1 & $+16.5$ & $-3.7$  \\ \hline
+            Inflater          & The Inflater       & 29.6 & $+0.0$  & 46.1 & $+16.5$ & $-3.7$  \\ \bottomrule
         \end{tabular}%
     }
 \end{table}
@@ -192,53 +177,40 @@ Full MERIT (blue) per scenario and reports deviation from the honest Full baseli
 
 
 
-\textbf{Successful Behaviours.}
-The \textbf{Squatter} scenario is the key highlight of the study, showing that the Integrity Engine can successfully detect and penalise most
-forms of identity squatting. As shown, CV-only is unchanged, and fusion only adds an insignificant uplift of $+0.2$. As shown through ($\Delta_{\mathrm{honest\_fusion}}$),
-There is a $20$ point difference between two identical candidates, highlighting that a candidate's score can be significantly impacted by MERIT if they attempt to game 
-the system. Since both candidates have the same CV-only score, the difference is solely due to the Integrity Engine.
+\subsubsection{Successful Behaviours}
+\textbf{Squatter.} This key highlight shows the Integrity Engine successfully detecting and neutralising identity squatting. Fusion adds an insignificant $+0.2$ uplift. The $\Delta_{\mathrm{honest\_fusion}}$ reveals a $20$-point deficit compared to an identical honest candidate, proving the Integrity Engine effectively cuts off the attacker's advantage.
 
-Another successful response to a scenario is the \textbf{Stale} scenario, in which a candidate attempts to game the system by updating their CV to appear more 
-skilled than they are, but their public-repository evidence is still outdated. As shown, CV-only is unchanged, and fusion only adds an insignificant uplift of $+2.9$. 
-Relative to the honest candidate, the score is reduced by $-11.9$ points, highlighting that outdated skills are not fully rewarded once GitHub is included.
-In this case, it is important to note that they are not penalised, but rather that the effects of Bayesian Fusion update the Beta Distribution to reflect the lower
-signal strength from GitHub.
+\textbf{Stale.} This candidate updates their CV but provides outdated repository evidence. While CV-only is unchanged, fusion adds only a minor $+2.9$ uplift. Relative to the honest candidate, they fall $-11.9$ points behind. They are not explicitly penalised, rather, Bayesian Fusion naturally reflects the lower signal strength of their time-decayed GitHub evidence.
 
-\textbf{Ghost} is also another response that we believe to be successful, in which a candidate attempts to game the system by keyword stuffing their CV 
-while also providing a public-repository that contradicts their claims. As shown, CV-only is partially penalised due to the keyword-stuffing. What is more important
-lies in the $\Delta_{\mathrm{honest\_fusion}}$ score, which is $-15.0$. This is due to the Bayesian Fusion updating the Beta Distribution to reflect the lower
-signal strength from GitHub as they are unable to provide evidence of their skills.
+\textbf{Ghost.} This candidate keyword-stuffs their CV while providing a public-repository that contradicts their claims. CV-only scoring partially penalises this, but their $\Delta_{\mathrm{honest\_fusion}}$ score drops heavily to $-15.0$ because Bayesian Fusion updates the Beta Distribution to reflect the contradictory GitHub signal.
 
-\textbf{Partial mitigations.}
-An example of a partially successful instance is the \textbf{Fraud} scenario, in which a candidate successfully inflates their CV-only score through false claims,
-while providing repository evidence that contradicts this. Unlike \textbf{Ghost}, the candidate overhauls their CV to appear more skilled than they are, rather than
-simply keyword stuffing their CV. As shown, CV-only is increased by $+14.7$ points. When it comes to the Bayesian Fusion, the score is increased by $+3.1$ points.
-This is due to the Bayesian Fusion updating the Beta Distribution to reflect the low signal strength from the candidate's GitHub profile.
+\textbf{Shadow.} Unlike Ghost, this candidate does not actively contradict their CV, but their complete lack of GitHub evidence prevents them from gaining the Bayesian boost awarded to the honest candidate. While they receive a minor $+0.8$ uplift from LinkedIn, their $\Delta_{\mathrm{honest\_fusion}}$ of $-19.4$ demonstrates that missing evidence safely leaves candidates behind rather than actively penalising them.
 
-\textbf{Documented failure modes.}
-The biggest failure with the Integrity Engine is the \textbf{Smart Squatter} scenario. In this case, the candidate was able to bypass the integrity engine by
-finding a GitHub portfolio that matches the candidate's name, is able to pass the fuzzy name-match, and is able to score a high score when evaluated against that
-specific JD. This is a rare scenario in the real-world, but it is important to note that it is possible.
+\textbf{Inflater.} This candidate inflates their metrics by concentrating massive lines of code (LOC) into a single language, disregarding others. Because MERIT evaluates all JD requirements, neglected languages receive no demonstrated evidence. This dilutes their overall probability of competence during the Bayesian update, dragging their $\Delta_{\mathrm{honest\_fusion}}$ down to $-3.7$.
 
-Another impractical failure scenario is the \textbf{Gamer} scenario, in which a candidate attempts to game the system through the manipulation of public-repository metrics.
-In this scenario, the candidate successfully achieves a high GitHub score ($\Delta_{\mathrm{fusion}} = +23.1$). In this case, the candidate was able to successfully trick 
-the system into thinking that they were recently active in particular metrics required for the role. This highlights a critical flaw in the way we calculate the year to 
-project temporal skill decay.
+\subsubsection{Partial Success}
+\textbf{Fraud.} This candidate successfully inflates their CV-only score ($+14.7$) through major false claims, while providing contradictory repository evidence. Unlike Ghost's simple keyword stuffing, Fraud overhauls their entire CV. However, Bayesian Fusion restricts their final boost to just $+3.1$ points by reflecting the low signal strength of their actual GitHub profile. Note that there is still partial success since their $\Delta_{\mathrm{honest\_fusion}}$ score is $-2.4$, Bayesian Fusion still penalises them for the false claims.
+
+\subsubsection{Documented Failure Modes}
+\textbf{Smart Squatter.} The biggest failure mode is the Smart Squatter, where the candidate bypasses the Integrity Engine by finding a highly-scored GitHub portfolio that passes the fuzzy name-match. While rare in the real world, it remains a possible attack vector.
+
+\textbf{Gamer.} Another impractical failure is the Gamer, who manipulates public-repository metrics to trick the system into thinking they were recently active ($\Delta_{\mathrm{fusion}} = +23.1$). This highlights a critical flaw in how MERIT calculates temporal skill decay.
 
 
 \subsubsection{Study 06 takeaway}
 The integrity engine is able to detect and penalise most forms of realistic adversarial attacks, such as keyword stuffing, identity squatting, and repository gaming.
-Note that the majority of failure modes are edge-cases that take significant effort to achieve, and are not expected to be a major concern in the real-world.
-For example, let's consider the \textbf{Smart Squatter} scenario. For a single role, let's assume the malicious candidate wishes to squat a GitHub portfolio. First,
-they would need to find portfolios that would likely score high on MERIT, which is a relatively trivial task, but is still considered a significant effort.
+Note that the majority of failure modes are edge-cases that take significant effort to achieve, and are not expected to be a major concern in the real world.
+For example, let us consider the Smart Squatter scenario. For a given role, let us assume the malicious candidate wishes to squat a GitHub portfolio. First,
+they would need to find portfolios that would score high on MERIT, which is a somewhat feasible task if they are willing to invest the time required to do this.
 From here, the actor would need to find a name that is close enough to bypass the fuzzy name-match, this is likely not a guaranteed success due to the rarity of
-full names that match. This effort would technically work, but in the real-world, where a candidate applies to a vast array of jobs with different metrics, 
-this would be impractical. In our example, we consider GitHub portfolios, but this identity squatting can be applied to other data sources, such as LinkedIn as well.
+a candidate finding a strong portfolio that scores high on MERIT for a specific role that shares the same name as the individual. This effort would technically work, 
+but in the real world, where a candidate applies to a vast array of jobs with different metrics, this would be impractical. This effort would have to be repeated for
+each role family that they apply to. In our example, we consider GitHub portfolios, but this identity squatting can be applied to other data sources, such as LinkedIn as well.
 
 \subsection{Studies 02 \& 03: Scalability \& Performance Benchmarks}
 \label{subsec:studies-02-03-scalability}
 
-Studies~02 and~03 sit outside Table~\ref{tab:eval-literature-traceability}. They 
+Studies~02 and~03 sit outside of the research questions in Table~\ref{tab:eval-literature-traceability}. They 
 assess deployment feasibility (latency and memory at batch scale) rather than whether MERIT closes the extensibility, multi-source, 
 or transparency gaps from Section~\ref{sec:relevance-to-merit}.
 We benchmark only against our in-repository engine variants.
@@ -260,14 +232,14 @@ for a graphical representation, see Appendix~\ref{appendix:fairness-scalability-
     \vspace{1.5ex}
     \small
     \setlength{\tabcolsep}{6pt}
-    \begin{tabular}{r|c|c|c|c|c}
-        \hline
-        \textbf{$N$} & \textbf{Trad. ATS} & \textbf{Mod. AI ATS} & \textbf{MERIT CV} & \textbf{MERIT Full} & \textbf{MERIT Expl.} \\ \hline
+    \begin{tabular}{r c c c c c}
+        \toprule
+        \textbf{$N$} & \textbf{Trad. ATS} & \textbf{Mod. AI ATS} & \textbf{MERIT CV} & \textbf{MERIT Full} & \textbf{MERIT Expl.} \\ \midrule
         10  & 0.003  & 4.33   & 0.090 & 0.092 & 0.513 \\
         50  & 0.012  & 21.14  & 0.435 & 0.465 & 2.588 \\
         100 & 0.026  & 42.18  & 0.890 & 0.963 & 5.169 \\
         200 & 0.040  & 85.03  & 1.789 & 1.862 & 10.48 \\
-        500 & 0.088  & 212.62 & 4.409 & 4.842 & 26.06 \\ \hline
+        500 & 0.088  & 212.62 & 4.409 & 4.842 & 26.06 \\ \bottomrule
     \end{tabular}
 \end{table}
 
@@ -278,19 +250,19 @@ for a graphical representation, see Appendix~\ref{appendix:fairness-scalability-
     \vspace{1.5ex}
     \small
     \setlength{\tabcolsep}{6pt}
-    \begin{tabular}{r|c|c|c|c|c}
-        \hline
-        \textbf{$N$} & \textbf{Trad. ATS} & \textbf{Mod. AI ATS} & \textbf{MERIT CV} & \textbf{MERIT Full} & \textbf{MERIT Expl.} \\ \hline
-        \textit{init.} & 0.10 & 398.0 & 367.1 & 367.5 & 367.7 \\ \hline
+    \begin{tabular}{r c c c c c}
+        \toprule
+        \textbf{$N$} & \textbf{Trad. ATS} & \textbf{Mod. AI ATS} & \textbf{MERIT CV} & \textbf{MERIT Full} & \textbf{MERIT Expl.} \\ \midrule
+        \textit{init.} & 0.10 & 398.0 & 367.1 & 367.5 & 367.7 \\ \addlinespace
         10  & 0.02 & 113.0 & 54.4 & 54.5 & 53.8 \\
         50  & 0.03 & 116.7 & 56.3 & 56.7 & 56.7 \\
         100 & 0.05 & 118.5 & 58.8 & 59.1 & 59.4 \\
         200 & 0.06 & 119.7 & 63.3 & 63.5 & 65.0 \\
-        500 & 0.12 & 119.1 & 73.9 & 74.6 & 76.5 \\ \hline
+        500 & 0.12 & 119.1 & 73.9 & 74.6 & 76.5 \\ \bottomrule
     \end{tabular}
 \end{table}
 
-At $N = 500$, we see that MERIT Full is able to score the batch in under $4.4$ seconds, compared to $213.6$ seconds 
+At $N = 500$, we see that MERIT Full is able to score the batch in under $4.4$ seconds, compared to $212.6$ seconds 
 for the Modern AI ATS. Note the introduction of explainability, specifically Shapley values results in a runtime of 
 $26.1$ seconds, leading to a $5.93$x slowdown compared to MERIT without explainability. There are $(2^3 = 8)$ possible 
 coalitions of sources, and this will scale exponentially with the number of sources, not cohort size. Multi-source

@@ -14,9 +14,11 @@ be treated as part of the ingestion strategy, not as optional extras.
 \subsection{Pillar 2: Missing data $\neq$ low skill}
 \label{sec:pillar2-reflection}
 
-The lesson here is that the current approach to our scoring policy treats absent GitHub activity as weak, or no evidence, rather than
-as missing data. A missing data source, such as GitHub, should not automatically be read as low competence, especially when a candidate's
-most representative work is private. Future work should cover appropriate approaches to handle missing data.
+The lesson here is that when a candidate links a data source like GitHub, but lacks public metadata for a specific metric, 
+our current scoring policy treats this as weak evidence. This actively penalises the candidate during Bayesian fusion. 
+However, an absence of public activity should not automatically be read as low competence, especially since high-tenure 
+candidates often have the majority of their most representative work hidden behind enterprise private repositories. Future 
+work should cover appropriate approaches to handle this missing data without implicitly penalising the candidate.
 
 \subsection{Pillar 3: Explain conflict, not only attribution}
 \label{sec:pillar3-reflection}

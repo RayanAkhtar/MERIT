@@ -50,18 +50,13 @@ and allow for more accurate metric suggestions.
 \label{subsec:future-fusion}
 
 Study~10 demonstrates that MERIT can fail completely when presented with a batch full of candidates that have drastically conflicting evidence.
-While this is a rare occurrence, it is a clear indication that MERIT's multi-source pillar is not yet robust enough to handle conflicting evidence.
+While this is a rare occurrence, it is a clear indication that MERIT's multi-source pillar is not yet robust enough to handle batch-wide conflicting evidence.
 Fusion without safeguards is worse than CV-only screening.
 
 Fusion and Shapley studies use sparse LinkedIn personas to isolate the CV--GitHub contrast. A replication with fully populated LinkedIn profiles
 should be conducted before generalising source-attribution results to production, where LinkedIn often duplicates but also corrects CV claims.
 
-The current implementation of MERIT's evaluation layer does not surface conflicting evidence to the recruiter outside of keyword stuffing and 
-identity squatting. If a candidate were to be penalised for a missing LinkedIn profile, but their GitHub profile shows strong evidence of the same skill,
-the recruiter should be able to see this and investigate further, rather than just be presented with a low score, which they would likely not challenge
-due to automation bias. Research should be conducted to determine the best way to surface conflicting evidence to the recruiter, and to determine
-the threshold at which a candidate should be prompted for human review. Research into potential gaming patterns should also be conducted to
-anticipate such behaviours, and to develop a more robust system to handle them.
+While MERIT's Glass-Box breakdown visually displays conflicting evidence through opposing Shapley values, the top-level frontend rankings do not actively flag general dissonance to the recruiter, outside of specific integrity violations like keyword stuffing. If a candidate is heavily penalised by one source but strongly supported by another, the recruiter must proactively open the candidate's detailed report, navigate to the specific metric, and manually inspect the confidence badge or expand the audit trail dropdown to spot the discrepancy. Without an explicit warning on the main ranking screen, recruiters may easily overlook the conflict due to automation bias and simply accept the final overall score. Future work should explore the best way to algorithmically detect and highlight general source dissonance, establishing thresholds at which conflicting signals automatically flag a candidate for human review.
 
 \subsection{Explainability at Scale}
 \label{subsec:future-explainability-scale}

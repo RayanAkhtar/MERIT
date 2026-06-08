@@ -3,8 +3,8 @@
 
 Similar to current screening systems, if MERIT were to be deployed, candidates would likely attempt to game 
 the system. In a similar manner, recruiters may also fall prey to automation bias, or other forms of unconscious bias,
-to justify a potential decision that they had already intended on making. The following mechanisms are designed
-in order to account for the potential expected behaviour of these candidates and recruiters.
+to justify a potential decision that they had already intended to make. The following mechanisms are designed
+in order to anticipate this sort of behaviour, and mitigate the impact of it on the scoring engine.
 
 
 \subsection{The Integrity Engine}
@@ -14,7 +14,7 @@ score.
 
 \subsubsection{Keyword Stuffing}
 Keyword stuffing is a common threat in automated CV screenings, where candidates often attempt to inflate their
-scores by repeating job related buzzwords. MERIT penalises repeated keywords once occurrences exceed a configurable
+scores by repeating job-related buzzwords. MERIT penalises repeated keywords once occurrences exceed a configurable
 threshold (currently five per keyword in a CV), applying a 5\% score reduction per additional repetition up to a
 60\% cap on the total stuffing penalty so as not to severely punish candidates who repeat terms within reason. Note that penalties only apply to the 
 CV signal, so in the current state of MERIT, it would be possible to recover from keyword stuffing penalisations if a 
@@ -22,15 +22,17 @@ candidate is able to demonstrate strong evidence of their claims in other source
 
 
 \subsubsection{Identity Squatting}
-When candidates apply for roles, they often have multiple copies of their own CV, tailored to specific roles. While
-it is ideal to increase the reach of a candidate, candidates often apply for roles that they are not qualified for,
-embellishing claims to appear as a good fit. It is reasonable to assume that candidates may also consider ``identity squatting''
-using someone else's portfolio, and passing it off as their own.
+When candidates apply for roles, they often have multiple versions of their own CV, tailored to specific roles. 
+While candidates ideally want to maximise their reach, this often leads them to apply for roles they are not 
+qualified for, embellishing claims to appear as a good fit.
+It is reasonable to assume that candidates may also consider ``identity squatting'',
+using someone else's portfolio and passing it off as their own, especially if this data source would otherwise contradict their claims
+for a given version of their CV.
 
-To prevent ``identity squatting'' or the use of fraudulent social profiles, the system performs a fuzzy name-match between the
-CV and the provided GitHub/LinkedIn profiles. To account for minor variations in details such as middle names, initials, titles, etc., 
-we perform a fuzzy match. After performing this, we surface the result in the UI, allowing the recruiter to have the final say in
-whether the candidate is a squatter or not.
+To prevent the use of fraudulent social profiles, the system performs a fuzzy name-match between the
+CV and the full name field of the other data sources' returned JSON data. The reason why we do a fuzzy-match rather than exact match
+is to account for minor variations in details such as middle names, initials, titles, etc. After performing this, we surface the 
+result in the UI, allowing the recruiter to have the final say in whether the candidate is a squatter or not.
 
 In terms of implementation, we rely on the \textit{difflib} library, more specifically its \texttt{SequenceMatcher} class to calculate a
 similarity ratio between the candidate's name on their CV, and their name on the other data sources. If this ratio falls below 0.7, a
@@ -38,22 +40,22 @@ flat \textbf{20\% Integrity Tax} is applied to the final score. Identity squatti
 introduction of more data sources, so it is better to have a safeguard in place to account for malicious actors.
 
 \subsubsection{Claimed vs. Demonstrated Evidence}
-One of the main reasons we considered MERIT to have a pillar of multi-source fusion was to account for the potential of ``Self-Report Bias''.
+One of the main reasons we considered MERIT to have a pillar of multi-source fusion was to account for the potential of self-report bias.
 To combat this issue, we rely on our Bayesian Evidence Fusion mechanism to reward candidates more for demonstrated evidence.
 For example, when it comes to extensible metrics, we place a higher degree of trust in GitHub (0.9 weight) compared to CV 
 (0.5 weight) or LinkedIn (0.2 weight). This ensures that candidates who possess demonstrated evidence are favoured in 
 scoring, as opposed to candidates who may claim skills on their CV without the evidence to back it up. This weight selection
-also possesses a secondary benefit of combating keyword stuffing.
+also possesses a secondary benefit of further combating keyword stuffing beyond a simple penalty to the CV signal.
 
 \subsection{Blind Mode \& Anonymisation}
-The backend's job is to focus on technical integrity, ensuring that data is extracted correctly and consistently.
-The goal of the frontend is to focus on human-centric risks, specifically human bias. One of the main ways we try to 
-address this is through the implementation of \textbf{Blind Mode} (Figure \ref{fig:blind_mode_ui}).
+The role of the backend is to be an algorithmic safeguard, ensuring that data is extracted correctly and consistently.
+The goal of the frontend is to mitigate bias. One of the main ways we try to address this is through the 
+implementation of \textbf{Blind Mode} (Figure \ref{fig:blind_mode_ui}).
 
 \subsubsection{PII Redaction}
 Personally Identifiable Information (PII) refers to information that can be used to identify an individual, with common examples including names and
-email addresses. As explored in the background section, such markers can lead to unconscious biases regarding a candidate's race, gender, or religion.
-When active, MERIT redacts all PII alongside proxy variables for protected characteristics, such as profile pictures and institutional names. 
+email addresses. As explored in the background section, such details can lead to unconscious biases regarding a candidate's race, gender, or religion.
+When Blind Mode is active, MERIT redacts all PII alongside proxy variables for protected characteristics, such as profile pictures and institutional names. 
 Note that in blind mode, we still show both the candidate rank and match score. While this is an intentional design choice, we must note that
 this can introduce automation bias, a situation where the recruiter may anchor on the engine scores and glass-box breakdowns rather than 
 re-evaluating their own judgments from redacted text alone.
@@ -63,7 +65,8 @@ wraps sensitive strings. More specifically, our system anonymises:
 \begin{itemize}
     \item \textbf{Full Names \& Emails:} Replaced with generic identifiers (e.g.\ ``Candidate \#1'').
     \item \textbf{Institutional Data:} School and university names are redacted to prevent ``prestige bias'' from
-          influencing the recruiter's perception. Note that the tier ranking (e.g.\ ``Tier 1'') is preserved.
+          influencing the recruiter's perception. Note that the tier ranking (e.g.\ ``Tier 1'') is preserved due
+          to its importance in the scoring engine for the baseline education metric.
     \item \textbf{Avatars:} GitHub and LinkedIn profile photos are replaced with generic placeholders.
 \end{itemize}
 

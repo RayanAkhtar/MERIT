@@ -16,7 +16,7 @@
         \node [arch_logic, right=2.2cm of db1] (fusion) {Bayesian Fusion\\\& Scoring Engine};
         
         % III. Explainable Interpretation
-        \node [arch_logic, right=2.2cm of fusion, yshift=1.6cm] (run) {Candidate Ranker\\\& Scoring Pipeline};
+        \node [arch_logic, right=2.2cm of fusion, yshift=1.6cm] (run) {Candidate Ranking System};
         \node [arch_logic, below=0.5cm of run] (audit) {ShaRP Explanation\\\& Audit Trails};
 
         % Containers (Using FIT to ensure boxes are inside)
@@ -46,9 +46,9 @@
         \draw [arrow] (audit.east) -- ++(1.5,0) |- (u2.east) node[pos=0.75, above, font=\footnotesize\sffamily, black, fill=white, inner sep=1pt] {Explainable Insights};
 
         % Domain Headers (Drawn last with white background to create "gap" in arrows)
-        \node [domain_label, fill=white, inner sep=2pt] at (area1.north) {I. DATA EXTRACTION};
+        \node [domain_label, fill=white, inner sep=2pt] at (area1.north) {I. DATA EXTRACTION \& JOB CONFIGURATION};
         \node [domain_label, fill=white, inner sep=2pt] at (area2.north) {II. MULTI-SOURCE FUSION};
-        \node [domain_label, fill=white, inner sep=2pt] at (area3.north) {III. RANKING \& EXPLAINABILITY};
+        \node [domain_label, fill=white, inner sep=2pt] at (area3.north) {III. EXPLAINABLE INTERPRETATION};
 
     \end{tikzpicture}
     \caption[MERIT three-stage architecture]{MERIT high-level architecture: extraction, fusion, and explainability.}

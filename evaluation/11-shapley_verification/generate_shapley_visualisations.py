@@ -193,11 +193,81 @@ def generate_source_dominance_pie():
     print(f"[SUCCESS] Saved {out_path}")
 
 
+def generate_candidate_charts(candidate_name, slug):
+    print(f"[VIS] Generating {candidate_name} specific charts...")
+    # 1. Pie chart for full score
+    rows = _load_csv("axiom1_efficiency.csv")
+    alex_row = next((r for r in rows if r["candidate"] == candidate_name), None)
+    if alex_row:
+        vals = [float(alex_row["phi_cv"]), float(alex_row["phi_github"]), float(alex_row["phi_linkedin"])]
+        # Filter out 0 values to make pie chart cleaner
+        filtered_vals = []
+        filtered_labels = []
+        filtered_colors = []
+        for v, l, c in zip(vals, ["CV", "GitHub", "LinkedIn"], [COLORS["CV"], COLORS["GitHub"], COLORS["LinkedIn"]]):
+            if v > 0:
+                filtered_vals.append(v)
+                filtered_labels.append(l)
+                filtered_colors.append(c)
+
+        fig, ax = plt.subplots(figsize=(6, 6))
+        wedges, texts, autotexts = ax.pie(
+            filtered_vals, labels=filtered_labels, colors=filtered_colors, autopct="%1.1f%%",
+            startangle=140, textprops={"fontsize": 12},
+            wedgeprops={"edgecolor": "white", "linewidth": 2}
+        )
+        for at in autotexts:
+            at.set_fontweight("bold")
+            at.set_fontsize(13)
+
+        ax.set_title(f"{candidate_name}: Global Score Attribution", fontsize=13, fontweight="bold")
+        plt.tight_layout()
+        out_path = os.path.join(OUTPUT_DIR, f"{slug}_pie.png")
+        plt.savefig(out_path, dpi=150)
+        plt.close()
+        print(f"[SUCCESS] Saved {out_path}")
+
+    # 2. Bar chart for metrics (stacked)
+    metric_rows = _load_csv("extended_per_metric_efficiency.csv")
+    alex_metrics = [r for r in metric_rows if r["candidate"] == candidate_name]
+    if alex_metrics:
+        # format metric names (e.g. req_spring_boot -> Spring Boot)
+        def format_metric(m):
+            m = m.replace("req_", "").replace("_", " ").title()
+            if m == "Professional Gravity": return "Prof. Gravity"
+            return m
+            
+        metrics = [format_metric(r["metric"]) for r in alex_metrics]
+        cvs = [float(r["phi_cv"]) for r in alex_metrics]
+        ghs = [float(r["phi_github"]) for r in alex_metrics]
+        lis = [float(r["phi_linkedin"]) for r in alex_metrics]
+        
+        fig, ax = plt.subplots(figsize=(10, 6))
+        y = np.arange(len(metrics))
+        ax.barh(y, cvs, color=COLORS["CV"], label="CV", alpha=0.85)
+        ax.barh(y, ghs, left=cvs, color=COLORS["GitHub"], label="GitHub", alpha=0.85)
+        ax.barh(y, lis, left=np.add(cvs, ghs), color=COLORS["LinkedIn"], label="LinkedIn", alpha=0.85)
+        
+        ax.set_yticks(y)
+        ax.set_yticklabels(metrics, fontsize=11)
+        ax.set_xlabel("Metric Score", fontsize=12)
+        ax.set_xlim(0, 1.0)
+        ax.set_title(f"{candidate_name}: Per-Metric Shapley Breakdown", fontsize=14, fontweight="bold")
+        ax.legend(loc="upper right", fontsize=10)
+        ax.grid(axis="x", alpha=0.3)
+        plt.tight_layout()
+        out_path = os.path.join(OUTPUT_DIR, f"{slug}_metrics_bar.png")
+        plt.savefig(out_path, dpi=150)
+        plt.close()
+        print(f"[SUCCESS] Saved {out_path}")
+
 def generate_visualisations():
     print("[VIS] Generating Study 11 visualisations...")
     generate_efficiency_chart()
     generate_attribution_breakdown()
     generate_source_dominance_pie()
+    generate_candidate_charts("Jordan Smith", "jordan_smith")
+    generate_candidate_charts("Felix Vance", "felix_vance")
     print("[VIS] Done.")
 
 

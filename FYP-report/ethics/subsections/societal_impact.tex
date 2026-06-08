@@ -23,39 +23,33 @@ Table~\ref{tab:ethics-deployment-summary} summarises the main risks, what MERIT 
         >{\raggedright\arraybackslash\hsize=0.95\hsize}X
         >{\raggedright\arraybackslash\hsize=1.15\hsize}X
         >{\raggedright\arraybackslash\hsize=0.9\hsize}X @{}}
-        \hline
+        \toprule
         \textbf{Risk} & \textbf{What MERIT does} &
             \textbf{What remains} \\
-        \hline
+        \midrule
         Rejecting people with no human review (Art.~22) &
         Scores support recruiters, shortlist needs a person
             (Sec.~\ref{sec:fairness-computational-rigour}) &
         Illegal if fully automated \\
-        \hline
         Bias from names, schools, titles &
         Blind Mode, smaller prestige gap in Study~15 &
         Scores still shown, tier labels kept \\
-        \hline
         Users do not trust the system &
         Glass-Box scores and Shapley breakdown &
         Over-trusting scores, detail unused \\
-        \hline
         Keyword stuffing on CVs &
         Anti-stuffing, multiple data sources &
         Gaming GitHub activity (Study~06) \\
-        \hline
         Fake profiles / stolen GitHub &
         Integrity checks, Study~14 caught fraud &
         Rare smart squatting, name mismatches \\
-        \hline
         Penalising private-sector work &
         GitHub optional, CV still used &
         ``Proprietary gap'' (Carl Corp) \\
-        \hline
         LinkedIn scraping (prototype only) &
         Apify, at most 30 consenting contacts
             (Sec.~\ref{sec:data-privacy-gdpr}) &
         Need licensed API in production \\
-        \hline
+        \bottomrule
     \end{tabularx}
 \end{table}

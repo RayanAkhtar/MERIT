@@ -2,7 +2,7 @@
 \label{sec:explainable-ai-shapley}
 
 For MERIT to be considered as a "Glass-box" system, source-level attribution must be provided to provide a fair assessment to a recruiter as to how a candidate was scored.
-Part of that required the system being able to capture the contribution of each data source to the final match score.
+Part of that requires the system to be able to capture the contribution of each data source to the final match score.
 To achieve this, we focus on Shapley Values, a concept from Cooperative Game Theory that is used to attribute the winnings of a group of players to the contribution of each player.
 
 
@@ -11,7 +11,7 @@ To relate this concept to MERIT, we consider the final match score as "winnings"
 The main objective is to determine how each player contributed to the winnings.
 
 The Shapley value for a data source $i$ is defined as the average marginal contribution of that source across all possible combinations (coalitions) of sources:
-\begin{equation}
+\begin{equation} \label{eq:shapley_value}
     \phi_i(v) = \sum_{S \subseteq N \setminus \{i\}} \frac{|S|! (n - |S| - 1)!}{n!} [v(S \cup \{i\}) - v(S)]
 \end{equation}
 Where:
@@ -20,6 +20,8 @@ Where:
     \item $S$ is a subset of sources that does not include source $i$.
     \item $v(S)$ is the score generated using only the sources in subset $S$.
 \end{itemize}
+
+The left side of the summation is the combinatorial weighting factor, which weights each coalition of the remaining sources according to its size. The right side of the summation is the marginal contribution of the source $i$ to the coalition $S$.
 
 \subsection*{Source Attribution and Fairness}
 By calculating these values, MERIT can explicitly state the contribution of each data source to the final match score.

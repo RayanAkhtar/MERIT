@@ -2,35 +2,39 @@
     \centering
     \begin{tikzpicture}[
             font=\sffamily,
-            xscale=1.8, yscale=4.0
+            xscale=1.1, yscale=4.0
         ]
+        % Origin
+        \node[below left, font=\scriptsize] at (0,0) {0};
+
         % Grid lines
-        \foreach \x in {1,2,3,4,5,6} {
+        \foreach \x in {1,2,3,4,5,6,7,8,9,10} {
                 \draw[gray!30, dashed] (\x,0) -- (\x,1);
                 \node[below, font=\scriptsize] at (\x,0) {\x};
             }
         \foreach \y in {0.2, 0.4, 0.6, 0.8, 1.0} {
-                \draw[gray!30, dashed] (0,\y) -- (6,\y);
+                \draw[gray!30, dashed] (0,\y) -- (10,\y);
                 \node[left, font=\scriptsize] at (0,\y) {\y};
             }
 
         % Axes
-        \draw[thick, -{Stealth[scale=1.0]}, ImperialBlue] (0,0) -- (6.5,0) node[right, font=\footnotesize\bfseries] {Years Inactive ($\Delta t$)};
-        \draw[thick, -{Stealth[scale=1.0]}, ImperialBlue] (0,0) -- (0,1.15) node[above, font=\footnotesize\bfseries] {Signal Strength ($\mathcal{S}_{\text{decay}}$)};
+        \draw[thick, -{Stealth[scale=1.0]}] (0,0) -- (10.5,0) node[right, font=\footnotesize\bfseries] {Years Inactive ($\Delta t$)};
+        \draw[thick, -{Stealth[scale=1.0]}] (0,0) -- (0,1.15) node[above, font=\footnotesize\bfseries] {Signal Strength ($\mathcal{S}_{\text{decay}}$)};
 
         % Decay Curve: y = e^(-0.25 * x)
-        \draw[ultra thick, ImperialBlue, domain=0:6, samples=100]
+        \draw[ultra thick, ImperialBlue, domain=0:10, samples=100]
         plot (\x, {exp(-0.25 * \x)});
 
         % Half-life annotation
-        \draw[dashed, thick, ProcessBlue] (2.77,0) -- (2.77,0.5) -- (0,0.5);
-        \fill[ProcessBlue] (2.77,0.5) circle (1.5pt);
-        \node[above right, font=\footnotesize\bfseries, ProcessBlue] at (2.77,0.5) {Half-Life Point (2.8 Years)};
+        \draw[dashed, thick, CoolGrey] (2.77,0) -- (2.77,0.5) -- (0,0.5);
+        \node[circle, fill=CoolGrey, inner sep=1.5pt] at (2.77,0.5) {};
+        \node[above right, font=\footnotesize\bfseries] at (2.77,0.5) {Half-Life Point (2.8 Years)};
 
         % Start point
-        \fill[ImperialBlue] (0,1.0) circle (1.5pt);
+        \node[circle, fill=ImperialBlue, inner sep=1.5pt] at (0,1.0) {};
 
     \end{tikzpicture}
     \caption[Temporal skill decay ($\lambda = 0.25$)]{Temporal skill decay with $\lambda = 0.25$ (half-life $\approx 2.8$ years).}
     \label{fig:skill_decay_graph}
 \end{figure}
+

@@ -1,9 +1,9 @@
 \section{Evaluating Pillar 3: Glass-Box Explainability \& HCI}
 \label{sec:evaluating-explainability}
 
-This section evaluates the final pillar of MERIT, addressing RQ3. We first verify the mathematical correctness of the Shapley values,
+This section evaluates the third pillar of MERIT, addressing RQ3. We first verify the mathematical correctness of the Shapley values,
 applying the coalition Shapley formalism from explainable ML~\cite{lundberg2017unified} at the data-source level.
-Then we conclude with a user study to understand the impact of the explainability layer on recruiter decision-making. In that study, we also
+From here, we conduct a user study to understand the impact of the explainability layer on recruiter decision-making. In that study, we also
 consider usability, confidence calibration and decision reversal rate for features such as Shapley values, audit trail and Blind Mode.
 We evaluate mathematical correctness of Shapley attributions and the HCI impact of the Glass-Box layer on recruiters.
 
@@ -29,9 +29,9 @@ e.g.\ GitHub identity mismatch).
     \vspace{1.5ex}
     \small
     \setlength{\tabcolsep}{7pt}
-    \begin{tabular}{l|ccc|cc}
-        \hline
-        \textbf{Candidate} & $\phi_{\mathrm{CV}}$ & $\phi_{\mathrm{GH}}$ & $\phi_{\mathrm{LI}}$ & $\sum \phi_i$ & $v(N)$ \\ \hline
+    \begin{tabular}{l c c c c c}
+        \toprule
+        \textbf{Candidate} & $\phi_{\mathrm{CV}}$ & $\phi_{\mathrm{GH}}$ & $\phi_{\mathrm{LI}}$ & $\sum \phi_i$ & $v(N)$ \\ \midrule
         Alex Rivers   & +0.3107 & +0.4607 & +0.0087 & 0.7800 & 0.7800 \\
         Buzz Ward     & +0.3545 &  0.0000 & +0.0075 & 0.3620 & 0.3620 \\
         Carl Corp     & +0.1635 &  0.0000 & +0.0155 & 0.1790 & 0.1790 \\
@@ -41,7 +41,7 @@ e.g.\ GitHub identity mismatch).
         Jordan Smith  & +0.1028 & +0.5288 & +0.0113 & 0.6430 & 0.6430 \\
         Kim Junior    & +0.1340 & +0.2550 &  0.0000 & 0.3890 & 0.3890 \\
         Sam Old       & +0.1648 & +0.1878 & +0.0153 & 0.3680 & 0.3680 \\
-        Vince Vault   & +0.2652 & $-$0.0708 & +0.0117 & 0.2060 & 0.2060 \\ \hline
+        Vince Vault   & +0.2652 & $-$0.0708 & +0.0117 & 0.2060 & 0.2060 \\ \bottomrule
     \end{tabular}
 \end{table}
 
@@ -52,7 +52,8 @@ e.g.\ GitHub identity mismatch).
 
     \item \textbf{Determinism:} Five repeated runs produced zero drift (exact analytical Shapley, not Monte Carlo).
 
-    \item \textbf{Per-metric efficiency:} Per-metric Shapley sums matched grand-coalition metric scores across all candidate--metric pairs.
+    \item \textbf{Per-metric efficiency:} The efficiency axiom also holds at the granular skill level. Per-metric breakdowns are
+    provided in Appendix~\ref{appendix:shapley-charts} for two candidates (Jordan Smith and Felix Vance).
 \end{itemize}
 
 For a visualisation of these results, refer to Figure~\ref{fig:shapley-combined} in 
@@ -60,24 +61,23 @@ Appendix~\ref{appendix:shapley-charts}.
 
 \subsubsection{Key XAI Insights}
 
-One key finding from this study is visible in the GitHub Shapley value for Vince Vault, where we show the presence of negative attributions.
+\textbf{Negative attributions.} One key finding from this study is visible in the GitHub Shapley value for Vince Vault, where we show the presence of negative attributions.
 In the context of cooperative game theory, this would occur when the introduction of a player leads to a reduction in the overall coalition's
 winnings. For MERIT, this would occur when the introduction of a source leads to a fall in that candidate's match score. In this case,
-it was due to the introduction of malicious intent via identity squatting, leading to a significant penalty being applied to the candidate's score.
-Since Vince only provided false evidence for the GitHub source, negative attributions were focused there, rather than on LinkedIn or CV.
-This penalty is then able to be presented to the recruiter to show that a candidate is allegedly claiming evidence that they do not have.
-It is now the recruiter's responsibility to investigate the engine further to see if the fuzzy match failed due to actual intent of
-malice, or due to a false positive.
+it was due to identity squatting, leading to a significant penalty being applied to the candidate's score.
+Since Vince provided false evidence only for the GitHub source, negative attributions were focused there, rather than on LinkedIn or CV.
+This penalty is then presented to the recruiter to show that a candidate might be acting with malicious intent.
+It is now the recruiter's responsibility to investigate the flag further to see if the fuzzy match failed due to identity squatting, 
+or due to a false positive match.
 
-Another finding can be presented through our hidden gem in Section~\ref{subsec:study-01-comparative-ablation},
+\textbf{Demonstrated source dominance.} Another finding can be presented through our hidden gem in Section~\ref{subsec:study-01-comparative-ablation},
 Jordan Smith. As shown in that study, the pivot from MERIT (CV Only) to MERIT (Full) boosts his score from rank 10 to rank 2. Due
-to the introduction of Shapley values, we can truly confirm that this boost in rank is due to the inclusion of the GitHub data source,
-which contributed $\phi_{GitHub} = 0.529$ to his score. This is presented to the recruiter on the frontend to show that the majority
+to the introduction of Shapley values, we can confidently claim that this boost in rank is due to the inclusion of the GitHub data source,
+which contributed $\phi_{GitHub} = 0.5288$ to his score. This is presented to the recruiter on the frontend to show that the majority
 of his score is demonstrated, not claimed. Once again, it is now the recruiter's decision to investigate the applicant further to
-see if they are a good fit for the role, since they have demonstrated well that they align with the job, but their claims don't
-seem to carry the same weight as their demonstrated evidence.
+see if they are a good fit for the role, since they have demonstrated well that they align with the job, but their claims might not be as strong.
 
-It is important to note that the dataset for this study reuses that of Study~01, therefore, we do not have significant Shapley values for
+\textbf{Signal starvation.} It is important to note that the dataset for this study reuses that of Study~01, therefore, we do not have significant Shapley values for
 any candidate when it comes to the LinkedIn source attribution. This is due to the study being designed to evaluate the effect of
 demonstrated evidence when it comes to candidate selection, so we kept LinkedIn evidence minimal to stress-test this CV-versus-GitHub contrast.
 See Section~\ref{subsec:construct-validity} for more details. Note that this does not affect
@@ -90,24 +90,27 @@ Shapley values.
     \label{tab:shapley-source-dominance}
     \vspace{1.5ex}
     \small
-    \begin{tabular}{l|c|c}
-        \hline
-        \textbf{Source} & \textbf{Sum of positive $\phi_i$} & \textbf{Share of pool (\%)} \\ \hline
+    \begin{tabular}{l c c}
+        \toprule
+        \textbf{Source} & \textbf{Sum of positive $\phi_i$} & \textbf{Share of pool (\%)} \\ \midrule
         CV (claimed)       & 2.429 & 59.6 \\
         GitHub (demonstrated) & 1.564 & 38.4 \\
-        LinkedIn (claimed)    & 0.085 & 2.1 \\ \hline
+        LinkedIn (claimed)    & 0.085 & 2.1 \\ \bottomrule
     \end{tabular}
 \end{table}
 
-We can observe that in this cohort, CV evidence dominates the overall score, contributing to 59.6\% of the overall score of 
+\textbf{Aggregate source dominance.} We can observe that in this cohort, CV evidence dominates the overall score, contributing to 59.6\% of the overall score of 
 the candidates. This is followed by demonstrated GitHub evidence, contributing to 38.4\% of the overall score.
 While LinkedIn evidence is present, it contributes to only 2.1\% of the overall score, indicating that it is not a significant
-factor in the candidate's score. Note the margin for error since we only consider positive $\phi_i$ for the denominator (we exclude the negative GitHub attribution from Vince Vault).
+factor in the candidate's score. Note the margin for error since we only consider positive $\phi_i$ for the denominator (we exclude the 
+negative GitHub attribution from Vince Vault). This exclusion is mathematically necessary to prevent the net sum from shrinking, 
+which would cause the relative percentage shares to artificially inflate or exceed 100\%, ensuring the breakdown strictly measures 
+the composition of \textit{positive} score generation.
 
 \subsection{Study 14: HCI Trial}
 \label{subsec:hci-trial-protocol}
 
-Study 11 mathematically confirms that the explainable AI (XAI) engine is consistent, Study 14 evaluates the human-facing 
+Study 11 mathematically confirms that the explainable AI (XAI) engine is mathematically consistent, this study evaluates the human-facing 
 glass-box design against the transparency deficit identified in algorithmic hiring reviews~\cite{bogen2018,raghavan2020}.
 Lo et al.~\cite{lo2025aihiring} report HR agreement on generated scores, but their published evaluation does not include a 
 before/after test of whether recruiters reverse shortlist decisions once explanations are shown. 
@@ -116,39 +119,31 @@ The purpose of our XAI is to provide transparent explanations to the recruiter, 
 how our Glass-Box influences recruiter behaviour, hence our need for this metric.
 
 In this study, we measure not only the decision, but also the confidence of recruiters with regards to their decision.
-We also measure how usable this engine is, since if the system is too difficult to use, recruiters would likely avoid using it,
-falling back into automation bias to avoid significant cognitive load. Therefore, we have the following hypotheses:
+We also measure how usable this engine is since, if the system is too difficult to use there is a risk that recruiters would 
+avoid using it, falling back into automation bias to avoid significant cognitive load. Therefore, we have the following hypotheses:
 
-\begin{itemize}
-    \item \textbf{Hypothesis 1 (Decision Calibration):} Access to the Glass-Box XAI audit trail will increase the rate at 
-    which recruiters reverse incorrect screening decisions for adversarial candidates (such as
-          keyword-stuffers and identity squatters) and "hidden gems" (like high-potential candidates with low tenure).
-    \item \textbf{Hypothesis 2 (Confidence Calibration):} Recruiters will exhibit a higher alignment between their
-          screening confidence and the empirical evidence, resulting in increased confidence for verified candidates and
-          decreased confidence for unverified profiles.
-    \item \textbf{Hypothesis 3 (Usability and Trust):} The interactive explainability layer will achieve a high System
-          Usability Scale (SUS) score and receive high qualitative ratings for transparency and defensibility compared to a
-          traditional black-box score.
-\end{itemize}
+\textbf{Hypothesis 1 (Decision Calibration):} Access to the Glass-Box XAI audit trail will increase the rate at which recruiters reverse incorrect screening decisions for adversarial candidates (such as keyword-stuffers and identity squatters) and ``hidden gems'' (like high-potential candidates with low tenure).
+
+\textbf{Hypothesis 2 (Confidence Calibration):} Recruiters will exhibit a higher alignment between their screening confidence and the empirical evidence, resulting in increased confidence for verified candidates and decreased confidence for unverified profiles.
+
+\textbf{Hypothesis 3 (Usability and Trust):} The interactive explainability layer will achieve a high System Usability Scale (SUS) score and receive high qualitative ratings for transparency and defensibility compared to a traditional black-box score.
 
 \subsubsection{Two-Stage HCI Trial}
 We start with a two-stage user study involving professional technical recruiters and hiring managers as participants.
 This trial follows a two-stage process for each candidate in the pool:
 
-\subsubsection{Stage 1: Control Condition (Black-Box Score)}
-Recruiters are given a candidate CV with a single aggregate match alongside per-metric scores, but with no explanations.
+\textbf{Stage 1: Control Condition (Black-Box Score).} Recruiters are given a candidate CV with a single aggregate match alongside per-metric scores, but with no explanations.
 Recruiters must make a decision on whether to shortlist or reject the candidate, and rate their confidence on a Likert scale
 (1 = Not Confident at all, 5 = Extremely Confident). They must also provide a brief qualitative justification for their decision.
 
-\subsubsection{Stage 2: Treatment Condition (Glass-Box Scorecard)}
-Recruiters are now shown the same candidate, but with access to the glass-box scorecards, including the Shapley layer, audit trail,
+\textbf{Stage 2: Treatment Condition (Glass-Box Scorecard).} Recruiters are now shown the same candidate, but with access to the glass-box scorecards, including the Shapley layer, audit trail,
 and other explainability features. Recruiters will then be asked to state whether they wish to reverse or maintain their decision.
 They are also asked to rate their confidence, along with an explanation of how the visualisations influenced their assessment, if at all.
 
 \subsubsection{Key Quantitative Metrics and Empirical Results}
 This pilot user trial includes 5 participants, consisting of 2 professional recruiters ($R_1, R_2$) with extensive experience in
 software development talent acquisition, and 3 technical peers ($P_1, P_2, P_3$), MEng Computing students at Imperial College London, all of whom were acquainted with the author. 
-These participants are familiar with the technical recruitment process and have undergone multiple technical projects and internships. 
+These participants are familiar with the technical recruitment process or have undergone multiple technical projects and internships. 
 Given $N=5$, we treat this as a formative pilot and report descriptive statistics, inferential tests are 
 exploratory only (Section~\ref{sec:threats-to-validity}).
 
@@ -177,13 +172,13 @@ Raw session data are in \texttt{evaluation/14-hci\_trial/}.
     \vspace{1.5ex}
     \small
     \setlength{\tabcolsep}{5pt}
-    \begin{tabular}{l|c|c|c|c|c|c}
-        \hline
-        \textbf{Candidate}   & \textbf{Stage 1 (ctrl)} & \textbf{Stage 2 (trt)} & \textbf{DRR} & \textbf{$C_1$ (1--5)} & \textbf{$C_2$ (1--5)} & \textbf{$\Delta C$} \\ \hline
+    \begin{tabular}{l c c c c c c}
+        \toprule
+        \textbf{Candidate}   & \textbf{Stage 1 (ctrl)} & \textbf{Stage 2 (trt)} & \textbf{DRR} & \textbf{$C_1$ (1--5)} & \textbf{$C_2$ (1--5)} & \textbf{$\Delta C$} \\ \midrule
         Moinecha Ramos-Horta & $5S$ / $0R$            & $5S$ / $0R$            & 0.0\%        & 3.80                    & 4.60                    & +0.80                 \\
         Yusuf Nilsson        & $0S$ / $5R$            & $4S$ / $1R$            & 80.0\%       & 4.20                    & 4.80                    & +0.60                 \\
         Robert Todd          & $4S$ / $1R$            & $1S$ / $4R$            & 75.0\%       & 3.60                    & 4.40                    & +0.80                 \\
-        Aaron Mohammed       & $3S$ / $2R$            & $0S$ / $5R$            & 100.0\%      & 3.20                    & 4.80                    & +1.60                 \\ \hline
+        Aaron Mohammed       & $3S$ / $2R$            & $0S$ / $5R$            & 100.0\%      & 3.20                    & 4.80                    & +1.60                 \\ \bottomrule
     \end{tabular}
 \end{table}
 
@@ -193,42 +188,43 @@ none are confirmed at inferential strength given $N=5$. We detail the results be
 \subsection*{Quantitative Results}
 
 \subsubsection{Decision Calibration (Hypothesis 1)}
-During the first stage, we can see the issue of the ``resume black hole'': all 5 evaluators rejected Yusuf Nilsson
+\textbf{The ``resume black hole'' (Yusuf Nilsson).} During the first stage, we can see the issue of the ``resume black hole'': all 5 evaluators rejected Yusuf Nilsson
 due to his low tenure (1 year of experience on CV). However, upon transitioning to stage 2, we see that 4/5 evaluators
 (80\% DRR) reversed their decision, recognising his valuable GitHub contributions. Recruiter $R_2$ chose to
 maintain the rejection, noting that the JD strictly required 3+ years of experience regardless
 of technical strength. This illustrates how human decision-makers calibrate system outputs with non-quantifiable
 operational constraints.
 
-Another key finding is that the explainability layer successfully aided in unmasking adversarial manipulation. More specifically,
-we turn to the candidate \textbf{Robert Todd}, who managed to fool 4 out of 5 evaluators in stage 1 due to his keyword-dense
+\textbf{Keyword Stuffing (Robert Todd).} Another key finding is that the explainability layer successfully aided in unmasking adversarial manipulation. More specifically,
+we turn to the candidate Robert Todd, who managed to fool 4 out of 5 evaluators in stage 1 due to his keyword-dense
 resume and aggregate score. However, upon transitioning to stage 2, we see that 3 out of 4 of those evaluators (75\% DRR)
 reversed their decision, recognising his keyword stuffing.
 
-The most significant instance of this is with the candidate \textbf{Aaron Mohammed}, who managed to fool 3 out of 5 evaluators
-in stage 1 due to his gamified CV. However, upon transitioning to stage 2, rather than seeing supported evidence, recruiters were
-presented with a significant red flag. Aaron Mohammed provided a GitHub profile that was not their own in order to pass off
+\textbf{Identity Squatting (Aaron Mohammed).} The most significant instance of this is with the candidate Aaron Mohammed, who managed to fool 3 out of 5 evaluators
+in stage 1 due to his misleading CV. However, upon transitioning to stage 2, rather than seeing supported evidence, recruiters were
+presented with a significant red flag. Aaron provided a GitHub profile that was not his own in order to pass off
 someone else's work as his own. This is a serious ethical breach and a violation of professional integrity. Due to this, all
-3 evaluators reversed their decision, rejecting Aaron Mohammed. It is crucial to note that recruiters did not reject
-Mohammed based on the fact that he was not a good developer (in fact, according to his CV he was an expert in Java and Go).
+3 evaluators reversed their decision, rejecting Aaron. It is crucial to note that recruiters did not reject
+Aaron based on the fact that he was not a good developer (in fact, according to his CV he was an expert in Java and Go).
 Instead, they rejected him based on the fact that he showed a lack of integrity and dishonesty. This illustrates how the explainability layer
-can be used to identify and reject participants who are not a good fit for the company culture, even if they are technically skilled.
+can be used to identify and reject candidates who are not a good fit for the company culture, even if they are technically skilled and achieve
+high match scores.
 
 
 \subsubsection{Confidence Calibration (Hypothesis 2)}
-Once evaluators were presented with the Glass-Box MERIT interface, we observed a positive confidence shift ($\Delta C$)
+\textbf{Individual Confidence shifts.} Once evaluators were presented with the Glass-Box MERIT interface, we observed a positive confidence shift ($\Delta C$)
 across all profiles. This was particularly notable in the case of Moinecha Ramos-Horta, where her average confidence
 rose from $3.80$ (Stage 1) to $4.60$ (Stage 2), an increase of $0.80$. In a similar fashion, confidence for Aaron Mohammed
 also increased, rising from $3.20$ (Stage 1) to $4.80$ (Stage 2), an increase of $1.60$, which was
 due to the veto penalty that stemmed from his dishonesty, giving the evaluators the confidence to reject him with high conviction.
 
-The average confidence across all 20 profile-level observations (5 participants $\times$ 4 candidates) increased from $3.75$ 
+\textbf{Aggregate Confidence shifts.} The average confidence across all 20 profile-level observations (5 participants $\times$ 4 candidates) increased from $3.75$ 
 (Stage 1) to $4.45$ (Stage 2), a mean increase of $0.70$ on a 5-point scale. A paired $t$-test on these rows yields 
 $t(19) = -5.60$, $p < 0.001$, but the rows are not independent (fixed Stage~1$\rightarrow$Stage~2 order, repeated participants, 
 acquaintance bias among peers). We therefore report this as descriptive evidence for Hypothesis~2, not confirmatory inference.
 
 \subsubsection{Usability (Hypothesis 3)}
-To evaluate the usability of MERIT's glass-box architecture, we followed the standard System Usability Scale (SUS) survey \cite{brooke1996sus}.
+\textbf{System Usability Scale (SUS).} To evaluate the usability of MERIT's glass-box architecture, we followed the standard System Usability Scale (SUS) survey \cite{brooke1996sus}.
 MERIT achieved an average SUS score of \textbf{81.50} out of 100, with individual scores ranging from 77.5 to 85.0.
 According to the Bangor et al. adjective rating scale for SUS scores \cite{bangor2009_sus}, this corresponds to a ``Good'' rating (Grade B) at face value.
 With $N=5$, it indicates interface feasibility only, not product-market validation (Section~\ref{subsec:construct-validity}).
@@ -237,7 +233,7 @@ With $N=5$, it indicates interface feasibility only, not product-market validati
 
 The justifications presented by our evaluators can be found in \texttt{evaluation/14-hci\_trial/test\_data/responses.json}. As shown, there are
 alignments with the quantitative results in Table~\ref{tab:hci-trial-results}. Take the evaluator
-that still shortlisted Robert Todd after the keyword-stuffing alert. Despite what is considered a ``serious red flag'' by $P_3$, they still plan to 
+that still shortlisted Robert Todd after the keyword-stuffing alert. Despite what is considered a ``red flag'' by $P_3$, they still plan to 
 ``keep him shortlisted'' for a brief phone screen. Note how the implementation of the glass-box not only introduces contestability with the 
 scores presented, but also offers recruiters the means to investigate claims made by candidates in better detail where evidence may be missing.
 

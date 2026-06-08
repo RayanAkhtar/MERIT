@@ -41,24 +41,19 @@ cooperating ``players'' (the data sources) \cite{shapley1953, lundberg2017unifie
 MERIT's implementation currently supports three sources of evidence. This is the candidate CV, GitHub and LinkedIn, therefore, we 
 have $n = 3$ data sources. We create a set of all possible coalitions of data sources, computing the value of each coalition, 
 denoted as $v(S)$ for a given subset of data sources $S$. For a set of sources $N$, we have $2^n$ possible coalitions, where $n$
-refers to the number of data sources. In our case, this means $2^3 = 8$ possible coalitions. To compute the shapley value $\phi_i$
-for a given source $i$, we sum the marginal contributions of that source across all of the coalitions that it is a part of.
-Formally, this is given by the following equation:
+refers to the number of data sources. In our case, this means $2^3 = 8$ possible coalitions. To compute the Shapley value $\phi_i$
+for a given source $i$, we sum the marginal contributions of that source across all of the coalitions that it is a part of, as formally defined by Equation~\ref{eq:shapley_value}.
 
-\begin{equation}
-    \phi_i = \sum_{S \subseteq N \setminus \{i\}} \frac{|S|! (n - |S| - 1)!}{n!} [v(S \cup \{i\}) - v(S)]
-\end{equation}
-
-The left side of the equation is the combinatorial weighting factor, which is the number of ways to choose $i$ sources from $n$ sources.
-The right side of the equation is the marginal contribution of the source $i$ to the coalition $S$.
-By calculating $\phi_i$ for both individual metrics, as well as the final score, MERIT is able to attribute every score
-to a data source, and inform the recruiter whether a candidate's score was driven by demonstrated evidence, or claimed evidence.
+By calculating this Shapley value ($\phi_i$) for individual metrics and also for the final score, MERIT is able to attribute every score
+to a data source, not just the final score. Now MERIT can inform the recruiter whether that score was driven by demonstrated evidence, or claimed evidence. Consequently,
+this attribution remains consistent across all levels of abstraction. Data source contributions are fully traceable from the lowest-level 
+signals up to the final aggregate match score.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.95\textwidth]{implementation/screenshots/shapley_source_breakdown.png}
     \caption[Source Influence Breakdown panel]{Source influence breakdown with Shapley values per data source. In this figure,
-    we show shapley breakdown for the final match score. Shapley values for a specific metric can be viewed by clicking the ``View Math Trail''
+    we show Shapley breakdown for the final match score. Shapley values for a specific metric can be viewed by clicking the ``View Math Trail''
     button}
     \label{fig:shapley_attribution}
 \end{figure}
@@ -127,6 +122,6 @@ badges and the per-metric Insights overlay (full-size screenshots in Appendix~\r
 
 To further aid transparency, any penalisations (such as Squatting) are also flagged to the user to highlight the negative impact of such actions on the candidate's score.
 To ensure full auditability, we also provide views of each candidate's extracted data sources, so that recruiters can cross-check the audit trail.
-It is also possible to view skillsets that may have not been considered by the scoring engine, for example, a configuration may have had Python
-as a metric, but the candidate may have Jupyter Notebook listed in their GitHub section of this view. If the semantic bridge mechanism fails to 
+It is also possible to view skillsets that may not have been considered by the scoring engine, for example, a configuration may have had Python
+as a metric, but the candidate may have extensive work with Jupyter Notebook on their GitHub profile. If the semantic bridge mechanism fails to 
 catch this, the recruiter would be able to still observe this data and potentially change their decision after accounting for this information.

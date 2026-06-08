@@ -4,9 +4,9 @@
 Now we will cover the constraints that may affect both the evaluation and deployment of MERIT.
 
 The first constraint lies in the evidence we use, which almost entirely consists of synthetic personas and labels which were engineered by the author
-to highlight a subset of specific behaviours for the purpose of a thorough evaluation. In cases such as the adversarial and spearman studies, we attempt
-to avoid cherry-picking for success by also cherry-picking for failure. Note that we are not able to use real-world data for the evaluation due to 
-the lack of access to real-world data and the need to anonymise the data.
+to highlight a subset of specific behaviours for the purpose of a thorough evaluation. To mitigate positive selection bias, we deliberately 
+constructed adversarial edge-cases designed to stress-test the system's boundaries and trigger known failure modes, ensuring a balanced evaluation. 
+The use of synthetic data was necessitated by the strict privacy and anonymisation constraints surrounding real-world candidate data.
 
 Alongside this, the engines that we use are not commercial products, nor are they open-source alternatives. They are manually created engines,
 designed to emulate the scoring logic of commercial products and open-source alternatives under an identical input. Also note that benchmark data

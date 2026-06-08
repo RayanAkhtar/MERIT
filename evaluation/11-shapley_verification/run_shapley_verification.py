@@ -238,6 +238,9 @@ def test_per_metric_efficiency(results):
             rows.append({
                 "candidate": name,
                 "metric": metric_key,
+                "phi_cv": round(source_phis.get("CV", 0.0), 6),
+                "phi_github": round(source_phis.get("GitHub", 0.0), 6),
+                "phi_linkedin": round(source_phis.get("LinkedIn", 0.0), 6),
                 "phi_sum": round(phi_sum, 6),
                 "metric_score": round(grand_score, 6),
                 "delta": round(delta, 10),
