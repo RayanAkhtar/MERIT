@@ -25,7 +25,7 @@ The backend is a Python Flask application located in the `backend` folder.
      venv/Scripts/activate
      ```
    * On macOS/Linux:
-     ```bash
+     ```bash 
      python3 -m venv venv
      source venv/bin/activate
      ```
