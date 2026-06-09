@@ -67,3 +67,4 @@ To run the full application, you will need to start both servers concurrently. O
 2. In the second terminal, run the **frontend** instructions.
 
 Make sure both the Flask server and the Next.js development server are running simultaneously.
+ 
