@@ -284,5 +284,9 @@ def generate_evaluation_visualisations():
     edge_case_highlights = ["Felix Vance", "Fiona Frost", "Kim Junior", "Vince Vault"]
     plot_rank_displacement_chart("Verification Edge Cases: Identity & Attribution", edge_case_highlights, "rank_displacement_edge_cases.png", baseline, ai, cv_only, merit_full)
 
+    # highlighting specific candidates requested
+    custom_highlights = ["Jordan Smith", "Buzz Ward", "Vince Vault"]
+    plot_rank_displacement_chart("Selected Trajectories: Fraud and Hidden Gems", custom_highlights, "rank_displacement_custom.png", baseline, ai, cv_only, merit_full)
+
 if __name__ == "__main__":
     generate_evaluation_visualisations()
