@@ -212,17 +212,26 @@ class TechnologyStackMetric(BaseMetric):
                 if has_gh:
                     bridge_used_gh = True
 
-            if has_gh:
+            if has_gh or bool(gh_profile):
                 item_sources.append("GitHub")
-                evidence.append(Evidence(source="GitHub", confidence=conf["GITHUB"], strength=1.0))
+                evidence.append(Evidence(source="GitHub", confidence=conf["GITHUB"], strength=1.0 if has_gh else 0.0))
+                
+                if has_gh:
+                    explanation = f"Found dedicated repositories or mentions in projects" + (f" via semantic match '{semantic_term}'." if bridge_used_gh else ".")
+                    derivation = "Binary Presence (Relevant project found = 1.0)"
+                else:
+                    explanation = f"No public projects found matching {tech_display} despite providing a GitHub profile."
+                    derivation = "Binary Presence (No relevant project found = 0.0)"
+                
                 source_details.append({
                     "source": "GitHub",
-                    "score": 1.0,
+                    "score": 1.0 if has_gh else 0.0,
                     "trust": conf["GITHUB"],
-                    "derivation": "Binary Presence (Relevant project found = 1.0)",
+                    "derivation": derivation,
                     "is_semantic_bridge": bridge_used_gh,
-                    "explanation": f"Found dedicated repositories or mentions in projects" + (f" via semantic match '{semantic_term}'." if bridge_used_gh else "."),
-                    "weighting": f"Work Sample (Conf: {conf['GITHUB']:.1f})"
+                    "explanation": explanation,
+                    "weighting": f"Work Sample (Conf: {conf['GITHUB']:.1f})",
+                    "is_warning": not has_gh
                 })
 
             # skill decay

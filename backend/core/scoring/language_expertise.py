@@ -240,17 +240,26 @@ class LanguageExpertiseMetric(BaseMetric):
             conf = SCORING_CONSTANTS["FUSION"]["SOURCE_CONFIDENCE"]["TECHNICAL_SKILLS"]
 
             # github evidence
-            if gh_pct > 0:
+            if gh_pct > 0 or bool(gh_profile):
                 item_sources.append("GitHub")
                 evidence.append(Evidence(source="GitHub", confidence=conf["GITHUB"], strength=gh_score))
+                
+                if gh_pct > 0:
+                    explanation = f"Found {gh_pct:.1f}% code volume on GitHub" + (f" via semantic match '{semantic_term}'" if bridge_used_gh else "") + f". Last significant activity: {gh_effective_year:.1f}."
+                    derivation = f"{gh_pct:.1f}% Code Volume Found\n({gh_pct:.1f}% / {cfg['GH_VERIFICATION_THRESHOLD']:.0f}% Threshold) * {gh_decay:.2f} (Temporal Weight)"
+                else:
+                    explanation = f"No public code volume found for {lang_display} despite providing a GitHub profile."
+                    derivation = "0.0% Code Volume Found"
+                
                 source_details.append({
                     "source": "GitHub",
                     "score": gh_score,
                     "trust": conf["GITHUB"],
-                    "derivation": f"{gh_pct:.1f}% Code Volume Found\n({gh_pct:.1f}% / {cfg['GH_VERIFICATION_THRESHOLD']:.0f}% Threshold) * {gh_decay:.2f} (Temporal Weight)",
+                    "derivation": derivation,
                     "is_semantic_bridge": bridge_used_gh,
-                    "explanation": f"Found {gh_pct:.1f}% code volume on GitHub" + (f" via semantic match '{semantic_term}'" if bridge_used_gh else "") + f". Last significant activity: {gh_effective_year:.1f}.",
-                    "weighting": f"Work Sample (Conf: {conf['GITHUB']:.1f})"
+                    "explanation": explanation,
+                    "weighting": f"Work Sample (Conf: {conf['GITHUB']:.1f})",
+                    "is_warning": gh_pct == 0
                 })
 
             # CV Evidence

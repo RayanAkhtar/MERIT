@@ -35,6 +35,7 @@ function RankingReport() {
   const [selectedCandidate, setSelectedCandidate] = useState<any>(null);
   const [selectedCandidateDetail, setSelectedCandidateDetail] = useState<any>(null);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const [initialFocusMetric, setInitialFocusMetric] = useState<string | null>(null);
   
   const [visibleColKeys, setVisibleColKeys] = useState<string[]>([]);
   const [sortConfig, setSortConfig] = useState<{ key: string, direction: 'asc' | 'desc' }>({ key: 'overallScore', direction: 'desc' });
@@ -381,6 +382,7 @@ function RankingReport() {
     setSelectedCandidate(null);
     setSelectedCandidateDetail(null);
     setHoveredItem(null);
+    setInitialFocusMetric(null);
   };
 
   const toggleRevertIdentity = (id: string) => {
@@ -426,6 +428,7 @@ function RankingReport() {
         setHoveredItem={setHoveredItem}
         isBlindMode={isBlindMode}
         setIsBlindMode={setIsBlindMode}
+        initialFocusMetric={initialFocusMetric}
         onRevertIdentity={() => toggleRevertIdentity(currentCandidate.id)}
         onRevertStuffing={() => toggleRevertStuffing(currentCandidate.id)}
       />
@@ -512,48 +515,74 @@ function RankingReport() {
                  </h2>
                  <div className="flex flex-wrap items-center gap-2">
                    <div className="hidden sm:flex items-center gap-3 text-[11px] font-bold uppercase tracking-widest text-zinc-500 bg-white dark:bg-zinc-800/50 px-3 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-700">
-                     <div className="flex items-center gap-1.5">
+                     <div className="flex items-center gap-1.5 group relative cursor-help">
                        <span className="bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-700 px-2 py-0.5 rounded text-xs font-black leading-none">B</span>
                        Baseline
+                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 text-[10px] leading-relaxed rounded shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-center font-medium normal-case tracking-normal">
+                         Core metrics universally required for this baseline role.
+                       </div>
                      </div>
-                     <div className="flex items-center gap-1.5">
+                     <div className="flex items-center gap-1.5 group relative cursor-help">
                        <span className="bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800/50 px-2 py-0.5 rounded text-xs font-black leading-none">E</span>
                        Extensible
+                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 text-[10px] leading-relaxed rounded shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-center font-medium normal-case tracking-normal">
+                         Job-specific metrics dynamically extracted from the JD.
+                       </div>
                      </div>
                    </div>
-                   <div className="hidden sm:flex items-center gap-3 text-[11px] font-bold uppercase tracking-widest text-zinc-500 bg-white dark:bg-zinc-800/50 px-3 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-700">
+                   
+                   <div className="hidden sm:flex items-center gap-3 text-[11px] font-bold uppercase tracking-widest text-zinc-500 bg-white dark:bg-zinc-800/50 px-3 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-700 group relative cursor-help">
                      <span className="text-[10px] text-zinc-400 mr-1">Confidence:</span>
-                     <div className="flex items-center gap-1.5" title="High Confidence">
+                     <div className="flex items-center gap-1.5">
                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                        High
                      </div>
-                     <div className="flex items-center gap-1.5" title="Medium Confidence">
+                     <div className="flex items-center gap-1.5">
                        <div className="w-1.5 h-1.5 rounded-full bg-amber-500" />
                        Med
                      </div>
-                     <div className="flex items-center gap-1.5" title="Low Confidence">
+                     <div className="flex items-center gap-1.5">
                        <div className="w-1.5 h-1.5 rounded-full bg-rose-500" />
                        Low
                      </div>
+                     
+                     <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 text-[10px] leading-relaxed rounded shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none font-medium normal-case tracking-normal text-left">
+                       <p className="mb-2 font-bold text-xs">Bayesian Uncertainty ($\sigma$)</p>
+                       <ul className="space-y-1">
+                         <li><span className="text-emerald-400 dark:text-emerald-600 font-bold">High ($\sigma \le 0.22$):</span> Strong consensus across data sources.</li>
+                         <li><span className="text-amber-400 dark:text-amber-600 font-bold">Med ($0.22 \lt \sigma \le 0.29$):</span> Some missing data or minor conflict.</li>
+                         <li><span className="text-rose-400 dark:text-rose-600 font-bold">Low ($\sigma \gt 0.29$):</span> Significant contradiction across sources.</li>
+                       </ul>
+                     </div>
                    </div>
+                   
                    <div className="hidden lg:flex items-center gap-3 text-[11px] font-bold uppercase tracking-widest text-zinc-500 bg-white dark:bg-zinc-800/50 px-3 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-700">
-                     <div className="flex items-center gap-1.5" title="Semantic Bridge Used">
+                     <div className="flex items-center gap-1.5 group relative cursor-help">
                        <svg className="w-3 h-3 text-fuchsia-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                        </svg>
                        Bridge
+                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 text-[10px] leading-relaxed rounded shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-center font-medium normal-case tracking-normal">
+                         Cross-lingual semantic matching applied for equivalent skills.
+                       </div>
                      </div>
-                     <div className="flex items-center gap-1.5" title="Low Threat Detected">
+                     <div className="flex items-center gap-1.5 group relative cursor-help">
                        <svg className="w-3 h-3 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                        </svg>
                        Low Threat
+                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 text-[10px] leading-relaxed rounded shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-center font-medium normal-case tracking-normal">
+                         Integrity Flag: Keyword stuffing or artificial frequency detected.
+                       </div>
                      </div>
-                     <div className="flex items-center gap-1.5" title="Severe Threat Detected">
+                     <div className="flex items-center gap-1.5 group relative cursor-help">
                        <svg className="w-3 h-3 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                        </svg>
                        Severe Threat
+                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 text-[10px] leading-relaxed rounded shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-center font-medium normal-case tracking-normal">
+                         Integrity Flag: Identity mismatch across external profiles.
+                       </div>
                      </div>
                    </div>
                  </div>
@@ -737,7 +766,14 @@ function RankingReport() {
                           const confidenceLabel = confidenceItem?.confidence_label;
                           
                           return (
-                           <td key={m.key} className="px-4 py-4 font-mono text-sm border-r border-zinc-100 dark:border-zinc-800/30 last:border-0 relative">
+                           <td 
+                              key={m.key} 
+                              onClick={() => {
+                                 setSelectedCandidate(cand);
+                                 setInitialFocusMetric(m.label);
+                              }}
+                              className="px-4 py-4 font-mono text-sm border-r border-zinc-100 dark:border-zinc-800/30 last:border-0 relative cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors group/cell"
+                           >
                               {confidenceLabel && (
                                  <div 
                                    className={`absolute top-2 right-2 w-1.5 h-1.5 rounded-full ${

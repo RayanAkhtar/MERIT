@@ -21,6 +21,7 @@ interface DetailedReportModalProps {
   setIsBlindMode: (val: boolean) => void;
   onRevertIdentity?: () => void;
   onRevertStuffing?: () => void;
+  initialFocusMetric?: string | null;
 }
 
 export default function DetailedReportModal({ 
@@ -32,7 +33,8 @@ export default function DetailedReportModal({
   isBlindMode,
   setIsBlindMode,
   onRevertIdentity = () => {},
-  onRevertStuffing = () => {}
+  onRevertStuffing = () => {},
+  initialFocusMetric = null
 }: DetailedReportModalProps) {
   const [activeTab, setActiveTab] = useState<'cv' | 'github' | 'linkedin' | 'formula'>('cv');
   const [cvViewMode, setCvViewMode] = useState<'original' | 'intelligence'>('original');
@@ -66,7 +68,7 @@ export default function DetailedReportModal({
         element.classList.add('ring-2', 'ring-indigo-500', 'transition-all');
         setTimeout(() => element.classList.remove('ring-2', 'ring-indigo-500'), 2000);
       }
-    }, 100);
+    }, 250);
   };
 
   const handleSidebarScroll = (key: string) => {
@@ -77,6 +79,24 @@ export default function DetailedReportModal({
       setTimeout(() => element.classList.remove('bg-indigo-100', 'dark:bg-indigo-900/30'), 1500);
     }
   };
+
+  React.useEffect(() => {
+    if (initialFocusMetric && candidate?.fullMetrics) {
+      // Find the actual metric key if the label doesn't directly match
+      let metricKey = initialFocusMetric;
+      const foundEntry = Object.entries(candidate.fullMetrics).find(([k, m]: [string, any]) => m.name === initialFocusMetric);
+      if (foundEntry) {
+        metricKey = foundEntry[0];
+      }
+      
+      handleMetricClick(metricKey);
+      
+      // Delay sidebar scroll slightly so the modal finishes animating open
+      setTimeout(() => {
+        handleSidebarScroll(metricKey);
+      }, 300);
+    }
+  }, [initialFocusMetric, candidate]);
 
   if (!candidate) return null;
 
