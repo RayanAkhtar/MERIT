@@ -197,6 +197,8 @@ class ScoringRegistry:
         cv_name = str(candidate_data.get("name", "")).lower().strip()
         gh_profile = candidate_data.get("github_enriched") or candidate_data.get("github_profile") or {}
         gh_name = str(gh_profile.get("name", "")).lower().strip()
+        li_profile = candidate_data.get("linkedin_profile") or {}
+        li_name = str(li_profile.get("full_name", "")).lower().strip()
         
         identity_penalty = 0.0
         similarity = 1.0
@@ -204,12 +206,18 @@ class ScoringRegistry:
         # Only apply squatter penalty if we actually found a name on the profile
         # to avoid penalising missing data as a mismatch.
         valid_gh_name = gh_name and gh_name != "none" and len(gh_name) > 2
+        valid_li_name = li_name and li_name != "none" and len(li_name) > 2
         
         if valid_gh_name and cv_name:
-            similarity = difflib.SequenceMatcher(None, cv_name, gh_name).ratio()
-            # If similarity < 70% and no substring match, apply the Veto
-            if similarity < 0.7 and cv_name not in gh_name and gh_name not in cv_name:
+            gh_sim = difflib.SequenceMatcher(None, cv_name, gh_name).ratio()
+            if gh_sim < 0.7 and cv_name not in gh_name and gh_name not in cv_name:
                 identity_penalty = integrity_cfg.get("SQUATTER_PENALTY", 0.20)
+                similarity = gh_sim
+        elif valid_li_name and cv_name:
+            li_sim = difflib.SequenceMatcher(None, cv_name, li_name).ratio()
+            if li_sim < 0.7 and cv_name not in li_name and li_name not in cv_name:
+                identity_penalty = integrity_cfg.get("SQUATTER_PENALTY", 0.20)
+                similarity = li_sim
 
         # Flag stuffing penalties in the individual metrics for UI transparency
         # The actual score deduction is handled natively by the metric templates 
@@ -276,10 +284,13 @@ class ScoringRegistry:
                 "identity_penalty": identity_penalty,
                 "identity_audit_details": {
                     "cv_name": cv_name.title(),
-                    "profile_name": gh_name.title(),
-                    "similarity": round(similarity * 100, 1),
+                    "profiles": [p for p in [
+                        {"source": "GitHub", "name": gh_name.title()} if valid_gh_name else None,
+                        {"source": "LinkedIn", "name": li_name.title()} if valid_li_name else None
+                    ] if p],
+                    "similarity": round(similarity * 100, 1) if similarity < 1.0 else 100,
                     "status": "MISMATCH" if identity_penalty > 0 else "VERIFIED"
-                } if gh_name else None,
+                } if (valid_gh_name or valid_li_name) else None,
                 "stuffing_audit": stuffing_audit["flagged_terms"],
                 "logic": f"Final Match % [CONSISTENCY_SYNC_ACTIVE] = {logic_formula} = {final_adjusted_score:.3f}. {stuffing_notes}"
             },

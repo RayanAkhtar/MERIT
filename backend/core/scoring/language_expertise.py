@@ -47,6 +47,7 @@ class LanguageExpertiseMetric(BaseMetric):
                 last_gh_year = max(last_gh_year, year)
         
         effective_gh_year = weighted_gh_sum / total_gh_volume if total_gh_volume > 0 else 0
+        effective_gh_year = min(float(current_year), effective_gh_year)
         
         # linkedin recency check
         li_experience = candidate_data.get("linkedin_experience") or []
@@ -154,8 +155,18 @@ class LanguageExpertiseMetric(BaseMetric):
             lang_display = lang_val
 
             item_sources = []
-            best_semantic = {}
             source_details = []
+            
+            # Global Semantic Bridge Check
+            best_semantic = semantic_matcher.find_best_match(lang_val, list(set(cv_skills)), threshold=0.50)
+            semantic_term = best_semantic.get("match", "")
+            has_semantic = bool(semantic_term and str(semantic_term).lower() != lang_lower)
+            semantic_lower = str(semantic_term).lower() if has_semantic else ""
+
+            # Track if semantic bridge was actually used to score
+            bridge_used_gh = False
+            bridge_used_cv = False
+            bridge_used_li = False
             
             # Apply keyword stuffing penalty check
             stuffing_penalty = 0.0
@@ -168,46 +179,55 @@ class LanguageExpertiseMetric(BaseMetric):
 
             # github signal (code volume + temporal weighting)
             gh_pct = gh_languages.get(lang_lower, 0)
+            gh_target_lang = lang_lower
             
-            # github recency for this language
+            if gh_pct == 0 and has_semantic:
+                gh_pct_semantic = gh_languages.get(semantic_lower, 0)
+                if gh_pct_semantic > 0:
+                    gh_pct = gh_pct_semantic
+                    gh_target_lang = semantic_lower
+                    bridge_used_gh = True
+            
             gh_weighted_sum = 0
             gh_total_vol = 0
+            year_breakdown = []
             for entry in gh_history:
                 year = int(entry.get("year", 0))
                 # case insensitive lookup for the language volume
                 vol = 0
                 for k, v in entry.items():
-                    if str(k).lower() == lang_lower:
+                    if str(k).lower() == gh_target_lang:
                         vol = float(v or 0)
                         break
                 
                 if vol > 0:
                     gh_weighted_sum += (year * vol)
                     gh_total_vol += vol
+                    year_breakdown.append({"year": year, "volume": vol})
             
             gh_effective_year = gh_weighted_sum / gh_total_vol if gh_total_vol > 0 else 0
+            gh_effective_year = min(float(current_year), gh_effective_year)
             gh_years_since = float(current_year - gh_effective_year) if gh_effective_year > 0 else 0
             
             # apply github decay to the volume score
             gh_decay = math.exp(-cfg["RECENCY"]["DECAY_LAMBDA"] * gh_years_since)
             gh_score = min(1.0, (gh_pct / cfg["GH_VERIFICATION_THRESHOLD"]) * gh_decay)
+            if bridge_used_gh:
+                gh_score = min(0.60, gh_score)
             
             # cv signal (how many times they mention it)
             cv_text = candidate_data.get("raw_cv_text") or candidate_data.get("full_cv_text") or ""
             mentions = self._count_mentions(lang_val, cv_text)
 
-            
             cv_score = 0.0
             if mentions > 0:
                 cv_score = min(0.8, mentions * 0.2)
-            else:
-                # semantic match in technical skills
-                best_semantic = semantic_matcher.find_best_match(lang_val, list(set(cv_skills)), threshold=0.50)
-
-                if best_semantic["match"]:
-                    semantic_mentions = self._count_mentions(best_semantic["match"], cv_text)
+            elif has_semantic:
+                semantic_mentions = self._count_mentions(semantic_term, cv_text)
+                if semantic_mentions > 0:
                     cv_score = min(0.60, semantic_mentions * 0.15)
                     mentions = semantic_mentions # store for explanation block
+                    bridge_used_cv = True
             
             # APPLY PENALTY to cv_score
             if stuffing_penalty > 0:
@@ -215,7 +235,6 @@ class LanguageExpertiseMetric(BaseMetric):
             
             recency_mult, recency_note = self._calculate_recency_multiplier(lang_val, candidate_data)
 
-            
             # fusing evidence with probability
             evidence = []
             conf = SCORING_CONSTANTS["FUSION"]["SOURCE_CONFIDENCE"]["TECHNICAL_SKILLS"]
@@ -228,8 +247,9 @@ class LanguageExpertiseMetric(BaseMetric):
                     "source": "GitHub",
                     "score": gh_score,
                     "trust": conf["GITHUB"],
-                    "derivation": f"({gh_pct:.1f}% / {cfg['GH_VERIFICATION_THRESHOLD']:.0f}% Threshold) * {gh_decay:.2f} (Temporal Weight)",
-                    "explanation": f"Found {gh_pct:.1f}% code volume on GitHub. Last significant activity (Weighted Center): {gh_effective_year:.1f}.",
+                    "derivation": f"{gh_pct:.1f}% Code Volume Found\n({gh_pct:.1f}% / {cfg['GH_VERIFICATION_THRESHOLD']:.0f}% Threshold) * {gh_decay:.2f} (Temporal Weight)",
+                    "is_semantic_bridge": bridge_used_gh,
+                    "explanation": f"Found {gh_pct:.1f}% code volume on GitHub" + (f" via semantic match '{semantic_term}'" if bridge_used_gh else "") + f". Last significant activity: {gh_effective_year:.1f}.",
                     "weighting": f"Work Sample (Conf: {conf['GITHUB']:.1f})"
                 })
 
@@ -237,18 +257,18 @@ class LanguageExpertiseMetric(BaseMetric):
             if mentions > 0 or cv_score > 0:
                 item_sources.append("CV")
                 evidence.append(Evidence(source="CV", confidence=conf["CV"], strength=cv_score))
-                explanation = f"{mentions} mentions" if not best_semantic.get("match") else f"Semantic Match: {best_semantic['match']} x{mentions}"
+                explanation = f"{mentions} mentions" if not bridge_used_cv else f"Semantic Match: {semantic_term} x{mentions}"
                 
-                cv_derivation = f"min({0.8 if not best_semantic.get('match') else 0.6}, {mentions} mentions * {0.2 if not best_semantic.get('match') else 0.15})"
+                cv_derivation = f"{mentions} Mention{'s' if mentions != 1 else ''} Found\nmin({0.8 if not bridge_used_cv else 0.6}, {mentions} mentions * {0.2 if not bridge_used_cv else 0.15})"
                 if stuffing_penalty > 0:
-                    cv_derivation += f" - {int(stuffing_penalty*100)}% Integrity Penalty"
+                    cv_derivation += f"\n- {int(stuffing_penalty*100)}% Integrity Penalty"
 
                 source_details.append({
                     "source": "CV",
                     "score": cv_score,
                     "trust": conf["CV"],
                     "derivation": cv_derivation,
-                    "is_semantic_bridge": bool(best_semantic.get("match")),
+                    "is_semantic_bridge": bridge_used_cv,
                     "explanation": f"{explanation} (Normalised: {cv_score:.2f})" + (f" [STUFFING PENALTY APPLIED]" if stuffing_penalty > 0 else ""),
                     "weighting": f"Self-reported (Conf: {conf['CV']:.1f})"
                 })
@@ -256,15 +276,23 @@ class LanguageExpertiseMetric(BaseMetric):
             # LinkedIn Evidence
             li_experience = candidate_data.get("linkedin_experience") or []
             has_li = any(lang_lower in str(e.get("description") or "").lower() for e in li_experience)
+            
+            if not has_li and has_semantic:
+                has_li = any(semantic_lower in str(e.get("description") or "").lower() for e in li_experience)
+                if has_li:
+                    bridge_used_li = True
+                    
             if has_li:
                 item_sources.append("LinkedIn")
-                evidence.append(Evidence(source="LinkedIn", confidence=conf["LINKEDIN"], strength=0.8))
+                li_score = 0.8 if not bridge_used_li else 0.60
+                evidence.append(Evidence(source="LinkedIn", confidence=conf["LINKEDIN"], strength=li_score))
                 source_details.append({
                     "source": "LinkedIn",
-                    "score": 0.8,
+                    "score": li_score,
                     "trust": conf["LINKEDIN"],
-                    "derivation": "Binary Presence (Mentions in role history = 0.8 Cap)",
-                    "explanation": f"Mentioned in professional experience history. (Normalised: 0.80)",
+                    "derivation": "Binary Presence (Mentions in role history = 0.8 Cap)" if not bridge_used_li else "Binary Presence via Bridge (Mentions in role history = 0.6 Cap)",
+                    "is_semantic_bridge": bridge_used_li,
+                    "explanation": f"Mentioned in professional experience history" + (f" via semantic match '{semantic_term}'" if bridge_used_li else "") + f". (Normalised: {li_score:.2f})",
                     "weighting": f"Historical Record (Conf: {conf['LINKEDIN']:.1f})"
                 })
 
@@ -318,7 +346,7 @@ class LanguageExpertiseMetric(BaseMetric):
                 "alpha": fusion_result["alpha"],
                 "beta": fusion_result["beta"],
                 "confidence_interval": fusion_result["confidence_interval"],
-                "is_semantic_bridge": bool(best_semantic.get("match")),
+                "is_semantic_bridge": bridge_used_gh or bridge_used_cv or bridge_used_li,
                 "integrity_penalty_applied": stuffing_penalty > 0,
                 "integrity_penalty_value": stuffing_penalty,
                 "integrity_audit_details": penalty_details,
@@ -328,7 +356,10 @@ class LanguageExpertiseMetric(BaseMetric):
                 "temporal_params": {
                     "lambda": cfg["RECENCY"]["DECAY_LAMBDA"], 
                     "delta_t": round(current_year - gh_effective_year, 2) if gh_effective_year > 0 else 0,
-                    "weight": round(gh_decay, 2)
+                    "weight": round(gh_decay, 2),
+                    "history": year_breakdown,
+                    "effective_year": round(gh_effective_year, 2),
+                    "current_year": current_year
                 },
                 "notes": f"{human_note} (Bayesian Audit: {fusion_result['logic']})",
                 "sources": list(set(item_sources))

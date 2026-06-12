@@ -1,6 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
+import skillsData from '@/skills_data.json';
 
 export interface JobDescriptionMetric {
     id: string;
@@ -44,6 +46,41 @@ const JobDescriptionReview: React.FC<JobDescriptionReviewProps> = ({
         subValue: '', 
         category: 'Technologies' 
     });
+    const [suggestions, setSuggestions] = useState<string[]>([]);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    useEffect(() => {
+        if (isAddingMetric) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => { document.body.style.overflow = ''; };
+    }, [isAddingMetric]);
+
+    const handleMetricValueChange = (val: string) => {
+        setNewMetric({...newMetric, value: val});
+        if (val.length < 1) {
+            setSuggestions([]);
+            return;
+        }
+        
+        let categoryKey = '';
+        if (newMetric.category.toLowerCase() === 'languages') categoryKey = 'languages';
+        if (newMetric.category.toLowerCase() === 'technologies' || newMetric.category.toLowerCase() === 'frameworks') categoryKey = 'frameworks';
+
+        if (categoryKey && (skillsData as any)[categoryKey]) {
+            const list = (skillsData as any)[categoryKey] as string[];
+            const filtered = list.filter(item => item.toLowerCase().includes(val.toLowerCase())).slice(0, 5);
+            setSuggestions(filtered);
+        } else {
+            setSuggestions([]);
+        }
+    };
 
     const categoryTypes: Record<string, 'row' | 'tag'> = {
         'General': 'row',
@@ -151,10 +188,14 @@ const JobDescriptionReview: React.FC<JobDescriptionReviewProps> = ({
                                             <div key={metric.id} className="flex items-center gap-3 px-4 py-2.5 bg-white dark:bg-zinc-950/50 border border-zinc-200 dark:border-zinc-800 rounded-2xl group hover:border-indigo-500/40 transition-all shadow-sm">
                                                 <input 
                                                     type="text" 
-                                                    value={metric.value || ''} 
-                                                    onChange={(e) => updateMetric(metric.id, 'value', e.target.value)}
+                                                    value={typeof metric.value === 'string' ? metric.value || '' : ((metric.value as any)?.name || (metric.value as any)?.value || '')} 
+                                                    onChange={(e) => {
+                                                        const newVal = e.target.value;
+                                                        const updateVal = typeof metric.value === 'string' ? newVal : { ...(metric.value as any), name: newVal } as any;
+                                                        updateMetric(metric.id, 'value', updateVal);
+                                                    }}
                                                     className="bg-transparent border-none p-0 text-sm font-black text-zinc-900 dark:text-zinc-100 focus:ring-0 min-w-[40px] w-auto uppercase tracking-tighter"
-                                                    style={{ width: `${Math.max((metric.value?.length || 0) * 11 + 16, 40)}px` }}
+                                                    style={{ width: `${Math.max((typeof metric.value === 'string' ? metric.value : ((metric.value as any)?.name || (metric.value as any)?.value || ''))?.length * 11 + 16, 40)}px` }}
                                                 />
                                                 <button 
                                                     onClick={() => deleteMetric(metric.id)}
@@ -203,7 +244,7 @@ const JobDescriptionReview: React.FC<JobDescriptionReviewProps> = ({
                 })}
 
                 {/* Inline Form Add Modal-style */}
-                {isAddingMetric && (
+                {isAddingMetric && mounted && createPortal(
                     <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-zinc-950/40 backdrop-blur-sm animate-in fade-in duration-300">
                         <div className="w-full max-w-lg p-10 border border-zinc-100 dark:border-zinc-800 rounded-[3rem] bg-white dark:bg-zinc-950 shadow-2xl space-y-8 animate-in zoom-in-95 duration-300">
                            <div className="space-y-2 text-center">
@@ -215,14 +256,32 @@ const JobDescriptionReview: React.FC<JobDescriptionReviewProps> = ({
                                 <div>
                                     <label className="text-[10px] font-black uppercase text-indigo-500 tracking-widest mb-2 block">Value Refinement</label>
                                     {(categoryTypes[newMetric.category] === 'tag' || newMetric.category !== 'General') ? (
-                                        <input 
-                                            type="text"
-                                            autoFocus
-                                            placeholder="..."
-                                            value={newMetric.value}
-                                            onChange={(e) => setNewMetric({...newMetric, value: e.target.value})}
-                                            className="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 rounded-2xl px-6 py-4 dark:text-zinc-200 focus:ring-2 focus:ring-indigo-500/20 font-bold"
-                                        />
+                                        <div className="relative">
+                                            <input 
+                                                type="text"
+                                                autoFocus
+                                                placeholder="..."
+                                                value={newMetric.value}
+                                                onChange={(e) => handleMetricValueChange(e.target.value)}
+                                                className="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 rounded-2xl px-6 py-4 dark:text-zinc-200 focus:ring-2 focus:ring-indigo-500/20 font-bold"
+                                            />
+                                            {suggestions.length > 0 && (
+                                                <div className="absolute top-[calc(100%+8px)] left-0 w-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-2xl z-[60] overflow-hidden">
+                                                    {suggestions.map(s => (
+                                                        <button 
+                                                            key={s} 
+                                                            onClick={() => {
+                                                                setNewMetric({...newMetric, value: s});
+                                                                setSuggestions([]);
+                                                            }}
+                                                            className="w-full text-left px-6 py-3 text-sm font-bold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors border-b border-zinc-100 dark:border-zinc-800 last:border-0"
+                                                        >
+                                                            {s}
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
                                     ) : (
                                         <div className="grid grid-cols-2 gap-4">
                                             <input 
@@ -231,13 +290,31 @@ const JobDescriptionReview: React.FC<JobDescriptionReviewProps> = ({
                                                 readOnly
                                                 className="w-full bg-zinc-50 dark:bg-zinc-900 border border-transparent rounded-2xl px-6 py-4 text-zinc-400 cursor-default font-bold"
                                             />
-                                            <input 
-                                                type="text"
-                                                autoFocus
-                                                value={newMetric.value}
-                                                onChange={(e) => setNewMetric({...newMetric, value: e.target.value})}
-                                                className="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 rounded-2xl px-6 py-4 dark:text-zinc-200 focus:ring-2 focus:ring-indigo-500/20 font-bold"
-                                            />
+                                            <div className="relative">
+                                                <input 
+                                                    type="text"
+                                                    autoFocus
+                                                    value={newMetric.value}
+                                                    onChange={(e) => handleMetricValueChange(e.target.value)}
+                                                    className="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 rounded-2xl px-6 py-4 dark:text-zinc-200 focus:ring-2 focus:ring-indigo-500/20 font-bold"
+                                                />
+                                                {suggestions.length > 0 && (
+                                                    <div className="absolute top-[calc(100%+8px)] left-0 w-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-2xl z-[60] overflow-hidden">
+                                                        {suggestions.map(s => (
+                                                            <button 
+                                                                key={s} 
+                                                                onClick={() => {
+                                                                    setNewMetric({...newMetric, value: s});
+                                                                    setSuggestions([]);
+                                                                }}
+                                                                className="w-full text-left px-6 py-3 text-sm font-bold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors border-b border-zinc-100 dark:border-zinc-800 last:border-0"
+                                                            >
+                                                                {s}
+                                                            </button>
+                                                        ))}
+                                                    </div>
+                                                )}
+                                            </div>
                                         </div>
                                     )}
                                 </div>
@@ -258,11 +335,11 @@ const JobDescriptionReview: React.FC<JobDescriptionReviewProps> = ({
                              </button>
                            </div>
                         </div>
-                    </div>
+                    </div>,
+                    document.body
                 )}
             </div>
 
-            {/* Final Title Selection & Save Step - Minimalist Redesign */}
             <div className="pt-6">
                 <div className="p-8 border border-zinc-200 dark:border-zinc-800 rounded-2xl bg-zinc-50/50 dark:bg-zinc-950/50 space-y-8">
                     <div className="space-y-6">

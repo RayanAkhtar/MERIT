@@ -3,6 +3,7 @@ from typing import Dict, Any, List, Optional
 from .base import BaseMetric
 from .constants import SCORING_CONSTANTS
 from core.fusion.bayesian import Evidence
+from .semantic_utils import semantic_matcher
 
 class TechnologyStackMetric(BaseMetric):
     @property
@@ -48,6 +49,7 @@ class TechnologyStackMetric(BaseMetric):
                 last_li_year = max(last_li_year, current_year - i)
         
         latest_activity = max(last_gh_year, last_li_year)
+        latest_activity = min(float(current_year), latest_activity)
         if latest_activity == 0: 
             return 1.0, "Historical claim (No recent temporal activity)"
             
@@ -115,25 +117,35 @@ class TechnologyStackMetric(BaseMetric):
             tech_lower = str(tech_val).lower()
             tech_display = tech_val
 
+            # Global Semantic Bridge Check
+            best_semantic = semantic_matcher.find_best_match(tech_val, list(set(cv_skills)), threshold=0.50)
+            semantic_term = best_semantic.get("match", "")
+            has_semantic = bool(semantic_term and str(semantic_term).lower() != tech_lower)
+            semantic_lower = str(semantic_term).lower() if has_semantic else ""
+
+            bridge_used_cv = False
+            bridge_used_gh = False
+            bridge_used_li = False
             
             # cv signal
             cv_text = candidate_data.get("raw_cv_text") or candidate_data.get("full_cv_text") or ""
             mentions = self._count_mentions(tech_val, cv_text)
 
             has_cv = mentions > 0
+            if not has_cv and has_semantic:
+                mentions = self._count_mentions(semantic_term, cv_text)
+                if mentions > 0:
+                    has_cv = True
+                    bridge_used_cv = True
             
             has_li = tech_lower in li_text and len(tech_lower) > 2
+            if not has_li and has_semantic:
+                has_li = semantic_lower in li_text and len(semantic_lower) > 2
+                if has_li:
+                    bridge_used_li = True
             
             item_sources = []
-            source_details = [
-                {
-                    "name": tech_display,
-                    "source": f"Tooling Detail: {tech_display}",
-                    "score": 1.0 if (has_cv or has_li) else 0.0,
-                    "explanation": f"Analysing professional footprint for {tech_display}."
-                }
-
-            ]
+            source_details = []
             
             # --- Bayesian Evidence Aggregation ---
             evidence = []
@@ -151,7 +163,7 @@ class TechnologyStackMetric(BaseMetric):
             # CV signal
             if has_cv:
                 item_sources.append("CV")
-                cv_score = 0.8
+                cv_score = 0.8 if not bridge_used_cv else 0.6
                 if stuffing_penalty > 0:
                     cv_score = max(0.0, cv_score - stuffing_penalty)
 
@@ -166,7 +178,8 @@ class TechnologyStackMetric(BaseMetric):
                     "score": cv_score,
                     "trust": conf["CV"],
                     "derivation": cv_derivation,
-                    "explanation": f"Found {mentions} occurrences in document. (Capped at 0.8)" + (f" [STUFFING PENALTY APPLIED]" if stuffing_penalty > 0 else ""),
+                    "is_semantic_bridge": bridge_used_cv,
+                    "explanation": f"Found {mentions} occurrences in document" + (f" via semantic match '{semantic_term}'" if bridge_used_cv else "") + f". (Capped at {0.6 if bridge_used_cv else 0.8})" + (f" [STUFFING PENALTY APPLIED]" if stuffing_penalty > 0 else ""),
                     "weighting": f"Self-reported (Conf: {conf['CV']:.1f})"
                 })
             
@@ -174,15 +187,18 @@ class TechnologyStackMetric(BaseMetric):
             if has_li:
                 item_sources.append("LinkedIn")
                 evidence.append(Evidence(source="LinkedIn", confidence=conf["LINKEDIN"], strength=0.8))
-                start_idx = max(0, li_text.find(tech_lower) - 40)
-                end_idx = min(len(li_text), li_text.find(tech_lower) + 60)
+                
+                target_str = semantic_lower if bridge_used_li else tech_lower
+                start_idx = max(0, li_text.find(target_str) - 40)
+                end_idx = min(len(li_text), li_text.find(target_str) + 60)
                 snippet = li_text[start_idx:end_idx].strip()
                 source_details.append({
                     "source": "LinkedIn",
-                    "score": 0.8,
+                    "score": li_score,
                     "trust": conf["LINKEDIN"],
-                    "derivation": "Binary Presence (Mentions in history = 0.8 Cap)",
-                    "explanation": f"Found in experience history: \"...{snippet}...\" (Normalised: 0.80)",
+                    "derivation": "Binary Presence (Mentions in history = 0.8 Cap)" if not bridge_used_li else "Binary Presence via Bridge (Mentions in history = 0.6 Cap)",
+                    "is_semantic_bridge": bridge_used_li,
+                    "explanation": f"Found in experience history" + (f" via semantic match '{semantic_term}'" if bridge_used_li else "") + f": \"...{snippet}...\" (Normalised: {li_score:.2f})",
                     "weighting": f"Professional Record (Conf: {conf['LINKEDIN']:.1f})"
                 })
 
@@ -190,6 +206,12 @@ class TechnologyStackMetric(BaseMetric):
             gh_profile = candidate_data.get("github_enriched") or candidate_data.get("github_profile") or {}
             gh_repos = (gh_profile.get("featured_projects") or []) + (gh_profile.get("repositories") or []) + (candidate_data.get("github_projects") or [])
             has_gh = any(tech_lower in str(r.get("name") or "").lower() or tech_lower in str(r.get("description") or "").lower() for r in gh_repos)
+            
+            if not has_gh and has_semantic:
+                has_gh = any(semantic_lower in str(r.get("name") or "").lower() or semantic_lower in str(r.get("description") or "").lower() for r in gh_repos)
+                if has_gh:
+                    bridge_used_gh = True
+
             if has_gh:
                 item_sources.append("GitHub")
                 evidence.append(Evidence(source="GitHub", confidence=conf["GITHUB"], strength=1.0))
@@ -198,7 +220,8 @@ class TechnologyStackMetric(BaseMetric):
                     "score": 1.0,
                     "trust": conf["GITHUB"],
                     "derivation": "Binary Presence (Relevant project found = 1.0)",
-                    "explanation": f"Found dedicated repositories or mentions in projects.",
+                    "is_semantic_bridge": bridge_used_gh,
+                    "explanation": f"Found dedicated repositories or mentions in projects" + (f" via semantic match '{semantic_term}'." if bridge_used_gh else "."),
                     "weighting": f"Work Sample (Conf: {conf['GITHUB']:.1f})"
                 })
 
@@ -259,6 +282,7 @@ class TechnologyStackMetric(BaseMetric):
                 "integrity_penalty_applied": stuffing_penalty > 0,
                 "integrity_penalty_value": stuffing_penalty,
                 "integrity_audit_details": penalty_details,
+                "is_semantic_bridge": bridge_used_gh or bridge_used_cv or bridge_used_li,
                 "source_details": source_details,
                 "notes": f"{human_note} (Bayesian Audit: {fusion_result['logic']})",
                 "sources": list(set(item_sources))

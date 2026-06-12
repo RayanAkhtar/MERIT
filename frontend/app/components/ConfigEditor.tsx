@@ -26,6 +26,8 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
   const [isLoading, setIsLoading] = useState(true);
   const [showReqModal, setShowReqModal] = useState(false);
   const [showMathModal, setShowMathModal] = useState<any>(null);
+  const [showMeasurementLogicModal, setShowMeasurementLogicModal] = useState(false);
+  const [showBaselineLogicModal, setShowBaselineLogicModal] = useState(false);
 
   // Weight range: 0 (Least Important) to 1 (Most Important)
   const [importance, setImportance] = useState<Record<string, number>>(initialData?.weights || {});
@@ -218,6 +220,110 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
       return <div className="p-20 text-center">Loading configuration settings...</div>;
   }
 
+  const renderCriteriaList = (criteriaList: typeof allCriteria) => {
+    return criteriaList.map((item) => {
+      const currentWeight = importance[item.key];
+      const isActive = currentWeight !== undefined && currentWeight !== null;
+      
+      return (
+        <div key={item.key} className={`flex flex-col md:flex-row md:items-center justify-between gap-4 py-4 border-b border-zinc-200 dark:border-zinc-800 last:border-0 last:pb-0 transition-opacity ${!isActive ? 'opacity-40 grayscale' : ''} ${item.source ? 'bg-indigo-50/30 dark:bg-indigo-900/5 -mx-4 px-4 rounded-md' : ''}`}>
+          <div className="flex items-center gap-4">
+            <div className="flex flex-col">
+              <div className="flex items-center gap-3">
+                <span className="font-bold text-zinc-900 dark:text-zinc-100">{item.label}</span>
+                <span className="flex flex-wrap gap-2">
+                  {(() => {
+                    const tags = item.source 
+                      ? item.source.split(',') 
+                      : (item.sources || []);
+                    
+                    return tags.map((src: string) => (
+                      <span key={src} className={`
+                        px-2 py-0.5 text-[10px] uppercase font-bold rounded-md
+                        ${src === 'JD' ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300' : ''}
+                        ${src === 'CV' ? 'bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300' : ''}
+                        ${src === 'GitHub' ? 'bg-zinc-900 text-zinc-100 dark:bg-zinc-100 dark:text-zinc-900 border border-zinc-200 dark:border-zinc-700' : ''}
+                        ${src === 'LinkedIn' ? 'bg-blue-600 text-white shadow-sm shadow-blue-500/20' : ''}
+                        ${src === 'Candidate Data' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300' : ''}
+                      `}>
+                        {src}
+                      </span>
+                    ));
+                  })()}
+                </span>
+
+                  {(() => {
+                    const tags = item.source ? item.source.split(',') : (item.sources || []);
+                    const isJDSkill = tags.includes('JD');
+                    
+                    if (item.suggested_weight && (item as any).suggested_weight_math) {
+                      return (
+                        <div className="px-3 py-1 bg-amber-50 dark:bg-amber-900/10 border border-amber-200/50 dark:border-amber-900/50 rounded-lg flex items-center gap-2 animate-in slide-in-from-right-4 duration-500">
+                          <FaRobot className="w-3 h-3 text-amber-600 dark:text-amber-400" />
+                          <span className="text-[10px] font-black text-amber-700 dark:text-amber-300 uppercase tracking-widest">
+                            AI Suggests Priority: {Math.max(1, Math.min(5, Math.round(6 - item.suggested_weight)))}
+                          </span>
+                        </div>
+                      );
+                    } else if (isJDSkill) {
+                      // Only show manual review for JD skills that didn't get a suggestion
+                      return (
+                        <div className="px-3 py-1 bg-rose-50 dark:bg-rose-950/20 border border-rose-200/50 dark:border-rose-900/50 rounded-lg flex items-center gap-2 animate-in fade-in duration-500">
+                          <FaExclamationTriangle className="w-2.5 h-2.5 text-rose-500 dark:text-rose-400" />
+                          <span className="text-[9px] font-black text-rose-600 dark:text-rose-300 uppercase tracking-widest">
+                            Likely Not Measurable
+                          </span>
+                        </div>
+                      );
+                    }
+                    return null;
+                  })()}
+                  {item.subSources && <span className="px-2 py-0.5 text-[10px] uppercase font-bold bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300 rounded-md">Candidate: {item.subSources.join(', ')}</span>}
+              </div>
+            </div>
+          </div>
+          
+          <div className="flex flex-col items-center gap-2">
+            <div className="flex items-center gap-1.5 bg-white dark:bg-zinc-900 p-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-sm transition-all">
+              {[1, 2, 3, 4, 5].map((val) => {
+                const weightValue = parseFloat((1.2 - val * 0.2).toFixed(1));
+                const isSelected = isActive && Math.abs(currentWeight - weightValue) < 0.01;
+                
+                return (
+                  <button
+                    key={val}
+                    onClick={() => {
+                      if (isSelected) {
+                        const newImportance = { ...importance };
+                        delete newImportance[item.key];
+                        setImportance(newImportance);
+                      } else {
+                        setImportance({ ...importance, [item.key]: weightValue });
+                      }
+                    }}
+                    className={`
+                      w-10 h-10 rounded-md text-sm font-bold transition-all flex items-center justify-center
+                      ${isSelected 
+                        ? 'bg-indigo-600 text-white shadow-md scale-110 z-10' 
+                        : 'bg-zinc-50 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-600 dark:bg-zinc-800 dark:text-zinc-500 dark:hover:bg-zinc-700 dark:hover:text-zinc-300'}
+                    `}
+                    title={isSelected ? "Click to deactivate" : `Set Priority ${val}`}
+                  >
+                    {val}
+                  </button>
+                );
+              })}
+            </div>
+            <div className="flex justify-between w-full px-1 text-[9px] font-black uppercase tracking-widest text-zinc-400">
+               <span>High</span>
+               <span>Low</span>
+            </div>
+          </div>
+        </div>
+      );
+    });
+  };
+
   return (
     <div className="bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm overflow-hidden flex flex-col">
       <div className="p-6 md:p-8 space-y-8 flex-1">
@@ -368,109 +474,45 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
                 </p>
               </div>
 
-              <div className="ml-8 bg-zinc-50 dark:bg-zinc-950/50 p-6 border border-zinc-200 dark:border-zinc-800 rounded-lg">
-                <div className="space-y-6">
-                  {allCriteria.map((item) => {
-                    const currentWeight = importance[item.key];
-                    const isActive = currentWeight !== undefined && currentWeight !== null;
-                    
-                    return (
-                      <div key={item.key} className={`flex flex-col md:flex-row md:items-center justify-between gap-4 py-4 border-b border-zinc-200 dark:border-zinc-800 last:border-0 last:pb-0 transition-opacity ${!isActive ? 'opacity-40 grayscale' : ''} ${item.source ? 'bg-indigo-50/30 dark:bg-indigo-900/5 -mx-4 px-4 rounded-md' : ''}`}>
-                        <div className="flex items-center gap-4">
-                          <div className="flex flex-col">
-                            <div className="flex items-center gap-3">
-                              <span className="font-bold text-zinc-900 dark:text-zinc-100">{item.label}</span>
-                              <span className="flex flex-wrap gap-2">
-                                {(() => {
-                                  const tags = item.source 
-                                    ? item.source.split(',') 
-                                    : (item.sources || []);
-                                  
-                                  return tags.map((src: string) => (
-                                    <span key={src} className={`
-                                      px-2 py-0.5 text-[10px] uppercase font-bold rounded-md
-                                      ${src === 'JD' ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300' : ''}
-                                      ${src === 'CV' ? 'bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300' : ''}
-                                      ${src === 'GitHub' ? 'bg-zinc-900 text-zinc-100 dark:bg-zinc-100 dark:text-zinc-900 border border-zinc-200 dark:border-zinc-700' : ''}
-                                      ${src === 'LinkedIn' ? 'bg-blue-600 text-white shadow-sm shadow-blue-500/20' : ''}
-                                      ${src === 'Candidate Data' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300' : ''}
-                                    `}>
-                                      {src}
-                                    </span>
-                                  ));
-                                })()}
-                              </span>
+              <div className="ml-8 space-y-8">
+                <div className="bg-zinc-50 dark:bg-zinc-950/50 p-6 border border-zinc-200 dark:border-zinc-800 rounded-lg">
+                  <div className="flex justify-between items-center mb-6 border-b border-zinc-200 dark:border-zinc-800 pb-4">
+                    <h3 className="text-sm font-bold text-indigo-900 dark:text-indigo-100 uppercase tracking-widest flex items-center gap-3">
+                      <span className="bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-400 px-2.5 py-1 rounded-md text-[10px] font-black">E</span>
+                      Extensible Metrics
+                      <span className="text-[10px] text-zinc-400 normal-case tracking-normal ml-2 font-medium">(Job-Specific Requirements)</span>
+                    </h3>
+                    <button 
+                      onClick={() => setShowMeasurementLogicModal(true)}
+                      className="flex items-center gap-2 px-3 py-1.5 bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700 rounded-md text-xs font-bold hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors shadow-sm"
+                    >
+                      <FaInfoCircle className="w-3.5 h-3.5" />
+                      View Scoring Logic
+                    </button>
+                  </div>
+                  <div className="space-y-6">
+                    {renderCriteriaList(allCriteria.filter(c => c.key.startsWith('req_')))}
+                  </div>
+                </div>
 
-                                {(() => {
-                                  const tags = item.source ? item.source.split(',') : (item.sources || []);
-                                  const isJDSkill = tags.includes('JD');
-                                  
-                                  if (item.suggested_weight && (item as any).suggested_weight_math) {
-                                    return (
-                                      <div className="px-3 py-1 bg-amber-50 dark:bg-amber-900/10 border border-amber-200/50 dark:border-amber-900/50 rounded-lg flex items-center gap-2 animate-in slide-in-from-right-4 duration-500">
-                                        <FaRobot className="w-3 h-3 text-amber-600 dark:text-amber-400" />
-                                        <span className="text-[10px] font-black text-amber-700 dark:text-amber-300 uppercase tracking-widest">
-                                          AI Suggests Priority: {Math.max(1, Math.min(5, Math.round(6 - item.suggested_weight)))}
-                                        </span>
-                                      </div>
-                                    );
-                                  } else if (isJDSkill) {
-                                    // Only show manual review for JD skills that didn't get a suggestion
-                                    return (
-                                      <div className="px-3 py-1 bg-rose-50 dark:bg-rose-950/20 border border-rose-200/50 dark:border-rose-900/50 rounded-lg flex items-center gap-2 animate-in fade-in duration-500">
-                                        <FaExclamationTriangle className="w-2.5 h-2.5 text-rose-500 dark:text-rose-400" />
-                                        <span className="text-[9px] font-black text-rose-600 dark:text-rose-300 uppercase tracking-widest">
-                                          Likely Not Measurable
-                                        </span>
-                                      </div>
-                                    );
-                                  }
-                                  return null;
-                                })()}
-                                {item.subSources && <span className="px-2 py-0.5 text-[10px] uppercase font-bold bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300 rounded-md">Candidate: {item.subSources.join(', ')}</span>}
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex flex-col items-center gap-2">
-                          <div className="flex items-center gap-1.5 bg-white dark:bg-zinc-900 p-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-sm transition-all">
-                            {[1, 2, 3, 4, 5].map((val) => {
-                              const weightValue = parseFloat((1.2 - val * 0.2).toFixed(1));
-                              const isSelected = isActive && Math.abs(currentWeight - weightValue) < 0.01;
-                              
-                              return (
-                                <button
-                                  key={val}
-                                  onClick={() => {
-                                    if (isSelected) {
-                                      const newImportance = { ...importance };
-                                      delete newImportance[item.key];
-                                      setImportance(newImportance);
-                                    } else {
-                                      setImportance({ ...importance, [item.key]: weightValue });
-                                    }
-                                  }}
-                                  className={`
-                                    w-10 h-10 rounded-md text-sm font-bold transition-all flex items-center justify-center
-                                    ${isSelected 
-                                      ? 'bg-indigo-600 text-white shadow-md scale-110 z-10' 
-                                      : 'bg-zinc-50 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-600 dark:bg-zinc-800 dark:text-zinc-500 dark:hover:bg-zinc-700 dark:hover:text-zinc-300'}
-                                  `}
-                                  title={isSelected ? "Click to deactivate" : `Set Priority ${val}`}
-                                >
-                                  {val}
-                                </button>
-                              );
-                            })}
-                          </div>
-                          <div className="flex justify-between w-full px-1 text-[9px] font-black uppercase tracking-widest text-zinc-400">
-                             <span>High</span>
-                             <span>Low</span>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
+                <div className="bg-zinc-50 dark:bg-zinc-950/50 p-6 border border-zinc-200 dark:border-zinc-800 rounded-lg">
+                  <div className="flex justify-between items-center mb-6 border-b border-zinc-200 dark:border-zinc-800 pb-4">
+                    <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest flex items-center gap-3">
+                      <span className="bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-2.5 py-1 rounded-md text-[10px] font-black">B</span>
+                      Baseline Metrics
+                      <span className="text-[10px] text-zinc-400 normal-case tracking-normal ml-2 font-medium">(Core Intelligence)</span>
+                    </h3>
+                    <button 
+                      onClick={() => setShowBaselineLogicModal(true)}
+                      className="flex items-center gap-2 px-3 py-1.5 bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700 rounded-md text-xs font-bold hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors shadow-sm"
+                    >
+                      <FaInfoCircle className="w-3.5 h-3.5" />
+                      View Scoring Logic
+                    </button>
+                  </div>
+                  <div className="space-y-6">
+                    {renderCriteriaList(allCriteria.filter(c => !c.key.startsWith('req_')))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -572,6 +614,200 @@ export default function ConfigEditor({ initialData, mode, onSave, isProcessing }
           </div>
         </div>
       )}
+
+      {/* Extensible Metrics Scoring Logic Modal */}
+      {showMeasurementLogicModal && (
+        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-zinc-950/60 backdrop-blur-sm animate-in fade-in duration-300">
+          <div className="bg-white dark:bg-zinc-900 rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col transform animate-in zoom-in-95 duration-300 border border-zinc-200 dark:border-zinc-800" role="dialog">
+            
+            {/* Header */}
+            <div className="p-8 border-b border-zinc-100 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/50 flex justify-between items-start">
+              <div className="flex gap-5">
+                <div className="w-14 h-14 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-500/20">
+                  <FaInfoCircle className="w-7 h-7 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight">Measurement Logic</h2>
+                  <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1 max-w-xl">
+                    How extensible requirements (Languages & Technologies) are mathematically scored across candidate profiles using Bayesian Fusion.
+                  </p>
+                </div>
+              </div>
+              <button 
+                onClick={() => setShowMeasurementLogicModal(false)} 
+                className="p-2 hover:bg-zinc-200 dark:hover:bg-zinc-800 rounded-full transition-colors text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200"
+              >
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+              </button>
+            </div>
+
+            {/* Content */}
+            <div className="flex-1 overflow-y-auto p-8 custom-scrollbar space-y-8">
+              <div className="space-y-6">
+                <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 border-b border-zinc-200 dark:border-zinc-800 pb-2">Programming Languages</h3>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">Languages use a volume-based approach to measure actual code contribution, with penalties applied if the skill hasn't been used recently.</p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="bg-zinc-50 dark:bg-zinc-800/50 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700">
+                    <h4 className="text-xs font-black uppercase text-zinc-900 dark:text-zinc-100 mb-2">GitHub</h4>
+                    <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-2">We calculate the exact percentage of your total codebase written in this language. This is checked against a benchmark, and slightly reduced if your last commit in this language was years ago.</p>
+                    <code className="block p-2 bg-zinc-900 text-cyan-400 rounded text-[10px] font-mono leading-relaxed">Score = (Your Code Volume &divide; Expected Benchmark) &times; Recency Penalty</code>
+                  </div>
+                  <div className="bg-zinc-50 dark:bg-zinc-800/50 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700">
+                    <h4 className="text-xs font-black uppercase text-zinc-900 dark:text-zinc-100 mb-2">CV</h4>
+                    <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-2">We count how many times this language is explicitly mentioned in your CV, including related technical terms. More mentions imply a stronger focus, up to a sensible limit.</p>
+                    <code className="block p-2 bg-zinc-900 text-emerald-400 rounded text-[10px] font-mono leading-relaxed">Score = Keyword Frequency &times; Standard Multiplier</code>
+                  </div>
+                  <div className="bg-zinc-50 dark:bg-zinc-800/50 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700">
+                    <h4 className="text-xs font-black uppercase text-zinc-900 dark:text-zinc-100 mb-2">LinkedIn</h4>
+                    <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-2">We scan your role descriptions to see if the language was used in a professional capacity. If it's listed in any past experience, it serves as a strong supporting signal.</p>
+                    <code className="block p-2 bg-zinc-900 text-blue-400 rounded text-[10px] font-mono leading-relaxed">Score = Present ? Full Marks : Zero</code>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-6">
+                <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 border-b border-zinc-200 dark:border-zinc-800 pb-2">Technologies & Tools</h3>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">Tools and frameworks use a simple presence-based check across your profiles to verify usage in any professional or personal capacity.</p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="bg-zinc-50 dark:bg-zinc-800/50 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700">
+                    <h4 className="text-xs font-black uppercase text-zinc-900 dark:text-zinc-100 mb-2">GitHub</h4>
+                    <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-2">We look for mentions of this tool or framework inside your repository names and project descriptions. Any valid mention acts as direct proof of experience.</p>
+                    <code className="block p-2 bg-zinc-900 text-cyan-400 rounded text-[10px] font-mono leading-relaxed">Score = Found in Repos ? Full Marks : Zero</code>
+                  </div>
+                  <div className="bg-zinc-50 dark:bg-zinc-800/50 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700">
+                    <h4 className="text-xs font-black uppercase text-zinc-900 dark:text-zinc-100 mb-2">CV</h4>
+                    <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-2">We search your entire CV for the exact tool name. If it's listed anywhere, it provides a strong self-reported verification.</p>
+                    <code className="block p-2 bg-zinc-900 text-emerald-400 rounded text-[10px] font-mono leading-relaxed">Score = Found in CV ? Full Marks : Zero</code>
+                  </div>
+                  <div className="bg-zinc-50 dark:bg-zinc-800/50 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700">
+                    <h4 className="text-xs font-black uppercase text-zinc-900 dark:text-zinc-100 mb-2">LinkedIn</h4>
+                    <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-2">We verify if the tool is mentioned within any of your past job roles, establishing a verified timeline of usage in the industry.</p>
+                    <code className="block p-2 bg-zinc-900 text-blue-400 rounded text-[10px] font-mono leading-relaxed">Score = Found in Roles ? Full Marks : Zero</code>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Baseline Metrics Scoring Logic Modal */}
+      {showBaselineLogicModal && (
+        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-zinc-950/60 backdrop-blur-sm animate-in fade-in duration-300">
+          <div className="bg-white dark:bg-zinc-900 rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col transform animate-in zoom-in-95 duration-300 border border-zinc-200 dark:border-zinc-800" role="dialog">
+            
+            {/* Header */}
+            <div className="p-8 border-b border-zinc-100 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/50 flex justify-between items-start">
+              <div className="flex gap-5">
+                <div className="w-14 h-14 bg-zinc-600 rounded-2xl flex items-center justify-center shadow-lg shadow-zinc-500/20">
+                  <FaInfoCircle className="w-7 h-7 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight">Baseline Scoring Logic</h2>
+                  <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1 max-w-xl">
+                    How core intelligence metrics are evaluated and scored across your data sources to form a foundational profile.
+                  </p>
+                </div>
+              </div>
+              <button 
+                onClick={() => setShowBaselineLogicModal(false)} 
+                className="p-2 hover:bg-zinc-200 dark:hover:bg-zinc-800 rounded-full transition-colors text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200"
+              >
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+              </button>
+            </div>
+
+            {/* Content */}
+            <div className="flex-1 overflow-y-auto p-8 custom-scrollbar space-y-8">
+              
+              {/* Educational Qualifications */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 border-b border-zinc-200 dark:border-zinc-800 pb-2">Educational Qualifications <span className="ml-2 text-[10px] bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-2 py-0.5 rounded uppercase tracking-wider">CV</span></h3>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">Evaluates the highest degree level attained and relevance of the field of study.</p>
+                <div className="bg-zinc-50 dark:bg-zinc-800/50 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700">
+                  <code className="block p-2 bg-zinc-900 text-emerald-400 rounded text-[10px] font-mono leading-relaxed">Score = Degree Level Multiplier &times; Field Relevance Factor</code>
+                </div>
+              </div>
+
+              {/* Professional Experience Over Time */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 border-b border-zinc-200 dark:border-zinc-800 pb-2">Professional Experience Over Time <span className="ml-2 text-[10px] bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-2 py-0.5 rounded uppercase tracking-wider">CV, LinkedIn</span></h3>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">Measures total years of relevant industry experience and consistency of employment.</p>
+                <div className="bg-zinc-50 dark:bg-zinc-800/50 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700">
+                  <code className="block p-2 bg-zinc-900 text-blue-400 rounded text-[10px] font-mono leading-relaxed">Score = (Total Years Experience &divide; Target Years) &times; Role Progression Bonus</code>
+                </div>
+              </div>
+
+              {/* Technical Projects & Contributions */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 border-b border-zinc-200 dark:border-zinc-800 pb-2">Technical Projects & Contributions <span className="ml-2 text-[10px] bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-2 py-0.5 rounded uppercase tracking-wider">CV, GitHub, LinkedIn</span></h3>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">Assesses the volume, quality, and impact of built projects and open-source contributions.</p>
+                <div className="bg-zinc-50 dark:bg-zinc-800/50 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700">
+                  <code className="block p-2 bg-zinc-900 text-cyan-400 rounded text-[10px] font-mono leading-relaxed">Score = Base Project Count + (Open Source Contributions &times; Impact Weight)</code>
+                </div>
+              </div>
+
+              {/* Technical Skills & Tooling Depth */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 border-b border-zinc-200 dark:border-zinc-800 pb-2">Technical Skills & Tooling Depth <span className="ml-2 text-[10px] bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-2 py-0.5 rounded uppercase tracking-wider">CV, GitHub</span></h3>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">Evaluates the breadth of a candidate's technological stack beyond the core requirements.</p>
+                <div className="bg-zinc-50 dark:bg-zinc-800/50 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700">
+                  <code className="block p-2 bg-zinc-900 text-purple-400 rounded text-[10px] font-mono leading-relaxed">Score = Unique Tools Mastered &divide; Standard Industry Stack Size</code>
+                </div>
+              </div>
+
+              {/* Project Complexity & Architecture */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 border-b border-zinc-200 dark:border-zinc-800 pb-2">Project Complexity & Architecture <span className="ml-2 text-[10px] bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-2 py-0.5 rounded uppercase tracking-wider">GitHub</span></h3>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">Analyzes the structural complexity, testing practices, and architecture of GitHub repositories.</p>
+                <div className="bg-zinc-50 dark:bg-zinc-800/50 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700">
+                  <code className="block p-2 bg-zinc-900 text-pink-400 rounded text-[10px] font-mono leading-relaxed">Score = Code Quality Metrics + (Architecture Patterns Detected &times; Complexity Multiplier)</code>
+                </div>
+              </div>
+
+              {/* Ecosystem & Language Alignment */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 border-b border-zinc-200 dark:border-zinc-800 pb-2">Ecosystem & Language Alignment <span className="ml-2 text-[10px] bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-2 py-0.5 rounded uppercase tracking-wider">GitHub</span></h3>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">Determines how closely a candidate's primary programming languages align with the core ecosystem required for the role.</p>
+                <div className="bg-zinc-50 dark:bg-zinc-800/50 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700">
+                  <code className="block p-2 bg-zinc-900 text-orange-400 rounded text-[10px] font-mono leading-relaxed">Score = Language Overlap Percentage &times; Ecosystem Relevance Weight</code>
+                </div>
+              </div>
+
+              {/* Repository Stars & Community Impact */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 border-b border-zinc-200 dark:border-zinc-800 pb-2">Repository Stars & Community Impact <span className="ml-2 text-[10px] bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-2 py-0.5 rounded uppercase tracking-wider">GitHub</span></h3>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">Measures peer recognition and the broader impact of a candidate's open-source projects.</p>
+                <div className="bg-zinc-50 dark:bg-zinc-800/50 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700">
+                  <code className="block p-2 bg-zinc-900 text-yellow-400 rounded text-[10px] font-mono leading-relaxed">Score = log(Total Repository Stars) &times; Community Engagement Multiplier</code>
+                </div>
+              </div>
+
+              {/* Extracurricular Activity & Presence */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 border-b border-zinc-200 dark:border-zinc-800 pb-2">Extracurricular Activity & Presence <span className="ml-2 text-[10px] bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-2 py-0.5 rounded uppercase tracking-wider">CV, LinkedIn</span></h3>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">Evaluates involvement in hackathons, technical writing, speaking engagements, and broader tech community participation.</p>
+                <div className="bg-zinc-50 dark:bg-zinc-800/50 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700">
+                  <code className="block p-2 bg-zinc-900 text-teal-400 rounded text-[10px] font-mono leading-relaxed">Score = Activity Volume &times; Verified Event Quality</code>
+                </div>
+              </div>
+
+              {/* Professional Network Size */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 border-b border-zinc-200 dark:border-zinc-800 pb-2">Professional Network Size <span className="ml-2 text-[10px] bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-2 py-0.5 rounded uppercase tracking-wider">LinkedIn</span></h3>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">Assesses professional reach and industry connectivity as an indicator of tenure and peer trust.</p>
+                <div className="bg-zinc-50 dark:bg-zinc-800/50 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700">
+                  <code className="block p-2 bg-zinc-900 text-indigo-400 rounded text-[10px] font-mono leading-relaxed">Score = min(Connection Count &divide; Industry Standard Base, 1.0)</code>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Professional AI Audit Report Modal */}
       {showMathModal && (
         <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-zinc-950/60 backdrop-blur-sm animate-in fade-in duration-300">

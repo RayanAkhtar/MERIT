@@ -106,7 +106,7 @@ const BayesianFusionAudit: React.FC<BayesianFusionAuditProps> = ({ item, isBlind
                 </div>
               </div>
               <div className="flex gap-2 items-center p-2 rounded bg-white/5 border border-white/5">
-                <div className={`w-2 h-2 rounded-full animate-pulse ${item.confidence_label === 'High Confidence' ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]' : item.confidence_label === 'Medium Confidence' ? 'bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)]' : 'bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.5)]'}`} />
+                <div className={`w-2 h-2 rounded-full ${item.confidence_label === 'High Confidence' ? 'bg-emerald-500' : item.confidence_label === 'Medium Confidence' ? 'bg-amber-500' : 'bg-rose-500'}`} />
                 <div className="flex-1">
                   <div className="text-[10px] font-black uppercase text-white leading-none mb-1 tracking-tight">{item.confidence_label}</div>
                   <p className="text-[10px] text-zinc-400 italic leading-tight">

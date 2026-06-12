@@ -148,6 +148,7 @@ function RankingReport() {
       key,
       label: m.name,
       weight: m.weight || 0.6,
+      isExtensible: key.startsWith('req_')
     })).sort((a, b) => b.weight - a.weight);
   }, [rawResults]);
 
@@ -196,8 +197,16 @@ function RankingReport() {
           newItemScore = Math.min(1.0, newItemScore);
           
           // Use the backend's provided Bayesian score if all sources are active
-          const finalItemScore = (item.score !== undefined && activeSources.length === 3) ? item.score : newItemScore;
+          let finalItemScore = (item.score !== undefined && activeSources.length === 3) ? item.score : newItemScore;
           
+          if (c.reverted_stuffing && item.integrity_penalty_applied && item.integrity_penalty_value) {
+              finalItemScore = Math.min(1.0, finalItemScore + item.integrity_penalty_value);
+              if (item.notes) {
+                  item.notes = item.notes.replace(/\n?- \d+% Integrity Penalty/g, '');
+                  item.notes = item.notes.replace(/ - \d+% Integrity Penalty/g, '');
+              }
+          }
+
           metricTotalPoints += finalItemScore;
           return { ...item, score: finalItemScore, source_details: activeSourceDetails };
         }).filter((item: any) => item.source_details && item.source_details.length > 0);
@@ -226,6 +235,10 @@ function RankingReport() {
             newMetric.integrity_penalty_applied = true;
             newMetric.integrity_penalty_value = originalMetric.integrity_penalty_value;
             newMetric.integrity_audit_details = originalMetric.integrity_audit_details;
+            
+            if (c.reverted_stuffing) {
+                newMetricScore = Math.min(1.0, newMetricScore + originalMetric.integrity_penalty_value);
+            }
         }
 
         newMetric.score = newMetricScore;
@@ -260,7 +273,7 @@ function RankingReport() {
       // APPLY GLOBAL IDENTITY VETO TO DYNAMIC SCORE
       // If the identity penalty exists and we are currently viewing the sources that triggered it (CV + GitHub)
       const identityPenalty = c.calculation_summary?.identity_penalty || 0;
-      if (identityPenalty > 0 && activeSources.includes('CV') && activeSources.includes('GitHub')) {
+      if (identityPenalty > 0 && activeSources.includes('CV') && activeSources.includes('GitHub') && !c.reverted_identity) {
           finalDynamicScore = Math.max(0, finalDynamicScore - identityPenalty);
       }
 
@@ -282,7 +295,9 @@ function RankingReport() {
         },
         total_score: finalDynamicScore,
         overallScore: Math.round(finalDynamicScore * 100),
-        shapley_values: c.shapley_values // Preserving XAI data for the modal
+        shapley_values: c.shapley_values, // Preserving XAI data for the modal
+        reverted_identity: !!c.reverted_identity,
+        reverted_stuffing: !!c.reverted_stuffing
       };
     });
   }, [rawResults, activeSources, visibleColKeys]);
@@ -368,6 +383,30 @@ function RankingReport() {
     setHoveredItem(null);
   };
 
+  const toggleRevertIdentity = (id: string) => {
+    setRawResults((prev: any) => {
+      if (!prev) return prev;
+      const next = { ...prev, results: [...prev.results] };
+      const idx = next.results.findIndex((c: any) => c.candidate_id === id);
+      if (idx > -1) {
+        next.results[idx] = { ...next.results[idx], reverted_identity: !next.results[idx].reverted_identity };
+      }
+      return next;
+    });
+  };
+
+  const toggleRevertStuffing = (id: string) => {
+    setRawResults((prev: any) => {
+      if (!prev) return prev;
+      const next = { ...prev, results: [...prev.results] };
+      const idx = next.results.findIndex((c: any) => c.candidate_id === id);
+      if (idx > -1) {
+        next.results[idx] = { ...next.results[idx], reverted_stuffing: !next.results[idx].reverted_stuffing };
+      }
+      return next;
+    });
+  };
+
   const currentCandidate = useMemo(() => {
     if (!selectedCandidate || !candidates) return null;
     return candidates.find((c: any) => c.id === selectedCandidate.id);
@@ -387,6 +426,8 @@ function RankingReport() {
         setHoveredItem={setHoveredItem}
         isBlindMode={isBlindMode}
         setIsBlindMode={setIsBlindMode}
+        onRevertIdentity={() => toggleRevertIdentity(currentCandidate.id)}
+        onRevertStuffing={() => toggleRevertStuffing(currentCandidate.id)}
       />
 
       <div className="max-w-[1400px] mx-auto space-y-8">
@@ -452,7 +493,7 @@ function RankingReport() {
             
             <div className="flex items-center gap-3">
                <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold ${rawResults.is_snapshot ? 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/20 dark:text-amber-400 dark:border-amber-800' : 'bg-green-50 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800'} shadow-sm`}>
-                  <span className={`w-2 h-2 rounded-full ${rawResults.is_snapshot ? 'bg-amber-500' : 'bg-green-500 animate-pulse'}`} /> 
+                  <span className={`w-2 h-2 rounded-full ${rawResults.is_snapshot ? 'bg-amber-500' : 'bg-green-500'}`} /> 
                   {rawResults.is_snapshot ? `Static: ${new Date(rawResults.created_at).toLocaleString()}` : 'Computed & Live'}
                </span>
             </div>
@@ -460,16 +501,65 @@ function RankingReport() {
         </div>
 
         <div className="space-y-4 pt-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-             <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
-                <svg className="w-5 h-5 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                </svg>
-                Candidate Rankings
-             </h2>
-             
-             <div className="flex items-center gap-2">
-                <div className="relative" ref={sourcesRef}>
+          <div className="flex flex-col gap-3">
+             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+               <div className="flex flex-col gap-3">
+                 <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+                    <svg className="w-5 h-5 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                    Candidate Rankings
+                 </h2>
+                 <div className="flex flex-wrap items-center gap-2">
+                   <div className="hidden sm:flex items-center gap-3 text-[11px] font-bold uppercase tracking-widest text-zinc-500 bg-white dark:bg-zinc-800/50 px-3 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-700">
+                     <div className="flex items-center gap-1.5">
+                       <span className="bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-700 px-2 py-0.5 rounded text-xs font-black leading-none">B</span>
+                       Baseline
+                     </div>
+                     <div className="flex items-center gap-1.5">
+                       <span className="bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800/50 px-2 py-0.5 rounded text-xs font-black leading-none">E</span>
+                       Extensible
+                     </div>
+                   </div>
+                   <div className="hidden sm:flex items-center gap-3 text-[11px] font-bold uppercase tracking-widest text-zinc-500 bg-white dark:bg-zinc-800/50 px-3 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-700">
+                     <span className="text-[10px] text-zinc-400 mr-1">Confidence:</span>
+                     <div className="flex items-center gap-1.5" title="High Confidence">
+                       <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                       High
+                     </div>
+                     <div className="flex items-center gap-1.5" title="Medium Confidence">
+                       <div className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                       Med
+                     </div>
+                     <div className="flex items-center gap-1.5" title="Low Confidence">
+                       <div className="w-1.5 h-1.5 rounded-full bg-rose-500" />
+                       Low
+                     </div>
+                   </div>
+                   <div className="hidden lg:flex items-center gap-3 text-[11px] font-bold uppercase tracking-widest text-zinc-500 bg-white dark:bg-zinc-800/50 px-3 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-700">
+                     <div className="flex items-center gap-1.5" title="Semantic Bridge Used">
+                       <svg className="w-3 h-3 text-fuchsia-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                       </svg>
+                       Bridge
+                     </div>
+                     <div className="flex items-center gap-1.5" title="Low Threat Detected">
+                       <svg className="w-3 h-3 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                       </svg>
+                       Low Threat
+                     </div>
+                     <div className="flex items-center gap-1.5" title="Severe Threat Detected">
+                       <svg className="w-3 h-3 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                       </svg>
+                       Severe Threat
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               <div className="flex flex-wrap items-center gap-2">
+                  <div className="relative" ref={sourcesRef}>
                   <button 
                     onClick={() => setSourcesOpen(!sourcesOpen)}
                     className="px-3 py-1.5 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-md text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition flex items-center gap-2 shadow-sm"
@@ -547,6 +637,7 @@ function RankingReport() {
                 </div>
               </div>
            </div>
+         </div>
 
            <div className="bg-white dark:bg-zinc-900 shadow-sm border border-zinc-200 dark:border-zinc-800 rounded-xl overflow-x-auto relative min-h-[440px]">
               <table className="w-full text-left text-sm whitespace-nowrap">
@@ -574,6 +665,9 @@ function RankingReport() {
                          <div className="flex flex-col">
                             <div className="flex items-center gap-2">
                                <span className="leading-tight">{m.label}</span>
+                               <span className={`text-xs font-black px-2 py-0.5 rounded uppercase tracking-widest ${m.isExtensible ? 'bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800/50' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-700'} leading-none`} title={m.isExtensible ? "Extensible Metric (Job-Specific)" : "Baseline Metric (Core)"}>
+                                 {m.isExtensible ? 'E' : 'B'}
+                               </span>
                                {sortConfig.key === m.key && (
                                   <span className="text-indigo-500 shrink-0">{sortConfig.direction === 'asc' ? '↑' : '↓'}</span>
                                )}
@@ -610,18 +704,24 @@ function RankingReport() {
                          <div className="flex items-center gap-2">
                              <span className={`text-base font-black ${
                                 (cand.calculation_summary?.identity_penalty || 0) > 0 
-                                  ? 'text-rose-600 dark:text-rose-500' 
+                                  ? (cand.reverted_identity ? 'text-emerald-600 dark:text-emerald-500' : 'text-rose-600 dark:text-rose-500')
                                   : (cand.calculation_summary?.integrity_penalty || 0) > 0 
-                                    ? 'text-amber-600 dark:text-amber-500' 
+                                    ? (cand.reverted_stuffing ? 'text-emerald-600 dark:text-emerald-500' : 'text-amber-600 dark:text-amber-500')
                                     : 'text-indigo-600 dark:text-indigo-400'
                              }`}>
                                {cand.overallScore}%
                              </span>
                              {((cand.calculation_summary?.integrity_penalty || 0) > 0 || (cand.calculation_summary?.identity_penalty || 0) > 0) && (
-                                <svg className={`w-4 h-4 animate-pulse ${
-                                  (cand.calculation_summary?.identity_penalty || 0) > 0 ? 'text-rose-500' : 'text-amber-500'
+                                <svg className={`w-4 h-4 ${
+                                  (cand.calculation_summary?.identity_penalty || 0) > 0 
+                                    ? (cand.reverted_identity ? 'text-emerald-500' : 'text-rose-500')
+                                    : (cand.reverted_stuffing ? 'text-emerald-500' : 'text-amber-500')
                                 }`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                  { ((cand.calculation_summary?.identity_penalty || 0) > 0 ? cand.reverted_identity : cand.reverted_stuffing) ? (
+                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                  ) : (
+                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                  )}
                                 </svg>
                              )}
                          </div>
@@ -632,19 +732,38 @@ function RankingReport() {
                           const hasWarning = metricData?.is_warning || metricData?.status === 'warning';
                           const score = cand.computedScores[m.key];
                           
+                          const breakdownItems = metricData?.breakdown || [];
+                          const confidenceItem = breakdownItems.find((item: any) => item.confidence_label);
+                          const confidenceLabel = confidenceItem?.confidence_label;
+                          
                           return (
-                           <td key={m.key} className="px-4 py-4 font-mono text-sm border-r border-zinc-100 dark:border-zinc-800/30 last:border-0">
+                           <td key={m.key} className="px-4 py-4 font-mono text-sm border-r border-zinc-100 dark:border-zinc-800/30 last:border-0 relative">
+                              {confidenceLabel && (
+                                 <div 
+                                   className={`absolute top-2 right-2 w-1.5 h-1.5 rounded-full ${
+                                     confidenceLabel === 'High Confidence' ? 'bg-emerald-500' :
+                                     confidenceLabel === 'Medium Confidence' ? 'bg-amber-500' :
+                                     'bg-rose-500'
+                                   }`}
+                                   title={confidenceLabel}
+                                 />
+                              )}
                               <div className="flex items-center gap-2">
                                  <span className={
-                                   hasPenalty ? "text-amber-600 dark:text-amber-500 font-bold" : 
+                                   hasPenalty 
+                                     ? (cand.reverted_stuffing ? "text-emerald-600 dark:text-emerald-500 font-bold" : "text-amber-600 dark:text-amber-500 font-bold") : 
                                    hasWarning ? "text-amber-600 dark:text-amber-500 font-bold" :
                                    (metricData?.has_semantic_bridge ? "text-fuchsia-600 dark:text-fuchsia-400 font-bold" : (score > 70 ? "text-green-500" : "text-zinc-600 dark:text-zinc-400"))
                                  }>
                                     {score}%
                                  </span>
                                  {hasPenalty && (
-                                    <svg className="w-3 h-3 text-amber-500 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    <svg className={`w-3 h-3 ${cand.reverted_stuffing ? 'text-emerald-500' : 'text-amber-500'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                       {cand.reverted_stuffing ? (
+                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                       ) : (
+                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                       )}
                                     </svg>
                                  )}
                                  {hasWarning && !hasPenalty && (
@@ -653,7 +772,7 @@ function RankingReport() {
                                     </svg>
                                  )}
                                  {metricData?.has_semantic_bridge && !hasPenalty && !hasWarning && (
-                                    <svg className="w-3 h-3 text-fuchsia-500 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <svg className="w-3 h-3 text-fuchsia-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                                     </svg>
                                  )}

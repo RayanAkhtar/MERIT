@@ -59,7 +59,9 @@ class KeywordStuffingDetector:
                     "count": occurrences,
                     "density": f"{density:.1%}",
                     "reason": reason,
-                    "penalty_contribution": round(penalty, 3)
+                    "penalty_contribution": round(penalty, 3),
+                    "threshold": self.cfg["OCCURRENCE_LIMIT"],
+                    "penalty_per_excess": self.cfg["PENALTY_PER_OCCURRENCE"]
                 })
 
         # cap the penalty so we don't zero someone out completely

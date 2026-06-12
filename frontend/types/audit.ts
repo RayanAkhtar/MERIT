@@ -50,6 +50,9 @@ export interface StuffingAudit {
   density: string;
   limit: number;
   penalty_per: number;
+  reason?: string;
+  threshold?: number;
+  penalty_per_excess?: number;
 }
 
 export interface CandidateDetail {

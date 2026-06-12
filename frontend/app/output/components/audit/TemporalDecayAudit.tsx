@@ -29,6 +29,42 @@ const TemporalDecayAudit: React.FC<TemporalDecayAuditProps> = ({ item, isBlindMo
             <span className="text-xs font-mono text-indigo-300">{item.temporal_params?.delta_t} years</span>
           </div>
         </div>
+
+        {item.temporal_params?.history && item.temporal_params.history.length > 0 && (
+          <div className="mt-2 p-3 bg-black/20 rounded border border-white/5 space-y-2">
+            <div className="text-[9px] uppercase text-zinc-500 font-bold tracking-widest border-b border-white/5 pb-1.5 mb-1.5">Δt Derivation (Volume Weighted)</div>
+            <div className="space-y-1">
+              {item.temporal_params.history.map((h: any, i: number) => (
+                <div key={i} className="flex justify-between items-center text-[10px] font-mono text-zinc-400">
+                  <span>{h.year} Volume:</span>
+                  <span className="text-indigo-300">{h.volume} LOC</span>
+                </div>
+              ))}
+            </div>
+            <div className="border-t border-white/5 pt-2 mt-2 pb-1 mb-1 text-[10px] font-mono text-zinc-500 flex flex-col gap-1 italic">
+               <div className="flex justify-between items-center">
+                 <span>Σ(Year × Vol) / Σ(Vol):</span>
+                 <span>
+                    {item.temporal_params.history.reduce((acc: number, h: any) => acc + (h.year * h.volume), 0).toLocaleString()} / {item.temporal_params.history.reduce((acc: number, h: any) => acc + h.volume, 0).toLocaleString()}
+                 </span>
+               </div>
+            </div>
+            <div className="border-t border-white/5 pt-1.5 mt-1 text-[10px] font-mono text-zinc-400 flex flex-col gap-1.5">
+              <div className="flex justify-between">
+                <span>Effective Year (Weighted):</span>
+                <span className="text-indigo-300">{item.temporal_params.effective_year}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Current Year:</span>
+                <span className="text-indigo-300">{item.temporal_params.current_year}</span>
+              </div>
+              <div className="flex justify-between font-bold mt-1">
+                <span>Δt ({item.temporal_params.current_year} - {item.temporal_params.effective_year}):</span>
+                <span className="text-indigo-300">{item.temporal_params.delta_t} years</span>
+              </div>
+            </div>
+          </div>
+        )}
         <div className="pt-2 border-t border-indigo-500/10 flex justify-between items-center bg-white/5 px-2 py-1 rounded">
           <span className="text-[10px] text-zinc-500 font-mono uppercase font-bold">Substitution:</span>
           <span className="text-sm font-mono text-indigo-300">

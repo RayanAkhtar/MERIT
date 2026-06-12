@@ -12,10 +12,10 @@ interface BatchInfluenceChartProps {
 
 export default function BatchInfluenceChart({ data }: BatchInfluenceChartProps) {
   const chartData = [
-    { name: 'CV Evidence', value: data.CV, color: '#6366f1' },
-    { name: 'GitHub Verification', value: data.GitHub, color: '#10b981' },
-    { name: 'LinkedIn Presence', value: data.LinkedIn, color: '#f59e0b' }
-  ].filter(d => d.value > 0);
+    { name: 'CV Evidence', value: Math.abs(data.CV), color: '#6366f1' },
+    { name: 'GitHub Verification', value: Math.abs(data.GitHub), color: '#10b981' },
+    { name: 'LinkedIn Presence', value: Math.abs(data.LinkedIn), color: '#f59e0b' }
+  ];
 
   const total = chartData.reduce((acc, curr) => acc + curr.value, 0);
 
@@ -68,7 +68,7 @@ export default function BatchInfluenceChart({ data }: BatchInfluenceChartProps) 
         </div>
         
         <div className="space-y-2">
-          {chartData.sort((a, b) => b.value - a.value).map((item) => (
+          {[...chartData].sort((a, b) => b.value - a.value).map((item) => (
             <div key={item.name} className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full" style={{ backgroundColor: item.color }} />

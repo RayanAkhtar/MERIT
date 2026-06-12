@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BsCalculator, BsChevronDown, BsInfoCircle, BsLayers } from 'react-icons/bs';
 import { MetricAudit, AuditItem, CandidateDetail } from '@/types/audit';
@@ -19,6 +19,8 @@ interface DetailedReportModalProps {
   setHoveredItem: (item: string | null) => void;
   isBlindMode: boolean;
   setIsBlindMode: (val: boolean) => void;
+  onRevertIdentity?: () => void;
+  onRevertStuffing?: () => void;
 }
 
 export default function DetailedReportModal({ 
@@ -28,7 +30,9 @@ export default function DetailedReportModal({
   hoveredItem, 
   setHoveredItem,
   isBlindMode,
-  setIsBlindMode
+  setIsBlindMode,
+  onRevertIdentity = () => {},
+  onRevertStuffing = () => {}
 }: DetailedReportModalProps) {
   const [activeTab, setActiveTab] = useState<'cv' | 'github' | 'linkedin' | 'formula'>('cv');
   const [cvViewMode, setCvViewMode] = useState<'original' | 'intelligence'>('original');
@@ -82,34 +86,40 @@ export default function DetailedReportModal({
         {/* Modal Header */}
         <div className="px-6 py-4 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between bg-zinc-50 dark:bg-zinc-900/50">
           <div className="flex items-center gap-4">
+            <div className="w-16 h-16 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center shrink-0">
+              <span className="text-2xl font-black text-indigo-400">{(candidate.total_score * 100).toFixed(0)}%</span>
+            </div>
             <div>
-              <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">
+              <h2 className="text-2xl font-black text-white flex items-center gap-3">
                 {isBlindMode ? "Candidate Profile" : candidate.name}
+                {candidate.calculation_summary?.identity_penalty > 0 && !candidate.reverted_identity && (
+                  <span className="text-[10px] bg-amber-500/10 text-amber-600 px-2 py-0.5 rounded-full border border-amber-500/20">Identity Adjusted</span>
+                )}
               </h2>
               <p className="text-xs text-zinc-500 dark:text-zinc-400">Deep-Dive Match Intelligence</p>
             </div>
-            <div className="hidden sm:flex items-center gap-2 bg-indigo-50 dark:bg-indigo-900/20 px-3 py-1 rounded-full border border-indigo-100 dark:border-indigo-800">
-              <span className="text-sm font-black text-indigo-600 dark:text-indigo-400">{candidate.overallScore}%</span>
-              <span className="text-[10px] text-indigo-500 font-bold uppercase tracking-tighter">Match</span>
-            </div>
-            <div className="ml-4 flex items-center gap-2 px-3 py-1.5 rounded-xl bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
-              <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 cursor-pointer" htmlFor="blind-toggle">
-                Blind Mode
-              </label>
-              <button 
-                id="blind-toggle"
-                onClick={() => setIsBlindMode(!isBlindMode)}
-                className={`w-8 h-4 rounded-full transition-colors relative ${isBlindMode ? 'bg-indigo-600' : 'bg-zinc-300 dark:bg-zinc-600'}`}
-              >
-                <div className={`absolute top-0.5 w-3 h-3 bg-white rounded-full transition-all ${isBlindMode ? 'left-4.5' : 'left-0.5'}`} />
-              </button>
-            </div>
           </div>
-          <button onClick={onClose} className="p-2 hover:bg-zinc-200 dark:hover:bg-zinc-800 rounded-full transition-colors">
-            <svg className="w-5 h-5 text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+          <div className="flex items-center gap-4 bg-white/5 px-4 py-2 rounded-2xl border border-white/10">
+            <div className="flex items-center gap-2">
+              <div className="ml-4 flex items-center gap-2 px-3 py-1.5 rounded-xl bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
+                <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 cursor-pointer" htmlFor="blind-toggle">
+                  Blind Mode
+                </label>
+                <button 
+                  id="blind-toggle"
+                  onClick={() => setIsBlindMode(!isBlindMode)}
+                  className={`w-8 h-4 rounded-full transition-colors relative ${isBlindMode ? 'bg-indigo-600' : 'bg-zinc-300 dark:bg-zinc-600'}`}
+                >
+                  <div className={`absolute top-0.5 w-3 h-3 bg-white rounded-full transition-all ${isBlindMode ? 'left-4.5' : 'left-0.5'}`} />
+                </button>
+              </div>
+            </div>
+            <button onClick={onClose} className="p-2 hover:bg-zinc-200 dark:hover:bg-zinc-800 rounded-full transition-colors">
+              <svg className="w-5 h-5 text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
         </div>
 
         <div className="flex-1 flex overflow-hidden">
@@ -188,15 +198,15 @@ export default function DetailedReportModal({
                       onMouseLeave={() => setHoveredItem(null)}
                       onClick={() => handleMetricClick(key)}
                     >
-                      <h4 className={`font-bold transition-colors flex items-center gap-2 ${m.integrity_penalty_applied ? 'text-amber-600 dark:text-amber-500' : (isSectionHovered ? 'text-indigo-600 dark:text-indigo-400' : 'text-zinc-900 dark:text-zinc-50')}`}>
+                      <h4 className={`font-bold transition-colors flex items-center gap-2 ${m.integrity_penalty_applied && !candidate.reverted_stuffing ? 'text-amber-600 dark:text-amber-500' : (isSectionHovered ? 'text-indigo-600 dark:text-indigo-400' : 'text-zinc-900 dark:text-zinc-50')}`}>
                         {m.name}
-                        {m.integrity_penalty_applied ? (
+                        {m.integrity_penalty_applied && !candidate.reverted_stuffing ? (
                           <span className="text-[10px] px-1.5 py-0.5 rounded border border-amber-200 dark:border-amber-800 text-amber-600 bg-amber-50 dark:bg-amber-900/20">W:{priority}</span>
                         ) : (
                           <span className="text-[10px] px-1.5 py-0.5 rounded border border-indigo-200 dark:border-indigo-800 text-indigo-600 bg-indigo-50 dark:bg-indigo-900/20">W:{priority}</span>
                         )}
                       </h4>
-                      <div className={`text-lg font-black transition-colors ${m.integrity_penalty_applied ? 'text-amber-600 dark:text-amber-500' : (isSectionHovered ? 'text-indigo-600 dark:text-indigo-400' : 'text-zinc-900 dark:text-zinc-100')}`}>{Math.round(m.score * 100)}%</div>
+                      <div className={`text-lg font-black transition-colors ${m.integrity_penalty_applied && !candidate.reverted_stuffing ? 'text-amber-600 dark:text-amber-500' : (isSectionHovered ? 'text-indigo-600 dark:text-indigo-400' : 'text-zinc-900 dark:text-zinc-100')}`}>{Math.round(m.score * 100)}%</div>
                     </div>
                     
                     {/* Ecosystem Parent Audit Trail */}
@@ -233,12 +243,12 @@ export default function DetailedReportModal({
                               <div className="flex items-center gap-2">
                                 <div className="flex flex-col">
                                   <div className="flex items-center gap-2">
-                                    <span className={`text-sm font-bold ${item.integrity_penalty_applied ? 'text-amber-600 dark:text-amber-400' : 'text-zinc-900 dark:text-zinc-100'}`}>
+                                    <span className={`text-sm font-bold ${item.integrity_penalty_applied && !candidate.reverted_stuffing ? 'text-amber-600 dark:text-amber-400' : 'text-zinc-900 dark:text-zinc-100'}`}>
                                       {item.item || item.component}
                                     </span>
                                     {item.weight !== undefined && (
                                       <span className={`text-[10px] px-1.5 py-0.5 rounded border font-black ${
-                                        item.integrity_penalty_applied 
+                                        item.integrity_penalty_applied && !candidate.reverted_stuffing
                                           ? 'border-amber-200 dark:border-amber-800 text-amber-600 bg-amber-50 dark:bg-amber-900/20' 
                                           : 'border-indigo-200 dark:border-indigo-800 text-indigo-600 bg-indigo-50 dark:bg-indigo-900/20'
                                       }`}>
@@ -247,7 +257,7 @@ export default function DetailedReportModal({
                                     )}
                                   </div>
                                   {item.score !== undefined && (
-                                    <span className={`text-[10px] font-black uppercase tracking-tighter ${item.integrity_penalty_applied ? 'text-amber-500/70' : 'text-indigo-500/70'}`}>
+                                    <span className={`text-[10px] font-black uppercase tracking-tighter ${item.integrity_penalty_applied && !candidate.reverted_stuffing ? 'text-amber-500/70' : 'text-indigo-500/70'}`}>
                                       Component Score: {Math.round(item.score * 100)}%
                                     </span>
                                   )}
@@ -255,7 +265,7 @@ export default function DetailedReportModal({
                                 {item.confidence_label && (
                                   <div className="flex items-center gap-1.5">
                                     <div className="flex flex-col items-end gap-1">
-                                      <div className={`text-xl font-black ${item.integrity_penalty_applied ? 'text-amber-600 dark:text-amber-400' : 'text-zinc-900 dark:text-zinc-100'}`}>
+                                      <div className={`text-xl font-black ${item.integrity_penalty_applied && !candidate.reverted_stuffing ? 'text-amber-600 dark:text-amber-400' : 'text-zinc-900 dark:text-zinc-100'}`}>
                                         {Math.round(item.score * 100)}%
                                       </div>
                                       <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-md uppercase tracking-widest ${
@@ -316,11 +326,13 @@ export default function DetailedReportModal({
                               <div className="mt-4 p-4 rounded-xl border border-indigo-500/30 bg-slate-900/50 relative overflow-hidden group">
                                 <div className="flex items-center justify-between cursor-pointer" onClick={() => setExpandedAudit(expandedAudit === `${m.name}-${i}` ? null : `${m.name}-${i}`)}>
                                   <div className="flex items-center gap-3">
-                                    <div className={`p-2 rounded-lg ${item.integrity_penalty_applied ? 'bg-amber-500/20' : 'bg-indigo-500/20'}`}>
-                                      <BsCalculator className={`w-4 h-4 ${item.integrity_penalty_applied ? 'text-amber-400' : 'text-indigo-400'}`} />
-                                    </div>
+                                    {item.item && (
+                                      <div className={`p-2 rounded-lg ${item.integrity_penalty_applied && !candidate.reverted_stuffing ? 'bg-amber-500/20' : 'bg-indigo-500/20'}`}>
+                                        <BsCalculator className={`w-4 h-4 ${item.integrity_penalty_applied && !candidate.reverted_stuffing ? 'text-amber-400' : 'text-indigo-400'}`} />
+                                      </div>
+                                    )}
                                     <div>
-                                      <p className={`text-[10px] uppercase tracking-widest font-bold mb-0.5 ${item.integrity_penalty_applied ? 'text-amber-400' : 'text-indigo-400'}`}>{(item.item || item.component)} Verification Audit</p>
+                                      <p className={`text-[10px] uppercase tracking-widest font-bold mb-0.5 ${item.integrity_penalty_applied && !candidate.reverted_stuffing ? 'text-amber-400' : 'text-indigo-400'}`}>{(item.item || item.component)} Verification Audit</p>
                                       <p className="text-sm font-mono text-slate-300">
                                         Result: {(item.score * 100).toFixed(0)}% 
                                         {item.influence !== undefined && (
@@ -854,6 +866,10 @@ export default function DetailedReportModal({
                       candidate={candidate} 
                       onMetricClick={handleSidebarScroll}
                       isBlindMode={isBlindMode}
+                      revertedIdentity={candidate.reverted_identity}
+                      setRevertedIdentity={onRevertIdentity}
+                      revertedStuffing={candidate.reverted_stuffing}
+                      setRevertedStuffing={onRevertStuffing}
                     />
                   )}
                 </>
