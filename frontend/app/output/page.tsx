@@ -3,7 +3,6 @@
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useMemo, useState, useRef, useEffect, Suspense } from 'react';
 import DetailedReportModal from './components/DetailedReportModal';
-import BatchInfluenceChart from './components/BatchInfluenceChart';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 
@@ -490,10 +489,6 @@ function RankingReport() {
           </div>
           
           <div className="flex flex-col sm:flex-row items-center gap-6">
-            {batchShapley && (
-              <BatchInfluenceChart data={batchShapley} />
-            )}
-            
             <div className="flex items-center gap-3">
                <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold ${rawResults.is_snapshot ? 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/20 dark:text-amber-400 dark:border-amber-800' : 'bg-green-50 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800'} shadow-sm`}>
                   <span className={`w-2 h-2 rounded-full ${rawResults.is_snapshot ? 'bg-amber-500' : 'bg-green-500'}`} /> 
