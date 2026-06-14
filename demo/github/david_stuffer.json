@@ -1,0 +1,122 @@
+{
+    "source": "github",
+    "username": "DavidStuffer",
+    "name": "David Stuffer",
+    "bio": "Software Engineer",
+    "company": "None",
+    "location": "United Kingdom",
+    "email": null,
+    "avatar_url": "https://avatars.githubusercontent.com/u/0",
+    "profile_url": "https://github.com/DavidStuffer",
+    "created_at": "2018-01-01T00:00:00Z",
+    "followers": 63,
+    "following": 40,
+    "public_repos": 2,
+    "repositories": [
+        {
+            "name": "my-portfolio",
+            "description": "Portfolio site",
+            "language": "JavaScript",
+            "topics": [],
+            "stars": 0,
+            "forks": 0,
+            "license": "MIT",
+            "is_fork": false,
+            "lines": 2182,
+            "updated_at": "2025-01-28T19:35:00Z",
+            "url": "https://github.com/repo/my-portfolio"
+        }
+    ],
+    "total_prs": 2,
+    "total_commits": 19,
+    "oss_prs": 0,
+    "external_repos": 0,
+    "repo_count": 2,
+    "total_lines": 2182,
+    "total_stars": 0,
+    "total_forks": 0,
+    "languages": [
+        {
+            "label": "JavaScript",
+            "pct": 49.9
+        },
+        {
+            "label": "Dockerfile",
+            "pct": 12.6
+        },
+        {
+            "label": "PowerShell",
+            "pct": 9.9
+        },
+        {
+            "label": "Vim script",
+            "pct": 9.3
+        },
+        {
+            "label": "Makefile",
+            "pct": 5.1
+        },
+        {
+            "label": "SQL",
+            "pct": 5.0
+        },
+        {
+            "label": "Kotlin",
+            "pct": 2.8
+        },
+        {
+            "label": "PHP",
+            "pct": 2.1
+        },
+        {
+            "label": "SCSS",
+            "pct": 1.8
+        },
+        {
+            "label": "C#",
+            "pct": 0.9
+        },
+        {
+            "label": "Go",
+            "pct": 0.5
+        },
+        {
+            "label": "Rust",
+            "pct": 0.1
+        }
+    ],
+    "featured_projects": [],
+    "language_history": [
+        {
+            "year": "2023",
+            "JavaScript": 665,
+            "Vim script": 204,
+            "Makefile": 111,
+            "Dockerfile": 263,
+            "SQL": 109,
+            "Rust": 2,
+            "C#": 20,
+            "PowerShell": 0,
+            "Go": 0,
+            "PHP": 0,
+            "SCSS": 0,
+            "Kotlin": 0
+        },
+        {
+            "year": "2024",
+            "JavaScript": 423,
+            "Dockerfile": 11,
+            "PowerShell": 216,
+            "SCSS": 39,
+            "Go": 12,
+            "Kotlin": 61,
+            "PHP": 46,
+            "Makefile": 0,
+            "Rust": 0,
+            "C#": 0,
+            "SQL": 0,
+            "Vim script": 0
+        }
+    ],
+    "cached": true
+}

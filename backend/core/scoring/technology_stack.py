@@ -161,17 +161,25 @@ class TechnologyStackMetric(BaseMetric):
                     break
 
             # CV signal
+            cv_score = 0.0
             if has_cv:
                 item_sources.append("CV")
-                cv_score = 0.8 if not bridge_used_cv else 0.6
+                
+                if not bridge_used_cv:
+                    cv_score = min(0.8, mentions * 0.2)
+                else:
+                    cv_score = min(0.60, mentions * 0.15)
+                    
                 if stuffing_penalty > 0:
                     cv_score = max(0.0, cv_score - stuffing_penalty)
 
                 evidence.append(Evidence(source="CV", confidence=conf["CV"], strength=cv_score))
                 
-                cv_derivation = f"Binary Presence (Mentions: {mentions} >= 1)"
+                explanation = f"{mentions} mentions" if not bridge_used_cv else f"Semantic Match: {semantic_term} x{mentions}"
+                cv_derivation = f"{mentions} Mention{'s' if mentions != 1 else ''} Found\nmin({0.8 if not bridge_used_cv else 0.6}, {mentions} mentions * {0.2 if not bridge_used_cv else 0.15})"
+                
                 if stuffing_penalty > 0:
-                    cv_derivation += f" - {int(stuffing_penalty*100)}% Integrity Penalty"
+                    cv_derivation += f"\n- {int(stuffing_penalty*100)}% Integrity Penalty"
 
                 source_details.append({
                     "source": "CV",
@@ -179,14 +187,15 @@ class TechnologyStackMetric(BaseMetric):
                     "trust": conf["CV"],
                     "derivation": cv_derivation,
                     "is_semantic_bridge": bridge_used_cv,
-                    "explanation": f"Found {mentions} occurrences in document" + (f" via semantic match '{semantic_term}'" if bridge_used_cv else "") + f". (Capped at {0.6 if bridge_used_cv else 0.8})" + (f" [STUFFING PENALTY APPLIED]" if stuffing_penalty > 0 else ""),
+                    "explanation": f"{explanation} (Normalised: {cv_score:.2f})" + (f" [STUFFING PENALTY APPLIED]" if stuffing_penalty > 0 else ""),
                     "weighting": f"Self-reported (Conf: {conf['CV']:.1f})"
                 })
             
             # LinkedIn Evidence
             if has_li:
                 item_sources.append("LinkedIn")
-                evidence.append(Evidence(source="LinkedIn", confidence=conf["LINKEDIN"], strength=0.8))
+                li_score = 0.8 if not bridge_used_li else 0.60
+                evidence.append(Evidence(source="LinkedIn", confidence=conf["LINKEDIN"], strength=li_score))
                 
                 target_str = semantic_lower if bridge_used_li else tech_lower
                 start_idx = max(0, li_text.find(target_str) - 40)
@@ -205,27 +214,40 @@ class TechnologyStackMetric(BaseMetric):
             # GitHub Evidence
             gh_profile = candidate_data.get("github_enriched") or candidate_data.get("github_profile") or {}
             gh_repos = (gh_profile.get("featured_projects") or []) + (gh_profile.get("repositories") or []) + (candidate_data.get("github_projects") or [])
-            has_gh = any(tech_lower in str(r.get("name") or "").lower() or tech_lower in str(r.get("description") or "").lower() for r in gh_repos)
             
-            if not has_gh and has_semantic:
-                has_gh = any(semantic_lower in str(r.get("name") or "").lower() or semantic_lower in str(r.get("description") or "").lower() for r in gh_repos)
-                if has_gh:
+            gh_mentions = 0
+            for r in gh_repos:
+                name_str = str(r.get("name") or "").lower()
+                desc_str = str(r.get("description") or "").lower()
+                gh_mentions += name_str.count(tech_lower) + desc_str.count(tech_lower)
+                
+            if gh_mentions == 0 and has_semantic:
+                for r in gh_repos:
+                    name_str = str(r.get("name") or "").lower()
+                    desc_str = str(r.get("description") or "").lower()
+                    gh_mentions += name_str.count(semantic_lower) + desc_str.count(semantic_lower)
+                if gh_mentions > 0:
                     bridge_used_gh = True
+
+            has_gh = gh_mentions > 0
 
             if has_gh or bool(gh_profile):
                 item_sources.append("GitHub")
-                evidence.append(Evidence(source="GitHub", confidence=conf["GITHUB"], strength=1.0 if has_gh else 0.0))
+                gh_score = 0.0
+                if has_gh:
+                    gh_score = min(1.0, gh_mentions * 0.3)
+                evidence.append(Evidence(source="GitHub", confidence=conf["GITHUB"], strength=gh_score))
                 
                 if has_gh:
-                    explanation = f"Found dedicated repositories or mentions in projects" + (f" via semantic match '{semantic_term}'." if bridge_used_gh else ".")
-                    derivation = "Binary Presence (Relevant project found = 1.0)"
+                    explanation = f"Found {gh_mentions} occurrences in repository names/descriptions" + (f" via semantic match '{semantic_term}'." if bridge_used_gh else ".")
+                    derivation = f"{gh_mentions} Occurrence{'s' if gh_mentions != 1 else ''} Found\nmin(1.0, {gh_mentions} * 0.3)"
                 else:
                     explanation = f"No public projects found matching {tech_display} despite providing a GitHub profile."
-                    derivation = "Binary Presence (No relevant project found = 0.0)"
+                    derivation = "0 Occurrences Found"
                 
                 source_details.append({
                     "source": "GitHub",
-                    "score": 1.0 if has_gh else 0.0,
+                    "score": gh_score,
                     "trust": conf["GITHUB"],
                     "derivation": derivation,
                     "is_semantic_bridge": bridge_used_gh,

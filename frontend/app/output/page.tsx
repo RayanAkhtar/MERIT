@@ -21,6 +21,84 @@ const LoadingScreen = () => (
   </div>
 );
 
+function calculateBayesianFusion(evidences: {strength: number, confidence: number, isNegative?: boolean}[]) {
+  if (!evidences.length) return { score: 0.0, alpha: 0.1, beta: 0.1, uncertainty: 1.0, confidence_label: "No Evidence", confidence_reason: "No evidence provided. Returning zero baseline." };
+  let alpha = 0.1;
+  let beta = 0.1;
+
+  for (const ev of evidences) {
+    if (ev.isNegative) {
+      beta += ev.strength * ev.confidence;
+      alpha += (1.0 - ev.confidence) * 0.05;
+    } else {
+      alpha += ev.strength * ev.confidence;
+      beta += (1.0 - ev.strength) * ev.confidence;
+      alpha += (1.0 - ev.confidence) * 0.01;
+      beta += (1.0 - ev.confidence) * 0.01;
+    }
+  }
+  
+  const score = alpha / (alpha + beta);
+  const variance = (alpha * beta) / (Math.pow(alpha + beta, 2) * (alpha + beta + 1));
+  const uncertainty = Math.sqrt(variance);
+  
+  const highThreshold = 0.275;
+  const mediumThreshold = 0.35;
+  let confidence_label, confidence_reason;
+  
+  if (uncertainty < highThreshold) {
+      confidence_label = "High Confidence";
+      confidence_reason = `Uncertainty (σ=${uncertainty.toFixed(3)}) is below the ${highThreshold} high-certainty threshold.`;
+  } else if (uncertainty < mediumThreshold) {
+      confidence_label = "Medium Confidence";
+      confidence_reason = `Uncertainty (σ=${uncertainty.toFixed(3)}) is within the ${highThreshold}-${mediumThreshold} range.`;
+  } else {
+      confidence_label = "Low Confidence";
+      confidence_reason = `Uncertainty (σ=${uncertainty.toFixed(3)}) exceeds the ${mediumThreshold} maximum uncertainty threshold.`;
+  }
+
+  return { score, alpha, beta, uncertainty, confidence_label, confidence_reason };
+}
+
+function calculateMetricShapley(ghSignal: number, cvSignal: number, liSignal: number) {
+  const trustGh = 0.9;
+  const trustCv = 0.5;
+  const trustLi = 0.2;
+  
+  // Players: CV, GitHub, LinkedIn
+  const v = (coalition: string[]) => {
+     const evs = [];
+     if (coalition.includes('CV')) evs.push({ strength: cvSignal, confidence: trustCv });
+     if (coalition.includes('GitHub')) evs.push({ strength: ghSignal, confidence: trustGh });
+     if (coalition.includes('LinkedIn')) evs.push({ strength: liSignal, confidence: trustLi });
+     return calculateBayesianFusion(evs).score;
+  };
+  
+  const players = ['CV', 'GitHub', 'LinkedIn'];
+  const shapley: Record<string, number> = { 'CV': 0, 'GitHub': 0, 'LinkedIn': 0 };
+  const fact = [1, 1, 2, 6]; // 0!, 1!, 2!, 3!
+  const n = 3;
+  
+  const subsets = (arr: string[]) => arr.reduce((sub, value) => sub.concat(sub.map(set => [value, ...set])), [[]] as string[][]);
+  const allSubsets = subsets(players);
+  
+  for (const p of players) {
+     let phi = 0;
+     for (const S of allSubsets) {
+        if (!S.includes(p)) {
+           const S_p = [...S, p];
+           const v_S = v(S);
+           const v_Sp = v(S_p);
+           const s = S.length;
+           const weight = (fact[s] * fact[n - s - 1]) / fact[n];
+           phi += weight * (v_Sp - v_S);
+        }
+     }
+     shapley[p] = phi;
+  }
+  return shapley;
+}
+
 function RankingReport() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -198,9 +276,50 @@ function RankingReport() {
           
           // Use the backend's provided Bayesian score if all sources are active
           let finalItemScore = (item.score !== undefined && activeSources.length === 3) ? item.score : newItemScore;
+          let shapleyDiff: Record<string, number> | null = null;
           
           if (c.reverted_stuffing && item.integrity_penalty_applied && item.integrity_penalty_value) {
-              finalItemScore = Math.min(1.0, finalItemScore + item.integrity_penalty_value);
+              const isBayesian = item.alpha !== undefined || (item.logic && item.logic.includes('Bayesian')) || (item.technical_formula && item.technical_formula.includes('Bayesian_Fusion'));
+              
+              if (isBayesian) {
+                  const trustGh = 0.9;
+                  const trustCv = 0.5;
+                  const trustLi = 0.2;
+                  
+                  const effectiveCvSignal = Math.min(0.8, cvSignal + item.integrity_penalty_value);
+                  const evs = [];
+                  if (activeSources.includes('GitHub')) evs.push({ strength: ghSignal, confidence: trustGh });
+                  if (activeSources.includes('CV')) evs.push({ strength: effectiveCvSignal, confidence: trustCv });
+                  if (activeSources.includes('LinkedIn')) evs.push({ strength: liSignal, confidence: trustLi });
+                  const fusionResult = calculateBayesianFusion(evs);
+                  finalItemScore = fusionResult.score;
+                  item.alpha = fusionResult.alpha;
+                  item.beta = fusionResult.beta;
+                  item.uncertainty = fusionResult.uncertainty;
+                  item.confidence_label = fusionResult.confidence_label;
+                  item.confidence_reason = fusionResult.confidence_reason;
+                  item.logic = `α (Success Signal) = ${fusionResult.alpha.toFixed(2)}, β (Conflict/Noise) = ${fusionResult.beta.toFixed(2)}. Calculated via: Prior + Sum(Strength * Trust).`;
+                  
+                  const cvDetail = activeSourceDetails.find((sd: any) => sd.source === 'CV');
+                  if (cvDetail) {
+                      cvDetail.score = effectiveCvSignal;
+                  }
+                  
+                  // Compute shapley differences to adjust the global shapley
+                  const newShapley = calculateMetricShapley(ghSignal, effectiveCvSignal, liSignal);
+                  const oldShapley = calculateMetricShapley(ghSignal, cvSignal, liSignal); // penalized
+                  shapleyDiff = {
+                     'CV': newShapley['CV'] - oldShapley['CV'],
+                     'GitHub': newShapley['GitHub'] - oldShapley['GitHub'],
+                     'LinkedIn': newShapley['LinkedIn'] - oldShapley['LinkedIn']
+                  };
+                  if (item.impact_attribution) {
+                      item.impact_attribution = { ...newShapley };
+                  }
+              } else {
+                  finalItemScore = Math.min(1.0, finalItemScore + item.integrity_penalty_value);
+              }
+              
               if (item.notes) {
                   item.notes = item.notes.replace(/\n?- \d+% Integrity Penalty/g, '');
                   item.notes = item.notes.replace(/ - \d+% Integrity Penalty/g, '');
@@ -208,7 +327,7 @@ function RankingReport() {
           }
 
           metricTotalPoints += finalItemScore;
-          return { ...item, score: finalItemScore, source_details: activeSourceDetails };
+          return { ...item, score: finalItemScore, source_details: activeSourceDetails, shapleyDiff };
         }).filter((item: any) => item.source_details && item.source_details.length > 0);
 
         // Keep the original breakdown for rendering, but use validBreakdown for math
@@ -231,14 +350,39 @@ function RankingReport() {
         // The penalty is already applied to the CV signal strength in the backend,
         // so we don't subtract it again here (to avoid double-counting).
         // We just ensure the flag is passed through for UI styling.
+        let metricShapleyDiff = { 'CV': 0, 'GitHub': 0, 'LinkedIn': 0 };
+        let hasShapleyDiff = false;
+        
         if (originalMetric.integrity_penalty_applied) {
             newMetric.integrity_penalty_applied = true;
             newMetric.integrity_penalty_value = originalMetric.integrity_penalty_value;
             newMetric.integrity_audit_details = originalMetric.integrity_audit_details;
             
             if (c.reverted_stuffing) {
-                newMetricScore = Math.min(1.0, newMetricScore + originalMetric.integrity_penalty_value);
+                // Determine if this is a bayesian metric. If so, its score is derived purely from validBreakdown items, which we just updated correctly.
+                const isBayesian = validBreakdown.some((item: any) => item.alpha !== undefined || (item.logic && item.logic.includes('Bayesian')) || (item.technical_formula && item.technical_formula.includes('Bayesian')));
+                if (!isBayesian) {
+                    newMetricScore = Math.min(1.0, newMetricScore + originalMetric.integrity_penalty_value);
+                }
             }
+        }
+
+        validBreakdown.forEach((item: any) => {
+            if (item.shapleyDiff) {
+               metricShapleyDiff['CV'] += item.shapleyDiff['CV'];
+               metricShapleyDiff['GitHub'] += item.shapleyDiff['GitHub'];
+               metricShapleyDiff['LinkedIn'] += item.shapleyDiff['LinkedIn'];
+               hasShapleyDiff = true;
+               delete item.shapleyDiff; // clean up
+            }
+        });
+
+        if (hasShapleyDiff) {
+            // Average out the differences if there were multiple items
+            metricShapleyDiff['CV'] /= validBreakdown.length;
+            metricShapleyDiff['GitHub'] /= validBreakdown.length;
+            metricShapleyDiff['LinkedIn'] /= validBreakdown.length;
+            newMetric.shapleyDiff = metricShapleyDiff;
         }
 
         newMetric.score = newMetricScore;
@@ -281,6 +425,29 @@ function RankingReport() {
       Object.entries(dynamicMetrics).forEach(([key, m]: [string, any]) => {
          dynamicComputedScores[key] = Math.round(m.score * 100);
       });
+      
+      const updatedShapley = { ...(c.shapley_values || {}) };
+      
+      // If the identity penalty was reverted, its marginal impact (+P/2 to CV, +P/2 to GitHub)
+      // must be restored to the Shapley attribution mathematically.
+      if (identityPenalty > 0 && activeSources.includes('CV') && activeSources.includes('GitHub') && c.reverted_identity) {
+          if (updatedShapley['CV'] !== undefined) updatedShapley['CV'] += identityPenalty / 2;
+          if (updatedShapley['GitHub'] !== undefined) updatedShapley['GitHub'] += identityPenalty / 2;
+      }
+      
+      if (dynamicTotalWeight > 0) {
+         Object.entries(dynamicMetrics).forEach(([key, m]: [string, any]) => {
+             if (m.shapleyDiff) {
+                 ['CV', 'GitHub', 'LinkedIn'].forEach(src => {
+                     if (updatedShapley[src] !== undefined) {
+                         // A metric's impact on total shapley is proportional to its weight in the sum
+                         updatedShapley[src] += m.shapleyDiff[src] * (m.weight / dynamicTotalWeight);
+                     }
+                 });
+             }
+             delete m.shapleyDiff;
+         });
+      }
 
       return {
         id: c.candidate_id,
@@ -295,7 +462,7 @@ function RankingReport() {
         },
         total_score: finalDynamicScore,
         overallScore: Math.round(finalDynamicScore * 100),
-        shapley_values: c.shapley_values, // Preserving XAI data for the modal
+        shapley_values: updatedShapley, // Using dynamically recalculated Shapley values
         reverted_identity: !!c.reverted_identity,
         reverted_stuffing: !!c.reverted_stuffing
       };
@@ -583,30 +750,7 @@ function RankingReport() {
                  </div>
                </div>
                <div className="flex flex-wrap items-center gap-2">
-                  <div className="relative" ref={sourcesRef}>
-                  <button 
-                    onClick={() => setSourcesOpen(!sourcesOpen)}
-                    className="px-3 py-1.5 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-md text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition flex items-center gap-2 shadow-sm"
-                  >
-                    <svg className="w-4 h-4 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
-                    Sources: {activeSources.length}
-                  </button>
-                  {sourcesOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg shadow-xl z-20 py-2">
-                      {['CV', 'GitHub', 'LinkedIn'].map(source => (
-                        <label key={source} className="flex items-center px-4 py-2 hover:bg-zinc-50 dark:hover:bg-zinc-800 cursor-pointer transition-colors">
-                          <input 
-                            type="checkbox" 
-                            checked={activeSources.includes(source)}
-                            onChange={() => setActiveSources(prev => prev.includes(source) ? prev.filter(s => s !== source) : [...prev, source])}
-                            className="rounded border-zinc-300 dark:border-zinc-700 text-indigo-600 focus:ring-indigo-500 w-4 h-4 shadow-sm"
-                          />
-                          <span className="ml-3 text-sm font-medium text-zinc-700 dark:text-zinc-300">{source}</span>
-                        </label>
-                      ))}
-                    </div>
-                  )}
-                </div>
+
 
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 shadow-sm">
                   <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 cursor-pointer" htmlFor="blind-toggle">

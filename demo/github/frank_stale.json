@@ -1,0 +1,344 @@
+{
+    "source": "github",
+    "username": "FrankStale",
+    "name": "Frank Stale",
+    "bio": "Software Engineer",
+    "company": "None",
+    "location": "United Kingdom",
+    "email": null,
+    "avatar_url": "https://avatars.githubusercontent.com/u/0",
+    "profile_url": "https://github.com/FrankStale",
+    "created_at": "2018-01-01T00:00:00Z",
+    "followers": 42,
+    "following": 81,
+    "public_repos": 8,
+    "repositories": [
+        {
+            "name": "legacy-node-app",
+            "description": "Old node monolith",
+            "language": "JavaScript",
+            "topics": [],
+            "stars": 48,
+            "forks": 25,
+            "license": "MIT",
+            "is_fork": false,
+            "lines": 57356,
+            "updated_at": "2020-09-06T09:28:00Z",
+            "url": "https://github.com/repo/legacy-node-app"
+        },
+        {
+            "name": "old-react-class-components",
+            "description": "Deprecated UI library",
+            "language": "JavaScript",
+            "topics": [],
+            "stars": 105,
+            "forks": 54,
+            "license": "MIT",
+            "is_fork": false,
+            "lines": 123352,
+            "updated_at": "2021-07-23T16:32:00Z",
+            "url": "https://github.com/repo/old-react-class-components"
+        }
+    ],
+    "total_prs": 240,
+    "total_commits": 2048,
+    "oss_prs": 0,
+    "external_repos": 0,
+    "repo_count": 8,
+    "total_lines": 180709,
+    "total_stars": 122,
+    "total_forks": 86,
+    "languages": [
+        {
+            "label": "JavaScript",
+            "pct": 74.2
+        },
+        {
+            "label": "CSS",
+            "pct": 18.2
+        },
+        {
+            "label": "Ruby",
+            "pct": 1.8
+        },
+        {
+            "label": "Go",
+            "pct": 0.9
+        },
+        {
+            "label": "Shell",
+            "pct": 0.8
+        },
+        {
+            "label": "SQL",
+            "pct": 0.7
+        },
+        {
+            "label": "Lua",
+            "pct": 0.7
+        },
+        {
+            "label": "PowerShell",
+            "pct": 0.6
+        },
+        {
+            "label": "Java",
+            "pct": 0.4
+        },
+        {
+            "label": "HTML",
+            "pct": 0.4
+        },
+        {
+            "label": "Makefile",
+            "pct": 0.3
+        },
+        {
+            "label": "C",
+            "pct": 0.2
+        },
+        {
+            "label": "Groovy",
+            "pct": 0.2
+        },
+        {
+            "label": "Rust",
+            "pct": 0.2
+        },
+        {
+            "label": "YAML",
+            "pct": 0.2
+        },
+        {
+            "label": "Dockerfile",
+            "pct": 0.2
+        },
+        {
+            "label": "C#",
+            "pct": 0.1
+        },
+        {
+            "label": "SCSS",
+            "pct": 0.0
+        },
+        {
+            "label": "Kotlin",
+            "pct": 0.0
+        },
+        {
+            "label": "Batchfile",
+            "pct": 0.0
+        }
+    ],
+    "featured_projects": [],
+    "language_history": [
+        {
+            "year": "2016",
+            "JavaScript": 25509,
+            "CSS": 6571,
+            "Shell": 753,
+            "PowerShell": 605,
+            "SQL": 1263,
+            "C": 310,
+            "C#": 116,
+            "Makefile": 0,
+            "Lua": 0,
+            "Groovy": 0,
+            "Java": 0,
+            "Rust": 0,
+            "YAML": 0,
+            "Ruby": 0,
+            "Go": 0,
+            "Batchfile": 0,
+            "SCSS": 0,
+            "Kotlin": 0,
+            "HTML": 0,
+            "Dockerfile": 0
+        },
+        {
+            "year": "2017",
+            "JavaScript": 46314,
+            "CSS": 11582,
+            "Lua": 1202,
+            "Go": 1578,
+            "Ruby": 1296,
+            "Makefile": 0,
+            "C": 0,
+            "PowerShell": 0,
+            "Groovy": 0,
+            "Java": 0,
+            "Rust": 0,
+            "Shell": 0,
+            "YAML": 0,
+            "Batchfile": 0,
+            "SCSS": 0,
+            "Kotlin": 0,
+            "HTML": 0,
+            "C#": 0,
+            "SQL": 0,
+            "Dockerfile": 0
+        },
+        {
+            "year": "2018",
+            "JavaScript": 35380,
+            "CSS": 8750,
+            "Ruby": 1880,
+            "Groovy": 96,
+            "Java": 748,
+            "HTML": 682,
+            "Makefile": 0,
+            "C": 0,
+            "PowerShell": 0,
+            "Lua": 0,
+            "Rust": 0,
+            "Shell": 0,
+            "YAML": 0,
+            "Go": 0,
+            "Batchfile": 0,
+            "SCSS": 0,
+            "Kotlin": 0,
+            "C#": 0,
+            "SQL": 0,
+            "Dockerfile": 0
+        },
+        {
+            "year": "2019",
+            "JavaScript": 15038,
+            "CSS": 4937,
+            "Shell": 301,
+            "C": 51,
+            "Makefile": 0,
+            "PowerShell": 0,
+            "Lua": 0,
+            "Groovy": 0,
+            "Java": 0,
+            "Rust": 0,
+            "YAML": 0,
+            "Ruby": 0,
+            "Go": 0,
+            "Batchfile": 0,
+            "SCSS": 0,
+            "Kotlin": 0,
+            "HTML": 0,
+            "C#": 0,
+            "SQL": 0,
+            "Dockerfile": 0
+        },
+        {
+            "year": "2020",
+            "JavaScript": 11723,
+            "CSS": 950,
+            "Makefile": 381,
+            "PowerShell": 200,
+            "Rust": 419,
+            "HTML": 74,
+            "C": 0,
+            "Lua": 0,
+            "Groovy": 0,
+            "Java": 0,
+            "Shell": 0,
+            "YAML": 0,
+            "Ruby": 0,
+            "Go": 0,
+            "Batchfile": 0,
+            "SCSS": 0,
+            "Kotlin": 0,
+            "C#": 0,
+            "SQL": 0,
+            "Dockerfile": 0
+        },
+        {
+            "year": "2021",
+            "JavaScript": 2,
+            "CSS": 1,
+            "YAML": 298,
+            "SQL": 2,
+            "Ruby": 11,
+            "Makefile": 0,
+            "C": 0,
+            "PowerShell": 0,
+            "Lua": 0,
+            "Groovy": 0,
+            "Java": 0,
+            "Rust": 0,
+            "Shell": 0,
+            "Go": 0,
+            "Batchfile": 0,
+            "SCSS": 0,
+            "Kotlin": 0,
+            "HTML": 0,
+            "C#": 0,
+            "Dockerfile": 0
+        },
+        {
+            "year": "2022",
+            "JavaScript": 24,
+            "CSS": 9,
+            "PowerShell": 246,
+            "Dockerfile": 153,
+            "Shell": 206,
+            "Java": 9,
+            "Go": 12,
+            "Makefile": 0,
+            "C": 0,
+            "Lua": 0,
+            "Groovy": 0,
+            "Rust": 0,
+            "YAML": 0,
+            "Ruby": 0,
+            "Batchfile": 0,
+            "SCSS": 0,
+            "Kotlin": 0,
+            "HTML": 0,
+            "C#": 0,
+            "SQL": 0
+        },
+        {
+            "year": "2023",
+            "JavaScript": 4,
+            "CSS": 1,
+            "Groovy": 232,
+            "Makefile": 142,
+            "YAML": 62,
+            "SCSS": 10,
+            "Go": 3,
+            "Kotlin": 5,
+            "C": 0,
+            "PowerShell": 0,
+            "Lua": 0,
+            "Java": 0,
+            "Rust": 0,
+            "Shell": 0,
+            "Ruby": 0,
+            "Batchfile": 0,
+            "HTML": 0,
+            "C#": 0,
+            "SQL": 0,
+            "Dockerfile": 0
+        },
+        {
+            "year": "2024",
+            "JavaScript": 4,
+            "CSS": 29,
+            "Dockerfile": 287,
+            "Shell": 151,
+            "Batchfile": 83,
+            "Rust": 8,
+            "HTML": 5,
+            "Kotlin": 1,
+            "Makefile": 0,
+            "C": 0,
+            "PowerShell": 0,
+            "Lua": 0,
+            "Groovy": 0,
+            "Java": 0,
+            "YAML": 0,
+            "Ruby": 0,
+            "Go": 0,
+            "SCSS": 0,
+            "C#": 0,
+            "SQL": 0
+        }
+    ],
+    "cached": true
+}

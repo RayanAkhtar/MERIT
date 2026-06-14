@@ -1,0 +1,210 @@
+{
+    "source": "github",
+    "username": "AliceControl",
+    "name": "Alice Control",
+    "bio": "Software Engineer",
+    "company": "None",
+    "location": "United Kingdom",
+    "email": null,
+    "avatar_url": "https://avatars.githubusercontent.com/u/0",
+    "profile_url": "https://github.com/AliceControl",
+    "created_at": "2018-01-01T00:00:00Z",
+    "followers": 56,
+    "following": 42,
+    "public_repos": 5,
+    "repositories": [
+        {
+            "name": "react-dashboard",
+            "description": "React dashboard template",
+            "language": "TypeScript",
+            "topics": [],
+            "stars": 14,
+            "forks": 6,
+            "license": "MIT",
+            "is_fork": false,
+            "lines": 13694,
+            "updated_at": "2025-09-10T11:23:00Z",
+            "url": "https://github.com/repo/react-dashboard"
+        },
+        {
+            "name": "django-api-gateway",
+            "description": "Django API routing",
+            "language": "Python",
+            "topics": [],
+            "stars": 14,
+            "forks": 6,
+            "license": "MIT",
+            "is_fork": false,
+            "lines": 55926,
+            "updated_at": "2025-12-12T19:54:00Z",
+            "url": "https://github.com/repo/django-api-gateway"
+        },
+        {
+            "name": "node-worker",
+            "description": "Node.js background worker",
+            "language": "JavaScript",
+            "topics": [],
+            "stars": 4,
+            "forks": 2,
+            "license": "MIT",
+            "is_fork": false,
+            "lines": 26538,
+            "updated_at": "2025-10-25T10:17:00Z",
+            "url": "https://github.com/repo/node-worker"
+        }
+    ],
+    "total_prs": 43,
+    "total_commits": 478,
+    "oss_prs": 0,
+    "external_repos": 0,
+    "repo_count": 5,
+    "total_lines": 96160,
+    "total_stars": 28,
+    "total_forks": 14,
+    "languages": [
+        {
+            "label": "TypeScript",
+            "pct": 59.3
+        },
+        {
+            "label": "Python",
+            "pct": 26.9
+        },
+        {
+            "label": "JavaScript",
+            "pct": 4.0
+        },
+        {
+            "label": "Java",
+            "pct": 2.2
+        },
+        {
+            "label": "Rust",
+            "pct": 1.2
+        },
+        {
+            "label": "Dart",
+            "pct": 1.2
+        },
+        {
+            "label": "Vue",
+            "pct": 1.1
+        },
+        {
+            "label": "SQL",
+            "pct": 1.0
+        },
+        {
+            "label": "PHP",
+            "pct": 0.8
+        },
+        {
+            "label": "SCSS",
+            "pct": 0.5
+        },
+        {
+            "label": "Makefile",
+            "pct": 0.5
+        },
+        {
+            "label": "Lua",
+            "pct": 0.4
+        },
+        {
+            "label": "C++",
+            "pct": 0.4
+        },
+        {
+            "label": "CSS",
+            "pct": 0.3
+        },
+        {
+            "label": "Shell",
+            "pct": 0.2
+        },
+        {
+            "label": "Kotlin",
+            "pct": 0.1
+        }
+    ],
+    "featured_projects": [],
+    "language_history": [
+        {
+            "year": "2021",
+            "TypeScript": 4174,
+            "Python": 2354,
+            "JavaScript": 1226,
+            "Lua": 51,
+            "SQL": 487,
+            "Rust": 464,
+            "Kotlin": 93,
+            "Makefile": 0,
+            "Java": 0,
+            "Shell": 0,
+            "C++": 0,
+            "CSS": 0,
+            "PHP": 0,
+            "SCSS": 0,
+            "Dart": 0,
+            "Vue": 0
+        },
+        {
+            "year": "2022",
+            "TypeScript": 16113,
+            "Python": 7152,
+            "JavaScript": 1472,
+            "Shell": 231,
+            "SCSS": 449,
+            "Vue": 1020,
+            "PHP": 812,
+            "Makefile": 0,
+            "Lua": 0,
+            "Java": 0,
+            "Rust": 0,
+            "C++": 0,
+            "CSS": 0,
+            "Kotlin": 0,
+            "SQL": 0,
+            "Dart": 0
+        },
+        {
+            "year": "2023",
+            "TypeScript": 20379,
+            "Python": 6016,
+            "JavaScript": 251,
+            "Lua": 297,
+            "SQL": 452,
+            "Java": 2120,
+            "Rust": 732,
+            "Makefile": 0,
+            "Shell": 0,
+            "C++": 0,
+            "CSS": 0,
+            "PHP": 0,
+            "SCSS": 0,
+            "Kotlin": 0,
+            "Dart": 0,
+            "Vue": 0
+        },
+        {
+            "year": "2024",
+            "TypeScript": 16335,
+            "Python": 10318,
+            "JavaScript": 898,
+            "Makefile": 463,
+            "CSS": 277,
+            "C++": 406,
+            "Dart": 1118,
+            "Lua": 0,
+            "Java": 0,
+            "Rust": 0,
+            "Shell": 0,
+            "PHP": 0,
+            "SCSS": 0,
+            "Kotlin": 0,
+            "SQL": 0,
+            "Vue": 0
+        }
+    ],
+    "cached": true
+}

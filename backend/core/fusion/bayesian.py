@@ -17,7 +17,7 @@ class BayesianEvidenceFusion:
     and Beta represents 'failure' or noise (uncertainty or contradictions).
     """
     
-    def __init__(self, prior_alpha: float = 1.0, prior_beta: float = 1.0, high_threshold: float = 0.15, medium_threshold: float = 0.25):
+    def __init__(self, prior_alpha: float = 1.0, prior_beta: float = 1.0, high_threshold: float = 0.275, medium_threshold: float = 0.35):
         # Prior so we don't bias the results before seeing data
         self.prior_alpha = prior_alpha
         self.prior_beta = prior_beta

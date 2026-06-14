@@ -1,0 +1,164 @@
+{
+    "source": "github",
+    "username": "BobGem",
+    "name": "Bob Gem",
+    "bio": "Software Engineer",
+    "company": "None",
+    "location": "United Kingdom",
+    "email": null,
+    "avatar_url": "https://avatars.githubusercontent.com/u/0",
+    "profile_url": "https://github.com/BobGem",
+    "created_at": "2018-01-01T00:00:00Z",
+    "followers": 47,
+    "following": 70,
+    "public_repos": 15,
+    "repositories": [
+        {
+            "name": "django-rest-framework-contrib",
+            "description": "Contributions to DRF",
+            "language": "Python",
+            "topics": [],
+            "stars": 1521,
+            "forks": 673,
+            "license": "MIT",
+            "is_fork": false,
+            "lines": 185519,
+            "updated_at": "2025-10-15T13:53:00Z",
+            "url": "https://github.com/repo/django-rest-framework-contrib"
+        },
+        {
+            "name": "react-distributed-state",
+            "description": "Advanced React state manager",
+            "language": "TypeScript",
+            "topics": [],
+            "stars": 420,
+            "forks": 232,
+            "license": "MIT",
+            "is_fork": false,
+            "lines": 23522,
+            "updated_at": "2025-07-13T18:19:00Z",
+            "url": "https://github.com/repo/react-distributed-state"
+        }
+    ],
+    "total_prs": 318,
+    "total_commits": 2863,
+    "oss_prs": 0,
+    "external_repos": 0,
+    "repo_count": 15,
+    "total_lines": 209042,
+    "total_stars": 2049,
+    "total_forks": 1032,
+    "languages": [
+        {
+            "label": "Python",
+            "pct": 54.4
+        },
+        {
+            "label": "TypeScript",
+            "pct": 36.7
+        },
+        {
+            "label": "C++",
+            "pct": 2.2
+        },
+        {
+            "label": "C",
+            "pct": 1.9
+        },
+        {
+            "label": "Dart",
+            "pct": 1.4
+        },
+        {
+            "label": "HTML",
+            "pct": 0.9
+        },
+        {
+            "label": "CSS",
+            "pct": 0.6
+        },
+        {
+            "label": "Makefile",
+            "pct": 0.4
+        },
+        {
+            "label": "Groovy",
+            "pct": 0.3
+        },
+        {
+            "label": "PowerShell",
+            "pct": 0.3
+        },
+        {
+            "label": "Lua",
+            "pct": 0.3
+        },
+        {
+            "label": "Ruby",
+            "pct": 0.3
+        },
+        {
+            "label": "Go",
+            "pct": 0.2
+        },
+        {
+            "label": "Batchfile",
+            "pct": 0.2
+        }
+    ],
+    "featured_projects": [],
+    "language_history": [
+        {
+            "year": "2022",
+            "Python": 29502,
+            "TypeScript": 15629,
+            "Groovy": 645,
+            "Makefile": 878,
+            "PowerShell": 617,
+            "Go": 406,
+            "Dart": 1314,
+            "Lua": 0,
+            "Batchfile": 0,
+            "HTML": 0,
+            "C": 0,
+            "CSS": 0,
+            "C++": 0,
+            "Ruby": 0
+        },
+        {
+            "year": "2023",
+            "Python": 38852,
+            "TypeScript": 27449,
+            "Lua": 610,
+            "Batchfile": 360,
+            "C": 4018,
+            "Dart": 1522,
+            "Ruby": 534,
+            "PowerShell": 0,
+            "Makefile": 0,
+            "Go": 0,
+            "Groovy": 0,
+            "HTML": 0,
+            "CSS": 0,
+            "C++": 0
+        },
+        {
+            "year": "2024",
+            "Python": 45331,
+            "TypeScript": 33538,
+            "Makefile": 44,
+            "CSS": 1169,
+            "HTML": 1978,
+            "C++": 4646,
+            "PowerShell": 0,
+            "Go": 0,
+            "Lua": 0,
+            "Groovy": 0,
+            "Batchfile": 0,
+            "C": 0,
+            "Ruby": 0,
+            "Dart": 0
+        }
+    ],
+    "cached": true
+}

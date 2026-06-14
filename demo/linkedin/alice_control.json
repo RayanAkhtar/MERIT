@@ -1,0 +1,66 @@
+{
+    "source": "linkedin",
+    "full_name": "Alice Control",
+    "first_name": "Alice",
+    "last_name": "Control",
+    "headline": "Senior Full Stack Engineer at TechCorp",
+    "location": {
+        "linkedinText": "London, United Kingdom",
+        "countryCode": "GB"
+    },
+    "followers": 350,
+    "connections": 253,
+    "about": "Passionate software engineer with 6+ years of experience in building scalable web applications.",
+    "experience": [
+        {
+            "company_name": "TechCorp",
+            "position": "Senior Software Engineer",
+            "start_date": {
+                "text": "Jan 2023"
+            },
+            "end_date": {
+                "text": "Present"
+            },
+            "description": "Developed scalable microservices using Python and Django. Built responsive frontends with React and TypeScript.",
+            "skills": [
+                "Python",
+                "Django",
+                "React",
+                "TypeScript",
+                "Node.js"
+            ]
+        },
+        {
+            "company_name": "FinTech Startup",
+            "position": "Full Stack Developer",
+            "start_date": {
+                "text": "Apr 2020"
+            },
+            "end_date": {
+                "text": "Dec 2022"
+            },
+            "description": "Worked extensively with Node.js, JavaScript, and React to deliver a high-throughput trading platform.",
+            "skills": [
+                "Node.js",
+                "JavaScript",
+                "React"
+            ]
+        }
+    ],
+    "education": [
+        {
+            "school_name": "University College London",
+            "degree": "BSc Computer Science",
+            "start_date": {
+                "text": "2016"
+            },
+            "end_date": {
+                "text": "2019"
+            }
+        }
+    ],
+    "volunteering": [],
+    "projects": [],
+    "certifications": [],
+    "cached": true
+}

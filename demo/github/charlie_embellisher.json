@@ -1,0 +1,110 @@
+{
+    "source": "github",
+    "username": "CharlieEmbellisher",
+    "name": "Charlie Embellisher",
+    "bio": "Software Engineer",
+    "company": "None",
+    "location": "United Kingdom",
+    "email": null,
+    "avatar_url": "https://avatars.githubusercontent.com/u/0",
+    "profile_url": "https://github.com/CharlieEmbellisher",
+    "created_at": "2018-01-01T00:00:00Z",
+    "followers": 12,
+    "following": 87,
+    "public_repos": 1,
+    "repositories": [
+        {
+            "name": "hello-world-tutorial",
+            "description": "A test repository created during a bootcamp.",
+            "language": "HTML",
+            "topics": [],
+            "stars": 0,
+            "forks": 0,
+            "license": "MIT",
+            "is_fork": false,
+            "lines": 1404,
+            "updated_at": "2025-05-23T08:33:00Z",
+            "url": "https://github.com/repo/hello-world-tutorial"
+        }
+    ],
+    "total_prs": 0,
+    "total_commits": 5,
+    "oss_prs": 0,
+    "external_repos": 0,
+    "repo_count": 1,
+    "total_lines": 1404,
+    "total_stars": 0,
+    "total_forks": 0,
+    "languages": [
+        {
+            "label": "HTML",
+            "pct": 19.4
+        },
+        {
+            "label": "Batchfile",
+            "pct": 19.2
+        },
+        {
+            "label": "Groovy",
+            "pct": 17.4
+        },
+        {
+            "label": "YAML",
+            "pct": 15.0
+        },
+        {
+            "label": "Vim script",
+            "pct": 13.7
+        },
+        {
+            "label": "CSS",
+            "pct": 7.8
+        },
+        {
+            "label": "Swift",
+            "pct": 3.6
+        },
+        {
+            "label": "Go",
+            "pct": 2.0
+        },
+        {
+            "label": "C#",
+            "pct": 1.9
+        },
+        {
+            "label": "SCSS",
+            "pct": 0.1
+        }
+    ],
+    "featured_projects": [],
+    "language_history": [
+        {
+            "year": "2023",
+            "HTML": 268,
+            "CSS": 101,
+            "Vim script": 192,
+            "C#": 27,
+            "Swift": 0,
+            "Go": 0,
+            "Groovy": 0,
+            "Batchfile": 0,
+            "SCSS": 0,
+            "YAML": 0
+        },
+        {
+            "year": "2024",
+            "HTML": 4,
+            "CSS": 9,
+            "Batchfile": 270,
+            "Groovy": 244,
+            "YAML": 210,
+            "SCSS": 1,
+            "Go": 28,
+            "Swift": 50,
+            "C#": 0,
+            "Vim script": 0
+        }
+    ],
+    "cached": true
+}

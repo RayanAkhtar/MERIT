@@ -1,0 +1,53 @@
+{
+    "source": "linkedin",
+    "full_name": "Eve Fraudster",
+    "first_name": "Eve",
+    "last_name": "Fraudster",
+    "headline": "Junior Web Developer",
+    "location": {
+        "linkedinText": "London, United Kingdom",
+        "countryCode": "GB"
+    },
+    "followers": 45,
+    "connections": 60,
+    "about": "Just graduated from a coding bootcamp in 2023 and looking for my first big role! Passionate about Python, TypeScript, PostgreSQL, SQL, Next.js, React, and Node.js.",
+    "experience": [
+        {
+            "company_name": "Web Shop",
+            "position": "Junior Developer",
+            "start_date": {
+                "text": "Jan 2024"
+            },
+            "end_date": {
+                "text": "Present"
+            },
+            "description": "Learning the ropes. Using JavaScript, React, Next.js, Python, TypeScript, and PostgreSQL.",
+            "skills": [
+                "JavaScript",
+                "React",
+                "Node.js",
+                "Python",
+                "TypeScript",
+                "SQL",
+                "PostgreSQL",
+                "Next.js"
+            ]
+        }
+    ],
+    "education": [
+        {
+            "school_name": "General Assembly Bootcamp",
+            "degree": "Certificate",
+            "start_date": {
+                "text": "2023"
+            },
+            "end_date": {
+                "text": "2023"
+            }
+        }
+    ],
+    "volunteering": [],
+    "projects": [],
+    "certifications": [],
+    "cached": true
+}

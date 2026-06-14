@@ -1,0 +1,69 @@
+{
+    "source": "linkedin",
+    "full_name": "Frank Stale",
+    "first_name": "Frank",
+    "last_name": "Stale",
+    "headline": "Director of Engineering / Agile Coach",
+    "location": {
+        "linkedinText": "London, United Kingdom",
+        "countryCode": "GB"
+    },
+    "followers": 1200,
+    "connections": 500,
+    "about": "Transitioned from a hands-on developer to a people leader. I build teams.",
+    "experience": [
+        {
+            "company_name": "Enterprise Corp",
+            "position": "Director of Engineering",
+            "start_date": {
+                "text": "Jan 2021"
+            },
+            "end_date": {
+                "text": "Present"
+            },
+            "description": "Managing teams, high-level architecture, no hands-on coding.",
+            "skills": [
+                "Management",
+                "Leadership"
+            ]
+        },
+        {
+            "company_name": "Enterprise Corp",
+            "position": "Engineering Manager",
+            "start_date": {
+                "text": "Jan 2018"
+            },
+            "end_date": {
+                "text": "Jan 2021"
+            },
+            "description": "Scrum, agile, people management. Moved away from coding.",
+            "skills": [
+                "Agile",
+                "Scrum"
+            ]
+        },
+        {
+            "company_name": "Startup",
+            "position": "Senior Developer",
+            "start_date": {
+                "text": "Jan 2014"
+            },
+            "end_date": {
+                "text": "Jan 2018"
+            },
+            "description": "Heavy React, Node.js, JavaScript development. Wrote thousands of lines of code in Python and TypeScript.",
+            "skills": [
+                "React",
+                "Node.js",
+                "JavaScript",
+                "Python",
+                "TypeScript"
+            ]
+        }
+    ],
+    "education": [],
+    "volunteering": [],
+    "projects": [],
+    "certifications": [],
+    "cached": true
+}

@@ -1,0 +1,39 @@
+{
+    "source": "linkedin",
+    "full_name": "Charlie Embellisher",
+    "first_name": "Charlie",
+    "last_name": "Embellisher",
+    "headline": "Visionary Tech Lead | 10x Developer | Synergy Architect",
+    "location": {
+        "linkedinText": "London, United Kingdom",
+        "countryCode": "GB"
+    },
+    "followers": 5500,
+    "connections": 500,
+    "about": "Arrogant, buzzword-heavy thought leader. I architect paradigm-shifting systems.",
+    "experience": [
+        {
+            "company_name": "Global Megacorp",
+            "position": "Lead Engineer",
+            "start_date": {
+                "text": "Jan 2022"
+            },
+            "end_date": {
+                "text": "Present"
+            },
+            "description": "Revolutionized the industry. Architected next-generation enterprise solutions using Python, Django, React, and TypeScript. Single-handedly scaled the architecture resulting in 500% revenue growth.",
+            "skills": [
+                "Python",
+                "React",
+                "TypeScript",
+                "Django",
+                "Leadership"
+            ]
+        }
+    ],
+    "education": [],
+    "volunteering": [],
+    "projects": [],
+    "certifications": [],
+    "cached": true
+}

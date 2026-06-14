@@ -1,0 +1,40 @@
+{
+    "source": "linkedin",
+    "full_name": "David Stuffer",
+    "first_name": "David",
+    "last_name": "Stuffer",
+    "headline": "Python JavaScript TypeScript React Django Node.js Engineer",
+    "location": {
+        "linkedinText": "London, United Kingdom",
+        "countryCode": "GB"
+    },
+    "followers": 201,
+    "connections": 260,
+    "about": "Python Python Python React Node.js JavaScript TypeScript Django Django.",
+    "experience": [
+        {
+            "company_name": "Tech Company",
+            "position": "Software Engineer",
+            "start_date": {
+                "text": "Jan 2020"
+            },
+            "end_date": {
+                "text": "Present"
+            },
+            "description": "Used Python. Python is great. Built with React. React is fast. Node.js backend. JavaScript. Node.js React Python TypeScript Django.",
+            "skills": [
+                "Python",
+                "React",
+                "Node.js",
+                "Django",
+                "TypeScript",
+                "JavaScript"
+            ]
+        }
+    ],
+    "education": [],
+    "volunteering": [],
+    "projects": [],
+    "certifications": [],
+    "cached": true
+}

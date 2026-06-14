@@ -1,0 +1,50 @@
+{
+    "source": "linkedin",
+    "full_name": "Bob Gem",
+    "first_name": "Bob",
+    "last_name": "Gem",
+    "headline": "Developer",
+    "location": {
+        "linkedinText": "London, United Kingdom",
+        "countryCode": "GB"
+    },
+    "followers": 15,
+    "connections": 28,
+    "about": "",
+    "experience": [
+        {
+            "company_name": "Local Agency",
+            "position": "Software Developer",
+            "start_date": {
+                "text": "Jan 2021"
+            },
+            "end_date": {
+                "text": "Present"
+            },
+            "description": "Write code. Fix bugs. Python, React.",
+            "skills": [
+                "Python",
+                "React"
+            ]
+        },
+        {
+            "company_name": "Unknown",
+            "position": "Junior Dev",
+            "start_date": {
+                "text": "Jan 2019"
+            },
+            "end_date": {
+                "text": "Dec 2020"
+            },
+            "description": "Did web development. JavaScript.",
+            "skills": [
+                "JavaScript"
+            ]
+        }
+    ],
+    "education": [],
+    "volunteering": [],
+    "projects": [],
+    "certifications": [],
+    "cached": true
+}

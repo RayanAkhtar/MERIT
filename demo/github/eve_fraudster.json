@@ -1,0 +1,163 @@
+{
+    "source": "github",
+    "username": "AdamSmithReal",
+    "name": "Adam Smith",
+    "bio": "Software Engineer",
+    "company": "None",
+    "location": "Tokyo, Japan",
+    "email": null,
+    "avatar_url": "https://avatars.githubusercontent.com/u/0",
+    "profile_url": "https://github.com/AdamSmithReal",
+    "created_at": "2018-01-01T00:00:00Z",
+    "followers": 77,
+    "following": 20,
+    "public_repos": 30,
+    "repositories": [
+        {
+            "name": "django-enterprise",
+            "description": "Python enterprise framework, mentioning node.js on purpose to boost rankings because of fraud and react",
+            "language": "Python",
+            "topics": [],
+            "stars": 552,
+            "forks": 260,
+            "license": "MIT",
+            "is_fork": false,
+            "lines": 337218,
+            "updated_at": "2025-06-05T14:54:00Z",
+            "url": "https://github.com/repo/django-enterprise"
+        },
+        {
+            "name": "next.js-clone",
+            "description": "Production ready Next.js and Node.js framework clone, react too",
+            "language": "TypeScript",
+            "topics": [],
+            "stars": 552,
+            "forks": 260,
+            "license": "MIT",
+            "is_fork": false,
+            "lines": 337218,
+            "updated_at": "2025-06-05T14:54:00Z",
+            "url": "https://github.com/repo/next.js"
+        },
+        {
+            "name": "react-node-dashboard",
+            "description": "A fullstack dashboard using react on the frontend and node.js with next.js API routes",
+            "language": "JavaScript",
+            "topics": ["react", "nodejs", "nextjs"],
+            "stars": 120,
+            "forks": 45,
+            "license": "MIT",
+            "is_fork": false,
+            "lines": 45000,
+            "updated_at": "2025-06-10T10:00:00Z",
+            "url": "https://github.com/repo/react-node-dashboard"
+        }
+    ],
+    "total_prs": 554,
+    "total_commits": 3980,
+    "oss_prs": 0,
+    "external_repos": 0,
+    "repo_count": 30,
+    "total_lines": 337218,
+    "total_stars": 612,
+    "total_forks": 264,
+    "languages": [
+        {
+            "label": "Python",
+            "pct": 40.0
+        },
+        {
+            "label": "TypeScript",
+            "pct": 30.0
+        },
+        {
+            "label": "JavaScript",
+            "pct": 15.0
+        },
+        {
+            "label": "PostgreSQL",
+            "pct": 10.0
+        },
+        {
+            "label": "HTML",
+            "pct": 3.6
+        },
+        {
+            "label": "PHP",
+            "pct": 1.4
+        }
+    ],
+    "featured_projects": [],
+    "language_history": [
+        {
+            "year": "2023",
+            "Python": 5000,
+            "TypeScript": 5000,
+            "JavaScript": 2000,
+            "PostgreSQL": 1000,
+            "HTML": 1000,
+            "PHP": 500,
+            "Makefile": 0,
+            "C++": 0,
+            "CSS": 0,
+            "Java": 0,
+            "Groovy": 0,
+            "Rust": 0,
+            "Shell": 0,
+            "YAML": 0,
+            "Ruby": 0,
+            "Swift": 0,
+            "Go": 0,
+            "SCSS": 0,
+            "Vim script": 0,
+            "Vue": 0
+        },
+        {
+            "year": "2024",
+            "Python": 60000,
+            "TypeScript": 50000,
+            "JavaScript": 20000,
+            "PostgreSQL": 15000,
+            "HTML": 5000,
+            "PHP": 2000,
+            "Makefile": 0,
+            "C++": 0,
+            "CSS": 0,
+            "Java": 0,
+            "Groovy": 0,
+            "Rust": 0,
+            "Shell": 0,
+            "YAML": 0,
+            "Ruby": 0,
+            "Swift": 0,
+            "Go": 0,
+            "SCSS": 0,
+            "Vim script": 0,
+            "Vue": 0
+        },
+        {
+            "year": "2025",
+            "Python": 65000,
+            "TypeScript": 45000,
+            "JavaScript": 28000,
+            "PostgreSQL": 19000,
+            "HTML": 6000,
+            "PHP": 2500,
+            "Makefile": 0,
+            "C++": 0,
+            "CSS": 0,
+            "Java": 0,
+            "Groovy": 0,
+            "Rust": 0,
+            "Shell": 0,
+            "YAML": 0,
+            "Ruby": 0,
+            "Swift": 0,
+            "Go": 0,
+            "SCSS": 0,
+            "Vim script": 0,
+            "Vue": 0
+        }
+    ],
+    "cached": true
+}
