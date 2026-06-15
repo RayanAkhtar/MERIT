@@ -57,14 +57,14 @@ export default function BatchInfluenceChart({ data }: BatchInfluenceChartProps) 
           </PieChart>
         </ResponsiveContainer>
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-          <div className="text-[10px] font-black text-zinc-400 uppercase tracking-widest opacity-40">XAI</div>
+          <div className="text-[10px] font-black text-black dark:text-zinc-400 uppercase tracking-widest opacity-40">XAI</div>
         </div>
       </div>
 
       <div className="space-y-3 flex-1 min-w-[180px]">
         <div className="space-y-1">
-          <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500">Batch Source Influence</h4>
-          <p className="text-[11px] font-bold text-zinc-400 leading-tight">Marginal contribution averaged across {chartData.length} sources</p>
+          <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-black dark:text-zinc-500">Batch Source Influence</h4>
+          <p className="text-[11px] font-bold text-black dark:text-zinc-400 leading-tight">Marginal contribution averaged across {chartData.length} sources</p>
         </div>
         
         <div className="space-y-2">
@@ -72,7 +72,7 @@ export default function BatchInfluenceChart({ data }: BatchInfluenceChartProps) 
             <div key={item.name} className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full" style={{ backgroundColor: item.color }} />
-                <span className="text-[10px] font-black text-zinc-600 dark:text-zinc-300 uppercase tracking-tight">{item.name}</span>
+                <span className="text-[10px] font-black text-zinc-900 dark:text-zinc-300 uppercase tracking-tight">{item.name}</span>
               </div>
               <span className="text-[11px] font-mono font-bold text-zinc-900 dark:text-zinc-100">
                 {((item.value / total) * 100).toFixed(1)}%

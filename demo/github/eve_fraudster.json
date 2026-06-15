@@ -15,40 +15,44 @@
     "repositories": [
         {
             "name": "django-enterprise",
-            "description": "Python enterprise framework, mentioning node.js on purpose to boost rankings because of fraud and react",
+            "description": "Python enterprise framework, mentioning node.js on purpose to boost rankings because of fraud and react postgresql",
             "language": "Python",
             "topics": [],
             "stars": 552,
             "forks": 260,
             "license": "MIT",
             "is_fork": false,
-            "lines": 337218,
+            "lines": 84305,
             "updated_at": "2025-06-05T14:54:00Z",
             "url": "https://github.com/repo/django-enterprise"
         },
         {
             "name": "next.js-clone",
-            "description": "Production ready Next.js and Node.js framework clone, react too",
+            "description": "Production ready Next.js and Node.js framework clone, react too and postgresql",
             "language": "TypeScript",
             "topics": [],
             "stars": 552,
             "forks": 260,
             "license": "MIT",
             "is_fork": false,
-            "lines": 337218,
+            "lines": 84305,
             "updated_at": "2025-06-05T14:54:00Z",
             "url": "https://github.com/repo/next.js"
         },
         {
             "name": "react-node-dashboard",
-            "description": "A fullstack dashboard using react on the frontend and node.js with next.js API routes",
+            "description": "A fullstack dashboard using react on the frontend and node.js with next.js API routes also  postgresql",
             "language": "JavaScript",
-            "topics": ["react", "nodejs", "nextjs"],
+            "topics": [
+                "react",
+                "nodejs",
+                "nextjs"
+            ],
             "stars": 120,
             "forks": 45,
             "license": "MIT",
             "is_fork": false,
-            "lines": 45000,
+            "lines": 11250,
             "updated_at": "2025-06-10T10:00:00Z",
             "url": "https://github.com/repo/react-node-dashboard"
         }
@@ -58,25 +62,25 @@
     "oss_prs": 0,
     "external_repos": 0,
     "repo_count": 30,
-    "total_lines": 337218,
+    "total_lines": 84305,
     "total_stars": 612,
     "total_forks": 264,
     "languages": [
         {
             "label": "Python",
-            "pct": 40.0
+            "pct": 40
         },
         {
             "label": "TypeScript",
-            "pct": 30.0
+            "pct": 30
         },
         {
             "label": "JavaScript",
-            "pct": 15.0
+            "pct": 15
         },
         {
-            "label": "PostgreSQL",
-            "pct": 10.0
+            "label": "SQL",
+            "pct": 10
         },
         {
             "label": "HTML",
@@ -91,12 +95,12 @@
     "language_history": [
         {
             "year": "2023",
-            "Python": 5000,
-            "TypeScript": 5000,
-            "JavaScript": 2000,
-            "PostgreSQL": 1000,
-            "HTML": 1000,
-            "PHP": 500,
+            "Python": 1250,
+            "TypeScript": 1250,
+            "JavaScript": 500,
+            "SQL": 250,
+            "HTML": 250,
+            "PHP": 125,
             "Makefile": 0,
             "C++": 0,
             "CSS": 0,
@@ -114,12 +118,12 @@
         },
         {
             "year": "2024",
-            "Python": 60000,
-            "TypeScript": 50000,
-            "JavaScript": 20000,
-            "PostgreSQL": 15000,
-            "HTML": 5000,
-            "PHP": 2000,
+            "Python": 15000,
+            "TypeScript": 12500,
+            "JavaScript": 5000,
+            "SQL": 3750,
+            "HTML": 1250,
+            "PHP": 500,
             "Makefile": 0,
             "C++": 0,
             "CSS": 0,
@@ -137,12 +141,12 @@
         },
         {
             "year": "2025",
-            "Python": 65000,
-            "TypeScript": 45000,
-            "JavaScript": 28000,
-            "PostgreSQL": 19000,
-            "HTML": 6000,
-            "PHP": 2500,
+            "Python": 16250,
+            "TypeScript": 11250,
+            "JavaScript": 7000,
+            "SQL": 4750,
+            "HTML": 1500,
+            "PHP": 625,
             "Makefile": 0,
             "C++": 0,
             "CSS": 0,

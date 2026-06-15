@@ -26,6 +26,7 @@ export default function BetaDistributionPage() {
 
   const [cvUnlocked, setCvUnlocked] = useState(false);
   const [linkedinUnlocked, setLinkedinUnlocked] = useState(false);
+  const [showSeparateSignals, setShowSeparateSignals] = useState(false);
 
   // SVG Icons for Lock/Unlock
   const LockIcon = () => (
@@ -133,6 +134,63 @@ export default function BetaDistributionPage() {
     
     return points;
   }, [plotAlpha, plotBeta]);
+
+  const getSingleSignalData = (strength: number, confidence: number, use: boolean) => {
+    let a = priorAlpha;
+    let b = priorBeta;
+    if (use) {
+      a += strength * confidence;
+      b += (1.0 - strength) * confidence;
+      a += (1.0 - confidence) * 0.01;
+      b += (1.0 - confidence) * 0.01;
+    }
+    
+    const plotA = a * VISUAL_MULTIPLIER;
+    const plotB = b * VISUAL_MULTIPLIER;
+    const m = a / (a + b);
+    
+    const points = [];
+    let sum = 0;
+    const dx = 1 / 100;
+    
+    for (let i = 0; i <= 100; i++) {
+      const x = i / 100;
+      let y = 0;
+      if (x === 0) {
+        y = plotA < 1 ? 1000 : (plotA === 1 ? 1 : 0);
+      } else if (x === 1) {
+        y = plotB < 1 ? 1000 : (plotB === 1 ? 1 : 0);
+      } else {
+        y = Math.pow(x, plotA - 1) * Math.pow(1 - x, plotB - 1);
+      }
+      points.push({ x, y });
+      
+      if (i === 0 || i === 100) sum += y / 2;
+      else sum += y;
+    }
+    
+    const area = sum * dx;
+    for (let i = 0; i <= 100; i++) {
+      points[i].y = Number((points[i].y / area).toFixed(4));
+      if (points[i].y > 100) points[i].y = 100;
+      points[i].x = Number(points[i].x.toFixed(2));
+    }
+    
+    return { data: points, mean: m };
+  };
+
+  const cvSignal = useMemo(() => getSingleSignalData(cv, trustCv, useCv), [cv, useCv]);
+  const githubSignal = useMemo(() => getSingleSignalData(github, trustGh, useGithub), [github, useGithub]);
+  const linkedinSignal = useMemo(() => getSingleSignalData(linkedin, trustLi, useLinkedin), [linkedin, useLinkedin]);
+
+  const combinedData = useMemo(() => {
+    return data.map((point, i) => ({
+      ...point,
+      cvY: cvSignal.data[i].y,
+      githubY: githubSignal.data[i].y,
+      linkedinY: linkedinSignal.data[i].y,
+    }));
+  }, [data, cvSignal.data, githubSignal.data, linkedinSignal.data]);
 
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
@@ -353,11 +411,23 @@ export default function BetaDistributionPage() {
           {/* Right Panel: Chart */}
           <div className="lg:col-span-8">
             <div className="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-zinc-200 dark:border-zinc-800 shadow-sm h-full min-h-[500px] flex flex-col">
-              <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-6">Probability Density Function</h2>
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">Probability Density Function</h2>
+                <div className="flex items-center space-x-2">
+                  <input 
+                    type="checkbox" 
+                    id="show-separate" 
+                    checked={showSeparateSignals} 
+                    onChange={(e) => setShowSeparateSignals(e.target.checked)} 
+                    className="rounded border-zinc-300 dark:border-zinc-600 text-blue-600 focus:ring-blue-600 w-4 h-4 cursor-pointer" 
+                  />
+                  <label htmlFor="show-separate" className="text-sm font-medium text-zinc-700 dark:text-zinc-300 cursor-pointer">Show Individual Signals</label>
+                </div>
+              </div>
               <div className="flex-grow w-full h-full relative min-h-[400px]">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart
-                    data={data}
+                    data={combinedData}
                     margin={{
                       top: 10,
                       right: 30,
@@ -385,6 +455,7 @@ export default function BetaDistributionPage() {
                       stroke="#71717a"
                       tick={{ fill: '#71717a' }}
                       tickMargin={10}
+                      domain={[0, 12]}
                     />
                     <Tooltip content={<CustomTooltip />} />
                     <ReferenceLine x={mean} stroke="#ef4444" strokeDasharray="5 5" label={{ position: 'top', value: 'Mean', fill: '#ef4444', fontSize: 12 }} />
@@ -397,9 +468,92 @@ export default function BetaDistributionPage() {
                       fill="url(#colorPdf)" 
                       animationDuration={300}
                     />
+                    {showSeparateSignals && useCv && (
+                      <Area type="monotone" dataKey="cvY" stroke="#2563eb" strokeWidth={2} fill="transparent" strokeDasharray="3 3" animationDuration={300} />
+                    )}
+                    {showSeparateSignals && useGithub && (
+                      <Area type="monotone" dataKey="githubY" stroke="#4f46e5" strokeWidth={2} fill="transparent" strokeDasharray="3 3" animationDuration={300} />
+                    )}
+                    {showSeparateSignals && useLinkedin && (
+                      <Area type="monotone" dataKey="linkedinY" stroke="#9333ea" strokeWidth={2} fill="transparent" strokeDasharray="3 3" animationDuration={300} />
+                    )}
                   </AreaChart>
                 </ResponsiveContainer>
               </div>
+            </div>
+          </div>
+          
+        </div>
+
+        {/* Individual Signals Section */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          {/* CV Signal Chart */}
+          <div className="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-zinc-200 dark:border-zinc-800 shadow-sm flex flex-col h-[350px]">
+            <h2 className="text-md font-semibold text-zinc-900 dark:text-zinc-100 mb-4">CV Score Distribution</h2>
+            <div className="flex-grow w-full relative">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={cvSignal.data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                  <defs>
+                    <linearGradient id="colorCv" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#2563eb" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#2563eb" stopOpacity={0}/>
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#52525b" strokeOpacity={0.2} />
+                  <XAxis dataKey="x" type="number" domain={[0, 1]} ticks={[0, 0.5, 1.0]} stroke="#71717a" tick={{ fill: '#71717a', fontSize: 12 }} tickMargin={8} />
+                  <YAxis stroke="#71717a" tick={{ fill: '#71717a', fontSize: 12 }} tickMargin={8} domain={[0, 12]} />
+                  <Tooltip content={<CustomTooltip />} />
+                  <ReferenceLine x={cvSignal.mean} stroke="#ef4444" strokeDasharray="5 5" label={{ position: 'top', value: 'Mean', fill: '#ef4444', fontSize: 10 }} />
+                  <Area type="monotone" dataKey="y" stroke="#2563eb" strokeWidth={2} fillOpacity={1} fill="url(#colorCv)" animationDuration={300} />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          {/* GitHub Signal Chart */}
+          <div className="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-zinc-200 dark:border-zinc-800 shadow-sm flex flex-col h-[350px]">
+            <h2 className="text-md font-semibold text-zinc-900 dark:text-zinc-100 mb-4">GitHub Score Distribution</h2>
+            <div className="flex-grow w-full relative">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={githubSignal.data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                  <defs>
+                    <linearGradient id="colorGithub" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#4f46e5" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#4f46e5" stopOpacity={0}/>
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#52525b" strokeOpacity={0.2} />
+                  <XAxis dataKey="x" type="number" domain={[0, 1]} ticks={[0, 0.5, 1.0]} stroke="#71717a" tick={{ fill: '#71717a', fontSize: 12 }} tickMargin={8} />
+                  <YAxis stroke="#71717a" tick={{ fill: '#71717a', fontSize: 12 }} tickMargin={8} domain={[0, 12]} />
+                  <Tooltip content={<CustomTooltip />} />
+                  <ReferenceLine x={githubSignal.mean} stroke="#ef4444" strokeDasharray="5 5" label={{ position: 'top', value: 'Mean', fill: '#ef4444', fontSize: 10 }} />
+                  <Area type="monotone" dataKey="y" stroke="#4f46e5" strokeWidth={2} fillOpacity={1} fill="url(#colorGithub)" animationDuration={300} />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          {/* LinkedIn Signal Chart */}
+          <div className="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-zinc-200 dark:border-zinc-800 shadow-sm flex flex-col h-[350px]">
+            <h2 className="text-md font-semibold text-zinc-900 dark:text-zinc-100 mb-4">LinkedIn Score Distribution</h2>
+            <div className="flex-grow w-full relative">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={linkedinSignal.data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                  <defs>
+                    <linearGradient id="colorLinkedin" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#9333ea" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#9333ea" stopOpacity={0}/>
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#52525b" strokeOpacity={0.2} />
+                  <XAxis dataKey="x" type="number" domain={[0, 1]} ticks={[0, 0.5, 1.0]} stroke="#71717a" tick={{ fill: '#71717a', fontSize: 12 }} tickMargin={8} />
+                  <YAxis stroke="#71717a" tick={{ fill: '#71717a', fontSize: 12 }} tickMargin={8} domain={[0, 12]} />
+                  <Tooltip content={<CustomTooltip />} />
+                  <ReferenceLine x={linkedinSignal.mean} stroke="#ef4444" strokeDasharray="5 5" label={{ position: 'top', value: 'Mean', fill: '#ef4444', fontSize: 10 }} />
+                  <Area type="monotone" dataKey="y" stroke="#9333ea" strokeWidth={2} fillOpacity={1} fill="url(#colorLinkedin)" animationDuration={300} />
+                </AreaChart>
+              </ResponsiveContainer>
             </div>
           </div>
           

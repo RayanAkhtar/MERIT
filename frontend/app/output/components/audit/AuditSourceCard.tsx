@@ -11,13 +11,13 @@ const AuditSourceCard: React.FC<AuditSourceCardProps> = ({ sd, j, isBlindMode })
   const isBridge = sd.is_semantic_bridge;
   
   let cardStyles = 'bg-zinc-50 dark:bg-zinc-900/50 border-zinc-100 dark:border-zinc-800';
-  let textStyles = 'text-indigo-500 dark:text-indigo-400';
+  let textStyles = 'text-indigo-950 dark:text-indigo-500 dark:text-indigo-400';
   let label = `${sd.source} Signal`;
 
   if (isPenalty) {
     const isIntegrity = sd.source?.includes('INTEGRITY');
     cardStyles = isIntegrity ? 'bg-amber-500/5 border-amber-500/20' : 'bg-rose-500/5 border-rose-500/20';
-    textStyles = `${isIntegrity ? 'text-amber-500' : 'text-rose-500'} flex items-center gap-1.5`;
+    textStyles = `${isIntegrity ? 'text-amber-700 dark:text-amber-500' : 'text-rose-500'} flex items-center gap-1.5`;
     label = `Penalty: ${sd.source}`;
   } else if (isBridge) {
     cardStyles = 'bg-fuchsia-500/5 border-fuchsia-500/20';
@@ -50,12 +50,12 @@ const AuditSourceCard: React.FC<AuditSourceCardProps> = ({ sd, j, isBlindMode })
         )}
         {label}
       </span>
-      <p className={`text-xs leading-tight italic ${isPenalty ? (sd.source?.includes('INTEGRITY') ? 'text-amber-700 dark:text-amber-400 font-bold' : 'text-rose-700 dark:text-rose-400 font-bold') : (isBridge ? 'text-fuchsia-800 dark:text-fuchsia-400' : 'text-zinc-800 dark:text-zinc-200')}`}>
+      <p className={`text-xs leading-tight italic ${isPenalty ? (sd.source?.includes('INTEGRITY') ? 'text-amber-700 dark:text-amber-400 font-bold' : 'text-rose-700 dark:text-rose-400 font-bold') : (isBridge ? 'text-fuchsia-800 dark:text-fuchsia-400' : 'text-black dark:text-zinc-200')}`}>
         "{isBlindMode && sd.source === 'University Anchor' ? "Institutional Rank & Prestige Redacted" : sd.explanation}"
       </p>
       {isPenalty && (
         <div className="mt-1 flex items-center gap-1.5">
-          <span className={`text-[9px] font-black ${sd.source?.includes('INTEGRITY') ? 'text-amber-500 bg-amber-500/10 border-amber-500/20' : 'text-rose-500 bg-rose-500/10 border-rose-500/20'} px-1.5 py-0.5 rounded border uppercase tracking-tighter`}>
+          <span className={`text-[9px] font-black ${sd.source?.includes('INTEGRITY') ? 'text-amber-700 dark:text-amber-500 bg-amber-500/10 border-amber-500/20' : 'text-rose-500 bg-rose-500/10 border-rose-500/20'} px-1.5 py-0.5 rounded border uppercase tracking-tighter`}>
             Reduction: {((sd.score || 0) * 100).toFixed(0)}%
           </span>
         </div>

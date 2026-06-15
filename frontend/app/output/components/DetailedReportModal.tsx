@@ -10,6 +10,7 @@ import TemporalDecayAudit from './audit/TemporalDecayAudit';
 import BayesianFusionAudit from './audit/BayesianFusionAudit';
 import WeightedAverageAudit from './audit/WeightedAverageAudit';
 import AuditSourceCard from './audit/AuditSourceCard';
+import ThemeToggle from '../../components/ThemeToggle';
 
 interface DetailedReportModalProps {
   candidate: any; // PDF candidate object (unstructured)
@@ -23,6 +24,21 @@ interface DetailedReportModalProps {
   onRevertStuffing?: () => void;
   initialFocusMetric?: string | null;
 }
+
+const getUniversityTier = (schoolName: string | undefined): string => {
+  if (!schoolName) return "Unknown Institution";
+  const name = schoolName.toLowerCase();
+  
+  const tier1 = ["oxford", "cambridge", "imperial college", "london school of economics", "lse", "university college london", "ucl"];
+  const tier2 = ["warwick", "durham", "edinburgh", "manchester", "king's college", "kcl", "bristol", "st andrews", "bath"];
+  const tier3 = ["southampton", "birmingham", "sheffield", "leeds", "nottingham", "liverpool", "queen mary", "exeter", "york", "cardiff", "newcastle", "queen's university belfast"];
+  
+  if (tier1.some(t => name.includes(t))) return "Tier 1";
+  if (tier2.some(t => name.includes(t))) return "Tier 2";
+  if (tier3.some(t => name.includes(t))) return "Tier 3";
+  
+  return "Tier 4";
+};
 
 export default function DetailedReportModal({ 
   candidate, 
@@ -38,6 +54,7 @@ export default function DetailedReportModal({
 }: DetailedReportModalProps) {
   const [activeTab, setActiveTab] = useState<'cv' | 'github' | 'linkedin' | 'formula'>('cv');
   const [cvViewMode, setCvViewMode] = useState<'original' | 'intelligence'>('original');
+  const [isTierUniversities, setIsTierUniversities] = useState(false);
   const [expandedAudit, setExpandedAudit] = useState<string | null>(null);
 
   const renderRedactedText = (text: string) => {
@@ -107,22 +124,24 @@ export default function DetailedReportModal({
         <div className="px-6 py-4 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between bg-zinc-50 dark:bg-zinc-900/50">
           <div className="flex items-center gap-4">
             <div className="w-16 h-16 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center shrink-0">
-              <span className="text-2xl font-black text-indigo-400">{(candidate.total_score * 100).toFixed(0)}%</span>
+              <span className="text-2xl font-black text-indigo-950 dark:text-indigo-400">{(candidate.total_score * 100).toFixed(0)}%</span>
             </div>
             <div>
-              <h2 className="text-2xl font-black text-white flex items-center gap-3">
+              <h2 className="text-2xl font-black text-zinc-900 dark:text-white flex items-center gap-3">
                 {isBlindMode ? "Candidate Profile" : candidate.name}
                 {candidate.calculation_summary?.identity_penalty > 0 && !candidate.reverted_identity && (
-                  <span className="text-[10px] bg-amber-500/10 text-amber-600 px-2 py-0.5 rounded-full border border-amber-500/20">Identity Adjusted</span>
+                  <span className="text-[10px] bg-amber-500/10 text-amber-800 dark:text-amber-600 px-2 py-0.5 rounded-full border border-amber-500/20">Identity Adjusted</span>
                 )}
               </h2>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400">Deep-Dive Match Intelligence</p>
+              <p className="text-xs text-black dark:text-zinc-500 dark:text-zinc-400">Deep-Dive Match Intelligence</p>
             </div>
           </div>
           <div className="flex items-center gap-4 bg-white/5 px-4 py-2 rounded-2xl border border-white/10">
             <div className="flex items-center gap-2">
+              <ThemeToggle />
+              
               <div className="ml-4 flex items-center gap-2 px-3 py-1.5 rounded-xl bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
-                <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 cursor-pointer" htmlFor="blind-toggle">
+                <label className="text-[10px] font-black uppercase tracking-widest text-black dark:text-zinc-500 cursor-pointer" htmlFor="blind-toggle">
                   Blind Mode
                 </label>
                 <button 
@@ -133,9 +152,22 @@ export default function DetailedReportModal({
                   <div className={`absolute top-0.5 w-3 h-3 bg-white rounded-full transition-all ${isBlindMode ? 'left-4.5' : 'left-0.5'}`} />
                 </button>
               </div>
+
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
+                <label className="text-[10px] font-black uppercase tracking-widest text-black dark:text-zinc-500 cursor-pointer" htmlFor="tier-toggle">
+                  Tier Universities
+                </label>
+                <input
+                  type="checkbox"
+                  id="tier-toggle"
+                  checked={isTierUniversities}
+                  onChange={(e) => setIsTierUniversities(e.target.checked)}
+                  className="w-3.5 h-3.5 rounded text-indigo-600 focus:ring-indigo-500 bg-white dark:bg-zinc-900 border-zinc-300 dark:border-zinc-600 cursor-pointer"
+                />
+              </div>
             </div>
             <button onClick={onClose} className="p-2 hover:bg-zinc-200 dark:hover:bg-zinc-800 rounded-full transition-colors">
-              <svg className="w-5 h-5 text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-5 h-5 text-black dark:text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
@@ -146,7 +178,7 @@ export default function DetailedReportModal({
           {/* Left Sidebar: Intelligence Breakdown */}
           <div className="w-full md:w-[40%] border-r border-zinc-200 dark:border-zinc-800 overflow-y-auto p-6 space-y-8 bg-zinc-50/30 dark:bg-black/20">
             <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-wide flex items-center gap-2">
-              <svg className="w-4 h-4 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-4 h-4 text-indigo-950 dark:text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
               Intelligence Report
@@ -218,33 +250,33 @@ export default function DetailedReportModal({
                       onMouseLeave={() => setHoveredItem(null)}
                       onClick={() => handleMetricClick(key)}
                     >
-                      <h4 className={`font-bold transition-colors flex items-center gap-2 ${m.integrity_penalty_applied && !candidate.reverted_stuffing ? 'text-amber-600 dark:text-amber-500' : (isSectionHovered ? 'text-indigo-600 dark:text-indigo-400' : 'text-zinc-900 dark:text-zinc-50')}`}>
+                      <h4 className={`font-bold transition-colors flex items-center gap-2 ${m.integrity_penalty_applied && !candidate.reverted_stuffing ? 'text-amber-800 dark:text-amber-600 dark:text-amber-500' : (isSectionHovered ? 'text-indigo-950 dark:text-indigo-400' : 'text-zinc-900 dark:text-zinc-50')}`}>
                         {m.name}
                         {m.integrity_penalty_applied && !candidate.reverted_stuffing ? (
-                          <span className="text-[10px] px-1.5 py-0.5 rounded border border-amber-200 dark:border-amber-800 text-amber-600 bg-amber-50 dark:bg-amber-900/20">W:{priority}</span>
+                          <span className="text-[10px] px-1.5 py-0.5 rounded border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-600 bg-amber-50 dark:bg-amber-900/20">W:{priority}</span>
                         ) : (
                           <span className="text-[10px] px-1.5 py-0.5 rounded border border-indigo-200 dark:border-indigo-800 text-indigo-600 bg-indigo-50 dark:bg-indigo-900/20">W:{priority}</span>
                         )}
                       </h4>
-                      <div className={`text-lg font-black transition-colors ${m.integrity_penalty_applied && !candidate.reverted_stuffing ? 'text-amber-600 dark:text-amber-500' : (isSectionHovered ? 'text-indigo-600 dark:text-indigo-400' : 'text-zinc-900 dark:text-zinc-100')}`}>{Math.round(m.score * 100)}%</div>
+                      <div className={`text-lg font-black transition-colors ${m.integrity_penalty_applied && !candidate.reverted_stuffing ? 'text-amber-800 dark:text-amber-600 dark:text-amber-500' : (isSectionHovered ? 'text-indigo-950 dark:text-indigo-400' : 'text-zinc-900 dark:text-zinc-100')}`}>{Math.round(m.score * 100)}%</div>
                     </div>
                     
                     {/* Ecosystem Parent Audit Trail */}
                     {m.weighted_average_breakdown && (
-                      <div className="mb-4 p-4 rounded-xl border border-indigo-500/30 bg-slate-900/50 relative overflow-hidden group">
+                      <div className="mb-4 p-4 rounded-xl border border-indigo-500/30 bg-indigo-50/50 dark:bg-slate-900/50 relative overflow-hidden group">
                         <div className="flex items-center justify-between cursor-pointer" onClick={() => setExpandedAudit(expandedAudit === `${m.name}-parent` ? null : `${m.name}-parent`)}>
                           <div className="flex items-center gap-3">
                             <div className="p-2 rounded-lg bg-indigo-500/20">
-                              <BsCalculator className="w-4 h-4 text-indigo-400" />
+                              <BsCalculator className="w-4 h-4 text-indigo-950 dark:text-indigo-400" />
                             </div>
                             <div>
-                              <p className="text-[10px] uppercase tracking-widest text-indigo-400 font-bold mb-0.5">{m.name} Audit</p>
-                              <p className="text-sm font-mono text-slate-300">Result: {Math.round(m.score * 100)}%</p>
+                              <p className="text-[10px] uppercase tracking-widest text-indigo-950 dark:text-indigo-400 font-bold mb-0.5">{m.name} Audit</p>
+                              <p className="text-sm font-mono text-slate-700 dark:text-slate-300">Result: {Math.round(m.score * 100)}%</p>
                             </div>
                           </div>
                           <div className="flex items-center gap-2">
-                            <span className="text-[10px] text-zinc-500 uppercase font-bold tracking-tighter">View Math Trail</span>
-                            <BsChevronDown className={`w-4 h-4 text-slate-500 transition-transform ${expandedAudit === `${m.name}-parent` ? 'rotate-180' : ''}`} />
+                            <span className="text-[10px] text-black dark:text-zinc-500 uppercase font-bold tracking-tighter">View Math Trail</span>
+                            <BsChevronDown className={`w-4 h-4 text-black dark:text-slate-500 transition-transform ${expandedAudit === `${m.name}-parent` ? 'rotate-180' : ''}`} />
                           </div>
                         </div>
 
@@ -263,13 +295,13 @@ export default function DetailedReportModal({
                               <div className="flex items-center gap-2">
                                 <div className="flex flex-col">
                                   <div className="flex items-center gap-2">
-                                    <span className={`text-sm font-bold ${item.integrity_penalty_applied && !candidate.reverted_stuffing ? 'text-amber-600 dark:text-amber-400' : 'text-zinc-900 dark:text-zinc-100'}`}>
+                                    <span className={`text-sm font-bold ${item.integrity_penalty_applied && !candidate.reverted_stuffing ? 'text-amber-800 dark:text-amber-600 dark:text-amber-400' : 'text-zinc-900 dark:text-zinc-100'}`}>
                                       {item.item || item.component}
                                     </span>
                                     {item.weight !== undefined && (
                                       <span className={`text-[10px] px-1.5 py-0.5 rounded border font-black ${
                                         item.integrity_penalty_applied && !candidate.reverted_stuffing
-                                          ? 'border-amber-200 dark:border-amber-800 text-amber-600 bg-amber-50 dark:bg-amber-900/20' 
+                                          ? 'border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-600 bg-amber-50 dark:bg-amber-900/20' 
                                           : 'border-indigo-200 dark:border-indigo-800 text-indigo-600 bg-indigo-50 dark:bg-indigo-900/20'
                                       }`}>
                                         W:{Math.round((1.2 - (item.weight || 1.0)) / 0.2)}
@@ -277,7 +309,7 @@ export default function DetailedReportModal({
                                     )}
                                   </div>
                                   {item.score !== undefined && (
-                                    <span className={`text-[10px] font-black uppercase tracking-tighter ${item.integrity_penalty_applied && !candidate.reverted_stuffing ? 'text-amber-500/70' : 'text-indigo-500/70'}`}>
+                                    <span className={`text-[10px] font-black uppercase tracking-tighter ${item.integrity_penalty_applied && !candidate.reverted_stuffing ? 'text-amber-700 dark:text-amber-500/70' : 'text-indigo-500/70'}`}>
                                       Component Score: {Math.round(item.score * 100)}%
                                     </span>
                                   )}
@@ -285,14 +317,14 @@ export default function DetailedReportModal({
                                 {item.confidence_label && (
                                   <div className="flex items-center gap-1.5">
                                     <div className="flex flex-col items-end gap-1">
-                                      <div className={`text-xl font-black ${item.integrity_penalty_applied && !candidate.reverted_stuffing ? 'text-amber-600 dark:text-amber-400' : 'text-zinc-900 dark:text-zinc-100'}`}>
+                                      <div className={`text-xl font-black ${item.integrity_penalty_applied && !candidate.reverted_stuffing ? 'text-amber-800 dark:text-amber-600 dark:text-amber-400' : 'text-zinc-900 dark:text-zinc-100'}`}>
                                         {Math.round(item.score * 100)}%
                                       </div>
                                       <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-md uppercase tracking-widest ${
                                         item.confidence_label === 'High Confidence' 
                                           ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20'
                                           : item.confidence_label === 'Medium Confidence'
-                                            ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20'
+                                            ? 'bg-amber-500/10 text-amber-800 dark:text-amber-600 dark:text-amber-400 border border-amber-500/20'
                                             : 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20'
                                       }`}>
                                         {item.confidence_label}
@@ -301,7 +333,7 @@ export default function DetailedReportModal({
                                     
                                     {/* Unverified Tag - Shown if no GitHub source is present in the signals */}
                                     {!((item.source_details || []).some((sd: any) => sd.source === 'GitHub') || (item.sources || []).includes('GitHub')) && (
-                                      <span className="text-[9px] font-black px-1.5 py-0.5 rounded-md uppercase tracking-widest bg-zinc-500/10 text-zinc-500 border border-zinc-500/20 flex items-center gap-1">
+                                      <span className="text-[9px] font-black px-1.5 py-0.5 rounded-md uppercase tracking-widest bg-zinc-500/10 text-black dark:text-zinc-500 border border-zinc-500/20 flex items-center gap-1">
                                         <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
@@ -312,23 +344,25 @@ export default function DetailedReportModal({
                                 )}
                               </div>
                             </div>
-                            <div className="text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-3 leading-relaxed">
-                              {isBlindMode && (item.item === 'Institutional Prestige' || item.component === 'Institutional Prestige') 
+                            <div className="text-sm font-medium text-zinc-900 dark:text-zinc-400 mb-3 leading-relaxed">
+                              {(isBlindMode && !isTierUniversities) && (item.item === 'Institutional Prestige' || item.component === 'Institutional Prestige') 
                                 ? "Primary institution: Institutional Identity Redacted (Tier information hidden to prevent prestige bias)." 
+                                : isTierUniversities && (item.item === 'Institutional Prestige' || item.component === 'Institutional Prestige')
+                                ? item.notes?.replace(/Primary institution: [^(]+ \(([^)]+)\).*/, "Primary institution: Redacted ($1).")
                                 : item.notes}
                               {item.notes?.includes('Beta') && (
                                 <span className="ml-1.5 inline-flex items-center group relative cursor-help align-middle">
-                                  <svg className="w-3.5 h-3.5 text-indigo-500/70 hover:text-indigo-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <svg className="w-3.5 h-3.5 text-indigo-500/70 hover:text-indigo-950 dark:text-indigo-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                   </svg>
                                   <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 p-4 bg-zinc-900/95 dark:bg-zinc-800 backdrop-blur-md text-white text-[10px] rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10 z-50 leading-relaxed translate-y-2 group-hover:translate-y-0">
-                                    <p className="font-black mb-1.5 text-indigo-400 uppercase tracking-widest text-[9px]">The Math Behind the Match</p>
+                                    <p className="font-black mb-1.5 text-indigo-950 dark:text-indigo-400 uppercase tracking-widest text-[9px]">The Math Behind the Match</p>
                                     <p className="mb-2">MERIT uses a <b>Beta Distribution</b> to mathematically fuse evidence from multiple sources:</p>
                                     <ul className="space-y-1 opacity-90">
                                       <li>• <b>Alpha (α)</b>: Strength of supporting evidence (CV mentions, GitHub code density).</li>
                                       <li>• <b>Beta (β)</b>: Level of uncertainty or contradictory signals (skill decay, lack of verified code).</li>
                                     </ul>
-                                    <p className="mt-2 pt-2 border-t border-white/5 font-medium italic text-zinc-400">Score = α / (α + β)</p>
+                                    <p className="mt-2 pt-2 border-t border-white/5 font-medium italic text-black dark:text-zinc-400">Score = α / (α + β)</p>
                                   </div>
                                 </span>
                               )}
@@ -343,30 +377,30 @@ export default function DetailedReportModal({
 
                             {/* Signal Processing Audit - Generic Container */}
                             {(item.alpha !== undefined || (item.source_details?.length || 0) > 0) && (
-                              <div className="mt-4 p-4 rounded-xl border border-indigo-500/30 bg-slate-900/50 relative overflow-hidden group">
+                              <div className="mt-4 p-4 rounded-xl border border-indigo-500/30 bg-indigo-50/50 dark:bg-slate-900/50 relative overflow-hidden group">
                                 <div className="flex items-center justify-between cursor-pointer" onClick={() => setExpandedAudit(expandedAudit === `${m.name}-${i}` ? null : `${m.name}-${i}`)}>
                                   <div className="flex items-center gap-3">
                                     {item.item && (
                                       <div className={`p-2 rounded-lg ${item.integrity_penalty_applied && !candidate.reverted_stuffing ? 'bg-amber-500/20' : 'bg-indigo-500/20'}`}>
-                                        <BsCalculator className={`w-4 h-4 ${item.integrity_penalty_applied && !candidate.reverted_stuffing ? 'text-amber-400' : 'text-indigo-400'}`} />
+                                        <BsCalculator className={`w-4 h-4 ${item.integrity_penalty_applied && !candidate.reverted_stuffing ? 'text-amber-700 dark:text-amber-400' : 'text-indigo-950 dark:text-indigo-400'}`} />
                                       </div>
                                     )}
                                     <div>
-                                      <p className={`text-[10px] uppercase tracking-widest font-bold mb-0.5 ${item.integrity_penalty_applied && !candidate.reverted_stuffing ? 'text-amber-400' : 'text-indigo-400'}`}>{(item.item || item.component)} Verification Audit</p>
-                                      <p className="text-sm font-mono text-slate-300">
+                                      <p className={`text-[10px] uppercase tracking-widest font-bold mb-0.5 ${item.integrity_penalty_applied && !candidate.reverted_stuffing ? 'text-amber-700 dark:text-amber-400' : 'text-indigo-950 dark:text-indigo-400'}`}>{(item.item || item.component)} Verification Audit</p>
+                                      <p className="text-sm font-mono text-slate-700 dark:text-slate-300">
                                         Result: {(item.score * 100).toFixed(0)}% 
                                         {item.influence !== undefined && (
-                                          <span className="text-[10px] text-indigo-400 ml-2 font-black bg-indigo-500/10 px-1.5 py-0.5 rounded border border-indigo-500/20">
+                                          <span className="text-[10px] text-indigo-950 dark:text-indigo-400 ml-2 font-black bg-indigo-500/10 px-1.5 py-0.5 rounded border border-indigo-500/20">
                                             Influence: {item.influence.toFixed(1)}
                                           </span>
                                         )}
-                                        {item.alpha !== undefined && <span className="text-[10px] text-zinc-500 ml-2">(Bayesian α={item.alpha?.toFixed(2)})</span>}
+                                        {item.alpha !== undefined && <span className="text-[10px] text-black dark:text-zinc-500 ml-2">(Bayesian α={item.alpha?.toFixed(2)})</span>}
                                       </p>
                                     </div>
                                   </div>
                                   <div className="flex items-center gap-2">
-                                    <span className="text-[10px] text-zinc-500 uppercase font-bold tracking-tighter">View Math Trail</span>
-                                    <BsChevronDown className={`w-4 h-4 text-slate-500 transition-transform ${expandedAudit === `${m.name}-${i}` ? 'rotate-180' : ''}`} />
+                                    <span className="text-[10px] text-black dark:text-zinc-500 uppercase font-bold tracking-tighter">View Math Trail</span>
+                                    <BsChevronDown className={`w-4 h-4 text-black dark:text-slate-500 transition-transform ${expandedAudit === `${m.name}-${i}` ? 'rotate-180' : ''}`} />
                                   </div>
                                 </div>
 
@@ -377,30 +411,30 @@ export default function DetailedReportModal({
                                       initial={{ height: 0, opacity: 0 }}
                                       animate={{ height: 'auto', opacity: 1 }}
                                       exit={{ height: 0, opacity: 0 }}
-                                      className="mt-4 pt-4 border-t border-slate-800 space-y-4"
+                                      className="mt-4 pt-4 border-t border-indigo-500/20 dark:border-slate-800 space-y-4"
                                     >
                                       <TemporalDecayAudit item={item} isBlindMode={isBlindMode} />
 
                                       {/* Phase 1: Source Normalisation */}
                                       <div className="space-y-3">
-                                        <div className="flex justify-between items-center text-xs font-black text-indigo-300 uppercase tracking-[0.15em] border-b border-indigo-500/20 pb-2 mb-1">
+                                        <div className="flex justify-between items-center text-xs font-black text-indigo-950 dark:text-indigo-300 uppercase tracking-[0.15em] border-b border-indigo-500/20 pb-2 mb-1">
                                           <span>Phase 1: Heuristic Normalisation</span>
                                         </div>
                                         {(item.source_details || []).map((sd: any, idx: number) => (
-                                          <div key={`p1-${idx}`} className="flex flex-col gap-1.5 border-b border-white/5 pb-3">
+                                          <div key={`p1-${idx}`} className="flex flex-col gap-1.5 border-b border-indigo-500/10 dark:border-white/5 pb-3">
                                             <div className="flex justify-between items-center text-[12px]">
-                                              <span className="text-zinc-300 font-bold tracking-tight">{sd.source} Signal</span>
-                                              <span className="text-indigo-400 font-mono font-black bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20">
+                                              <span className="text-black dark:text-zinc-300 font-bold tracking-tight">{sd.source} Signal</span>
+                                              <span className="text-indigo-950 dark:text-indigo-400 font-mono font-black bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20">
                                                 Strength: {sd.score?.toFixed(2)}
                                               </span>
                                             </div>
-                                            <div className="text-[11px] font-mono text-zinc-400/90 pl-3 border-l-2 border-indigo-500/30 leading-relaxed italic">
-                                              {isBlindMode && (sd.source === 'University Anchor' || (item.item === 'Institutional Prestige' || item.component === 'Institutional Prestige'))
+                                            <div className="text-[11px] font-mono text-zinc-900 dark:text-zinc-400/90 pl-3 border-l-2 border-indigo-500/30 leading-relaxed italic">
+                                              {(isBlindMode && !isTierUniversities) && (sd.source === 'University Anchor' || (item.item === 'Institutional Prestige' || item.component === 'Institutional Prestige'))
                                                 ? "Tier Mapping: Redacted (Institutional Prestige Hidden)"
                                                 : sd.derivation}
                                             </div>
                                             {(sd.source === 'CV' || sd.source === 'LinkedIn') && (
-                                              <div className="mt-1 pl-3 text-[9px] font-bold text-amber-500/70 uppercase tracking-tight flex items-center gap-1.5">
+                                              <div className="mt-1 pl-3 text-[9px] font-bold text-amber-700 dark:text-amber-500/70 uppercase tracking-tight flex items-center gap-1.5">
                                                 <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                 </svg>
@@ -426,22 +460,22 @@ export default function DetailedReportModal({
                         <div className="mt-2 p-4 rounded-xl border-2 border-dashed border-indigo-500/20 bg-indigo-500/5">
                           <div className="flex items-center gap-2 mb-3">
                             <div className="p-1.5 rounded-lg bg-indigo-500/20">
-                              <BsLayers className="w-3.5 h-3.5 text-indigo-400" />
+                              <BsLayers className="w-3.5 h-3.5 text-indigo-950 dark:text-indigo-400" />
                             </div>
-                            <span className="text-[10px] font-black uppercase tracking-widest text-indigo-400">Final Metric Aggregation</span>
+                            <span className="text-[10px] font-black uppercase tracking-widest text-indigo-950 dark:text-indigo-400">Final Metric Aggregation</span>
                           </div>
                           <div className="space-y-2">
                             {(m.breakdown || []).map((item: AuditItem, idx: number) => (
                               <div key={idx} className="flex justify-between items-center text-[11px] font-mono">
-                                <span className="text-zinc-500">{item.item || item.component}:</span>
-                                <span className="text-zinc-300">
+                                <span className="text-black dark:text-zinc-400">{item.item || item.component}:</span>
+                                <span className="text-black dark:text-zinc-300 font-bold">
                                   {Math.round((item.score || 0) * 100)}% × {item.weight?.toFixed(2) || (1 / (m.breakdown?.length || 1)).toFixed(2)}
                                 </span>
                               </div>
                             ))}
                             <div className="pt-2 border-t border-indigo-500/20 flex justify-between items-center">
-                              <span className="text-xs font-bold text-white">Aggregated Result:</span>
-                              <span className="text-sm font-black text-indigo-400">
+                              <span className="text-xs font-bold text-zinc-900 dark:text-white">Aggregated Result:</span>
+                              <span className="text-sm font-black text-indigo-950 dark:text-indigo-400">
                                 {Math.round(m.score * 100)}%
                               </span>
                             </div>
@@ -458,22 +492,22 @@ export default function DetailedReportModal({
           {/* Right Content: Tabs & Visualization */}
           <div className="hidden md:flex flex-col w-[60%] bg-zinc-100 dark:bg-zinc-950 overflow-hidden">
             <div className="flex border-b border-zinc-200 dark:border-zinc-800">
-              <button onClick={() => setActiveTab('cv')} className={`px-6 py-3 text-sm font-bold transition-colors ${activeTab === 'cv' ? 'text-indigo-600 border-b-2 border-indigo-600 bg-white dark:bg-zinc-900' : 'text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300'}`}>Candidate CV</button>
-              <button onClick={() => setActiveTab('github')} className={`px-6 py-3 text-sm font-bold transition-colors ${activeTab === 'github' ? 'text-indigo-600 border-b-2 border-indigo-600 bg-white dark:bg-zinc-900' : 'text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300'}`}>GitHub Evidence</button>
-              <button onClick={() => setActiveTab('linkedin')} className={`px-6 py-3 text-sm font-bold transition-colors ${activeTab === 'linkedin' ? 'text-indigo-600 border-b-2 border-indigo-600 bg-white dark:bg-zinc-900' : 'text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300'}`}>LinkedIn Experience</button>
-              <button onClick={() => setActiveTab('formula')} className={`px-6 py-3 text-sm font-bold transition-colors ${activeTab === 'formula' ? 'text-indigo-600 border-b-2 border-indigo-600 bg-white dark:bg-zinc-900' : 'text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300'}`}>Score Formula</button>
+              <button onClick={() => setActiveTab('cv')} className={`px-6 py-3 text-sm font-bold transition-colors ${activeTab === 'cv' ? 'text-indigo-600 border-b-2 border-indigo-600 bg-white dark:bg-zinc-900' : 'text-black dark:text-zinc-500 hover:text-black dark:hover:text-black dark:text-zinc-300'}`}>Candidate CV</button>
+              <button onClick={() => setActiveTab('github')} className={`px-6 py-3 text-sm font-bold transition-colors ${activeTab === 'github' ? 'text-indigo-600 border-b-2 border-indigo-600 bg-white dark:bg-zinc-900' : 'text-black dark:text-zinc-500 hover:text-black dark:hover:text-black dark:text-zinc-300'}`}>GitHub Evidence</button>
+              <button onClick={() => setActiveTab('linkedin')} className={`px-6 py-3 text-sm font-bold transition-colors ${activeTab === 'linkedin' ? 'text-indigo-600 border-b-2 border-indigo-600 bg-white dark:bg-zinc-900' : 'text-black dark:text-zinc-500 hover:text-black dark:hover:text-black dark:text-zinc-300'}`}>LinkedIn Experience</button>
+              <button onClick={() => setActiveTab('formula')} className={`px-6 py-3 text-sm font-bold transition-colors ${activeTab === 'formula' ? 'text-indigo-600 border-b-2 border-indigo-600 bg-white dark:bg-zinc-900' : 'text-black dark:text-zinc-500 hover:text-black dark:hover:text-black dark:text-zinc-300'}`}>Score Formula</button>
             </div>
 
             <div className={`flex-1 overflow-hidden ${activeTab === 'cv' ? '' : 'overflow-y-auto p-8'}`}>
               {!candidateDetail ? (
-                <div className="h-full flex items-center justify-center text-zinc-400 animate-pulse font-medium">Extracting source profiles...</div>
+                <div className="h-full flex items-center justify-center text-black dark:text-zinc-400 animate-pulse font-medium">Extracting source profiles...</div>
               ) : (
                 <>
                   {activeTab === 'cv' && (
                     <div className="h-full relative flex flex-col group/cv">
                       <div className="absolute top-6 right-6 z-10 flex bg-white dark:bg-zinc-800 p-1 rounded-xl shadow-2xl border border-zinc-200 dark:border-zinc-700 opacity-0 group-hover/cv:opacity-100 transition-opacity duration-300">
-                        <button onClick={() => setCvViewMode('original')} className={`px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${cvViewMode === 'original' ? 'bg-indigo-600 text-white shadow-lg' : 'text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200'}`}>Original Doc</button>
-                        <button onClick={() => setCvViewMode('intelligence')} className={`px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${cvViewMode === 'intelligence' ? 'bg-indigo-600 text-white shadow-lg' : 'text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200'}`}>AI Evidence</button>
+                        <button onClick={() => setCvViewMode('original')} className={`px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${cvViewMode === 'original' ? 'bg-indigo-600 text-white shadow-lg' : 'text-black dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200'}`}>Original Doc</button>
+                        <button onClick={() => setCvViewMode('intelligence')} className={`px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${cvViewMode === 'intelligence' ? 'bg-indigo-600 text-white shadow-lg' : 'text-black dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200'}`}>AI Evidence</button>
                       </div>
                       {cvViewMode === 'original' ? (
                         <div className="relative w-full h-full overflow-hidden">
@@ -486,13 +520,13 @@ export default function DetailedReportModal({
                             <div className="absolute inset-0 z-20 flex items-center justify-center bg-zinc-950/20 backdrop-blur-[2px] animate-in fade-in zoom-in duration-500">
                               <div className="bg-white/90 dark:bg-zinc-900/90 backdrop-blur-xl p-10 rounded-[2.5rem] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] border border-white/20 dark:border-zinc-800/50 text-center max-sm mx-4 transform transition-all hover:scale-[1.02]">
                                 <div className="w-20 h-20 bg-indigo-500/10 rounded-full flex items-center justify-center mx-auto mb-6 ring-8 ring-indigo-500/5">
-                                  <svg className="w-10 h-10 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <svg className="w-10 h-10 text-indigo-950 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 00-2 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                   </svg>
                                 </div>
                                 <h3 className="text-xl font-black text-zinc-900 dark:text-zinc-100 mb-3 tracking-tight">Identity Mask Active</h3>
-                                <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed font-medium">
-                                  To ensure an <b>unbiased evaluation</b>, the original document is visually restricted. Please use the <span className="text-indigo-600 dark:text-indigo-400 font-bold">AI Evidence</span> engine to audit skills.
+                                <p className="text-sm text-black dark:text-zinc-500 dark:text-zinc-400 leading-relaxed font-medium">
+                                  To ensure an <b>unbiased evaluation</b>, the original document is visually restricted. Please use the <span className="text-indigo-950 dark:text-indigo-400 font-bold">AI Evidence</span> engine to audit skills.
                                 </p>
                                 <button 
                                   onClick={() => setCvViewMode('intelligence')}
@@ -514,7 +548,7 @@ export default function DetailedReportModal({
                               <h2 className="text-4xl font-black uppercase tracking-tighter mb-4 text-zinc-900 dark:text-white">
                                 {renderRedactedText(candidateDetail.name || "Candidate Identity")}
                               </h2>
-                              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500">
+                              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[10px] font-black uppercase tracking-[0.2em] text-black dark:text-zinc-500">
                                 <span className="flex items-center gap-2">
                                   <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z" /></svg>
                                   {renderRedactedText(candidateDetail.email || "email@redacted.com")}
@@ -529,7 +563,7 @@ export default function DetailedReportModal({
                             {/* Professional Experience Section */}
                             {(candidateDetail.cv_experience?.length || 0) > 0 && (
                               <section className="mb-12">
-                                <h3 className="text-xs font-black uppercase tracking-[0.35em] text-indigo-600 dark:text-indigo-400 mb-8 border-b border-zinc-100 dark:border-zinc-800 pb-2">Professional Experience</h3>
+                                <h3 className="text-xs font-black uppercase tracking-[0.35em] text-indigo-950 dark:text-indigo-400 mb-8 border-b border-zinc-100 dark:border-zinc-800 pb-2">Professional Experience</h3>
                                 <div className="space-y-10">
                                   {(candidateDetail.cv_experience || []).map((exp: any, i: number) => (
                                     <div key={i} className="relative group/exp">
@@ -537,10 +571,10 @@ export default function DetailedReportModal({
                                         <h4 className="text-lg font-black text-zinc-900 dark:text-zinc-50 tracking-tight group-hover/exp:text-indigo-600 transition-colors">
                                           {isBlindMode ? "Professional Institution Redacted" : exp.name}
                                         </h4>
-                                        <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">{exp.start_date} — {exp.end_date}</span>
+                                        <span className="text-[10px] font-black text-black dark:text-zinc-400 uppercase tracking-widest">{exp.start_date} — {exp.end_date}</span>
                                       </div>
-                                      <p className="text-sm font-bold text-zinc-500 mb-4 italic leading-relaxed">{exp.subtitle}</p>
-                                      <p className="text-[14px] leading-[1.7] text-zinc-600 dark:text-zinc-400 antialiased">{exp.summary}</p>
+                                      <p className="text-sm font-bold text-black dark:text-zinc-500 mb-4 italic leading-relaxed">{exp.subtitle}</p>
+                                      <p className="text-[14px] leading-[1.7] text-zinc-900 dark:text-zinc-400 antialiased">{exp.summary}</p>
                                     </div>
                                   ))}
                                 </div>
@@ -550,22 +584,24 @@ export default function DetailedReportModal({
                             {/* Education Section */}
                             {(candidateDetail.cv_education?.length || 0) > 0 && (
                               <section className="mb-12">
-                                <h3 className="text-xs font-black uppercase tracking-[0.35em] text-indigo-600 dark:text-indigo-400 mb-8 border-b border-zinc-100 dark:border-zinc-800 pb-2">Education</h3>
+                                <h3 className="text-xs font-black uppercase tracking-[0.35em] text-indigo-950 dark:text-indigo-400 mb-8 border-b border-zinc-100 dark:border-zinc-800 pb-2">Education</h3>
                                 <div className="grid grid-cols-1 gap-8">
                                  {(candidateDetail.cv_education || []).map((edu: any, i: number) => (
                                     <div key={i} className="flex justify-between items-start group/edu">
                                       <div className="space-y-1">
                                         <h4 className="text-[16px] font-black text-zinc-900 dark:text-zinc-50 tracking-tight">
-                                          {isBlindMode ? (
-                                            <span className="bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 rounded text-[10px] text-zinc-400 font-bold uppercase tracking-widest">Institution Redacted for Bias Mitigation</span>
+                                          {isTierUniversities ? (
+                                            <span className="bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest">{getUniversityTier(edu.school_name)}</span>
+                                          ) : isBlindMode ? (
+                                            <span className="bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 rounded text-[10px] text-black dark:text-zinc-400 font-bold uppercase tracking-widest">Institution Redacted for Bias Mitigation</span>
                                           ) : edu.school_name}
                                         </h4>
-                                        <p className="text-sm font-bold text-zinc-500">{edu.degree}</p>
+                                        <p className="text-sm font-bold text-black dark:text-zinc-500">{edu.degree}</p>
                                       </div>
                                       <div className="text-right shrink-0">
-                                        <div className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-2">{edu.start_date} — {edu.end_date}</div>
+                                        <div className="text-[10px] font-black text-black dark:text-zinc-400 uppercase tracking-widest mb-2">{edu.start_date} — {edu.end_date}</div>
                                         {edu.grade && (
-                                          <span className="inline-block px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 text-[10px] font-black uppercase tracking-wider ring-1 ring-indigo-100 dark:ring-indigo-900/30">
+                                          <span className="inline-block px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-900/20 text-indigo-950 dark:text-indigo-400 text-[10px] font-black uppercase tracking-wider ring-1 ring-indigo-100 dark:ring-indigo-900/30">
                                             {edu.grade}
                                           </span>
                                         )}
@@ -579,7 +615,7 @@ export default function DetailedReportModal({
                             {/* Projects Section */}
                             {(candidateDetail.projects_history?.length || 0) > 0 && (
                               <section>
-                                <h3 className="text-xs font-black uppercase tracking-[0.35em] text-indigo-600 dark:text-indigo-400 mb-8 border-b border-zinc-100 dark:border-zinc-800 pb-2">Technical Projects & Research</h3>
+                                <h3 className="text-xs font-black uppercase tracking-[0.35em] text-indigo-950 dark:text-indigo-400 mb-8 border-b border-zinc-100 dark:border-zinc-800 pb-2">Technical Projects & Research</h3>
                                 <div className="space-y-8">
                                   {(candidateDetail.projects_history || []).filter((p: any) => (p.title || p.name) && (p.title !== 'None' && p.name !== 'None')).map((proj: any, i: number) => {
                                     const projTitle = proj.title || proj.name || "Untitled Project";
@@ -603,33 +639,33 @@ export default function DetailedReportModal({
                                               Verified GitHub Signal
                                             </div>
                                           ) : (
-                                            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-zinc-500 text-[9px] font-black uppercase tracking-widest animate-in fade-in slide-in-from-right-2 duration-700">
+                                            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-black dark:text-zinc-500 text-[9px] font-black uppercase tracking-widest animate-in fade-in slide-in-from-right-2 duration-700">
                                               {/(university|college|course|laboratory|lab|assignment|dissertation|thesis|module|student|coursework|academic)/i.test(`${projTitle} ${projDesc}`) 
                                                 ? "Academic / University Research" 
                                                 : "Proprietary / Private Project"}
                                             </div>
                                           )}
                                         </div>
-                                        <p className="text-[14px] leading-[1.7] text-zinc-600 dark:text-zinc-400 antialiased mb-4">{projDesc}</p>
+                                        <p className="text-[14px] leading-[1.7] text-zinc-900 dark:text-zinc-400 antialiased mb-4">{projDesc}</p>
                                         
                                         {ghMatch && (
                                           <div className="bg-zinc-50 dark:bg-zinc-950/50 rounded-xl border border-zinc-100 dark:border-zinc-800 p-5 mt-2 transition-all group-hover/proj:border-indigo-500/30">
                                             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
                                               <div className="space-y-1">
-                                                <div className="text-[9px] font-black uppercase tracking-widest text-zinc-400">Complexity</div>
+                                                <div className="text-[9px] font-black uppercase tracking-widest text-black dark:text-zinc-400">Complexity</div>
                                                 <div className="text-sm font-black text-zinc-900 dark:text-zinc-100">{ghMatch.lines?.toLocaleString() || '---'} LoC</div>
                                               </div>
                                               <div className="space-y-1">
-                                                <div className="text-[9px] font-black uppercase tracking-widest text-zinc-400">Activity</div>
+                                                <div className="text-[9px] font-black uppercase tracking-widest text-black dark:text-zinc-400">Activity</div>
                                                 <div className="text-sm font-black text-zinc-900 dark:text-zinc-100">{ghMatch.commits || '---'} Commits</div>
                                               </div>
                                               <div className="space-y-1">
-                                                <div className="text-[9px] font-black uppercase tracking-widest text-zinc-400">Traction</div>
+                                                <div className="text-[9px] font-black uppercase tracking-widest text-black dark:text-zinc-400">Traction</div>
                                                 <div className="text-sm font-black text-zinc-900 dark:text-zinc-100">★ {ghMatch.stars || 0} / {ghMatch.forks || 0}</div>
                                               </div>
                                               <div className="space-y-1">
-                                                <div className="text-[9px] font-black uppercase tracking-widest text-zinc-400">Stack</div>
-                                                <div className="text-xs font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-tight">{ghMatch.language || 'Mixed'}</div>
+                                                <div className="text-[9px] font-black uppercase tracking-widest text-black dark:text-zinc-400">Stack</div>
+                                                <div className="text-xs font-black text-indigo-950 dark:text-indigo-400 uppercase tracking-tight">{ghMatch.language || 'Mixed'}</div>
                                               </div>
                                             </div>
                                             
@@ -649,7 +685,7 @@ export default function DetailedReportModal({
                                                   {(Object.entries(ghMatch.languages_distribution || {}) as [string, number][]).slice(0, 4).map(([lang, pct]) => (
                                                     <div key={lang} className="flex items-center gap-1.5">
                                                       <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: `hsl(${Object.keys(ghMatch.languages_distribution).indexOf(lang) * 40}, 70%, 60%)` }} />
-                                                      <span className="text-[9px] font-bold text-zinc-500">{lang} {pct}%</span>
+                                                      <span className="text-[9px] font-bold text-black dark:text-zinc-500">{lang} {pct}%</span>
                                                     </div>
                                                   ))}
                                                 </div>
@@ -681,7 +717,7 @@ export default function DetailedReportModal({
                       <div className="p-6 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm flex items-center gap-6">
                         <div className={`w-16 h-16 rounded-full ring-2 ring-indigo-500/20 overflow-hidden bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center`}>
                           {isBlindMode ? (
-                            <svg className="w-8 h-8 text-zinc-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" /></svg>
+                            <svg className="w-8 h-8 text-black dark:text-zinc-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" /></svg>
                           ) : (
                             <img src={candidateDetail.github_profile?.avatar_url} className="w-full h-full object-cover" alt="GH" />
                           )}
@@ -690,7 +726,7 @@ export default function DetailedReportModal({
                           <h4 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">
                             {isBlindMode ? "Engineering Contributor" : (candidateDetail.github_profile?.name || candidateDetail.github_profile?.username)}
                           </h4>
-                          <div className="flex items-center gap-4 mt-1 text-xs font-bold text-zinc-500">
+                          <div className="flex items-center gap-4 mt-1 text-xs font-bold text-black dark:text-zinc-500">
                             <span>★ {candidateDetail.github_profile?.total_stars} stars</span>
                             <span>⚡ {candidateDetail.github_profile?.total_commits} commits</span>
                           </div>
@@ -698,13 +734,13 @@ export default function DetailedReportModal({
                       </div>
                       
                       <div className="p-6 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
-                        <h4 className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-4">Technical Breadth (LoC %)</h4>
+                        <h4 className="text-[10px] font-black uppercase tracking-widest text-black dark:text-zinc-400 mb-4">Technical Breadth (LoC %)</h4>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
                           {candidateDetail.github_profile?.languages?.map((l: any) => (
                             <div key={l.label} className="space-y-1">
                               <div className="flex justify-between text-[11px] font-bold">
                                 <span className="text-zinc-600">{l.label}</span>
-                                <span className="text-zinc-400">{l.pct}%</span>
+                                <span className="text-black dark:text-zinc-400">{l.pct}%</span>
                               </div>
                               <div className="h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden">
                                 <div className="h-full bg-indigo-600" style={{ width: `${l.pct}%` }} />
@@ -721,20 +757,20 @@ export default function DetailedReportModal({
                           <div key={repo.id} className="p-5 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800">
                             <div className="flex justify-between items-start mb-2">
                               <h5 className="font-bold text-sm text-zinc-900 dark:text-zinc-100">{repo.name}</h5>
-                              <span className="text-[10px] font-black text-indigo-500 bg-indigo-50 dark:bg-indigo-900/20 px-2 py-0.5 rounded-full">{repo.language}</span>
+                              <span className="text-[10px] font-black text-indigo-950 dark:text-indigo-500 bg-indigo-50 dark:bg-indigo-900/20 px-2 py-0.5 rounded-full">{repo.language}</span>
                             </div>
-                            <p className="text-xs text-zinc-500 dark:text-zinc-400 line-clamp-2">{repo.description}</p>
+                            <p className="text-xs text-black dark:text-zinc-500 dark:text-zinc-400 line-clamp-2">{repo.description}</p>
                           </div>
                         ))}
                       </div>
 
                       {!candidateDetail.github_profile && (
                         <div className="p-12 text-center bg-zinc-50 dark:bg-zinc-950/20 rounded-3xl border border-zinc-100 dark:border-zinc-800 border-dashed">
-                          <svg className="w-12 h-12 text-zinc-300 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <svg className="w-12 h-12 text-black dark:text-zinc-300 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                           </svg>
                           <h3 className="text-sm font-black text-zinc-900 dark:text-zinc-50 uppercase tracking-widest">No GitHub Profile Linked</h3>
-                          <p className="text-xs text-zinc-500 mt-2">Open source contributions and technical evolution data are unavailable for this profile.</p>
+                          <p className="text-xs text-black dark:text-zinc-500 mt-2">Open source contributions and technical evolution data are unavailable for this profile.</p>
                         </div>
                       )}
                     </div>
@@ -746,7 +782,7 @@ export default function DetailedReportModal({
                         <div className="flex items-center gap-6 mb-6">
                           <div className="w-20 h-20 rounded-2xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center ring-4 ring-indigo-500/10 shadow-xl overflow-hidden">
                             {isBlindMode ? (
-                              <svg className="w-10 h-10 text-zinc-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" /></svg>
+                              <svg className="w-10 h-10 text-black dark:text-zinc-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" /></svg>
                             ) : (
                               <img src={candidateDetail.linkedin_profile?.profile_photo} className="w-full h-full object-cover" alt="LI" />
                             )}
@@ -755,8 +791,8 @@ export default function DetailedReportModal({
                             <h4 className="text-2xl font-black text-zinc-900 dark:text-zinc-50">
                               {isBlindMode ? "Professional Identity" : candidateDetail.linkedin_profile?.full_name}
                             </h4>
-                            <p className="text-sm font-bold text-indigo-600 dark:text-indigo-400">{candidateDetail.linkedin_profile?.headline}</p>
-                            <div className="flex items-center gap-3 text-[10px] font-black text-zinc-400 uppercase tracking-widest pt-1">
+                            <p className="text-sm font-bold text-indigo-950 dark:text-indigo-400">{candidateDetail.linkedin_profile?.headline}</p>
+                            <div className="flex items-center gap-3 text-[10px] font-black text-black dark:text-zinc-400 uppercase tracking-widest pt-1">
                               <span>{candidateDetail.linkedin_profile?.connections || 0} Connections</span>
                               <span className="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-700" />
                               <span>{candidateDetail.linkedin_profile?.followers || 0} Followers</span>
@@ -764,7 +800,7 @@ export default function DetailedReportModal({
                           </div>
                         </div>
                         {candidateDetail.linkedin_profile?.about && (
-                          <p className="text-sm text-zinc-600 dark:text-zinc-400 italic border-l-2 border-indigo-500/20 pl-4 py-1 leading-relaxed">
+                          <p className="text-sm text-zinc-900 dark:text-zinc-400 italic border-l-2 border-indigo-500/20 pl-4 py-1 leading-relaxed">
                             "{candidateDetail.linkedin_profile?.about}"
                           </p>
                         )}
@@ -773,13 +809,13 @@ export default function DetailedReportModal({
                       {/* Skills Grid */}
                       {((candidateDetail.linkedin_profile?.skills?.length || 0) > 0) && (
                         <div className="p-8 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
-                          <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 mb-6 flex items-center gap-2">
+                          <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-black dark:text-zinc-400 mb-6 flex items-center gap-2">
                              Professional Endorsements
-                             <span className="text-indigo-500">•</span>
+                             <span className="text-indigo-950 dark:text-indigo-500">•</span>
                           </h4>
                           <div className="flex flex-wrap gap-2">
                             {candidateDetail.linkedin_profile?.skills?.map((skill: string, i: number) => (
-                              <span key={i} className="px-3 py-1.5 bg-zinc-50 dark:bg-zinc-800/50 rounded-lg text-[10px] font-black text-zinc-600 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800 uppercase tracking-tight">
+                              <span key={i} className="px-3 py-1.5 bg-zinc-50 dark:bg-zinc-800/50 rounded-lg text-[10px] font-black text-zinc-900 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800 uppercase tracking-tight">
                                 {skill}
                               </span>
                             ))}
@@ -788,49 +824,49 @@ export default function DetailedReportModal({
                       )}
 
                       <div className="space-y-4">
-                        <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 px-2">Professional Experience</h4>
+                        <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-black dark:text-zinc-400 px-2">Professional Experience</h4>
                         {(candidateDetail.linkedin_experience || []).map((exp: any) => (
                           <div key={exp.id} className="p-6 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800">
                             <div className="flex justify-between items-start mb-4">
                               <div>
                                 <h4 className="font-bold text-zinc-900 dark:text-zinc-50">{exp.position}</h4>
-                                <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400">{isBlindMode ? "Institution Redacted" : exp.company_name}</span>
+                                <span className="text-xs font-bold text-indigo-950 dark:text-indigo-400">{isBlindMode ? "Institution Redacted" : exp.company_name}</span>
                               </div>
-                              <span className="text-[10px] font-mono text-zinc-400">{formatDate(exp.start_date)} — {formatDate(exp.end_date) || 'Present'}</span>
+                              <span className="text-[10px] font-mono text-black dark:text-zinc-400">{formatDate(exp.start_date)} — {formatDate(exp.end_date) || 'Present'}</span>
                             </div>
-                            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">{exp.description}</p>
+                            <p className="text-sm text-zinc-900 dark:text-zinc-400 leading-relaxed">{exp.description}</p>
                           </div>
                         ))}
                       </div>
                       
                       <div className="space-y-4">
-                        <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 px-2">Featured Projects</h4>
+                        <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-black dark:text-zinc-400 px-2">Featured Projects</h4>
                         <div className="grid grid-cols-1 gap-4">
                           {(candidateDetail.linkedin_projects || []).map((proj: any, i: number) => (
                             <div key={i} className="p-6 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
                               <div className="flex justify-between items-start mb-2">
                                 <h5 className="font-bold text-sm text-zinc-900 dark:text-zinc-50">{proj.title}</h5>
-                                <span className="text-[10px] font-mono text-zinc-400">{formatDate(proj.start_date)} — {formatDate(proj.end_date)}</span>
+                                <span className="text-[10px] font-mono text-black dark:text-zinc-400">{formatDate(proj.start_date)} — {formatDate(proj.end_date)}</span>
                               </div>
-                              <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">{proj.description}</p>
+                              <p className="text-sm text-zinc-900 dark:text-zinc-400 leading-relaxed">{proj.description}</p>
                             </div>
                           ))}
                         </div>
                       </div>
 
                       <div className="space-y-4">
-                        <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 px-2">Certifications & Credentials</h4>
+                        <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-black dark:text-zinc-400 px-2">Certifications & Credentials</h4>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           {(candidateDetail.linkedin_certifications || []).map((cert: any, i: number) => (
                             <div key={i} className="p-4 bg-zinc-50 dark:bg-zinc-800/30 rounded-xl border border-zinc-200 dark:border-zinc-800 flex items-center gap-4">
                               <div className="w-10 h-10 rounded-lg bg-white dark:bg-zinc-900 flex items-center justify-center border border-zinc-200 dark:border-zinc-700 shrink-0">
-                                <svg className="w-5 h-5 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg className="w-5 h-5 text-indigo-950 dark:text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04kM12 20.944a11.955 11.955 0 01-8.618-3.04m17.236 0a11.955 11.955 0 01-8.618 3.04" />
                                 </svg>
                               </div>
                               <div>
                                 <h5 className="text-xs font-bold text-zinc-900 dark:text-zinc-50 leading-tight">{cert.title}</h5>
-                                <p className="text-[10px] text-zinc-500 mt-1">{cert.issuer || 'Verified Credential'}</p>
+                                <p className="text-[10px] text-black dark:text-zinc-500 mt-1">{cert.issuer || 'Verified Credential'}</p>
                               </div>
                             </div>
                           ))}
@@ -838,31 +874,37 @@ export default function DetailedReportModal({
                       </div>
 
                       <div className="space-y-4">
-                        <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 px-2">Volunteering & Community</h4>
+                        <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-black dark:text-zinc-400 px-2">Volunteering & Community</h4>
                         <div className="grid grid-cols-1 gap-4">
                           {(candidateDetail.linkedin_volunteering || []).map((vol: any, i: number) => (
                             <div key={i} className="p-4 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm flex justify-between items-center">
                               <div>
                                 <h5 className="text-xs font-bold text-zinc-900 dark:text-zinc-50">{vol.position}</h5>
-                                <p className="text-[10px] text-zinc-500 mt-0.5">{isBlindMode ? "Organization Redacted" : (vol.organization || 'Community Program')}</p>
+                                <p className="text-[10px] text-black dark:text-zinc-500 mt-0.5">{isBlindMode ? "Organization Redacted" : (vol.organization || 'Community Program')}</p>
                               </div>
-                              <span className="text-[10px] font-mono text-zinc-400">{formatDate(vol.start_date)} — {formatDate(vol.end_date) || 'Present'}</span>
+                              <span className="text-[10px] font-mono text-black dark:text-zinc-400">{formatDate(vol.start_date)} — {formatDate(vol.end_date) || 'Present'}</span>
                             </div>
                           ))}
                         </div>
                       </div>
 
                       <div className="space-y-4">
-                        <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 px-2">Academic Credentials</h4>
+                        <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-black dark:text-zinc-400 px-2">Academic Credentials</h4>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           {(candidateDetail.cv_education || []).map((edu: any, i: number) => (
                             <div key={i} className="p-5 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm group/edu hover:border-indigo-500/50 transition-all">
                               <h5 className="font-bold text-sm text-zinc-900 dark:text-zinc-100 group-hover/edu:text-indigo-600 transition-colors">
-                                {isBlindMode ? "Institution Redacted (Bias Mitigation Active)" : edu.school_name}
+                                {isTierUniversities ? (
+                                  <span className="text-indigo-800 dark:text-indigo-400 font-bold">{getUniversityTier(edu.school_name)}</span>
+                                ) : isBlindMode ? (
+                                  "Institution Redacted (Bias Mitigation Active)"
+                                ) : (
+                                  edu.school_name
+                                )}
                               </h5>
-                              <p className="text-xs text-indigo-600 dark:text-indigo-400 mt-1 font-bold">{edu.degree}</p>
+                              <p className="text-xs text-indigo-950 dark:text-indigo-400 mt-1 font-bold">{edu.degree}</p>
                               <div className="mt-3 pt-3 border-t border-zinc-100 dark:border-zinc-800 flex justify-between items-center">
-                                <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">{formatDate(edu.start_date)} — {formatDate(edu.end_date)}</span>
+                                <span className="text-[10px] font-black text-black dark:text-zinc-400 uppercase tracking-widest">{formatDate(edu.start_date)} — {formatDate(edu.end_date)}</span>
                               </div>
                             </div>
                           ))}
@@ -871,11 +913,11 @@ export default function DetailedReportModal({
                       
                       {!candidateDetail.linkedin_profile && (
                         <div className="p-12 text-center bg-zinc-50 dark:bg-zinc-950/20 rounded-3xl border border-zinc-100 dark:border-zinc-800 border-dashed">
-                          <svg className="w-12 h-12 text-zinc-300 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <svg className="w-12 h-12 text-black dark:text-zinc-300 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.826a4 4 0 015.656 0l4 4a4 4 0 01-5.656 5.656l-1.101-1.101" />
                           </svg>
                           <h3 className="text-sm font-black text-zinc-900 dark:text-zinc-50 uppercase tracking-widest">No LinkedIn Profile Found</h3>
-                          <p className="text-xs text-zinc-500 mt-2">Professional experience was extracted exclusively from the CV for this candidate.</p>
+                          <p className="text-xs text-black dark:text-zinc-500 mt-2">Professional experience was extracted exclusively from the CV for this candidate.</p>
                         </div>
                       )}
                     </div>

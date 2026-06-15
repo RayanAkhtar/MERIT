@@ -1,5 +1,5 @@
 {
-    "raw_cv_text": "Bob Gem\nComputer science graduate with solid foundation in full-stack development and systems programming. Proficient across multiple modern languages and frameworks including Python, C++, Java, and Flutter. Demonstrates capability in building scalable applications utilising cloud infrastructure and computer vision technologies.\n\ndjango-rest-framework-contrib —\nPython · personal repo\nSmall collection of helper utilities I keep around for my own Django side projects, mostly tweaks to serializers and viewsets.\nMainly maintained on weekends; occasional contributions from a handful of other people.\n\nreact-distributed-state —\nTypeScript · personal repo\nPersonal experiment exploring how to share React component state across browser tabs using broadcast channels.\nStarted as a learning exercise to dig into React internals; kept it on GitHub for my own reference.\n\nImperial College London — 2022 – 2026\nManchester, UK\nRelevant modules: Introduction to Machine Learning — Jul 2015 – Aug 2019\nBirmingham, UK\n\nAArch64 C C++ Dart Firebase Flask Flutter Java JavaScript MySQL\nOpenCV Python PyTorch React Scala Spring SQL TypeScript Node.js Django\nSoftware Engineer & Builder\n✉ bob.gem@example.com    +447783444288 in/BobGem github",
+    "raw_cv_text": "Bob Gem\nComputer science graduate with solid foundation in full-stack development and systems programming. Proficient across multiple modern languages and frameworks including, C++, Java, and Flutter. Demonstrates capability in building scalable applications utilising cloud infrastructure and computer vision technologies.\n\ndjango-rest-framework-contrib —\nPython · personal repo\nSmall collection of helper utilities I keep around for my own Django side projects, mostly tweaks to serializers and viewsets.\nMainly maintained on weekends; occasional contributions from a handful of other people.\n\nreact-distributed-state —\nTypeScript · personal repo\nPersonal experiment exploring how to share React component state across browser tabs using broadcast channels.\nStarted as a learning exercise to dig into React internals; kept it on GitHub for my own reference.\n\nImperial College London — 2022 – 2026\nManchester, UK\nRelevant modules: Introduction to Machine Learning — Jul 2015 – Aug 2019\nBirmingham, UK\n\nAArch64 C C++ Dart Firebase Flask Flutter Java JavaScript MySQL\nOpenCV Python PyTorch React Scala Spring SQL TypeScript Node.js Django\nSoftware Engineer & Builder\n✉ bob.gem@example.com    +447783444288 in/BobGem github",
     "name": "Bob Gem",
     "email": "bob.gem@example.com",
     "phone": "+447783444288",
@@ -15,14 +15,14 @@
     "projects": [
         {
             "name": "django-rest-framework-contrib",
-            "subtitle": "Python · personal repo",
+            "subtitle": "personal repo",
             "start_date": "",
             "end_date": "",
             "summary": "Small collection of helper utilities I keep around for my own Django side projects, mostly tweaks to serializers and viewsets. Mainly maintained on weekends; occasional contributions from a handful of other people."
         },
         {
             "name": "react-distributed-state",
-            "subtitle": "TypeScript · personal repo",
+            "subtitle": "personal repo",
             "start_date": "",
             "end_date": "",
             "summary": "Personal experiment exploring how to share React component state across browser tabs using broadcast channels. Started as a learning exercise to dig into React internals; kept it on GitHub for my own reference."
@@ -32,14 +32,6 @@
     "cv_experience": [],
     "experience": "",
     "education": [
-        {
-            "name": "Imperial College London",
-            "subtitle": "Manchester, UK",
-            "start_date": "2022",
-            "end_date": "2026",
-            "grade": null,
-            "summary": ""
-        },
         {
             "name": "Relevant modules: Introduction to Machine Learning",
             "subtitle": "Birmingham, UK",

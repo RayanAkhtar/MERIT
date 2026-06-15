@@ -53,21 +53,21 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 
     return (
       <div className="bg-white/95 dark:bg-zinc-900/95 p-4 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-2xl backdrop-blur-md min-w-[160px] ring-1 ring-black/5">
-        <p className="text-[10px] font-black mb-3 text-zinc-400 uppercase tracking-widest border-b border-zinc-100 dark:border-zinc-800 pb-2">{label}</p>
+        <p className="text-[10px] font-black mb-3 text-black dark:text-zinc-400 uppercase tracking-widest border-b border-zinc-100 dark:border-zinc-800 pb-2">{label}</p>
         <div className="space-y-2">
           {sortedData.map((entry: any, index: number) => (
             <div key={index} className="flex items-center justify-between gap-6">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full shadow-sm" style={{ backgroundColor: entry.color }} />
-                <span className="text-[10px] font-black text-zinc-700 dark:text-zinc-300 uppercase tracking-widest">{entry.name}</span>
+                <span className="text-[10px] font-black text-black dark:text-zinc-300 uppercase tracking-widest">{entry.name}</span>
               </div>
-              <span className="text-[10px] font-mono font-bold text-indigo-600 dark:text-indigo-400">
+              <span className="text-[10px] font-mono font-bold text-indigo-950 dark:text-indigo-400">
                 {entry.value >= 1000 ? `${(entry.value / 1000).toFixed(1)}k` : entry.value} LINES
               </span>
             </div>
           ))}
           {payload.length > 10 && (
-            <div className="pt-1 text-[8px] text-zinc-400 italic text-center border-t border-zinc-100 dark:border-zinc-800 mt-2">
+            <div className="pt-1 text-[8px] text-black dark:text-zinc-400 italic text-center border-t border-zinc-100 dark:border-zinc-800 mt-2">
               + {payload.length - 10} other languages
             </div>
           )}
@@ -163,21 +163,21 @@ export default function GitHubEvolutionChart({ history, priorityLanguages }: Git
     <div className="p-8 bg-white dark:bg-[#09090b] border border-zinc-200 dark:border-zinc-800 rounded-3xl shadow-xl space-y-8">
       <div className="flex items-center justify-between">
         <div className="space-y-1">
-          <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400">Language Evolution</h4>
-          <p className="text-[11px] font-bold text-zinc-500">Temporal progression of verified code volume</p>
+          <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-black dark:text-zinc-400">Language Evolution</h4>
+          <p className="text-[11px] font-bold text-black dark:text-zinc-500">Temporal progression of verified code volume</p>
         </div>
       </div>
       
       {/* Time Range and Slider */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 p-6 rounded-2xl bg-zinc-50 dark:bg-zinc-900/30 border border-zinc-100 dark:border-zinc-800 shadow-inner">
           <div className="space-y-2">
-              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 dark:text-zinc-600">Time Range</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-black dark:text-zinc-400 dark:text-zinc-600">Time Range</span>
               <div className="flex items-center gap-4 text-zinc-900 dark:text-white font-black tracking-tighter text-2xl">
-                  <span className="px-3 py-1.5 rounded-lg bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-indigo-600 dark:text-indigo-400">
+                  <span className="px-3 py-1.5 rounded-lg bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-indigo-950 dark:text-indigo-400">
                       {availableYears[minYearIdx] || '...'}
                   </span>
-                  <span className="text-zinc-300 dark:text-zinc-700 opacity-50">—</span>
-                  <span className="px-3 py-1.5 rounded-lg bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-indigo-600 dark:text-indigo-400">
+                  <span className="text-black dark:text-zinc-300 dark:text-zinc-700 opacity-50">—</span>
+                  <span className="px-3 py-1.5 rounded-lg bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-indigo-950 dark:text-indigo-400">
                       {availableYears[maxYearIdx] || '...'}
                   </span>
               </div>
@@ -185,7 +185,7 @@ export default function GitHubEvolutionChart({ history, priorityLanguages }: Git
 
           <div className="flex-1 max-w-md">
               <div className="space-y-4">
-                  <div className="flex justify-between text-[9px] font-black text-zinc-400 dark:text-zinc-600 uppercase tracking-widest">
+                  <div className="flex justify-between text-[9px] font-black text-black dark:text-zinc-400 dark:text-zinc-600 uppercase tracking-widest">
                       <span>Early History</span>
                       <span>Present Day</span>
                   </div>
@@ -222,7 +222,7 @@ export default function GitHubEvolutionChart({ history, priorityLanguages }: Git
                           className={`range-slider-input absolute w-full appearance-none bg-transparent cursor-pointer h-1 accent-indigo-600 dark:accent-indigo-500 pointer-events-none ${lastActive === 'max' ? 'z-30' : 'z-20'}`}
                       />
                   </div>
-                  <p className="text-[8px] font-bold text-zinc-400 dark:text-zinc-500 italic text-center uppercase tracking-widest">
+                  <p className="text-[8px] font-bold text-black dark:text-zinc-400 dark:text-zinc-500 italic text-center uppercase tracking-widest">
                       Drag handles to adjust analytical window
                   </p>
               </div>
@@ -259,7 +259,7 @@ export default function GitHubEvolutionChart({ history, priorityLanguages }: Git
                         <span className={`
                             inline-flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all duration-300 mx-1 mb-2
                             ${isHidden 
-                                ? 'bg-zinc-100 dark:bg-zinc-900/20 border-zinc-200 dark:border-zinc-800 text-zinc-400 dark:text-zinc-600 opacity-40 grayscale line-through' 
+                                ? 'bg-zinc-100 dark:bg-zinc-900/20 border-zinc-200 dark:border-zinc-800 text-black dark:text-zinc-400 dark:text-zinc-600 opacity-40 grayscale line-through' 
                                 : 'bg-white dark:bg-zinc-900/80 border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-300 hover:border-zinc-400 dark:hover:border-zinc-500 hover:scale-105 active:scale-95 shadow-lg dark:shadow-xl'}
                         `}>
                             <span className="w-1.5 h-1.5 rounded-full shadow-[0_0_8px_currentColor]" style={{ backgroundColor: color, color: color }} />

@@ -15,28 +15,28 @@
     "repositories": [
         {
             "name": "django-rest-framework-contrib",
-            "description": "Contributions to DRF",
+            "description": "Contributions to DRF react (postgresql)",
             "language": "Python",
             "topics": [],
             "stars": 1521,
             "forks": 673,
             "license": "MIT",
             "is_fork": false,
-            "lines": 185519,
-            "updated_at": "2025-10-15T13:53:00Z",
+            "lines": 121380,
+            "updated_at": "2026-05-15T10:00:00Z",
             "url": "https://github.com/repo/django-rest-framework-contrib"
         },
         {
             "name": "react-distributed-state",
-            "description": "Advanced React state manager",
+            "description": "Advanced React state manager (postgresql)",
             "language": "TypeScript",
             "topics": [],
             "stars": 420,
             "forks": 232,
             "license": "MIT",
             "is_fork": false,
-            "lines": 23522,
-            "updated_at": "2025-07-13T18:19:00Z",
+            "lines": 55881,
+            "updated_at": "2026-06-10T12:00:00Z",
             "url": "https://github.com/repo/react-distributed-state"
         }
     ],
@@ -45,17 +45,17 @@
     "oss_prs": 0,
     "external_repos": 0,
     "repo_count": 15,
-    "total_lines": 209042,
+    "total_lines": 264761,
     "total_stars": 2049,
     "total_forks": 1032,
     "languages": [
         {
             "label": "Python",
-            "pct": 54.4
+            "pct": 57.9
         },
         {
             "label": "TypeScript",
-            "pct": 36.7
+            "pct": 40.3
         },
         {
             "label": "C++",
@@ -110,13 +110,13 @@
     "language_history": [
         {
             "year": "2022",
-            "Python": 29502,
-            "TypeScript": 15629,
-            "Groovy": 645,
-            "Makefile": 878,
-            "PowerShell": 617,
-            "Go": 406,
-            "Dart": 1314,
+            "Python": 7376,
+            "TypeScript": 3907,
+            "Groovy": 161,
+            "Makefile": 220,
+            "PowerShell": 154,
+            "Go": 102,
+            "Dart": 329,
             "Lua": 0,
             "Batchfile": 0,
             "HTML": 0,
@@ -127,13 +127,13 @@
         },
         {
             "year": "2023",
-            "Python": 38852,
-            "TypeScript": 27449,
-            "Lua": 610,
-            "Batchfile": 360,
-            "C": 4018,
-            "Dart": 1522,
-            "Ruby": 534,
+            "Python": 9713,
+            "TypeScript": 6862,
+            "Lua": 153,
+            "Batchfile": 90,
+            "C": 1005,
+            "Dart": 381,
+            "Ruby": 134,
             "PowerShell": 0,
             "Makefile": 0,
             "Go": 0,
@@ -144,12 +144,12 @@
         },
         {
             "year": "2024",
-            "Python": 45331,
-            "TypeScript": 33538,
-            "Makefile": 44,
-            "CSS": 1169,
-            "HTML": 1978,
-            "C++": 4646,
+            "Python": 11333,
+            "TypeScript": 8385,
+            "Makefile": 11,
+            "CSS": 292,
+            "HTML": 495,
+            "C++": 1162,
             "PowerShell": 0,
             "Go": 0,
             "Lua": 0,
@@ -158,6 +158,40 @@
             "C": 0,
             "Ruby": 0,
             "Dart": 0
+        },
+        {
+            "year": "2025",
+            "Python": 50000,
+            "TypeScript": 37500,
+            "Groovy": 0,
+            "Makefile": 0,
+            "PowerShell": 0,
+            "Go": 0,
+            "Dart": 0,
+            "Lua": 0,
+            "Batchfile": 0,
+            "HTML": 0,
+            "C": 0,
+            "CSS": 0,
+            "C++": 0,
+            "Ruby": 0
+        },
+        {
+            "year": "2026",
+            "Python": 75000,
+            "TypeScript": 50000,
+            "Groovy": 0,
+            "Makefile": 0,
+            "PowerShell": 0,
+            "Go": 0,
+            "Dart": 0,
+            "Lua": 0,
+            "Batchfile": 0,
+            "HTML": 0,
+            "C": 0,
+            "CSS": 0,
+            "C++": 0,
+            "Ruby": 0
         }
     ],
     "cached": true

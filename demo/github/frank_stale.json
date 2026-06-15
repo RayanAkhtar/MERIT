@@ -11,7 +11,7 @@
     "created_at": "2018-01-01T00:00:00Z",
     "followers": 42,
     "following": 81,
-    "public_repos": 8,
+    "public_repos": 4,
     "repositories": [
         {
             "name": "legacy-node-app",
@@ -22,7 +22,7 @@
             "forks": 25,
             "license": "MIT",
             "is_fork": false,
-            "lines": 57356,
+            "lines": 14339,
             "updated_at": "2020-09-06T09:28:00Z",
             "url": "https://github.com/repo/legacy-node-app"
         },
@@ -35,112 +35,98 @@
             "forks": 54,
             "license": "MIT",
             "is_fork": false,
-            "lines": 123352,
+            "lines": 30838,
             "updated_at": "2021-07-23T16:32:00Z",
             "url": "https://github.com/repo/old-react-class-components"
+        },
+        {
+            "name": "python-legacy-backend",
+            "description": "Massive monolithic python backend that has been abandoned",
+            "language": "Python",
+            "topics": [
+                "python",
+                "django",
+                "legacy"
+            ],
+            "stars": 450,
+            "forks": 120,
+            "license": "MIT",
+            "is_fork": false,
+            "lines": 125000,
+            "updated_at": "2019-11-15T12:00:00Z",
+            "url": "https://github.com/repo/python-legacy-backend"
+        },
+        {
+            "name": "early-typescript-framework",
+            "description": "One of the earliest typescript frameworks, now obsolete, react, next.js, node.js, postgresql, mysql",
+            "language": "TypeScript",
+            "topics": [
+                "typescript",
+                "framework",
+                "obsolete"
+            ],
+            "stars": 820,
+            "forks": 210,
+            "license": "MIT",
+            "is_fork": false,
+            "lines": 100000,
+            "updated_at": "2020-04-20T10:00:00Z",
+            "url": "https://github.com/repo/early-typescript-framework"
         }
     ],
     "total_prs": 240,
     "total_commits": 2048,
     "oss_prs": 0,
     "external_repos": 0,
-    "repo_count": 8,
-    "total_lines": 180709,
+    "repo_count": 4,
+    "total_lines": 270177,
     "total_stars": 122,
     "total_forks": 86,
     "languages": [
         {
+            "label": "Python",
+            "pct": 46.2
+        },
+        {
+            "label": "TypeScript",
+            "pct": 37
+        },
+        {
             "label": "JavaScript",
-            "pct": 74.2
+            "pct": 12.3
         },
         {
             "label": "CSS",
-            "pct": 18.2
+            "pct": 3
         },
         {
             "label": "Ruby",
-            "pct": 1.8
+            "pct": 0.5
         },
         {
             "label": "Go",
-            "pct": 0.9
+            "pct": 0.4
         },
         {
             "label": "Shell",
-            "pct": 0.8
-        },
-        {
-            "label": "SQL",
-            "pct": 0.7
-        },
-        {
-            "label": "Lua",
-            "pct": 0.7
-        },
-        {
-            "label": "PowerShell",
-            "pct": 0.6
-        },
-        {
-            "label": "Java",
-            "pct": 0.4
-        },
-        {
-            "label": "HTML",
-            "pct": 0.4
-        },
-        {
-            "label": "Makefile",
             "pct": 0.3
         },
         {
-            "label": "C",
-            "pct": 0.2
-        },
-        {
-            "label": "Groovy",
-            "pct": 0.2
-        },
-        {
-            "label": "Rust",
-            "pct": 0.2
-        },
-        {
-            "label": "YAML",
-            "pct": 0.2
-        },
-        {
-            "label": "Dockerfile",
-            "pct": 0.2
-        },
-        {
-            "label": "C#",
-            "pct": 0.1
-        },
-        {
-            "label": "SCSS",
-            "pct": 0.0
-        },
-        {
-            "label": "Kotlin",
-            "pct": 0.0
-        },
-        {
-            "label": "Batchfile",
-            "pct": 0.0
+            "label": "SQL",
+            "pct": 0.3
         }
     ],
     "featured_projects": [],
     "language_history": [
         {
             "year": "2016",
-            "JavaScript": 25509,
-            "CSS": 6571,
-            "Shell": 753,
-            "PowerShell": 605,
-            "SQL": 1263,
-            "C": 310,
-            "C#": 116,
+            "JavaScript": 6377,
+            "CSS": 1643,
+            "Shell": 188,
+            "PowerShell": 151,
+            "SQL": 316,
+            "C": 78,
+            "C#": 29,
             "Makefile": 0,
             "Lua": 0,
             "Groovy": 0,
@@ -153,15 +139,17 @@
             "SCSS": 0,
             "Kotlin": 0,
             "HTML": 0,
-            "Dockerfile": 0
+            "Dockerfile": 0,
+            "Python": 0,
+            "TypeScript": 0
         },
         {
             "year": "2017",
-            "JavaScript": 46314,
-            "CSS": 11582,
-            "Lua": 1202,
-            "Go": 1578,
-            "Ruby": 1296,
+            "JavaScript": 11579,
+            "CSS": 2896,
+            "Lua": 301,
+            "Go": 395,
+            "Ruby": 324,
             "Makefile": 0,
             "C": 0,
             "PowerShell": 0,
@@ -176,16 +164,18 @@
             "HTML": 0,
             "C#": 0,
             "SQL": 0,
-            "Dockerfile": 0
+            "Dockerfile": 0,
+            "Python": 0,
+            "TypeScript": 0
         },
         {
             "year": "2018",
-            "JavaScript": 35380,
-            "CSS": 8750,
-            "Ruby": 1880,
-            "Groovy": 96,
-            "Java": 748,
-            "HTML": 682,
+            "JavaScript": 8845,
+            "CSS": 2188,
+            "Ruby": 470,
+            "Groovy": 24,
+            "Java": 187,
+            "HTML": 171,
             "Makefile": 0,
             "C": 0,
             "PowerShell": 0,
@@ -199,14 +189,16 @@
             "Kotlin": 0,
             "C#": 0,
             "SQL": 0,
-            "Dockerfile": 0
+            "Dockerfile": 0,
+            "Python": 5000,
+            "TypeScript": 2500
         },
         {
             "year": "2019",
-            "JavaScript": 15038,
-            "CSS": 4937,
-            "Shell": 301,
-            "C": 51,
+            "JavaScript": 3760,
+            "CSS": 1234,
+            "Shell": 75,
+            "C": 13,
             "Makefile": 0,
             "PowerShell": 0,
             "Lua": 0,
@@ -222,16 +214,17 @@
             "HTML": 0,
             "C#": 0,
             "SQL": 0,
-            "Dockerfile": 0
+            "Dockerfile": 0,
+            "Python": 125000
         },
         {
             "year": "2020",
-            "JavaScript": 11723,
-            "CSS": 950,
-            "Makefile": 381,
-            "PowerShell": 200,
-            "Rust": 419,
-            "HTML": 74,
+            "JavaScript": 2931,
+            "CSS": 238,
+            "Makefile": 95,
+            "PowerShell": 50,
+            "Rust": 105,
+            "HTML": 19,
             "C": 0,
             "Lua": 0,
             "Groovy": 0,
@@ -245,15 +238,16 @@
             "Kotlin": 0,
             "C#": 0,
             "SQL": 0,
-            "Dockerfile": 0
+            "Dockerfile": 0,
+            "TypeScript": 100000
         },
         {
             "year": "2021",
-            "JavaScript": 2,
-            "CSS": 1,
-            "YAML": 298,
-            "SQL": 2,
-            "Ruby": 11,
+            "JavaScript": 1,
+            "CSS": 0,
+            "YAML": 75,
+            "SQL": 1,
+            "Ruby": 3,
             "Makefile": 0,
             "C": 0,
             "PowerShell": 0,
@@ -268,17 +262,19 @@
             "Kotlin": 0,
             "HTML": 0,
             "C#": 0,
-            "Dockerfile": 0
+            "Dockerfile": 0,
+            "Python": 0,
+            "TypeScript": 0
         },
         {
             "year": "2022",
-            "JavaScript": 24,
-            "CSS": 9,
-            "PowerShell": 246,
-            "Dockerfile": 153,
-            "Shell": 206,
-            "Java": 9,
-            "Go": 12,
+            "JavaScript": 6,
+            "CSS": 2,
+            "PowerShell": 62,
+            "Dockerfile": 38,
+            "Shell": 52,
+            "Java": 2,
+            "Go": 3,
             "Makefile": 0,
             "C": 0,
             "Lua": 0,
@@ -291,18 +287,20 @@
             "Kotlin": 0,
             "HTML": 0,
             "C#": 0,
-            "SQL": 0
+            "SQL": 0,
+            "Python": 0,
+            "TypeScript": 0
         },
         {
             "year": "2023",
-            "JavaScript": 4,
-            "CSS": 1,
-            "Groovy": 232,
-            "Makefile": 142,
-            "YAML": 62,
-            "SCSS": 10,
-            "Go": 3,
-            "Kotlin": 5,
+            "JavaScript": 1,
+            "CSS": 0,
+            "Groovy": 58,
+            "Makefile": 36,
+            "YAML": 16,
+            "SCSS": 3,
+            "Go": 1,
+            "Kotlin": 1,
             "C": 0,
             "PowerShell": 0,
             "Lua": 0,
@@ -314,18 +312,20 @@
             "HTML": 0,
             "C#": 0,
             "SQL": 0,
-            "Dockerfile": 0
+            "Dockerfile": 0,
+            "Python": 0,
+            "TypeScript": 0
         },
         {
             "year": "2024",
-            "JavaScript": 4,
-            "CSS": 29,
-            "Dockerfile": 287,
-            "Shell": 151,
-            "Batchfile": 83,
-            "Rust": 8,
-            "HTML": 5,
-            "Kotlin": 1,
+            "JavaScript": 1,
+            "CSS": 7,
+            "Dockerfile": 72,
+            "Shell": 38,
+            "Batchfile": 21,
+            "Rust": 2,
+            "HTML": 1,
+            "Kotlin": 0,
             "Makefile": 0,
             "C": 0,
             "PowerShell": 0,
@@ -337,7 +337,9 @@
             "Go": 0,
             "SCSS": 0,
             "C#": 0,
-            "SQL": 0
+            "SQL": 0,
+            "Python": 0,
+            "TypeScript": 0
         }
     ],
     "cached": true
