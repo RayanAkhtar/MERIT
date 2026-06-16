@@ -191,6 +191,8 @@ def rank_candidates(config_id):
                 "candidate_id": candidate["id"],
                 "name": candidate["name"],
                 "email": candidate["email"],
+                "has_github": bool(candidate.get("github_enriched") or candidate.get("github_profile")),
+                "has_linkedin": bool(candidate.get("linkedin_enriched") or candidate.get("linkedin_profile")),
                 "total_score": sync_total_score,
                 "integrity_penalty": scored_data.get("integrity_penalty", 0.0),
                 "metrics": scored_data["metrics"],

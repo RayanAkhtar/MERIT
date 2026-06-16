@@ -215,7 +215,8 @@
             "C#": 0,
             "SQL": 0,
             "Dockerfile": 0,
-            "Python": 125000
+            "Python": 125000,
+            "TypeScript": 0
         },
         {
             "year": "2020",
@@ -239,7 +240,8 @@
             "C#": 0,
             "SQL": 0,
             "Dockerfile": 0,
-            "TypeScript": 100000
+            "TypeScript": 100000,
+            "Python": 0
         },
         {
             "year": "2021",

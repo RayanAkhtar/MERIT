@@ -19,7 +19,19 @@ def linkedin_person_scrape(linkedin_url: str) -> Optional[Dict]:
     }
 
     response = requests.post(apify_endpoint, json=payload, timeout=120)
-    response.raise_for_status()
+    try:
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as e:
+        try:
+            err_msg = response.json().get("error", {}).get("message")
+            if err_msg:
+                raise ValueError(f"Apify Error: {err_msg}")
+        except Exception:
+            pass
+
+        if response.status_code in [401, 403]:
+            raise ValueError("Apify API token is invalid, expired, or forbidden. Please check your .env configuration.")
+        raise ValueError(f"LinkedIn scraping failed: {e}")
     
     data = response.json()
     if isinstance(data, list) and len(data) > 0:

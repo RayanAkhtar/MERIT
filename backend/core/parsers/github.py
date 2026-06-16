@@ -174,6 +174,7 @@ def summarise_repositories(repos: list[dict], username: str) -> dict:
         
         # Store estimated lines and contribution data back in the repo object
         repo["estimated_lines"] = repo_bytes // CHARS_PER_LINE
+        repo["contribution_ratio"] = ratio
         repo["languages_distribution"] = {l: round((b / repo_bytes) * 100, 1) for l, b in repo_langs.items()} if repo_bytes > 0 else {}
         
         # Extract commits from contributor stats if available
@@ -217,6 +218,7 @@ def summarise_repositories(repos: list[dict], username: str) -> dict:
             "languages_distribution": r.get("languages_distribution", {}),
             "lines": r.get("estimated_lines", 0),
             "commits": r.get("user_commits", 0),
+            "contribution_ratio": r.get("contribution_ratio", 1.0),
             "is_fork": r.get("fork", False)
         })
 

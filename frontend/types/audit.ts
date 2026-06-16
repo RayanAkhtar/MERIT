@@ -16,6 +16,9 @@ export interface TemporalParams {
   lambda: number;
   delta_t: number;
   weight: number;
+  history?: { year: number; volume: number }[];
+  effective_year?: number;
+  current_year?: number;
 }
 
 export interface AuditItem {

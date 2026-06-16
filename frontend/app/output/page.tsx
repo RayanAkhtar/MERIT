@@ -238,6 +238,9 @@ function RankingReport() {
       let dynamicTotalWeight = 0;
       const dynamicMetrics: Record<string, any> = {};
 
+      let hasGitHub = c.has_github === true;
+      let hasLinkedIn = c.has_linkedin === true;
+
       Object.entries(c.metrics).forEach(([key, m]: [string, any]) => {
         // Only include visible metrics in the dynamic recalculation
         if (!visibleColKeys.includes(key)) return;
@@ -453,6 +456,8 @@ function RankingReport() {
         id: c.candidate_id,
         name: c.name,
         email: c.email,
+        hasGitHub,
+        hasLinkedIn,
         computedScores: dynamicComputedScores,
         fullMetrics: dynamicMetrics,
         calculation_summary: {
@@ -859,6 +864,16 @@ function RankingReport() {
                                <span className="text-[10px] text-zinc-500">
                                  {isBlindMode ? "Email Redacted" : cand.email}
                                </span>
+                               {(cand.hasGitHub || cand.hasLinkedIn) && (
+                                 <div className="flex items-center gap-1.5 mt-1.5">
+                                   {cand.hasLinkedIn && (
+                                     <span className="text-[9px] font-bold uppercase tracking-widest text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-900/20 px-1.5 py-0.5 rounded border border-sky-200 dark:border-sky-800/50">LinkedIn</span>
+                                   )}
+                                   {cand.hasGitHub && (
+                                     <span className="text-[9px] font-bold uppercase tracking-widest text-zinc-600 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-200 dark:border-zinc-700">GitHub</span>
+                                   )}
+                                 </div>
+                               )}
                             </div>
                             <button 
                               onClick={() => setSelectedCandidate(cand)}

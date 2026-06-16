@@ -62,13 +62,17 @@ export interface GithubData {
   featured_projects: FeaturedProject[];
   repositories?: GithubRepository[];
   language_history: LanguageHistoryEntry[];
+  created_at_platform?: string;
+  raw_data?: any;
+  github_projects?: any[];
 }
 
 interface GitHubPreviewProps {
   githubData: GithubData;
+  isBlindMode?: boolean;
 }
 
-const GitHubPreview: React.FC<GitHubPreviewProps> = ({ githubData }) => {
+const GitHubPreview: React.FC<GitHubPreviewProps> = ({ githubData, isBlindMode }) => {
   const [hiddenLangs, setHiddenLangs] = React.useState<Set<string>>(new Set());
 
   // Years extraction and mapping
@@ -230,25 +234,25 @@ const GitHubPreview: React.FC<GitHubPreviewProps> = ({ githubData }) => {
                     <div className="flex items-start gap-6 lg:w-1/2">
                         <div className="relative shrink-0">
                             <img 
-                                src={githubData.avatar_url} 
-                                alt={githubData.name || 'Github User'} 
+                                src={isBlindMode ? "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a1a1aa'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" : githubData.avatar_url} 
+                                alt={isBlindMode ? 'Candidate' : (githubData.name || 'Github User')} 
                                 className="w-20 h-20 rounded-2xl object-cover grayscale-[0.2] dark:grayscale-[0.2] group-hover/profile:grayscale-0 transition-all duration-700"
                             />
                             <div className="absolute -bottom-2 -left-2 px-2 py-0.5 rounded bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-[7px] font-black tracking-[0.2em] text-indigo-600 dark:text-indigo-400">
-                                {githubData.username.toUpperCase()}
+                                {isBlindMode ? "REDACTED" : githubData.username.toUpperCase()}
                             </div>
                         </div>
 
                         <div className="space-y-3 min-w-0">
                             <div className="space-y-1">
                                 <h3 className="text-3xl font-black text-zinc-900 dark:text-white tracking-tighter leading-none">
-                                    {githubData.name || githubData.username}
+                                    {isBlindMode ? "Engineering Contributor" : (githubData.name || githubData.username)}
                                 </h3>
                                 <div className="flex items-center gap-3">
                                     <span className="text-[9px] font-black uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500">
-                                       Joined {new Date(githubData.created_at).getFullYear()}
+                                       Joined {new Date(githubData.created_at_platform || githubData.raw_data?.created_at || githubData.created_at || new Date().toISOString()).getFullYear()}
                                     </span>
-                                    {githubData.location && (
+                                    {githubData.location && !isBlindMode && (
                                         <>
                                             <span className="w-1 h-1 rounded-full bg-zinc-200 dark:bg-zinc-800" />
                                             <span className="text-[9px] font-black uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500">
@@ -280,7 +284,7 @@ const GitHubPreview: React.FC<GitHubPreviewProps> = ({ githubData }) => {
                             { label: 'TOTAL PRS', value: githubData.total_prs, color: 'text-indigo-600 dark:text-indigo-400' },
                             { label: 'TOTAL COMMITS', value: githubData.total_commits, color: 'text-emerald-600 dark:text-emerald-400' },
                             { label: 'TOTAL STARS', value: githubData.total_stars, color: 'text-amber-600 dark:text-amber-400' },
-                            { label: 'TOTAL REPOS', value: githubData.public_repos, color: 'text-zinc-900 dark:text-white' }
+                            { label: 'TOTAL REPOS', value: githubData.public_repos ?? githubData.raw_data?.public_repos ?? githubData.repo_count ?? githubData.raw_data?.repo_count ?? githubData.github_projects?.length ?? 0, color: 'text-zinc-900 dark:text-white' }
                         ].map((stat, i) => (
                             <div key={i} className="space-y-1 relative group/stat">
                                 <span className="text-[8px] font-black uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-600">
@@ -320,7 +324,7 @@ const GitHubPreview: React.FC<GitHubPreviewProps> = ({ githubData }) => {
                                         <span className="block text-4xl font-black text-zinc-900 dark:text-white tracking-tighter leading-none">{formatNumber(githubData.total_lines)}</span>
                                         <span className="block text-[8px] font-black text-zinc-500 dark:text-zinc-600 uppercase tracking-[0.2em] mt-2">Total Lines Scanned</span>
                                         <div className="h-4" />
-                                        <span className="block text-2xl font-black text-zinc-400 dark:text-white/50 tracking-tighter leading-none">{githubData.repo_count}</span>
+                                        <span className="block text-2xl font-black text-zinc-400 dark:text-white/50 tracking-tighter leading-none">{githubData.repo_count ?? githubData.raw_data?.repo_count ?? githubData.github_projects?.length ?? 0}</span>
                                         <span className="block text-[7px] font-black text-zinc-400 dark:text-zinc-700 uppercase tracking-[0.2em]">Verified Repos</span>
                                     </div>
                                 </div>
@@ -520,7 +524,22 @@ const GitHubPreview: React.FC<GitHubPreviewProps> = ({ githubData }) => {
                 </div>
 
                 <div className="flex flex-col gap-6">
-                    {(githubData.featured_projects || []).map((proj, i) => (
+                    {(() => {
+                        const rawFeatured = githubData.raw_data?.featured_projects || githubData.featured_projects || [];
+                        const baseProjects = githubData.github_projects?.length ? githubData.github_projects : (rawFeatured.length ? rawFeatured : (githubData.repositories || githubData.raw_data?.repositories || []));
+                        
+                        const projects = baseProjects.map((p: any) => {
+                            const rich = rawFeatured.find((rf: any) => rf.name === p.name);
+                            return { 
+                                ...p, 
+                                top_languages: rich?.top_languages || p.top_languages,
+                                lines: rich?.lines || p.lines || 0,
+                                commits: rich?.commits || p.commits || 0,
+                                contribution_ratio: rich?.contribution_ratio ?? p.contribution_ratio
+                            };
+                        }).slice(0, 5); // limit to a reasonable number to prevent UI overflow
+
+                        return projects.map((proj: any, i: number) => (
                         <div 
                             key={i} 
                             onClick={() => window.open(proj.url, '_blank')}
@@ -534,7 +553,7 @@ const GitHubPreview: React.FC<GitHubPreviewProps> = ({ githubData }) => {
                                         </svg>
                                     </div>
                                     <span className="px-3 py-1 rounded bg-emerald-500/5 text-emerald-600 dark:text-emerald-500 text-[10px] font-black border border-emerald-500/10 uppercase tracking-[0.2em] shadow-lg">
-                                        {proj.type}
+                                        {proj.type || (proj.is_fork ? 'Fork' : 'Original')}
                                     </span>
                                 </div>
 
@@ -545,9 +564,26 @@ const GitHubPreview: React.FC<GitHubPreviewProps> = ({ githubData }) => {
                                     <p className="text-xs font-medium text-zinc-500 dark:text-zinc-400 leading-relaxed italic opacity-80 border-l-2 border-zinc-200 dark:border-zinc-800 pl-5 py-1 line-clamp-3 text-left">
                                         "{proj.description}"
                                     </p>
-                                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-50 dark:bg-zinc-900/50 border border-amber-500/20 w-fit">
-                                        <span className="text-amber-500 text-[10px]">★</span>
-                                        <span className="text-[9px] font-black text-amber-600 dark:text-amber-500 uppercase tracking-[0.2em]">{proj.stars} Stars</span>
+                                    <div className="flex flex-wrap items-center gap-3 mt-4">
+                                        <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-50 dark:bg-zinc-900/50 border border-amber-500/20 w-fit">
+                                            <span className="text-amber-500 text-[10px]">★</span>
+                                            <span className="text-[9px] font-black text-amber-600 dark:text-amber-500 uppercase tracking-[0.2em]">{proj.stars || 0} Stars</span>
+                                        </div>
+                                        {proj.lines > 0 && (
+                                            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-50 dark:bg-zinc-900/50 border border-indigo-500/20 w-fit">
+                                                <span className="text-[9px] font-black text-indigo-600 dark:text-indigo-500 uppercase tracking-[0.2em]">{proj.lines.toLocaleString()} LOC</span>
+                                            </div>
+                                        )}
+                                        {proj.commits > 0 && (
+                                            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-50 dark:bg-zinc-900/50 border border-emerald-500/20 w-fit">
+                                                <span className="text-[9px] font-black text-emerald-600 dark:text-emerald-500 uppercase tracking-[0.2em]">{proj.commits.toLocaleString()} Commits</span>
+                                            </div>
+                                        )}
+                                        {proj.contribution_ratio !== undefined && (
+                                            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-50 dark:bg-zinc-900/50 border border-purple-500/20 w-fit">
+                                                <span className="text-[9px] font-black text-purple-600 dark:text-purple-500 uppercase tracking-[0.2em]">{Math.round(proj.contribution_ratio * 100)}% Contribution</span>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -555,7 +591,7 @@ const GitHubPreview: React.FC<GitHubPreviewProps> = ({ githubData }) => {
                             <div className="w-full md:w-64 space-y-6 md:border-l border-zinc-100 dark:border-zinc-800/50 md:pl-10 text-left">
                                 <h3 className="text-[9px] font-black tracking-[0.3em] text-zinc-400 dark:text-zinc-600 uppercase">Stack Architecture</h3>
                                 <div className="space-y-4">
-                                    {(proj.top_languages || []).map((lang, li) => (
+                                    {(proj.top_languages || (proj.language ? [proj.language] : [])).map((lang: string, li: number) => (
                                         <div key={li} className="flex items-center gap-4 group/stk">
                                             <div className="w-1.5 h-1.5 rounded-full shadow-[0_0_8px_currentColor]" style={{ backgroundColor: getLangColor(lang), color: getLangColor(lang) }} />
                                             <span className="text-[10px] font-black text-zinc-600 dark:text-zinc-300 uppercase tracking-[0.2em] leading-none">
@@ -566,7 +602,8 @@ const GitHubPreview: React.FC<GitHubPreviewProps> = ({ githubData }) => {
                                 </div>
                             </div>
                         </div>
-                    ))}
+                    ));
+                    })()}
                 </div>
             </div>
         </div>

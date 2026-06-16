@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { BsCalculator, BsChevronDown, BsInfoCircle, BsLayers } from 'react-icons/bs';
 import { MetricAudit, AuditItem, CandidateDetail } from '@/types/audit';
 import GitHubEvolutionChart from './GitHubEvolutionChart';
+import GitHubPreview from '../../components/GitHubPreview';
 import ScoringAudit from './ScoringAudit';
 import TemporalDecayAudit from './audit/TemporalDecayAudit';
 import BayesianFusionAudit from './audit/BayesianFusionAudit';
@@ -713,58 +714,8 @@ export default function DetailedReportModal({
                   )}
 
                   {activeTab === 'github' && (
-                    <div className="space-y-6">
-                      <div className="p-6 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm flex items-center gap-6">
-                        <div className={`w-16 h-16 rounded-full ring-2 ring-indigo-500/20 overflow-hidden bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center`}>
-                          {isBlindMode ? (
-                            <svg className="w-8 h-8 text-black dark:text-zinc-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" /></svg>
-                          ) : (
-                            <img src={candidateDetail.github_profile?.avatar_url} className="w-full h-full object-cover" alt="GH" />
-                          )}
-                        </div>
-                        <div>
-                          <h4 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">
-                            {isBlindMode ? "Engineering Contributor" : (candidateDetail.github_profile?.name || candidateDetail.github_profile?.username)}
-                          </h4>
-                          <div className="flex items-center gap-4 mt-1 text-xs font-bold text-black dark:text-zinc-500">
-                            <span>★ {candidateDetail.github_profile?.total_stars} stars</span>
-                            <span>⚡ {candidateDetail.github_profile?.total_commits} commits</span>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div className="p-6 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
-                        <h4 className="text-[10px] font-black uppercase tracking-widest text-black dark:text-zinc-400 mb-4">Technical Breadth (LoC %)</h4>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
-                          {candidateDetail.github_profile?.languages?.map((l: any) => (
-                            <div key={l.label} className="space-y-1">
-                              <div className="flex justify-between text-[11px] font-bold">
-                                <span className="text-zinc-600">{l.label}</span>
-                                <span className="text-black dark:text-zinc-400">{l.pct}%</span>
-                              </div>
-                              <div className="h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden">
-                                <div className="h-full bg-indigo-600" style={{ width: `${l.pct}%` }} />
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      <GitHubEvolutionChart history={candidateDetail.github_profile?.language_history || []} />
-
-                      <div className="grid grid-cols-1 gap-4">
-                        {[...(candidateDetail.github_projects || [])].sort((a, b) => (b.stars || 0) - (a.stars || 0)).map((repo: any) => (
-                          <div key={repo.id} className="p-5 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800">
-                            <div className="flex justify-between items-start mb-2">
-                              <h5 className="font-bold text-sm text-zinc-900 dark:text-zinc-100">{repo.name}</h5>
-                              <span className="text-[10px] font-black text-indigo-950 dark:text-indigo-500 bg-indigo-50 dark:bg-indigo-900/20 px-2 py-0.5 rounded-full">{repo.language}</span>
-                            </div>
-                            <p className="text-xs text-black dark:text-zinc-500 dark:text-zinc-400 line-clamp-2">{repo.description}</p>
-                          </div>
-                        ))}
-                      </div>
-
-                      {!candidateDetail.github_profile && (
+                    <div className="w-full">
+                      {!candidateDetail.github_profile ? (
                         <div className="p-12 text-center bg-zinc-50 dark:bg-zinc-950/20 rounded-3xl border border-zinc-100 dark:border-zinc-800 border-dashed">
                           <svg className="w-12 h-12 text-black dark:text-zinc-300 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
@@ -772,6 +723,8 @@ export default function DetailedReportModal({
                           <h3 className="text-sm font-black text-zinc-900 dark:text-zinc-50 uppercase tracking-widest">No GitHub Profile Linked</h3>
                           <p className="text-xs text-black dark:text-zinc-500 mt-2">Open source contributions and technical evolution data are unavailable for this profile.</p>
                         </div>
+                      ) : (
+                        <GitHubPreview githubData={candidateDetail.github_profile} isBlindMode={isBlindMode} />
                       )}
                     </div>
                   )}
