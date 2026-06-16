@@ -520,7 +520,7 @@ const GitHubPreview: React.FC<GitHubPreviewProps> = ({ githubData, isBlindMode }
             <div className="space-y-12">
                 <div className="flex items-center gap-5">
                     <div className="w-1.5 h-10 bg-emerald-600 dark:bg-emerald-500 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.3)] dark:shadow-[0_0_15px_rgba(16,185,129,0.5)]" />
-                    <h6 className="text-[11px] font-black uppercase tracking-[0.35em] text-zinc-500 dark:text-zinc-400">Public Projects</h6>
+                    <h6 className="text-[11px] font-black uppercase tracking-[0.35em] text-zinc-500 dark:text-zinc-400">Featured Projects</h6>
                 </div>
 
                 <div className="flex flex-col gap-6">

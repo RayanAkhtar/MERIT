@@ -35,8 +35,11 @@ def linkedin_person_scrape(linkedin_url: str) -> Optional[Dict]:
     
     data = response.json()
     if isinstance(data, list) and len(data) > 0:
-        print("[LinkedIn] Apify success")
         res = data[0]
+        if "error" in res:
+            raise ValueError(f"Apify Actor Error: {res['error']}")
+            
+        print("[LinkedIn] Apify success")
         res["provider"] = "apify"
         return res
         
