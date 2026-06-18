@@ -446,13 +446,18 @@ const GitHubPreview: React.FC<GitHubPreviewProps> = ({ githubData, isBlindMode }
                                     }}
                                 />
                                 <Tooltip 
-                                    itemSorter={(item) => Number(item.value) * -1}
                                     content={({ active, payload, label }) => {
                                         if (active && payload && payload.length) {
+                                            const sortedData = [...payload]
+                                                .filter((p: any) => Number(p.value) > 0)
+                                                .sort((a: any, b: any) => Number(b.value) - Number(a.value));
+
+                                            if (sortedData.length === 0) return null;
+
                                             return (
                                                 <div className="bg-white dark:bg-[#09090b] border border-zinc-200 dark:border-zinc-800 rounded-2xl p-4 shadow-xl">
                                                     <p className="text-[9px] font-black text-zinc-500 mb-3 uppercase tracking-[0.2em]">{label}</p>
-                                                    {payload.map((entry, index) => (
+                                                    {sortedData.map((entry: any, index: number) => (
                                                         <div key={index} className="flex items-center gap-2 mb-1.5">
                                                             <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: entry.color }}>
                                                                 {entry.name} : {formatNumber(Number(entry.value))} LINES
