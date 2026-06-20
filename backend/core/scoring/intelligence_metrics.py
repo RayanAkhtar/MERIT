@@ -167,6 +167,10 @@ class ExperienceMetric(BaseMetric):
                     "notes": f"{human_note} (Bayesian Audit: {fusion_result.get('logic', 'N/A')})",
                     "alpha": fusion_result.get("alpha"),
                     "beta": fusion_result.get("beta"),
+                    "uncertainty": fusion_result.get("uncertainty"),
+                    "confidence_label": fusion_result.get("confidence_label"),
+                    "confidence_reason": fusion_result.get("confidence_reason"),
+                    "logic": fusion_result.get("logic"),
                     "source_details": [
                         {
                             "source": "CV", 

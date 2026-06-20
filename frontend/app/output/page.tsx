@@ -714,11 +714,11 @@ function RankingReport() {
                      </div>
                      
                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 text-[10px] leading-relaxed rounded shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none font-medium normal-case tracking-normal text-left">
-                       <p className="mb-2 font-bold text-xs">Bayesian Uncertainty ($\sigma$)</p>
+                       <p className="mb-2 font-bold text-xs">Bayesian Uncertainty (σ)</p>
                        <ul className="space-y-1">
-                         <li><span className="text-emerald-400 dark:text-emerald-600 font-bold">High ($\sigma \le 0.22$):</span> Strong consensus across data sources.</li>
-                         <li><span className="text-amber-400 dark:text-amber-600 font-bold">Med ($0.22 \lt \sigma \le 0.29$):</span> Some missing data or minor conflict.</li>
-                         <li><span className="text-rose-400 dark:text-rose-600 font-bold">Low ($\sigma \gt 0.29$):</span> Significant contradiction across sources.</li>
+                         <li><span className="text-emerald-400 dark:text-emerald-600 font-bold">High (σ ≤ 0.22):</span> Strong consensus across data sources.</li>
+                         <li><span className="text-amber-400 dark:text-amber-600 font-bold">Med (0.22 {"<"} σ ≤ 0.29):</span> Some missing data or minor conflict.</li>
+                         <li><span className="text-rose-400 dark:text-rose-600 font-bold">Low (σ {">"} 0.29):</span> Significant contradiction across sources.</li>
                        </ul>
                      </div>
                    </div>

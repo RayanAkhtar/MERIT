@@ -418,24 +418,24 @@ export default function DetailedReportModal({
 
                                       {/* Phase 1: Source Normalisation */}
                                       <div className="space-y-3">
-                                        <div className="flex justify-between items-center text-xs font-black text-indigo-950 dark:text-indigo-300 uppercase tracking-[0.15em] border-b border-indigo-500/20 pb-2 mb-1">
+                                        <div className="flex justify-between items-center text-sm font-black text-indigo-950 dark:text-indigo-200 uppercase tracking-[0.15em] border-b border-indigo-500/20 pb-2 mb-1">
                                           <span>Phase 1: Heuristic Normalisation</span>
                                         </div>
                                         {(item.source_details || []).map((sd: any, idx: number) => (
                                           <div key={`p1-${idx}`} className="flex flex-col gap-1.5 border-b border-indigo-500/10 dark:border-white/5 pb-3">
-                                            <div className="flex justify-between items-center text-[12px]">
-                                              <span className="text-black dark:text-zinc-300 font-bold tracking-tight">{sd.source} Signal</span>
-                                              <span className="text-indigo-950 dark:text-indigo-400 font-mono font-black bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20">
+                                            <div className="flex justify-between items-center text-sm">
+                                              <span className="text-black dark:text-zinc-200 font-bold tracking-tight">{sd.source} Signal</span>
+                                              <span className="text-indigo-950 dark:text-indigo-300 font-mono font-black bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20">
                                                 Strength: {sd.score?.toFixed(2)}
                                               </span>
                                             </div>
-                                            <div className="text-[11px] font-mono text-zinc-900 dark:text-zinc-400/90 pl-3 border-l-2 border-indigo-500/30 leading-relaxed italic">
+                                            <div className="text-xs font-mono text-zinc-900 dark:text-zinc-300/90 pl-3 border-l-2 border-indigo-500/30 leading-relaxed italic">
                                               {(isBlindMode && !isTierUniversities) && (sd.source === 'University Anchor' || (item.item === 'Institutional Prestige' || item.component === 'Institutional Prestige'))
                                                 ? "Tier Mapping: Redacted (Institutional Prestige Hidden)"
                                                 : sd.derivation}
                                             </div>
                                             {(sd.source === 'CV' || sd.source === 'LinkedIn') && (
-                                              <div className="mt-1 pl-3 text-[9px] font-bold text-amber-700 dark:text-amber-500/70 uppercase tracking-tight flex items-center gap-1.5">
+                                              <div className="mt-1 pl-3 text-[10px] font-bold text-amber-700 dark:text-amber-500/70 uppercase tracking-tight flex items-center gap-1.5">
                                                 <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                 </svg>
@@ -447,6 +447,18 @@ export default function DetailedReportModal({
                                       </div>
 
                                       <BayesianFusionAudit item={item} isBlindMode={isBlindMode} />
+                                      
+                                      {item.recalculation_strategy === 'sum' && (
+                                        <div className="mt-4 p-3 rounded-lg bg-amber-500/10 border border-amber-500/20 text-xs text-amber-800 dark:text-amber-400">
+                                          <div className="font-bold mb-1 flex items-center gap-1.5">
+                                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                            Additive Model Notice
+                                          </div>
+                                          This metric uses an additive scoring model (Sum) rather than Bayesian Fusion. The sources measured here represent distinct, complementary components of the total score rather than independent observations of the same trait.
+                                        </div>
+                                      )}
                                     </motion.div>
                                   )}
                                 </AnimatePresence>
