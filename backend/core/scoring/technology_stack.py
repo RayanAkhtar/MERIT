@@ -314,6 +314,7 @@ class TechnologyStackMetric(BaseMetric):
                 "integrity_penalty_value": stuffing_penalty,
                 "integrity_audit_details": penalty_details,
                 "is_semantic_bridge": bridge_used_gh or bridge_used_cv or bridge_used_li,
+                "semantic_match_term": semantic_term if (bridge_used_gh or bridge_used_cv or bridge_used_li) else None,
                 "source_details": source_details,
                 "notes": f"{human_note} (Bayesian Audit: {fusion_result['logic']})",
                 "sources": list(set(item_sources))
@@ -379,6 +380,7 @@ class TechnologyStackMetric(BaseMetric):
             "technical_formula": tech_formula,
             "breakdown": breakdown,
             "has_semantic_bridge": any(b.get("is_semantic_bridge") for b in breakdown),
+            "semantic_match_term": next((b.get("semantic_match_term") for b in breakdown if b.get("is_semantic_bridge")), None),
             "sources_used": list(set([src for b in breakdown for src in b.get("sources", [])])),
             "glossary": [
                 {"term": "Alpha (α)", "definition": "Strength of supporting evidence across all sources."},

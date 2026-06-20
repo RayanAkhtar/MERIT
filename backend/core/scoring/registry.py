@@ -119,13 +119,19 @@ class ScoringRegistry:
         # Pre-calculate integrity audit to pass to individual metrics
         target_keywords = []
         jd_metrics = job_requirements.get("metrics", {})
-        for category in ["Languages", "Technologies"]:
-            vals = jd_metrics.get(category, {}).get("value", [])
-            for v in vals:
-                if isinstance(v, dict):
-                    target_keywords.append(v.get("value"))
-                else:
-                    target_keywords.append(v)
+        
+        if "languages" in keys_to_run:
+            for v in jd_metrics.get("Languages", {}).get("value", []):
+                target_keywords.append(v.get("value") if isinstance(v, dict) else v)
+        if "technologies" in keys_to_run:
+            for v in jd_metrics.get("Technologies", {}).get("value", []):
+                target_keywords.append(v.get("value") if isinstance(v, dict) else v)
+
+        for key in keys_to_run:
+            if key.startswith("req_"):
+                target_keywords.append(key.replace("req_", "").replace("_", " "))
+                
+        target_keywords = list(set([k for k in target_keywords if k and str(k).strip()]))
         
         candidate_cv = candidate_data.get("raw_cv_text") or candidate_data.get("full_cv_text") or ""
         stuffing_audit = self.stuffing_detector.analyze(candidate_cv, target_keywords)
@@ -176,13 +182,13 @@ class ScoringRegistry:
         # integrity audit
         target_keywords = []
         jd_metrics = job_requirements.get("metrics", {})
-        for category in ["Languages", "Technologies"]:
-            vals = jd_metrics.get(category, {}).get("value", [])
-            for v in vals:
-                if isinstance(v, dict):
-                    target_keywords.append(v.get("value") or v.get("name") or "")
-                else:
-                    target_keywords.append(str(v))
+        
+        if "languages" in keys_to_run:
+            for v in jd_metrics.get("Languages", {}).get("value", []):
+                target_keywords.append((v.get("value") or v.get("name") or "") if isinstance(v, dict) else str(v))
+        if "technologies" in keys_to_run:
+            for v in jd_metrics.get("Technologies", {}).get("value", []):
+                target_keywords.append((v.get("value") or v.get("name") or "") if isinstance(v, dict) else str(v))
 
         for key in keys_to_run:
             if key.startswith("req_"):
@@ -224,7 +230,7 @@ class ScoringRegistry:
         # (e.g. LanguageExpertiseMetric) at the signal level.
         for term_audit in stuffing_audit["flagged_terms"]:
             term = term_audit["term"].lower().replace(" ", "_")
-            req_key = f"req_{term}"
+            req_key_lower = f"req_{term}"
             p_val = term_audit["penalty_contribution"]
             audit_data = {
                 "term": term_audit["term"],
@@ -234,9 +240,10 @@ class ScoringRegistry:
                 "penalty_per": integrity_cfg.get("PENALTY_PER_OCCURRENCE", 0.08)
             }
 
-            # Flag the specific requirement (e.g. req_python)
-            if req_key in results:
-                m = results[req_key]
+            # Flag the specific requirement (e.g. req_python) - case insensitive lookup
+            actual_key = next((k for k in results.keys() if k.lower() == req_key_lower), None)
+            if actual_key:
+                m = results[actual_key]
                 m["integrity_penalty_applied"] = True
                 m["integrity_penalty_value"] = p_val
                 m["integrity_audit_details"] = audit_data

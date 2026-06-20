@@ -922,6 +922,7 @@ function RankingReport() {
                           return (
                            <td 
                               key={m.key} 
+                              title={metricData?.has_semantic_bridge && metricData?.semantic_match_term ? `Semantic Match: ${metricData.semantic_match_term}` : undefined}
                               onClick={() => {
                                  setSelectedCandidate(cand);
                                  setInitialFocusMetric(m.label);
@@ -938,13 +939,13 @@ function RankingReport() {
                                    title={confidenceLabel}
                                  />
                               )}
-                              <div className="flex items-center gap-2">
-                                 <span className={
+                              <div className="flex items-center justify-center gap-2">
+                                 <span className={`text-lg ${
                                    hasPenalty 
                                      ? (cand.reverted_stuffing ? "text-emerald-600 dark:text-emerald-500 font-bold" : "text-amber-600 dark:text-amber-500 font-bold") : 
                                    hasWarning ? "text-amber-600 dark:text-amber-500 font-bold" :
-                                   (metricData?.has_semantic_bridge ? "text-fuchsia-600 dark:text-fuchsia-400 font-bold" : (score > 70 ? "text-green-500" : "text-zinc-600 dark:text-zinc-400"))
-                                 }>
+                                   (metricData?.has_semantic_bridge ? "text-fuchsia-600 dark:text-fuchsia-400 font-bold" : (score > 70 ? "text-green-500 font-semibold" : "text-zinc-600 dark:text-zinc-300 font-medium"))
+                                 }`}>
                                     {score}%
                                  </span>
                                  {hasPenalty && (

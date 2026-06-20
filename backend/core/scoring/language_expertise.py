@@ -356,6 +356,7 @@ class LanguageExpertiseMetric(BaseMetric):
                 "beta": fusion_result["beta"],
                 "confidence_interval": fusion_result["confidence_interval"],
                 "is_semantic_bridge": bridge_used_gh or bridge_used_cv or bridge_used_li,
+                "semantic_match_term": semantic_term if (bridge_used_gh or bridge_used_cv or bridge_used_li) else None,
                 "integrity_penalty_applied": stuffing_penalty > 0,
                 "integrity_penalty_value": stuffing_penalty,
                 "integrity_audit_details": penalty_details,
@@ -444,6 +445,7 @@ class LanguageExpertiseMetric(BaseMetric):
             "technical_formula": tech_formula,
             "breakdown": breakdown,
             "has_semantic_bridge": any(b.get("is_semantic_bridge") for b in breakdown),
+            "semantic_match_term": next((b.get("semantic_match_term") for b in breakdown if b.get("is_semantic_bridge")), None),
             "sources_used": list(set([src for b in breakdown for src in b.get("sources", [])])),
             "glossary": [
                 {"term": "Alpha (α)", "definition": "Strength of supporting evidence across all sources."},

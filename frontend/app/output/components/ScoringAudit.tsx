@@ -169,8 +169,22 @@ export default function ScoringAudit({
                 The scoring engine detected unnatural repetition of buzzwords in the CV. 
                 An integrity penalty of <span className="text-amber-700 dark:text-amber-500">{(candidate.calculation_summary.integrity_penalty * 100).toFixed(0)}%</span> was subtracted from the final score.
               </p>
-              <div className="flex flex-col lg:flex-row gap-4 items-stretch mt-2">
-                <div className="w-full lg:w-5/12 grid grid-cols-1 gap-2 content-center">
+              <div className="flex flex-col gap-4 mt-4">
+                <div className="w-full bg-black/20 border border-amber-500/10 rounded-xl p-5 relative overflow-hidden flex flex-col justify-center">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-amber-500/30"></div>
+                  <h5 className="text-[10px] font-black uppercase tracking-widest text-amber-700 dark:text-amber-500 mb-2 flex items-center gap-2">
+                    <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Audit Intent
+                  </h5>
+                  <p className="text-[10px] sm:text-xs font-medium text-black dark:text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                    This penalty docks the CV signal within the Ecosystem & Language Alignment metric. Reverting it may only trigger a minor score correction. 
+                    <span className="block mt-2 text-amber-600/80 dark:text-amber-500/70 font-bold">The primary goal is flagging potential dishonesty via SEO keyword stuffing, rather than strictly penalising repeated word usage.</span>
+                  </p>
+                </div>
+
+                <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 content-start">
                   {(candidate.calculation_summary.stuffing_audit || []).map((audit: StuffingAudit, i: number) => (
                     <div key={i} className="p-4 bg-amber-500/5 rounded-lg border border-amber-500/10 flex flex-col gap-2.5 w-full text-xs h-full justify-center">
                       <div className="flex justify-between items-center border-b border-amber-500/10 pb-2">
@@ -195,20 +209,6 @@ export default function ScoringAudit({
                       </div>
                     </div>
                   ))}
-                </div>
-                
-                <div className="w-full lg:w-7/12 bg-black/20 border border-amber-500/10 rounded-xl p-5 relative overflow-hidden flex flex-col justify-center">
-                  <div className="absolute top-0 left-0 w-1 h-full bg-amber-500/30"></div>
-                  <h5 className="text-[10px] font-black uppercase tracking-widest text-amber-700 dark:text-amber-500 mb-2 flex items-center gap-2">
-                    <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    Audit Intent
-                  </h5>
-                  <p className="text-[10px] sm:text-xs font-medium text-black dark:text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                    This penalty docks the CV signal within the Ecosystem & Language Alignment metric. Reverting it may only trigger a minor score correction. 
-                    <span className="block mt-2 text-amber-600/80 dark:text-amber-500/70 font-bold">The primary goal is flagging potential dishonesty via SEO keyword stuffing, rather than strictly penalising repeated word usage.</span>
-                  </p>
                 </div>
               </div>
             </div>

@@ -52,14 +52,17 @@ class KeywordStuffingDetector:
                 # take points off for every occurrence over the limit
                 excess = occurrences - self.cfg["OCCURRENCE_LIMIT"]
                 penalty = excess * self.cfg["PENALTY_PER_OCCURRENCE"]
-                total_penalty += penalty
+                
+                # Cap individual term penalty
+                capped_penalty = min(penalty, self.cfg["MAX_TOTAL_PENALTY"])
+                total_penalty += capped_penalty
                 
                 flagged_terms.append({
                     "term": keyword,
                     "count": occurrences,
                     "density": f"{density:.1%}",
                     "reason": reason,
-                    "penalty_contribution": round(penalty, 3),
+                    "penalty_contribution": round(capped_penalty, 3),
                     "threshold": self.cfg["OCCURRENCE_LIMIT"],
                     "penalty_per_excess": self.cfg["PENALTY_PER_OCCURRENCE"]
                 })
