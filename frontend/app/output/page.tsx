@@ -685,14 +685,14 @@ function RankingReport() {
                      <div className="flex items-center gap-1.5 group relative cursor-help">
                        <span className="bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-700 px-2 py-0.5 rounded text-xs font-black leading-none">B</span>
                        Baseline
-                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 text-[10px] leading-relaxed rounded shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-center font-medium normal-case tracking-normal">
+                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 px-3 py-2 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 text-sm leading-tight rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-center font-medium normal-case tracking-normal">
                          Core metrics universally required for this baseline role.
                        </div>
                      </div>
                      <div className="flex items-center gap-1.5 group relative cursor-help">
                        <span className="bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800/50 px-2 py-0.5 rounded text-xs font-black leading-none">E</span>
                        Extensible
-                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 text-[10px] leading-relaxed rounded shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-center font-medium normal-case tracking-normal">
+                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 px-3 py-2 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 text-sm leading-tight rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-center font-medium normal-case tracking-normal">
                          Job-specific metrics dynamically extracted from the JD.
                        </div>
                      </div>
@@ -713,8 +713,8 @@ function RankingReport() {
                        Low
                      </div>
                      
-                     <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 text-[10px] leading-relaxed rounded shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none font-medium normal-case tracking-normal text-left">
-                       <p className="mb-2 font-bold text-xs">Bayesian Uncertainty (σ)</p>
+                     <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 px-4 py-3 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 text-sm leading-relaxed rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none font-medium normal-case tracking-normal text-left">
+                       <p className="mb-2 font-bold text-base">Bayesian Uncertainty (σ)</p>
                        <ul className="space-y-1">
                          <li><span className="text-emerald-400 dark:text-emerald-600 font-bold">High (σ ≤ 0.22):</span> Strong consensus across data sources.</li>
                          <li><span className="text-amber-400 dark:text-amber-600 font-bold">Med (0.22 {"<"} σ ≤ 0.29):</span> Some missing data or minor conflict.</li>
@@ -729,7 +729,7 @@ function RankingReport() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                        </svg>
                        Bridge
-                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 text-[10px] leading-relaxed rounded shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-center font-medium normal-case tracking-normal">
+                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 px-3 py-2 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 text-sm leading-tight rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-center font-medium normal-case tracking-normal">
                          Cross-lingual semantic matching applied for equivalent skills.
                        </div>
                      </div>
@@ -738,7 +738,7 @@ function RankingReport() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                        </svg>
                        Low Threat
-                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 text-[10px] leading-relaxed rounded shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-center font-medium normal-case tracking-normal">
+                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 px-3 py-2 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 text-sm leading-tight rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-center font-medium normal-case tracking-normal">
                          Integrity Flag: Keyword stuffing or artificial frequency detected.
                        </div>
                      </div>
@@ -747,7 +747,7 @@ function RankingReport() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                        </svg>
                        Severe Threat
-                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 text-[10px] leading-relaxed rounded shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-center font-medium normal-case tracking-normal">
+                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 px-3 py-2 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 text-sm leading-tight rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-center font-medium normal-case tracking-normal">
                          Integrity Flag: Identity mismatch across external profiles.
                        </div>
                      </div>
@@ -909,7 +909,7 @@ function RankingReport() {
                              )}
                          </div>
                       </td>
-                       {visibleMetrics.map(m => {
+                       {visibleMetrics.map((m, mIdx) => {
                           const metricData = cand.fullMetrics[m.key];
                           const hasPenalty = metricData?.integrity_penalty_applied;
                           const hasWarning = metricData?.is_warning || metricData?.status === 'warning';
@@ -919,16 +919,22 @@ function RankingReport() {
                           const confidenceItem = breakdownItems.find((item: any) => item.confidence_label);
                           const confidenceLabel = confidenceItem?.confidence_label;
                           
+                          const isLastCol = mIdx === visibleMetrics.length - 1;
+                          
                           return (
                            <td 
                               key={m.key} 
-                              title={metricData?.has_semantic_bridge && metricData?.semantic_match_term ? `Semantic Match: ${metricData.semantic_match_term}` : undefined}
                               onClick={() => {
                                  setSelectedCandidate(cand);
                                  setInitialFocusMetric(m.label);
                               }}
                               className="px-4 py-4 font-mono text-sm border-r border-zinc-100 dark:border-zinc-800/30 last:border-0 relative cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors group/cell"
                            >
+                              {metricData?.has_semantic_bridge && metricData?.semantic_match_term && (
+                                 <div className={`absolute bottom-full mb-2 w-max px-3 py-2 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 text-sm leading-none rounded-lg shadow-xl opacity-0 invisible group-hover/cell:opacity-100 group-hover/cell:visible transition-all duration-200 z-50 pointer-events-none font-medium normal-case tracking-normal ${isLastCol ? 'right-2' : 'left-1/2 -translate-x-1/2'}`}>
+                                   Semantic Match: {metricData.semantic_match_term}
+                                 </div>
+                              )}
                               {confidenceLabel && (
                                  <div 
                                    className={`absolute top-2 right-2 w-1.5 h-1.5 rounded-full ${
